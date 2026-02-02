@@ -31,7 +31,125 @@ namespace AscendantContinuum.EchoFields
 
         private void Start()
         {
-            GenerateConstellation();
+            // Use real astronomical data if available
+            if (Astronomy.CosmicDataManager.Instance != null)
+            {
+                GenerateRealConstellation();
+            }
+            else
+            {
+                GenerateConstellation();
+            }
+        }
+        
+        private void GenerateRealConstellation()
+        {
+            ClearConstellation();
+            
+            var visibleConstellations = Astronomy.CosmicDataManager.Instance.VisibleConstellations;
+            
+            if (visibleConstellations.Count > 0)
+            {
+                // Pick a random visible constellation
+                var constellation = visibleConstellations[Random.Range(0, visibleConstellations.Count)];
+                Debug.Log($"[ConstellationTracer] Using real constellation: {constellation.name} ({constellation.season})");
+                
+                // Get star pattern for this constellation
+                ConstellationPattern pattern = GetRealConstellationPattern(constellation.name);
+                GenerateFromPattern(pattern, constellation.name);
+            }
+            else
+            {
+                // Fallback to procedural
+                GenerateConstellation();
+            }
+        }
+        
+        private ConstellationPattern GetRealConstellationPattern(string constellationName)
+        {
+            // Real constellation star patterns (simplified major stars)
+            return constellationName switch
+            {
+                "Orion" => new ConstellationPattern
+                {
+                    positions = new Vector2[]
+                    {
+                        new Vector2(0, 2),      // Betelgeuse (shoulder)
+                        new Vector2(-0.5f, 0),  // Belt star 1
+                        new Vector2(0, 0),      // Belt star 2 (Alnitak)
+                        new Vector2(0.5f, 0),   // Belt star 3
+                        new Vector2(0, -2),     // Rigel (foot)
+                    }
+                },
+                "Ursa Major" => new ConstellationPattern // Big Dipper
+                {
+                    positions = new Vector2[]
+                    {
+                        new Vector2(0, 0),
+                        new Vector2(1, 0),
+                        new Vector2(2, 0),
+                        new Vector2(2.5f, 0.5f),
+                        new Vector2(2, 1.5f),
+                        new Vector2(1, 2),
+                        new Vector2(0, 1.5f)
+                    }
+                },
+                "Cassiopeia" => new ConstellationPattern // W-shape
+                {
+                    positions = new Vector2[]
+                    {
+                        new Vector2(0, 0),
+                        new Vector2(0.8f, -0.8f),
+                        new Vector2(1.6f, 0),
+                        new Vector2(2.4f, -0.8f),
+                        new Vector2(3.2f, 0)
+                    }
+                },
+                "Cygnus" => new ConstellationPattern // Northern Cross
+                {
+                    positions = new Vector2[]
+                    {
+                        new Vector2(0, 2),      // Deneb (tail)
+                        new Vector2(0, 1),
+                        new Vector2(0, 0),      // Center
+                        new Vector2(-1, 0),     // Wing
+                        new Vector2(1, 0),      // Wing
+                        new Vector2(0, -1),     // Body
+                        new Vector2(0, -2)      // Albireo (head)
+                    }
+                },
+                "Leo" => new ConstellationPattern
+                {
+                    positions = new Vector2[]
+                    {
+                        new Vector2(0, 0),      // Regulus
+                        new Vector2(1, 0.5f),
+                        new Vector2(2, 1),
+                        new Vector2(2.5f, 0.5f),
+                        new Vector2(2, 0)
+                    }
+                },
+                _ => GetRandomPattern() // Fallback
+            };
+        }
+        
+        private void GenerateFromPattern(ConstellationPattern pattern, string name)
+        {
+            foreach (Vector2 offset in pattern.positions)
+            {
+                Vector3 position = transform.position + new Vector3(offset.x, offset.y, 0f);
+                GameObject starObj = Instantiate(starPrefab, position, Quaternion.identity, transform);
+                
+                Star star = starObj.GetComponent<Star>();
+                if (star != null)
+                {
+                    star.OnStarTouched += HandleStarTouched;
+                    star.SetConstellationName(name); // Show real name
+                    activeStars.Add(star);
+                }
+            }
+            
+            Debug.Log($"[ConstellationTracer] Generated {name} with {activeStars.Count} stars");
         }
 
         private void Update()
@@ -239,8 +357,14 @@ namespace AscendantContinuum.EchoFields
         private bool isConnected = false;
         private Color baseColor = new Color(0.8f, 0.9f, 1f);
         private Color connectedColor = new Color(0.3f, 0.7f, 1f);
+        private string constellationName = "";
         
         public System.Action<Star> OnStarTouched;
+        
+        public void SetConstellationName(string name)
+        {
+            constellationName = name;
+        }
 
         private void Awake()
         {
