@@ -1,0 +1,187 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  UNITY_VERSION: 2022.3.18f1
+  PROJECT_PATH: .
+
+jobs:
+  # ============================================================================
+  # BUILD JOB - Unity Builds
+  # ============================================================================
+  build:
+    name: Build for ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - Android
+          - iOS
+          - WebGL
+    
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+      
+      # Cache Library folder
+      - name: Cache Unity Library
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-${{ matrix.targetPlatform }}-
+            Library-
+      
+      # Free disk space (for large builds)
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          android: ${{ matrix.targetPlatform != 'Android' }}
+          dotnet: true
+          haskell: true
+          large-packages: true
+          swap-storage: true
+      
+      # Build Unity project
+      - name: Build Unity Project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildPath: Builds/${{ matrix.targetPlatform }}
+          buildMethod: AscendantContinuum.Build.Build
+          versioning: Semantic
+      
+      # Upload build artifacts
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: Builds/${{ matrix.targetPlatform }}
+          retention-days: 14
+  
+  # ============================================================================
+  # FIREBASE DEPLOY JOB
+  # ============================================================================
+  deploy-firebase:
+    name: Deploy to Firebase
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: firebase/functions/package-lock.json
+      
+      # Install Firebase Tools
+      - name: Install Firebase Tools
+        run: npm install -g firebase-tools
+      
+      # Install Cloud Functions dependencies
+      - name: Install Functions Dependencies
+        run: cd firebase/functions && npm ci
+      
+      # Deploy Firestore Rules
+      - name: Deploy Firestore Rules
+        run: firebase deploy --only firestore:rules --token "${{ secrets.FIREBASE_TOKEN }}"
+      
+      # Deploy Storage Rules
+      - name: Deploy Storage Rules
+        run: firebase deploy --only storage:rules --token "${{ secrets.FIREBASE_TOKEN }}"
+      
+      # Deploy Cloud Functions
+      - name: Deploy Cloud Functions
+        run: firebase deploy --only functions --token "${{ secrets.FIREBASE_TOKEN }}"
+      
+      # Download WebGL build
+      - name: Download WebGL Build
+        uses: actions/download-artifact@v3
+        with:
+          name: Build-WebGL
+          path: public
+      
+      # Deploy to Firebase Hosting
+      - name: Deploy to Firebase Hosting
+        run: firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}"
+  
+  # ============================================================================
+  # ANDROID DEPLOY JOB
+  # ============================================================================
+  deploy-android:
+    name: Deploy to Google Play
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # Download Android build
+      - name: Download Android Build
+        uses: actions/download-artifact@v3
+        with:
+          name: Build-Android
+          path: Builds/Android
+      
+      # Sign APK (if not already signed)
+      - name: Sign Android APK
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: Builds/Android
+          signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+          alias: ${{ secrets.ANDROID_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      
+      # Upload to Google Play (Internal Testing)
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
+          packageName: com.ascendantcontinuum.game
+          releaseFiles: Builds/Android/*.apk
+          track: internal
+          status: completed
+  
+  # ============================================================================
+  # NOTIFICATIONS JOB
+  # ============================================================================
+  notify:
+    name: Send Notifications
+    runs-on: ubuntu-latest
+    needs: [deploy-firebase, deploy-android]
+    if: always()
+    
+    steps:
+      - name: Check deployment status
+        run: |
+          if [ "${{ needs.deploy-firebase.result }}" == "success" ] && [ "${{ needs.deploy-android.result }}" == "success" ]; then
+            echo "✓ All deployments successful!"
+          else
+            echo "✗ Some deployments failed"
+            exit 1
+          fi

@@ -52,6 +52,11 @@
 Thumbs.db
 Desktop.ini
 
+# Local tooling
+Unity Hub/
+*.code-workspace
+*.pdf
+
 # Firebase
 firebase/functions/node_modules/
 firebase/functions/lib/
