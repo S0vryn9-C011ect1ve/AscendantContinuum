@@ -11,15 +11,15 @@ service cloud.firestore {
       return isAuthenticated() && request.auth.uid == userId;
     }
     
-    function rateLimit(limit) {
-      // Prevent spam - max `limit` writes per minute
-      return request.time > resource.data.lastWrite + duration.value(60/limit, 's');
+    function rateLimit(seconds) {
+      // Prevent spam - minimum seconds between writes
+      return resource == null || request.time > resource.data.lastWrite + duration.value(seconds, 's');
     }
     
     // User profiles - only owner can write
     match /users/{userId} {
       allow read: if isAuthenticated();
-      allow write: if isOwner(userId) && rateLimit(10); // Max 10 updates/min
+      allow write: if isOwner(userId) && rateLimit(6); // Max 10 updates/min
       
       // Prevent cheating - validate progression
       allow update: if isOwner(userId) 
@@ -37,7 +37,7 @@ service cloud.firestore {
     match /challengeSubmissions/{submissionId} {
       allow read: if isAuthenticated();
       allow create: if isOwner(request.resource.data.userId) 
-        && rateLimit(5); // Max 5 submissions per minute
+        && rateLimit(12); // Max 5 submissions per minute
       allow update, delete: if false; // Immutable after creation
     }
     
