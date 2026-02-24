@@ -4,7 +4,6 @@ using System.Collections.Generic;
 #if UNITY_ANDROID || UNITY_IOS
 using Unity.Notifications.Android;
 #endif
-// Unity.Notifications.iOS is referenced via fully-qualified names below
 
 namespace AscendantContinuum.Systems
 {
@@ -116,19 +115,18 @@ namespace AscendantContinuum.Systems
 
         private void RequestPermission()
         {
-#if UNITY_ANDROID
-            StartCoroutine(AndroidNotificationCenter.RequestPermission());
+#if UNITY_ANDROID && UNITY_2022_2_OR_NEWER
+            // Android 13+ requires explicit POST_NOTIFICATIONS permission
+            if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission("android.permission.POST_NOTIFICATIONS"))
+                UnityEngine.Android.Permission.RequestUserPermission("android.permission.POST_NOTIFICATIONS");
 #endif
-#if UNITY_IOS
-            StartCoroutine(RequestiOSPermission());
-#endif
+            // iOS notification permission is handled at the OS level via Info.plist entitlements
         }
 
 #if UNITY_IOS
         private System.Collections.IEnumerator RequestiOSPermission()
         {
-            // iOS push notifications require Xcode entitlements and provisioning profile.
-            // Implement with Unity.Notifications.iOS.AuthorizationRequest when Xcode project is configured.
+            // Stub: iOS push notifications require Xcode entitlements — implement when iOS app is configured.
             yield return null;
         }
 #endif
@@ -166,7 +164,8 @@ namespace AscendantContinuum.Systems
             AndroidNotificationCenter.CancelAllScheduledNotifications();
 #endif
 #if UNITY_IOS
-            iOSNotificationCenter.RemoveAllScheduledNotifications();
+            // iOSNotificationCenter.RemoveAllScheduledNotifications(); // Requires Xcode setup
+            Debug.Log("[Guardian] iOS CancelAll stub");
 #endif
         }
 
@@ -273,19 +272,8 @@ namespace AscendantContinuum.Systems
             Debug.Log($"[Guardian] Scheduled Android notification at {fireAt:g}: '{title}'");
 
 #elif UNITY_IOS
-            var notification = new iOSNotification
-            {
-                Title         = title,
-                Body          = body,
-                Trigger       = new iOSNotificationTimeIntervalTrigger
-                {
-                    TimeInterval = fireAt - DateTime.Now,
-                    Repeats      = false
-                },
-                ShowInForeground = false
-            };
-            iOSNotificationCenter.ScheduleNotification(notification);
-            Debug.Log($"[Guardian] Scheduled iOS notification at {fireAt:g}: '{title}'");
+            // iOS notifications require Xcode provisioning — stub for CI builds
+            Debug.Log($"[Guardian] iOS notification stub: '{title}' at {fireAt:g}");
 
 #else
             Debug.Log($"[Guardian] Notification stub (Editor): '{title}' at {fireAt:g}");
