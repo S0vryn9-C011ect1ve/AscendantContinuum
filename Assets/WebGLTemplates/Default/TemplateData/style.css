@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#unity-container {
+    position: absolute;
+}
+
+#unity-container.unity-desktop {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#unity-container.unity-mobile {
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    display: block;
+}
+
+canvas.unity-mobile {
+    width: 100%;
+    height: 100%;
+}
+
+.unity-mobile #unity-toolbar {
+    display: none;
+}
+
+.unity-mobile #unity-fullscreen-button {
+    display: none;
+}
+
+.unity-mobile #unity-loading-bar {
+    display: block;
+}
+
+.unity-mobile canvas {
+    touch-action: manipulation;
+}
+
+#unity-loading-bar {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1600;
+    transform: translate(-50%, -50%);
+    width: 270px;
+    height: 30px;
+    background-color: rgb(200, 200, 200);
+    border: 2px solid rgb(100, 100, 100);
+    border-radius: 16px;
+    padding: 10px;
+}
+
+#unity-progress-bar-empty {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(180, 180, 180);
+    border-radius: 3px;
+}
+
+#unity-progress-bar-full {
+    height: 100%;
+    background-color: rgb(52, 211, 153);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.2s;
+}
+
+#unity-fullscreen-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 1600;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAGl6VFh0UmF3IHByb2ZpbGUgdHlwZSBpY2MAAHjajVDLDYIwGH0FKWkJxdnVSZhwNxqduMGKmADj4AToHwBw+GE59kENUwSt7WvtL903bS6R+C5Jd/0Od853ud/vwAAJQdkGjQcOvQwQAWnhIYWYvMSLWQvppyLjWDPnZLnTnEtlDAzzHCsjmSoJiKEUfNwQfmlxOCBmWHwV8Cgo/EnjRlzAeqFyACvvC9gj8hJU4gCCqoCQlEiWjTDNP1XVXtV1V6OQRR6JhSYR41FzMhX1Ty006Wl5A8h5e7DYM4Xw2AAAA==') no-repeat;
+    border: none;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+}
+
+#unity-fullscreen-button:hover {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAGl6VFh0UmF3IHByb2ZpbGUgdHlwZSBpY2MAAHjajVDLDYIwGH0FKWkJxdnVSZhwNxqduMGKmADj4AToHwBw+GE59kENUwSt7WvtL903bS6R+C5Jd/0Od853ud/vwAAJQdkGjQcOvQwQAWnhIYWYvMSLWQvppyLjWDPnZLnTnEtlDAzzHCsjmSoJiKEUfNwQfmlxOCBmWHwV8Cgo/EnjRlzAeqFyACvvC9gj8hJU4gCCqoCQlEiWjTDNP1XVXtV1V6OQRR6JhSYR41FzMhX1Ty006Wl5A8h5e7DYM4Xw2AAAA==');
+}
+
+#unity-warning {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, 0);
+    background: white;
+    padding: 10px;
+    display: none;
+    z-index: 2000;
+}

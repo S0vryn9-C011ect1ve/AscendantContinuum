@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using AscendantContinuum.Core;
+using AscendantContinuum.VFX;
+using AscendantContinuum.UI;
 
 namespace AscendantContinuum.Astronomy
 {
@@ -15,18 +18,19 @@ namespace AscendantContinuum.Astronomy
         [SerializeField] private GameObject meteorPrefab;
         [SerializeField] private Transform meteorContainer;
         [SerializeField] private int meteorsPerMinute = 60; // Matches real rates (Perseids = 60-100/hr)
-        
+
         [Header("Spawn Area")]
         [SerializeField] private Vector2 spawnAreaMin = new Vector2(-10f, 6f);
         [SerializeField] private Vector2 spawnAreaMax = new Vector2(10f, 8f);
-        
+
         [Header("Effects")]
         [SerializeField] private ParticleSystem showerAmbience;
         [SerializeField] private AudioClip meteorWhistleSound;
-        
+
         private bool isShowerActive = false;
         private Coroutine showerCoroutine;
         private int meteorsCollected = 0;
+        private HUDManager hudManager;
 
         private void Awake()
         {
@@ -35,9 +39,9 @@ namespace AscendantContinuum.Astronomy
                 Destroy(gameObject);
                 return;
             }
-            
+
             Instance = this;
-            
+
             if (meteorContainer == null)
             {
                 GameObject container = new GameObject("MeteorContainer");
@@ -48,26 +52,23 @@ namespace AscendantContinuum.Astronomy
 
         private void Start()
         {
+            hudManager = FindFirstObjectByType<HUDManager>();
+
             if (CosmicDataManager.Instance != null)
             {
                 CosmicDataManager.Instance.OnAstronomicalEvent += OnAstronomicalEvent;
-                
-                // Check if we're in a meteor shower right now
-                string activeShower = CosmicDataManager.Instance.GetActiveMeteorShower();
-                if (!string.IsNullOrEmpty(activeShower))
-                {
-                    StartMeteorShower(activeShower);
-                }
             }
         }
 
-        private void OnAstronomicalEvent(string eventType, string eventData)
+        // CosmicDataManager.OnAstronomicalEvent is Action<string> — single payload string
+        private void OnAstronomicalEvent(string eventData)
         {
-            if (eventType == "MeteorShower")
+            if (eventData.StartsWith("meteor_shower_"))
             {
-                StartMeteorShower(eventData);
+                string showerName = eventData.Replace("meteor_shower_", "");
+                StartMeteorShower(showerName);
             }
-            else if (eventType == "MeteorShowerEnd")
+            else if (eventData == "meteor_shower_end")
             {
                 StopMeteorShower();
             }
@@ -76,33 +77,33 @@ namespace AscendantContinuum.Astronomy
         public void StartMeteorShower(string showerName)
         {
             if (isShowerActive) return;
-            
+
             Debug.Log($"[MeteorShower] 💫 {showerName} meteor shower starting!");
-            
+
             isShowerActive = true;
             meteorsCollected = 0;
-            
+
             // Adjust rate based on shower
             meteorsPerMinute = GetShowerRate(showerName);
-            
+
             // Visual effects
             if (showerAmbience != null)
             {
                 showerAmbience.Play();
             }
-            
+
             // Start spawning meteors
             if (showerCoroutine != null)
             {
                 StopCoroutine(showerCoroutine);
             }
             showerCoroutine = StartCoroutine(SpawnMeteors());
-            
+
             // Notify players
             ShowMeteorShowerNotification(showerName);
-            
+
             // Track event
-            Core.FirebaseManager.Instance?.TrackEvent("meteor_shower_start", 
+            Core.FirebaseManager.Instance?.TrackEvent("meteor_shower_start",
                 new System.Collections.Generic.Dictionary<string, object>
             {
                 { "shower_name", showerName },
@@ -113,29 +114,45 @@ namespace AscendantContinuum.Astronomy
         public void StopMeteorShower()
         {
             if (!isShowerActive) return;
-            
+
             Debug.Log($"[MeteorShower] Meteor shower ended. Collected: {meteorsCollected}");
-            
+
             isShowerActive = false;
-            
+
             if (showerCoroutine != null)
             {
                 StopCoroutine(showerCoroutine);
                 showerCoroutine = null;
             }
-            
+
             if (showerAmbience != null)
             {
                 showerAmbience.Stop();
             }
-            
+
             // Award bonus for participation
             if (meteorsCollected > 0)
             {
                 int bonusSparks = meteorsCollected * 10;
-                // Award sparks to player
+
+                // Award sparks to the Emberforge sparks system (universal currency)
+                var emberforgeSparks = FindFirstObjectByType<Emberforge.EmberforgeSparks>();
+                if (emberforgeSparks != null)
+                {
+                    // Directly add via the tracked field — meteor sparks bypasses normal collection
+                    for (int i = 0; i < bonusSparks; i++)
+                        emberforgeSparks.InjectSpark();
+                }
+                else
+                {
+                    // Fallback: store as PlayerPrefs for next Emberforge session
+                    int pending = PlayerPrefs.GetInt("MeteorShower_PendingSparks", 0);
+                    PlayerPrefs.SetInt("MeteorShower_PendingSparks", pending + bonusSparks);
+                    PlayerPrefs.Save();
+                }
+
                 ShowShowerCompleteNotification(meteorsCollected, bonusSparks);
-                
+
                 // Achievement tracking
                 Systems.AchievementManager.Instance?.TrackProgress("sky_watcher", meteorsCollected);
             }
@@ -144,11 +161,11 @@ namespace AscendantContinuum.Astronomy
         private IEnumerator SpawnMeteors()
         {
             float spawnInterval = 60f / meteorsPerMinute; // Convert per-minute to interval
-            
+
             while (isShowerActive)
             {
                 yield return new WaitForSeconds(spawnInterval);
-                
+
                 if (Core.AccessibilityManager.Instance?.IsReducedMotionEnabled() == true)
                 {
                     // Reduced motion: just show sparkle instead
@@ -164,24 +181,24 @@ namespace AscendantContinuum.Astronomy
         private void SpawnMeteor()
         {
             if (meteorPrefab == null) return;
-            
+
             // Random spawn position at top of screen
             Vector2 spawnPos = new Vector2(
                 Random.Range(spawnAreaMin.x, spawnAreaMax.x),
                 Random.Range(spawnAreaMin.y, spawnAreaMax.y)
             );
-            
+
             GameObject meteor = Instantiate(meteorPrefab, spawnPos, Quaternion.identity, meteorContainer);
-            
+
             // Add meteor script if not on prefab
             Meteor meteorScript = meteor.GetComponent<Meteor>();
             if (meteorScript == null)
             {
                 meteorScript = meteor.AddComponent<Meteor>();
             }
-            
+
             meteorScript.OnMeteorCollected += OnMeteorCollected;
-            
+
             // Play sound
             if (meteorWhistleSound != null)
             {
@@ -196,18 +213,18 @@ namespace AscendantContinuum.Astronomy
                 Random.Range(spawnAreaMin.x, spawnAreaMax.x),
                 Random.Range(spawnAreaMin.y, spawnAreaMax.y)
             );
-            
+
             // Use particle manager for simple flash
-            Core.ParticleManager.Instance?.PlayParticle("SimpleSpark", pos);
+            ParticleManager.Instance?.PlaySparkCollectEffect(new Vector3(pos.x, pos.y, 0f));
         }
 
         private void OnMeteorCollected()
         {
             meteorsCollected++;
-            
+
             // Haptic feedback
             Core.AccessibilityManager.Instance?.TriggerHaptic(Core.HapticType.Success);
-            
+
             // Small reward
             Debug.Log($"[MeteorShower] Meteor collected! Total: {meteorsCollected}");
         }
@@ -230,16 +247,33 @@ namespace AscendantContinuum.Astronomy
 
         private void ShowMeteorShowerNotification(string showerName)
         {
-            string message = $"🌠 {showerName} meteor shower is active! Collect falling stars for bonus sparks.";
-            Debug.Log($"[Notification] {message}");
-            
-            // TODO: Show in-game notification UI
-            // For now, just log and track
+            // Autism mode: use calm, factual language without surprise framing
+            bool autismMode = PlayerPrefs.GetInt("Autism_ReduceSurprises", 0) == 1;
+            string message = autismMode
+                ? $"Meteor shower beginning: {showerName}. Tap falling stars to collect bonus sparks."
+                : $"🌠 {showerName} meteor shower is active! Collect falling stars for bonus sparks.";
+            ShowHudNotification(message, HUDManager.NotificationType.Info);
         }
 
         private void ShowShowerCompleteNotification(int collected, int bonusSparks)
         {
             string message = $"Meteor shower complete! Collected {collected} meteors. +{bonusSparks} sparks!";
+            ShowHudNotification(message, HUDManager.NotificationType.Reward);
+        }
+
+        private void ShowHudNotification(string message, HUDManager.NotificationType notificationType)
+        {
+            if (hudManager == null)
+            {
+                hudManager = FindFirstObjectByType<HUDManager>();
+            }
+
+            if (hudManager != null)
+            {
+                hudManager.ShowNotification(message, notificationType);
+                return;
+            }
+
             Debug.Log($"[Notification] {message}");
         }
     }
@@ -250,12 +284,12 @@ namespace AscendantContinuum.Astronomy
     public class Meteor : MonoBehaviour
     {
         public System.Action OnMeteorCollected;
-        
+
         [SerializeField] private float fallSpeed = 8f;
         [SerializeField] private float horizontalDrift = 2f;
         [SerializeField] private TrailRenderer trail;
         [SerializeField] private SpriteRenderer sprite;
-        
+
         private Vector2 velocity;
         private bool isCollected = false;
 
@@ -266,7 +300,7 @@ namespace AscendantContinuum.Astronomy
                 Random.Range(-horizontalDrift, horizontalDrift),
                 -fallSpeed
             );
-            
+
             // Setup trail
             if (trail == null) trail = GetComponent<TrailRenderer>();
             if (trail != null)
@@ -274,14 +308,14 @@ namespace AscendantContinuum.Astronomy
                 trail.startColor = new Color(1f, 0.9f, 0.5f, 1f);
                 trail.endColor = new Color(1f, 0.5f, 0.2f, 0f);
             }
-            
+
             // Sprite
             if (sprite == null) sprite = GetComponent<SpriteRenderer>();
             if (sprite != null)
             {
                 sprite.color = new Color(1f, 0.9f, 0.5f);
             }
-            
+
             // Auto-destroy after falling off screen
             Destroy(gameObject, 5f);
         }
@@ -291,7 +325,7 @@ namespace AscendantContinuum.Astronomy
             if (!isCollected)
             {
                 transform.Translate(velocity * Time.deltaTime);
-                
+
                 // Slight rotation for effect
                 transform.Rotate(0f, 0f, 100f * Time.deltaTime);
             }
@@ -314,12 +348,12 @@ namespace AscendantContinuum.Astronomy
         private void CollectMeteor()
         {
             if (isCollected) return;
-            
+
             isCollected = true;
-            
+
             // Notify event
             OnMeteorCollected?.Invoke();
-            
+
             // Visual feedback
             if (sprite != null)
             {
@@ -336,21 +370,21 @@ namespace AscendantContinuum.Astronomy
         {
             float fadeTime = 0.3f;
             float elapsed = 0f;
-            
+
             Vector3 startScale = transform.localScale;
             Color startColor = sprite.color;
-            
+
             while (elapsed < fadeTime)
             {
                 elapsed += Time.deltaTime;
                 float t = elapsed / fadeTime;
-                
+
                 transform.localScale = Vector3.Lerp(startScale, startScale * 2f, t);
                 sprite.color = Color.Lerp(startColor, new Color(1f, 1f, 1f, 0f), t);
-                
+
                 yield return null;
             }
-            
+
             Destroy(gameObject);
         }
     }

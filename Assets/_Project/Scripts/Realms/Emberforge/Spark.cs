@@ -1,4 +1,5 @@
 using UnityEngine;
+using AscendantContinuum.Core;
 
 namespace AscendantContinuum.Emberforge
 {

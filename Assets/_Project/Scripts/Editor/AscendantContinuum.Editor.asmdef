@@ -1,0 +1,18 @@
+{
+    "name": "AscendantContinuum.Editor",
+    "rootNamespace": "AscendantContinuum.Editor",
+    "references": [
+        "GUID:5f13808a991c4ddfbab3bf4c469da462"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

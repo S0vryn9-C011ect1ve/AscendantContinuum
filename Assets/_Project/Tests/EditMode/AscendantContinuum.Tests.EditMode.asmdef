@@ -1,0 +1,24 @@
+{
+    "name": "AscendantContinuum.Tests.EditMode",
+    "rootNamespace": "AscendantContinuum.Tests.EditMode",
+    "references": [
+        "GUID:5f13808a991c4ddfbab3bf4c469da462",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

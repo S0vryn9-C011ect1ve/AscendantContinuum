@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using AscendantContinuum.Core;
+using AscendantContinuum.UI;
 
 namespace AscendantContinuum.Astronomy
 {
@@ -186,8 +189,111 @@ namespace AscendantContinuum.Astronomy
                 0.7f
             );
             
-            // Track achievement
+            // Track achievement progress — first unlock this full moon phase
             Systems.AchievementManager.Instance?.TrackProgress("lunar_devotee", 1);
+
+            // Check for special moon variants
+            CheckSupermoon();
+            CheckBlueMoon();
+            CheckBloodMoon();
+        }
+
+        /// <summary>
+        /// Supermoon: Full moon with extra-high illumination (peak cycle near 0.5).
+        /// Awards 2× sparks for 24 h via PlayerPrefs and unlocks Supermoon achievement.
+        /// </summary>
+        private void CheckSupermoon()
+        {
+            if (CosmicDataManager.Instance == null) return;
+
+            // MoonIllumination here is the fractional cycle position (0-1).
+            // Near 0.5 = dead centre = closest & brightest = supermoon in our simplified model.
+            float cyclePos = CosmicDataManager.Instance.MoonIllumination;
+            bool isSupermoon = cyclePos >= 0.48f && cyclePos <= 0.52f;
+
+            if (!isSupermoon) return;
+
+            // Prevent firing multiple times per supermoon (check date)
+            string lastSupermoonKey = "Supermoon_LastDate";
+            string today = System.DateTime.UtcNow.ToString("yyyyMMdd");
+            if (PlayerPrefs.GetString(lastSupermoonKey, "") == today) return;
+
+            PlayerPrefs.SetString(lastSupermoonKey, today);
+            // Set the Mars multiplier slot to 2× for 24 h (keys checked by EmberforgeSparks)
+            PlayerPrefs.SetFloat("Solstice_LightMultiplier", 2f);
+            long expiry = System.DateTimeOffset.UtcNow.AddHours(24).ToUnixTimeSeconds();
+            PlayerPrefs.SetString("Solstice_LightExpiry", expiry.ToString());
+            PlayerPrefs.Save();
+
+            // Award supermoon achievement progress
+            Systems.AchievementManager.Instance?.TrackProgress("supermoon_powered", 1);
+
+            // Update HUD
+            HUDManager.Instance?.ShowNotification("🌕 Supermoon! 2× spark power for 24 hours!", HUDManager.NotificationType.Achievement);
+
+            Debug.Log("[MoonPhaseEffects] 🌕 Supermoon detected — 2× sparks for 24 h!");
+        }
+
+        /// <summary>
+        /// Blue Moon: second full moon in a calendar month. Unlocks once-in-a-blue-moon achievement.
+        /// </summary>
+        private void CheckBlueMoon()
+        {
+            System.DateTime now = System.DateTime.UtcNow;
+            string lastFullMoonMonthKey = "FullMoon_LastMonth";
+            string lastFullMoonDayKey  = "FullMoon_LastDay";
+
+            int lastMonth = PlayerPrefs.GetInt(lastFullMoonMonthKey, -1);
+            int lastDay   = PlayerPrefs.GetInt(lastFullMoonDayKey, -1);
+
+            if (lastMonth == now.Month && lastDay != now.Day && now.Day > lastDay)
+            {
+                // Second full moon this month  — blue moon!
+                Systems.AchievementManager.Instance?.UnlockAchievement("once_in_a_blue_moon");
+                HUDManager.Instance?.ShowNotification("🔵 Once in a Blue Moon! Rare achievement unlocked.", HUDManager.NotificationType.Achievement);
+                Debug.Log("[MoonPhaseEffects] 🔵 Blue Moon detected!");
+            }
+
+            // Record this full moon
+            PlayerPrefs.SetInt(lastFullMoonMonthKey, now.Month);
+            PlayerPrefs.SetInt(lastFullMoonDayKey, now.Day);
+            PlayerPrefs.Save();
+        }
+
+        /// <summary>
+        /// Blood Moon: simulated as a rare full moon event (roughly once per quarter in-game).
+        /// Reveals red-themed secrets and unlocks blood_moon_witness achievement.
+        /// </summary>
+        private void CheckBloodMoon()
+        {
+            string lastBloodMoonKey = "BloodMoon_LastDate";
+            System.DateTime now = System.DateTime.UtcNow;
+
+            if (PlayerPrefs.HasKey(lastBloodMoonKey))
+            {
+                System.DateTime last = System.DateTime.Parse(PlayerPrefs.GetString(lastBloodMoonKey));
+                // Only allow one blood moon per 90 days
+                if ((now - last).TotalDays < 90) return;
+            }
+
+            // 20% chance each full moon is a blood moon (after the 90-day cooldown)
+            if (UnityEngine.Random.value > 0.20f) return;
+
+            PlayerPrefs.SetString(lastBloodMoonKey, now.ToString("o"));
+            PlayerPrefs.Save();
+
+            // Apply red moonlight
+            sparkMultiplier *= 1.5f;
+            if (moonLight != null) moonLight.color = new Color(0.8f, 0.1f, 0.0f);
+
+            // Reveal blood moon secrets
+            GameObject[] bloodSecrets = GameObject.FindGameObjectsWithTag("BloodMoonSecret");
+            foreach (var secret in bloodSecrets)
+                secret.SetActive(true);
+
+            Systems.AchievementManager.Instance?.UnlockAchievement("blood_moon_witness");
+            HUDManager.Instance?.ShowNotification("🩸 Blood Moon rises! Rare secrets have appeared.", HUDManager.NotificationType.Info);
+            Debug.Log("[MoonPhaseEffects] 🩸 Blood Moon event triggered!");
         }
 
         private void NotifyGameSystems()

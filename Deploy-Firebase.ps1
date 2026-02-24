@@ -1,17 +1,12 @@
-# ============================================================================
-# Firebase Deployment Script
-# Deploys Firestore rules, Storage rules, and Cloud Functions
-# ============================================================================
-
 param(
-    [Parameter(Mandatory=$false)]
+    [Parameter(Mandatory = $false)]
     [ValidateSet("All", "Rules", "Functions", "Hosting")]
     [string]$Target = "All",
-    
-    [Parameter(Mandatory=$false)]
+
+    [Parameter(Mandatory = $false)]
     [string]$ProjectId = "ascendant-continuum",
-    
-    [Parameter(Mandatory=$false)]
+
+    [Parameter(Mandatory = $false)]
     [switch]$Production
 )
 
@@ -20,136 +15,106 @@ Write-Host "Firebase Deployment Script" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
-# Change to project directory
-Set-Location "D:\1-Ascendant Continuum Game"
+$WorkspaceRoot = $PSScriptRoot
+$FirebaseRoot = Join-Path $WorkspaceRoot "firebase"
+$FirebaseToken = $env:FIREBASE_TOKEN
 
-# Check if Firebase CLI is installed
+if (!(Test-Path (Join-Path $FirebaseRoot "firebase.json"))) {
+    Write-Host "firebase/firebase.json not found at: $FirebaseRoot" -ForegroundColor Red
+    exit 1
+}
+
+Set-Location $FirebaseRoot
+
 if (!(Get-Command firebase -ErrorAction SilentlyContinue)) {
-    Write-Host "✗ Firebase CLI not found!" -ForegroundColor Red
-    Write-Host "Install it with: npm install -g firebase-tools" -ForegroundColor Yellow
+    Write-Host "Firebase CLI not found. Install with: npm install -g firebase-tools" -ForegroundColor Red
     exit 1
 }
 
-# Login check
 Write-Host "Checking Firebase authentication..." -ForegroundColor Yellow
-$loginStatus = firebase login:ci
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "Please login to Firebase:" -ForegroundColor Yellow
-    firebase login
+if ([string]::IsNullOrWhiteSpace($FirebaseToken)) {
+    firebase projects:list --json | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Please login to Firebase:" -ForegroundColor Yellow
+        firebase login
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "Firebase login failed." -ForegroundColor Red
+            exit 1
+        }
+    }
 }
 
-# Set project
-Write-Host "Setting Firebase project: $ProjectId" -ForegroundColor Cyan
-firebase use $ProjectId
+function Invoke-FirebaseDeploy {
+    param(
+        [string]$Only
+    )
 
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "✗ Failed to set Firebase project!" -ForegroundColor Red
-    exit 1
-}
+    if ([string]::IsNullOrWhiteSpace($FirebaseToken)) {
+        firebase deploy --project $ProjectId --only $Only
+    }
+    else {
+        firebase deploy --project $ProjectId --only $Only --token $FirebaseToken
+    }
 
-# ============================================================================
-# DEPLOY FIRESTORE RULES
-# ============================================================================
-
-function Deploy-FirestoreRules {
-    Write-Host ""
-    Write-Host "Deploying Firestore security rules..." -ForegroundColor Yellow
-    
-    firebase deploy --only firestore:rules
-    
-    if ($LASTEXITCODE -eq 0) {
-        Write-Host "✓ Firestore rules deployed successfully!" -ForegroundColor Green
-    } else {
-        Write-Host "✗ Firestore rules deployment failed!" -ForegroundColor Red
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Deployment failed for target: $Only" -ForegroundColor Red
         exit 1
     }
 }
 
-# ============================================================================
-# DEPLOY STORAGE RULES
-# ============================================================================
-
-function Deploy-StorageRules {
+function DeployFirestoreRules {
     Write-Host ""
-    Write-Host "Deploying Storage security rules..." -ForegroundColor Yellow
-    
-    firebase deploy --only storage:rules
-    
-    if ($LASTEXITCODE -eq 0) {
-        Write-Host "✓ Storage rules deployed successfully!" -ForegroundColor Green
-    } else {
-        Write-Host "✗ Storage rules deployment failed!" -ForegroundColor Red
-        exit 1
-    }
+    Write-Host "Deploying Firestore rules..." -ForegroundColor Yellow
+    Invoke-FirebaseDeploy -Only "firestore:rules"
+    Write-Host "Firestore rules deployed successfully." -ForegroundColor Green
 }
 
-# ============================================================================
-# DEPLOY CLOUD FUNCTIONS
-# ============================================================================
+function DeployStorageRules {
+    Write-Host ""
+    Write-Host "Deploying Storage rules..." -ForegroundColor Yellow
+    Invoke-FirebaseDeploy -Only "storage"
+    Write-Host "Storage rules deployed successfully." -ForegroundColor Green
+}
 
-function Deploy-Functions {
+function DeployFunctions {
     Write-Host ""
     Write-Host "Installing Cloud Functions dependencies..." -ForegroundColor Yellow
-    
-    Set-Location "firebase\functions"
+
+    Push-Location (Join-Path $FirebaseRoot "functions")
     npm install
-    
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "✗ Failed to install dependencies!" -ForegroundColor Red
-        Set-Location "..\..\"
+        Pop-Location
+        Write-Host "Failed to install Cloud Functions dependencies." -ForegroundColor Red
         exit 1
     }
-    
-    Set-Location "..\..\"
-    
+    Pop-Location
+
     Write-Host "Deploying Cloud Functions..." -ForegroundColor Yellow
-    firebase deploy --only functions
-    
-    if ($LASTEXITCODE -eq 0) {
-        Write-Host "✓ Cloud Functions deployed successfully!" -ForegroundColor Green
-    } else {
-        Write-Host "✗ Cloud Functions deployment failed!" -ForegroundColor Red
-        exit 1
-    }
+    Invoke-FirebaseDeploy -Only "functions"
+    Write-Host "Cloud Functions deployed successfully." -ForegroundColor Green
 }
 
-# ============================================================================
-# DEPLOY HOSTING
-# ============================================================================
-
-function Deploy-Hosting {
+function DeployHosting {
     Write-Host ""
     Write-Host "Deploying Firebase Hosting..." -ForegroundColor Yellow
-    
-    # Check if WebGL build exists
-    if (!(Test-Path "Builds\WebGL")) {
-        Write-Host "✗ WebGL build not found! Build the project first." -ForegroundColor Red
-        exit 1
-    }
-    
-    firebase deploy --only hosting
-    
-    if ($LASTEXITCODE -eq 0) {
-        Write-Host "✓ Firebase Hosting deployed successfully!" -ForegroundColor Green
-        Write-Host "Live at: https://$ProjectId.web.app" -ForegroundColor Cyan
-    } else {
-        Write-Host "✗ Firebase Hosting deployment failed!" -ForegroundColor Red
-        exit 1
-    }
-}
 
-# ============================================================================
-# MAIN EXECUTION
-# ============================================================================
+    if (!(Test-Path (Join-Path $WorkspaceRoot "Builds\WebGL"))) {
+        Write-Host "WebGL build not found at Builds/WebGL. Build first." -ForegroundColor Red
+        exit 1
+    }
+
+    Invoke-FirebaseDeploy -Only "hosting"
+    Write-Host "Firebase Hosting deployed successfully." -ForegroundColor Green
+    Write-Host "Live at: https://$ProjectId.web.app" -ForegroundColor Cyan
+}
 
 Write-Host "Target: $Target" -ForegroundColor Cyan
 Write-Host "Project: $ProjectId" -ForegroundColor Cyan
 Write-Host "Environment: $(if ($Production) { 'Production' } else { 'Development' })" -ForegroundColor Cyan
 Write-Host ""
 
-# Confirmation for production
 if ($Production) {
-    Write-Host "⚠️  WARNING: Deploying to PRODUCTION!" -ForegroundColor Yellow
+    Write-Host "WARNING: Deploying to PRODUCTION" -ForegroundColor Yellow
     $confirm = Read-Host "Are you sure? (yes/no)"
     if ($confirm -ne "yes") {
         Write-Host "Deployment cancelled." -ForegroundColor Yellow
@@ -157,27 +122,26 @@ if ($Production) {
     }
 }
 
-# Execute deployments
 switch ($Target) {
     "Rules" {
-        Deploy-FirestoreRules
-        Deploy-StorageRules
+        DeployFirestoreRules
+        DeployStorageRules
     }
     "Functions" {
-        Deploy-Functions
+        DeployFunctions
     }
     "Hosting" {
-        Deploy-Hosting
+        DeployHosting
     }
     "All" {
-        Deploy-FirestoreRules
-        Deploy-StorageRules
-        Deploy-Functions
-        Deploy-Hosting
+        DeployFirestoreRules
+        DeployStorageRules
+        DeployFunctions
+        DeployHosting
     }
 }
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Green
-Write-Host "Deployment completed successfully!" -ForegroundColor Green
+Write-Host "Deployment completed successfully." -ForegroundColor Green
 Write-Host "========================================" -ForegroundColor Green

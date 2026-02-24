@@ -16,10 +16,10 @@ namespace AscendantContinuum.Core
         [SerializeField] private float normalTransitionDuration = 2f;
         [SerializeField] private float reducedMotionDuration = 0.5f;
         [SerializeField] private CanvasGroup transitionCanvasGroup;
-        
+
         [Header("Realms")]
         [SerializeField] private Data.RealmData[] allRealms;
-        
+
         private bool isTransitioning = false;
         private Data.RealmData currentRealmData;
 
@@ -30,10 +30,10 @@ namespace AscendantContinuum.Core
                 Destroy(gameObject);
                 return;
             }
-            
+
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            
+
             // Initialize transition canvas
             if (transitionCanvasGroup == null)
             {
@@ -45,25 +45,25 @@ namespace AscendantContinuum.Core
         {
             GameObject canvasObj = new GameObject("TransitionCanvas");
             canvasObj.transform.SetParent(transform);
-            
+
             Canvas canvas = canvasObj.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = 1000; // Always on top
-            
+
             canvasObj.AddComponent<UnityEngine.UI.CanvasScaler>();
             canvasObj.AddComponent<UnityEngine.UI.GraphicRaycaster>();
-            
+
             transitionCanvasGroup = canvasObj.AddComponent<CanvasGroup>();
             transitionCanvasGroup.alpha = 0f;
             transitionCanvasGroup.blocksRaycasts = false;
-            
+
             // Add background image
             GameObject bgObj = new GameObject("TransitionBackground");
             bgObj.transform.SetParent(canvasObj.transform);
-            
+
             UnityEngine.UI.Image bgImage = bgObj.AddComponent<UnityEngine.UI.Image>();
             bgImage.color = Color.black;
-            
+
             RectTransform rt = bgImage.rectTransform;
             rt.anchorMin = Vector2.zero;
             rt.anchorMax = Vector2.one;
@@ -77,14 +77,14 @@ namespace AscendantContinuum.Core
                 Debug.LogWarning("[RealmTransition] Transition already in progress");
                 return;
             }
-            
+
             Data.RealmData targetRealm = GetRealmData(realmId);
             if (targetRealm == null)
             {
                 Debug.LogError($"[RealmTransition] Realm not found: {realmId}");
                 return;
             }
-            
+
             StartCoroutine(TransitionSequence(targetRealm));
         }
 
@@ -92,30 +92,35 @@ namespace AscendantContinuum.Core
         {
             isTransitioning = true;
             GameManager.Instance?.ChangeState(GameState.Transition);
-            
-            float duration = AccessibilityManager.Instance?.ReducedMotionEnabled == true 
-                ? reducedMotionDuration 
+
+            float duration = AccessibilityManager.Instance?.ReducedMotionEnabled == true
+                ? reducedMotionDuration
                 : normalTransitionDuration;
-            
+
             Debug.Log($"[RealmTransition] Starting transition to {targetRealm.realmName}");
-            
+
             // Phase 1: Fade out
             yield return FadeOut(duration / 2f);
-            
+
             // Phase 2: Play transition effects
             if (targetRealm.transitionSound != null)
             {
                 AudioManager.Instance?.PlaySFX(targetRealm.transitionSound, 0.7f);
             }
-            
+
             VFX.ParticleManager.Instance?.PlayRealmTransitionEffect(
-                Camera.main.transform.position, 
+                Camera.main.transform.position,
                 targetRealm.primaryColor
             );
-            
+
             // Save current progress
             SaveSystem.Instance?.SaveGame();
-            
+
+            // Track realm visit count (used by SigilGenerator playstyle metrics)
+            string visitKey = $"Visits_{System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(targetRealm.realmId.ToLower())}";
+            PlayerPrefs.SetInt(visitKey, PlayerPrefs.GetInt(visitKey, 0) + 1);
+            PlayerPrefs.Save();
+
             // Phase 3: Load new realm scene
             string sceneName = $"{targetRealm.realmId}_Scene";
             if (Application.CanStreamedLevelBeLoaded(sceneName))
@@ -126,36 +131,36 @@ namespace AscendantContinuum.Core
             {
                 Debug.LogWarning($"[RealmTransition] Scene not found: {sceneName}, using default");
             }
-            
+
             // Update game state
             currentRealmData = targetRealm;
             GameManager.Instance?.LoadRealm(targetRealm.realmId);
-            
+
             // Phase 4: Start new realm music
             if (targetRealm.ambientMusic != null)
             {
                 AudioManager.Instance?.PlayMusic(targetRealm.ambientMusic, duration / 2f);
             }
-            
+
             // Phase 5: Fade in
             yield return FadeIn(duration / 2f);
-            
+
             GameManager.Instance?.ChangeState(GameState.Playing);
             isTransitioning = false;
-            
+
             Debug.Log($"[RealmTransition] Transition complete - Now in {targetRealm.realmName}");
         }
 
         private IEnumerator FadeOut(float duration)
         {
             transitionCanvasGroup.blocksRaycasts = true;
-            
+
             for (float t = 0; t < duration; t += Time.deltaTime)
             {
                 transitionCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t / duration);
                 yield return null;
             }
-            
+
             transitionCanvasGroup.alpha = 1f;
         }
 
@@ -166,7 +171,7 @@ namespace AscendantContinuum.Core
                 transitionCanvasGroup.alpha = Mathf.Lerp(1f, 0f, t / duration);
                 yield return null;
             }
-            
+
             transitionCanvasGroup.alpha = 0f;
             transitionCanvasGroup.blocksRaycasts = false;
         }

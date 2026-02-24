@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AscendantContinuum.Data;
 
 namespace AscendantContinuum.Systems
 {
@@ -63,17 +64,15 @@ namespace AscendantContinuum.Systems
             // Each realm has associated shapes
             Dictionary<string, int> realmShapes = new Dictionary<string, int>
             {
-                { "emberforge", 0 },      // Triangle (fire)
-                { "verdant", 1 },          // Hexagon (growth)
-                { "echo", 2 },             // Circle (infinity)
-                { "dawn", 3 },             // Square (stability)
-                { "lantern", 4 }           // Star (transcendence)
+                { "Emberforge", 0 },      // Triangle (fire)
+                { "Verdant Sanctuary", 1 },// Hexagon (growth)
+                { "Echo Fields", 2 },      // Circle (infinity)
+                { "Dawn Citadel", 3 },     // Square (stability)
+                { "Lantern Ascension", 4 } // Star (transcendence)
             };
             
-            // Find most visited realm
-            string favoriteRealm = metrics.realmVisitCounts
-                .OrderByDescending(kvp => kvp.Value)
-                .FirstOrDefault().Key ?? "emberforge";
+            // Find most visited realm via computed property
+            string favoriteRealm = metrics.FavoriteRealm;
             
             return realmShapes.ContainsKey(favoriteRealm) ? realmShapes[favoriteRealm] : 0;
         }
@@ -81,7 +80,11 @@ namespace AscendantContinuum.Systems
         private int DeterminePattern(PlayerPlaystyleMetrics metrics)
         {
             // Fast players get sharp patterns, slow players get flowing patterns
-            float avgSessionDuration = metrics.totalPlayTime / Mathf.Max(metrics.sessionsPlayed, 1);
+            float avgSessionDuration = metrics.averageSessionLengthMinutes * 60f;
+            
+            // Reduced motion gets calm pattern
+            if (metrics.usesReducedMotion)
+                return 3; // Calm, accessible pattern
             
             if (avgSessionDuration < 120f) // < 2 minutes
                 return 0; // Sharp, energetic
@@ -89,12 +92,6 @@ namespace AscendantContinuum.Systems
                 return 1; // Balanced
             else
                 return 2; // Flowing, contemplative
-            
-            // Add more pattern variety based on other metrics
-            if (metrics.reducedMotionUsage > 0.5f)
-                return 3; // Calm, accessible pattern
-            
-            return 0;
         }
 
         private (Color primary, Color secondary) DetermineColors(PlayerPlaystyleMetrics metrics)
@@ -102,20 +99,19 @@ namespace AscendantContinuum.Systems
             Color primary, secondary;
             
             // Colorblind mode influences colors (accessibility IS gameplay)
-            if (metrics.primaryColorblindMode > 0)
+            if (metrics.usesColorblindMode && metrics.preferredColorblindMode != "None")
             {
-                // Use colors that work well with their accessibility mode
-                switch (metrics.primaryColorblindMode)
+                switch (metrics.preferredColorblindMode)
                 {
-                    case 1: // Protanopia (red-blind)
+                    case "Protanopia":
                         primary = new Color(0.2f, 0.6f, 1f); // Blue
                         secondary = new Color(1f, 0.8f, 0.2f); // Yellow
                         break;
-                    case 2: // Deuteranopia (green-blind)
+                    case "Deuteranopia":
                         primary = new Color(1f, 0.4f, 0.6f); // Pink
                         secondary = new Color(0.4f, 0.4f, 1f); // Purple
                         break;
-                    case 3: // Tritanopia (blue-blind)
+                    case "Tritanopia":
                         primary = new Color(1f, 0.3f, 0.3f); // Red
                         secondary = new Color(0.3f, 1f, 0.5f); // Green
                         break;
@@ -128,7 +124,7 @@ namespace AscendantContinuum.Systems
             else
             {
                 // Time-based colors (when they play most)
-                int hourMostPlayed = metrics.peakPlayHour;
+                int hourMostPlayed = metrics.prefersMorningPlay ? 8 : metrics.prefersEveningPlay ? 19 : 14;
                 
                 if (hourMostPlayed >= 5 && hourMostPlayed < 12) // Morning
                 {
@@ -273,16 +269,4 @@ namespace AscendantContinuum.Systems
     /// <summary>
     /// Metrics tracked to generate personalized sigils
     /// </summary>
-    [Serializable]
-    public class PlayerPlaystyleMetrics
-    {
-        public int totalPlayTime = 0;
-        public int sessionsPlayed = 0;
-        public Dictionary<string, int> realmVisitCounts = new Dictionary<string, int>();
-        public int primaryColorblindMode = 0;
-        public float reducedMotionUsage = 0f; // 0-1
-        public int peakPlayHour = 12; // 0-23
-        public int sparksCollectedPerMinute = 0;
-        public bool prefersSlowPace = false;
-    }
 }

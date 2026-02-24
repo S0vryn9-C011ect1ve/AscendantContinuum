@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Ascendant Continuum</title>
+    <meta name="description" content="%UNITY_WEB_NAME%">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+</head>
+
+<body>
+    <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas" width=960 height=600></canvas>
+        <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+        </div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-warning"> </div>
+    </div>
+    <script>
+        const container = document.querySelector("#unity-container");
+        const canvas = document.querySelector("#unity-canvas");
+        const loadingBar = document.querySelector("#unity-loading-bar");
+        const progressBarFull = document.querySelector("#unity-progress-bar-full");
+        const fullscreenButton = document.querySelector("#unity-fullscreen-button");
+        const warningBanner = document.querySelector("#unity-warning");
+
+        // Shows a message when WebGL is not available.
+        const showBanner = function (msg, type) {
+            function updateBannerVisibility() {
+                warningBanner.style.display = warningBanner.children.length > 0 ? "block" : "none";
+            }
+            const div = document.createElement("div");
+            div.innerHTML = msg;
+            if (type === "error") { div.style.background = "red"; }
+            else if (type === "warning") { div.style.background = "yellow"; }
+            if (type === "error") div.style.paddingBottom = "10px";
+            warningBanner.appendChild(div);
+            updateBannerVisibility();
+        }
+        if (!window["WebGLRenderingContext"]) {
+            showBanner(document.querySelector("#unity-webgl-not-available").innerHTML, "error");
+            throw new Error("WebGL not available");
+        }
+
+        script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+                progressBarFull.style.width = (100 * progress) + "%";
+            }).then((unityInstance) => {
+                loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
+                    unityInstance.SetFullscreen(1);
+                };
+            }).catch((message) => {
+                showBanner(message, "error");
+            });
+        };
+        script.onerror = () => {
+            showBanner("Build file not found. Try re-publishing the build.", "error");
+        }
+    </script>
+    <script id="unity-script-loader">
+        const script = document.createElement("script");
+        const loaderUrl = document.currentScript.getAttribute("data-src") || "%UNITY_LOADER_URL%";
+        script.src = loaderUrl;
+        script.onload = createUnityInstance;
+        document.body.appendChild(script);
+    </script>
+    <div id="unity-webgl-not-available" style="display:none">
+        You might want to try <!a href="https://get.webgl.org/">enable WebGL</!a>. However, you might have a private
+        window or an extension that prevents WebGL from running. Try in a different browser or download the desktop
+        version.
+    </div>
+</body>
+
+</html>

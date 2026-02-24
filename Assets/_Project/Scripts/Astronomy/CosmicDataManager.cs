@@ -257,7 +257,7 @@ namespace AscendantContinuum.Astronomy
             DateTime now = DateTime.UtcNow;
             
             // Check for meteor showers
-            CheckMeteorShowers(now);
+            CheckMeteorShowers();
             
             // Check for planetary alignments (simplified)
             // In production, use ephemeris data
@@ -325,6 +325,24 @@ namespace AscendantContinuum.Astronomy
         public float MoonIllumination => moonIllumination;
         public List<CelestialBody> VisibleStars => visibleStars;
         public List<Constellation> VisibleConstellations => visibleConstellations;
+        
+        /// <summary>Returns the name of the currently active meteor shower, or null if none is active.</summary>
+        public string GetActiveMeteorShower()
+        {
+            DateTime now = DateTime.UtcNow;
+            var showers = new System.Collections.Generic.List<(string name, int month, int day)>
+            {
+                ("Perseids", 8, 12),
+                ("Leonids", 11, 17),
+                ("Geminids", 12, 14),
+                ("Lyrids", 4, 22),
+                ("Orionids", 10, 21)
+            };
+            foreach (var s in showers)
+                if (now.Month == s.month && Mathf.Abs(now.Day - s.day) <= 2)
+                    return s.name;
+            return null;
+        }
         
         public string GetMoonPhaseDescription()
         {

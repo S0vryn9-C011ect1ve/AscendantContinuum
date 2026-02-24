@@ -1,5 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
+using AscendantContinuum.Core;
+using AscendantContinuum.Astronomy;
+using AscendantContinuum.Systems;
+using AscendantContinuum.Social;
 
 namespace AscendantContinuum.Verdant
 {
@@ -13,17 +17,17 @@ namespace AscendantContinuum.Verdant
         [SerializeField] private GameObject plantPrefab;
         [SerializeField] private int maxPlants = 10;
         [SerializeField] private float growthTimePerStage = 30f; // seconds
-        
+
         [Header("Spawn Settings")]
         [SerializeField] private Vector2 gardenSize = new Vector2(8f, 6f);
-        
+
         [Header("Audio")]
         [SerializeField] private AudioClip waterSound;
         [SerializeField] private AudioClip bloomSound;
-        
+
         private List<MagicalPlant> activePlants = new List<MagicalPlant>();
         private int totalPlantsGrown = 0;
-        
+
         public System.Action<int> OnPlantBloomed;
 
         private void Start()
@@ -42,20 +46,26 @@ namespace AscendantContinuum.Verdant
         public void SpawnPlant()
         {
             if (activePlants.Count >= maxPlants) return;
-            
+
             // Random position in garden
             Vector3 position = new Vector3(
                 Random.Range(-gardenSize.x / 2f, gardenSize.x / 2f),
                 Random.Range(-gardenSize.y / 2f, gardenSize.y / 2f),
                 0f
             );
-            
+
             GameObject plantObj = Instantiate(plantPrefab, position, Quaternion.identity, transform);
             MagicalPlant plant = plantObj.GetComponent<MagicalPlant>();
-            
+
             if (plant != null)
             {
-                plant.Initialize(growthTimePerStage);
+                // Moon phase affects growth rate: New Moon speeds growth, Full Moon slows it
+                float moonGrowthMult = MoonPhaseEffects.Instance?.GetPlantGrowthMultiplier() ?? 1f;
+                float effectiveGrowthTime = moonGrowthMult > 0f
+                    ? growthTimePerStage / moonGrowthMult
+                    : growthTimePerStage;
+
+                plant.Initialize(effectiveGrowthTime);
                 plant.OnBloomed += HandlePlantBloomed;
                 activePlants.Add(plant);
             }
@@ -64,15 +74,15 @@ namespace AscendantContinuum.Verdant
         public void WaterPlant(MagicalPlant plant)
         {
             if (!activePlants.Contains(plant)) return;
-            
+
             plant.Water();
-            
+
             // Play water sound
             if (waterSound != null)
             {
                 Core.AudioManager.Instance?.PlaySFX(waterSound, plant.transform.position, 1f, true);
             }
-            
+
             // Haptic feedback
             Core.AccessibilityManager.Instance?.TriggerHaptic(Core.HapticType.Light);
         }
@@ -80,21 +90,42 @@ namespace AscendantContinuum.Verdant
         private void HandlePlantBloomed(MagicalPlant plant)
         {
             totalPlantsGrown++;
-            
+
+            // Venus_GrowthMultiplier also amplifies bloom rewards (faster growth = bigger harvest)
+            float venusMultiplier = PlayerPrefs.GetFloat("Venus_GrowthMultiplier", 1f);
+            string expiryStr = PlayerPrefs.GetString("Venus_GrowthExpiry", "");
+            if (!string.IsNullOrEmpty(expiryStr) &&
+                double.TryParse(expiryStr, System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture, out double expiryUnix))
+            {
+                double nowUnix = (System.DateTime.UtcNow - new System.DateTime(1970, 1, 1)).TotalSeconds;
+                if (nowUnix > expiryUnix)
+                    venusMultiplier = 1f; // blessing expired
+            }
+            int bloomReward = Mathf.Max(1, Mathf.RoundToInt(venusMultiplier));
+            if (bloomReward > 1)
+                Debug.Log($"[VerdantGarden] Venus bloom bonus! x{bloomReward} reward for plant #{totalPlantsGrown}");
+
             // Play bloom sound
             if (bloomSound != null)
             {
                 Core.AudioManager.Instance?.PlaySFX(bloomSound, plant.transform.position, 1f, true);
             }
-            
+
             // Haptic feedback
             Core.AccessibilityManager.Instance?.TriggerHaptic(Core.HapticType.Success);
-            
+
             // Visual effect
             VFX.ParticleManager.Instance?.PlayRealmTransitionEffect(plant.transform.position, new Color(0.3f, 1f, 0.5f));
-            
+
             OnPlantBloomed?.Invoke(totalPlantsGrown);
-            
+
+            // Serendipity roll — each bloom is a ritual completion
+            SerendipityManager.Instance?.TryTrigger("Verdant");
+
+            // Offer optional kindness blessing on bloom
+            Social.KindnessChainManager.Instance?.ShowSendBlessingPrompt("Verdant");
+
             // Spawn new plant after bloom
             Invoke(nameof(SpawnPlant), 5f);
         }
@@ -112,14 +143,14 @@ namespace AscendantContinuum.Verdant
         [SerializeField] private Sprite sproutSprite;
         [SerializeField] private Sprite plantSprite;
         [SerializeField] private Sprite bloomSprite;
-        
+
         private SpriteRenderer spriteRenderer;
         private int currentStage = 0;
         private float growthProgress = 0f;
         private float growthTimePerStage = 30f;
         private bool isWatered = false;
         private float lastWaterTime = 0f;
-        
+
         public System.Action<MagicalPlant> OnBloomed;
 
         private void Awake()
@@ -140,13 +171,13 @@ namespace AscendantContinuum.Verdant
             if (Time.time - lastWaterTime < 60f)
             {
                 growthProgress += Time.deltaTime;
-                
+
                 if (growthProgress >= growthTimePerStage)
                 {
                     Grow();
                 }
             }
-            
+
             // Gentle sway animation (respects reduced motion)
             if (Core.AccessibilityManager.Instance?.ReducedMotionEnabled == false)
             {
@@ -159,7 +190,7 @@ namespace AscendantContinuum.Verdant
         {
             lastWaterTime = Time.time;
             isWatered = true;
-            
+
             // Visual feedback
             spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.white, 0.3f);
         }
@@ -168,13 +199,13 @@ namespace AscendantContinuum.Verdant
         {
             currentStage++;
             growthProgress = 0f;
-            
+
             UpdateVisuals();
-            
+
             if (currentStage >= 4) // Fully bloomed
             {
                 OnBloomed?.Invoke(this);
-                
+
                 // After blooming, stay for 10 seconds then fade out
                 Invoke(nameof(FadeOut), 10f);
             }
@@ -211,13 +242,13 @@ namespace AscendantContinuum.Verdant
         private System.Collections.IEnumerator FadeOutCoroutine()
         {
             Color startColor = spriteRenderer.color;
-            
+
             for (float t = 0; t < 2f; t += Time.deltaTime)
             {
                 spriteRenderer.color = Color.Lerp(startColor, Color.clear, t / 2f);
                 yield return null;
             }
-            
+
             Destroy(gameObject);
         }
 

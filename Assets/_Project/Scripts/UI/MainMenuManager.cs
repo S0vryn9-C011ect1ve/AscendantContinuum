@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using AscendantContinuum.Core;
+using AscendantContinuum.Systems;
 
 namespace AscendantContinuum.UI
 {
@@ -28,6 +30,9 @@ namespace AscendantContinuum.UI
         [Header("Realm Selection")]
         [SerializeField] private Button[] realmButtons;
         [SerializeField] private string[] realmSceneNames;
+
+        [Header("Onboarding")]
+        [SerializeField] private string onboardingSceneName = "Onboarding_Scene";
         
         [Header("Player Info")]
         [SerializeField] private TextMeshProUGUI playerLevelText;
@@ -116,10 +121,27 @@ namespace AscendantContinuum.UI
         private void OnPlayClicked()
         {
             PlayButtonSound();
-            
-            // Load last visited realm or Emberforge by default
-            string lastRealm = PlayerPrefs.GetString("LastRealm", "Emberforge");
-            LoadRealm(lastRealm);
+
+            string lastRealm = GameManager.Instance != null
+                ? GameManager.Instance.GetLastRealmOrDefault("Emberforge")
+                : PlayerPrefs.GetString("LastRealm", "Emberforge");
+
+            bool shouldRunOnboarding = GameManager.Instance != null && GameManager.Instance.ShouldRunOnboarding();
+            bool onboardingAvailable = Application.CanStreamedLevelBeLoaded(onboardingSceneName);
+
+            string initialScene = ResolveInitialPlayScene(
+                shouldRunOnboarding,
+                lastRealm,
+                onboardingSceneName,
+                onboardingAvailable
+            );
+
+            if (shouldRunOnboarding)
+            {
+                GameManager.Instance?.MarkOnboardingCompleted();
+            }
+
+            LoadRealm(initialScene);
         }
         
         private void OnDailyChallengeClicked()
@@ -259,7 +281,73 @@ namespace AscendantContinuum.UI
         
         private void LoadRealm(string realmName)
         {
+            if (TryTransitionToRealm(realmName))
+            {
+                return;
+            }
+
             StartCoroutine(LoadRealmCoroutine(realmName));
+        }
+
+        public string ResolveInitialPlayScene(bool shouldRunOnboarding, string lastRealm, string onboardingSceneName, bool onboardingSceneAvailable)
+        {
+            if (shouldRunOnboarding && onboardingSceneAvailable)
+            {
+                return onboardingSceneName;
+            }
+
+            return string.IsNullOrWhiteSpace(lastRealm) ? "Emberforge" : lastRealm;
+        }
+
+        private bool TryTransitionToRealm(string realmName)
+        {
+            if (RealmTransitionManager.Instance == null)
+            {
+                return false;
+            }
+
+            string realmId = ToRealmId(realmName);
+            if (string.IsNullOrWhiteSpace(realmId))
+            {
+                return false;
+            }
+
+            RealmTransitionManager.Instance.TransitionToRealm(realmId);
+            GameManager.Instance?.RecordLastRealm(realmName);
+            return true;
+        }
+
+        private string ToRealmId(string realmName)
+        {
+            if (string.IsNullOrWhiteSpace(realmName))
+            {
+                return string.Empty;
+            }
+
+            switch (realmName.Trim())
+            {
+                case "Emberforge":
+                case "emberforge":
+                    return "emberforge";
+                case "VerdantSanctuary":
+                case "verdant_sanctuary":
+                case "verdant sanctuary":
+                    return "verdant_sanctuary";
+                case "EchoFields":
+                case "echo_fields":
+                case "echo fields":
+                    return "echo_fields";
+                case "DawnCitadel":
+                case "dawn_citadel":
+                case "dawn citadel":
+                    return "dawn_citadel";
+                case "LanternAscension":
+                case "lantern_ascension":
+                case "lantern ascension":
+                    return "lantern_ascension";
+                default:
+                    return realmName.ToLowerInvariant().Replace(" ", "_");
+            }
         }
         
         private System.Collections.IEnumerator LoadRealmCoroutine(string realmName)
@@ -272,8 +360,12 @@ namespace AscendantContinuum.UI
             yield return StartCoroutine(FadeOut());
             
             // Save last realm
-            PlayerPrefs.SetString("LastRealm", realmName);
-            PlayerPrefs.Save();
+            GameManager.Instance?.RecordLastRealm(realmName);
+            if (GameManager.Instance == null)
+            {
+                PlayerPrefs.SetString("LastRealm", realmName);
+                PlayerPrefs.Save();
+            }
             
             // Load scene
             SceneManager.LoadScene(realmName);

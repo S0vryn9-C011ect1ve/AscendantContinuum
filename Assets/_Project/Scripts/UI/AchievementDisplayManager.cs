@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using AscendantContinuum.Core;
+using AscendantContinuum.Systems;
 
 namespace AscendantContinuum.UI
 {
@@ -343,29 +345,6 @@ namespace AscendantContinuum.UI
         {
             OnClicked?.Invoke();
         }
-    }
-    
-    #endregion
-    
-    #region Achievement Data Structure
-    
-    /// <summary>
-    /// Data structure for an achievement
-    /// </summary>
-    [System.Serializable]
-    public class Achievement
-    {
-        public string Id;
-        public string Title;
-        public string Description;
-        public string Category;
-        public Sprite Icon;
-        public bool IsHidden;
-        public bool IsLocked;
-        public int CurrentProgress;
-        public int RequiredProgress;
-        public string RewardDescription;
-        public System.DateTime UnlockDate;
     }
     
     #endregion

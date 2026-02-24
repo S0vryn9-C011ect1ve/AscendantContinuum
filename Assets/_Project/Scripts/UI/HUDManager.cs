@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using AscendantContinuum.Core;
+using AscendantContinuum.Systems;
 
 namespace AscendantContinuum.UI
 {
@@ -41,6 +43,7 @@ namespace AscendantContinuum.UI
         // State
         private int currentSigils = 0;
         private int currentSparks = 0;
+        private string currentRealmName = string.Empty;
         private bool isNotificationShowing = false;
         
         private void Start()
@@ -50,11 +53,21 @@ namespace AscendantContinuum.UI
             
             // Initialize UI
             UpdateResourceDisplay();
+            if (SaveSystem.Instance != null)
+            {
+                SyncFromPlayerData(SaveSystem.Instance.CurrentPlayerData);
+            }
             LoadDailyChallengeInfo();
+            SubscribeToDailyChallengeEvents();
             
             // Hide notification panel
             if (notificationPanel != null)
                 notificationPanel.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            UnsubscribeFromDailyChallengeEvents();
         }
         
         #region Resource Display
@@ -98,6 +111,24 @@ namespace AscendantContinuum.UI
             if (AccessibilityManager.Instance != null)
                 AccessibilityManager.Instance.TriggerHaptic(HapticType.Light);
         }
+
+            public void SyncFromPlayerData(PlayerData data)
+            {
+                if (data == null) return;
+
+                currentSparks = Mathf.Max(0, data.sparksCollected);
+                currentSigils = Mathf.Max(0, data.sigilsCollected);
+                currentRealmName = data.currentRealm ?? string.Empty;
+
+                UpdateResourceDisplay();
+
+                if (realmNameText != null)
+                realmNameText.text = currentRealmName;
+            }
+
+            public int CurrentSigils => currentSigils;
+            public int CurrentSparks => currentSparks;
+            public string CurrentRealmName => currentRealmName;
         
         #endregion
         
@@ -117,6 +148,45 @@ namespace AscendantContinuum.UI
             UpdateChallengeProgress(challenge.CurrentProgress, challenge.RequiredProgress);
             
             if (streakText != null)
+            {
+                int streak = DailyChallengeManager.Instance.GetCurrentStreak();
+                streakText.text = streak > 0 ? $"{streak} day streak!" : "";
+            }
+        }
+
+        private void SubscribeToDailyChallengeEvents()
+        {
+            if (DailyChallengeManager.Instance == null) return;
+
+            DailyChallengeManager.Instance.OnNewChallengeAvailable += HandleNewDailyChallenge;
+            DailyChallengeManager.Instance.OnChallengeCompleted += HandleDailyChallengeCompleted;
+        }
+
+        private void UnsubscribeFromDailyChallengeEvents()
+        {
+            if (DailyChallengeManager.Instance == null) return;
+
+            DailyChallengeManager.Instance.OnNewChallengeAvailable -= HandleNewDailyChallenge;
+            DailyChallengeManager.Instance.OnChallengeCompleted -= HandleDailyChallengeCompleted;
+        }
+
+        private void HandleNewDailyChallenge(DailyChallenge challenge)
+        {
+            if (challenge == null) return;
+
+            if (challengeTitleText != null)
+                challengeTitleText.text = challenge.Title;
+
+            UpdateChallengeProgress(challenge.CurrentProgress, challenge.RequiredProgress);
+            ShowNotification("New daily challenge is available!", NotificationType.Info);
+        }
+
+        private void HandleDailyChallengeCompleted(int reward)
+        {
+            AddSparks(reward);
+            ShowNotification($"Daily challenge complete! +{reward} sparks", NotificationType.Achievement);
+
+            if (streakText != null && DailyChallengeManager.Instance != null)
             {
                 int streak = DailyChallengeManager.Instance.GetCurrentStreak();
                 streakText.text = streak > 0 ? $"{streak} day streak!" : "";

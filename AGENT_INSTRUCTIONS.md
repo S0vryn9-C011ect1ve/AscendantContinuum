@@ -1,10 +1,12 @@
 # The Ascendant Continuum - Agent Instructions
 
-**Version:** 1.0.0  
-**Last Updated:** January 31, 2026  
+**Version:** 1.1.0  
+**Last Updated:** February 21, 2026  
 **Project Type:** Gamified Meta-Reality Adventure Game  
 **Business Goal:** Passive income generation → reinvestment in Ascendant Continuum + 3mpwr App  
 **Contact:** ascendantcontinuum@gmail.com
+
+**Governing Policy:** [CONSTITUTION.md](CONSTITUTION.md) takes precedence for agent operating behavior.
 
 ---
 
@@ -92,6 +94,7 @@
 ```
 D:\1-Ascendant Continuum Game\
 ├── AGENT_INSTRUCTIONS.md          # This file
+├── AGENT_OPERATIONS.md            # Living tracker for current goals, priorities, daily tasks
 ├── README.md                       # Project overview
 ├── docs/
 │   ├── design/
@@ -669,6 +672,24 @@ src/monetization/
 
 ## 🔧 DEVELOPMENT WORKFLOW
 
+### Constitution-Driven Engineering (MANDATORY)
+
+All development work must follow [CONSTITUTION.md](CONSTITUTION.md):
+- Ask before creating new systems
+- Maintain single source of truth
+- Connect, don't create
+- Run tests before committing
+
+### Test-Driven Development Protocol (MANDATORY)
+
+For all non-trivial code changes:
+1. Write a failing test first (**Red**)
+2. Implement the minimum code to pass (**Green**)
+3. Refactor while keeping tests green (**Refactor**)
+4. Repeat in small increments
+
+No implementation-first changes unless explicitly approved for emergency fixes.
+
 ### Git Branching Strategy
 ```
 main (production)
@@ -750,6 +771,7 @@ main (production)
 - **Performance matters:** Mobile targets 60fps
 - **Document accessibility:** Note ARIA labels, alt text, etc.
 - **Test edge cases:** Unusual input methods, slow connections
+- **Follow daily operations tracker:** Keep [AGENT_OPERATIONS.md](AGENT_OPERATIONS.md) updated each session
 
 ### When Designing Systems
 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using TouchPhase = UnityEngine.TouchPhase;
 
 namespace AscendantContinuum.Core
 {
@@ -22,6 +23,13 @@ namespace AscendantContinuum.Core
         
         private Dictionary<int, TouchData> activeTouches = new Dictionary<int, TouchData>();
         private float lastTapTime = 0f;
+
+        // Action speed tracking — rolling average of tap inter-arrival seconds
+        private const int ActionSpeedSamples = 20;
+        private readonly float[] _actionSpeedBuffer = new float[ActionSpeedSamples];
+        private int _actionSpeedIndex = 0;
+        private int _actionSpeedCount = 0;
+        private float _lastActionTime = -1f;
         
         public System.Action<Vector2> OnTap;
         public System.Action<Vector2> OnDoubleTap;
@@ -132,6 +140,25 @@ namespace AscendantContinuum.Core
 
         private void ProcessTap(Vector2 position)
         {
+            // Record action speed (inter-tap interval in seconds)
+            if (_lastActionTime > 0f)
+            {
+                float interval = Time.time - _lastActionTime;
+                _actionSpeedBuffer[_actionSpeedIndex] = interval;
+                _actionSpeedIndex = (_actionSpeedIndex + 1) % ActionSpeedSamples;
+                _actionSpeedCount = Mathf.Min(_actionSpeedCount + 1, ActionSpeedSamples);
+
+                // Update rolling average in PlayerPrefs (taps/second)
+                float sum = 0f;
+                for (int i = 0; i < _actionSpeedCount; i++)
+                    sum += _actionSpeedBuffer[i];
+                float avgInterval = sum / _actionSpeedCount;
+                float tapsPerSecond = avgInterval > 0f ? 1f / avgInterval : 0f;
+                PlayerPrefs.SetFloat("AverageActionSpeed", tapsPerSecond);
+                PlayerPrefs.Save();
+            }
+            _lastActionTime = Time.time;
+
             // Double tap detection
             if (Time.time - lastTapTime < doubleTapWindow)
             {

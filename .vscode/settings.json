@@ -1,0 +1,23 @@
+{
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/*.meta": false,
+        "**/Library": true,
+        "**/Logs": true,
+        "**/Obj": true,
+        "**/Temp": true,
+        "**/UserSettings": true
+    },
+    "search.exclude": {
+        "**/Library": true,
+        "**/Logs": true,
+        "**/Obj": true,
+        "**/Temp": true,
+        "**/UserSettings": true
+    },
+    "dotnet.defaultSolution": "Assembly-CSharp.sln",
+    "omnisharp.useModernNet": true,
+    "csharp.suppressDotnetInstallWarning": true,
+    "unity-debug.logFile": "",
+    "editor.formatOnSave": true
+}
