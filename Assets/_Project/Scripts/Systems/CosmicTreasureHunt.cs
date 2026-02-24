@@ -108,7 +108,9 @@ namespace AscendantContinuum.Systems
                 if (normalised > 0.2f)
                 {
                     int hapticLevel = Mathf.RoundToInt(normalised * 3f); // 1–3
+#if UNITY_IOS || UNITY_ANDROID
                     if (hapticLevel > 1) Handheld.Vibrate();
+#endif
                     _hapticCooldown = HAPTIC_INTERVAL * (1f - normalised * 0.5f);
                 }
             }
