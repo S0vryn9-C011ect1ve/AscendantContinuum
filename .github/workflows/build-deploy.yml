@@ -100,8 +100,9 @@ jobs:
             Library-${{ matrix.targetPlatform }}-
             Library-
       
-      # Free disk space (for large builds)
+      # Free disk space (for large builds - Linux only)
       - name: Free Disk Space
+        if: runner.os == 'Linux'
         uses: jlumbroso/free-disk-space@main
         with:
           android: ${{ matrix.targetPlatform != 'Android' }}
@@ -120,7 +121,7 @@ jobs:
         with:
           unityVersion: ${{ env.UNITY_VERSION }}
           targetPlatform: ${{ matrix.targetPlatform }}
-          buildPath: Builds/${{ matrix.targetPlatform }}
+          buildsPath: Builds
           buildMethod: ${{ matrix.buildMethod }}
           versioning: Semantic
       
