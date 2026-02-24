@@ -115,7 +115,7 @@ namespace AscendantContinuum.Systems
 
             // Screen reader proximity announce (every 5 seconds max)
             if (AccessibilityManager.Instance != null &&
-                AccessibilityManager.Instance.screenReaderEnabled)
+                AccessibilityManager.Instance.ScreenReaderEnabled)
             {
                 float dist = Mathf.Round(minDist * 10f) / 10f;
                 AccessibilityManager.Instance.Announce(

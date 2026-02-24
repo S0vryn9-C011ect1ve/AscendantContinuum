@@ -191,53 +191,12 @@ jobs:
         working-directory: ./firebase
   
   # ============================================================================
-  # ANDROID DEPLOY JOB
-  # ============================================================================
-  deploy-android:
-    name: Deploy to Google Play
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    continue-on-error: true  # Don't block release if Play Store signing not yet configured
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      # Download Android build
-      - name: Download Android Build
-        uses: actions/download-artifact@v4
-        with:
-          name: Build-Android
-          path: Builds/Android
-      
-      # Sign APK (if not already signed)
-      - name: Sign Android APK
-        uses: r0adkll/sign-android-release@v1
-        with:
-          releaseDirectory: Builds/Android
-          signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
-          alias: ${{ secrets.ANDROID_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
-      
-      # Upload to Google Play (Internal Testing)
-      - name: Upload to Google Play
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
-          packageName: com.ascendantcontinuum.game
-          releaseFiles: Builds/Android/*.apk
-          track: internal
-          status: completed
-  
-  # ============================================================================
   # NOTIFICATIONS JOB
   # ============================================================================
   notify:
     name: Send Notifications
     runs-on: ubuntu-latest
-    needs: [deploy-firebase, deploy-android]
+    needs: [deploy-firebase]
     if: always()
     steps:
       - name: Check deployment status
@@ -247,9 +206,4 @@ jobs:
           else
             echo "✗ Firebase deployment failed: ${{ needs.deploy-firebase.result }}"
             exit 1
-          fi
-          if [ "${{ needs.deploy-android.result }}" == "success" ]; then
-            echo "✓ Android deployment successful!"
-          else
-            echo "⚠ Android deployment skipped or failed (non-blocking): ${{ needs.deploy-android.result }}"
           fi
