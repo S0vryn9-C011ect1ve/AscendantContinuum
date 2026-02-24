@@ -301,6 +301,13 @@ namespace AscendantContinuum.Core
                 : Color.white;
         }
 
+        /// <summary>Broadcasts a message to screen readers when screen reader mode is active.</summary>
+        public void Announce(string message)
+        {
+            if (!screenReaderEnabled || string.IsNullOrEmpty(message)) return;
+            Debug.Log($"[ScreenReader] {message}");
+        }
+
         public void TriggerHaptic(HapticType type)
         {
             if (!hapticsEnabled) return;

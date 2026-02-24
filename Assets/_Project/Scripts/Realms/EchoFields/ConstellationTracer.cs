@@ -4,6 +4,7 @@ using AscendantContinuum.Astronomy;
 using AscendantContinuum.Core;
 using AscendantContinuum.Systems;
 using AscendantContinuum.Social;
+using AscendantContinuum.Realms.EchoFields;
 
 namespace AscendantContinuum.EchoFields
 {

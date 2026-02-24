@@ -40,12 +40,21 @@ namespace AscendantContinuum.UI
         [SerializeField] private bool highContrastMode = false;
         [SerializeField] private CanvasGroup hudCanvasGroup;
         
+        // Singleton
+        public static HUDManager Instance { get; private set; }
+
         // State
         private int currentSigils = 0;
         private int currentSparks = 0;
         private string currentRealmName = string.Empty;
         private bool isNotificationShowing = false;
-        
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+            Instance = this;
+        }
+
         private void Start()
         {
             // Apply accessibility settings
