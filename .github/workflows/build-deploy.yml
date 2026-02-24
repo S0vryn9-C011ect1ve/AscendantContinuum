@@ -15,6 +15,7 @@ jobs:
   test:
     name: Unity Tests
     runs-on: ubuntu-latest
+    continue-on-error: true  # Non-blocking until UNITY_LICENSE secret is configured
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
