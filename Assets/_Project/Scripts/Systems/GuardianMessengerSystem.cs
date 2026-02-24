@@ -4,9 +4,7 @@ using System.Collections.Generic;
 #if UNITY_ANDROID || UNITY_IOS
 using Unity.Notifications.Android;
 #endif
-#if UNITY_IOS
-using Unity.Notifications.iOS;
-#endif
+// Unity.Notifications.iOS is referenced via fully-qualified names below
 
 namespace AscendantContinuum.Systems
 {
@@ -119,7 +117,7 @@ namespace AscendantContinuum.Systems
         private void RequestPermission()
         {
 #if UNITY_ANDROID
-            AndroidNotificationCenter.RequestUserPermission();
+            StartCoroutine(AndroidNotificationCenter.RequestPermission());
 #endif
 #if UNITY_IOS
             StartCoroutine(RequestiOSPermission());
@@ -129,8 +127,9 @@ namespace AscendantContinuum.Systems
 #if UNITY_IOS
         private System.Collections.IEnumerator RequestiOSPermission()
         {
-            var req = new AuthorizationRequest(AuthorizationOption.Alert | AuthorizationOption.Badge, true);
-            yield return req;
+            // iOS push notifications require Xcode entitlements and provisioning profile.
+            // Implement with Unity.Notifications.iOS.AuthorizationRequest when Xcode project is configured.
+            yield return null;
         }
 #endif
 
