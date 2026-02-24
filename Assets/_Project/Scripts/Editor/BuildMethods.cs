@@ -19,7 +19,6 @@ public static class BuildMethods
     public static void BuildWebGL()
     {
         Debug.Log("[BuildMethods] Starting WebGL build...");
-        System.IO.File.WriteAllText("d:/webgl_build_started.txt", System.DateTime.Now.ToString());
 
         try
         {
@@ -65,20 +64,16 @@ public static class BuildMethods
             if (report.summary.result == UnityEditor.Build.Reporting.BuildResult.Succeeded)
             {
                 Debug.Log($"[BuildMethods] WebGL build succeeded! Size: {report.summary.totalSize} bytes");
-                System.IO.File.WriteAllText("d:/webgl_build_success.txt",
-                    $"WebGL build completed at {System.DateTime.Now}\nSize: {report.summary.totalSize} bytes\nPath: {outputPath}");
             }
             else
             {
                 string message = $"WebGL build failed! {report.summary.totalErrors} errors";
                 Debug.LogError(message);
-                System.IO.File.WriteAllText("d:/webgl_build_failed.txt", message);
                 throw new UnityEditor.Build.BuildFailedException(message);
             }
         }
         catch (System.Exception ex)
         {
-            System.IO.File.WriteAllText("d:/webgl_build_exception.txt", ex.ToString());
             Debug.LogException(ex);
             throw;
         }

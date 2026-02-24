@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  UNITY_VERSION: 2022.3.18f1
+  UNITY_VERSION: 6000.3.9f1
   PROJECT_PATH: .
 
 jobs:
@@ -38,6 +38,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          unityVersion: ${{ env.UNITY_VERSION }}
           testMode: EditMode
           artifactsPath: test-results/editmode
 
@@ -48,6 +49,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          unityVersion: ${{ env.UNITY_VERSION }}
           testMode: PlayMode
           artifactsPath: test-results/playmode
 
@@ -112,6 +114,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          unityVersion: ${{ env.UNITY_VERSION }}
           targetPlatform: ${{ matrix.targetPlatform }}
           buildPath: Builds/${{ matrix.targetPlatform }}
           buildMethod: ${{ matrix.buildMethod }}
