@@ -7,5 +7,25 @@
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "**/*.wasm",
+        "headers": [{ "key": "Content-Type", "value": "application/wasm" }]
+      },
+      {
+        "source": "**/*.data",
+        "headers": [{ "key": "Content-Type", "value": "application/octet-stream" }]
+      }
+    ]
   }
+}
+
 }
