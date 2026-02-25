@@ -1,35 +1,39 @@
-# Development Status - The Ascendant Continuum
+# Development Status — The Ascendant Continuum
 
-**Last Updated:** February 1, 2026 - 3:00 PM  
-**Phase:** Foundation Complete → Implementation Started 🚀
+**Last Updated:** February 25, 2026  
+**Phase:** Soft Beta — internal testing before public launch 🚀
 
 ---
 
-## ✅ COMPLETED TODAY
+## ✅ COMPLETED (Current State)
 
-### Project Infrastructure (NEW! ✨)
-- ✅ Git repository initialized
-- ✅ GitHub remote configured: https://github.com/ascendantcontinuum/AscendantContinuum.git
-- ✅ .gitignore configured for Unity + Firebase
-- ✅ .gitattributes configured (Git LFS tracking)
-- ✅ MIT License added
-- ✅ SECURITY.md policy created
-- ✅ Initial commits pushed to main branch (2 commits)
+### Infrastructure
+- ✅ Unity 6000.3.9f1, IL2CPP, URP 17.3.0
+- ✅ GitHub Actions CI/CD fully operational
+- ✅ Firebase project `ascendant-continuum` live
+- ✅ Firebase Hosting auto-deploys on every push to `main`
+- ✅ All secrets configured: `UNITY_LICENSE`, `UNITY_EMAIL`, `UNITY_PASSWORD`, `FIREBASE_TOKEN`
 
-### Firebase Backend Setup (NEW! ✨)
-- ✅ Firestore security rules created (anti-cheat, rate limiting)
-- ✅ Storage security rules configured
-- ✅ Cloud Functions package.json initialized
-- ✅ Firebase.json configuration ready
-- ✅ Project structure ready for deployment
+### Game Implementation
+- ✅ 69 C# game scripts — all systems implemented
+- ✅ All 5 realm scenes created
+- ✅ Bootstrap → Onboarding → MainMenu scene flow
+- ✅ GameManager, SaveSystem, AudioManager, AccessibilityManager
+- ✅ AchievementManager (42 achievements)
+- ✅ Daily Challenge, Live Cosmic Events, Constellation Tracer
+- ✅ Cross-Player Wish Wall, Guardian Messenger, Cosmic Identity
+- ✅ Mindful Play / Digital Sunset system
+- ✅ Google Play Games stub (Android), Mistplay stub
 
-### Unity Project Structure (NEW! ✨)
-- ✅ Assets/_Project folder structure created
-- ✅ Scenes/Core directory
-- ✅ Scenes/Realms directory
-- ✅ Scripts/Core directory
-- ✅ Scripts/Accessibility directory
-- ✅ GETTING_STARTED.md comprehensive setup guide (400+ lines)
+### CI/CD Build Status
+- ✅ WebGL build: passing — artifact 14MB, deployed to Firebase
+- ✅ Android build: passing
+- 🔧 iOS build: non-blocking (minor compile fixes pending)
+- 🔧 Unity Tests: non-blocking (test fixtures being updated)
+
+### Live Deployments
+- ✅ https://ascendant-continuum.web.app — landing page live
+- ✅ https://ascendant-continuum.web.app/play/ — WebGL game live
 
 ### Documentation Enhancement
 - ✅ OPTIMIZATION_SECURITY.md (file size, performance, security)
@@ -42,85 +46,59 @@
 
 ### Repository Status
 - **Branch:** main
-- **Commits:** 2
-- **Files Tracked:** 37
-- **Documentation:** 16 comprehensive files
-- **Total Lines:** 13,000+ lines
 - **Remote:** https://github.com/ascendantcontinuum/AscendantContinuum.git
+- **Engine:** Unity 6000.3.9f1
+- **Scripts:** 69 C# game scripts
+- **WebGL artifact:** ~14 MB
 
-### Documentation Complete (100%)
-- ✅ 5 realm designs (100KB+)
-- ✅ Technical architecture
-- ✅ API specification
-- ✅ MVP plan (3-month roadmap)
+### Documentation
+- ✅ 5 realm designs
+- ✅ Technical architecture, API spec
 - ✅ Accessibility spec (WCAG 2.1 AA+)
-- ✅ Viral mechanics
-- ✅ Hidden mysteries (10 revolutionary features)
-- ✅ Optimization & security guide
-- ✅ GitHub setup guide
+- ✅ CI/CD + build pipeline documented
+- ✅ Getting Started guide updated for Unity 6
 
 ---
 
-## ⏭️ NEXT IMMEDIATE STEPS
+## ⏭️ NEXT STEPS
 
-### 1. Install Unity 2022.3 LTS
-```
-- Download Unity Hub
-- Install Unity 2022.3 LTS
-- Add iOS, Android, WebGL build support
-```
+### 1. Fix iOS Build (non-blocking)
+- Remaining compile errors in iOS-specific guards
+- Check CI logs: `gh run view <runId> -R ascendantcontinuum/AscendantContinuum --json jobs`
 
-### 2. Push to GitHub
-```powershell
-cd "D:\1-Ascendant Continuum Game"
-git push -u origin main
-```
-**Note:** You'll need to authenticate with GitHub Personal Access Token
+### 2. Fix Unity Test Suite (non-blocking)
+- EditMode tests need MonoBehaviour fixture updates
+- Consider `[RequiresPlayMode]` for tests that need lifecycle
 
-### 3. Create Firebase Project
-```
-- Go to Firebase Console
-- Create project: "ascendant-continuum"
-- Enable Authentication (Anonymous)
-- Create Firestore database
-- Enable Storage
-- Download config files
-```
+### 3. Soft Beta Public Announcement
+- Update website with email capture / waitlist
+- App Store Connect + Google Play Console submissions
 
-### 4. Configure Unity Project
-```
-- Import Firebase SDK
-- Set up project settings (iOS/Android)
-- Configure graphics (Linear color space)
-- Set quality levels (Low/Medium/High)
-```
+### 4. Game Crash Investigation
+- WebGL crash in Onboarding scene loading fixed in commit `33c35e5`
+- Monitor next CI run for regression
 
 ---
 
-## 📅 WEEKLY ROADMAP
+## 📅 LAUNCH ROADMAP
 
-### Week 1 (Current - February 1-7)
-- ✅ Repository setup ✓
-- ✅ Firebase configuration ✓
-- ⏭️ Install Unity 2022.3 LTS
-- ⏭️ Create Firebase project
-- ⏭️ Import Firebase SDK
-- ⏭️ Verify connection with test script
-- ⏭️ Create GameManager.cs skeleton
+### Soft Beta (February–March 2026)
+- ✅ WebGL game live on Firebase
+- ✅ Android build in CI
+- 🔧 iOS build fixes
+- 🔧 WebGL crash fixes
+- 📣 Internal testing
 
-### Week 2 (February 8-14)
-- ⏭️ Create Emberforge realm scene
-- ⏭️ Implement tap/hold input system
-- ⏭️ Build object pooling system
-- ⏭️ Create first particle effects
-- ⏭️ Implement "Ignite the Spark" ritual
+### Public Beta (March–April 2026)
+- 📱 App Store submission
+- 📱 Google Play submission
+- 🌐 Website waitlist / email capture
+- 📣 Social media announcement
 
-### Week 3-4 (February 15-28)
-- ⏭️ Accessibility foundation (colorblind modes)
-- ⏭️ Screen reader integration
-- ⏭️ Performance optimization
-- ⏭️ First playable prototype
-- ⏭️ Test on low-end device
+### Launch (Q2 2026)
+- 🚀 Public release
+- 🌟 Season 1 content
+- 💰 Ethical monetization live
 
 ---
 

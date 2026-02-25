@@ -1,8 +1,10 @@
-# ✨ The Ascendant Continuum ✨
+# ✨ The Ascendant Continuum
 
-**A gamified meta-reality adventure game celebrating curiosity, creativity, and joy.**
+**A mindful cosmic adventure — traverse celestial realms, grow cosmic flora, and align with the stars.**
 
-![Version](https://img.shields.io/badge/version-0.1.0--MVP-blue)
+> 🌙 **Soft Beta launching soon.** The game is live at [ascendant-continuum.web.app](https://ascendant-continuum.web.app) — internal testing in progress before public launch.
+
+![Version](https://img.shields.io/badge/version-0.9.0--soft--beta-goldenrod)
 ![Accessibility](https://img.shields.io/badge/accessibility-first-green)
 ![License](https://img.shields.io/badge/license-Proprietary-red)
 
@@ -40,25 +42,29 @@ The Ascendant Continuum is an endlessly replayable universe where players explor
 
 ## 🏗️ Project Status
 
-**Current Phase:** Foundation Complete - Ready for Unity Development
+**Current Phase:** Soft Beta — internal testing before public launch
 
-**Completed:**
-- ✅ Complete game design documentation (12 files)
-- ✅ All 5 realm designs fully documented
-- ✅ Technical architecture (Unity + Firebase)
-- ✅ Backend API specification
-- ✅ 3-month MVP implementation plan
-- ✅ Revolutionary hidden mysteries system
-- ✅ Pantheon system (6 deities)
-- ✅ Accessibility specifications (WCAG 2.1 AA+)
-- ✅ Viral mechanics strategy
+**Infrastructure — Complete:**
+- ✅ Unity 6000.3.9f1, IL2CPP, URP 17.3.0
+- ✅ 69 C# game scripts across all systems
+- ✅ All 5 realm scenes (Emberforge, Verdant, Echo Fields, Dawn Citadel, Lantern Ascension)
+- ✅ WebGL deployed live → https://ascendant-continuum.web.app/play/
+- ✅ Android build — CI passing
+- ✅ Firebase Hosting, Firestore, Storage — live
+- ✅ GitHub Actions CI/CD — auto-deploys on every push to `main`
+- ✅ Full accessibility suite (colorblind, reduced motion, dyslexia, ADHD, haptics)
+- ✅ 42 achievements, daily challenges, live cosmic events
+- ✅ Cross-player Wish Wall, Guardian push notifications
 
-**Next Up:**
-- ⏭️ Unity 2022.3 LTS project setup
-- ⏭️ Firebase initialization
-- ⏭️ Emberforge realm prototype (Week 3-4)
-- ⏭️ Daily Constellation Challenge implementation
-- ⏭️ Accessibility framework
+**In Progress:**
+- 🔧 iOS build — minor compile fixes
+- 🔧 Unity test suite — fixtures being updated
+- 🔧 Game crash fixes (WebGL exception handling, physics type preservation)
+
+**Coming Up:**
+- 📣 Soft beta public announcement
+- 📱 App Store & Google Play submissions
+- 🌐 Website launch page with email capture
 
 ---
 
@@ -80,37 +86,42 @@ See [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) for complete file list.
 
 ---
 
-## 🚀 Quick Start
+## 🌐 Live URLs
 
-*(Coming soon - MVP not yet playable)*
+| | URL |
+|---|---|
+| **Website** | https://ascendant-continuum.web.app |
+| **Play (WebGL)** | https://ascendant-continuum.web.app/play/ |
+| **Firebase Console** | https://console.firebase.google.com/project/ascendant-continuum |
+
+## 🚀 Dev Quick Start
+
+```powershell
+git clone https://github.com/ascendantcontinuum/AscendantContinuum.git
+cd AscendantContinuum
+# Open in Unity Hub — Unity 6000.3.9f1 required
+# WebGL + Android + iOS build modules required
+```
+
+CI/CD is fully automated. Push to `main` → builds all platforms → deploys to Firebase.
 
 ---
 
 ## 🎯 Development Roadmap
 
-### Phase 1: MVP (Months 1-4) 🎯 CURRENT
-- Single realm (Emberforge)
-- Daily Constellation Challenge
-- Ritual Replay sharing
-- Basic accessibility features
+### ✅ Phase 1–3: Foundation → Implementation → Beta (Complete)
+- All 5 realms implemented
+- Full CI/CD pipeline live
+- WebGL deployed to Firebase Hosting
+- Android build passing
+- All core game systems implemented (69 scripts)
 
-### Phase 2: Alpha (Months 5-7)
-- 3 realms live
-- Pantheon selection
-- Async multiplayer (Ritual Echoes)
-- 7-Day New Player Experience
-
-### Phase 3: Beta (Months 8-10)
-- All 5 realms
-- Procedural generation engine
-- Ethical monetization live
-- Community goals
-
-### Phase 4: Launch (Month 12)
-- Platform optimization
-- Season 1 content
+### 🎯 Phase 4: Soft Beta → Public Launch (Current)
+- Internal testing & bug fixing
+- iOS build stabilisation
+- App Store / Google Play submission
+- Website public launch with waitlist
 - Marketing push
-- Public release
 
 ---
 
@@ -161,9 +172,8 @@ Proprietary - All Rights Reserved
 
 ## 📧 Contact
 
-**Project Email:** ascendantcontinuum@gmail.com
-
-For inquiries about The Ascendant Continuum or 3mpwr App partnership opportunities.
+**Project:** https://ascendant-continuum.web.app
+**GitHub:** https://github.com/ascendantcontinuum/AscendantContinuum
 
 ---
 

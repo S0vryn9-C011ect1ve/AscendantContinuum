@@ -1,515 +1,629 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Ascendant Continuum</title>
-  <meta name="description" content="A transcendent mobile game where you traverse celestial realms, grow cosmic flora, and align with the stars." />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Ascendant Continuum — Soft Beta Coming Soon</title>
+    <meta name="description"
+        content="A mindful cosmic adventure — traverse celestial realms, grow cosmic flora, and align with the stars. Soft beta launching soon." />
 
-  <!-- Open Graph / Social preview -->
-  <meta property="og:title" content="The Ascendant Continuum" />
-  <meta property="og:description" content="Traverse celestial realms. Grow cosmic flora. Align with the stars." />
-  <meta property="og:url" content="https://ascendant-continuum.web.app" />
-  <meta property="og:type" content="website" />
+    <!-- Open Graph / Social preview -->
+    <meta property="og:title" content="The Ascendant Continuum — Soft Beta Coming Soon" />
+    <meta property="og:description" content="Traverse celestial realms. Grow cosmic flora. Align with the stars. Soft beta launching soon." />
+    <meta property="og:url" content="https://ascendant-continuum.web.app" />
+    <meta property="og:type" content="website" />
 
-  <style>
-    /* ── Reset & base ───────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <style>
+        /* ── Reset & base ───────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    :root {
-      --gold:   #e8c97e;
-      --pale:   #f0ead6;
-      --dim:    #a89b7a;
-      --cosmic: #1a1630;
-      --deep:   #0d0b1a;
-      --glow:   rgba(232, 201, 126, 0.18);
-    }
+        :root {
+            --gold: #e8c97e;
+            --pale: #f0ead6;
+            --dim: #a89b7a;
+            --cosmic: #1a1630;
+            --deep: #0d0b1a;
+            --glow: rgba(232, 201, 126, 0.18);
+        }
 
-    html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    body {
-      font-family: 'Georgia', 'Times New Roman', serif;
-      background: var(--deep);
-      color: var(--pale);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: var(--deep);
+            color: var(--pale);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-    /* ── Star field canvas ─────────────────────────────────────── */
-    #stars {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
+        /* ── Star field canvas ─────────────────────────────────────── */
+        #stars {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-    /* ── Nav ───────────────────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      background: linear-gradient(to bottom, rgba(13,11,26,0.95), transparent);
-    }
+        /* ── Nav ───────────────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background: linear-gradient(to bottom, rgba(13, 11, 26, 0.95), transparent);
+        }
 
-    .nav-logo {
-      font-size: 1rem;
-      font-weight: normal;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      text-transform: uppercase;
-      text-decoration: none;
-    }
+        .nav-logo {
+            font-size: 1rem;
+            font-weight: normal;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            text-transform: uppercase;
+            text-decoration: none;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-    .nav-links a {
-      color: var(--dim);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
+        .nav-links a {
+            color: var(--dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
 
-    .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
 
-    /* ── Hero ──────────────────────────────────────────────────── */
-    .hero {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-    }
+        /* ── Hero ──────────────────────────────────────────────────── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+        }
 
-    .hero-eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.35em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      opacity: 0.8;
-    }
+        .hero-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.35em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
 
-    .hero-title {
-      font-size: clamp(2.5rem, 8vw, 5.5rem);
-      font-weight: normal;
-      letter-spacing: 0.05em;
-      line-height: 1.1;
-      color: var(--pale);
-      margin-bottom: 1.5rem;
-      text-shadow: 0 0 60px var(--glow);
-    }
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: normal;
+            letter-spacing: 0.05em;
+            line-height: 1.1;
+            color: var(--pale);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 60px var(--glow);
+        }
 
-    .hero-title span {
-      color: var(--gold);
-      display: block;
-    }
+        .hero-title span {
+            color: var(--gold);
+            display: block;
+        }
 
-    .hero-subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      color: var(--dim);
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 3rem;
-      font-style: italic;
-    }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--dim);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
 
-    /* ── CTA buttons ───────────────────────────────────────────── */
-    .cta-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+        /* ── CTA buttons ───────────────────────────────────────────── */
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    .btn {
-      display: inline-block;
-      padding: 0.85rem 2.2rem;
-      font-family: inherit;
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2.2rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
 
-    .btn-primary {
-      background: var(--gold);
-      color: var(--deep);
-      border: 1px solid var(--gold);
-      font-weight: bold;
-    }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--deep);
+            border: 1px solid var(--gold);
+            font-weight: bold;
+        }
 
-    .btn-primary:hover {
-      background: transparent;
-      color: var(--gold);
-      box-shadow: 0 0 20px var(--glow);
-    }
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--gold);
+            box-shadow: 0 0 20px var(--glow);
+        }
 
-    .btn-secondary {
-      background: transparent;
-      color: var(--dim);
-      border: 1px solid rgba(168, 155, 122, 0.35);
-    }
+        .btn-secondary {
+            background: transparent;
+            color: var(--dim);
+            border: 1px solid rgba(168, 155, 122, 0.35);
+        }
 
-    .btn-secondary:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
 
-    /* ── Divider ───────────────────────────────────────────────── */
-    .divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-      margin: 0 auto 5rem;
-    }
+        /* ── Divider ───────────────────────────────────────────────── */
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 0 auto 5rem;
+        }
 
-    /* ── Features section ──────────────────────────────────────── */
-    .features {
-      position: relative;
-      z-index: 1;
-      padding: 5rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+        /* ── Features section ──────────────────────────────────────── */
+        .features {
+            position: relative;
+            z-index: 1;
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-    .section-label {
-      text-align: center;
-      font-size: 0.7rem;
-      letter-spacing: 0.4em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
+        .section-label {
+            text-align: center;
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
 
-    .section-title {
-      text-align: center;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: normal;
-      color: var(--pale);
-      margin-bottom: 4rem;
-    }
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: normal;
+            color: var(--pale);
+            margin-bottom: 4rem;
+        }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
 
-    .feature-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(232, 201, 126, 0.1);
-      border-radius: 4px;
-      padding: 2rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(232, 201, 126, 0.1);
+            border-radius: 4px;
+            padding: 2rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
 
-    .feature-card:hover {
-      border-color: rgba(232, 201, 126, 0.3);
-      box-shadow: 0 0 30px rgba(232, 201, 126, 0.05);
-    }
+        .feature-card:hover {
+            border-color: rgba(232, 201, 126, 0.3);
+            box-shadow: 0 0 30px rgba(232, 201, 126, 0.05);
+        }
 
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
 
-    .feature-title {
-      font-size: 1.1rem;
-      color: var(--gold);
-      margin-bottom: 0.6rem;
-      font-weight: normal;
-      letter-spacing: 0.05em;
-    }
+        .feature-title {
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+            font-weight: normal;
+            letter-spacing: 0.05em;
+        }
 
-    .feature-desc {
-      font-size: 0.9rem;
-      color: var(--dim);
-      line-height: 1.65;
-    }
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--dim);
+            line-height: 1.65;
+        }
 
-    /* ── Play section ──────────────────────────────────────────── */
-    .play-section {
-      position: relative;
-      z-index: 1;
-      padding: 6rem 2rem;
-      text-align: center;
-      background: radial-gradient(ellipse at center, rgba(26,22,48,0.8) 0%, transparent 70%);
-    }
+        /* ── Play section ──────────────────────────────────────────── */
+        .play-section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(26, 22, 48, 0.8) 0%, transparent 70%);
+        }
 
-    .play-frame-wrapper {
-      display: inline-block;
-      margin-top: 2.5rem;
-      border: 1px solid rgba(232, 201, 126, 0.2);
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0 0 60px rgba(232,201,126,0.08);
-      max-width: 100%;
-    }
+        .play-frame-wrapper {
+            display: inline-block;
+            margin-top: 2.5rem;
+            border: 1px solid rgba(232, 201, 126, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(232, 201, 126, 0.08);
+            max-width: 100%;
+        }
 
-    .play-frame-wrapper iframe {
-      display: block;
-      width: min(960px, 90vw);
-      height: min(600px, 56.25vw);
-      border: none;
-    }
+        .play-frame-wrapper iframe {
+            display: block;
+            width: min(960px, 90vw);
+            height: min(600px, 56.25vw);
+            border: none;
+        }
 
-    .play-note {
-      margin-top: 1rem;
-      font-size: 0.78rem;
-      color: var(--dim);
-      letter-spacing: 0.05em;
-    }
+        .play-note {
+            margin-top: 1rem;
+            font-size: 0.78rem;
+            color: var(--dim);
+            letter-spacing: 0.05em;
+        }
 
-    .play-note a {
-      color: var(--gold);
-      text-decoration: none;
-    }
+        .play-note a {
+            color: var(--gold);
+            text-decoration: none;
+        }
 
-    /* ── Footer ────────────────────────────────────────────────── */
-    footer {
-      position: relative;
-      z-index: 1;
-      padding: 3rem 2rem;
-      text-align: center;
-      border-top: 1px solid rgba(232, 201, 126, 0.08);
-    }
+        /* ── Footer ────────────────────────────────────────────────── */
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(232, 201, 126, 0.08);
+        }
 
-    footer p {
-      font-size: 0.78rem;
-      color: var(--dim);
-      letter-spacing: 0.1em;
-    }
+        footer p {
+            font-size: 0.78rem;
+            color: var(--dim);
+            letter-spacing: 0.1em;
+        }
 
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-    }
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
 
-    footer a:hover { opacity: 1; }
+        footer a:hover {
+            opacity: 1;
+        }
 
-    /* ── Responsive nav ────────────────────────────────────────── */
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-    }
-  </style>
+        /* ── Beta badge ──────────────────────────────────────────── */
+        .beta-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--deep);
+            background: var(--gold);
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            font-family: 'Georgia', serif;
+        }
+
+        /* ── Notify / email section ───────────────────────────── */
+        .notify-section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(26, 22, 48, 0.9) 0%, transparent 70%);
+        }
+
+        .notify-form {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .notify-input {
+            padding: 0.85rem 1.4rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(232, 201, 126, 0.3);
+            border-radius: 2px;
+            color: var(--pale);
+            width: min(340px, 100%);
+            letter-spacing: 0.03em;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .notify-input::placeholder { color: var(--dim); }
+        .notify-input:focus { border-color: var(--gold); }
+
+        .notify-confirm {
+            display: none;
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+            font-style: italic;
+        }
+
+        /* ── Responsive nav ─────────────────────────────────────── */
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
+
 <body>
 
-<canvas id="stars"></canvas>
+    <canvas id="stars"></canvas>
 
-<!-- Navigation -->
-<nav>
-  <a class="nav-logo" href="/">The Ascendant Continuum</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#realms">Realms</a></li>
-    <li><a href="#play">Play</a></li>
-  </ul>
-</nav>
+    <!-- Navigation -->
+    <nav>
+        <a class="nav-logo" href="/">The Ascendant Continuum</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#realms">Realms</a></li>
+            <li><a href="#notify">Get Notified</a></li>
+            <li><a href="/play/">Preview</a></li>
+        </ul>
+    </nav>
 
-<!-- Hero -->
-<section class="hero">
-  <p class="hero-eyebrow">A cosmic journey awaits</p>
-  <h1 class="hero-title">
-    The Ascendant
-    <span>Continuum</span>
-  </h1>
-  <p class="hero-subtitle">
-    Traverse celestial realms. Grow cosmic flora. Align with the stars.
-    A mindful game that rewards presence, not addiction.
-  </p>
-  <div class="cta-group">
-    <a class="btn btn-primary" href="/play/">Play Now</a>
-    <a class="btn btn-secondary" href="#about">Learn More</a>
-  </div>
-</section>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="beta-badge">✨ Soft Beta · Coming Soon ✨</div>
+        <p class="hero-eyebrow">A mindful cosmic adventure</p>
+        <h1 class="hero-title">
+            The Ascendant
+            <span>Continuum</span>
+        </h1>
+        <p class="hero-subtitle">
+            Traverse celestial realms. Grow cosmic flora. Align with the stars.
+            A game that rewards presence, not addiction — launching in soft beta soon.
+        </p>
+        <div class="cta-group">
+            <a class="btn btn-primary" href="#notify">Get Notified</a>
+            <a class="btn btn-secondary" href="/play/" target="_blank" rel="noopener">Preview Now ↗</a>
+        </div>
+    </section>
 
-<!-- About -->
-<section id="about" class="features">
-  <p class="section-label">The Journey</p>
-  <h2 class="section-title">What is the Continuum?</h2>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🌌</div>
-      <h3 class="feature-title">Celestial Realms</h3>
-      <p class="feature-desc">
-        Explore five distinct realms — Emberforge, Verdant, Echo Fields, Dawn Citadel,
-        and Lantern Ascension — each with its own living ecosystem and mysteries.
-      </p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">✨</div>
-      <h3 class="feature-title">Cosmic Identity</h3>
-      <p class="feature-desc">
-        Your name is written in the stars. Build a unique cosmic identity that evolves
-        through your play patterns, sigil choices, and alignment with lunar cycles.
-      </p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🌿</div>
-      <h3 class="feature-title">Mindful Play</h3>
-      <p class="feature-desc">
-        The game rewards you for taking breaks. A Digital Sunset system gently closes
-        the app at dusk, encouraging you to witness the real sky.
-      </p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🌙</div>
-      <h3 class="feature-title">Live Cosmic Events</h3>
-      <p class="feature-desc">
-        Real-world lunar phases, meteor showers, and eclipses shift the game world.
-        Step outside during a real shower for a Cosmic Meditation Bonus.
-      </p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">♿</div>
-      <h3 class="feature-title">Accessible by Design</h3>
-      <p class="feature-desc">
-        Colorblind modes, reduced motion, dyslexia-friendly text, haptics control,
-        and ADHD session reminders — built in from the start, not as an afterthought.
-      </p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🤝</div>
-      <h3 class="feature-title">Cross-Player Wish Wall</h3>
-      <p class="feature-desc">
-        Leave a wish for another traveller. Receive one from a stranger across the
-        continuum. Connection without competition.
-      </p>
-    </div>
-  </div>
-</section>
+    <!-- About -->
+    <section id="about" class="features">
+        <p class="section-label">The Journey</p>
+        <h2 class="section-title">What is the Continuum?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌌</div>
+                <h3 class="feature-title">Celestial Realms</h3>
+                <p class="feature-desc">
+                    Explore five distinct realms — Emberforge, Verdant, Echo Fields, Dawn Citadel,
+                    and Lantern Ascension — each with its own living ecosystem and mysteries.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3 class="feature-title">Cosmic Identity</h3>
+                <p class="feature-desc">
+                    Your name is written in the stars. Build a unique cosmic identity that evolves
+                    through your play patterns, sigil choices, and alignment with lunar cycles.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌿</div>
+                <h3 class="feature-title">Mindful Play</h3>
+                <p class="feature-desc">
+                    The game rewards you for taking breaks. A Digital Sunset system gently closes
+                    the app at dusk, encouraging you to witness the real sky.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌙</div>
+                <h3 class="feature-title">Live Cosmic Events</h3>
+                <p class="feature-desc">
+                    Real-world lunar phases, meteor showers, and eclipses shift the game world.
+                    Step outside during a real shower for a Cosmic Meditation Bonus.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">♿</div>
+                <h3 class="feature-title">Accessible by Design</h3>
+                <p class="feature-desc">
+                    Colorblind modes, reduced motion, dyslexia-friendly text, haptics control,
+                    and ADHD session reminders — built in from the start, not as an afterthought.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3 class="feature-title">Cross-Player Wish Wall</h3>
+                <p class="feature-desc">
+                    Leave a wish for another traveller. Receive one from a stranger across the
+                    continuum. Connection without competition.
+                </p>
+            </div>
+        </div>
+    </section>
 
-<div class="divider"></div>
+    <div class="divider"></div>
 
-<!-- Realms -->
-<section id="realms" class="features">
-  <p class="section-label">Five Realms</p>
-  <h2 class="section-title">Where will you travel?</h2>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🔥</div>
-      <h3 class="feature-title">Emberforge</h3>
-      <p class="feature-desc">The realm of creation and transformation. Where raw cosmic matter is forged into light.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🌱</div>
-      <h3 class="feature-title">Verdant</h3>
-      <p class="feature-desc">Ancient groves where bioluminescent flora grow in harmony with the lunar tide.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎵</div>
-      <h3 class="feature-title">Echo Fields</h3>
-      <p class="feature-desc">A vast plain where the whispers of past travellers still resonate across time.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🌅</div>
-      <h3 class="feature-title">Dawn Citadel</h3>
-      <p class="feature-desc">A fortress of first light, where every sunrise unlocks a new chamber of understanding.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🏮</div>
-      <h3 class="feature-title">Lantern Ascension</h3>
-      <p class="feature-desc">The highest realm. Release your lantern into the infinite and watch it become a new star.</p>
-    </div>
-  </div>
-</section>
+    <!-- Realms -->
+    <section id="realms" class="features">
+        <p class="section-label">Five Realms</p>
+        <h2 class="section-title">Where will you travel?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔥</div>
+                <h3 class="feature-title">Emberforge</h3>
+                <p class="feature-desc">The realm of creation and transformation. Where raw cosmic matter is forged into
+                    light.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <h3 class="feature-title">Verdant</h3>
+                <p class="feature-desc">Ancient groves where bioluminescent flora grow in harmony with the lunar tide.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎵</div>
+                <h3 class="feature-title">Echo Fields</h3>
+                <p class="feature-desc">A vast plain where the whispers of past travellers still resonate across time.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌅</div>
+                <h3 class="feature-title">Dawn Citadel</h3>
+                <p class="feature-desc">A fortress of first light, where every sunrise unlocks a new chamber of
+                    understanding.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏮</div>
+                <h3 class="feature-title">Lantern Ascension</h3>
+                <p class="feature-desc">The highest realm. Release your lantern into the infinite and watch it become a
+                    new star.</p>
+            </div>
+        </div>
+    </section>
 
-<div class="divider"></div>
+    <div class="divider"></div>
 
-<!-- Embedded play section -->
-<section id="play" class="play-section">
-  <p class="section-label">Play in Browser</p>
-  <h2 class="section-title">Begin Your Journey</h2>
-  <div class="play-frame-wrapper">
-    <iframe
-      src="/play/"
-      title="The Ascendant Continuum — Play in browser"
-      allowfullscreen
-      allow="autoplay; fullscreen"
-    ></iframe>
-  </div>
-  <p class="play-note">
-    Best experienced in fullscreen &mdash;
-    <a href="/play/" target="_blank" rel="noopener">open full page ↗</a>
-  </p>
-</section>
+    <!-- Get Notified -->
+    <section id="notify" class="notify-section">
+        <p class="section-label">Soft Beta</p>
+        <h2 class="section-title">Be Among the First</h2>
+        <p style="color:var(--dim);font-size:0.95rem;max-width:480px;margin:0 auto;line-height:1.7;font-style:italic;">
+            The Ascendant Continuum is in its final stage before public launch.
+            Leave your email and we’ll send you a personal invitation when the beta opens — no spam, just stars.
+        </p>
+        <form class="notify-form" onsubmit="handleNotify(event)">
+            <input class="notify-input" type="email" placeholder="your@email.com" required />
+            <button class="btn btn-primary" type="submit">Notify Me</button>
+        </form>
+        <p class="notify-confirm" id="notify-confirm">
+            ✨ You’re on the list. The stars will find you.
+        </p>
+    </section>
 
-<!-- Footer -->
-<footer>
-  <p>© 2026 The Ascendant Continuum &nbsp;·&nbsp;
-     <a href="/play/">Play</a> &nbsp;·&nbsp;
-     Built with Unity 6 &amp; WebGL
-  </p>
-</footer>
+    <div class="divider"></div>
 
-<!-- Procedural star field -->
-<script>
-  (function () {
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-    let W, H, stars = [];
+    <!-- Embedded preview -->
+    <section id="play" class="play-section">
+        <p class="section-label">Early Preview</p>
+        <h2 class="section-title">Peek Inside the Continuum</h2>
+        <p style="color:var(--dim);font-size:0.85rem;margin-bottom:2rem;font-style:italic;">This is a development build — not the final experience.</p>
+        <div class="play-frame-wrapper">
+            <iframe src="/play/" title="The Ascendant Continuum — Play in browser" allowfullscreen
+                allow="autoplay; fullscreen"></iframe>
+        </div>
+        <p class="play-note">
+            Best experienced in fullscreen &mdash;
+            <a href="/play/" target="_blank" rel="noopener">open full page ↗</a>
+            &nbsp;&middot;&nbsp; Development build &mdash; bugs expected.
+        </p>
+    </section>
 
-    function resize() {
-      W = canvas.width  = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    }
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 The Ascendant Continuum &nbsp;·&nbsp;
+            Soft Beta &nbsp;&middot;&nbsp;
+            <a href="/play/" target="_blank" rel="noopener">Preview</a> &nbsp;&middot;&nbsp;
+            <a href="#notify">Get Notified</a> &nbsp;&middot;&nbsp;
+            Built with Unity 6 &amp; WebGL
+        </p>
+    </footer>
 
-    function seed() {
-      stars = [];
-      const count = Math.floor((W * H) / 3000);
-      for (let i = 0; i < count; i++) {
-        stars.push({
-          x:    Math.random() * W,
-          y:    Math.random() * H,
-          r:    Math.random() * 1.2 + 0.2,
-          a:    Math.random(),
-          da:   (Math.random() - 0.5) * 0.003,
-          gold: Math.random() < 0.08
-        });
-      }
-    }
+    <!-- Procedural star field -->
+    <script>
+        // Email capture: store locally and show confirmation
+        function handleNotify(e) {
+            e.preventDefault();
+            const input = e.target.querySelector('input[type=email]');
+            const emails = JSON.parse(localStorage.getItem('ac_notify') || '[]');
+            if (!emails.includes(input.value)) emails.push(input.value);
+            localStorage.setItem('ac_notify', JSON.stringify(emails));
+            input.value = '';
+            input.disabled = true;
+            e.target.querySelector('button').disabled = true;
+            document.getElementById('notify-confirm').style.display = 'block';
+        }
 
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-      for (const s of stars) {
-        s.a += s.da;
-        if (s.a > 1 || s.a < 0) s.da *= -1;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = s.gold
-          ? `rgba(232,201,126,${s.a})`
-          : `rgba(240,236,230,${s.a * 0.7})`;
-        ctx.fill();
-      }
-      requestAnimationFrame(draw);
-    }
+        (function () {
+            const canvas = document.getElementById('stars');
+            const ctx = canvas.getContext('2d');
+            let W, H, stars = [];
 
-    window.addEventListener('resize', () => { resize(); seed(); });
-    resize();
-    seed();
-    draw();
-  })();
-</script>
+            function resize() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            }
+
+            function seed() {
+                stars = [];
+                const count = Math.floor((W * H) / 3000);
+                for (let i = 0; i < count; i++) {
+                    stars.push({
+                        x: Math.random() * W,
+                        y: Math.random() * H,
+                        r: Math.random() * 1.2 + 0.2,
+                        a: Math.random(),
+                        da: (Math.random() - 0.5) * 0.003,
+                        gold: Math.random() < 0.08
+                    });
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+                for (const s of stars) {
+                    s.a += s.da;
+                    if (s.a > 1 || s.a < 0) s.da *= -1;
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fillStyle = s.gold
+                        ? `rgba(232,201,126,${s.a})`
+                        : `rgba(240,236,230,${s.a * 0.7})`;
+                    ctx.fill();
+                }
+                requestAnimationFrame(draw);
+            }
+
+            window.addEventListener('resize', () => { resize(); seed(); });
+            resize();
+            seed();
+            draw();
+        })();
+    </script>
 
 </body>
+
 </html>

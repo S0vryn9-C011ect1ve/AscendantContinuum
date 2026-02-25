@@ -1,76 +1,70 @@
-# Getting Started - The Ascendant Continuum
+# Getting Started — The Ascendant Continuum
 
-This guide will help you set up the development environment and start building the game.
+This guide covers the development environment setup for contributors and internal testers.
+
+> **Current phase:** Soft Beta — live at https://ascendant-continuum.web.app
 
 ## 📋 Prerequisites
 
 ### Required Software
-- **Unity 2022.3 LTS** - [Download](https://unity.com/releases/editor/archive)
-- **Visual Studio 2022** or **Visual Studio Code** - [Download VS](https://visualstudio.microsoft.com/)
-- **Node.js 18+** - [Download](https://nodejs.org/) (for Firebase Functions)
-- **Git** - [Download](https://git-scm.com/)
-- **Git LFS** - [Download](https://git-lfs.github.com/)
+- **Unity 6000.3.9f1** — [Download via Unity Hub](https://unity.com/download)  
+  *(Must be this exact version — CI uses `unityci/editor:ubuntu-6000.3.9f1`)*
+  - Required modules: **WebGL Build Support**, **Android Build Support**, **iOS Build Support**
+- **Visual Studio Code** — [Download](https://code.visualstudio.com/)
+- **Git** — [Download](https://git-scm.com/)
+- **Node.js 18+** — [Download](https://nodejs.org/) (for Firebase CLI)
+- **Firebase CLI** — `npm install -g firebase-tools`
+- **GitHub CLI** — [Download](https://cli.github.com/) (`gh`)
 
-### Accounts Needed
-- **Firebase Account** - [Sign up](https://firebase.google.com/)
-- **Unity Account** - [Sign up](https://id.unity.com/)
-- **GitHub Account** - [Sign up](https://github.com/) (already have: ascendantcontinuum)
+### Accounts
+- **GitHub:** https://github.com/ascendantcontinuum — `gh auth login`
+- **Firebase:** project `ascendant-continuum` — `firebase login`
+- **Unity:** required for CI license activation
 
 ---
 
 ## 🚀 Setup Steps
 
-### 1. Install Git LFS
+### 1. Clone the repository
 
 ```powershell
-# Download and install Git LFS from https://git-lfs.github.com/
-
-# Initialize Git LFS
-git lfs install
-
-# Verify installation
-git lfs version
+git clone https://github.com/ascendantcontinuum/AscendantContinuum.git
+cd "AscendantContinuum"
 ```
 
-### 2. Push to GitHub (First Time)
+### 2. Open in Unity Hub
 
-```powershell
-# You should already be in the repository directory
-cd "D:\1-Ascendant Continuum Game"
-
-# Push to GitHub
-git push -u origin main
-```
-
-**Note:** You'll need to authenticate with GitHub. Use a Personal Access Token:
-1. Go to GitHub Settings → Developer Settings → Personal Access Tokens
-2. Generate new token with `repo` scope
-3. Use token as password when pushing
-
-### 3. Install Unity 2022.3 LTS
-
-1. Download Unity Hub: https://unity.com/download
-2. Install Unity Hub
-3. In Unity Hub, go to "Installs" → "Install Editor"
-4. Select **Unity 2022.3 LTS** (latest LTS version)
-5. Add modules:
-   - ✅ iOS Build Support
-   - ✅ Android Build Support
-   - ✅ WebGL Build Support
-   - ✅ Visual Studio (if not already installed)
-
-### 4. Create Unity Project
-
-**Option A: Create New Project**
 1. Open Unity Hub
-2. Click "New Project"
-3. Select "2D Core" template
-4. Project name: **Ascendant Continuum**
-5. Location: **D:\1-Ascendant Continuum Game**
-6. Click "Create Project"
+2. Click **Open** → select `D:\1-Ascendant Continuum Game`
+3. Ensure Unity **6000.3.9f1** is selected (not any other version)
+4. Let Unity import all packages (first open takes several minutes)
 
-**Option B: Manual Setup (if already have files)**
-The Unity project will auto-generate when you open Unity Hub and point it to this directory.
+### 3. Verify scenes are in Build Settings
+
+After Unity opens, run **Tools → Scene Setup → Setup All Scenes** (via `SceneSetupHelper.cs` editor menu), or manually verify `ProjectSettings/EditorBuildSettings.asset` includes all scenes in order:
+```
+Bootstrap, MainMenu, Onboarding, Emberforge, Verdant, EchoFields, DawnCitadel, LanternAscension
+```
+
+### 4. Build locally (optional)
+
+```powershell
+# WebGL (runs in browser, no Unity license needed for local builds)
+unity.exe -batchmode -quit -projectPath . -executeMethod BuildMethods.BuildWebGL
+
+# Or use the CI pipeline — just push to main:
+git push origin main
+# GitHub Actions will build & deploy automatically
+```
+
+### 5. Firebase CLI setup (for manual deploys)
+
+```powershell
+npm install -g firebase-tools
+firebase login
+cd firebase
+firebase deploy --only hosting  # deploy current public/ folder
+```
 
 ### 5. Configure Unity Project Settings
 
