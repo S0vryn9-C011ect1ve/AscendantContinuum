@@ -31,8 +31,9 @@ public static class BuildMethods
             // Strip as much code as possible to shrink WASM (wasm-opt OOMs on large files)
             PlayerSettings.stripEngineCode = true;
             PlayerSettings.SetManagedStrippingLevel(NamedBuildTarget.WebGL, ManagedStrippingLevel.High);
-            // No exceptions = massive WASM size reduction
-            PlayerSettings.WebGL.exceptionSupport = WebGLExceptionSupport.None;
+            // ExplicitlyThrown: only "throw" exceptions tracked - far smaller than Full,
+            // still gives readable messages vs None which shows "undefined" for every crash
+            PlayerSettings.WebGL.exceptionSupport = WebGLExceptionSupport.ExplicitlyThrownExceptionsOnly;
             // No debug symbols = no extra data sections in WASM
             PlayerSettings.WebGL.debugSymbolMode = WebGLDebugSymbolMode.Off;
             // No compression = skip brotli/gzip post-processing (saves memory & time)

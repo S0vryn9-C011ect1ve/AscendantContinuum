@@ -1,0 +1,54 @@
+<!--
+    IL2CPP Linker Preservation List
+    Prevents ManagedStrippingLevel.High from removing types that are
+    referenced at runtime (physics messages, reflection, etc.) but not
+    statically visible to the linker.
+-->
+<linker>
+    <!-- Preserve core Unity physics types used in OnTriggerEnter2D / OnCollisionEnter2D messages -->
+    <assembly fullname="UnityEngine.Physics2DModule">
+        <type fullname="UnityEngine.Collider2D" preserve="all" />
+        <type fullname="UnityEngine.Collision2D" preserve="all" />
+        <type fullname="UnityEngine.ContactPoint2D" preserve="all" />
+        <type fullname="UnityEngine.Rigidbody2D" preserve="all" />
+    </assembly>
+
+    <assembly fullname="UnityEngine.PhysicsModule">
+        <type fullname="UnityEngine.Collider" preserve="all" />
+        <type fullname="UnityEngine.Collision" preserve="all" />
+        <type fullname="UnityEngine.ContactPoint" preserve="all" />
+        <type fullname="UnityEngine.Rigidbody" preserve="all" />
+    </assembly>
+
+    <!-- Preserve UI types used via reflection / serialization -->
+    <assembly fullname="UnityEngine.UI">
+        <type fullname="UnityEngine.UI.Button" preserve="all" />
+        <type fullname="UnityEngine.UI.Toggle" preserve="all" />
+        <type fullname="UnityEngine.UI.Slider" preserve="all" />
+        <type fullname="UnityEngine.UI.Text" preserve="all" />
+        <type fullname="UnityEngine.UI.Image" preserve="all" />
+        <type fullname="UnityEngine.UI.CanvasGroup" preserve="all" />
+        <type fullname="UnityEngine.UI.ScrollRect" preserve="all" />
+    </assembly>
+
+    <!-- Preserve all game scripts — they use many internal reflection paths -->
+    <assembly fullname="Assembly-CSharp" preserve="all" />
+
+    <!-- TextMeshPro types -->
+    <assembly fullname="Unity.TextMeshPro">
+        <type fullname="TMPro.TMP_Text" preserve="all" />
+        <type fullname="TMPro.TextMeshProUGUI" preserve="all" />
+        <type fullname="TMPro.TMP_InputField" preserve="all" />
+    </assembly>
+
+    <!-- Notification types referenced by platform guards -->
+    <assembly fullname="Unity.Notifications.Android">
+        <type fullname="Unity.Notifications.Android.AndroidNotificationCenter" preserve="all" />
+    </assembly>
+
+    <!-- System types used with DateTime arithmetic -->
+    <assembly fullname="mscorlib">
+        <type fullname="System.DateTime" preserve="all" />
+        <type fullname="System.TimeSpan" preserve="all" />
+    </assembly>
+</linker>

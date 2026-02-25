@@ -27,6 +27,7 @@ namespace AscendantContinuum.Systems
 
         private DateTime sessionStartTime;
         private DateTime lastBreakTime;
+        private bool _started = false;          // guards OnApplicationPause pre-Start
         private float totalPlayTimeToday = 0f; // minutes
         private bool hasShownSunsetWarning = false;
         private bool isMeditationRewardActive = false;
@@ -49,12 +50,17 @@ namespace AscendantContinuum.Systems
                 return;
             }
             Instance = this;
+            // Initialise here so OnApplicationPause(false) — which Unity WebGL fires
+            // before Start() on first load — doesn't compute a ~2026-year time gap.
+            sessionStartTime = DateTime.Now;
+            lastBreakTime    = DateTime.Now;
         }
 
         private void Start()
         {
-            sessionStartTime = DateTime.Now;
-            lastBreakTime = DateTime.Now;
+            // sessionStartTime / lastBreakTime already set in Awake to avoid the
+            // pre-Start OnApplicationPause(false) issue on WebGL.
+            _started = true;
 
             LoadPlayTimeProgress();
 
@@ -384,12 +390,20 @@ namespace AscendantContinuum.Systems
         {
             if (pause)
             {
-                SavePlayTimeProgress();
+                if (_started) SavePlayTimeProgress();
                 lastBreakTime = DateTime.Now;
             }
             else
             {
+                // Only process "return from background" once the manager has fully started.
+                // On first WebGL load, Unity fires OnApplicationPause(false) before Start(),
+                // which would produce a ~2026-year time gap with the default DateTime value.
+                if (!_started) return;
+
                 TimeSpan timeAway = DateTime.Now - lastBreakTime;
+                // Sanity cap: ignore spurious gaps longer than 1 year
+                if (timeAway.TotalDays > 365) return;
+
                 OnReturnFromBackground(timeAway);
             }
         }
