@@ -10,7 +10,8 @@
 
     <!-- Open Graph / Social preview -->
     <meta property="og:title" content="The Ascendant Continuum — Soft Beta Coming Soon" />
-    <meta property="og:description" content="Traverse celestial realms. Grow cosmic flora. Align with the stars. Soft beta launching soon." />
+    <meta property="og:description"
+        content="Traverse celestial realms. Grow cosmic flora. Align with the stars. Soft beta launching soon." />
     <meta property="og:url" content="https://ascendant-continuum.web.app" />
     <meta property="og:type" content="website" />
 
@@ -357,7 +358,7 @@
             padding: 0.85rem 1.4rem;
             font-family: inherit;
             font-size: 0.9rem;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(232, 201, 126, 0.3);
             border-radius: 2px;
             color: var(--pale);
@@ -367,8 +368,13 @@
             transition: border-color 0.2s;
         }
 
-        .notify-input::placeholder { color: var(--dim); }
-        .notify-input:focus { border-color: var(--gold); }
+        .notify-input::placeholder {
+            color: var(--dim);
+        }
+
+        .notify-input:focus {
+            border-color: var(--gold);
+        }
 
         .notify-confirm {
             display: none;
@@ -379,9 +385,80 @@
             font-style: italic;
         }
 
+        /* ── Social links ───────────────────────────────────────── */
+        .social-links {
+            display: flex;
+            gap: 1.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .social-links a {
+            color: var(--dim);
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+        }
+
         /* ── Responsive nav ─────────────────────────────────────── */
         @media (max-width: 600px) {
-            .nav-links { display: none; }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* ── Gallery section ───────────────────────────────────── */
+        .gallery-section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(26, 22, 48, 0.8) 0%, transparent 70%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid rgba(232, 201, 126, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 30px rgba(232, 201, 126, 0.05);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 50px rgba(232, 201, 126, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            background: rgba(13, 11, 26, 0.6);
+            font-size: 0.9rem;
+            color: var(--dim);
+            text-align: center;
+            font-style: italic;
         }
     </style>
 </head>
@@ -396,7 +473,9 @@
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#realms">Realms</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#notify">Get Notified</a></li>
+            <li><a href="#connect">Connect</a></li>
             <li><a href="/play/">Preview</a></li>
         </ul>
     </nav>
@@ -540,7 +619,8 @@
     <section id="play" class="play-section">
         <p class="section-label">Early Preview</p>
         <h2 class="section-title">Peek Inside the Continuum</h2>
-        <p style="color:var(--dim);font-size:0.85rem;margin-bottom:2rem;font-style:italic;">This is a development build — not the final experience.</p>
+        <p style="color:var(--dim);font-size:0.85rem;margin-bottom:2rem;font-style:italic;">This is a development build
+            — not the final experience.</p>
         <div class="play-frame-wrapper">
             <iframe src="/play/" title="The Ascendant Continuum — Play in browser" allowfullscreen
                 allow="autoplay; fullscreen"></iframe>
@@ -552,8 +632,60 @@
         </p>
     </section>
 
+    <div class="divider"></div>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery-section">
+        <p class="section-label">Visual Journey</p>
+        <h2 class="section-title">Explore the Realms</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="../../AscendantContinuumCover.png" alt="The Ascendant Continuum - Main Cover Art">
+                <div class="gallery-caption">The Ascendant Continuum - Cover</div>
+            </div>
+            <div class="gallery-item">
+                <img src="../../AscendantContinuum1.png" alt="Realm Preview - Emberforge">
+                <div class="gallery-caption">Emberforge Realm</div>
+            </div>
+            <div class="gallery-item">
+                <img src="../../AscendantContinuum2.png" alt="Realm Preview - Verdant">
+                <div class="gallery-caption">Verdant Sanctuary</div>
+            </div>
+            <div class="gallery-item">
+                <img src="../../AscendantContinuum3.png" alt="Realm Preview - Echo Fields">
+                <div class="gallery-caption">Echo Fields</div>
+            </div>
+            <div class="gallery-item">
+                <img src="../../AscendantContinuumLogo.png" alt="The Ascendant Continuum Logo">
+                <div class="gallery-caption">Game Logo</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
     <!-- Footer -->
-    <footer>
+    <footer id="connect">
+        <p class="section-label">Connect with Us</p>
+        <h2 class="section-title" style="margin-bottom:2rem;">Join the Continuum</h2>
+        <nav class="social-links" aria-label="Social media links">
+            <a href="mailto:ascendancontinuum@gmail.com" title="Email us">
+                ✉ Email
+            </a>
+            <a href="https://x.com/AscendContinuum" target="_blank" rel="noopener me" title="X / Twitter">
+                ✕ X
+            </a>
+            <a href="https://bsky.app/profile/ascendantcontinuum.bsky.social" target="_blank" rel="noopener me"
+                title="Bluesky">
+                ☁ Bluesky
+            </a>
+            <a href="https://mastodon.social/@AscendantContinuum" target="_blank" rel="noopener me" title="Mastodon">
+                🐘 Mastodon
+            </a>
+            <a href="https://www.facebook.com/share/1F9mdmFZTo/" target="_blank" rel="noopener" title="Facebook">
+                f Facebook
+            </a>
+        </nav>
         <p>© 2026 The Ascendant Continuum &nbsp;·&nbsp;
             Soft Beta &nbsp;&middot;&nbsp;
             <a href="/play/" target="_blank" rel="noopener">Preview</a> &nbsp;&middot;&nbsp;
