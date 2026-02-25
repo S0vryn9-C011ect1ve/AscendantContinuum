@@ -26,8 +26,10 @@ public static class BuildMethods
             PlayerSettings.productName = PRODUCT_NAME;
             PlayerSettings.colorSpace = ColorSpace.Linear;
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.WebGL, ScriptingImplementation.IL2CPP);
+            // Debug config = faster C++ compilation than Release/Master (no optimizations)
             PlayerSettings.SetIl2CppCompilerConfiguration(NamedBuildTarget.WebGL, Il2CppCompilerConfiguration.Debug);
-            EditorUserBuildSettings.development = true;
+            // Non-development build = no profiler/debug overhead = smaller WASM = faster emscripten step
+            EditorUserBuildSettings.development = false;
 
             string outputPath = Path.Combine(BuildPath, "WebGL");
             if (!Directory.Exists(outputPath))
@@ -51,7 +53,7 @@ public static class BuildMethods
                 scenes = scenePaths,
                 locationPathName = outputPath,
                 target = BuildTarget.WebGL,
-                options = EditorUserBuildSettings.development ? BuildOptions.Development : BuildOptions.None
+                options = BuildOptions.None
             };
 
             Debug.Log($"[BuildMethods] Building {scenePaths.Length} scenes to {outputPath}");
@@ -116,6 +118,7 @@ public static class BuildMethods
         catch (System.Exception ex)
         {
             Debug.LogException(ex);
+            throw;
         }
     }
 
@@ -154,6 +157,7 @@ public static class BuildMethods
         catch (System.Exception ex)
         {
             Debug.LogException(ex);
+            throw;
         }
     }
 
