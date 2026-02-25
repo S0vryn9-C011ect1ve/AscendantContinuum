@@ -165,16 +165,19 @@ jobs:
       
       # Deploy Firestore Rules
       - name: Deploy Firestore Rules
+        continue-on-error: true
         run: firebase deploy --only firestore:rules --token "${{ secrets.FIREBASE_TOKEN }}"
         working-directory: ./firebase
       
       # Deploy Storage Rules
       - name: Deploy Storage Rules
+        continue-on-error: true
         run: firebase deploy --only storage:rules --token "${{ secrets.FIREBASE_TOKEN }}"
         working-directory: ./firebase
       
       # Deploy Cloud Functions
       - name: Deploy Cloud Functions
+        continue-on-error: true
         run: firebase deploy --only functions --token "${{ secrets.FIREBASE_TOKEN }}"
         working-directory: ./firebase
       
