@@ -186,12 +186,12 @@ jobs:
         run: firebase deploy --only functions --token "${{ secrets.FIREBASE_TOKEN }}"
         working-directory: ./firebase
       
-      # Download WebGL build
+      # Download WebGL build into /play/ subpage
       - name: Download WebGL Build
         uses: actions/download-artifact@v4
         with:
           name: Build-WebGL
-          path: firebase/public
+          path: firebase/public/play
       
       # Deploy to Firebase Hosting
       - name: Deploy to Firebase Hosting

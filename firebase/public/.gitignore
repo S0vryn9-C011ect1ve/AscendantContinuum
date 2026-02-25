@@ -1,0 +1,3 @@
+# The play/ subdirectory is populated by CI (Unity WebGL build artifact).
+# It must NOT be committed to git.
+play/
