@@ -26,9 +26,19 @@ public static class BuildMethods
             PlayerSettings.productName = PRODUCT_NAME;
             PlayerSettings.colorSpace = ColorSpace.Linear;
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.WebGL, ScriptingImplementation.IL2CPP);
-            // Debug config = faster C++ compilation than Release/Master (no optimizations)
+            // Debug config = no C++ optimizations = faster compile
             PlayerSettings.SetIl2CppCompilerConfiguration(NamedBuildTarget.WebGL, Il2CppCompilerConfiguration.Debug);
-            // Non-development build = no profiler/debug overhead = smaller WASM = faster emscripten step
+            // Strip as much code as possible to shrink WASM (wasm-opt OOMs on large files)
+            PlayerSettings.stripEngineCode = true;
+            PlayerSettings.SetManagedStrippingLevel(NamedBuildTarget.WebGL, ManagedStrippingLevel.High);
+            // No exceptions = massive WASM size reduction
+            PlayerSettings.WebGL.exceptionSupport = WebGLExceptionSupport.None;
+            // No debug symbols = no extra data sections in WASM
+            PlayerSettings.WebGL.debugSymbolMode = WebGLDebugSymbolMode.Off;
+            // No compression = skip brotli/gzip post-processing (saves memory & time)
+            PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
+            // No WASM threads = simpler memory model
+            PlayerSettings.WebGL.threadsSupport = false;
             EditorUserBuildSettings.development = false;
 
             string outputPath = Path.Combine(BuildPath, "WebGL");
