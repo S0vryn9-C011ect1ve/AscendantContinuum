@@ -105,14 +105,14 @@ namespace AscendantContinuum.Platform
             try
             {
                 // PlayGamesPlatform.Activate();
-                Social.localUser.Authenticate(success =>
+                UnityEngine.Social.localUser.Authenticate(success =>
                 {
                     _signedIn = success;
                     OnSignInComplete?.Invoke(success);
 
                     if (success)
                     {
-                        Debug.Log("[GPGS] Signed in as: " + Social.localUser.userName);
+                        Debug.Log("[GPGS] Signed in as: " + UnityEngine.Social.localUser.userName);
                         LoadCloudSave();
                     }
                     else
@@ -161,7 +161,7 @@ namespace AscendantContinuum.Platform
         {
             if (!_signedIn) return;
 #if UNITY_ANDROID && !UNITY_EDITOR
-            Social.ReportScore(score, lbId, success =>
+            UnityEngine.Social.ReportScore(score, lbId, success =>
                 Debug.Log($"[GPGS] {label} score {score} posted: {(success ? "✅" : "❌")}"));
 #else
             Debug.Log($"[GPGS] Score stub: {label} = {score}");
@@ -174,11 +174,11 @@ namespace AscendantContinuum.Platform
             if (!_signedIn) { SignIn(); return; }
 #if UNITY_ANDROID && !UNITY_EDITOR
             if (string.IsNullOrEmpty(lbId))
-                Social.ShowLeaderboardUI();
+                UnityEngine.Social.ShowLeaderboardUI();
             else
             {
                 // PlayGamesPlatform.Instance.ShowLeaderboardUI(lbId);
-                Social.ShowLeaderboardUI();
+                UnityEngine.Social.ShowLeaderboardUI();
             }
 #else
             Debug.Log($"[GPGS] ShowLeaderboard stub: {lbId ?? "all"}");
@@ -198,7 +198,7 @@ namespace AscendantContinuum.Platform
             if (!AchievementMap.TryGetValue(localId, out string playId)) return;
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-            Social.ReportProgress(playId, 100.0, success =>
+            UnityEngine.Social.ReportProgress(playId, 100.0, success =>
                 Debug.Log($"[GPGS] Achievement '{localId}' synced: {(success ? "✅" : "❌")}"));
 #else
             Debug.Log($"[GPGS] Achievement stub: {localId} → {playId}");
@@ -209,7 +209,7 @@ namespace AscendantContinuum.Platform
         {
             if (!_signedIn) { SignIn(); return; }
 #if UNITY_ANDROID && !UNITY_EDITOR
-            Social.ShowAchievementsUI();
+            UnityEngine.Social.ShowAchievementsUI();
 #else
             Debug.Log("[GPGS] ShowAchievements stub.");
 #endif

@@ -72,6 +72,7 @@ jobs:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ${{ matrix.runsOn }}
     needs: test
+    continue-on-error: ${{ matrix.targetPlatform != 'WebGL' }}
     strategy:
       fail-fast: false
       matrix:

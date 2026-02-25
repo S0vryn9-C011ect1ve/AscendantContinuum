@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-#if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID
 using Unity.Notifications.Android;
 #endif
 
