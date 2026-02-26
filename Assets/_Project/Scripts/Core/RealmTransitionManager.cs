@@ -99,13 +99,16 @@ namespace AscendantContinuum.Core
 
             Debug.Log($"[RealmTransition] Starting transition to {targetRealm.realmName}");
 
+            // Pre-transition delay for intentionality
+            yield return new WaitForSeconds(0.15f);
+
             // Phase 1: Fade out
             yield return FadeOut(duration / 2f);
 
             // Phase 2: Play transition effects
             if (targetRealm.transitionSound != null)
             {
-                AudioManager.Instance?.PlaySFX(targetRealm.transitionSound, 0.7f);
+                AscendantContinuum.Audio.AudioManager.Instance?.PlaySFX(targetRealm.transitionSound, 0.7f);
             }
 
             VFX.ParticleManager.Instance?.PlayRealmTransitionEffect(
@@ -139,11 +142,14 @@ namespace AscendantContinuum.Core
             // Phase 4: Start new realm music
             if (targetRealm.ambientMusic != null)
             {
-                AudioManager.Instance?.PlayMusic(targetRealm.ambientMusic, duration / 2f);
+                AscendantContinuum.Audio.AudioManager.Instance?.PlayMusic(targetRealm.ambientMusic, duration / 2f);
             }
 
             // Phase 5: Fade in
             yield return FadeIn(duration / 2f);
+
+            // Post-transition delay for intentionality
+            yield return new WaitForSeconds(0.25f);
 
             GameManager.Instance?.ChangeState(GameState.Playing);
             isTransitioning = false;
@@ -157,7 +163,10 @@ namespace AscendantContinuum.Core
 
             for (float t = 0; t < duration; t += Time.deltaTime)
             {
-                transitionCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t / duration);
+                float normalizedTime = t / duration;
+                // Ease in-out cubic
+                float easedTime = normalizedTime < 0.5f ? 4f * normalizedTime * normalizedTime * normalizedTime : 1f - Mathf.Pow(-2f * normalizedTime + 2f, 3f) / 2f;
+                transitionCanvasGroup.alpha = Mathf.Lerp(0f, 1f, easedTime);
                 yield return null;
             }
 
@@ -168,7 +177,10 @@ namespace AscendantContinuum.Core
         {
             for (float t = 0; t < duration; t += Time.deltaTime)
             {
-                transitionCanvasGroup.alpha = Mathf.Lerp(1f, 0f, t / duration);
+                float normalizedTime = t / duration;
+                // Ease in-out cubic
+                float easedTime = normalizedTime < 0.5f ? 4f * normalizedTime * normalizedTime * normalizedTime : 1f - Mathf.Pow(-2f * normalizedTime + 2f, 3f) / 2f;
+                transitionCanvasGroup.alpha = Mathf.Lerp(1f, 0f, easedTime);
                 yield return null;
             }
 

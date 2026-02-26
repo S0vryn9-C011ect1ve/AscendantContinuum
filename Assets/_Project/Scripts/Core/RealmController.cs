@@ -19,7 +19,7 @@ namespace AscendantContinuum.Core
     /// <see cref="UnsubscribeFromRealmEvents"/> to connect their specific
     /// gameplay mechanics to <see cref="OnRealmProgressMade"/>.
     /// </summary>
-    public abstract class RealmController : MonoBehaviour
+    public abstract partial class RealmController : MonoBehaviour
     {
         // ── Identity ──────────────────────────────────────────────────────
         /// <summary>Lowercase realm identifier used by GameManager / SaveSystem / Achievement checks (e.g. "emberforge").</summary>
@@ -73,6 +73,21 @@ namespace AscendantContinuum.Core
             // Let derived class hook into mechanic events
             SubscribeToRealmEvents();
 
+            // Apply atmosphere if configured
+            if (autoApplyAtmosphereOnEnter)
+            {
+                ApplyRealmAtmosphere();
+            }
+
+            // Log analytics
+            AscendantContinuum.Analytics.AnalyticsManager.Instance?.LogRealmEntered(realmId, realmDisplayName);
+
+            // Trigger Contextual Tutorial if this is the first time
+            if (ContextualTutorialManager.Instance != null && GameManager.Instance != null && GameManager.Instance.ShouldRunOnboarding())
+            {
+                ContextualTutorialManager.Instance.StartTutorial();
+            }
+
             Debug.Log($"[RealmController] Entered {realmDisplayName} ({realmId})");
         }
 
@@ -94,6 +109,9 @@ namespace AscendantContinuum.Core
 
             // Final save on exit
             SaveCurrentProgress();
+
+            // Log analytics
+            AscendantContinuum.Analytics.AnalyticsManager.Instance?.LogRealmExited(realmId, minutesSpent * 60f, true);
 
             Debug.Log($"[RealmController] Exited {realmDisplayName} ({realmId}) after {minutesSpent:F1} min");
         }
@@ -126,6 +144,10 @@ namespace AscendantContinuum.Core
 
             // Save system snapshot
             SaveSystem.Instance?.UpdateProgressSnapshot(realmId, sparks, sigils);
+
+            // Progression tracking
+            AscendantContinuum.Progression.ProgressionManager.Instance?.RecordRitualCompletion(challengeType.ToString(), sparks, 0f);
+            AscendantContinuum.Analytics.AnalyticsManager.Instance?.LogRitualCompleted(challengeType.ToString(), realmId, sparks, 0f);
 
             // HUD
             if (_hud != null && (sparks > 0 || sigils > 0))

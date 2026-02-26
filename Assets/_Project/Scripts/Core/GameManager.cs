@@ -54,6 +54,16 @@ namespace AscendantContinuum.Core
                 AccessibilityManager.Instance.SetHaptics(enableHaptics);
                 AccessibilityManager.Instance.LoadSettings();
             }
+
+            // Start analytics session
+            AscendantContinuum.Analytics.AnalyticsManager.Instance?.LogSessionStart();
+
+            // Schedule retention notifications
+            if (LocalNotificationManager.Instance != null)
+            {
+                LocalNotificationManager.Instance.ScheduleDailyChallengeReminder();
+                LocalNotificationManager.Instance.ScheduleSigilCraftingReminder(24f);
+            }
         }
 
         private void OnDestroy()
@@ -139,6 +149,7 @@ namespace AscendantContinuum.Core
         private void OnApplicationQuit()
         {
             SaveSystem.Instance?.SaveGame();
+            AscendantContinuum.Analytics.AnalyticsManager.Instance?.LogSessionEnd();
             Debug.Log("[GameManager] Game quit - final save complete");
         }
     }

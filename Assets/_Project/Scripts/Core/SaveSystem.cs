@@ -77,6 +77,13 @@ namespace AscendantContinuum.Core
 
                 WriteCurrentPlayerDataToDisk();
 
+                // Sync to Firebase if available
+                if (FirebaseManager.Instance != null && FirebaseManager.Instance.IsConnected)
+                {
+                    string userId = FirebaseManager.Instance.UserId ?? "anonymous_user";
+                    _ = FirebaseManager.Instance.SavePlayerData("users", userId, currentPlayerData);
+                }
+
                 Debug.Log("[SaveSystem] ✅ Game saved successfully");
             }
             catch (Exception e)
