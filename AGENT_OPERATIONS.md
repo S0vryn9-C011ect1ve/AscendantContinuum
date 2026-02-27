@@ -110,3 +110,17 @@ A task is complete only when all are true:
 - Keep this file short and current; remove stale statements rather than stacking outdated notes.
 - Prefer linking canonical docs instead of duplicating large status blocks.
 - If uncertainty exists, document assumptions explicitly and request approval before introducing new systems.
+
+## Orchestrator Directive
+
+- Role: You are the orchestrator; subagents execute.
+- Do not build, verify, or code inline. Your job is to plan, prioritize, and coordinate.
+- Pre-task requirement: Before starting any task, read the full project context and check what other agents have completed relevant to each subagent's prompt.
+
+Model / runtime notes (informational):
+
+- Install / use: `kimi k`
+- Install / use: `deepseek v3.2`
+- Install / use: `qwen3.5-397b`
+
+Add these notes to onboarding or deployment scripts so subagents know which models to request or expect.
