@@ -1,761 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Ascendant Continuum — Release Candidate 1</title>
-    <meta name="description"
-        content="A mindful cosmic adventure — traverse celestial realms, grow cosmic flora, and align with the stars. Preparing for public launch." />
-
-    <!-- Open Graph / Social preview -->
-    <meta property="og:title" content="The Ascendant Continuum — Release Candidate 1" />
-    <meta property="og:description"
-        content="Traverse celestial realms. Grow cosmic flora. Align with the stars. Preparing for public launch." />
-    <meta property="og:url" content="https://ascendant-continuum.web.app" />
-    <meta property="og:type" content="website" />
-
-    <style>
-        /* ── Reset & base ───────────────────────────────────────────── */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --gold: #e8c97e;
-            --pale: #f0ead6;
-            --dim: #a89b7a;
-            --cosmic: #1a1630;
-            --deep: #0d0b1a;
-            --glow: rgba(232, 201, 126, 0.18);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            background: var(--deep);
-            color: var(--pale);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* ── Star field canvas ─────────────────────────────────────── */
-        #stars {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* ── Nav ───────────────────────────────────────────────────── */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 2rem;
-            background: linear-gradient(to bottom, rgba(13, 11, 26, 0.95), transparent);
-        }
-
-        .nav-logo {
-            font-size: 1rem;
-            font-weight: normal;
-            letter-spacing: 0.15em;
-            color: var(--gold);
-            text-transform: uppercase;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--dim);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-
-        /* ── Hero ──────────────────────────────────────────────────── */
-        .hero {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 6rem 2rem 4rem;
-        }
-
-        .hero-eyebrow {
-            font-size: 0.75rem;
-            letter-spacing: 0.35em;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            opacity: 0.8;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5.5rem);
-            font-weight: normal;
-            letter-spacing: 0.05em;
-            line-height: 1.1;
-            color: var(--pale);
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 60px var(--glow);
-        }
-
-        .hero-title span {
-            color: var(--gold);
-            display: block;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: var(--dim);
-            max-width: 560px;
-            line-height: 1.7;
-            margin-bottom: 3rem;
-            font-style: italic;
-        }
-
-        /* ── CTA buttons ───────────────────────────────────────────── */
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.85rem 2.2rem;
-            font-family: inherit;
-            font-size: 0.9rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: all 0.25s;
-        }
-
-        .btn-primary {
-            background: var(--gold);
-            color: var(--deep);
-            border: 1px solid var(--gold);
-            font-weight: bold;
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--gold);
-            box-shadow: 0 0 20px var(--glow);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--dim);
-            border: 1px solid rgba(168, 155, 122, 0.35);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        /* ── Divider ───────────────────────────────────────────────── */
-        .divider {
-            width: 60px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--gold), transparent);
-            margin: 0 auto 5rem;
-        }
-
-        /* ── Features section ──────────────────────────────────────── */
-        .features {
-            position: relative;
-            z-index: 1;
-            padding: 5rem 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            text-align: center;
-            font-size: 0.7rem;
-            letter-spacing: 0.4em;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(1.6rem, 4vw, 2.4rem);
-            font-weight: normal;
-            color: var(--pale);
-            margin-bottom: 4rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(232, 201, 126, 0.1);
-            border-radius: 4px;
-            padding: 2rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(232, 201, 126, 0.3);
-            box-shadow: 0 0 30px rgba(232, 201, 126, 0.05);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-title {
-            font-size: 1.1rem;
-            color: var(--gold);
-            margin-bottom: 0.6rem;
-            font-weight: normal;
-            letter-spacing: 0.05em;
-        }
-
-        .feature-desc {
-            font-size: 0.9rem;
-            color: var(--dim);
-            line-height: 1.65;
-        }
-
-        /* ── Play section ──────────────────────────────────────────── */
-        .play-section {
-            position: relative;
-            z-index: 1;
-            padding: 6rem 2rem;
-            text-align: center;
-            background: radial-gradient(ellipse at center, rgba(26, 22, 48, 0.8) 0%, transparent 70%);
-        }
-
-        .play-frame-wrapper {
-            display: inline-block;
-            margin-top: 2.5rem;
-            border: 1px solid rgba(232, 201, 126, 0.2);
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 0 60px rgba(232, 201, 126, 0.08);
-            max-width: 100%;
-        }
-
-        .play-frame-wrapper iframe {
-            display: block;
-            width: min(960px, 90vw);
-            height: min(600px, 56.25vw);
-            border: none;
-        }
-
-        .play-note {
-            margin-top: 1rem;
-            font-size: 0.78rem;
-            color: var(--dim);
-            letter-spacing: 0.05em;
-        }
-
-        .play-note a {
-            color: var(--gold);
-            text-decoration: none;
-        }
-
-        /* ── Footer ────────────────────────────────────────────────── */
-        footer {
-            position: relative;
-            z-index: 1;
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(232, 201, 126, 0.08);
-        }
-
-        footer p {
-            font-size: 0.78rem;
-            color: var(--dim);
-            letter-spacing: 0.1em;
-        }
-
-        footer a {
-            color: var(--gold);
-            text-decoration: none;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
-
-        footer a:hover {
-            opacity: 1;
-        }
-
-        /* ── Beta badge ──────────────────────────────────────────── */
-        .beta-badge {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--deep);
-            background: var(--gold);
-            border-radius: 20px;
-            margin-bottom: 1.5rem;
-            font-family: 'Georgia', serif;
-        }
-
-        /* ── Notify / email section ───────────────────────────── */
-        .notify-section {
-            position: relative;
-            z-index: 1;
-            padding: 6rem 2rem;
-            text-align: center;
-            background: radial-gradient(ellipse at center, rgba(26, 22, 48, 0.9) 0%, transparent 70%);
-        }
-
-        .notify-form {
-            display: flex;
-            gap: 0.75rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .notify-input {
-            padding: 0.85rem 1.4rem;
-            font-family: inherit;
-            font-size: 0.9rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(232, 201, 126, 0.3);
-            border-radius: 2px;
-            color: var(--pale);
-            width: min(340px, 100%);
-            letter-spacing: 0.03em;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .notify-input::placeholder {
-            color: var(--dim);
-        }
-
-        .notify-input:focus {
-            border-color: var(--gold);
-        }
-
-        .notify-confirm {
-            display: none;
-            margin-top: 1.2rem;
-            font-size: 0.85rem;
-            color: var(--gold);
-            letter-spacing: 0.08em;
-            font-style: italic;
-        }
-
-        /* ── Social links ───────────────────────────────────────── */
-        .social-links {
-            display: flex;
-            gap: 1.8rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 1.2rem;
-        }
-
-        .social-links a {
-            color: var(--dim);
-            text-decoration: none;
-            font-size: 0.78rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            transition: color 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-
-        .social-links a:hover {
-            color: var(--gold);
-        }
-
-        /* ── Responsive nav ─────────────────────────────────────── */
-        @media (max-width: 600px) {
-            .nav-links {
-                display: none;
-            }
-        }
-
-        /* ── Gallery section ───────────────────────────────────── */
-        .gallery-section {
-            position: relative;
-            z-index: 1;
-            padding: 6rem 2rem;
-            background: radial-gradient(ellipse at center, rgba(26, 22, 48, 0.8) 0%, transparent 70%);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 4px;
-            border: 1px solid rgba(232, 201, 126, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 30px rgba(232, 201, 126, 0.05);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 0 50px rgba(232, 201, 126, 0.15);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .gallery-caption {
-            padding: 1rem;
-            background: rgba(13, 11, 26, 0.6);
-            font-size: 0.9rem;
-            color: var(--dim);
-            text-align: center;
-            font-style: italic;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Ascendant Continuum - A revolutionary accessibility-first magical adventure game">
+    <title>The Ascendant Continuum - Explore 5 Magical Realms</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/images.css">
 </head>
-
 <body>
-
-    <canvas id="stars"></canvas>
-
-    <!-- Navigation -->
-    <nav>
-        <a class="nav-logo" href="/">The Ascendant Continuum</a>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#realms">Realms</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#notify">Get Notified</a></li>
-            <li><a href="#connect">Connect</a></li>
-            <li><a href="/play/">Preview</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="beta-badge">✨ Release Candidate 1 · Launching Soon ✨</div>
-        <p class="hero-eyebrow">A mindful cosmic adventure</p>
-        <h1 class="hero-title">
-            The Ascendant
-            <span>Continuum</span>
-        </h1>
-        <p class="hero-subtitle">
-            Traverse celestial realms. Grow cosmic flora. Align with the stars.
-            A game that rewards presence, not addiction — preparing for public launch.
-        </p>
-        <div class="cta-group">
-            <a class="btn btn-primary" href="#notify">Get Notified</a>
-            <a class="btn btn-secondary" href="/play/" target="_blank" rel="noopener">Play Now ↗</a>
+        <div class="hero-content">
+            <img src="images/AscendantContinuumLogo.png" alt="The Ascendant Continuum logo featuring mystical symbols and cosmic design elements representing the five magical realms" class="hero-logo">
+            <h1 class="glow-text">The Ascendant Continuum</h1>
+            <p class="tagline">Explore 5 Magical Realms. Discover Hidden Mysteries. Your Journey Awaits.</p>
+            <div class="cta-buttons">
+                <a href="#features" class="btn btn-primary">Discover the Magic</a>
+                <a href="#realms" class="btn btn-secondary">Explore Realms</a>
+            </div>
         </div>
+        <div class="hero-particles" id="particles"></div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="features">
-        <p class="section-label">The Journey</p>
-        <h2 class="section-title">What is the Continuum?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🌌</div>
-                <h3 class="feature-title">Celestial Realms</h3>
-                <p class="feature-desc">
-                    Explore five distinct realms — Emberforge, Verdant, Echo Fields, Dawn Citadel,
-                    and Lantern Ascension — each with its own living ecosystem and mysteries.
-                </p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">✨</div>
-                <h3 class="feature-title">Cosmic Identity</h3>
-                <p class="feature-desc">
-                    Your name is written in the stars. Build a unique cosmic identity that evolves
-                    through your play patterns, sigil choices, and alignment with lunar cycles.
-                </p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌿</div>
-                <h3 class="feature-title">Mindful Play</h3>
-                <p class="feature-desc">
-                    The game rewards you for taking breaks. A Digital Sunset system gently closes
-                    the app at dusk, encouraging you to witness the real sky.
-                </p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌙</div>
-                <h3 class="feature-title">Live Cosmic Events</h3>
-                <p class="feature-desc">
-                    Real-world lunar phases, meteor showers, and eclipses shift the game world.
-                    Step outside during a real shower for a Cosmic Meditation Bonus.
-                </p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">♿</div>
-                <h3 class="feature-title">Accessible by Design</h3>
-                <p class="feature-desc">
-                    Colorblind modes, reduced motion, dyslexia-friendly text, haptics control,
-                    and ADHD session reminders — built in from the start, not as an afterthought.
-                </p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🤝</div>
-                <h3 class="feature-title">Cross-Player Wish Wall</h3>
-                <p class="feature-desc">
-                    Leave a wish for another traveller. Receive one from a stranger across the
-                    continuum. Connection without competition.
-                </p>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Revolutionary Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">♿</div>
+                    <h3>Accessibility-First</h3>
+                    <p>Different accessibility modes unlock different secrets. Colorblind modes aren't just accommodations - they're discovery tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Community</h3>
+                    <p>Connect with players worldwide through daily challenges, time capsules, and cross-player puzzle chains.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Your Magical Signature</h3>
+                    <p>Create your personal sigil - a unique magical symbol generated from your playstyle and choices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔮</div>
+                    <h3>Hidden Mysteries</h3>
+                    <p>Discover secrets that take months to solve. Past players become archaeological artifacts. NPCs remember everything.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>1-5 Minute Sessions</h3>
+                    <p>Respects your time. Short, meaningful sessions that fit into your daily life.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>Ethical & Fair</h3>
+                    <p>No pay-to-win. No FOMO. No dark patterns. Just pure exploration and joy.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="divider"></div>
-
-    <!-- Realms -->
-    <section id="realms" class="features">
-        <p class="section-label">Five Realms</p>
-        <h2 class="section-title">Where will you travel?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🔥</div>
-                <h3 class="feature-title">Emberforge</h3>
-                <p class="feature-desc">The realm of creation and transformation. Where raw cosmic matter is forged into
-                    light.</p>
+    <!-- Realms Section -->
+    <section id="realms" class="realms">
+        <div class="container">
+            <h2>The Five Realms</h2>
+            <p class="section-subtitle">Explore mystical worlds filled with wonder and secrets</p>
+            
+            <div class="featured-realm">
+                <img src="images/AscendantContinuumCover.png" alt="The Ascendant Continuum realms showcase featuring mystical landscapes and magical environments" class="featured-image">
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌱</div>
-                <h3 class="feature-title">Verdant</h3>
-                <p class="feature-desc">Ancient groves where bioluminescent flora grow in harmony with the lunar tide.
-                </p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎵</div>
-                <h3 class="feature-title">Echo Fields</h3>
-                <p class="feature-desc">A vast plain where the whispers of past travellers still resonate across time.
-                </p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌅</div>
-                <h3 class="feature-title">Dawn Citadel</h3>
-                <p class="feature-desc">A fortress of first light, where every sunrise unlocks a new chamber of
-                    understanding.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🏮</div>
-                <h3 class="feature-title">Lantern Ascension</h3>
-                <p class="feature-desc">The highest realm. Release your lantern into the infinite and watch it become a
-                    new star.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Get Notified -->
-    <section id="notify" class="notify-section">
-        <p class="section-label">Release Candidate</p>
-        <h2 class="section-title">Be Among the First</h2>
-        <p style="color:var(--dim);font-size:0.95rem;max-width:480px;margin:0 auto;line-height:1.7;font-style:italic;">
-            The Ascendant Continuum is in its final stage before public launch.
-            Leave your email and we’ll send you a personal invitation when the game opens — no spam, just stars.
-        </p>
-        <form class="notify-form" onsubmit="handleNotify(event)">
-            <input class="notify-input" type="email" placeholder="your@email.com" required />
-            <button class="btn btn-primary" type="submit">Notify Me</button>
-        </form>
-        <p class="notify-confirm" id="notify-confirm">
-            ✨ You’re on the list. The stars will find you.
-        </p>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Embedded preview -->
-    <section id="play" class="play-section">
-        <p class="section-label">Early Preview</p>
-        <h2 class="section-title">Peek Inside the Continuum</h2>
-        <p style="color:var(--dim);font-size:0.85rem;margin-bottom:2rem;font-style:italic;">This is a development build
-            — not the final experience.</p>
-        <div class="play-frame-wrapper">
-            <iframe src="/play/" title="The Ascendant Continuum — Play in browser" allowfullscreen
-                allow="autoplay; fullscreen"></iframe>
-        </div>
-        <p class="play-note">
-            Best experienced in fullscreen &mdash;
-            <a href="/play/" target="_blank" rel="noopener">open full page ↗</a>
-            &nbsp;&middot;&nbsp; Development build &mdash; bugs expected.
-        </p>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Gallery -->
-    <section id="gallery" class="gallery-section">
-        <p class="section-label">Visual Journey</p>
-        <h2 class="section-title">Explore the Realms</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="../../AscendantContinuumCover.png" alt="The Ascendant Continuum - Main Cover Art">
-                <div class="gallery-caption">The Ascendant Continuum - Cover</div>
-            </div>
-            <div class="gallery-item">
-                <img src="../../AscendantContinuum1.png" alt="Realm Preview - Emberforge">
-                <div class="gallery-caption">Emberforge Realm</div>
-            </div>
-            <div class="gallery-item">
-                <img src="../../AscendantContinuum2.png" alt="Realm Preview - Verdant">
-                <div class="gallery-caption">Verdant Sanctuary</div>
-            </div>
-            <div class="gallery-item">
-                <img src="../../AscendantContinuum3.png" alt="Realm Preview - Echo Fields">
-                <div class="gallery-caption">Echo Fields</div>
-            </div>
-            <div class="gallery-item">
-                <img src="../../AscendantContinuumLogo.png" alt="The Ascendant Continuum Logo">
-                <div class="gallery-caption">Game Logo</div>
+            
+            <div class="realm-grid">
+                <div class="realm-card emberforge">
+                    <img src="images/AscendantContinuum1.png" alt="Emberforge realm gameplay showing dancing flames and glowing sparks of molten light in a mystical forge environment" class="realm-image">
+                    <div class="realm-icon">🔥</div>
+                    <h3>Emberforge</h3>
+                    <p class="realm-theme">Creation & Energy</p>
+                    <p>Dance with living flames. Ignite sparks of possibility. Forge your destiny in molten light.</p>
+                </div>
+                <div class="realm-card verdant">
+                    <img src="images/AscendantContinuum2.png" alt="Verdant Sanctuary realm featuring lush magical flora, gentle creatures, and peaceful natural environments bathed in soft light" class="realm-image">
+                    <div class="realm-icon">🌿</div>
+                    <h3>Verdant Sanctuary</h3>
+                    <p class="realm-theme">Growth & Reflection</p>
+                    <p>Nurture magical flora. Walk among gentle creatures. Find peace in nature's embrace.</p>
+                </div>
+                <div class="realm-card echo">
+                    <img src="images/AscendantContinuum3.png" alt="Echo Fields realm displaying cosmic constellations in a vast starry void with ethereal patterns and traces of past players" class="realm-image">
+                    <div class="realm-icon">🌀</div>
+                    <h3>Echo Fields</h3>
+                    <p class="realm-theme">Memory & Imagination</p>
+                    <p>Trace constellations in the void. Discover echoes of past players. Create patterns in the stars.</p>
+                </div>
+                <div class="realm-card dawn">
+                    <div class="realm-icon">🏛️</div>
+                    <h3>Dawn Citadel</h3>
+                    <p class="realm-theme">Wonder & Knowledge</p>
+                    <p>Manipulate prismatic light. Solve crystalline puzzles. Illuminate hidden truths.</p>
+                </div>
+                <div class="realm-card lantern">
+                    <div class="realm-icon">🏮</div>
+                    <h3>Lantern Ascension</h3>
+                    <p class="realm-theme">Peace & Transcendence</p>
+                    <p>Release wishes to the sky. Connect with seekers worldwide. Find serenity in the infinite.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="divider"></div>
+    <!-- Accessibility Section -->
+    <section class="accessibility">
+        <div class="container">
+            <h2>Accessibility IS Gameplay</h2>
+            <p class="subtitle">We don't just accommodate - we innovate</p>
+            <div class="accessibility-grid">
+                <div class="access-feature">
+                    <h4>5 Colorblind Modes</h4>
+                    <p>Each reveals different hidden content</p>
+                </div>
+                <div class="access-feature">
+                    <h4>Screen Reader Support</h4>
+                    <p>Full VoiceOver & TalkBack integration</p>
+                </div>
+                <div class="access-feature">
+                    <h4>Reduced Motion</h4>
+                    <p>Unlocks peaceful, contemplative content</p>
+                </div>
+                <div class="access-feature">
+                    <h4>Neurodivergent Modes</h4>
+                    <p>ADHD, Autism, Dyslexia optimized</p>
+                </div>
+                <div class="access-feature">
+                    <h4>Haptic Guidance</h4>
+                    <p>Vibration-based navigation & secrets</p>
+                </div>
+                <div class="access-feature">
+                    <h4>WCAG 2.1 AA+</h4>
+                    <p>Industry-leading accessibility standards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Signup -->
+    <section class="signup">
+        <div class="container">
+            <h2>Begin Your Journey</h2>
+            <p>Get notified when The Ascendant Continuum launches</p>
+            <form id="signup-form" class="signup-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-primary">Join the Waitlist</button>
+            </form>
+            <p class="privacy-note">We respect your privacy. No spam, ever.</p>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer id="connect">
-        <p class="section-label">Connect with Us</p>
-        <h2 class="section-title" style="margin-bottom:2rem;">Join the Continuum</h2>
-        <nav class="social-links" aria-label="Social media links">
-            <a href="mailto:ascendancontinuum@gmail.com" title="Email us">
-                ✉ Email
-            </a>
-            <a href="https://x.com/AscendContinuum" target="_blank" rel="noopener me" title="X / Twitter">
-                ✕ X
-            </a>
-            <a href="https://bsky.app/profile/ascendantcontinuum.bsky.social" target="_blank" rel="noopener me"
-                title="Bluesky">
-                ☁ Bluesky
-            </a>
-            <a href="https://mastodon.social/@AscendantContinuum" target="_blank" rel="noopener me" title="Mastodon">
-                🐘 Mastodon
-            </a>
-            <a href="https://www.facebook.com/share/1F9mdmFZTo/" target="_blank" rel="noopener" title="Facebook">
-                f Facebook
-            </a>
-        </nav>
-        <p>© 2026 The Ascendant Continuum &nbsp;·&nbsp;
-            Release Candidate 1 &nbsp;&middot;&nbsp;
-            <a href="/play/" target="_blank" rel="noopener">Preview</a> &nbsp;&middot;&nbsp;
-            <a href="#notify">Get Notified</a> &nbsp;&middot;&nbsp;
-            Built with Unity 6 &amp; WebGL
-        </p>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 The Ascendant Continuum. All rights reserved.</p>
+            <p>Contact: <a href="mailto:ascendantcontinuum@gmail.com">ascendantcontinuum@gmail.com</a></p>
+            <div class="social-links">
+                <a href="https://bsky.app/profile/ascendantcontinuum.bsky.social" target="_blank" rel="noopener" title="Follow us on Bluesky">🦋 Bluesky</a>
+                <a href="https://twitter.com/ascendcontinuum" target="_blank" rel="noopener" title="Follow us on X/Twitter">𝕏 Twitter</a>
+                <a href="https://www.facebook.com/profile.php?id=61587254764321" target="_blank" rel="noopener" title="Follow us on Facebook">📘 Facebook</a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Procedural star field -->
-    <script>
-        // Email capture: store locally and show confirmation
-        function handleNotify(e) {
-            e.preventDefault();
-            const input = e.target.querySelector('input[type=email]');
-            const emails = JSON.parse(localStorage.getItem('ac_notify') || '[]');
-            if (!emails.includes(input.value)) emails.push(input.value);
-            localStorage.setItem('ac_notify', JSON.stringify(emails));
-            input.value = '';
-            input.disabled = true;
-            e.target.querySelector('button').disabled = true;
-            document.getElementById('notify-confirm').style.display = 'block';
-        }
-
-        (function () {
-            const canvas = document.getElementById('stars');
-            const ctx = canvas.getContext('2d');
-            let W, H, stars = [];
-
-            function resize() {
-                W = canvas.width = window.innerWidth;
-                H = canvas.height = window.innerHeight;
-            }
-
-            function seed() {
-                stars = [];
-                const count = Math.floor((W * H) / 3000);
-                for (let i = 0; i < count; i++) {
-                    stars.push({
-                        x: Math.random() * W,
-                        y: Math.random() * H,
-                        r: Math.random() * 1.2 + 0.2,
-                        a: Math.random(),
-                        da: (Math.random() - 0.5) * 0.003,
-                        gold: Math.random() < 0.08
-                    });
-                }
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, W, H);
-                for (const s of stars) {
-                    s.a += s.da;
-                    if (s.a > 1 || s.a < 0) s.da *= -1;
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                    ctx.fillStyle = s.gold
-                        ? `rgba(232,201,126,${s.a})`
-                        : `rgba(240,236,230,${s.a * 0.7})`;
-                    ctx.fill();
-                }
-                requestAnimationFrame(draw);
-            }
-
-            window.addEventListener('resize', () => { resize(); seed(); });
-            resize();
-            seed();
-            draw();
-        })();
-    </script>
-
+    <script type="module" src="js/app.js"></script>
 </body>
-
 </html>

@@ -76,11 +76,12 @@ namespace AscendantContinuum.Accessibility
                 profilerTag = tag;
             }
 
+#pragma warning disable CS0618 // URP 17 compatibility Execute path — RenderGraph migration deferred
             public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
             {
                 var desc = renderingData.cameraData.cameraTargetDescriptor;
                 desc.depthBufferBits = 0;
-                RenderingUtils.ReAllocateIfNeeded(ref tempRT, desc, name: "_ColorblindCorrectionTemp");
+                RenderingUtils.ReAllocateIfNeeded(ref tempRT, desc, FilterMode.Bilinear, TextureWrapMode.Clamp, name: "_ColorblindCorrectionTemp");
             }
 
             public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
@@ -94,6 +95,7 @@ namespace AscendantContinuum.Accessibility
                 context.ExecuteCommandBuffer(cmd);
                 CommandBufferPool.Release(cmd);
             }
+#pragma warning restore CS0618
 
             public override void OnCameraCleanup(CommandBuffer cmd) { }
 

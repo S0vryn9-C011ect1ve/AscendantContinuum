@@ -50,7 +50,7 @@ namespace AscendantContinuum.Systems
 
         private void Start()
         {
-            hudManager = FindFirstObjectByType<HUDManager>();
+            hudManager = Object.FindObjectOfType<HUDManager>();
             CheckForSacredEvents();
             InvokeRepeating(nameof(CheckForSacredEvents), 0f, 3600f); // Check hourly
         }
@@ -283,7 +283,7 @@ namespace AscendantContinuum.Systems
         {
             if (hudManager == null)
             {
-                hudManager = FindFirstObjectByType<HUDManager>();
+                hudManager = Object.FindObjectOfType<HUDManager>();
             }
 
             if (hudManager != null)

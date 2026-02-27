@@ -653,7 +653,11 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Standalone: "HAVE_VFX_GRAPH;HAVE_PROBUILDER;CINEMACHINE_3_0_OR_NEWER"
+    Android: "HAVE_VFX_GRAPH;HAVE_PROBUILDER;CINEMACHINE_3_0_OR_NEWER"
+    iOS: "HAVE_VFX_GRAPH;HAVE_PROBUILDER;CINEMACHINE_3_0_OR_NEWER"
+    WebGL: "HAVE_VFX_GRAPH;HAVE_PROBUILDER;CINEMACHINE_3_0_OR_NEWER"
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

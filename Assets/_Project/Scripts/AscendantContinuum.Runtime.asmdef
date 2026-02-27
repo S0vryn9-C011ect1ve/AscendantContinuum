@@ -10,7 +10,8 @@
         "UnityEngine.UI",
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.Universal.Runtime",
-        "Unity.RenderPipelines.Universal.2D.Runtime"
+        "Unity.RenderPipelines.Universal.2D.Runtime",
+        "Unity.Cinemachine"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

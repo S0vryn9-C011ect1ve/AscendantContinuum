@@ -43,7 +43,7 @@ namespace AscendantContinuum.Core
         private void Start()
         {
             Application.targetFrameRate = (int)targetFPS;
-            globalVolume = FindObjectOfType<Volume>();
+            globalVolume = Object.FindObjectOfType<Volume>();
         }
 
         private void Update()

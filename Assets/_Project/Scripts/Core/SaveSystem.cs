@@ -55,7 +55,7 @@ namespace AscendantContinuum.Core
                 {
                     // Game progress
                     currentRealm = GameManager.Instance?.CurrentRealm ?? "emberforge",
-                    sparksCollected = FindFirstObjectByType<Emberforge.EmberforgeSparks>()?.SparksCollected ?? 0,
+                    sparksCollected = Object.FindObjectOfType<Emberforge.EmberforgeSparks>()?.SparksCollected ?? 0,
                     sigilsCollected = PlayerPrefs.GetInt("SigilCount", 0),
 
                     // Accumulated play time (seconds since first run)

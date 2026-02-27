@@ -98,9 +98,19 @@ function DeployHosting {
     Write-Host ""
     Write-Host "Deploying Firebase Hosting..." -ForegroundColor Yellow
 
-    if (!(Test-Path (Join-Path $WorkspaceRoot "Builds\WebGL"))) {
-        Write-Host "WebGL build not found at Builds/WebGL. Build first." -ForegroundColor Red
-        exit 1
+    $WebGLBuildPath = Join-Path $WorkspaceRoot "Builds\WebGL"
+    $PlayPath = Join-Path $FirebaseRoot "public\play"
+
+    if (Test-Path $WebGLBuildPath) {
+        Write-Host "Found WebGL build. Copying to public/play..." -ForegroundColor Yellow
+        if (!(Test-Path $PlayPath)) {
+            New-Item -ItemType Directory -Force -Path $PlayPath | Out-Null
+        }
+        Copy-Item -Path "$WebGLBuildPath\*" -Destination $PlayPath -Recurse -Force
+        Write-Host "WebGL build copied successfully." -ForegroundColor Green
+    }
+    else {
+        Write-Host "No WebGL build found at Builds/WebGL. Deploying website only." -ForegroundColor Yellow
     }
 
     Invoke-FirebaseDeploy -Only "hosting"

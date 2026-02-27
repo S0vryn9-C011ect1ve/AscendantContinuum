@@ -80,7 +80,7 @@ namespace AscendantContinuum.Systems
         private void RegisterListeners()
         {
             // Hook into EmberforgeSparks collection events
-            var sparks = FindFirstObjectByType<Emberforge.EmberforgeSparks>();
+            var sparks = Object.FindObjectOfType<Emberforge.EmberforgeSparks>();
             if (sparks != null)
                 sparks.OnSparkCollected += _ => TryTrigger("Emberforge");
 

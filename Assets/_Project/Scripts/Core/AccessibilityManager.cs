@@ -133,7 +133,7 @@ namespace AscendantContinuum.Core
             float intensity = reducedMotionEnabled ? 0.3f : motionIntensity;
             Shader.SetGlobalFloat("_MotionIntensity", intensity);
 
-            var pm = FindFirstObjectByType<ParticleManager>();
+            var pm = Object.FindObjectOfType<ParticleManager>();
             pm?.SetMotionScale(intensity);
         }
 

@@ -82,7 +82,7 @@ namespace AscendantContinuum.Core
         /// </summary>
         private static void EnsureManager<T>(GameObject root) where T : MonoBehaviour
         {
-            if (FindFirstObjectByType<T>() == null)
+            if (Object.FindObjectOfType<T>() == null)
             {
                 root.AddComponent<T>();
                 Debug.Log($"[GameBootstrapper] Created {typeof(T).Name}");
@@ -98,7 +98,7 @@ namespace AscendantContinuum.Core
             var type = System.Type.GetType(fullTypeName);
             if (type == null) return;
 
-            if (FindFirstObjectByType(type) == null)
+            if (Object.FindObjectOfType(type) == null)
             {
                 root.AddComponent(type);
                 Debug.Log($"[GameBootstrapper] Created {type.Name} (optional)");

@@ -202,7 +202,7 @@ namespace AscendantContinuum.Editor
             root.AddComponent<TController>();
 
             // Camera is added by DefaultGameObjects, but rename it
-            var cam = Object.FindFirstObjectByType<Camera>();
+            var cam = Object.FindObjectOfType<Camera>();
             if (cam != null) cam.gameObject.name = $"{realmName}_Camera";
         }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System.Collections.Generic;
 
@@ -105,7 +106,7 @@ namespace AscendantContinuum.Realms
         private void ApplyLighting()
         {
             // Find or create main light
-            mainLight = FindObjectOfType<Light>();
+            mainLight = Object.FindObjectOfType<Light>();
             if (mainLight == null)
             {
                 GameObject lightObj = new GameObject("DirectionalLight");
@@ -140,7 +141,7 @@ namespace AscendantContinuum.Realms
         private void ApplyPostProcessing()
         {
             // Find or create post-processing volume
-            postProcessVolume = FindObjectOfType<Volume>();
+            postProcessVolume = Object.FindObjectOfType<Volume>();
             if (postProcessVolume == null)
             {
                 GameObject volumeObj = new GameObject("PostProcessVolume");
