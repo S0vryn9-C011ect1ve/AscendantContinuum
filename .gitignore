@@ -72,6 +72,13 @@ firestore-debug.log
 .env.local
 firebase/functions/.env
 secrets.json
+.secrets
+*.pem
+*.key
+*.p12
+*.p8
+credentials.json
+serviceAccountKey.json
 
 # Build outputs
 *.apk
