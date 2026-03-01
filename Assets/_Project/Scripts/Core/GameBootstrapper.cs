@@ -139,10 +139,14 @@ namespace AscendantContinuum.Core
             if (pantheon != null && pantheon.ShouldShowPantheonQuiz())
                 GameEvents.RaisePantheonQuizReady();
 
-            // Wire Live Event → push notifications
+            // Wire Live Event → push notifications + local push notifications
             if (LiveEventEngine.Instance != null)
+            {
                 LiveEventEngine.Instance.OnEventPeak += evt =>
                     GuardianMessengerSystem.Instance?.SendImmediateEventNotification(evt);
+                LiveEventEngine.Instance.OnEventApproaching += evt =>
+                    LocalNotificationManager.Instance?.ScheduleLiveEventNotification(evt);
+            }
 
             // When the game starts on the Bootstrap scene, route to the
             // correct destination determined by save-data state.

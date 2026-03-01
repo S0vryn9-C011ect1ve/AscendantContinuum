@@ -20,6 +20,7 @@ namespace AscendantContinuum.UI
         [SerializeField] private Button playButton;
         [SerializeField] private Button settingsButton;
         [SerializeField] private Button continueButton;
+        [SerializeField] private Button seasonPassButton;
         [SerializeField] private Text titleText;
 
         [Header("Floating Sigils")]
@@ -108,6 +109,9 @@ namespace AscendantContinuum.UI
                 continueButton.gameObject.SetActive(hasSave);
                 continueButton.onClick.AddListener(OnContinueClicked);
             }
+
+            if (seasonPassButton != null)
+                seasonPassButton.onClick.AddListener(() => SeasonPassUIManager.Instance?.OpenPanel());
 
             // Set title with glow effect
             if (titleText != null)

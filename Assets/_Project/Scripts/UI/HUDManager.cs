@@ -34,7 +34,11 @@ namespace AscendantContinuum.UI
         [Header("Realm Info")]
         [SerializeField] private TextMeshProUGUI realmNameText;
         [SerializeField] private Image realmIcon;
-        
+
+        [Header("Season Pass Mini-Bar")]
+        [SerializeField] private Slider          seasonXPBar;
+        [SerializeField] private TextMeshProUGUI seasonTierLabel;   // "Tier 3 / 10"
+
         [Header("Accessibility")]
         [SerializeField] private float textScaleMultiplier = 1f;
         [SerializeField] private bool highContrastMode = false;
@@ -68,7 +72,8 @@ namespace AscendantContinuum.UI
             }
             LoadDailyChallengeInfo();
             SubscribeToDailyChallengeEvents();
-            
+            InitSeasonXPDisplay();
+
             // Hide notification panel
             if (notificationPanel != null)
                 notificationPanel.SetActive(false);
@@ -77,6 +82,8 @@ namespace AscendantContinuum.UI
         private void OnDestroy()
         {
             UnsubscribeFromDailyChallengeEvents();
+            if (SeasonController.Instance != null)
+                SeasonController.Instance.OnXPGained -= RefreshSeasonXP;
         }
         
         #region Resource Display
@@ -177,6 +184,31 @@ namespace AscendantContinuum.UI
 
             DailyChallengeManager.Instance.OnNewChallengeAvailable -= HandleNewDailyChallenge;
             DailyChallengeManager.Instance.OnChallengeCompleted -= HandleDailyChallengeCompleted;
+        }
+
+        // ── Season Pass mini-bar ──────────────────────────────────────────────
+
+        private void InitSeasonXPDisplay()
+        {
+            var sc = SeasonController.Instance;
+            if (sc == null) return;
+            sc.OnXPGained += RefreshSeasonXP;
+            RefreshSeasonXP(0);
+        }
+
+        private void RefreshSeasonXP(int _)
+        {
+            var sc = SeasonController.Instance;
+            if (sc == null) return;
+
+            if (seasonTierLabel != null)
+                seasonTierLabel.text = $"Tier {sc.CurrentTier + 1} / {SeasonController.FREE_TIERS}";
+
+            if (seasonXPBar != null)
+            {
+                int xpInTier = sc.PlayerXP % SeasonController.XP_PER_TIER;
+                seasonXPBar.value = (float)xpInTier / SeasonController.XP_PER_TIER;
+            }
         }
 
         private void HandleNewDailyChallenge(DailyChallenge challenge)

@@ -23,6 +23,7 @@ namespace AscendantContinuum.UI
         [SerializeField] private Button playButton;
         [SerializeField] private Button realmSelectButton;
         [SerializeField] private Button dailyChallengeButton;
+        [SerializeField] private Button seasonPassButton;
         [SerializeField] private Button settingsButton;
         [SerializeField] private Button creditsButton;
         [SerializeField] private Button quitButton;
@@ -93,6 +94,9 @@ namespace AscendantContinuum.UI
             
             if (dailyChallengeButton != null)
                 dailyChallengeButton.onClick.AddListener(() => OnDailyChallengeClicked());
+            
+            if (seasonPassButton != null)
+                seasonPassButton.onClick.AddListener(() => SeasonPassUIManager.Instance?.OpenPanel());
             
             if (settingsButton != null)
                 settingsButton.onClick.AddListener(() => ShowSettings());

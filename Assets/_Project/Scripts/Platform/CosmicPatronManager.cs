@@ -165,6 +165,7 @@ namespace AscendantContinuum.Platform
                     long expiry = TodayEpochDay + 30;
                     PlayerPrefs.SetInt(PREF_IS_PATRON, 1);
                     PlayerPrefs.SetString(PREF_PATRON_EXPIRY, expiry.ToString());
+                    SeasonController.Instance?.UnlockPremiumTrack();
                     HUDManager.Instance?.ShowNotification(
                         "✦ Welcome, Cosmic Patron! Your journey is now blessed.",
                         HUDManager.NotificationType.Achievement);

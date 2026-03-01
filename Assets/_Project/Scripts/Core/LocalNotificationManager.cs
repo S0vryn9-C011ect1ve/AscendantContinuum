@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using AscendantContinuum.Systems;
 #if UNITY_ANDROID
 using Unity.Notifications.Android;
 #endif
@@ -18,7 +19,8 @@ namespace AscendantContinuum.Core
         public static LocalNotificationManager Instance { get; private set; }
 
         private const string DailyChallengeChannelId = "daily_challenge_channel";
-        private const string SigilCraftingChannelId = "sigil_crafting_channel";
+        private const string SigilCraftingChannelId    = "sigil_crafting_channel";
+        private const string LiveEventChannelId         = "live_event_channel";
 
         private void Awake()
         {
@@ -148,6 +150,66 @@ namespace AscendantContinuum.Core
 
             iOSNotificationCenter.ScheduleNotification(notification);
             Debug.Log($"[LocalNotificationManager] Scheduled Sigil Crafting reminder for {scheduledTime}");
+#endif
+        }
+
+        /// <summary>
+        /// Schedules a push notification ~3 hours before a live event peak.
+        /// Called by <see cref="GameBootstrapper"/> when <see cref="LiveEventEngine.OnEventApproaching"/> fires.
+        /// </summary>
+        public void ScheduleLiveEventNotification(LiveEvent evt)
+        {
+            if (evt == null) return;
+
+            // Fire 3 hours before peak — if already past, show in 5 minutes
+            DateTime fireTime = evt.peakUtc.ToLocalTime().AddHours(-3);
+            if (fireTime <= DateTime.Now) fireTime = DateTime.Now.AddMinutes(5);
+
+            string title = $"\u2726 {evt.displayName}";
+            string body  = $"The {evt.displayName} reaches its peak soon. Enter a realm to receive its blessing.";
+
+#if UNITY_ANDROID
+            var channel = new AndroidNotificationChannel()
+            {
+                Id          = LiveEventChannelId,
+                Name        = "Live Events",
+                Importance  = Importance.High,
+                Description = "Alerts for approaching celestial events in Ascendant Continuum.",
+            };
+            AndroidNotificationCenter.RegisterNotificationChannel(channel);
+
+            var notification = new AndroidNotification
+            {
+                Title     = title,
+                Text      = body,
+                FireTime  = fireTime,
+                SmallIcon = "icon_small",
+                LargeIcon = "icon_large"
+            };
+            AndroidNotificationCenter.SendNotification(notification, LiveEventChannelId);
+            Debug.Log($"[LocalNotificationManager] Live event notification scheduled: {evt.displayName} at {fireTime}");
+#elif UNITY_IOS
+            var trigger = new iOSNotificationTimeIntervalTrigger()
+            {
+                TimeInterval = fireTime - DateTime.Now,
+                Repeats      = false
+            };
+            var iosNotification = new iOSNotification()
+            {
+                Identifier                   = $"live_event_{evt.id}",
+                Title                        = title,
+                Body                         = body,
+                Subtitle                     = "Ascendant Continuum",
+                ShowInForeground             = true,
+                ForegroundPresentationOption = (PresentationOption.Alert | PresentationOption.Sound),
+                CategoryIdentifier           = "category_a",
+                ThreadIdentifier             = "thread1",
+                Trigger                      = trigger,
+            };
+            iOSNotificationCenter.ScheduleNotification(iosNotification);
+            Debug.Log($"[LocalNotificationManager] Live event notification scheduled: {evt.displayName} at {fireTime}");
+#else
+            Debug.Log($"[LocalNotificationManager] Live event '{evt.displayName}' — no notification platform active.");
 #endif
         }
 
