@@ -174,5 +174,16 @@ namespace AscendantContinuum.Core
         {
             AchievementManager.Instance?.UnlockAchievement(achievementId);
         }
+
+        /// <summary>
+        /// Call when the player reaches full mastery in this realm (highest-tier milestone).
+        /// Fires <see cref="GameEvents.OnRealmCompleted"/> so ProgressionManager can record it.
+        /// </summary>
+        /// <param name="score">Realm-specific final score (sparks, blooms, constellations, etc.).</param>
+        protected void CompleteRealm(int score)
+        {
+            GameEvents.RaiseRealmCompleted(realmId, score);
+            Debug.Log($"[RealmController] {realmDisplayName} completed — score {score}");
+        }
     }
 }

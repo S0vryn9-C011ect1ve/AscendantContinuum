@@ -112,7 +112,11 @@ namespace AscendantContinuum.Realms.LanternAscension
                 TryUnlockAchievement("lantern_lighter");
 
             if (_lanternsReleased >= 10)
+            {
                 TryUnlockAchievement("sky_illuminator");
+                if (_lanternsReleased == 10)
+                    CompleteRealm(_lanternsReleased);
+            }
 
             // ── Lantern Keeper: 0.1% chance; guaranteed at 50 ─────────────
             bool meetKeeper = _lanternsReleased == LANTERN_KEEPER_GUARANTEE

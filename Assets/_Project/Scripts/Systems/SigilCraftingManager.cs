@@ -127,6 +127,7 @@ namespace AscendantContinuum.Systems
             }
 
             OnSigilCrafted?.Invoke(resultId, displayName, isNew);
+            GameEvents.RaiseSigilCrafted(resultId, displayName, isNew);
             return resultId;
         }
 

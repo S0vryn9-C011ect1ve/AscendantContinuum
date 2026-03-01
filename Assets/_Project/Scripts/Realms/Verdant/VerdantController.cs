@@ -59,7 +59,11 @@ namespace AscendantContinuum.Realms.Verdant
                 TryUnlockAchievement("green_thumb");
 
             if (totalBlooms >= 10)
+            {
                 TryUnlockAchievement("verdant_master");
+                if (totalBlooms == 10)
+                    CompleteRealm(totalBlooms);
+            }
 
             // Echo Archive
             EchoArchiveManager.Instance?.RecordRitualEcho("Verdant", "Garden Bloom");

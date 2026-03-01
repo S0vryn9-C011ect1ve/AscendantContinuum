@@ -81,6 +81,7 @@ namespace AscendantContinuum.Realms.Emberforge
                     EchoArchiveManager.Instance?.RecordRitualEcho("Emberforge", "Thousand Sparks");
                     // Seventh Realm clue — 1000 sparks unlocks the Emberforge glyph
                     MysteryManager.Instance?.DiscoverClue(MysteryManager.MYSTERY_SEVENTH_REALM, "Emberforge");
+                    CompleteRealm(totalSparks);
                     break;
             }
         }

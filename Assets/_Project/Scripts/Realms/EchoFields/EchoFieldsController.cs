@@ -59,7 +59,11 @@ namespace AscendantContinuum.Realms.EchoFields
                 TryUnlockAchievement("stargazer");
 
             if (totalCompleted >= 5)
+            {
                 TryUnlockAchievement("astronomer");
+                if (totalCompleted == 5)
+                    CompleteRealm(totalCompleted);
+            }
 
             // Echo Archive — record this ritual as a memory echo
             EchoArchiveManager.Instance?.RecordRitualEcho("EchoFields", "Constellation Trace");

@@ -103,6 +103,10 @@ namespace AscendantContinuum.Systems
             OnDeitySelected?.Invoke(deityIndex);
 
             string name = DEITY_NAMES[deityIndex];
+
+            // Record in the living lore alignment tally
+            LivingLoreManager.Instance?.RecordDeityAlignment(name);
+
             HUDManager.Instance?.ShowNotification(
                 $"✦ {name} walks beside you now.",
                 HUDManager.NotificationType.Achievement);

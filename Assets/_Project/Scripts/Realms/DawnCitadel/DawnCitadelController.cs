@@ -110,7 +110,11 @@ namespace AscendantContinuum.Realms.DawnCitadel
                 TryUnlockAchievement("master_refractor");
 
             if (_solvedCount >= 10)
+            {
                 TryUnlockAchievement("dawn_architect");
+                if (_solvedCount == 10)
+                    CompleteRealm(_solvedCount);
+            }
         }
 
         // ── Deity hint depth application ──────────────────────────────────

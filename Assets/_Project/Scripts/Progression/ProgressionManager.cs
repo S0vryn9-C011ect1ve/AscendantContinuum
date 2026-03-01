@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using AscendantContinuum.Core;
+using AscendantContinuum.Data;
 
 namespace AscendantContinuum.Progression
 {
@@ -105,6 +107,31 @@ namespace AscendantContinuum.Progression
         private void Start()
         {
             LoadProgression();
+            GameEvents.OnSigilCompleted   += HandleSigilCompleted;
+            GameEvents.OnRealmCompleted   += HandleRealmCompleted;
+            GameEvents.OnSigilCrafted     += HandleSigilCrafted;
+        }
+
+        private void OnDestroy()
+        {
+            GameEvents.OnSigilCompleted   -= HandleSigilCompleted;
+            GameEvents.OnRealmCompleted   -= HandleRealmCompleted;
+            GameEvents.OnSigilCrafted     -= HandleSigilCrafted;
+        }
+
+        private void HandleSigilCompleted(SigilData data)
+        {
+            if (data != null) RecordSigilObtained(data.sigilId);
+        }
+
+        private void HandleRealmCompleted(string realmId, int score)
+        {
+            RecordRealmCompletion(realmId, score, Time.realtimeSinceStartup);
+        }
+
+        private void HandleSigilCrafted(string resultId, string combinationName, bool isFirstDiscovery)
+        {
+            if (!string.IsNullOrEmpty(resultId)) RecordSigilObtained(resultId);
         }
 
         /// <summary>

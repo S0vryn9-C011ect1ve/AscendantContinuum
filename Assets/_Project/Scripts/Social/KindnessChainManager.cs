@@ -95,6 +95,20 @@ namespace AscendantContinuum.Social
         {
             RecordSession();
             CheckForIncomingBlessing();
+            // Show blessing prompt every time the player completes a sigil ritual
+            GameEvents.OnSigilCompleted += OnSigilCompletedForBlessing;
+        }
+
+        private void OnDestroy()
+        {
+            GameEvents.OnSigilCompleted -= OnSigilCompletedForBlessing;
+        }
+
+        private void OnSigilCompletedForBlessing(AscendantContinuum.Data.SigilData sigil)
+        {
+            // Pick the realm name from GameManager if available
+            string realm = GameManager.Instance?.CurrentRealm ?? "Unknown";
+            ShowSendBlessingPrompt(realm);
         }
 
         // ── Session recording ──────────────────────────────────────────────

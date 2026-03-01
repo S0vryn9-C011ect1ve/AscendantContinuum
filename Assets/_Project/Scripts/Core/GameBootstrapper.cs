@@ -65,9 +65,12 @@ namespace AscendantContinuum.Core
             // Platform
             EnsureManager<MistplayManager>(root);
             EnsureManager<GooglePlayGamesManager>(root);
+            EnsureManager<CosmicPatronManager>(root);
 
             // Social
             EnsureManager<CrossPlayerWishWall>(root);
+            EnsureManager<KindnessChainManager>(root);
+            EnsureManager<TimeCapsuleManager>(root);
 
             // ── New systems (Phases 1-8) ───────────────────────────────────
             TryEnsureManagerByName(root, "AscendantContinuum.Systems.SessionManager");
@@ -91,6 +94,10 @@ namespace AscendantContinuum.Core
             TryEnsureManagerByName(root, "AscendantContinuum.Systems.PantheonDeityEffects");
             TryEnsureManagerByName(root, "AscendantContinuum.Systems.SerendipityManager");
             TryEnsureManagerByName(root, "AscendantContinuum.Systems.RitualReplayManager");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.LivingLoreManager");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.SigilCraftingManager");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.SigilGenerator");
+            TryEnsureManagerByName(root, "AscendantContinuum.Progression.ProgressionManager");
             TryEnsureManagerByName(root, "AscendantContinuum.UI.SeasonPassUIManager");
             TryEnsureManagerByName(root, "AscendantContinuum.UI.PantheonQuizPanel");
         }
@@ -133,6 +140,10 @@ namespace AscendantContinuum.Core
 
             // Record session with Cosmic Identity so play-time metrics evolve
             CosmicIdentitySystem.Instance?.RecordSessionStart();
+
+            // Increment total session counter (shared PlayerPrefs key used by PantheonDeityEffects.ShouldShowPantheonQuiz)
+            PlayerPrefs.SetInt("SessionCount_Total", PlayerPrefs.GetInt("SessionCount_Total", 0) + 1);
+            PlayerPrefs.Save();
 
             // Day 4 gate: prompt Arcane Personality Quiz if conditions are met
             var pantheon = UnityEngine.Object.FindFirstObjectByType<PantheonDeityEffects>();

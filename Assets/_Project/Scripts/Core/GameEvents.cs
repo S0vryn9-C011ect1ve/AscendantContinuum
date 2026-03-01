@@ -51,6 +51,14 @@ namespace AscendantContinuum.Core
         // ── Chain / social ────────────────────────────────────────────────────
         public static event Action<string>                  OnChainCompleted;
 
+        // ── Sigil crafting ────────────────────────────────────────────────────
+        /// <summary>Fired when a sigil combination is successfully crafted via SigilCraftingManager.</summary>
+        public static event Action<string, string, bool>    OnSigilCrafted;     // resultId, combinationName, isFirstDiscovery
+
+        // ── Realm lifecycle ───────────────────────────────────────────────────
+        /// <summary>Fired when a realm run is fully completed (score calculated, exit confirmed).</summary>
+        public static event Action<string, int>             OnRealmCompleted;   // realmId, score
+
         // ── Pantheon / personality quiz ───────────────────────────────────────
         /// <summary>Fired when Day 4 conditions are met and the Arcane Personality Quiz should be shown.</summary>
         public static event Action                          OnPantheonQuizReady;
@@ -102,7 +110,13 @@ namespace AscendantContinuum.Core
         public static void RaiseChainCompleted(string chainId)
             => OnChainCompleted?.Invoke(chainId);
 
+        public static void RaiseSigilCrafted(string resultId, string combinationName, bool isFirstDiscovery)
+            => OnSigilCrafted?.Invoke(resultId, combinationName, isFirstDiscovery);
+
         public static void RaisePantheonQuizReady()
             => OnPantheonQuizReady?.Invoke();
+
+        public static void RaiseRealmCompleted(string realmId, int score)
+            => OnRealmCompleted?.Invoke(realmId, score);
     }
 }
