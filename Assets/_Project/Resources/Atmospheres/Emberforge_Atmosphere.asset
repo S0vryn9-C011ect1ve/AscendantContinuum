@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Emberforge_Atmosphere
+  m_EditorClassIdentifier: AscendantContinuum.Runtime:AscendantContinuum.Realms:RealmAtmosphereData
+  realmName: Emberforge
+  realmId: emberforge
+  mainLight: {fileID: 0}
+  ambientLightColor: {r: 0.25, g: 0.08, b: 0.03, a: 1}
+  ambientLightIntensity: 0.4
+  mainLightColor: {r: 1, g: 0.55, b: 0.15, a: 1}
+  mainLightIntensity: 1.6
+  mainLightRotation: 48
+  enableFog: 1
+  fogColor: {r: 0.3, g: 0.1, b: 0.04, a: 1}
+  fogStart: 4
+  fogEnd: 70
+  enablePostProcessing: 1
+  exposure: 0.2
+  saturation: 20
+  bloomIntensity: 1.8
+  vignettIntensity: 0.42
+  particleSystemPresets: []
+  particleIntensity: 1
+  autoPlayParticles: 1
+  colorGradingLUT: {fileID: 0}
+  colorGradingStrength: 0
+  ambienceKeyColor: {r: 1, g: 0.38, b: 0.08, a: 1}
+  ambienceFillColor: {r: 0.28, g: 0.09, b: 0.04, a: 1}
+  ambienceIntensity: 0.85

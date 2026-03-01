@@ -230,6 +230,61 @@ namespace AscendantContinuum.VFX
             particlePool.Enqueue(ps);
         }
 
+        // ── Sigil completion bloom ─────────────────────────────────────────
+
+        /// <summary>
+        /// Called by SigilCompletionHandler — large bloom burst at sigil position.
+        /// <paramref name="complexity"/> [0,1] scales particle count.
+        /// </summary>
+        public void PlayCompletionBloom(UnityEngine.Vector3 position, UnityEngine.Color color, float complexity)
+        {
+            if (Core.AccessibilityManager.Instance?.ReducedMotionEnabled == true)
+            {
+                PlaySimpleFlash(position, color, 1.5f);
+                return;
+            }
+
+            int count = UnityEngine.Mathf.RoundToInt(UnityEngine.Mathf.Lerp(20, 60, complexity));
+
+            for (int i = 0; i < UnityEngine.Mathf.Min(count, 3); i++)
+            {
+                ParticleSystem ps = GetParticleSystem();
+                if (ps == null) break;
+
+                var main      = ps.main;
+                main.startLifetime   = new UnityEngine.ParticleSystem.MinMaxCurve(1.2f, 2.8f);
+                main.startSpeed      = new UnityEngine.ParticleSystem.MinMaxCurve(2f, 8f);
+                main.startSize       = new UnityEngine.ParticleSystem.MinMaxCurve(0.05f, 0.22f);
+                main.startColor      = new UnityEngine.ParticleSystem.MinMaxGradient(
+                    new UnityEngine.Color(color.r, color.g, color.b, 0.9f),
+                    UnityEngine.Color.white);
+                main.maxParticles    = count;
+
+                var emission = ps.emission;
+                emission.rateOverTime = 0;
+                emission.SetBursts(new UnityEngine.ParticleSystem.Burst[]
+                    { new UnityEngine.ParticleSystem.Burst(0f, (short)(count / 3)) });
+
+                var shape    = ps.shape;
+                shape.shapeType = UnityEngine.ParticleSystemShapeType.Sphere;
+                shape.radius = 0.5f + complexity * 0.8f;
+
+                ps.transform.position = position;
+                ps.gameObject.SetActive(true);
+                ps.Play();
+                StartCoroutine(ReturnToPoolAfterPlay(ps));
+            }
+        }
+
+        /// <summary>
+        /// Called by realm ecosystem reactors on sigil completion.
+        /// </summary>
+        public void PlayEcosystemBloom(UnityEngine.Vector3 position, UnityEngine.Color color, string realmId)
+        {
+            // Delegates to existing transition effect with realm color
+            PlayRealmTransitionEffect(position, color);
+        }
+
         /// <summary>
         /// Called by AccessibilityManager when Reduced Motion setting changes.
         /// Scale = 1 means full effects; 0.25 = reduced motion; 0 = disabled.

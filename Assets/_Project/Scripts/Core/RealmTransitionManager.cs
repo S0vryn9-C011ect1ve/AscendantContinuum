@@ -92,10 +92,15 @@ namespace AscendantContinuum.Core
         {
             isTransitioning = true;
             GameManager.Instance?.ChangeState(GameState.Transition);
+            GameEvents.RaiseRealmTransitionStarted(targetRealm.realmId);
+
+            GameFlowConfig flow = GameFlow.Config;
+            float configuredNormalDuration = flow != null ? flow.NormalTransitionDuration : normalTransitionDuration;
+            float configuredReducedDuration = flow != null ? flow.ReducedMotionTransitionDuration : reducedMotionDuration;
 
             float duration = AccessibilityManager.Instance?.ReducedMotionEnabled == true
-                ? reducedMotionDuration
-                : normalTransitionDuration;
+                ? configuredReducedDuration
+                : configuredNormalDuration;
 
             Debug.Log($"[RealmTransition] Starting transition to {targetRealm.realmName}");
 
@@ -108,13 +113,11 @@ namespace AscendantContinuum.Core
             // Phase 2: Play transition effects
             if (targetRealm.transitionSound != null)
             {
-                AscendantContinuum.Audio.AudioManager.Instance?.PlaySFX(targetRealm.transitionSound, 0.7f);
+                AudioManager.Instance?.PlaySFX(targetRealm.transitionSound, 0.7f);
             }
 
-            VFX.ParticleManager.Instance?.PlayRealmTransitionEffect(
-                Camera.main.transform.position,
-                targetRealm.primaryColor
-            );
+            Vector3 fxPosition = Camera.main != null ? Camera.main.transform.position : Vector3.zero;
+            VFX.ParticleManager.Instance?.PlayRealmTransitionEffect(fxPosition, targetRealm.primaryColor);
 
             // Save current progress
             SaveSystem.Instance?.SaveGame();
@@ -125,14 +128,15 @@ namespace AscendantContinuum.Core
             PlayerPrefs.Save();
 
             // Phase 3: Load new realm scene
-            string sceneName = $"{targetRealm.realmId}_Scene";
-            if (Application.CanStreamedLevelBeLoaded(sceneName))
+            string sceneName = SceneService.ResolveRealmScene(targetRealm.realmId);
+            if (SceneService.CanLoadScene(sceneName))
             {
-                yield return SceneManager.LoadSceneAsync(sceneName);
+                yield return SceneService.TryLoadSceneAsync(sceneName);
             }
             else
             {
-                Debug.LogWarning($"[RealmTransition] Scene not found: {sceneName}, using default");
+                Debug.LogWarning($"[RealmTransition] Scene not found for realm '{targetRealm.realmId}' (resolved to '{sceneName}'). Falling back to {SceneNames.MainMenu}.");
+                yield return SceneService.TryLoadSceneAsync(SceneNames.MainMenu);
             }
 
             // Update game state
@@ -142,7 +146,7 @@ namespace AscendantContinuum.Core
             // Phase 4: Start new realm music
             if (targetRealm.ambientMusic != null)
             {
-                AscendantContinuum.Audio.AudioManager.Instance?.PlayMusic(targetRealm.ambientMusic, duration / 2f);
+                AudioManager.Instance?.PlayMusic(targetRealm.ambientMusic, duration / 2f);
             }
 
             // Phase 5: Fade in
@@ -153,6 +157,7 @@ namespace AscendantContinuum.Core
 
             GameManager.Instance?.ChangeState(GameState.Playing);
             isTransitioning = false;
+            GameEvents.RaiseRealmTransitionCompleted(targetRealm.realmId);
 
             Debug.Log($"[RealmTransition] Transition complete - Now in {targetRealm.realmName}");
         }

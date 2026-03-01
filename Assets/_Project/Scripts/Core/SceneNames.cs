@@ -29,15 +29,20 @@ namespace AscendantContinuum.Core
         {
             return realmId?.ToLowerInvariant() switch
             {
-                "emberforge"       => Emberforge,
-                "verdant"          => Verdant,
-                "echo"             => EchoFields,
-                "echofields"       => EchoFields,
-                "dawn"             => DawnCitadel,
-                "dawncitadel"      => DawnCitadel,
-                "lantern"          => LanternAscension,
-                "lanternascension" => LanternAscension,
-                _                  => MainMenu
+                "emberforge"           => Emberforge,
+                "verdant"              => Verdant,
+                "verdantsanctuary"     => Verdant,
+                "verdant_sanctuary"    => Verdant,
+                "echo"                 => EchoFields,
+                "echofields"           => EchoFields,
+                "echo_fields"          => EchoFields,
+                "dawn"                 => DawnCitadel,
+                "dawncitadel"          => DawnCitadel,
+                "dawn_citadel"         => DawnCitadel,
+                "lantern"              => LanternAscension,
+                "lanternascension"     => LanternAscension,
+                "lantern_ascension"    => LanternAscension,
+                _                       => MainMenu
             };
         }
 
@@ -47,10 +52,10 @@ namespace AscendantContinuum.Core
             return sceneName switch
             {
                 Emberforge       => "emberforge",
-                Verdant          => "verdant",
-                EchoFields       => "echo",
-                DawnCitadel      => "dawn",
-                LanternAscension => "lantern",
+                Verdant          => "verdant_sanctuary",
+                EchoFields       => "echo_fields",
+                DawnCitadel      => "dawn_citadel",
+                LanternAscension => "lantern_ascension",
                 _                => string.Empty
             };
         }

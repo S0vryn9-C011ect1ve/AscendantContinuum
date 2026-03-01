@@ -259,20 +259,30 @@ namespace AscendantContinuum.Systems
             }
         }
 
-        private static EventPhase GetPhase(TimeSpan delta, LiveEvent evt)
+        /// <summary>
+        /// Pure phase calculation parameterised for unit testing.
+        /// <paramref name="delta"/> = event.peakUtc - DateTime.UtcNow.
+        /// </summary>
+        public static EventPhase GetPhase(TimeSpan delta, int durationDays)
         {
             double days = delta.TotalDays;
-            if (days > 3 || days < -evt.durationDays) return EventPhase.None;
-            if (days > 0 && days <= 3) return EventPhase.Approaching;
-            if (days >= -1 && days <= 0) return EventPhase.Peak;
-            if (days >= -evt.durationDays && days < -1) return EventPhase.Echo;
+            if (days > 3 || days < -durationDays) return EventPhase.None;
+            if (days > 0 && days <= 3)             return EventPhase.Approaching;
+            if (days >= -1 && days <= 0)           return EventPhase.Peak;
+            if (days >= -durationDays && days < -1) return EventPhase.Echo;
             return EventPhase.None;
         }
+
+        private static EventPhase GetPhase(TimeSpan delta, LiveEvent evt)
+            => GetPhase(delta, evt.durationDays);
 
         // ── Public API ─────────────────────────────────────────────────────
 
         /// <summary>Returns any currently active event, or null.</summary>
         public LiveEvent CurrentEvent => _eventActive ? _currentEvent : null;
+
+        /// <summary>True while any live event is in Approaching, Peak, or Echo phase.</summary>
+        public bool IsEventActive => _eventActive;
 
         /// <summary>Returns the active spark multiplier (1.0 if no event).</summary>
         public float ActiveSparkMultiplier

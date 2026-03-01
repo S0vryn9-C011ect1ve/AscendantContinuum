@@ -57,7 +57,9 @@ namespace AscendantContinuum.Systems
 
         // ── State ──────────────────────────────────────────────────────────
         private List<TreasureData> _activeTreasures = new List<TreasureData>();
-        private float _hapticCooldown;
+        private float _nextHapticTime;
+        private float _nextAnnouncementTime;
+        private const float SCREEN_READER_ANNOUNCE_INTERVAL = 5f;
 
         // ── Events ─────────────────────────────────────────────────────────
         public event Action<TreasureData> OnTreasureFound;
@@ -73,11 +75,6 @@ namespace AscendantContinuum.Systems
         private void Start()
         {
             RefreshTreasures();
-        }
-
-        private void Update()
-        {
-            _hapticCooldown -= Time.deltaTime;
         }
 
         // ── Public API ─────────────────────────────────────────────────────
@@ -102,7 +99,7 @@ namespace AscendantContinuum.Systems
             if (nearest == null || minDist > DETECTION_RADIUS * 2f) return null;
 
             // Proximity haptic (gets more intense as player nears)
-            if (_hapticCooldown <= 0f)
+            if (Time.unscaledTime >= _nextHapticTime)
             {
                 float normalised = 1f - Mathf.Clamp01(minDist / (DETECTION_RADIUS * 2f));
                 if (normalised > 0.2f)
@@ -111,17 +108,20 @@ namespace AscendantContinuum.Systems
 #if UNITY_IOS || UNITY_ANDROID
                     if (hapticLevel > 1) Handheld.Vibrate();
 #endif
-                    _hapticCooldown = HAPTIC_INTERVAL * (1f - normalised * 0.5f);
+                    float cooldown = HAPTIC_INTERVAL * (1f - normalised * 0.5f);
+                    _nextHapticTime = Time.unscaledTime + Mathf.Max(0.2f, cooldown);
                 }
             }
 
             // Screen reader proximity announce (every 5 seconds max)
             if (AccessibilityManager.Instance != null &&
-                AccessibilityManager.Instance.ScreenReaderEnabled)
+                AccessibilityManager.Instance.ScreenReaderEnabled &&
+                Time.unscaledTime >= _nextAnnouncementTime)
             {
                 float dist = Mathf.Round(minDist * 10f) / 10f;
                 AccessibilityManager.Instance.Announce(
                     $"Treasure nearby, approximately {dist} units away.");
+                _nextAnnouncementTime = Time.unscaledTime + SCREEN_READER_ANNOUNCE_INTERVAL;
             }
 
             // Auto-collect when very close

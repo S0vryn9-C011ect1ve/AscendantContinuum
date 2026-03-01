@@ -195,6 +195,31 @@ namespace AscendantContinuum.Social
 
         public int WishCount => _receivedWishes.Count;
 
+        // ── Collective sky amplification ───────────────────────────────────
+
+        /// <summary>
+        /// 8% chance to trigger a brief sky micro-sparkle (+collective pulse).
+        /// Call from realm controllers when a wish lantern passes through the sky.
+        /// </summary>
+        public void TryAmplifyWishToSky()
+        {
+            if (UnityEngine.Random.value > 0.08f) return;
+
+            for (int i = 0; i < 6; i++)
+            {
+                UnityEngine.Vector3 pos = new UnityEngine.Vector3(
+                    UnityEngine.Random.Range(-10f, 10f),
+                    UnityEngine.Random.Range(3f, 8f),
+                    0f);
+                AscendantContinuum.VFX.ParticleManager.Instance?
+                    .PlayRealmTransitionEffect(pos, new UnityEngine.Color(1f, 0.97f, 0.75f, 0.7f));
+            }
+
+            AscendantContinuum.Systems.ContinuumFieldManager.Instance?.RegisterSigilCompleted();
+            AscendantContinuum.Core.GameEvents.RaiseCollectivePresencePulse();
+            Debug.Log("[WishWall] Wish amplified to sky ✦");
+        }
+
         // ── Firebase upload queue (offline-first) ──────────────────────────
         private void QueueForUpload(string type, string id, string json)
         {

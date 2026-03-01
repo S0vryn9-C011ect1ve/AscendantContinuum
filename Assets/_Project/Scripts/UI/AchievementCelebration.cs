@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using AscendantContinuum.Core;
+using AscendantContinuum.VFX;
 
 namespace AscendantContinuum.UI
 {
@@ -90,7 +92,7 @@ namespace AscendantContinuum.UI
             if (unlockSound != null)
                 AudioManager.Instance?.PlaySFX(unlockSound, 0.8f);
 
-            HapticFeedback.PlayPattern(HapticFeedbackPattern.Celebration);
+            AccessibilityManager.Instance?.TriggerHaptic(HapticType.Success);
 
             // Pop text animation
             if (titleText != null)
@@ -162,7 +164,7 @@ namespace AscendantContinuum.UI
             if (fanfareSound != null)
                 AudioManager.Instance?.PlaySFX(fanfareSound, 1f);
 
-            HapticFeedback.PlayPattern(HapticFeedbackPattern.AchievementUnlock);
+            AccessibilityManager.Instance?.TriggerHaptic(HapticType.Success);
 
             // Text pop
             if (titleText != null)
@@ -216,7 +218,7 @@ namespace AscendantContinuum.UI
         {
             if (ParticleManager.Instance != null)
             {
-                ParticleManager.Instance.PlayBurstEffect(worldPosition, burstColor);
+                ParticleManager.Instance.PlayRealmTransitionEffect(worldPosition, burstColor);
             }
 
             yield return null;

@@ -46,7 +46,7 @@ namespace AscendantContinuum.Systems
 
         private void Start()
         {
-            hudManager = Object.FindObjectOfType<HUDManager>();
+            hudManager = UnityEngine.Object.FindFirstObjectByType<HUDManager>();
 
             if (enableGPS)
             {
@@ -280,7 +280,7 @@ namespace AscendantContinuum.Systems
         {
             if (hudManager == null)
             {
-                hudManager = Object.FindObjectOfType<HUDManager>();
+                hudManager = UnityEngine.Object.FindFirstObjectByType<HUDManager>();
             }
 
             if (hudManager != null)

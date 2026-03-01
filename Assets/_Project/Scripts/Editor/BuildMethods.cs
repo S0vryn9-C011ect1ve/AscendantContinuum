@@ -22,6 +22,8 @@ public static class BuildMethods
 
         try
         {
+            EnsureRealmScenesValidOrThrow();
+
             PlayerSettings.companyName = COMPANY_NAME;
             PlayerSettings.productName = PRODUCT_NAME;
             PlayerSettings.colorSpace = ColorSpace.Linear;
@@ -99,6 +101,8 @@ public static class BuildMethods
 
         try
         {
+            EnsureRealmScenesValidOrThrow();
+
             PlayerSettings.companyName = COMPANY_NAME;
             PlayerSettings.productName = PRODUCT_NAME;
             PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel25;
@@ -140,6 +144,8 @@ public static class BuildMethods
 
         try
         {
+            EnsureRealmScenesValidOrThrow();
+
             PlayerSettings.companyName = COMPANY_NAME;
             PlayerSettings.productName = PRODUCT_NAME;
             PlayerSettings.iOS.targetOSVersionString = "14.0";
@@ -180,5 +186,16 @@ public static class BuildMethods
             scenePaths[i] = EditorBuildSettings.scenes[i].path;
         }
         return scenePaths;
+    }
+
+    private static void EnsureRealmScenesValidOrThrow()
+    {
+        if (!AscendantContinuum.Editor.RealmSceneValidator.ValidateRealmScenesForBuild(out string report))
+        {
+            Debug.LogError(report);
+            throw new UnityEditor.Build.BuildFailedException("Realm scene validation failed. See validator report in Console.");
+        }
+
+        Debug.Log(report);
     }
 }

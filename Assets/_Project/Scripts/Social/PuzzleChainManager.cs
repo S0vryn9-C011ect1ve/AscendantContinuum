@@ -200,6 +200,20 @@ namespace AscendantContinuum.Social
             AchievementManager.Instance?.UnlockAchievement("elemental_master");
             if (total >= 10) AchievementManager.Instance?.UnlockAchievement("chain_master");
 
+            // Fire global event bus — CosmicResonanceMap + SkyTimeSystem react
+            AscendantContinuum.Core.GameEvents.RaiseChainCompleted(chainId);
+
+            // Persist in SaveSystem so the journal can track chain completions
+            if (AscendantContinuum.Core.SaveSystem.Instance != null)
+            {
+                var data = AscendantContinuum.Core.SaveSystem.Instance.CurrentPlayerData;
+                data.totalSessionsCompleted = Mathf.Max(data.totalSessionsCompleted, total);
+                AscendantContinuum.Core.SaveSystem.Instance.SaveGame();
+            }
+
+            // Blessing audio chord
+            AscendantContinuum.Core.AudioManager.Instance?.PlayBlessing();
+
             HUDManager.Instance?.ShowNotification(
                 "✦ ELEMENTAL CHAIN COMPLETE — Elemental Master sigil unlocked!",
                 HUDManager.NotificationType.Achievement);

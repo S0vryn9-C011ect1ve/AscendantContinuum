@@ -20,6 +20,7 @@ namespace AscendantContinuum.Core
         [SerializeField] private float musicVolume = 0.7f;
         [SerializeField] private float sfxVolume = 1f;
         [SerializeField] private float ambientVolume = 0.5f;
+        [SerializeField] private float uiVolume = 0.8f;
         
         [Header("Pools")]
         [SerializeField] private int sfxPoolSize = 20;
@@ -27,6 +28,7 @@ namespace AscendantContinuum.Core
         private Queue<AudioSource> sfxPool;
         private AudioSource musicSource;
         private AudioSource ambientSource;
+        private AudioSource uiSource;
         private Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
 
         private void Awake()
@@ -79,6 +81,12 @@ namespace AscendantContinuum.Core
 
         public void PlayMusic(AudioClip clip, float fadeTime = 1f)
         {
+            if (clip == null)
+            {
+                StopMusic(Mathf.Max(0.01f, fadeTime));
+                return;
+            }
+
             if (musicSource.clip == clip && musicSource.isPlaying) return;
             
             if (musicSource.isPlaying)
@@ -141,7 +149,8 @@ namespace AscendantContinuum.Core
 
         public void PlaySFX(AudioClip clip, float volume = 1f)
         {
-            PlaySFX(clip, Camera.main.transform.position, volume, false);
+            Vector3 position = Camera.main != null ? Camera.main.transform.position : Vector3.zero;
+            PlaySFX(clip, position, volume, false);
         }
 
         private AudioSource GetAvailableSFXSource()
@@ -168,6 +177,8 @@ namespace AscendantContinuum.Core
 
         public void PlayAmbient(AudioClip clip, float volume = -1f)
         {
+            if (clip == null) return;
+
             ambientSource.clip = clip;
             ambientSource.volume = volume >= 0 ? volume : ambientVolume;
             ambientSource.Play();
@@ -202,16 +213,47 @@ namespace AscendantContinuum.Core
             SaveSettings();
         }
 
+        public void SetAmbienceVolume(float volume) => SetAmbientVolume(volume);
+
+        public float GetAmbienceVolume() => ambientVolume;
+
+        public void SetUIVolume(float volume)
+        {
+            uiVolume = Mathf.Clamp01(volume);
+            if (uiSource != null)
+            {
+                uiSource.volume = uiVolume;
+            }
+            SaveSettings();
+        }
+
+        public float GetUIVolume() => uiVolume;
+
+        public void SetAmbienceLayers(float cosmicIntensity, float tonalIntensity, float windIntensity, float reverbIntensity)
+        {
+            float targetAmbient = Mathf.Clamp01((cosmicIntensity + tonalIntensity + windIntensity + reverbIntensity) * 0.25f);
+            SetAmbientVolume(targetAmbient);
+        }
+
+        public void PlayUISound(AudioClip clip, float volume = 1f)
+        {
+            if (clip == null || uiSource == null) return;
+
+            uiSource.PlayOneShot(clip, Mathf.Clamp01(volume) * uiVolume);
+        }
+
         private void LoadSettings()
         {
             masterVolume = PlayerPrefs.GetFloat("Audio_MasterVolume", 1f);
             musicVolume = PlayerPrefs.GetFloat("Audio_MusicVolume", 0.7f);
             sfxVolume = PlayerPrefs.GetFloat("Audio_SFXVolume", 1f);
             ambientVolume = PlayerPrefs.GetFloat("Audio_AmbientVolume", 0.5f);
+            uiVolume = PlayerPrefs.GetFloat("Audio_UIVolume", 0.8f);
             
             AudioListener.volume = masterVolume;
             musicSource.volume = musicVolume;
             ambientSource.volume = ambientVolume;
+            if (uiSource != null) uiSource.volume = uiVolume;
         }
 
         private void SaveSettings()
@@ -220,6 +262,7 @@ namespace AscendantContinuum.Core
             PlayerPrefs.SetFloat("Audio_MusicVolume", musicVolume);
             PlayerPrefs.SetFloat("Audio_SFXVolume", sfxVolume);
             PlayerPrefs.SetFloat("Audio_AmbientVolume", ambientVolume);
+            PlayerPrefs.SetFloat("Audio_UIVolume", uiVolume);
             PlayerPrefs.Save();
         }
 
@@ -240,6 +283,69 @@ namespace AscendantContinuum.Core
             
             musicSource.Stop();
             musicSource.volume = musicVolume;
+        }
+
+        public float GetMasterVolume() => masterVolume;
+        public float GetMusicVolume() => musicVolume;
+        public float GetSFXVolume() => sfxVolume;
+
+        private void OnEnable()
+        {
+            if (uiSource == null)
+            {
+                GameObject uiObj = new GameObject("UISource");
+                uiObj.transform.SetParent(transform);
+                uiSource = uiObj.AddComponent<AudioSource>();
+                uiSource.loop = false;
+                uiSource.playOnAwake = false;
+                uiSource.spatialBlend = 0f;
+                uiSource.volume = uiVolume;
+            }
+        }
+
+        // ── Sigil audio ───────────────────────────────────────────────────
+
+        /// <summary>
+        /// Called by SigilCompletionHandler — routes to ProceduralToneGenerator.
+        /// </summary>
+        public void PlaySigilCompletion(AscendantContinuum.Systems.SigilAnalysisResult analysis)
+        {
+            var tone = GetComponent<AscendantContinuum.Audio.ProceduralToneGenerator>()
+                    ?? gameObject.AddComponent<AscendantContinuum.Audio.ProceduralToneGenerator>();
+            // Tone generator responds automatically via GameEvents.OnSigilCompleted;
+            // no explicit call needed — this method exists as a documented hook.
+            Debug.Log($"[AudioManager] Sigil completion — complexity: {analysis.Complexity:F2}");
+        }
+
+        /// <summary>
+        /// Called by realm ecosystem reactors (Verdant / Echo / Lantern).
+        /// Routes to ProceduralToneGenerator arpeggio on the attached GameObject.
+        /// </summary>
+        public void PlayRealmEcosystemReaction(string realmId, UnityEngine.Color primaryColor)
+        {
+            var tone = GetComponent<AscendantContinuum.Audio.ProceduralToneGenerator>()
+                    ?? gameObject.AddComponent<AscendantContinuum.Audio.ProceduralToneGenerator>();
+
+            float rootHz = realmId switch
+            {
+                "verdant"  => 261.6f,  // C4
+                "echo"     => 329.6f,  // E4
+                "lantern"  => 392f,    // G4
+                "ember"    => 220f,    // A3
+                "dawn"     => 440f,    // A4
+                _          => 300f
+            };
+            tone.PlayArpeggio(rootHz, steps: 4, stepRatio: 1.2599f);
+        }
+
+        /// <summary>
+        /// Warm resolving chord for Kindness Chain / blessing reveals.
+        /// </summary>
+        public void PlayBlessing()
+        {
+            var tone = GetComponent<AscendantContinuum.Audio.ProceduralToneGenerator>()
+                    ?? gameObject.AddComponent<AscendantContinuum.Audio.ProceduralToneGenerator>();
+            tone.PlayBlessingChord();
         }
     }
 }

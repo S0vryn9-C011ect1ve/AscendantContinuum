@@ -4,7 +4,6 @@ using AscendantContinuum.Core;
 namespace AscendantContinuum.Core
 {
     using AscendantContinuum.Realms;
-    using AscendantContinuum.Audio;
     using AscendantContinuum.VFX;
     using AscendantContinuum.Cameras;
 
@@ -46,7 +45,7 @@ namespace AscendantContinuum.Core
             atmosphereController.ApplyAtmosphere(realmAtmosphere);
 
             // Activate matching VFX
-            if (_vfxManager == null) _vfxManager = Object.FindObjectOfType<RealmVFXManager>();
+            if (_vfxManager == null) _vfxManager = UnityEngine.Object.FindFirstObjectByType<RealmVFXManager>();
             if (_vfxManager != null)
             {
                 _vfxManager.ActivateRealm(realmAtmosphere.realmId);
@@ -55,7 +54,7 @@ namespace AscendantContinuum.Core
             }
 
             // Switch Cinemachine camera
-            if (_cameraRig == null) _cameraRig = Object.FindObjectOfType<RealmCameraRig>();
+            if (_cameraRig == null) _cameraRig = UnityEngine.Object.FindFirstObjectByType<RealmCameraRig>();
             if (_cameraRig != null)
                 _cameraRig.ActivateRealmCamera(realmAtmosphere.realmId);
 

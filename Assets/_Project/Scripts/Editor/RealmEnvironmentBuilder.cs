@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEditor.SceneManagement;
 #endif
-using UnityEngine.ProBuilder;
-using UnityEngine.ProBuilder.Shapes;
 
 #if UNITY_EDITOR
 namespace AscendantContinuum.Editor
@@ -36,6 +35,15 @@ namespace AscendantContinuum.Editor
             { RealmType.Verdant,          "ENV_Verdant"          },
         };
 
+        private static readonly Dictionary<RealmType, string> RealmScenePaths = new()
+        {
+            { RealmType.Emberforge,       "Assets/_Project/Scenes/Realms/Realm_Emberforge.unity" },
+            { RealmType.DawnCitadel,      "Assets/_Project/Scenes/Realms/Realm_DawnCitadel.unity" },
+            { RealmType.EchoFields,       "Assets/_Project/Scenes/Realms/Realm_EchoFields.unity" },
+            { RealmType.LanternAscension, "Assets/_Project/Scenes/Realms/Realm_LanternAscension.unity" },
+            { RealmType.Verdant,          "Assets/_Project/Scenes/Realms/Realm_Verdant.unity" },
+        };
+
         // ------------------------------------------------------------------ //
         //  Window
         // ------------------------------------------------------------------ //
@@ -62,6 +70,14 @@ namespace AscendantContinuum.Editor
 
             if (GUILayout.Button("Build Block-Out", GUILayout.Height(36)))
                 Build(_selectedRealm, _clearExisting);
+
+            EditorGUILayout.Space(6);
+
+            if (GUILayout.Button("Open Selected Realm Scene", GUILayout.Height(28)))
+                OpenRealmScene(_selectedRealm);
+
+            if (GUILayout.Button("Isolate Selected ENV Root", GUILayout.Height(24)))
+                IsolateRealmRoot(_selectedRealm);
 
             EditorGUILayout.Space(12);
             GUILayout.Label("All Realms", EditorStyles.boldLabel);
@@ -105,6 +121,54 @@ namespace AscendantContinuum.Editor
             Selection.activeGameObject = root;
             SceneView.lastActiveSceneView?.FrameSelected();
             Debug.Log($"[RealmBuilder] Built block-out: {rootName}");
+        }
+
+        private static void OpenRealmScene(RealmType realm)
+        {
+            if (!RealmScenePaths.TryGetValue(realm, out string scenePath) || string.IsNullOrWhiteSpace(scenePath))
+            {
+                Debug.LogError($"[RealmBuilder] No scene path configured for {realm}");
+                return;
+            }
+
+            if (!System.IO.File.Exists(scenePath))
+            {
+                Debug.LogError($"[RealmBuilder] Realm scene file not found: {scenePath}");
+                return;
+            }
+
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+            {
+                return;
+            }
+
+            EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
+            Debug.Log($"[RealmBuilder] Opened scene: {scenePath}");
+        }
+
+        private static void IsolateRealmRoot(RealmType realm)
+        {
+            foreach (var kvp in RealmRootNames)
+            {
+                GameObject root = GameObject.Find(kvp.Value);
+                if (root != null)
+                {
+                    root.SetActive(kvp.Key == realm);
+                }
+            }
+
+            string selectedRootName = RealmRootNames[realm];
+            GameObject selectedRoot = GameObject.Find(selectedRootName);
+            if (selectedRoot != null)
+            {
+                Selection.activeGameObject = selectedRoot;
+                SceneView.lastActiveSceneView?.FrameSelected();
+                Debug.Log($"[RealmBuilder] Isolated root: {selectedRootName}");
+            }
+            else
+            {
+                Debug.LogWarning($"[RealmBuilder] Could not find root to isolate: {selectedRootName}");
+            }
         }
 
         // ================================================================== //
@@ -241,33 +305,33 @@ namespace AscendantContinuum.Editor
         }
 
         // ================================================================== //
-        //  ProBuilder Helpers
+        //  Geometry Helpers (ProBuilder-free fallback)
         // ================================================================== //
 
-        private static ProBuilderMesh CreateBox(GameObject parent, string name,
+        private static GameObject CreateBox(GameObject parent, string name,
             Vector3 position, Vector3 size)
         {
-            var pb = ShapeFactory.Instantiate<Box>();
-            pb.gameObject.name            = name;
-            pb.transform.parent           = parent.transform;
-            pb.transform.localPosition    = position;
-            pb.transform.localScale       = size;
-            pb.transform.localRotation    = Quaternion.identity;
-            Undo.RegisterCreatedObjectUndo(pb.gameObject, $"Create {name}");
-            return pb;
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = name;
+            go.transform.parent = parent.transform;
+            go.transform.localPosition = position;
+            go.transform.localScale = size;
+            go.transform.localRotation = Quaternion.identity;
+            Undo.RegisterCreatedObjectUndo(go, $"Create {name}");
+            return go;
         }
 
-        private static ProBuilderMesh CreateCylinder(GameObject parent, string name,
+        private static GameObject CreateCylinder(GameObject parent, string name,
             Vector3 position, float radius, float height)
         {
-            var pb = ShapeFactory.Instantiate<Cylinder>();
-            pb.gameObject.name         = name;
-            pb.transform.parent        = parent.transform;
-            pb.transform.localPosition = position;
-            pb.transform.localScale    = new Vector3(radius * 2f, height, radius * 2f);
-            pb.transform.localRotation = Quaternion.identity;
-            Undo.RegisterCreatedObjectUndo(pb.gameObject, $"Create {name}");
-            return pb;
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            go.name = name;
+            go.transform.parent = parent.transform;
+            go.transform.localPosition = position;
+            go.transform.localScale = new Vector3(radius * 2f, height * 0.5f, radius * 2f);
+            go.transform.localRotation = Quaternion.identity;
+            Undo.RegisterCreatedObjectUndo(go, $"Create {name}");
+            return go;
         }
         
     }

@@ -26,6 +26,9 @@ namespace AscendantContinuum.Systems
         public event Action<DailyChallenge> OnNewChallengeAvailable;
         public event Action<int> OnChallengeCompleted;
 
+        private float _nextRefreshCheckTime;
+        private float _meditationProgressAccumulator;
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -50,14 +53,19 @@ namespace AscendantContinuum.Systems
         {
             LoadProgress();
             CheckForNewChallenge();
+            _nextRefreshCheckTime = Time.unscaledTime + 1f;
         }
 
         private void Update()
         {
-            // Check every frame if it's time for a new challenge
-            if (DateTime.UtcNow >= nextChallengeTime)
+            if (Time.unscaledTime >= _nextRefreshCheckTime)
             {
-                GenerateNewChallenge();
+                _nextRefreshCheckTime = Time.unscaledTime + 1f;
+
+                if (DateTime.UtcNow >= nextChallengeTime)
+                {
+                    GenerateNewChallenge();
+                }
             }
             
             // Track challenge progress
@@ -202,7 +210,13 @@ namespace AscendantContinuum.Systems
                 case ChallengeType.MeditateInRealm:
                     if (Core.GameManager.Instance?.CurrentState == Core.GameState.Playing)
                     {
-                        currentChallenge.currentProgress += (int)(Time.deltaTime);
+                        _meditationProgressAccumulator += Time.deltaTime;
+                        if (_meditationProgressAccumulator >= 1f)
+                        {
+                            int wholeSeconds = Mathf.FloorToInt(_meditationProgressAccumulator);
+                            currentChallenge.currentProgress += wholeSeconds;
+                            _meditationProgressAccumulator -= wholeSeconds;
+                        }
                     }
                     break;
             }
@@ -263,7 +277,12 @@ namespace AscendantContinuum.Systems
             
             if (!string.IsNullOrEmpty(savedDate))
             {
-                DateTime savedDateTime = DateTime.Parse(savedDate);
+                if (!DateTime.TryParse(savedDate, out DateTime savedDateTime))
+                {
+                    Debug.LogWarning("[DailyChallenge] Could not parse saved date. Regenerating today's challenge.");
+                    GenerateNewChallenge();
+                    return;
+                }
                 
                 // Check if it's still the same day
                 if (savedDateTime.Date == DateTime.UtcNow.Date)

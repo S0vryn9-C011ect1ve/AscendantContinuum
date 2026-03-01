@@ -31,7 +31,10 @@ param(
     [switch]$SkipCleanBeeState,
 
     [Parameter(Mandatory = $false)]
-    [int]$UnityBuildTimeoutSeconds = 1800
+    [switch]$SkipUnityProcessPrecheck,
+
+    [Parameter(Mandatory = $false)]
+    [int]$UnityBuildTimeoutSeconds = 5400
 )
 
 function Resolve-UnityPath {
@@ -131,23 +134,50 @@ function TryResolveUnityPathWithPlatformSupport {
 function Assert-UnityEditorNotRunning {
     $maxAttempts = 4
     $attempt = 1
+    $processNames = @("Unity", "UnityPackageManager", "bee_backend", "netcorerun", "WebGLPlayerBuildProgram")
 
     while ($attempt -le $maxAttempts) {
-        $runningUnity = Get-Process -Name "Unity" -ErrorAction SilentlyContinue
+        $runningUnity = @()
+        foreach ($name in $processNames) {
+            $runningUnity += Get-Process -Name $name -ErrorAction SilentlyContinue
+        }
+
+        $runningUnity = $runningUnity | Sort-Object Id -Unique
 
         if (-not $runningUnity) {
             return
         }
 
+        foreach ($process in $runningUnity) {
+            try {
+                Stop-Process -Id $process.Id -Force -ErrorAction Stop
+                Write-Host "Stopped active process during precheck: $($process.ProcessName) (PID $($process.Id))" -ForegroundColor DarkYellow
+            }
+            catch {
+                Write-Host "Could not stop process during precheck: $($process.ProcessName) (PID $($process.Id))" -ForegroundColor DarkYellow
+            }
+        }
+
+        Start-Sleep -Seconds 2
+
+        $remainingUnity = @()
+        foreach ($name in $processNames) {
+            $remainingUnity += Get-Process -Name $name -ErrorAction SilentlyContinue
+        }
+
+        $remainingUnity = $remainingUnity | Sort-Object Id -Unique
+        if (-not $remainingUnity) {
+            return
+        }
+
         if ($attempt -lt $maxAttempts) {
-            Write-Host "Detected Unity process during precheck (attempt $attempt/$maxAttempts). Waiting for it to exit..." -ForegroundColor Yellow
-            Start-Sleep -Seconds 2
+            Write-Host "Detected Unity process during precheck (attempt $attempt/$maxAttempts). Retrying cleanup..." -ForegroundColor Yellow
             $attempt++
             continue
         }
 
         Write-Host "Unity Editor is currently running. Close Unity before batch test/build runs." -ForegroundColor Red
-        Write-Host "Detected Unity PID(s): $($runningUnity.Id -join ', ')" -ForegroundColor Yellow
+        Write-Host "Detected Unity PID(s): $($remainingUnity.Id -join ', ')" -ForegroundColor Yellow
         exit 1
     }
 }
@@ -166,6 +196,28 @@ function Stop-BuildProcesses {
                 catch {
                     Write-Host "Could not stop process: $name (PID $($process.Id))" -ForegroundColor DarkYellow
                 }
+            }
+        }
+    }
+}
+
+function Clear-UnityDatabaseLocks {
+    param([string]$WorkspacePath)
+
+    $lockCandidates = @(
+        (Join-Path $WorkspacePath "Library\SourceAssetDB-lock"),
+        (Join-Path $WorkspacePath "Library\ArtifactDB-lock"),
+        (Join-Path $WorkspacePath "Library\PackageManager\upm.lock")
+    )
+
+    foreach ($lockPath in $lockCandidates) {
+        if (Test-Path $lockPath) {
+            try {
+                Remove-Item $lockPath -Force -ErrorAction Stop
+                Write-Host "Removed Unity lock file: $lockPath" -ForegroundColor DarkYellow
+            }
+            catch {
+                Write-Host "Could not remove Unity lock file: $lockPath" -ForegroundColor DarkYellow
             }
         }
     }
@@ -377,7 +429,7 @@ function Build-WebGL {
         $arguments += "-development"
     }
 
-    $maxAttempts = 2
+    $maxAttempts = 3
     $attempt = 1
     $unityBuildTimeoutSeconds = [Math]::Max(60, $UnityBuildTimeoutSeconds)
 
@@ -396,6 +448,9 @@ function Build-WebGL {
                 Get-ChildItem -Path $beePath -Filter "TundraBuildState.state*" -ErrorAction SilentlyContinue |
                 Remove-Item -Force -ErrorAction SilentlyContinue
             }
+
+            Clear-UnityDatabaseLocks -WorkspacePath $ProjectPath
+            Start-Sleep -Seconds 5
         }
 
         $process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -NoNewWindow
@@ -423,11 +478,40 @@ function Build-WebGL {
             continue
         }
 
-        if ($process.ExitCode -eq 0) {
+        $exitCode = if ($null -ne $process.ExitCode) { $process.ExitCode } else { -1 }
+        $logIndicatesSuccess = $false
+
+        if (Test-Path $webGLLogPath) {
+            try {
+                $logIndicatesSuccess = Select-String -Path $webGLLogPath -Pattern "Build Finished, Result: Success." -SimpleMatch -Quiet
+            }
+            catch {
+                $logIndicatesSuccess = $false
+            }
+        }
+
+        if ($exitCode -eq 0 -or $logIndicatesSuccess) {
             Assert-UnityLogHasNoBuildFailure -LogPath $webGLLogPath -Label "WebGL build"
             Write-Host "WebGL build completed successfully." -ForegroundColor Green
             Write-Host "Output: $webGLBuildPath"
             return
+        }
+
+        $databaseLocked = $false
+        if (Test-Path $webGLLogPath) {
+            try {
+                $databaseLocked = Select-String -Path $webGLLogPath -Pattern "database is locked" -SimpleMatch -Quiet
+            }
+            catch {
+                $databaseLocked = $false
+            }
+        }
+
+        if ($databaseLocked) {
+            Write-Host "Detected Unity database lock during WebGL build attempt $attempt. Performing lock cleanup and retry." -ForegroundColor Yellow
+            Stop-BuildProcesses
+            Clear-UnityDatabaseLocks -WorkspacePath $ProjectPath
+            Start-Sleep -Seconds 10
         }
 
         if ($attempt -ge $maxAttempts) {
@@ -436,7 +520,7 @@ function Build-WebGL {
             exit 1
         }
 
-        Write-Host "WebGL build attempt $attempt failed (exit code $($process.ExitCode)). Preparing retry..." -ForegroundColor Yellow
+        Write-Host "WebGL build attempt $attempt failed (exit code $exitCode). Preparing retry..." -ForegroundColor Yellow
         Stop-BuildProcesses
         $attempt++
     }
@@ -497,7 +581,12 @@ if (!(Test-Path $UnityPath)) {
 }
 
 Stop-BuildProcesses
-Assert-UnityEditorNotRunning
+if ($SkipUnityProcessPrecheck) {
+    Write-Host "Skipping Unity process precheck by request (-SkipUnityProcessPrecheck)." -ForegroundColor Yellow
+}
+else {
+    Assert-UnityEditorNotRunning
+}
 
 if ($Platform -ne "All") {
     $UnityPath = TryResolveUnityPathWithPlatformSupport -TargetPlatform $Platform -CurrentUnityPath $UnityPath

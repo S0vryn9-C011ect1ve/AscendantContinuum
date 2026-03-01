@@ -328,7 +328,22 @@ namespace AscendantContinuum.Systems
                 if (score[i] > score[best]) best = i;
             return best;
         }
+        // ── Day 4 Pantheon unlock gate ────────────────────────────────────────────────
 
+        /// <summary>
+        /// Returns true when the Arcane Personality Quiz should be offered.
+        /// Condition: the player has started 4+ sessions and has not yet chosen a deity.
+        /// </summary>
+        public bool ShouldShowPantheonQuiz()
+        {
+            if (HasDeity) return false;
+            if (QuizDone) return false;
+            return PlayerPrefs.GetInt("SessionCount_Total", 0) >= 4;
+        }
+
+        /// <summary>True once the player has completed 4 or more gameplay sessions.</summary>
+        public bool IsDay4UnlockAvailable()
+            => PlayerPrefs.GetInt("SessionCount_Total", 0) >= 4;
         // ── Screen reader summary ─────────────────────────────────────────
 
         public string GetAccessibilitySummary()

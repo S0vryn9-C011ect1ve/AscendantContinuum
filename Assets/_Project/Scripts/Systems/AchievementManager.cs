@@ -498,7 +498,7 @@ namespace AscendantContinuum.Systems
         private void RegisterEventListeners()
         {
             // Listen to game events
-            var spark = Object.FindObjectOfType<Emberforge.EmberforgeSparks>();
+                var spark = UnityEngine.Object.FindFirstObjectByType<Emberforge.EmberforgeSparks>();
             if (spark != null)
             {
                 spark.OnSparkCollected += CheckSparkAchievements;

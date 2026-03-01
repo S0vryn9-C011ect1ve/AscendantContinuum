@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using AscendantContinuum.Core;
 
 namespace AscendantContinuum.VFX
 {

@@ -80,7 +80,7 @@ namespace AscendantContinuum.Systems
         private void RegisterListeners()
         {
             // Hook into EmberforgeSparks collection events
-            var sparks = Object.FindObjectOfType<Emberforge.EmberforgeSparks>();
+            var sparks = UnityEngine.Object.FindFirstObjectByType<Emberforge.EmberforgeSparks>();
             if (sparks != null)
                 sparks.OnSparkCollected += _ => TryTrigger("Emberforge");
 
@@ -337,5 +337,27 @@ namespace AscendantContinuum.Systems
         Rare,
         Epic,
         Legendary
+    }
+
+    public static class SerendipityTierCalculator
+    {
+        /// <summary>
+        /// Pure deterministic tier calculation — mirrors the roll logic in
+        /// <see cref="SerendipityManager.TryTrigger"/> without requiring an instance.
+        /// Designed for unit testing and editor preview tools.
+        /// </summary>
+        public static SerendipityTier CalculateTier(
+            float roll,
+            float legendary,
+            float epic,
+            float rare,
+            float uncommon)
+        {
+            if (roll < legendary)                          return SerendipityTier.Legendary;
+            if (roll < legendary + epic)                   return SerendipityTier.Epic;
+            if (roll < legendary + epic + rare)            return SerendipityTier.Rare;
+            if (roll < legendary + epic + rare + uncommon) return SerendipityTier.Uncommon;
+            return SerendipityTier.Common;
+        }
     }
 }

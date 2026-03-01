@@ -41,7 +41,7 @@ namespace AscendantContinuum.Core
 
         protected virtual void Start()
         {
-            _hud = Object.FindObjectOfType<HUDManager>();
+            _hud = UnityEngine.Object.FindFirstObjectByType<HUDManager>();
             EnterRealm();
         }
 

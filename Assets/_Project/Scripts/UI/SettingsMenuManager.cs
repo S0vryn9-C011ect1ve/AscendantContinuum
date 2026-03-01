@@ -119,28 +119,28 @@ namespace AscendantContinuum.UI
             // Audio
             if (masterVolumeSlider != null)
             {
-                float volume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+                float volume = PlayerPrefs.GetFloat("Audio_MasterVolume", 1f);
                 masterVolumeSlider.value = volume;
                 UpdateVolumeText(masterVolumeText, volume);
             }
 
             if (musicVolumeSlider != null)
             {
-                float volume = PlayerPrefs.GetFloat("MusicVolume", 0.7f);
+                float volume = PlayerPrefs.GetFloat("Audio_MusicVolume", 0.7f);
                 musicVolumeSlider.value = volume;
                 UpdateVolumeText(musicVolumeText, volume);
             }
 
             if (sfxVolumeSlider != null)
             {
-                float volume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+                float volume = PlayerPrefs.GetFloat("Audio_SFXVolume", 1f);
                 sfxVolumeSlider.value = volume;
                 UpdateVolumeText(sfxVolumeText, volume);
             }
 
             if (ambientVolumeSlider != null)
             {
-                float volume = PlayerPrefs.GetFloat("AmbientVolume", 0.5f);
+                float volume = PlayerPrefs.GetFloat("Audio_AmbientVolume", 0.5f);
                 ambientVolumeSlider.value = volume;
                 UpdateVolumeText(ambientVolumeText, volume);
             }
@@ -211,7 +211,7 @@ namespace AscendantContinuum.UI
         private void OnMasterVolumeChanged(float value)
         {
             UpdateVolumeText(masterVolumeText, value);
-            PlayerPrefs.SetFloat("MasterVolume", value);
+            PlayerPrefs.SetFloat("Audio_MasterVolume", value);
 
             if (AudioManager.Instance != null)
                 AudioManager.Instance.SetMasterVolume(value);
@@ -220,7 +220,7 @@ namespace AscendantContinuum.UI
         private void OnMusicVolumeChanged(float value)
         {
             UpdateVolumeText(musicVolumeText, value);
-            PlayerPrefs.SetFloat("MusicVolume", value);
+            PlayerPrefs.SetFloat("Audio_MusicVolume", value);
 
             if (AudioManager.Instance != null)
                 AudioManager.Instance.SetMusicVolume(value);
@@ -229,7 +229,7 @@ namespace AscendantContinuum.UI
         private void OnSFXVolumeChanged(float value)
         {
             UpdateVolumeText(sfxVolumeText, value);
-            PlayerPrefs.SetFloat("SFXVolume", value);
+            PlayerPrefs.SetFloat("Audio_SFXVolume", value);
 
             if (AudioManager.Instance != null)
                 AudioManager.Instance.SetSFXVolume(value);
@@ -238,7 +238,7 @@ namespace AscendantContinuum.UI
         private void OnAmbientVolumeChanged(float value)
         {
             UpdateVolumeText(ambientVolumeText, value);
-            PlayerPrefs.SetFloat("AmbientVolume", value);
+            PlayerPrefs.SetFloat("Audio_AmbientVolume", value);
 
             if (AudioManager.Instance != null)
                 AudioManager.Instance.SetAmbientVolume(value);

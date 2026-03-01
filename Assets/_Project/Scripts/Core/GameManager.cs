@@ -83,6 +83,7 @@ namespace AscendantContinuum.Core
 
             Debug.Log($"[GameManager] State changed: {previousState} → {newState}");
             OnGameStateChanged?.Invoke(newState);
+            GameEvents.RaiseGameStateChanged(previousState, newState);
         }
 
         public void LoadRealm(string realmId)
@@ -92,6 +93,7 @@ namespace AscendantContinuum.Core
             currentRealmId = realmId;
             Debug.Log($"[GameManager] Loading realm: {realmId}");
             OnRealmChanged?.Invoke(realmId);
+            GameEvents.RaiseRealmLoaded(realmId);
         }
 
         public GameState CurrentState => currentState;
@@ -99,6 +101,11 @@ namespace AscendantContinuum.Core
 
         public bool ShouldRunOnboarding()
         {
+            if (Application.isEditor && GameFlow.Config != null && GameFlow.Config.ForceOnboardingInEditor)
+            {
+                return true;
+            }
+
             return PlayerPrefs.GetInt(OnboardingCompletedKey, 0) == 0;
         }
 
@@ -110,7 +117,18 @@ namespace AscendantContinuum.Core
 
         public string GetLastRealmOrDefault(string fallbackRealm)
         {
-            return PlayerPrefs.GetString(LastRealmKey, fallbackRealm);
+            string effectiveFallback = fallbackRealm;
+            if (string.IsNullOrWhiteSpace(effectiveFallback) && GameFlow.Config != null)
+            {
+                effectiveFallback = GameFlow.Config.DefaultRealmId;
+            }
+
+            if (string.IsNullOrWhiteSpace(effectiveFallback))
+            {
+                effectiveFallback = "emberforge";
+            }
+
+            return PlayerPrefs.GetString(LastRealmKey, effectiveFallback);
         }
 
         public void RecordLastRealm(string realmName)

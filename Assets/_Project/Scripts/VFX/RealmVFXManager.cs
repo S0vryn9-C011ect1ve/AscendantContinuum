@@ -59,7 +59,7 @@ namespace AscendantContinuum.VFX
 
         private void Awake()
         {
-            _atmosphereController = Object.FindObjectOfType<RealmAtmosphereController>();
+            _atmosphereController = UnityEngine.Object.FindFirstObjectByType<RealmAtmosphereController>();
         }
 
         // ------------------------------------------------------------------ //

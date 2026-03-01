@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 namespace AscendantContinuum.Core
 {
@@ -25,6 +26,8 @@ namespace AscendantContinuum.Core
         private float timer = 0.0f;
         private int frameCount = 0;
         private bool isDegraded = false;
+        private float originalRenderScale = 1f;
+        private bool hasCapturedRenderScale = false;
 
         private Volume globalVolume;
 
@@ -43,7 +46,52 @@ namespace AscendantContinuum.Core
         private void Start()
         {
             Application.targetFrameRate = (int)targetFPS;
-            globalVolume = Object.FindObjectOfType<Volume>();
+            CaptureOriginalRenderScale();
+            RefreshGlobalVolume();
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += HandleSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= HandleSceneLoaded;
+            if (isDegraded)
+            {
+                RestoreQuality();
+            }
+        }
+
+        private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            RefreshGlobalVolume();
+        }
+
+        private void RefreshGlobalVolume()
+        {
+            globalVolume = UnityEngine.Object.FindFirstObjectByType<Volume>();
+
+            if (globalVolume != null)
+            {
+                globalVolume.enabled = !isDegraded;
+            }
+        }
+
+        private void CaptureOriginalRenderScale()
+        {
+            if (hasCapturedRenderScale)
+            {
+                return;
+            }
+
+            UniversalRenderPipelineAsset urpAsset = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
+            if (urpAsset != null)
+            {
+                originalRenderScale = urpAsset.renderScale;
+                hasCapturedRenderScale = true;
+            }
         }
 
         private void Update()
@@ -96,6 +144,7 @@ namespace AscendantContinuum.Core
                 UniversalRenderPipelineAsset urpAsset = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
                 if (urpAsset != null)
                 {
+                    CaptureOriginalRenderScale();
                     urpAsset.renderScale = 0.75f; // Drop to 75% resolution
                     Debug.Log("[PerformanceManager] Reduced Render Scale to 0.75.");
                 }
@@ -122,8 +171,8 @@ namespace AscendantContinuum.Core
                 UniversalRenderPipelineAsset urpAsset = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
                 if (urpAsset != null)
                 {
-                    urpAsset.renderScale = 1.0f;
-                    Debug.Log("[PerformanceManager] Restored Render Scale to 1.0.");
+                    urpAsset.renderScale = hasCapturedRenderScale ? originalRenderScale : 1.0f;
+                    Debug.Log($"[PerformanceManager] Restored Render Scale to {urpAsset.renderScale:F2}.");
                 }
             }
         }

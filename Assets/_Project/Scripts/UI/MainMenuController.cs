@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using AscendantContinuum.Audio;
+using AscendantContinuum.Core;
 using AscendantContinuum.Progression;
 using System.Collections;
 
@@ -44,6 +44,7 @@ namespace AscendantContinuum.UI
         private CanvasGroup titleCanvasGroup;
         private CanvasGroup buttonsCanvasGroup;
         private Vector3[] parallaxStartPositions;
+        private bool allowMotionEffects = true;
 
         private void Awake()
         {
@@ -67,14 +68,24 @@ namespace AscendantContinuum.UI
 
         private void Start()
         {
+            allowMotionEffects = !(AccessibilityManager.Instance?.ReducedMotionEnabled ?? false);
+
             InitializeUI();
-            SpawnFloatingSignils();
+            if (allowMotionEffects)
+            {
+                SpawnFloatingSignils();
+            }
             PlayAmbientMusic();
             StartCoroutine(AnimateMenuEntrance());
         }
 
         private void Update()
         {
+            if (!allowMotionEffects)
+            {
+                return;
+            }
+
             UpdateParallaxBackground();
             UpdateFloatingSignils();
         }
@@ -189,9 +200,16 @@ namespace AscendantContinuum.UI
             // Start particle drift
             if (particleDrift != null)
             {
-                particleDrift.Play();
-                var emission = particleDrift.emission;
-                emission.rateOverTime = emission.rateOverTime.constant * particleIntensity;
+                if (allowMotionEffects)
+                {
+                    particleDrift.Play();
+                    var emission = particleDrift.emission;
+                    emission.rateOverTime = emission.rateOverTime.constant * particleIntensity;
+                }
+                else
+                {
+                    particleDrift.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                }
             }
         }
 
@@ -256,7 +274,7 @@ namespace AscendantContinuum.UI
         {
             // Fade out music
             if (AudioManager.Instance != null)
-                AudioManager.Instance.PlayMusic(null, 1f);
+                AudioManager.Instance.StopMusic(1f);
 
             // Fade out UI
             CanvasGroup canvasGroup = GetComponent<CanvasGroup>();
@@ -299,13 +317,15 @@ namespace AscendantContinuum.UI
         private float phaseOffset;
         private Vector3 startPosition;
         private Image sigilImage;
+        private RectTransform rectTransform;
 
         public void Initialize(float moveSpeed, float bob, float phase)
         {
             speed = moveSpeed;
             bobAmount = bob;
             phaseOffset = phase * 2f * Mathf.PI; // Convert phase to radians
-            startPosition = GetComponent<RectTransform>().anchoredPosition;
+            rectTransform = GetComponent<RectTransform>();
+            startPosition = rectTransform != null ? rectTransform.anchoredPosition : Vector3.zero;
             sigilImage = GetComponent<Image>();
 
             // Procedurally generate sigil visual (placeholder for now)
@@ -322,10 +342,7 @@ namespace AscendantContinuum.UI
 
         public void UpdateAnimation(float deltaTime)
         {
-            if (GetComponent<RectTransform>() == null) return;
-
-            RectTransform rectTransform = GetComponent<RectTransform>();
-            Vector3 currentPos = rectTransform.anchoredPosition;
+            if (rectTransform == null) return;
 
             // Circular motion with bobbing
             float time = Time.time * speed + phaseOffset;

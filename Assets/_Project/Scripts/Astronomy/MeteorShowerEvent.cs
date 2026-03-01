@@ -52,7 +52,7 @@ namespace AscendantContinuum.Astronomy
 
         private void Start()
         {
-            hudManager = Object.FindObjectOfType<HUDManager>();
+            hudManager = UnityEngine.Object.FindFirstObjectByType<HUDManager>();
 
             if (CosmicDataManager.Instance != null)
             {
@@ -136,7 +136,7 @@ namespace AscendantContinuum.Astronomy
                 int bonusSparks = meteorsCollected * 10;
 
                 // Award sparks to the Emberforge sparks system (universal currency)
-                var emberforgeSparks = Object.FindObjectOfType<Emberforge.EmberforgeSparks>();
+                var emberforgeSparks = UnityEngine.Object.FindFirstObjectByType<Emberforge.EmberforgeSparks>();
                 if (emberforgeSparks != null)
                 {
                     // Directly add via the tracked field — meteor sparks bypasses normal collection
@@ -265,7 +265,7 @@ namespace AscendantContinuum.Astronomy
         {
             if (hudManager == null)
             {
-                hudManager = Object.FindObjectOfType<HUDManager>();
+                hudManager = UnityEngine.Object.FindFirstObjectByType<HUDManager>();
             }
 
             if (hudManager != null)

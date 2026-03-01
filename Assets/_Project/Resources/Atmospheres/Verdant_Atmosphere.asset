@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Verdant_Atmosphere
+  m_EditorClassIdentifier: AscendantContinuum.Runtime:AscendantContinuum.Realms:RealmAtmosphereData
+  realmName: Verdant
+  realmId: verdant
+  mainLight: {fileID: 0}
+  ambientLightColor: {r: 0.05, g: 0.18, b: 0.08, a: 1}
+  ambientLightIntensity: 0.5
+  mainLightColor: {r: 0.5, g: 1, b: 0.45, a: 1}
+  mainLightIntensity: 1
+  mainLightRotation: 35
+  enableFog: 1
+  fogColor: {r: 0.06, g: 0.2, b: 0.1, a: 1}
+  fogStart: 8
+  fogEnd: 90
+  enablePostProcessing: 1
+  exposure: 0.08
+  saturation: 25
+  bloomIntensity: 1.3
+  vignettIntensity: 0.28
+  particleSystemPresets: []
+  particleIntensity: 1
+  autoPlayParticles: 1
+  colorGradingLUT: {fileID: 0}
+  colorGradingStrength: 0
+  ambienceKeyColor: {r: 0.2, g: 1, b: 0.35, a: 1}
+  ambienceFillColor: {r: 0.04, g: 0.3, b: 0.12, a: 1}
+  ambienceIntensity: 0.65

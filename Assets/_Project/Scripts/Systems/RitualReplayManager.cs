@@ -76,6 +76,20 @@ namespace AscendantContinuum.Systems
             DontDestroyOnLoad(gameObject);
         }
 
+        private void Start()
+        {
+            GameEvents.OnSigilDrawingCommitted += HandleSigilDrawingCommitted;
+            GameEvents.OnSigilStrokePoint      += HandleSigilStrokePoint;
+            GameEvents.OnSigilCompleted        += HandleSigilCompleted;
+        }
+
+        private void OnDestroy()
+        {
+            GameEvents.OnSigilDrawingCommitted -= HandleSigilDrawingCommitted;
+            GameEvents.OnSigilStrokePoint      -= HandleSigilStrokePoint;
+            GameEvents.OnSigilCompleted        -= HandleSigilCompleted;
+        }
+
         private void Update()
         {
             if (!_isCapturing) return;
@@ -84,7 +98,29 @@ namespace AscendantContinuum.Systems
                 EndCapture();
         }
 
-        // ── Public API ────────────────────────────────────────────────────
+        // ── GameEvent handlers ──────────────────────────────────────────────
+
+        private void HandleSigilDrawingCommitted(AscendantContinuum.Systems.SigilAnalysisResult analysis)
+        {
+            string realmId = AscendantContinuum.Core.GameManager.Instance?.CurrentRealm ?? "Unknown";
+            string ritualName = $"Sigil ({analysis.strokeCount} strokes, {analysis.totalArcLength:F1} len)";
+            BeginCapture(ritualName, realmId);
+        }
+
+        private void HandleSigilStrokePoint(float velocity, float curvature)
+        {
+            if (!_isCapturing) return;
+            // Map velocity to hue: slow (blue) → fast (red)
+            Color col = Color.HSVToRGB(Mathf.Clamp01(1f - velocity / 5f), 0.9f, 1f);
+            CaptureFrame("stroke", UnityEngine.Random.insideUnitSphere * 0.3f, col, velocity);
+        }
+
+        private void HandleSigilCompleted(AscendantContinuum.Data.SigilData data)
+        {
+            EndCapture();
+        }
+
+        // ── Public API ─────────────────────────────────────────────────────────────
 
         /// <summary>Call at the START of a ritual to begin the 6-second capture window.</summary>
         public void BeginCapture(string ritualName, string realmId)

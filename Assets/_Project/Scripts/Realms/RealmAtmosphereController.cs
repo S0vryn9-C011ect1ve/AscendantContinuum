@@ -106,7 +106,7 @@ namespace AscendantContinuum.Realms
         private void ApplyLighting()
         {
             // Find or create main light
-            mainLight = Object.FindObjectOfType<Light>();
+            mainLight = UnityEngine.Object.FindFirstObjectByType<Light>();
             if (mainLight == null)
             {
                 GameObject lightObj = new GameObject("DirectionalLight");
@@ -141,7 +141,7 @@ namespace AscendantContinuum.Realms
         private void ApplyPostProcessing()
         {
             // Find or create post-processing volume
-            postProcessVolume = Object.FindObjectOfType<Volume>();
+            postProcessVolume = UnityEngine.Object.FindFirstObjectByType<Volume>();
             if (postProcessVolume == null)
             {
                 GameObject volumeObj = new GameObject("PostProcessVolume");
@@ -206,7 +206,11 @@ namespace AscendantContinuum.Realms
 
                         // Adjust intensity
                         var main = particleInstance.main;
-                        main.startLifetime *= atmosphereData.particleIntensity;
+                        var lifetime = main.startLifetime;
+                        lifetime.constant *= atmosphereData.particleIntensity;
+                        lifetime.constantMin *= atmosphereData.particleIntensity;
+                        lifetime.constantMax *= atmosphereData.particleIntensity;
+                        main.startLifetime = lifetime;
 
                         if (atmosphereData.autoPlayParticles)
                             particleInstance.Play();
@@ -225,6 +229,44 @@ namespace AscendantContinuum.Realms
             if (targetData == null) return;
 
             StartCoroutine(AtmosphereTransitionCoroutine(targetData, duration));
+        }
+
+        /// <summary>
+        /// Called by SigilCompletionHandler — briefly overlays <paramref name="tint"/> on the
+        /// ambient light color before fading back to realm baseline over 2 seconds.
+        /// </summary>
+        public void SetCompletionOverlay(UnityEngine.Color tint)
+        {
+            StartCoroutine(CompletionOverlayCo(tint));
+        }
+
+        private System.Collections.IEnumerator CompletionOverlayCo(UnityEngine.Color tint)
+        {
+            var baseAmbient = UnityEngine.RenderSettings.ambientLight;
+            float elapsed   = 0f;
+
+            // Fade in
+            while (elapsed < 0.4f)
+            {
+                elapsed += UnityEngine.Time.deltaTime;
+                UnityEngine.RenderSettings.ambientLight =
+                    UnityEngine.Color.Lerp(baseAmbient, tint, elapsed / 0.4f);
+                yield return null;
+            }
+
+            yield return new UnityEngine.WaitForSeconds(0.6f);
+
+            // Fade out
+            elapsed = 0f;
+            while (elapsed < 1.2f)
+            {
+                elapsed += UnityEngine.Time.deltaTime;
+                UnityEngine.RenderSettings.ambientLight =
+                    UnityEngine.Color.Lerp(tint, baseAmbient, elapsed / 1.2f);
+                yield return null;
+            }
+
+            UnityEngine.RenderSettings.ambientLight = baseAmbient;
         }
 
         private System.Collections.IEnumerator AtmosphereTransitionCoroutine(RealmAtmosphereData targetData, float duration)

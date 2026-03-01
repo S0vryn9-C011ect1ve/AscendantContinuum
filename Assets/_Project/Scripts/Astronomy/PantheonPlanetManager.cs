@@ -94,7 +94,7 @@ namespace AscendantContinuum.Astronomy
 
         private void Start()
         {
-            hudManager = Object.FindObjectOfType<HUDManager>();
+            hudManager = UnityEngine.Object.FindFirstObjectByType<HUDManager>();
             lastCheck = DateTime.MinValue;
             CheckVisiblePlanets();
             InvokeRepeating(nameof(CheckVisiblePlanets), 0f, 3600f); // Check hourly
@@ -191,7 +191,7 @@ namespace AscendantContinuum.Astronomy
         {
             if (hudManager == null)
             {
-                hudManager = Object.FindObjectOfType<HUDManager>();
+                hudManager = UnityEngine.Object.FindFirstObjectByType<HUDManager>();
             }
 
             if (hudManager != null)

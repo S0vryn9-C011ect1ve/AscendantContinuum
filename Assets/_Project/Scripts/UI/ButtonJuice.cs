@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
+using AscendantContinuum.Core;
 
 namespace AscendantContinuum.UI
 {
@@ -63,7 +64,7 @@ namespace AscendantContinuum.UI
 
             // Haptic feedback
             if (hapticOnHover)
-                HapticFeedback.PlayPattern(HapticFeedbackPattern.LightTap);
+                AccessibilityManager.Instance?.TriggerHaptic(HapticType.Light);
 
             // Scale animation
             bool reducedMotion = AccessibilityManager.Instance?.ReducedMotionEnabled == true;
@@ -140,7 +141,7 @@ namespace AscendantContinuum.UI
 
             // Haptic feedback
             if (hapticOnClick)
-                HapticFeedback.PlayPattern(HapticFeedbackPattern.Click);
+                AccessibilityManager.Instance?.TriggerHaptic(HapticType.Selection);
 
             // Scale down
             bool reducedMotion = AccessibilityManager.Instance?.ReducedMotionEnabled == true;

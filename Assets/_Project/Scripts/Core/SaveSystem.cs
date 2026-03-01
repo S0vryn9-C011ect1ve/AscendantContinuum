@@ -10,7 +10,7 @@ namespace AscendantContinuum.Core
     /// Local save system with AES-256 encryption for security
     /// Handles player progress, settings, and offline data
     /// </summary>
-    public class SaveSystem : MonoBehaviour
+    public partial class SaveSystem : MonoBehaviour
     {
         public static SaveSystem Instance { get; private set; }
 
@@ -22,6 +22,14 @@ namespace AscendantContinuum.Core
         private PlayerData currentPlayerData;
         private byte[] encryptionKey;
         private byte[] encryptionIV;
+        private int persistedPlayTimeAtSessionStart;
+        private float sessionStartRealtime;
+
+        // ── Registered component cache (avoids FindFirstObjectByType in hot paths) ──
+        private static int _registeredSparksCollected = 0;
+
+        /// <summary>Call from EmberforgeSparks.Awake() to register the current spark count.</summary>
+        public static void RegisterSparksCollected(int count) => _registeredSparksCollected = count;
 
         private void Awake()
         {
@@ -36,6 +44,9 @@ namespace AscendantContinuum.Core
 
             currentPlayerData = new PlayerData();
             InitializeCryptoMaterial();
+
+            persistedPlayTimeAtSessionStart = 0;
+            sessionStartRealtime = Time.realtimeSinceStartup;
 
             savePath = Path.Combine(Application.persistentDataPath, saveFileName);
             Debug.Log($"[SaveSystem] Save path: {savePath}");
@@ -55,11 +66,11 @@ namespace AscendantContinuum.Core
                 {
                     // Game progress
                     currentRealm = GameManager.Instance?.CurrentRealm ?? "emberforge",
-                    sparksCollected = Object.FindObjectOfType<Emberforge.EmberforgeSparks>()?.SparksCollected ?? 0,
+                    sparksCollected = _registeredSparksCollected,
                     sigilsCollected = PlayerPrefs.GetInt("SigilCount", 0),
 
-                    // Accumulated play time (seconds since first run)
-                    totalPlayTime = PlayerPrefs.GetInt("TotalPlayTimeSeconds", 0) + Mathf.RoundToInt(Time.realtimeSinceStartup),
+                    // Accumulated play time (persisted baseline + current session delta)
+                    totalPlayTime = CalculateTotalPlayTimeSeconds(),
 
                     // Accessibility settings
                     colorblindMode = (int)(AccessibilityManager.Instance?.CurrentColorblindMode ?? 0),
@@ -84,10 +95,12 @@ namespace AscendantContinuum.Core
                     _ = FirebaseManager.Instance.SavePlayerData("users", userId, currentPlayerData);
                 }
 
+                GameEvents.RaiseSaveCompleted(true, "saved");
                 Debug.Log("[SaveSystem] ✅ Game saved successfully");
             }
             catch (Exception e)
             {
+                GameEvents.RaiseSaveCompleted(false, e.Message);
                 Debug.LogError($"[SaveSystem] ❌ Save failed: {e.Message}");
             }
         }
@@ -97,6 +110,7 @@ namespace AscendantContinuum.Core
             currentPlayerData.currentRealm = string.IsNullOrEmpty(realmId) ? "emberforge" : realmId;
             currentPlayerData.sparksCollected = Mathf.Max(0, sparks);
             currentPlayerData.sigilsCollected = Mathf.Max(0, sigils);
+            currentPlayerData.totalPlayTime = CalculateTotalPlayTimeSeconds();
             currentPlayerData.lastSaveTime = DateTime.UtcNow.ToString("o");
             currentPlayerData.version = Application.version;
 
@@ -127,6 +141,13 @@ namespace AscendantContinuum.Core
                 }
 
                 currentPlayerData = JsonUtility.FromJson<PlayerData>(json);
+                if (currentPlayerData == null)
+                {
+                    currentPlayerData = new PlayerData();
+                }
+
+                persistedPlayTimeAtSessionStart = Mathf.Max(0, currentPlayerData.totalPlayTime);
+                sessionStartRealtime = Time.realtimeSinceStartup;
 
                 Debug.Log($"[SaveSystem] ✅ Game loaded - Last save: {currentPlayerData.lastSaveTime}");
 
@@ -150,6 +171,8 @@ namespace AscendantContinuum.Core
                 }
 
                 currentPlayerData = new PlayerData();
+                persistedPlayTimeAtSessionStart = 0;
+                sessionStartRealtime = Time.realtimeSinceStartup;
                 Debug.Log("[SaveSystem] Save data deleted and player data reset");
             }
             catch (Exception e)
@@ -209,6 +232,9 @@ namespace AscendantContinuum.Core
         {
             string json = JsonUtility.ToJson(currentPlayerData, true);
 
+            persistedPlayTimeAtSessionStart = Mathf.Max(0, currentPlayerData.totalPlayTime);
+            sessionStartRealtime = Time.realtimeSinceStartup;
+
             if (encryptSaveData)
             {
                 byte[] encryptedData = EncryptString(json);
@@ -242,6 +268,12 @@ namespace AscendantContinuum.Core
             }
         }
 
+        private int CalculateTotalPlayTimeSeconds()
+        {
+            float sessionSeconds = Mathf.Max(0f, Time.realtimeSinceStartup - sessionStartRealtime);
+            return persistedPlayTimeAtSessionStart + Mathf.RoundToInt(sessionSeconds);
+        }
+
         public PlayerData CurrentPlayerData => currentPlayerData;
     }
 
@@ -262,5 +294,74 @@ namespace AscendantContinuum.Core
         // Meta
         public string lastSaveTime;
         public string version = "1.0.0";
+
+        // ── Sigil journal ─────────────────────────────────────────────────
+        public string[] sigilIds = new string[0];       // GUIDs of all owned sigils
+        public int sigilCountToday = 0;
+        public int sigilCountTotal = 0;
+        public string lastSigilDate = "";               // yyyy-MM-dd UTC
+
+        // ── Continuum collective ──────────────────────────────────────────
+        public float lastKnownCollectiveEnergy = 0f;
+
+        // ── NPC memory (migrated from PlayerPrefs) ────────────────────────
+        public int npcSparkusCreativity = 0;
+        public int npcPetalinaJoy = 0;
+        public int npcLuminaPatterns = 0;
+
+        // ── Cosmetics ─────────────────────────────────────────────────────
+        public string[] unlockedCosmeticIds = new string[0];
+        public string activeCosmeticTrailId = "default";
+        public string activeJournalThemeId = "dark_cosmos";
+        public string activeSigilGlowId = "soft";
+
+        // ── Session tracking ──────────────────────────────────────────────
+        public int totalSessionsCompleted = 0;
+        public int consecutiveDays = 0;
+        public string lastSessionDate = "";
+    }
+}
+
+// ── SaveSystem extension methods (sigil helpers) ──────────────────────────────
+// Placed in same file to avoid partial-class complications.
+namespace AscendantContinuum.Core
+{
+    public partial class SaveSystem
+    {
+        /// <summary>
+        /// Increments sigilCountToday + sigilCountTotal and appends <paramref name="sigilId"/> to sigilIds.
+        /// Called by SigilCompletionHandler after every successful sigil.
+        /// </summary>
+        public void BumpSigilCount(string sigilId)
+        {
+            var data = CurrentPlayerData;
+            // Reset daily count if day changed
+            string todayUtc = System.DateTime.UtcNow.ToString("yyyy-MM-dd");
+            if (data.lastSigilDate != todayUtc)
+            {
+                data.sigilCountToday = 0;
+                data.lastSigilDate   = todayUtc;
+            }
+            data.sigilCountToday++;
+            data.sigilCountTotal++;
+
+            // Append to journal
+            var ids = data.sigilIds ?? new string[0];
+            var newIds = new string[ids.Length + 1];
+            System.Array.Copy(ids, newIds, ids.Length);
+            newIds[ids.Length] = sigilId;
+            data.sigilIds = newIds;
+
+            SaveGame();
+        }
+
+        /// <summary>
+        /// Records that a sigil PNG/GIF was exported. Currently logs; extend for analytics.
+        /// </summary>
+        public void RecordSigilExport(string sigilId)
+        {
+            Debug.Log($"[SaveSystem] Sigil exported: {sigilId}");
+            // Future: increment export counter in PlayerData
+        }
     }
 }

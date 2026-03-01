@@ -52,6 +52,8 @@ namespace AscendantContinuum.Core
             EnsureManager<AudioManager>(root);
             EnsureManager<RealmTransitionManager>(root);
             EnsureManager<FirebaseManager>(root);
+            EnsureManager<GDPRConsentManager>(root);
+            EnsureManager<LocalNotificationManager>(root);
 
             // Systems
             EnsureManager<DailyChallengeManager>(root);
@@ -67,12 +69,28 @@ namespace AscendantContinuum.Core
             // Social
             EnsureManager<CrossPlayerWishWall>(root);
 
+            // ── New systems (Phases 1-8) ───────────────────────────────────
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.SessionManager");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.ContinuumFieldManager");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.SigilMutationSystem");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.CosmicQuoteSystem");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.CosmeticSystem");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.RealWorldNudgeSystem");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.SkyTimeSystem");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.SigilCompletionHandler");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.SigilArtifactExporter");
+
             // Optional / addon systems — gracefully skip if types are absent
             TryEnsureManagerByName(root, "AscendantContinuum.Systems.MindfulPlayManager");
             TryEnsureManagerByName(root, "AscendantContinuum.Systems.NatureConnectionManager");
             TryEnsureManagerByName(root, "AscendantContinuum.Systems.SacredTimingManager");
             TryEnsureManagerByName(root, "AscendantContinuum.Astronomy.CosmicDataManager");
             TryEnsureManagerByName(root, "AscendantContinuum.Astronomy.MoonPhaseEffects");
+            TryEnsureManagerByName(root, "AscendantContinuum.Analytics.AnalyticsManager");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.SeasonController");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.PantheonDeityEffects");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.SerendipityManager");
+            TryEnsureManagerByName(root, "AscendantContinuum.Systems.RitualReplayManager");
         }
 
         /// <summary>
@@ -82,7 +100,7 @@ namespace AscendantContinuum.Core
         /// </summary>
         private static void EnsureManager<T>(GameObject root) where T : MonoBehaviour
         {
-            if (Object.FindObjectOfType<T>() == null)
+            if (UnityEngine.Object.FindFirstObjectByType<T>() == null)
             {
                 root.AddComponent<T>();
                 Debug.Log($"[GameBootstrapper] Created {typeof(T).Name}");
@@ -98,7 +116,7 @@ namespace AscendantContinuum.Core
             var type = System.Type.GetType(fullTypeName);
             if (type == null) return;
 
-            if (Object.FindObjectOfType(type) == null)
+            if (UnityEngine.Object.FindFirstObjectByType(type) == null)
             {
                 root.AddComponent(type);
                 Debug.Log($"[GameBootstrapper] Created {type.Name} (optional)");
@@ -113,6 +131,11 @@ namespace AscendantContinuum.Core
 
             // Record session with Cosmic Identity so play-time metrics evolve
             CosmicIdentitySystem.Instance?.RecordSessionStart();
+
+            // Day 4 gate: prompt Arcane Personality Quiz if conditions are met
+            var pantheon = UnityEngine.Object.FindFirstObjectByType<PantheonDeityEffects>();
+            if (pantheon != null && pantheon.ShouldShowPantheonQuiz())
+                GameEvents.RaisePantheonQuizReady();
 
             // Wire Live Event → push notifications
             if (LiveEventEngine.Instance != null)
@@ -136,15 +159,25 @@ namespace AscendantContinuum.Core
         {
             if (GameManager.Instance == null) return;
 
+            GameFlowConfig flow = GameFlow.Config;
+            string onboardingScene = flow != null ? flow.OnboardingScene : SceneNames.Onboarding;
+            string mainMenuScene = flow != null ? flow.MainMenuScene : SceneNames.MainMenu;
+
             if (GameManager.Instance.ShouldRunOnboarding())
             {
                 Debug.Log("[GameBootstrapper] First-run — routing to Onboarding.");
-                SceneManager.LoadScene(SceneNames.Onboarding);
+                if (!SceneService.TryLoadScene(onboardingScene))
+                {
+                    SceneService.TryLoadScene(SceneNames.Onboarding);
+                }
             }
             else
             {
                 Debug.Log("[GameBootstrapper] Returning player — routing to MainMenu.");
-                SceneManager.LoadScene(SceneNames.MainMenu);
+                if (!SceneService.TryLoadScene(mainMenuScene))
+                {
+                    SceneService.TryLoadScene(SceneNames.MainMenu);
+                }
             }
         }
     }

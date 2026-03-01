@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+#if HAVE_UGS_ANALYTICS
+using Unity.Services.Analytics;
+using Unity.Services.Core;
+#endif
+using AscendantContinuum.Core;
+using AscendantContinuum.Data;
 
 namespace AscendantContinuum.Analytics
 {
@@ -39,9 +45,79 @@ namespace AscendantContinuum.Analytics
         {
             if (Instance == this)
             {
+                UnsubscribeGameEvents();
                 LogSessionEnd();
             }
         }
+
+        private void Start()
+        {
+            SubscribeGameEvents();
+            TryInitializeUGSAnalytics();
+            LogSessionStart();
+        }
+
+        // ── UGS Analytics init ──────────────────────────────────────────────
+
+        private void TryInitializeUGSAnalytics()
+        {
+            var consent = GDPRConsentManager.Instance;
+            if (consent == null || consent.HasAnalyticsConsent())
+                InitializeUGSAnalytics();
+            else
+                consent.OnConsentGiven += InitializeUGSAnalytics;
+        }
+
+        private async void InitializeUGSAnalytics()
+        {
+#if HAVE_UGS_ANALYTICS
+            try
+            {
+                await UnityServices.InitializeAsync();
+                AnalyticsService.Instance.StartDataCollection();
+                Debug.Log("[AnalyticsManager] UGS Analytics data collection started.");
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogWarning($"[AnalyticsManager] UGS init failed: {ex.Message}");
+            }
+#endif
+        }
+
+        // ── GameEvents wiring ───────────────────────────────────────────────
+
+        private void SubscribeGameEvents()
+        {
+            GameEvents.OnSigilCompleted     += HandleSigilCompleted;
+            GameEvents.OnRealmLoaded        += HandleRealmLoaded;
+            GameEvents.OnCelestialEventPeak += HandleCelestialPeak;
+            GameEvents.OnCosmeticUnlocked   += HandleCosmeticUnlocked;
+            GameEvents.OnChainCompleted     += HandleChainCompleted;
+        }
+
+        private void UnsubscribeGameEvents()
+        {
+            GameEvents.OnSigilCompleted     -= HandleSigilCompleted;
+            GameEvents.OnRealmLoaded        -= HandleRealmLoaded;
+            GameEvents.OnCelestialEventPeak -= HandleCelestialPeak;
+            GameEvents.OnCosmeticUnlocked   -= HandleCosmeticUnlocked;
+            GameEvents.OnChainCompleted     -= HandleChainCompleted;
+        }
+
+        private void HandleSigilCompleted(SigilData data)
+            => LogSigilCreated(data?.sigilId ?? "unknown", "drawn", 5);
+
+        private void HandleRealmLoaded(string realmId)
+            => LogRealmEntered(realmId, realmId);
+
+        private void HandleCelestialPeak(string eventId)
+            => LogEvent("celestial_event_peak", new Dictionary<string, object> { { "event_id", eventId } });
+
+        private void HandleCosmeticUnlocked(string itemId)
+            => LogEvent("cosmetic_unlocked", new Dictionary<string, object> { { "item_id", itemId } });
+
+        private void HandleChainCompleted(string chainId)
+            => LogEvent("chain_completed", new Dictionary<string, object> { { "chain_id", chainId } });
 
         /// <summary>
         /// Log session start (called on app launch)
@@ -220,18 +296,31 @@ namespace AscendantContinuum.Analytics
                 }
             }
 
-            // Unity Analytics
+            // Unity Analytics (UGS)
             if (enableUnityAnalytics)
             {
+#if HAVE_UGS_ANALYTICS
                 try
                 {
-                    // Unity.Analytics.Analytics.RecordEvent(eventName, parameters);
-                    // TODO: Uncomment when Unity Analytics is configured
+                    var ugsEvent = new CustomEvent(eventName);
+                    if (parameters != null)
+                    {
+                        foreach (var kvp in parameters)
+                        {
+                            if      (kvp.Value is int    i) ugsEvent.Add(kvp.Key, i);
+                            else if (kvp.Value is float  f) ugsEvent.Add(kvp.Key, (double)f);
+                            else if (kvp.Value is double d) ugsEvent.Add(kvp.Key, d);
+                            else if (kvp.Value is bool   b) ugsEvent.Add(kvp.Key, b);
+                            else                            ugsEvent.Add(kvp.Key, kvp.Value?.ToString() ?? "");
+                        }
+                    }
+                    AnalyticsService.Instance.RecordEvent(ugsEvent);
                 }
                 catch (System.Exception ex)
                 {
-                    Debug.LogWarning($"[AnalyticsManager] Unity Analytics error: {ex.Message}");
+                    Debug.LogWarning($"[AnalyticsManager] UGS Analytics error: {ex.Message}");
                 }
+#endif
             }
 
             Debug.Log($"[AnalyticsManager] Event: {eventName} - {ParametersToString(parameters)}");

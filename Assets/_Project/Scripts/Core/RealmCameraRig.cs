@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 #if CINEMACHINE_3_0_OR_NEWER
-using Cinemachine;
+using Unity.Cinemachine;
 #endif
 using AscendantContinuum.Realms;
 
@@ -22,8 +22,8 @@ namespace AscendantContinuum.Cameras
             public string realmId;
 
 #if CINEMACHINE_3_0_OR_NEWER
-            [Tooltip("The Cinemachine Virtual Camera for this realm")]
-            public Cinemachine.CinemachineVirtualCamera virtualCamera;
+            [Tooltip("The Cinemachine Camera for this realm")]
+            public CinemachineCamera virtualCamera;
 
             [Tooltip("Priority when this realm is active (inactive = 0)")]
             public int activePriority = 15;
@@ -47,7 +47,7 @@ namespace AscendantContinuum.Cameras
         [SerializeField, Range(0.1f, 3f)] private float impulseStrength = 0.4f;
 
 #if CINEMACHINE_3_0_OR_NEWER
-        private Cinemachine.CinemachineBrain _brain;
+    private CinemachineBrain _brain;
 #else
         private object _brain;
 #endif
@@ -56,11 +56,11 @@ namespace AscendantContinuum.Cameras
         private void Awake()
         {
 #if CINEMACHINE_3_0_OR_NEWER
-            _brain = Object.FindObjectOfType<Cinemachine.CinemachineBrain>();
+            _brain = UnityEngine.Object.FindFirstObjectByType<CinemachineBrain>();
 
             if (_brain != null)
-                ((Cinemachine.CinemachineBrain)_brain).DefaultBlend = new Cinemachine.CinemachineBlendDefinition(
-                    Cinemachine.CinemachineBlendDefinition.Styles.EaseInOut, blendDuration);
+                _brain.DefaultBlend = new CinemachineBlendDefinition(
+                    CinemachineBlendDefinition.Styles.EaseInOut, blendDuration);
 
             // Ensure all cameras start with priority 0
             foreach (var entry in realmCameras)
@@ -107,7 +107,7 @@ namespace AscendantContinuum.Cameras
             get
             {
 #if CINEMACHINE_3_0_OR_NEWER
-                return _brain != null && ((Cinemachine.CinemachineBrain)_brain).IsBlending;
+                return _brain != null && _brain.IsBlending;
 #else
                 return false;
 #endif
@@ -122,18 +122,18 @@ namespace AscendantContinuum.Cameras
         // ------------------------------------------------------------------ //
 
 #if CINEMACHINE_3_0_OR_NEWER
-        private static void SetCameraPriority(Cinemachine.CinemachineVirtualCamera cam, int priority)
+        private static void SetCameraPriority(CinemachineCamera cam, int priority)
         {
             if (cam != null)
                 cam.Priority = priority;
         }
 
-        private void TriggerImpulse(Cinemachine.CinemachineVirtualCamera cam)
+        private void TriggerImpulse(CinemachineCamera cam)
         {
             if (cam == null) return;
-            var impulse = cam.GetComponent<Cinemachine.CinemachineImpulseSource>();
+            var impulse = cam.GetComponent<CinemachineImpulseSource>();
             if (impulse == null)
-                impulse = cam.gameObject.AddComponent<Cinemachine.CinemachineImpulseSource>();
+                impulse = cam.gameObject.AddComponent<CinemachineImpulseSource>();
             impulse.GenerateImpulse(impulseStrength);
         }
 #else

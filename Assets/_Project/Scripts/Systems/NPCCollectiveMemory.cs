@@ -53,6 +53,10 @@ namespace AscendantContinuum.Systems
             DontDestroyOnLoad(gameObject);
         }
 
+        /// <summary>Flush all pending PlayerPrefs writes once per pause/quit — not per interaction.</summary>
+        private void OnApplicationPause(bool paused) { if (paused) PlayerPrefs.Save(); }
+        private void OnApplicationQuit()             { PlayerPrefs.Save(); }
+
         // ── Recording ─────────────────────────────────────────────────────
 
         /// <summary>
@@ -66,7 +70,7 @@ namespace AscendantContinuum.Systems
             string key = $"{PREF}{npcName}_{emotion}";
             int count = PlayerPrefs.GetInt(key, 0) + 1;
             PlayerPrefs.SetInt(key, count);
-            PlayerPrefs.Save();
+            // NOTE: PlayerPrefs.Save() is batched to OnApplicationPause/Quit — not called per interaction.
 
             // Check NPC evolution thresholds
             if (npcName == NPC_SPARKUS && emotion == Emotion.Creativity && count >= SPARKUS_CREATIVITY_THRESHOLD)
@@ -95,7 +99,7 @@ namespace AscendantContinuum.Systems
 
             int totalPatterns = PlayerPrefs.GetInt($"{PREF}{NPC_LUMINA}_TotalPatterns", 0) + 1;
             PlayerPrefs.SetInt($"{PREF}{NPC_LUMINA}_TotalPatterns", totalPatterns);
-            PlayerPrefs.Save();
+            // Batched save — not immediate.
 
             if (count >= LUMINA_PATTERN_THRESHOLD)
                 TriggerLuminaHallOfFame(patternName, count);
@@ -189,7 +193,6 @@ namespace AscendantContinuum.Systems
         {
             if (PlayerPrefs.GetInt($"{PREF}Sparkus_Evolved_{evolutionKey}", 0) == 1) return;
             PlayerPrefs.SetInt($"{PREF}Sparkus_Evolved_{evolutionKey}", 1);
-            PlayerPrefs.Save();
 
             Debug.Log($"[NPCMemory] Sparkus evolved: {evolutionKey}");
             OnNPCEvolved?.Invoke(NPC_SPARKUS, evolutionKey);
@@ -200,7 +203,6 @@ namespace AscendantContinuum.Systems
         {
             if (PlayerPrefs.GetInt($"{PREF}Petalina_Evolved_{evolutionKey}", 0) == 1) return;
             PlayerPrefs.SetInt($"{PREF}Petalina_Evolved_{evolutionKey}", 1);
-            PlayerPrefs.Save();
 
             Debug.Log($"[NPCMemory] Petalina evolved: {evolutionKey}");
             OnNPCEvolved?.Invoke(NPC_PETALINA, evolutionKey);
@@ -209,7 +211,6 @@ namespace AscendantContinuum.Systems
         private void TriggerLuminaHallOfFame(string patternName, int count)
         {
             PlayerPrefs.SetString($"{PREF}{NPC_LUMINA}_HallOfFame_Latest", patternName);
-            PlayerPrefs.Save();
 
             Debug.Log($"[NPCMemory] Lumina Hall of Fame: {patternName} ({count} traces)");
             OnNPCEvolved?.Invoke(NPC_LUMINA, $"hall_of_fame:{patternName}");
@@ -223,7 +224,6 @@ namespace AscendantContinuum.Systems
             if (dominant != prev)
             {
                 PlayerPrefs.SetInt($"{PREF}LastDominantEmotion", (int)dominant);
-                PlayerPrefs.Save();
                 OnCommunityMoodShift?.Invoke(dominant);
             }
         }
