@@ -91,6 +91,8 @@ namespace AscendantContinuum.Core
             TryEnsureManagerByName(root, "AscendantContinuum.Systems.PantheonDeityEffects");
             TryEnsureManagerByName(root, "AscendantContinuum.Systems.SerendipityManager");
             TryEnsureManagerByName(root, "AscendantContinuum.Systems.RitualReplayManager");
+            TryEnsureManagerByName(root, "AscendantContinuum.UI.SeasonPassUIManager");
+            TryEnsureManagerByName(root, "AscendantContinuum.UI.PantheonQuizPanel");
         }
 
         /// <summary>
