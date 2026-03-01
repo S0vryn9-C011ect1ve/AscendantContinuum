@@ -103,11 +103,49 @@ public static class BuildMethods
         {
             EnsureRealmScenesValidOrThrow();
 
-            PlayerSettings.companyName = COMPANY_NAME;
-            PlayerSettings.productName = PRODUCT_NAME;
-            PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel25;
-            PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel33;
-            EditorUserBuildSettings.buildAppBundle = false;
+            PlayerSettings.companyName          = COMPANY_NAME;
+            PlayerSettings.productName          = PRODUCT_NAME;
+            PlayerSettings.applicationIdentifier = BUNDLE_IDENTIFIER;
+
+            // Scripting backend + architecture (IL2CPP + ARM64 required by Play Store)
+            PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
+            PlayerSettings.SetIl2CppCompilerConfiguration(NamedBuildTarget.Android, Il2CppCompilerConfiguration.Release);
+            PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
+
+            // API levels — min 26 = Android 8+ (notification channels)
+            PlayerSettings.Android.minSdkVersion    = AndroidSdkVersions.AndroidApiLevel26;
+            PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevel34;
+
+            // Bundle version (ANDROID_BUILD_NUMBER env var for CI/CD)
+            string buildNumberStr              = System.Environment.GetEnvironmentVariable("ANDROID_BUILD_NUMBER") ?? "1";
+            PlayerSettings.bundleVersion        = "1.0.0";
+            PlayerSettings.Android.bundleVersionCode = int.TryParse(buildNumberStr, out int bn) ? bn : 1;
+
+            // Keystore signing (env vars; falls back to debug keystore for local dev)
+            string keystorePath = System.Environment.GetEnvironmentVariable("ANDROID_KEYSTORE_PATH") ?? "";
+            string keystorePass = System.Environment.GetEnvironmentVariable("ANDROID_KEYSTORE_PASS") ?? "";
+            string keyAlias     = System.Environment.GetEnvironmentVariable("ANDROID_KEY_ALIAS")    ?? "";
+            string keyAliasPass = System.Environment.GetEnvironmentVariable("ANDROID_KEY_ALIAS_PASS") ?? "";
+
+            if (!string.IsNullOrEmpty(keystorePath) && File.Exists(keystorePath))
+            {
+                PlayerSettings.Android.useCustomKeystore = true;
+                PlayerSettings.Android.keystoreName      = keystorePath;
+                PlayerSettings.Android.keystorePass      = keystorePass;
+                PlayerSettings.Android.keyaliasName      = keyAlias;
+                PlayerSettings.Android.keyaliasPass      = keyAliasPass;
+                Debug.Log($"[BuildMethods] Android keystore: {keystorePath}");
+            }
+            else
+            {
+                PlayerSettings.Android.useCustomKeystore = false;
+                Debug.LogWarning("[BuildMethods] ANDROID_KEYSTORE_PATH not set — using debug keystore (not suitable for store upload).");
+            }
+
+            // AAB (.aab) for Play Store; APK for sideload/debug. Set ANDROID_BUILD_AAB=1 for store builds.
+            bool buildAAB = System.Environment.GetEnvironmentVariable("ANDROID_BUILD_AAB") == "1";
+            EditorUserBuildSettings.buildAppBundle = buildAAB;
+            string ext = buildAAB ? ".aab" : ".apk";
 
             string outputPath = Path.Combine(BuildPath, "Android");
             if (!Directory.Exists(outputPath))
@@ -115,10 +153,10 @@ public static class BuildMethods
 
             var buildOptions = new BuildPlayerOptions
             {
-                scenes = GetScenePaths(),
-                locationPathName = Path.Combine(outputPath, "AscendantContinuum.apk"),
-                target = BuildTarget.Android,
-                options = EditorUserBuildSettings.development ? BuildOptions.Development : BuildOptions.None
+                scenes           = GetScenePaths(),
+                locationPathName = Path.Combine(outputPath, $"AscendantContinuum{ext}"),
+                target           = BuildTarget.Android,
+                options          = EditorUserBuildSettings.development ? BuildOptions.Development : BuildOptions.None
             };
 
             var report = BuildPipeline.BuildPlayer(buildOptions);

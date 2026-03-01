@@ -36,6 +36,26 @@ namespace AscendantContinuum.Core
             InitializeChannels();
         }
 
+        private void Start()
+        {
+            // Schedule tonight-at-8am reminder on startup (respects consent gate)
+            ScheduleDailyChallengeReminder();
+        }
+
+        // ── Consent gate ────────────────────────────────────────────────
+
+        /// <summary>Returns false when GDPR consent has been explicitly revoked.</summary>
+        private bool IsNotificationAllowed()
+        {
+#if UNITY_EDITOR
+            return true;
+#else
+            // Null = consent manager not yet spawned; allow in that case (pre-consent scene)
+            if (GDPRConsentManager.Instance == null) return true;
+            return GDPRConsentManager.Instance.HasConsent();
+#endif
+        }
+
         private void InitializeChannels()
         {
 #if UNITY_ANDROID
@@ -64,6 +84,8 @@ namespace AscendantContinuum.Core
         /// </summary>
         public void ScheduleDailyChallengeReminder()
         {
+            if (!IsNotificationAllowed()) return;
+
             // Calculate time until next midnight UTC
             DateTime now = DateTime.UtcNow;
             DateTime nextMidnight = now.Date.AddDays(1);
@@ -114,6 +136,8 @@ namespace AscendantContinuum.Core
         /// </summary>
         public void ScheduleSigilCraftingReminder(float hoursDelay = 24f)
         {
+            if (!IsNotificationAllowed()) return;
+
             DateTime scheduledTime = DateTime.Now.AddHours(hoursDelay);
 
 #if UNITY_ANDROID
@@ -160,6 +184,7 @@ namespace AscendantContinuum.Core
         public void ScheduleLiveEventNotification(LiveEvent evt)
         {
             if (evt == null) return;
+            if (!IsNotificationAllowed()) return;
 
             // Fire 3 hours before peak — if already past, show in 5 minutes
             DateTime fireTime = evt.peakUtc.ToLocalTime().AddHours(-3);

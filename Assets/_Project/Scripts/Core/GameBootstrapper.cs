@@ -148,6 +148,16 @@ namespace AscendantContinuum.Core
                     LocalNotificationManager.Instance?.ScheduleLiveEventNotification(evt);
             }
 
+            // Wire DailyChallenge completion → reschedule tomorrow's reminder
+            if (DailyChallengeManager.Instance != null)
+                DailyChallengeManager.Instance.OnChallengeCompleted += _ =>
+                    LocalNotificationManager.Instance?.ScheduleDailyChallengeReminder();
+
+            // Wire GDPR consent granted → schedule daily notification for first time
+            if (GDPRConsentManager.Instance != null)
+                GDPRConsentManager.Instance.OnConsentGiven += () =>
+                    LocalNotificationManager.Instance?.ScheduleDailyChallengeReminder();
+
             // When the game starts on the Bootstrap scene, route to the
             // correct destination determined by save-data state.
             if (activeScene == SceneNames.Bootstrap)
