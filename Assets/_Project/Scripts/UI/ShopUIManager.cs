@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using AscendantContinuum.Platform;
+using AscendantContinuum.Systems;
 
 namespace AscendantContinuum.UI
 {
@@ -33,6 +34,15 @@ namespace AscendantContinuum.UI
         [SerializeField] private Button patronBuyButton;
         [SerializeField] private TextMeshProUGUI patronBuyButtonLabel;
         [SerializeField] private GameObject patronPerksPanel;          // lists the boons
+
+        // ── Season Pass card ───────────────────────────────────
+        [Header("Season Pass Card")]
+        [SerializeField] private GameObject        seasonPassCard;
+        [SerializeField] private TextMeshProUGUI   seasonPassInfoLabel;    // "Season 1 — Week 3 / 9"
+        [SerializeField] private TextMeshProUGUI   seasonPassTierLabel;    // "Tier 4 / 10"
+        [SerializeField] private Button            seasonPassViewButton;   // opens full season pass panel
+        [SerializeField] private Button            seasonPassUnlockButton; // buys premium track via Cosmic Patron
+        [SerializeField] private TextMeshProUGUI   seasonPassUnlockLabel;  // "$2.99/mo" / "✦ Active"
 
         // ── One-time cosmetic cards ───────────────────────────────────────
         [Header("Cosmetic Cards")]
@@ -65,6 +75,7 @@ namespace AscendantContinuum.UI
 
         // ── Price strings (matches store listings) ───────────────────────
         private const string PRICE_PATRON      = "$2.99/mo";
+        private const string PRICE_SEASON_PASS  = "$2.99/mo";  // premium track via Cosmic Patron subscription
         private const string PRICE_SIGIL_SKIN  = "$1.99";
         private const string PRICE_CONSTEL     = "$4.99";
         private const string PRICE_ARCHIVE     = "$4.99";
@@ -131,6 +142,8 @@ namespace AscendantContinuum.UI
         private void WireButtons()
         {
             patronBuyButton?       .onClick.AddListener(OnPatronBuyPressed);
+            seasonPassViewButton?  .onClick.AddListener(OnSeasonPassViewPressed);
+            seasonPassUnlockButton?.onClick.AddListener(OnSeasonPassUnlockPressed);
             sigilFlameBuyButton?   .onClick.AddListener(OnSigilFlamePressed);
             sigilVerdantBuyButton? .onClick.AddListener(OnSigilVerdantPressed);
             constellationPackBuyButton?.onClick.AddListener(OnConstellationPackPressed);
@@ -158,6 +171,18 @@ namespace AscendantContinuum.UI
                 patronPerksPanel.SetActive(true); // always show perks for transparency
             if (patronBadgePreviewLabel != null)
                 patronBadgePreviewLabel.text = isPatron ? mgr.GetPatronBadge() : "[Cosmic Patron]";
+
+            // Season pass card
+            var sc = SeasonController.Instance;
+            bool hasPremiumTrack = sc != null && sc.IsPremiumActive;
+            if (seasonPassInfoLabel  != null)
+                seasonPassInfoLabel.text  = $"{SeasonController.SeasonDisplayName()} — Week {SeasonController.WeekInSeason()} / 9";
+            if (seasonPassTierLabel  != null)
+                seasonPassTierLabel.text  = sc != null ? $"Tier {sc.CurrentTier + 1} / {SeasonController.FREE_TIERS}" : "";
+            if (seasonPassUnlockLabel != null)
+                seasonPassUnlockLabel.text = hasPremiumTrack ? "✦ Active (Cosmic Patron)" : PRICE_SEASON_PASS;
+            if (seasonPassUnlockButton != null)
+                seasonPassUnlockButton.interactable = !hasPremiumTrack;
 
             // Cosmetic cards
             RefreshCosmeticCard(sigilFlameBuyButton,         sigilFlameStatusLabel,        mgr.HasSigilFlame,        PRICE_SIGIL_SKIN);
@@ -214,6 +239,19 @@ namespace AscendantContinuum.UI
         {
             ShowFeedback("Restoring purchases…");
             CosmicPatronManager.Instance?.RestorePurchases();
+        }
+
+        private void OnSeasonPassViewPressed()
+        {
+            SeasonPassUIManager.Instance?.OpenPanel();
+            CloseShop();
+        }
+
+        private void OnSeasonPassUnlockPressed()
+        {
+            ShowFeedback("Starting purchase…");
+            // Premium season pass track is included with Cosmic Patron subscription
+            CosmicPatronManager.Instance?.PurchaseCosmicPatron();
         }
 
         // ── Purchase callbacks ────────────────────────────────────────────

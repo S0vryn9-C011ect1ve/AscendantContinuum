@@ -38,8 +38,23 @@ namespace AscendantContinuum.Core
 
         private void Start()
         {
-            // Schedule tonight-at-8am reminder on startup (respects consent gate)
+#if UNITY_ANDROID
+            // Android 13 (API 33+) requires POST_NOTIFICATIONS runtime permission.
+            const string POST_NOTIF_PERM = "android.permission.POST_NOTIFICATIONS";
+            if (UnityEngine.Android.Permission.HasUserAuthorizedPermission(POST_NOTIF_PERM))
+            {
+                ScheduleDailyChallengeReminder();
+            }
+            else
+            {
+                var callbacks = new UnityEngine.Android.PermissionCallbacks();
+                callbacks.PermissionGranted += _ => ScheduleDailyChallengeReminder();
+                UnityEngine.Android.Permission.RequestUserPermission(POST_NOTIF_PERM, callbacks);
+            }
+#else
+            // iOS: handles own permission prompt on first notification schedule
             ScheduleDailyChallengeReminder();
+#endif
         }
 
         // ── Consent gate ────────────────────────────────────────────────
