@@ -37,11 +37,6 @@ namespace AscendantContinuum.Systems
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
-
-            // Increment lifetime session counter (read by PantheonDeityEffects Day4 gate)
-            int total = PlayerPrefs.GetInt("SessionCount_Total", 0) + 1;
-            PlayerPrefs.SetInt("SessionCount_Total", total);
-            PlayerPrefs.Save();
         }
 
         private void Start()

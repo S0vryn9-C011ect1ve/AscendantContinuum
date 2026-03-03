@@ -68,9 +68,9 @@ namespace AscendantContinuum.Systems
             SigilData sigil = null;
             if (SigilGenerator.Instance != null)
             {
-                // Build temporary metrics from analysis for the generator
+                // Build temporary metrics for generator (analysis is still used by VFX/audio below)
                 var metrics = new PlayerPlaystyleMetrics();
-                sigil = SigilGenerator.Instance.GenerateSigil(analysis, metrics);
+                sigil = SigilGenerator.Instance.GenerateSigil(metrics);
             }
             else
             {
@@ -94,7 +94,7 @@ namespace AscendantContinuum.Systems
             }
 
             // ── 5. Haptic pulse ───────────────────────────────────────────────
-            AccessibilityManager.Instance?.TriggerHaptic(HapticType.MediumImpact);
+            AccessibilityManager.Instance?.TriggerHaptic(HapticType.Medium);
 
             // ── 6. Audio completion tone ──────────────────────────────────────
             AudioManager.Instance?.PlaySigilCompletion(analysis);
@@ -115,7 +115,7 @@ namespace AscendantContinuum.Systems
                 // Persist sigil count
                 int count = PlayerPrefs.GetInt("SigilCount", 0) + 1;
                 PlayerPrefs.SetInt("SigilCount", count);
-                SaveSystem.Instance?.BumpSigilCount();
+                SaveSystem.Instance?.BumpSigilCount(sigil.sigilId);
             }
 
             // ── 10. Collective field increment ────────────────────────────────

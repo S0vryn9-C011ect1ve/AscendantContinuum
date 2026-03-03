@@ -4,6 +4,8 @@
     "references": [
         "Unity.TextMeshPro",
         "Unity.InputSystem",
+        "Unity.Services.Core",
+        "Unity.Services.Analytics",
         "Unity.Notifications.Unified",
         "Unity.Notifications.Android",
         "Unity.Notifications.iOS",

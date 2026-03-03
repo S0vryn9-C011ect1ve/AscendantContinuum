@@ -143,8 +143,8 @@ namespace AscendantContinuum.UI
             var stageDot = card.transform.Find("StageDot")?.GetComponent<Image>();
             if (stageDot != null && SigilMutationSystem.Instance != null)
             {
-                var props = SigilMutationSystem.Instance.GetMutationProperties(sigilId);
-                stageDot.color = props.Stage switch
+                int stage = SigilMutationSystem.Instance.GetMutationStage(sigilId);
+                stageDot.color = stage switch
                 {
                     1 => new Color(0.5f, 0.8f, 1f),   // pulse — ice blue
                     2 => new Color(0.8f, 0.4f, 1f),   // tint  — violet
