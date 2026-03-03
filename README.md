@@ -2,7 +2,7 @@
 
 **A mindful cosmic adventure — traverse celestial realms, grow cosmic flora, and align with the stars.**
 
-> 🚀 **Release Candidate 1.** The game is live at [ascendant-continuum.web.app](https://ascendant-continuum.web.app) — preparing for public launch.
+> 🚀 **Release Candidate 1 (Updated March 3, 2026).** WebGL is live at [ascendant-continuum.web.app](https://ascendant-continuum.web.app); Android verification is pending local Unity Android module installation.
 
 ![Version](https://img.shields.io/badge/version-1.0.0--rc-goldenrod)
 ![Accessibility](https://img.shields.io/badge/accessibility-first-green)
@@ -54,15 +54,16 @@ We have just completed our final polish pass to ensure a flawless player experie
 
 ## 🏗️ Project Status
 
-**Current Phase:** Release Candidate 1 — Final Polish & Launch Prep
+**Current Phase:** Release Candidate 1 — Build Stabilization & Launch Prep
 
 **Infrastructure — Complete:**
 - ✅ Unity 6000.3.9f1, IL2CPP, URP 17.3.0
 - ✅ All 5 realm scenes (Emberforge, Verdant, Echo Fields, Dawn Citadel, Lantern Ascension)
 - ✅ WebGL deployed live → https://ascendant-continuum.web.app/play/
-- ✅ Android build — CI passing
+- ⚠️ Android build — blocked locally until Unity Android Build Support is installed
 - ✅ Firebase Hosting, Firestore, Storage — live with robust offline support
 - ✅ GitHub Actions CI/CD — auto-deploys on every push to `main`
+- ✅ EditMode test compilation blockers resolved (Object ambiguity + dominant direction angle conversion)
 - ✅ Full accessibility suite (colorblind, reduced motion, dyslexia, ADHD, haptics)
 - ✅ 42 achievements, daily challenges, live cosmic events
 - ✅ Cross-player Wish Wall, Guardian push notifications

@@ -1,6 +1,6 @@
 # Development Status — The Ascendant Continuum
 
-**Last Updated:** February 25, 2026  
+**Last Updated:** March 3, 2026  
 **Phase:** Commercial Launch Readiness 🚀
 
 ---
@@ -25,9 +25,9 @@
 - ✅ Mindful Play / Digital Sunset system
 - ✅ Contextual FTUE (First-Time User Experience) with interactive UI highlighting
 - ✅ Local Push Notifications for 7-day retention loop (Daily Challenges & Sigil Crafting)
-- ✅ Android build: passing
-- 🔧 iOS build: non-blocking (minor compile fixes pending)
-- 🔧 Unity Tests: non-blocking (test fixtures being updated)
+- ⚠️ Android build: verification blocked in this environment (Unity Android Build Support module missing)
+- 🔧 iOS build: pending module install and verification
+- ✅ Unity EditMode test compile blockers fixed; batch test run exits with code 0
 
 ### Live Deployments
 - ✅ https://ascendant-continuum.web.app — landing page live

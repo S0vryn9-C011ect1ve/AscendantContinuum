@@ -1,30 +1,30 @@
 # Build Readiness Status
 
-Date: 2026-02-28
+Date: 2026-03-03
 
 ## Current State
 
-- **Script Compilation**: Clean in IDE and Safe Mode recovery complete.
+- **Script Compilation**: Clean.
 - **Unity Editor**: 6000.3.9f1 installed and detected.
 - **Platform Modules**: WebGL support present; Android/iOS modules missing.
+- **EditMode Tests**: Compile blockers fixed and test run exits cleanly in batch mode.
 
 ## WebGL Build Validation
 
-- **Batch Build Attempts**: Timeout failures after database lock contention.
-- **Root Cause**: Unity batch build blocked indefinitely by asset database lock (Unity editor or background indexer or file watcher held locks preventing batch `-batchmode` startup).
-- **Mitigation Applied**: Build script now auto-clears known Unity DB locks and increases retry attempts from 2 to 3.
-- **Outcome**: Batch timeout persists (30min build attempts exhausting `UnityBuildTimeoutSeconds`), suggesting underlying Unity editor/library state corruption or concurrent process conflict.
+- **Verification Result**: WebGL build validated successfully via direct Unity batch invocation (exit code 0).
+- **Artifact Evidence**: `Builds/WebGL/Build/WebGL.data` generated and present.
+- **Build Script State**: `Build.ps1` includes UPM preflight and compile-error detection; preflight remains sensitive to local process/lock contention and may fail even when direct build succeeds.
 
 ## Recommended Next Steps
 
-1. **Manual Unity Editor Build**: Open project in editor, run `Assets/Build WebGL (Development)` from editor menu, observe whether build completes or blocks indefinitely.
-2. **Library Regeneration**: Delete `Library` folder entirely, let Unity regenerate clean project state, then retry batch build.
-3. **Concurrent Process Check**: Ensure no Unity instances, Unity Hub background services, or file watchers are running before batch build.
-4. **Alternative Build Target**: If WebGL blocking persists, attempt Android or iOS after installing respective platform modules to validate batch pipeline on a different target.
+1. **Install Android Build Support** in Unity Hub for `6000.3.9f1` (or another installed editor), then rerun Android verification build.
+2. **Install iOS Build Support** for parity verification.
+3. **Stabilize UPM preflight** by reducing lock-file churn and avoiding aggressive process kill loops during retries.
+4. **Run runtime smoke test** on latest WebGL build artifact.
 
 ## Production Readiness Gates
 
-- [ ] Batch WebGL build completes within 30 minutes.
+- [x] WebGL build artifact generated and runnable path produced.
 - [ ] Generated WebGL artifact launches and runs in browser.
 - [ ] Script compile clean (✔ achieved).
 - [ ] Runtime smoke test passes (not yet executed).
