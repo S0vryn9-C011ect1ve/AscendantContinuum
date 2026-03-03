@@ -141,8 +141,9 @@ namespace AscendantContinuum.Tests.EditMode
         {
             var strokes = new List<List<Vector2>> { Line(Vector2.zero, new Vector2(10f, 0f)) };
             var result  = SigilStrokeAnalyzer.Analyze(strokes, 1f);
-            // Right direction = 0 radians, allow small tolerance
-            float diff  = Mathf.Abs(Mathf.DeltaAngle(result.dominantDirection, 0f));
+            // Right direction = 0 degrees, allow small tolerance
+            float angleDeg = Mathf.Atan2(result.dominantDirection.y, result.dominantDirection.x) * Mathf.Rad2Deg;
+            float diff     = Mathf.Abs(Mathf.DeltaAngle(angleDeg, 0f));
             Assert.That(diff, Is.LessThan(15f));
         }
 
