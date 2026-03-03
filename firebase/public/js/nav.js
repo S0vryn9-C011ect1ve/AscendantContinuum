@@ -46,4 +46,28 @@ function setupNavActiveSection() {
     setActiveLink(sectionMap[0].link);
 }
 
-window.addEventListener('load', setupNavActiveSection);
+function setupBackToTopButton() {
+    const backToTop = document.getElementById('back-to-top');
+    if (!backToTop) return;
+
+    const updateVisibility = () => {
+        if (window.scrollY > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    };
+
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    updateVisibility();
+}
+
+window.addEventListener('load', () => {
+    setupNavActiveSection();
+    setupBackToTopButton();
+});
