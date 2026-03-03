@@ -109,6 +109,14 @@ body {
     transform: translateY(-1px);
 }
 
+.top-nav-brand:focus-visible,
+.top-nav-link:focus-visible,
+.back-to-top:focus-visible {
+    outline: 3px solid rgba(255, 230, 109, 0.95);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(26, 26, 46, 0.9);
+}
+
 .top-nav-link.active {
     background: rgba(255, 230, 109, 0.2);
     border-color: rgba(255, 230, 109, 0.9);
