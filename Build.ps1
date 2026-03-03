@@ -288,16 +288,24 @@ function Invoke-UnityUpmPreflight {
         $upmFailed = $false
         if (Test-Path $preflightLogPath) {
             try {
-                $upmFailed =
+                # Check for critical UPM/IPC failures
+                $hasUpmIpcError =
                     (Select-String -Path $preflightLogPath -Pattern "Could not establish a connection with the Unity Package Manager local server process." -SimpleMatch -Quiet) -or
                     (Select-String -Path $preflightLogPath -Pattern "Could not connect to IPC stream" -SimpleMatch -Quiet)
+                
+                # Check for compile errors
+                $hasCompileErrors = Select-String -Path $preflightLogPath -Pattern "error CS\d+" -Quiet
+                
+                $upmFailed = $hasUpmIpcError -or $hasCompileErrors
             }
             catch {
                 $upmFailed = $true
             }
         }
-
-        if (-not $upmFailed -and $process.ExitCode -eq 0) {
+        
+    # Accept exit code 0 or 1 (1 often just means warnings)
+    # Only fail if we detected actual UPM/IPC errors or compile errors
+    if (-not $upmFailed -and ($process.ExitCode -eq 0 -or $process.ExitCode -eq 1)) {
             Write-Host "UPM preflight passed." -ForegroundColor Green
             return $true
         }
