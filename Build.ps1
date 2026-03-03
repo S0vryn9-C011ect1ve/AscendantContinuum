@@ -223,6 +223,96 @@ function Clear-UnityDatabaseLocks {
     }
 }
 
+function Clear-UpmState {
+    param([string]$WorkspacePath)
+
+    Clear-UnityDatabaseLocks -WorkspacePath $WorkspacePath
+
+    $upmCachePath = Join-Path $env:LOCALAPPDATA "Unity\cache\upm"
+    if (Test-Path $upmCachePath) {
+        try {
+            Remove-Item $upmCachePath -Recurse -Force -ErrorAction Stop
+            Write-Host "Cleared UPM cache: $upmCachePath" -ForegroundColor DarkYellow
+        }
+        catch {
+            Write-Host "Could not clear UPM cache: $upmCachePath" -ForegroundColor DarkYellow
+        }
+    }
+}
+
+function Invoke-UnityUpmPreflight {
+    param(
+        [string]$UnityExecutablePath,
+        [string]$WorkspacePath,
+        [string]$LogsDirectory,
+        [int]$MaxAttempts = 2
+    )
+
+    $preflightLogPath = Join-Path $LogsDirectory "upm_preflight.log"
+    $attempt = 1
+
+    while ($attempt -le $MaxAttempts) {
+        Write-Host "UPM preflight attempt $attempt/$MaxAttempts..." -ForegroundColor Yellow
+
+        Stop-BuildProcesses
+        Clear-UpmState -WorkspacePath $WorkspacePath
+        Start-Sleep -Seconds 3
+
+        $arguments = @(
+            "-quit",
+            "-batchmode",
+            "-nographics",
+            "-projectPath", "`"$WorkspacePath`"",
+            "-logFile", "`"$preflightLogPath`""
+        )
+
+        $process = Start-Process -FilePath $UnityExecutablePath -ArgumentList $arguments -PassThru -NoNewWindow
+        $completed = $process.WaitForExit(180000)
+
+        if (-not $completed) {
+            try {
+                Stop-Process -Id $process.Id -Force -ErrorAction Stop
+            }
+            catch {
+                Write-Host "Could not terminate timed-out UPM preflight process (PID $($process.Id))." -ForegroundColor DarkYellow
+            }
+
+            if ($attempt -ge $MaxAttempts) {
+                return $false
+            }
+
+            $attempt++
+            continue
+        }
+
+        $upmFailed = $false
+        if (Test-Path $preflightLogPath) {
+            try {
+                $upmFailed =
+                    (Select-String -Path $preflightLogPath -Pattern "Could not establish a connection with the Unity Package Manager local server process." -SimpleMatch -Quiet) -or
+                    (Select-String -Path $preflightLogPath -Pattern "Could not connect to IPC stream" -SimpleMatch -Quiet)
+            }
+            catch {
+                $upmFailed = $true
+            }
+        }
+
+        if (-not $upmFailed -and $process.ExitCode -eq 0) {
+            Write-Host "UPM preflight passed." -ForegroundColor Green
+            return $true
+        }
+
+        Write-Host "UPM preflight failed on attempt $attempt (exit code $($process.ExitCode))." -ForegroundColor Yellow
+        if ($attempt -ge $MaxAttempts) {
+            return $false
+        }
+
+        $attempt++
+    }
+
+    return $false
+}
+
 function Get-UnityEditorRoot {
     param([string]$UnityExecutablePath)
     return Split-Path -Parent $UnityExecutablePath
@@ -451,6 +541,18 @@ function Build-WebGL {
 
             Clear-UnityDatabaseLocks -WorkspacePath $ProjectPath
             Start-Sleep -Seconds 5
+        }
+
+        $upmReady = Invoke-UnityUpmPreflight -UnityExecutablePath $UnityPath -WorkspacePath $ProjectPath -LogsDirectory $logsPath
+        if (-not $upmReady) {
+            if ($attempt -ge $maxAttempts) {
+                Write-Host "UPM preflight failed after multiple attempts. Check $(Join-Path $logsPath 'upm_preflight.log')." -ForegroundColor Red
+                exit 1
+            }
+
+            Write-Host "UPM preflight failed for WebGL attempt $attempt. Preparing retry..." -ForegroundColor Yellow
+            $attempt++
+            continue
         }
 
         $process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -NoNewWindow

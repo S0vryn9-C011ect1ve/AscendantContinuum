@@ -16,8 +16,8 @@ namespace AscendantContinuum.Tests.EditMode
         [SetUp]
         public void SetUp()
         {
-            var existing = Object.FindFirstObjectByType<SeasonController>();
-            if (existing != null) Object.DestroyImmediate(existing.gameObject);
+            var existing = UnityEngine.Object.FindFirstObjectByType<SeasonController>();
+            if (existing != null) UnityEngine.Object.DestroyImmediate(existing.gameObject);
 
             // Clean all season-keyed PlayerPrefs used by these tests
             for (int i = 0; i < 5; i++)
@@ -36,7 +36,7 @@ namespace AscendantContinuum.Tests.EditMode
         [TearDown]
         public void TearDown()
         {
-            if (_go != null) Object.DestroyImmediate(_go);
+            if (_go != null) UnityEngine.Object.DestroyImmediate(_go);
         }
 
         // ── Static date math ──────────────────────────────────────────────

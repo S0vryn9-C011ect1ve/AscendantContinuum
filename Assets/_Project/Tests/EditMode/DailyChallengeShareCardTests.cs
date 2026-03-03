@@ -20,8 +20,8 @@ namespace AscendantContinuum.Tests.EditMode
         [SetUp]
         public void SetUp()
         {
-            var existing = Object.FindFirstObjectByType<DailyChallengeManager>();
-            if (existing != null) Object.DestroyImmediate(existing.gameObject);
+            var existing = UnityEngine.Object.FindFirstObjectByType<DailyChallengeManager>();
+            if (existing != null) UnityEngine.Object.DestroyImmediate(existing.gameObject);
 
             PlayerPrefs.DeleteKey("DailyChallenge_Data");
             PlayerPrefs.DeleteKey("DailyChallenge_Date");
@@ -36,7 +36,7 @@ namespace AscendantContinuum.Tests.EditMode
         [TearDown]
         public void TearDown()
         {
-            if (_go != null) Object.DestroyImmediate(_go);
+            if (_go != null) UnityEngine.Object.DestroyImmediate(_go);
             PlayerPrefs.DeleteKey("DailyChallenge_Data");
             PlayerPrefs.DeleteKey("DailyChallenge_Date");
             PlayerPrefs.DeleteKey("DailyChallenge_Streak");
@@ -122,7 +122,7 @@ namespace AscendantContinuum.Tests.EditMode
             Assert.IsNotNull(text, "Share text must not be null even with no challenge.");
             Assert.IsNotEmpty(text);
 
-            Object.DestroyImmediate(freshGo);
+            UnityEngine.Object.DestroyImmediate(freshGo);
         }
     }
 }
