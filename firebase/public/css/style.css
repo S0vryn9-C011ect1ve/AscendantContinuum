@@ -3,24 +3,30 @@
 /* ===== CSS Variables ===== */
 :root {
     /* Colors - Cosmic Theme */
-    --color-primary: #ff6b35;      /* Ember orange */
-    --color-secondary: #4ecdc4;    /* Mystic teal */
-    --color-accent: #ffe66d;       /* Golden glow */
-    --color-dark: #1a1a2e;         /* Deep space */
-    --color-light: #eef0f2;        /* Soft light */
-    --color-purple: #9d4edd;       /* Magical purple */
-    
+    --color-primary: #ff6b35;
+    /* Ember orange */
+    --color-secondary: #4ecdc4;
+    /* Mystic teal */
+    --color-accent: #ffe66d;
+    /* Golden glow */
+    --color-dark: #1a1a2e;
+    /* Deep space */
+    --color-light: #eef0f2;
+    /* Soft light */
+    --color-purple: #9d4edd;
+    /* Magical purple */
+
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-card: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
-    
+
     /* Typography */
     --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --font-size-base: 16px;
@@ -51,26 +57,81 @@ body {
     padding: 0 var(--spacing-md);
 }
 
+/* ===== Top Navigation ===== */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    background: rgba(15, 15, 30, 0.82);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.top-nav-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 0.75rem 0;
+    flex-wrap: wrap;
+}
+
+.top-nav-link {
+    color: var(--color-light);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.25s ease;
+}
+
+.top-nav-link:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-1px);
+}
+
 /* ===== Typography ===== */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: var(--spacing-sm);
 }
 
-h1 { font-size: var(--font-size-xxl); }
-h2 { font-size: var(--font-size-xl); }
-h3 { font-size: var(--font-size-lg); }
+h1 {
+    font-size: var(--font-size-xxl);
+}
+
+h2 {
+    font-size: var(--font-size-xl);
+}
+
+h3 {
+    font-size: var(--font-size-lg);
+}
 
 .glow-text {
     text-shadow: 0 0 20px rgba(255, 107, 53, 0.5),
-                 0 0 40px rgba(255, 107, 53, 0.3);
+        0 0 40px rgba(255, 107, 53, 0.3);
     animation: pulse-glow 3s ease-in-out infinite;
 }
 
 @keyframes pulse-glow {
-    0%, 100% { text-shadow: 0 0 20px rgba(255, 107, 53, 0.5); }
-    50% { text-shadow: 0 0 30px rgba(255, 107, 53, 0.8); }
+
+    0%,
+    100% {
+        text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 30px rgba(255, 107, 53, 0.8);
+    }
 }
 
 /* ===== Hero Section ===== */
@@ -215,11 +276,25 @@ h3 { font-size: var(--font-size-lg); }
     text-align: center;
 }
 
-.realm-card.emberforge { border-color: #ff6b35; }
-.realm-card.verdant { border-color: #4ecdc4; }
-.realm-card.echo { border-color: #9d4edd; }
-.realm-card.dawn { border-color: #ffe66d; }
-.realm-card.lantern { border-color: #f72585; }
+.realm-card.emberforge {
+    border-color: #ff6b35;
+}
+
+.realm-card.verdant {
+    border-color: #4ecdc4;
+}
+
+.realm-card.echo {
+    border-color: #9d4edd;
+}
+
+.realm-card.dawn {
+    border-color: #ffe66d;
+}
+
+.realm-card.lantern {
+    border-color: #f72585;
+}
 
 .realm-card:hover {
     transform: scale(1.05);
@@ -346,19 +421,29 @@ footer a:hover {
         --font-size-xxl: 2rem;
         --font-size-xl: 1.5rem;
     }
-    
+
     .cta-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .signup-form {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .signup-form input {
         min-width: 100%;
+    }
+
+    .top-nav-inner {
+        gap: 0.5rem;
+        padding: 0.65rem 0;
+    }
+
+    .top-nav-link {
+        font-size: 0.9rem;
+        padding: 0.35rem 0.7rem;
     }
 }
 
@@ -368,7 +453,7 @@ html {
 }
 
 section {
-    scroll-margin-top: 2rem;
+    scroll-margin-top: 5rem;
 }
 
 
@@ -384,8 +469,15 @@ section {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .realm-image {
