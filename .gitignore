@@ -70,6 +70,7 @@ firestore-debug.log
 # Environment files (NEVER commit secrets!)
 .env
 .env.local
+.env.keystore
 firebase/functions/.env
 secrets.json
 .secrets
@@ -77,6 +78,7 @@ secrets.json
 *.key
 *.p12
 *.p8
+*.keystore
 credentials.json
 serviceAccountKey.json
 

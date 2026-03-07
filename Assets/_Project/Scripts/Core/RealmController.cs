@@ -79,6 +79,9 @@ namespace AscendantContinuum.Core
                 ApplyRealmAtmosphere();
             }
 
+            // Start realm music and ambient
+            StartRealmAudio();
+
             // Log analytics
             AscendantContinuum.Analytics.AnalyticsManager.Instance?.LogRealmEntered(realmId, realmDisplayName);
 
@@ -98,6 +101,9 @@ namespace AscendantContinuum.Core
         protected void ExitRealm()
         {
             UnsubscribeFromRealmEvents();
+
+            // Fade out realm music
+            StopRealmAudio();
 
             // Record realm time for cosmic identity evolution
             float minutesSpent = (UnityEngine.Time.realtimeSinceStartup - _realmEnterTime) / 60f;

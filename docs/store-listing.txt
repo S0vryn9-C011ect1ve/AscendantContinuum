@@ -1,0 +1,129 @@
+═══════════════════════════════════════════════════════════════
+  THE ASCENDANT CONTINUUM — Store Listing Copy (v1.0)
+  Bundle ID: com.ascendantcontinuum.game
+  Updated:   March 2026
+═══════════════════════════════════════════════════════════════
+
+━━━ APP NAME (30 chars max) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The Ascendant Continuum
+
+━━━ SHORT DESCRIPTION (80 chars — Google Play only) ━━━━━━━━━━
+Explore 5 mystical realms. No fail states. A mindful wonder adventure.
+
+━━━ SUBTITLE (30 chars — App Store only) ━━━━━━━━━━━━━━━━━━━━
+Explore 5 Mystical Realms
+
+━━━ PROMOTIONAL TEXT (170 chars — App Store only) ━━━━━━━━━━━━
+Season 1 is live — forge sigils, grow enchanted gardens, trace
+ancient constellations, and release lantern wishes into the cosmos.
+New realm events every week!
+
+━━━ FULL DESCRIPTION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Enter a world where every session feels like a mini-meditation and
+every tap creates something beautiful.
+
+THE ASCENDANT CONTINUUM is a free, accessibility-first mobile
+adventure across five handcrafted mystical realms — no fail states,
+no timers, no pressure. Just wonder.
+
+✦ FIVE REALMS TO EXPLORE
+🔥 The Emberforge — Dance with living sparks and forge your inner fire
+🌿 Verdant Sanctuary — Nurture magical plants through four life stages
+✨ Echo Fields — Trace ancient star constellations from memory
+💎 Dawn Citadel — Bend light through crystal prisms to reveal secrets
+🏮 Lantern Ascension — Release glowing wishes into the infinite cosmos
+
+✦ DEEPLY ACCESSIBLE
+• Full colorblind mode support (3 modes with hidden secrets)
+• Reduced-motion alternatives for every animation
+• Scalable text, high-contrast mode, screen reader friendly
+• No fail states — every session ends in progress
+
+✦ ALIVE WITH THE COSMOS
+• Real moon phase events change gameplay every lunar cycle
+• Annual meteor shower celebrations
+• Seasonal content updated quarterly
+• Daily challenges tailored to your playstyle
+
+✦ YOUR SIGIL. YOUR LEGEND.
+Draw unique sigils that evolve over 100+ days of play. No two players
+share the same sigil. Unlock a personal Cosmic Identity over time.
+
+✦ BUILT WITH KINDNESS
+Leave wishes for strangers on the Cross-Player Wish Wall. Start
+Kindness Chains. Share time capsules that open weeks later.
+The community grows together.
+
+✦ ETHICAL BY DESIGN
+• Completely free to play
+• Cosmetic-only purchases — nothing paywalled
+• No loot boxes. No advertising. No dark patterns.
+• Session length is your choice — 1 minute or 1 hour
+
+COMPATIBLE WITH
+• iOS 15.0 and above (iPhone and iPad)
+• Android 8.0 (API 26) and above
+• WebGL browser at ascendant-continuum.web.app/play
+
+━━━ KEYWORDS (App Store — 100 chars max) ━━━━━━━━━━━━━━━━━━━━
+mindful,meditation,adventure,fantasy,puzzle,accessible,wellness,
+sigil,cosmos,realm
+
+━━━ CATEGORIES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+App Store:    Primary: Games → Role Playing
+              Secondary: Games → Puzzle
+Google Play:  Category: Adventure | Tags: Relaxing, Anime, Indie
+
+━━━ CONTENT RATING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+App Store:    4+
+Google Play:  IARC → Everyone (no violence, no mature content)
+
+━━━ AGE RATING QUESTIONNAIRE ANSWERS (Google Play IARC) ━━━━━
+Violence:       None
+Sexual content: None
+Language:       None
+Controlled sub: No
+Fear content:   No  
+Gambling:       No
+User interaction: Wish Wall / Kindness Chain (text messages, moderated)
+
+━━━ SUPPORT / CONTACT URLS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Support URL:    https://ascendant-continuum.web.app
+Privacy URL:    https://ascendant-continuum.web.app/privacy
+Marketing URL:  https://ascendant-continuum.web.app
+Contact email:  ascendantcontinuum@gmail.com
+
+━━━ SCREENSHOT REQUIREMENTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+App Store (required sizes):
+  6.7" — 1290×2796 px (iPhone 15 Pro Max)
+  6.1" — 1179×2556 px (iPhone 15)
+  12.9" iPad Pro (if submitting for iPad)
+
+Google Play:
+  Phone:  1080×1920 px (portrait), min 2 / max 8
+  Feature graphic: 1024×500 px
+
+Suggested screenshot order:
+  1. Hero — Realm portal / main menu view
+  2. Emberforge — Spark collection in action
+  3. Verdant — Plant at full bloom
+  4. Echo Fields — Constellation being traced
+  5. Lantern Ascension — Lanterns floating into sky
+  6. Sigil Journal — Personal sigil collection
+  7. HUD — Daily challenge + season pass glimpse
+  8. Accessibility — Colorblind mode comparison
+
+━━━ APP ICON SPEC ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+iOS:    1024×1024 PNG, no alpha, no rounded corners (OS applies)
+Android: 512×512 PNG with transparency, adaptive icon foreground + background layers
+Design: The AC sigil mark on deep purple-to-black gradient background (#231F20 → #2d1a56)
+
+━━━ WHAT'S NEW (v1.0.0 launch notes) ━━━━━━━━━━━━━━━━━━━━━━━━
+✦ All five realms now open: Emberforge, Verdant Sanctuary,
+  Echo Fields, Dawn Citadel, and Lantern Ascension
+✦ Season 1: The Starborn Prologue — earn exclusive Season Pass cosmetics
+✦ Sigil drawing system — your mark, your legend
+✦ Full accessibility support: colorblind modes, reduced motion, screen reader
+✦ Daily challenges and 42 achievements to discover
+✦ Cross-Player Wish Wall and Kindness Chains live
