@@ -88,27 +88,46 @@ namespace AscendantContinuum.Systems
         private void LoadOrCreateProfile()
         {
             string json = PlayerPrefs.GetString("CosmicProfile_v2", string.Empty);
-            if (!string.IsNullOrEmpty(json))
+            string trimmed = string.IsNullOrWhiteSpace(json) ? string.Empty : json.TrimStart();
+            if (!string.IsNullOrEmpty(trimmed) && trimmed.StartsWith("{"))
             {
-                _profile = JsonUtility.FromJson<CosmicProfile>(json);
-                Debug.Log($"[CosmicIdentity] Loaded: {_profile.cosmicName}");
+                try
+                {
+                    _profile = JsonUtility.FromJson<CosmicProfile>(json);
+                    if (_profile == null)
+                    {
+                        CreateFreshProfile();
+                        return;
+                    }
+                    Debug.Log($"[CosmicIdentity] Loaded: {_profile.cosmicName}");
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning($"[CosmicIdentity] Failed to parse profile. Creating fresh profile. {e.Message}");
+                    CreateFreshProfile();
+                }
             }
             else
             {
-                _profile = new CosmicProfile
-                {
-                    profileId      = Guid.NewGuid().ToString(),
-                    createdUtc     = DateTime.UtcNow.ToString("o"),
-                    auraColor      = new SerializableColor(0.8f, 0.6f, 1f, 1f),
-                    auaraTier      = AuraTier.Spark,
-                    alignment      = "Realm Wanderer",
-                    sigil          = new SigilSnapshot(),
-                    realmDurations = new SerializableDictionary()
-                };
-                _profile.cosmicName = GenerateName(_profile);
-                SaveProfile();
-                Debug.Log($"[CosmicIdentity] Created new profile: {_profile.cosmicName}");
+                CreateFreshProfile();
             }
+        }
+
+        private void CreateFreshProfile()
+        {
+            _profile = new CosmicProfile
+            {
+                profileId      = Guid.NewGuid().ToString(),
+                createdUtc     = DateTime.UtcNow.ToString("o"),
+                auraColor      = new SerializableColor(0.8f, 0.6f, 1f, 1f),
+                auaraTier      = AuraTier.Spark,
+                alignment      = "Realm Wanderer",
+                sigil          = new SigilSnapshot(),
+                realmDurations = new SerializableDictionary()
+            };
+            _profile.cosmicName = GenerateName(_profile);
+            SaveProfile();
+            Debug.Log($"[CosmicIdentity] Created new profile: {_profile.cosmicName}");
         }
 
         // ── Behaviour signals ──────────────────────────────────────────────

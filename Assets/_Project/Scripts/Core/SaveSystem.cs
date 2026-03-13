@@ -140,10 +140,19 @@ namespace AscendantContinuum.Core
                     json = File.ReadAllText(savePath);
                 }
 
-                currentPlayerData = JsonUtility.FromJson<PlayerData>(json);
-                if (currentPlayerData == null)
+                string trimmed = string.IsNullOrWhiteSpace(json) ? string.Empty : json.TrimStart();
+                if (!trimmed.StartsWith("{"))
                 {
+                    Debug.LogWarning("[SaveSystem] Save file content is not a JSON object. Resetting player data.");
                     currentPlayerData = new PlayerData();
+                }
+                else
+                {
+                    currentPlayerData = JsonUtility.FromJson<PlayerData>(json);
+                    if (currentPlayerData == null)
+                    {
+                        currentPlayerData = new PlayerData();
+                    }
                 }
 
                 persistedPlayTimeAtSessionStart = Mathf.Max(0, currentPlayerData.totalPlayTime);

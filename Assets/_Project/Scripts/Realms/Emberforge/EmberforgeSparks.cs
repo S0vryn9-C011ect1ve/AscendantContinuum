@@ -5,6 +5,7 @@ using AscendantContinuum.Core;
 using AscendantContinuum.Astronomy;
 using AscendantContinuum.Systems;
 using AscendantContinuum.Social;
+using AscendantContinuum.UI;
 
 namespace AscendantContinuum.Emberforge
 {
@@ -28,10 +29,15 @@ namespace AscendantContinuum.Emberforge
         [SerializeField] private AudioClip collectSound;
         [SerializeField] private AudioClip spawnSound;
 
+        [Header("Completion")]
+        [SerializeField] private AscendantContinuum.UI.RealmCompletionPanel completionPanel;
+        [SerializeField] private int goalSparks = 20;
+
         private Queue<GameObject> sparkPool;
         private List<GameObject> activeSparks;
         private float spawnTimer;
         private int sparksCollected = 0;
+        private bool _completionShown = false;
 
         public event Action<int> OnSparkCollected;
 
@@ -104,11 +110,9 @@ namespace AscendantContinuum.Emberforge
             spark.SetActive(true);
             activeSparks.Add(spark);
 
-            // Play spawn sound (respects accessibility settings)
+            // Play spawn sound via AudioManager (respects volume/accessibility settings)
             if (spawnSound != null)
-            {
-                AudioSource.PlayClipAtPoint(spawnSound, Camera.main.transform.position, 0.3f);
-            }
+                Core.AudioManager.Instance?.PlaySFX(spawnSound, spark.transform.position, 0.3f);
 
             // Auto-return to pool after lifetime
             StartCoroutine(ReturnToPoolAfterDelay(spark, sparkLifetime));
@@ -136,19 +140,30 @@ namespace AscendantContinuum.Emberforge
             int sparksToAdd = Mathf.Max(1, Mathf.RoundToInt(multiplier));
             sparksCollected += sparksToAdd;
 
+            // Update HUD live
+            HUDManager.Instance?.UpdateSparksCount(sparksCollected);
+
             // Haptic feedback
             AccessibilityManager.Instance?.TriggerHaptic(Core.HapticType.Light);
 
-            // Play collect sound
+            // Play collect sound via AudioManager
             if (collectSound != null)
-            {
-                AudioSource.PlayClipAtPoint(collectSound, Camera.main.transform.position, 0.5f);
-            }
+                Core.AudioManager.Instance?.PlaySFX(collectSound, spark.transform.position, 0.5f);
 
             // Return to pool
             ReturnToPool(spark);
 
             OnSparkCollected?.Invoke(sparksCollected);
+
+            // Realm completion check
+            if (!_completionShown && sparksCollected >= goalSparks && completionPanel != null)
+            {
+                _completionShown = true;
+                int stars = sparksCollected >= goalSparks * 2 ? 3 : sparksCollected >= Mathf.RoundToInt(goalSparks * 1.4f) ? 2 : 1;
+                completionPanel.ShowCompletion("Emberforge Complete! ✨",
+                    $"{sparksCollected} Sparks Collected", stars);
+                Core.GameEvents.RaiseRealmCompleted("emberforge", sparksCollected);
+            }
 
             // After every 10 sparks, offer the optional kindness blessing prompt
             if (sparksCollected % 10 == 0)

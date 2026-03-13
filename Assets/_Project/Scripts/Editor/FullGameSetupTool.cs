@@ -8,7 +8,6 @@ using UnityEngine.Rendering;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
-using TMPro;
 using AscendantContinuum.Core;
 using AscendantContinuum.Data;
 using AscendantContinuum.UI;
@@ -485,10 +484,10 @@ namespace AscendantContinuum.Editor
 
             var labelGO  = new GameObject("Label");
             labelGO.transform.SetParent(go.transform, false);
-            var tmp      = labelGO.AddComponent<TextMeshProUGUI>();
+            var tmp      = labelGO.AddComponent<Text>();
             tmp.text     = label;
-            tmp.fontSize = 18f;
-            tmp.alignment = TextAlignmentOptions.Center;
+            tmp.fontSize = 18;
+            tmp.alignment = TextAnchor.MiddleCenter;
 
             var rt = go.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(160f, 48f);

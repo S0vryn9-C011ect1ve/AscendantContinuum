@@ -113,7 +113,9 @@ namespace AscendantContinuum.Astronomy
             if (moonLight != null)
             {
                 moonLight.color = currentMoonlight;
-                moonLight.intensity = CosmicDataManager.Instance.MoonIllumination * 0.5f;
+                moonLight.intensity = (CosmicDataManager.Instance != null
+                    ? CosmicDataManager.Instance.MoonIllumination
+                    : 0.5f) * 0.5f;
             }
             
             // Notify other systems
@@ -127,7 +129,8 @@ namespace AscendantContinuum.Astronomy
                 moonSprite.sprite = moonPhaseSprites[(int)phase];
                 
                 // Scale based on illumination (supermoon effect)
-                float scale = 1f + (CosmicDataManager.Instance.MoonIllumination * 0.2f);
+                float illumination = CosmicDataManager.Instance != null ? CosmicDataManager.Instance.MoonIllumination : 0f;
+                float scale = 1f + (illumination * 0.2f);
                 moonSprite.transform.localScale = Vector3.one * scale;
             }
         }

@@ -33,7 +33,7 @@ namespace AscendantContinuum.UI
         [SerializeField] private string[] realmSceneNames;
 
         [Header("Onboarding")]
-        [SerializeField] private string onboardingSceneName = "Onboarding_Scene";
+        [SerializeField] private string onboardingSceneName = SceneNames.Onboarding;
         
         [Header("Player Info")]
         [SerializeField] private TextMeshProUGUI playerLevelText;
@@ -285,11 +285,8 @@ namespace AscendantContinuum.UI
         
         private void LoadRealm(string realmName)
         {
-            if (TryTransitionToRealm(realmName))
-            {
-                return;
-            }
-
+            // Use direct scene-load path for reliability from menu clicks.
+            // RealmTransitionManager is still used by in-game transitions.
             StartCoroutine(LoadRealmCoroutine(realmName));
         }
 
@@ -316,9 +313,17 @@ namespace AscendantContinuum.UI
                 return false;
             }
 
-            RealmTransitionManager.Instance.TransitionToRealm(realmId);
-            GameManager.Instance?.RecordLastRealm(realmName);
-            return true;
+            try
+            {
+                RealmTransitionManager.Instance.TransitionToRealm(realmId);
+                GameManager.Instance?.RecordLastRealm(realmName);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogWarning($"[MainMenu] RealmTransitionManager path failed: {ex.Message}. Falling back to direct scene load.");
+                return false;
+            }
         }
 
         private string ToRealmId(string realmName)
@@ -371,8 +376,35 @@ namespace AscendantContinuum.UI
                 PlayerPrefs.Save();
             }
             
-            // Load scene
-            SceneManager.LoadScene(realmName);
+            // Load scene (accepts either realm id/name or direct scene name)
+            string targetScene = ResolveSceneNameForLoad(realmName);
+            SceneManager.LoadScene(targetScene);
+        }
+
+        private string ResolveSceneNameForLoad(string raw)
+        {
+            if (string.IsNullOrWhiteSpace(raw))
+            {
+                return SceneNames.MainMenu;
+            }
+
+            // Already a valid scene name
+            if (Application.CanStreamedLevelBeLoaded(raw))
+            {
+                return raw;
+            }
+
+            // Convert realm variants to canonical scene name
+            string realmId = ToRealmId(raw);
+            string mapped  = SceneNames.FromRealmId(realmId);
+            if (Application.CanStreamedLevelBeLoaded(mapped))
+            {
+                return mapped;
+            }
+
+            // Last resort: never crash load path; go back to main menu.
+            Debug.LogWarning($"[MainMenu] Could not resolve scene '{raw}', falling back to {SceneNames.MainMenu}.");
+            return SceneNames.MainMenu;
         }
         
         #endregion

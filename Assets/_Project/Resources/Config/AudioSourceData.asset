@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc268f4ea7e0e54997e2035ec1cdc38, type: 3}
+  m_Name: AudioSourceData
+  m_EditorClassIdentifier: AscendantContinuum.Runtime::AscendantContinuum.Core.AudioSourceData
+  mainMenuMusic: {fileID: 0}
+  onboardingMusic: {fileID: 0}
+  emberforgeMusic: {fileID: 0}
+  verdantMusic: {fileID: 0}
+  echoFieldsMusic: {fileID: 0}
+  dawnCitadelMusic: {fileID: 0}
+  lanternAscensionMusic: {fileID: 0}
+  emberforgeAmbient: {fileID: 0}
+  verdantAmbient: {fileID: 0}
+  echoFieldsAmbient: {fileID: 0}
+  dawnCitadelAmbient: {fileID: 0}
+  lanternAmbient: {fileID: 0}
+  sparkTap: {fileID: 0}
+  sparkCollect: {fileID: 0}
+  plantGrow: {fileID: 0}
+  constellationConnect: {fileID: 0}
+  lightRefract: {fileID: 0}
+  lanternPlace: {fileID: 0}
+  buttonClick: {fileID: 0}
+  menuOpen: {fileID: 0}
+  menuClose: {fileID: 0}
+  achievementUnlock: {fileID: 0}
+  sigilUnlock: {fileID: 0}
+  notificationPing: {fileID: 0}
+  ritualCompleteMinor: {fileID: 0}
+  ritualCompleteMajor: {fileID: 0}
+  dailyChallengeComplete: {fileID: 0}
+  achievementSecretUnlock: {fileID: 0}
+  levelUp: {fileID: 0}

@@ -164,7 +164,24 @@ namespace AscendantContinuum.Social
                 string json = PlayerPrefs.GetString(PREF_BURIED_PREFIX + i, "");
                 if (string.IsNullOrEmpty(json)) continue;
 
-                TimeCapsule capsule = JsonUtility.FromJson<TimeCapsule>(json);
+                string trimmed = json.TrimStart();
+                if (!trimmed.StartsWith("{"))
+                {
+                    Debug.LogWarning($"[TimeCapsule] Skipping malformed capsule payload at index {i}.");
+                    continue;
+                }
+
+                TimeCapsule capsule;
+                try
+                {
+                    capsule = JsonUtility.FromJson<TimeCapsule>(json);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning($"[TimeCapsule] Failed to parse capsule at index {i}: {e.Message}");
+                    continue;
+                }
+
                 if (capsule == null || capsule.discovered) continue;
                 if (today < capsule.openEpochDay) continue;
 

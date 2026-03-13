@@ -27,10 +27,15 @@ namespace AscendantContinuum.EchoFields
         [SerializeField] private AudioClip starConnectSound;
         [SerializeField] private AudioClip constellationCompleteSound;
 
+        [Header("Completion")]
+        [SerializeField] private AscendantContinuum.UI.RealmCompletionPanel completionPanel;
+        [SerializeField] private int goalConstellations = 3;
+
         private List<Star> activeStars = new List<Star>();
         private List<Star> connectedStars = new List<Star>();
         private LineRenderer currentLine;
         private int constellationsCompleted = 0;
+        private bool _completionShown = false;
 
         public System.Action<int> OnConstellationCompleted;
 
@@ -330,6 +335,16 @@ namespace AscendantContinuum.EchoFields
             }
 
             OnConstellationCompleted?.Invoke(constellationsCompleted);
+
+            // Realm completion check
+            if (!_completionShown && constellationsCompleted >= goalConstellations && completionPanel != null)
+            {
+                _completionShown = true;
+                int stars = constellationsCompleted >= goalConstellations * 2 ? 3 : constellationsCompleted >= Mathf.RoundToInt(goalConstellations * 1.4f) ? 2 : 1;
+                completionPanel.ShowCompletion("Echo Fields Complete! ✨",
+                    $"{constellationsCompleted} Constellations Traced", stars);
+                Core.GameEvents.RaiseRealmCompleted("echo", constellationsCompleted);
+            }
 
             // Serendipity roll on every constellation completion
             SerendipityManager.Instance?.TryTrigger("EchoFields");

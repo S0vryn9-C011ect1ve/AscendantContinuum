@@ -292,8 +292,22 @@ namespace AscendantContinuum.EchoFields
                 string json = PlayerPrefs.GetString(PREF_ECHO_PREFIX + i, "");
                 if (!string.IsNullOrEmpty(json))
                 {
-                    MemoryEcho echo = JsonUtility.FromJson<MemoryEcho>(json);
-                    if (echo != null) _localEchoes.Add(echo);
+                    string trimmed = json.TrimStart();
+                    if (!trimmed.StartsWith("{"))
+                    {
+                        Debug.LogWarning($"[EchoArchive] Skipping malformed echo payload at index {i}.");
+                        continue;
+                    }
+
+                    try
+                    {
+                        MemoryEcho echo = JsonUtility.FromJson<MemoryEcho>(json);
+                        if (echo != null) _localEchoes.Add(echo);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogWarning($"[EchoArchive] Failed to parse echo at index {i}: {e.Message}");
+                    }
                 }
             }
         }

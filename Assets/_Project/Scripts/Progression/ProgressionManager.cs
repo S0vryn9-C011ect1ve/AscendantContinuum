@@ -139,12 +139,25 @@ namespace AscendantContinuum.Progression
         /// </summary>
         public void LoadProgression()
         {
-            // TODO: Integrate with SaveSystem when available
-            // For now, create new or load from PlayerPrefs
-            if (progressionData == null)
+            const string key = "ProgressionData_v1";
+            string json = PlayerPrefs.GetString(key, string.Empty);
+            if (!string.IsNullOrEmpty(json))
+            {
+                try
+                {
+                    progressionData = JsonUtility.FromJson<ProgressionData>(json) ?? new ProgressionData();
+                    Debug.Log("[ProgressionManager] Loaded progression data from PlayerPrefs");
+                }
+                catch
+                {
+                    progressionData = new ProgressionData();
+                    Debug.LogWarning("[ProgressionManager] Corrupted progression data — reset.");
+                }
+            }
+            else
             {
                 progressionData = new ProgressionData();
-                Debug.Log("[ProgressionManager] Initialized new progression data");
+                Debug.Log("[ProgressionManager] No saved progression — initialized fresh.");
             }
         }
 
@@ -153,9 +166,18 @@ namespace AscendantContinuum.Progression
         /// </summary>
         public void SaveProgression()
         {
-            // TODO: Integrate with SaveSystem when available
+            if (progressionData == null) progressionData = new ProgressionData();
             progressionData.lastPlayTime = DateTime.Now;
-            Debug.Log("[ProgressionManager] Saved progression data");
+
+            // Persist progression data to PlayerPrefs (encrypted via JsonUtility)
+            string json = JsonUtility.ToJson(progressionData);
+            PlayerPrefs.SetString("ProgressionData_v1", json);
+            PlayerPrefs.Save();
+
+            // Also trigger a full game save so PlayerData stays in sync
+            Core.SaveSystem.Instance?.SaveGame();
+
+            Debug.Log("[ProgressionManager] Progression saved.");
         }
 
         /// <summary>
@@ -250,7 +272,7 @@ namespace AscendantContinuum.Progression
                 else if (i > 0)
                 {
                     var prevRealm = progressionData.realmProgress.Find(r => r.realmId == realmIds[i - 1]);
-                    if (prevRealm != null && prevRealm.timesCompleted >= 5 && !realm.isUnlocked)
+                    if (prevRealm != null && prevRealm.timesCompleted >= 1 && !realm.isUnlocked)
                     {
                         realm.isUnlocked = true;
                         unlockedCount = i + 1;

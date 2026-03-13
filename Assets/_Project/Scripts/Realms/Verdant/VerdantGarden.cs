@@ -25,8 +25,13 @@ namespace AscendantContinuum.Verdant
         [SerializeField] private AudioClip waterSound;
         [SerializeField] private AudioClip bloomSound;
 
+        [Header("Completion")]
+        [SerializeField] private AscendantContinuum.UI.RealmCompletionPanel completionPanel;
+        [SerializeField] private int goalPlants = 5;
+
         private List<MagicalPlant> activePlants = new List<MagicalPlant>();
         private int totalPlantsGrown = 0;
+        private bool _completionShown = false;
 
         public System.Action<int> OnPlantBloomed;
 
@@ -119,6 +124,16 @@ namespace AscendantContinuum.Verdant
             VFX.ParticleManager.Instance?.PlayRealmTransitionEffect(plant.transform.position, new Color(0.3f, 1f, 0.5f));
 
             OnPlantBloomed?.Invoke(totalPlantsGrown);
+
+            // Realm completion check
+            if (!_completionShown && totalPlantsGrown >= goalPlants && completionPanel != null)
+            {
+                _completionShown = true;
+                int stars = totalPlantsGrown >= goalPlants * 2 ? 3 : totalPlantsGrown >= Mathf.RoundToInt(goalPlants * 1.4f) ? 2 : 1;
+                completionPanel.ShowCompletion("Verdant Garden Complete! 🌿",
+                    $"{totalPlantsGrown} Plants Bloomed", stars);
+                Core.GameEvents.RaiseRealmCompleted("verdant", totalPlantsGrown);
+            }
 
             // Serendipity roll — each bloom is a ritual completion
             SerendipityManager.Instance?.TryTrigger("Verdant");

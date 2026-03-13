@@ -145,10 +145,14 @@ namespace AscendantContinuum.Core
             PlayerPrefs.SetInt("SessionCount_Total", PlayerPrefs.GetInt("SessionCount_Total", 0) + 1);
             PlayerPrefs.Save();
 
-            // Day 4 gate: prompt Arcane Personality Quiz if conditions are met
-            var pantheon = UnityEngine.Object.FindFirstObjectByType<PantheonDeityEffects>();
-            if (pantheon != null && pantheon.ShouldShowPantheonQuiz())
-                GameEvents.RaisePantheonQuizReady();
+            // Day 4 gate: prompt Arcane Personality Quiz only after leaving bootstrap
+            // so UI setup issues in quiz panel cannot block initial scene routing.
+            if (activeScene != SceneNames.Bootstrap)
+            {
+                var pantheon = UnityEngine.Object.FindFirstObjectByType<PantheonDeityEffects>();
+                if (pantheon != null && pantheon.ShouldShowPantheonQuiz())
+                    GameEvents.RaisePantheonQuizReady();
+            }
 
             // Wire Live Event → push notifications + local push notifications
             if (LiveEventEngine.Instance != null)

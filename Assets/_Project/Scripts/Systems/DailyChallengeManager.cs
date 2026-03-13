@@ -291,8 +291,33 @@ namespace AscendantContinuum.Systems
                     string json = PlayerPrefs.GetString("DailyChallenge_Data", "");
                     if (!string.IsNullOrEmpty(json))
                     {
-                        currentChallenge = JsonUtility.FromJson<DailyChallenge>(json);
-                        nextChallengeTime = savedDateTime.Date.AddDays(1);
+                        string trimmed = json.TrimStart();
+                        if (trimmed.StartsWith("{"))
+                        {
+                            try
+                            {
+                                currentChallenge = JsonUtility.FromJson<DailyChallenge>(json);
+                                if (currentChallenge == null)
+                                {
+                                    Debug.LogWarning("[DailyChallenge] Saved challenge payload was empty. Regenerating challenge.");
+                                    GenerateNewChallenge();
+                                    return;
+                                }
+
+                                nextChallengeTime = savedDateTime.Date.AddDays(1);
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.LogWarning($"[DailyChallenge] Failed to parse saved challenge. Regenerating challenge. {e.Message}");
+                                GenerateNewChallenge();
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogWarning("[DailyChallenge] Saved challenge JSON is invalid. Regenerating challenge.");
+                            GenerateNewChallenge();
+                        }
                     }
                 }
                 else

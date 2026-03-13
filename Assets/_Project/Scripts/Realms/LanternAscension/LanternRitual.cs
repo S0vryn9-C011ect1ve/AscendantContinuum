@@ -71,6 +71,12 @@ namespace AscendantContinuum.Realms.LanternAscension
         public System.Action OnMeditationStarted;
         public System.Action OnMeditationEnded;
 
+        [Header("Completion")]
+        [SerializeField] private AscendantContinuum.UI.RealmCompletionPanel completionPanel;
+        [SerializeField] private int goalLanterns = 1;
+        private int _lanternsReleased = 0;
+        private bool _completionShown = false;
+
         public enum WishVisibility
         {
             Private,      // Only you see it
@@ -261,6 +267,17 @@ namespace AscendantContinuum.Realms.LanternAscension
             // Trigger event
             OnLanternReleased?.Invoke(lantern);
 
+            _lanternsReleased++;
+
+            // Realm completion check
+            if (!_completionShown && _lanternsReleased >= goalLanterns && completionPanel != null)
+            {
+                _completionShown = true;
+                completionPanel.ShowCompletion("Lantern Ascension Complete! 🏮",
+                    "Your wish ascends to the cosmos…", 3);
+                Core.GameEvents.RaiseRealmCompleted("lantern", _lanternsReleased);
+            }
+
             // Record achievement
             if (AchievementManager.Instance != null)
             {
@@ -305,6 +322,12 @@ namespace AscendantContinuum.Realms.LanternAscension
 
         private IEnumerator SpawnCommunityLanternsCoroutine()
         {
+            if (lanternPrefab == null)
+            {
+                Debug.LogWarning("[LanternRitual] lanternPrefab is not assigned. Skipping community lantern spawns.");
+                yield break;
+            }
+
             // Gradually spawn community lanterns over time
             for (int i = 0; i < 20; i++)
             {

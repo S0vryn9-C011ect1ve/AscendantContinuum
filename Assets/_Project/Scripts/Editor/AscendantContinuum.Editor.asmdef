@@ -2,7 +2,8 @@
     "name": "AscendantContinuum.Editor",
     "rootNamespace": "AscendantContinuum.Editor",
     "references": [
-        "GUID:5f13808a991c4ddfbab3bf4c469da462"
+        "GUID:5f13808a991c4ddfbab3bf4c469da462",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [
         "Editor"

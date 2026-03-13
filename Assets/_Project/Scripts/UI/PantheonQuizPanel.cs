@@ -149,8 +149,11 @@ namespace AscendantContinuum.UI
 
         private void WireAnswerButtons()
         {
+            if (answerButtons == null || answerButtons.Length == 0) return;
+
             for (int i = 0; i < answerButtons.Length; i++)
             {
+                if (answerButtons[i] == null) continue;
                 int captured = i;
                 answerButtons[i].onClick.RemoveAllListeners();
                 answerButtons[i].onClick.AddListener(() => OnAnswerSelected(captured));
@@ -173,6 +176,8 @@ namespace AscendantContinuum.UI
 
             if (progressLabel != null)
                 progressLabel.text = $"Question {index + 1} / {QUESTIONS.Length}";
+
+            if (answerLabels == null || answerLabels.Length == 0) return;
 
             string[] opts = ANSWERS[index];
             for (int i = 0; i < answerLabels.Length && i < opts.Length; i++)
@@ -220,7 +225,11 @@ namespace AscendantContinuum.UI
             if (deityDescriptionLabel != null) deityDescriptionLabel.text = desc;
 
             // Swap panels
-            foreach (var btn in answerButtons) btn.gameObject.SetActive(false);
+            if (answerButtons != null)
+            {
+                foreach (var btn in answerButtons)
+                    if (btn != null) btn.gameObject.SetActive(false);
+            }
             if (questionLabel  != null) questionLabel.gameObject.SetActive(false);
             if (progressLabel  != null) progressLabel.gameObject.SetActive(false);
             if (resultPanel    != null) resultPanel.SetActive(true);
@@ -241,7 +250,11 @@ namespace AscendantContinuum.UI
             _answers = new int[QUESTIONS.Length];
 
             if (resultPanel != null) resultPanel.SetActive(false);
-            foreach (var btn in answerButtons) btn.gameObject.SetActive(true);
+            if (answerButtons != null)
+            {
+                foreach (var btn in answerButtons)
+                    if (btn != null) btn.gameObject.SetActive(true);
+            }
             if (questionLabel  != null) questionLabel.gameObject.SetActive(true);
             if (progressLabel  != null) progressLabel.gameObject.SetActive(true);
 

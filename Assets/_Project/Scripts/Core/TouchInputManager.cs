@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using TouchPhase = UnityEngine.TouchPhase;
+using AscendantContinuum.Emberforge;
+using AscendantContinuum.Verdant;
+using AscendantContinuum.Realms.EchoFields;
+using AscendantContinuum.Realms.DawnCitadel;
 
 namespace AscendantContinuum.Core
 {
@@ -180,19 +184,52 @@ namespace AscendantContinuum.Core
 
         private void RaycastTappedObject(Vector2 screenPosition)
         {
+            if (Camera.main == null) return;
             Ray ray = Camera.main.ScreenPointToRay(screenPosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.zero, Mathf.Infinity);
-            
-            if (hit.collider != null)
+
+            if (hit.collider == null) return;
+
+            var go = hit.collider.gameObject;
+            Debug.Log($"[TouchInput] Tapped: {go.name}");
+
+            // ── Emberforge sparks ──────────────────────────────────────────
+            var spark = go.GetComponent<Spark>();
+            if (spark != null)
             {
-                // Check for spark collection
-                var spark = hit.collider.GetComponent<Emberforge.Spark>();
-                if (spark != null)
-                {
-                    spark.SendMessage("OnTouchCollected", SendMessageOptions.DontRequireReceiver);
-                }
-                
-                Debug.Log($"[TouchInput] Tapped: {hit.collider.gameObject.name}");
+                spark.SendMessage("OnTouchCollected", SendMessageOptions.DontRequireReceiver);
+                return;
+            }
+
+            // ── Verdant Garden soil / plants ───────────────────────────────
+            // VerdantGarden.OnMouseDown handles planting when soil is tapped
+            var garden = go.GetComponent<VerdantGarden>();
+            if (garden != null)
+            {
+                garden.SendMessage("OnMouseDown", SendMessageOptions.DontRequireReceiver);
+                return;
+            }
+            var plant = go.GetComponent<MagicalPlant>();
+            if (plant != null)
+            {
+                plant.SendMessage("OnMouseDown", SendMessageOptions.DontRequireReceiver);
+                return;
+            }
+
+            // ── Echo Fields constellation stars ────────────────────────────
+            var star = go.GetComponent<Star>();
+            if (star != null)
+            {
+                star.SendMessage("OnMouseDown", SendMessageOptions.DontRequireReceiver);
+                return;
+            }
+
+            // ── Dawn Citadel prisms ────────────────────────────────────────
+            var prism = go.GetComponent<Prism>();
+            if (prism != null)
+            {
+                prism.OnTouchTapped();
+                return;
             }
         }
 

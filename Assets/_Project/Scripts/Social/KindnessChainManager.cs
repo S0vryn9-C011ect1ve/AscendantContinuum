@@ -145,6 +145,15 @@ namespace AscendantContinuum.Social
             string json = PlayerPrefs.GetString(PREF_PENDING, "");
             if (string.IsNullOrEmpty(json)) return;
 
+            string trimmed = json.TrimStart();
+            if (!trimmed.StartsWith("{"))
+            {
+                Debug.LogWarning("[KindnessChain] Pending blessing payload is malformed. Clearing it.");
+                PlayerPrefs.DeleteKey(PREF_PENDING);
+                PlayerPrefs.Save();
+                return;
+            }
+
             try
             {
                 var blessing = JsonUtility.FromJson<KindnessBlessing>(json);

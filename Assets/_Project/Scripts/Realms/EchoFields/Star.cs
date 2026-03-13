@@ -192,6 +192,21 @@ namespace AscendantContinuum.Realms.EchoFields
         public int StarIndex => starIndex;
         public bool IsConnected => isConnected;
         public Vector3 Position => transform.position;
+
+        /// <summary>
+        /// Alias for <see cref="SetConnected"/> — called by ConstellationTracer.
+        /// </summary>
+        public void Connect() => SetConnected();
+
+        /// <summary>
+        /// Stores the real constellation name for optional display purposes
+        /// (e.g. a tooltip or accessibility label).
+        /// </summary>
+        public void SetConstellationName(string constellationName)
+        {
+            // Store for use by accessibility / UI overlays if needed
+            gameObject.name = $"Star_{starIndex}_{constellationName}";
+        }
         
         #endregion
         

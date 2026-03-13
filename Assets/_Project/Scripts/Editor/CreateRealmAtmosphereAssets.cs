@@ -14,6 +14,7 @@ namespace AscendantContinuum.Editor
         private const string OutputPath = "Assets/_Project/Resources/Atmospheres";
 
         [MenuItem("Tools/Ascendant Continuum/Create Realm Atmosphere Assets")]
+        [MenuItem("Ascendant Continuum/Setup/\U0001f30c Create Realm Atmosphere Assets", priority = 210)]
         public static void CreateAll()
         {
             if (!AssetDatabase.IsValidFolder(OutputPath))
@@ -137,13 +138,9 @@ namespace AscendantContinuum.Editor
         {
             string assetPath = $"{OutputPath}/{cfg.fileName}.asset";
 
-            // Skip if already exists
-            var existing = AssetDatabase.LoadAssetAtPath<RealmAtmosphereData>(assetPath);
-            if (existing != null)
-            {
-                Debug.Log($"[CreateRealmAtmosphereAssets] Already exists, skipping: {cfg.fileName}");
-                return;
-            }
+            // Delete stale asset so broken script references are always replaced
+            if (File.Exists(assetPath))
+                AssetDatabase.DeleteAsset(assetPath);
 
             var data = ScriptableObject.CreateInstance<RealmAtmosphereData>();
             data.realmName            = cfg.realmName;

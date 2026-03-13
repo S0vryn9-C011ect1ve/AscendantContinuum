@@ -23,6 +23,10 @@ namespace AscendantContinuum.UI
         [SerializeField] private Button seasonPassButton;
         [SerializeField] private Text titleText;
 
+        [Header("Realm Select Buttons")]
+        [Tooltip("Assign the 5 realm buttons in order: Emberforge, Verdant, EchoFields, DawnCitadel, LanternAscension")]
+        [SerializeField] private Button[] realmSelectButtons = new Button[5];
+
         [Header("Floating Sigils")]
         [SerializeField] private GameObject sigilPrefab;
         [SerializeField] private int sigilCount = 5;
@@ -36,6 +40,9 @@ namespace AscendantContinuum.UI
         [Header("Audio")]
         [SerializeField] private AudioClip ambientMusic;
         [SerializeField] private float musicFadeInDuration = 2f;
+
+        [Header("Settings")]
+        [SerializeField] private SettingsPanel settingsPanel;
 
         [Header("Animation")]
         [SerializeField] private float titleAnimationDuration = 1f;
@@ -112,6 +119,8 @@ namespace AscendantContinuum.UI
 
             if (seasonPassButton != null)
                 seasonPassButton.onClick.AddListener(() => SeasonPassUIManager.Instance?.OpenPanel());
+
+            InitializeRealmButtons();
 
             // Set title with glow effect
             if (titleText != null)
@@ -254,12 +263,54 @@ namespace AscendantContinuum.UI
 
         private void OnPlayClicked()
         {
-            if (playButton.GetComponent<ButtonJuice>() != null)
+            StartCoroutine(TransitionToRealm());
+        }
+
+        /// <summary>Wire each realm-select button to its scene and lock it based on progression.</summary>
+        private void InitializeRealmButtons()
+        {
+            if (realmSelectButtons == null || realmSelectButtons.Length == 0) return;
+
+            string[] realmScenes = {
+                SceneNames.Emberforge,
+                SceneNames.Verdant,
+                SceneNames.EchoFields,
+                SceneNames.DawnCitadel,
+                SceneNames.LanternAscension
+            };
+            string[] realmIds = { "emberforge", "verdant", "echo", "dawn", "lantern" };
+
+            for (int i = 0; i < realmSelectButtons.Length && i < realmScenes.Length; i++)
             {
-                // ButtonJuice will animate the click
+                var btn = realmSelectButtons[i];
+                if (btn == null) continue;
+
+                bool unlocked = ProgressionManager.Instance?.IsRealmUnlocked(realmIds[i]) ?? (i == 0);
+                btn.interactable = unlocked;
+
+                string sceneName = realmScenes[i]; // capture for closure
+                btn.onClick.AddListener(() => StartCoroutine(TransitionToSpecificRealm(sceneName)));
+            }
+        }
+
+        private IEnumerator TransitionToSpecificRealm(string sceneName)
+        {
+            AudioManager.Instance?.StopMusic(1f);
+
+            CanvasGroup cg = GetComponent<CanvasGroup>();
+            if (cg != null)
+            {
+                float t = 0f;
+                while (t < 1f)
+                {
+                    t += Time.deltaTime;
+                    cg.alpha = Mathf.Clamp01(1f - t);
+                    yield return null;
+                }
             }
 
-            StartCoroutine(TransitionToRealm());
+            if (!SceneService.TryLoadScene(sceneName))
+                SceneService.TryLoadScene(SceneNames.Emberforge);
         }
 
         private void OnContinueClicked()
@@ -270,8 +321,10 @@ namespace AscendantContinuum.UI
 
         private void OnSettingsClicked()
         {
-            // Open settings panel (audio volume sliders, accessibility, etc.)
-            Debug.Log("[MainMenu] Settings button clicked");
+            if (settingsPanel != null)
+                settingsPanel.Show();
+            else
+                Debug.LogWarning("[MainMenu] SettingsPanel not assigned — run the builder tool.");
         }
 
         private IEnumerator TransitionToRealm()
@@ -294,8 +347,16 @@ namespace AscendantContinuum.UI
                 }
             }
 
-            // Load realm (would call GameManager or RealmTransitionManager)
-            Debug.Log("[MainMenu] Transitioning to realm...");
+            // Always route to a real scene as a safe fallback path.
+            string lastRealm = GameManager.Instance != null
+                ? GameManager.Instance.GetLastRealmOrDefault("emberforge")
+                : "emberforge";
+
+            string targetScene = SceneNames.FromRealmId(lastRealm);
+            if (!SceneService.TryLoadScene(targetScene))
+            {
+                SceneService.TryLoadScene(SceneNames.Emberforge);
+            }
         }
 
         private void OnDestroy()

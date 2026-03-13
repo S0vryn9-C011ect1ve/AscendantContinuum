@@ -649,8 +649,26 @@ namespace AscendantContinuum.Systems
             string json = PlayerPrefs.GetString("Achievements_Unlocked", "");
             if (!string.IsNullOrEmpty(json))
             {
-                AchievementSaveData saveData = JsonUtility.FromJson<AchievementSaveData>(json);
-                unlockedAchievements = new List<string>(saveData.unlockedIds);
+                string trimmed = json.TrimStart();
+                if (!trimmed.StartsWith("{"))
+                {
+                    Debug.LogWarning("[AchievementManager] Save payload is malformed. Resetting unlocked list.");
+                    unlockedAchievements = new List<string>();
+                    return;
+                }
+
+                try
+                {
+                    AchievementSaveData saveData = JsonUtility.FromJson<AchievementSaveData>(json);
+                    unlockedAchievements = saveData?.unlockedIds != null
+                        ? new List<string>(saveData.unlockedIds)
+                        : new List<string>();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning($"[AchievementManager] Failed to parse achievement save data: {e.Message}");
+                    unlockedAchievements = new List<string>();
+                }
             }
         }
 

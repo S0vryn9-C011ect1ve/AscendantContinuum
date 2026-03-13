@@ -30,6 +30,7 @@ namespace AscendantContinuum.Core
         private AudioSource ambientSource;
         private AudioSource uiSource;
         private Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
+        private bool isShuttingDown;
 
         private void Awake()
         {
@@ -81,6 +82,8 @@ namespace AscendantContinuum.Core
 
         public void PlayMusic(AudioClip clip, float fadeTime = 1f)
         {
+            if (isShuttingDown || musicSource == null) return;
+
             if (clip == null)
             {
                 StopMusic(Mathf.Max(0.01f, fadeTime));
@@ -104,15 +107,18 @@ namespace AscendantContinuum.Core
 
         private System.Collections.IEnumerator CrossfadeMusic(AudioClip newClip, float fadeTime)
         {
+            if (isShuttingDown || musicSource == null) yield break;
             float startVolume = musicSource.volume;
             
             // Fade out
             for (float t = 0; t < fadeTime; t += Time.deltaTime)
             {
+                if (isShuttingDown || musicSource == null) yield break;
                 musicSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeTime);
                 yield return null;
             }
             
+            if (isShuttingDown || musicSource == null) yield break;
             musicSource.Stop();
             musicSource.clip = newClip;
             musicSource.Play();
@@ -120,15 +126,18 @@ namespace AscendantContinuum.Core
             // Fade in
             for (float t = 0; t < fadeTime; t += Time.deltaTime)
             {
+                if (isShuttingDown || musicSource == null) yield break;
                 musicSource.volume = Mathf.Lerp(0f, musicVolume, t / fadeTime);
                 yield return null;
             }
             
+            if (musicSource == null) yield break;
             musicSource.volume = musicVolume;
         }
 
         public void PlaySFX(AudioClip clip, Vector3 position, float volume = 1f, bool spatial = false)
         {
+            if (isShuttingDown) return;
             if (clip == null) return;
             
             AudioSource source = GetAvailableSFXSource();
@@ -177,6 +186,7 @@ namespace AscendantContinuum.Core
 
         public void PlayAmbient(AudioClip clip, float volume = -1f)
         {
+            if (isShuttingDown || ambientSource == null) return;
             if (clip == null) return;
 
             ambientSource.clip = clip;
@@ -196,7 +206,10 @@ namespace AscendantContinuum.Core
         public void SetMusicVolume(float volume)
         {
             musicVolume = Mathf.Clamp01(volume);
-            musicSource.volume = musicVolume;
+            if (musicSource != null)
+            {
+                musicSource.volume = musicVolume;
+            }
             SaveSettings();
         }
 
@@ -251,8 +264,8 @@ namespace AscendantContinuum.Core
             uiVolume = PlayerPrefs.GetFloat("Audio_UIVolume", 0.8f);
             
             AudioListener.volume = masterVolume;
-            musicSource.volume = musicVolume;
-            ambientSource.volume = ambientVolume;
+            if (musicSource != null) musicSource.volume = musicVolume;
+            if (ambientSource != null) ambientSource.volume = ambientVolume;
             if (uiSource != null) uiSource.volume = uiVolume;
         }
 
@@ -268,19 +281,23 @@ namespace AscendantContinuum.Core
 
         public void StopMusic(float fadeTime = 1f)
         {
+            if (isShuttingDown || musicSource == null) return;
             StartCoroutine(FadeOutMusic(fadeTime));
         }
 
         private System.Collections.IEnumerator FadeOutMusic(float fadeTime)
         {
+            if (isShuttingDown || musicSource == null) yield break;
             float startVolume = musicSource.volume;
             
             for (float t = 0; t < fadeTime; t += Time.deltaTime)
             {
+                if (isShuttingDown || musicSource == null) yield break;
                 musicSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeTime);
                 yield return null;
             }
             
+            if (musicSource == null) yield break;
             musicSource.Stop();
             musicSource.volume = musicVolume;
         }
@@ -291,6 +308,7 @@ namespace AscendantContinuum.Core
 
         private void OnEnable()
         {
+            if (isShuttingDown) return;
             if (uiSource == null)
             {
                 GameObject uiObj = new GameObject("UISource");
@@ -301,6 +319,16 @@ namespace AscendantContinuum.Core
                 uiSource.spatialBlend = 0f;
                 uiSource.volume = uiVolume;
             }
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
+            isShuttingDown = true;
+            StopAllCoroutines();
         }
 
         // ── Sigil audio ───────────────────────────────────────────────────

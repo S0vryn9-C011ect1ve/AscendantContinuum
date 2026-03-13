@@ -248,11 +248,39 @@ namespace AscendantContinuum.Social
         // ── Persistence ────────────────────────────────────────────────────
         private void LoadLocalData()
         {
-            string wishJson    = PlayerPrefs.GetString(PREF_WISHES,   "[]");
-            string capsuleJson = PlayerPrefs.GetString(PREF_CAPSULES, "[]");
+            string wishJson = PlayerPrefs.GetString(PREF_WISHES,
+                UnityEngine.JsonUtility.ToJson(new JsonWrapper<WishMessage> { items = new List<WishMessage>() }));
+            string capsuleJson = PlayerPrefs.GetString(PREF_CAPSULES,
+                UnityEngine.JsonUtility.ToJson(new JsonWrapper<TimeCapsule> { items = new List<TimeCapsule>() }));
 
-            var wrapperW = UnityEngine.JsonUtility.FromJson<JsonWrapper<WishMessage>>(wishJson);
-            var wrapperC = UnityEngine.JsonUtility.FromJson<JsonWrapper<TimeCapsule>>(capsuleJson);
+            JsonWrapper<WishMessage> wrapperW = null;
+            JsonWrapper<TimeCapsule> wrapperC = null;
+
+            try
+            {
+                string wishTrimmed = string.IsNullOrWhiteSpace(wishJson) ? string.Empty : wishJson.TrimStart();
+                if (wishTrimmed.StartsWith("{"))
+                {
+                    wrapperW = UnityEngine.JsonUtility.FromJson<JsonWrapper<WishMessage>>(wishJson);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[WishWall] Failed to parse local wishes: {e.Message}");
+            }
+
+            try
+            {
+                string capsuleTrimmed = string.IsNullOrWhiteSpace(capsuleJson) ? string.Empty : capsuleJson.TrimStart();
+                if (capsuleTrimmed.StartsWith("{"))
+                {
+                    wrapperC = UnityEngine.JsonUtility.FromJson<JsonWrapper<TimeCapsule>>(capsuleJson);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[WishWall] Failed to parse local capsules: {e.Message}");
+            }
 
             _receivedWishes  = wrapperW?.items  ?? new List<WishMessage>();
             _plantedCapsules = wrapperC?.items  ?? new List<TimeCapsule>();

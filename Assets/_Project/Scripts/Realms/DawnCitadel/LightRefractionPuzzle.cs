@@ -52,6 +52,10 @@ namespace AscendantContinuum.Realms.DawnCitadel
         // Events
         public System.Action<LightRefractionPuzzle> OnPuzzleComplete;
 
+        [Header("Completion")]
+        [SerializeField] private AscendantContinuum.UI.RealmCompletionPanel completionPanel;
+        [SerializeField] private int goalPuzzles = 1;
+
         private void Start()
         {
             // Check accessibility settings
@@ -271,6 +275,15 @@ namespace AscendantContinuum.Realms.DawnCitadel
             // Trigger event
             OnPuzzleComplete?.Invoke(this);
 
+            // Realm completion panel
+            if (completionPanel != null)
+            {
+                int stars = completionTime < 30f ? 3 : completionTime < 90f ? 2 : 1;
+                completionPanel.ShowCompletion("Dawn Citadel Complete! ☀️",
+                    $"Solved in {completionTime:F0}s", stars);
+                Core.GameEvents.RaiseRealmCompleted("dawn", Mathf.RoundToInt(1000f / Mathf.Max(completionTime, 1f)));
+            }
+
             Debug.Log($"Puzzle completed in {completionTime:F1}s with {totalRotations} rotations");
         }
 
@@ -387,6 +400,25 @@ namespace AscendantContinuum.Realms.DawnCitadel
         {
             currentRotation = Random.Range(0f, 360f);
             transform.rotation = Quaternion.Euler(0, 0, currentRotation);
+        }
+
+        // Tap/click to rotate clockwise by 45°
+        private void OnMouseDown()
+        {
+            SnapRotate(45f);
+        }
+
+        /// <summary>Called by TouchInputManager on mobile tap.</summary>
+        public void OnTouchTapped()
+        {
+            SnapRotate(45f);
+        }
+
+        private void SnapRotate(float degrees)
+        {
+            currentRotation = (currentRotation + degrees) % 360f;
+            transform.rotation = Quaternion.Euler(0, 0, currentRotation);
+            OnRotated?.Invoke(this);
         }
 
         public void RotateClockwise()
