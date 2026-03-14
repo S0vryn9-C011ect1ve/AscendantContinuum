@@ -12,6 +12,9 @@ on:
   # Allow manual triggering for testing
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   post-social-content:
     runs-on: ubuntu-latest
