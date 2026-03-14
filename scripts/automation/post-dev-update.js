@@ -34,6 +34,15 @@ function getRecentCommits(hours = 24) {
         return commits.trim().split('\n').map(line => {
             const [hash, message, author] = line.split('|');
             return { hash, message, author };
+        }).filter(commit => {
+            // Skip automated commits and CI commits
+            if (commit.message.includes('[skip ci]')) return false;
+            if (commit.message.includes('update social media posting history')) return false;
+            if (commit.message.includes('Update dev posting history')) return false;
+            if (commit.message.includes('Update philosophy posting history')) return false;
+            if (commit.author === 'github-actions[bot]') return false;
+            if (commit.author === 'Social Media Bot') return false;
+            return true;
         });
     } catch (error) {
         console.error('Error fetching commits:', error.message);
