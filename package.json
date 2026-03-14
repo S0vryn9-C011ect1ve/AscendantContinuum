@@ -1,0 +1,30 @@
+{
+    "name": "ascendant-continuum-social",
+    "version": "1.0.0",
+    "description": "Automated social media content system for Ascendant Continuum Game",
+    "type": "module",
+    "scripts": {
+        "social:post": "node scripts/automation/content-scheduler.js",
+        "social:dev-update": "node scripts/content/dev-update-generator.js",
+        "social:test-bluesky": "node scripts/posting/post-to-bluesky.js",
+        "social:test-mastodon": "node scripts/posting/post-to-mastodon.js",
+        "social:test-discord": "node scripts/posting/post-to-discord.js",
+        "social:test-all": "DRY_RUN=true node scripts/automation/content-scheduler.js",
+        "social:analytics": "node scripts/analytics/social-analytics.js",
+        "social:dashboard": "node scripts/analytics/generate-dashboard.js",
+        "content:build-bank": "node scripts/content/build-content-bank.js",
+        "content:philosophy": "node scripts/content/design-philosophy-generator.js",
+        "content:behind-scenes": "node scripts/content/behind-scenes-generator.js",
+        "content:lore": "node scripts/content/lore-snippet-generator.js",
+        "content:education": "node scripts/content/dev-education-generator.js"
+    },
+    "dependencies": {
+        "@atproto/api": "^0.12.0",
+        "dotenv": "^16.4.5",
+        "megalodon": "^10.2.4",
+        "node-fetch": "^3.3.2"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}

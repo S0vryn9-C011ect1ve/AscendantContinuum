@@ -1,0 +1,72 @@
+name: Dev Update Social Posts
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # Run weekdays at 8 PM UTC (3 PM EST) to catch end-of-day commits
+    - cron: '0 20 * * 1-5'
+  workflow_dispatch: # Allow manual triggering
+
+concurrency:
+  group: dev-update-posting
+  cancel-in-progress: false
+
+jobs:
+  check-and-post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 50 # Get recent history
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔍 Generate dev update
+        id: dev_update
+        run: |
+          OUTPUT=$(node scripts/content/dev-update-generator.js)
+          echo "$OUTPUT"
+          
+          # Check if meaningful changes found
+          if echo "$OUTPUT" | grep -q "No meaningful changes"; then
+            echo "has_update=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_update=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🚀 Post dev update
+        if: steps.dev_update.outputs.has_update == 'true'
+        env:
+          BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+          MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DRY_RUN: 'false'
+        run: node scripts/automation/post-dev-update.js
+
+      - name: 💾 Commit posting history
+        if: steps.dev_update.outputs.has_update == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add public/social/posting-history.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "📊 Update dev posting history [skip ci]"
+          git push
+
+      - name: ℹ️ No update needed
+        if: steps.dev_update.outputs.has_update == 'false'
+        run: echo "No meaningful changes found in recent commits. Skipping post."

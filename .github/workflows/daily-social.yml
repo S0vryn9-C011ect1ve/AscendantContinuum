@@ -1,0 +1,73 @@
+name: Daily Social Media Post
+
+# Runs daily at 2 PM UTC (9 AM EST / 6 AM PST)
+# Posts content from content-bank.json to Bluesky and Mastodon
+
+on:
+  schedule:
+    # Cron: minute hour day month weekday
+    # 0 14 * * * = 2 PM UTC daily
+    - cron: '0 14 * * *'
+  
+  # Allow manual triggering for testing
+  workflow_dispatch:
+
+jobs:
+  post-social-content:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run content scheduler
+        env:
+          BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+          MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DRY_RUN: 'false'
+        run: node scripts/automation/content-scheduler.js
+      
+      - name: Commit posting history
+        run: |
+          git config user.name "Social Media Bot"
+          git config user.email "bot@ascendant-continuum.com"
+          git add public/social/posting-history.json
+          git add public/social/content-bank.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: update social media posting history [skip ci]"
+          git push
+      
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '❌ Daily social media post failed',
+              body: `The daily social media posting workflow failed.
+              
+              **Workflow:** ${context.workflow}
+              **Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}
+              
+              Please check the logs and credentials.`,
+              labels: ['automation', 'social-media', 'bug']
+            })
+
+concurrency:
+  group: social-media-posting
+  cancel-in-progress: false
