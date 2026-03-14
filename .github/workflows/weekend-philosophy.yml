@@ -47,9 +47,13 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add public/social/posting-history.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "📊 Update philosophy posting history [skip ci]"
-          git push
+          git add public/social/posting-history.json || true
+          if ! git diff --quiet HEAD public/social/posting-history.json 2>/dev/null; then
+            git commit -m "📊 Update philosophy posting history [skip ci]"
+            git push
+          else
+            echo "No changes to commit"
+          fi
 
       - name: 🔔 Notify on failure
         if: failure()

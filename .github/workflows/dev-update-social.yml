@@ -51,8 +51,10 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add public/social/posting-history.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "📊 Update dev posting history [skip ci]"
-          git push
-        if: steps.dev_update.outputs.has_update == 'false'
-        run: echo "No meaningful changes found in recent commits. Skipping post."
+          git add public/social/posting-history.json || true
+          if ! git diff --quiet HEAD public/social/posting-history.json 2>/dev/null; then
+            git commit -m "📊 Update dev posting history [skip ci]"
+            git push
+          else
+            echo "No changes to commit"
+          fi
