@@ -32,23 +32,9 @@ jobs:
           cache: 'npm'
 
       - name: 📦 Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: 🔍 Generate dev update
-        id: dev_update
-        run: |
-          OUTPUT=$(node scripts/content/dev-update-generator.js)
-          echo "$OUTPUT"
-          
-          # Check if meaningful changes found
-          if echo "$OUTPUT" | grep -q "No meaningful changes"; then
-            echo "has_update=false" >> $GITHUB_OUTPUT
-          else
-            echo "has_update=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: 🚀 Post dev update
-        if: steps.dev_update.outputs.has_update == 'true'
+      - name: � Post dev update
         env:
           BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
           BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
@@ -59,14 +45,11 @@ jobs:
         run: node scripts/automation/post-dev-update.js
 
       - name: 💾 Commit posting history
-        if: steps.dev_update.outputs.has_update == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add public/social/posting-history.json
           git diff --quiet && git diff --staged --quiet || git commit -m "📊 Update dev posting history [skip ci]"
           git push
-
-      - name: ℹ️ No update needed
         if: steps.dev_update.outputs.has_update == 'false'
         run: echo "No meaningful changes found in recent commits. Skipping post."
