@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { generateBlogPost } from '../content/blog-post-generator.js';
 import { postToBluesky } from '../posting/post-to-bluesky.js';
 import { postToMastodon } from '../posting/post-to-mastodon.js';
+import { postToDiscord } from '../posting/post-to-discord.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -307,6 +308,17 @@ async function postToSocialMedia(post) {
             console.log('✅ Posted to Mastodon');
         } catch (error) {
             console.error('❌ Mastodon posting failed:', error.message);
+        }
+
+        // Small delay before Discord
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        // Post to Discord
+        try {
+            await postToDiscord(socialText);
+            console.log('✅ Posted to Discord');
+        } catch (error) {
+            console.error('❌ Discord posting failed:', error.message);
         }
 
         console.log('✅ Social media posting complete\n');
