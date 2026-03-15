@@ -1,0 +1,54 @@
+name: Daily Blog Post
+
+on:
+  schedule:
+    - cron: '0 10 * * *'  # Daily at 10 AM UTC (5 AM EST) - 4 hours before social posts
+  workflow_dispatch:  # Manual trigger
+
+# Prevent concurrent runs
+concurrency:
+  group: blog-posting
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish-blog:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 50  # Fetch more history for commit-based What's New posts
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Generate and publish blog post
+        env:
+          BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          MASTODON_API_URL: ${{ secrets.MASTODON_API_URL }}
+          DRY_RUN: false
+        run: node scripts/automation/post-blog.js
+      
+      - name: Commit and push blog changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add firebase/public/blog/*.json firebase/public/blog/*.xml firebase/public/blog/posts/*.html 2>/dev/null || true
+          if ! git diff --quiet HEAD firebase/public/blog/ 2>/dev/null; then
+            git commit -m "blog: automated daily post [skip ci]"
+            git push
+          else
+            echo "No new blog post to commit"
+          fi

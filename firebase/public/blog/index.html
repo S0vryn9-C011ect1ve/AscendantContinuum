@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="The Ascendant Continuum development blog - daily insights into accessibility-first game design, Unity development, and ethical gaming.">
+    <title>Dev Blog - The Ascendant Continuum</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/images.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="The Ascendant Continuum Dev Blog" href="/blog/rss.xml">
+    <style>
+        .blog-nav-breadcrumb {
+            padding: 5rem 0 1rem 0;
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+        }
+
+        .blog-nav-breadcrumb a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+
+        .blog-nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-header {
+            text-align: center;
+            padding: var(--spacing-md) 0 var(--spacing-xl);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .blog-header h1 {
+            font-size: var(--font-size-xxl);
+            margin-bottom: var(--spacing-sm);
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blog-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-secondary);
+            opacity: 0.9;
+        }
+
+        .blog-rss-link {
+            display: inline-block;
+            margin-top: var(--spacing-sm);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--color-primary);
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .blog-rss-link:hover {
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .blog-post-list {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .blog-post-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-post-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+        }
+
+        .blog-post-meta {
+            display: flex;
+            gap: var(--spacing-sm);
+            font-size: 0.85rem;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .blog-post-tag {
+            background: rgba(78, 205, 196, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .blog-post-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-light);
+        }
+
+        .blog-post-title a {
+            color: var(--color-light);
+            text-decoration: none;
+        }
+
+        .blog-post-title a:hover {
+            color: var(--color-primary);
+        }
+
+        .blog-post-excerpt {
+            color: var(--color-light);
+            opacity: 0.85;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.7;
+        }
+
+        .blog-read-more {
+            display: inline-block;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .blog-read-more:hover {
+            transform: translateX(4px);
+        }
+
+        .blog-empty {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            color: var(--color-secondary);
+            font-size: var(--font-size-lg);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top-nav" aria-label="Primary">
+        <div class="container top-nav-inner">
+            <a href="/" class="top-nav-brand">Ascendant Continuum</a>
+            <div class="top-nav-links">
+                <a href="/#latest" class="top-nav-link">Updates</a>
+                <a href="/blog/" class="top-nav-link">Blog</a>
+                <a href="/#faq" class="top-nav-link">FAQ</a>
+                <a href="/#signup" class="top-nav-link">Waitlist</a>
+                <a href="/play/" class="top-nav-link top-nav-link-play">Play</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="blog-nav-breadcrumb">
+            <a href="/">Home</a> / Blog
+        </div>
+
+        <header class="blog-header">
+            <h1>Development Blog</h1>
+            <p class="blog-subtitle">Daily insights into building an accessibility-first magical adventure</p>
+            <a href="/blog/rss.xml" class="blog-rss-link">📡 Subscribe via RSS</a>
+        </header>
+
+        <div id="blog-post-list" class="blog-post-list">
+            <!-- Posts will be dynamically loaded here -->
+            <div class="blog-empty">Loading posts...</div>
+        </div>
+    </div>
+
+    <script>
+        // Load blog posts from data.json
+        fetch('/blog/data.json')
+            .then(response => response.json())
+            .then(data => {
+                const postList = document.getElementById('blog-post-list');
+
+                if (!data.posts || data.posts.length === 0) {
+                    postList.innerHTML = '<div class="blog-empty">No blog posts yet. Check back soon!</div>';
+                    return;
+                }
+
+                // Sort by date descending (newest first)
+                const sortedPosts = data.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                postList.innerHTML = sortedPosts.map(post => `
+                    <article class="blog-post-card">
+                        <div class="blog-post-meta">
+                            <span>${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                            ${post.tags.map(tag => `<span class="blog-post-tag">${tag}</span>`).join('')}
+                        </div>
+                        <h2 class="blog-post-title">
+                            <a href="/blog/posts/${post.slug}.html">${post.title}</a>
+                        </h2>
+                        <p class="blog-post-excerpt">${post.excerpt}</p>
+                        <a href="/blog/posts/${post.slug}.html" class="blog-read-more">Read more →</a>
+                    </article>
+                `).join('');
+            })
+            .catch(error => {
+                console.error('Error loading blog posts:', error);
+                document.getElementById('blog-post-list').innerHTML =
+                    '<div class="blog-empty">Error loading posts. Please try again later.</div>';
+            });
+    </script>
+</body>
+
+</html>
