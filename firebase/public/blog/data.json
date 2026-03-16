@@ -1,27 +1,8 @@
 {
-  "posts": [
-    {
-      "title": "Dealing with Impostor Syndrome as an Indie Developer",
-      "slug": "dealing-with-impostor-syndrome-as-an-indie-developer",
-      "date": "2026-03-15",
-      "tags": [
-        "development",
-        "team",
-        "process"
-      ],
-      "themeName": "Behind the Scenes",
-      "excerpt": "Every single day I wonder if I'm wasting my time. The game isn't as polished as AAA titles. My code is messy compared to senior engineers at big studios. The art is decent but not stunning. Marketing ..."
-    }
-  ],
+  "posts": [],
   "stats": {
-    "totalPosts": 1,
-    "byTheme": {
-      "Behind the Scenes": 1
-    },
-    "byTag": {
-      "development": 1,
-      "team": 1,
-      "process": 1
-    }
+    "totalPosts": 0,
+    "byTheme": {},
+    "byTag": {}
   }
 }

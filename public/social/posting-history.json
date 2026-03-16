@@ -71,6 +71,64 @@
           "success": true
         }
       ]
+    },
+    {
+      "timestamp": "2026-03-14T17:08:11.382Z",
+      "type": "designPhilosophy",
+      "content": "What if every player mattered? Like, actually mattered?\n\nOur monetization promise:\n\n✅ Buy once, play forever\n✅ All content available to all players\n✅ No psychological manipulation\n✅ No pay-to-win mechanics\n\nIf we make DLC, it's meaningful expansion.\nNot extraction.\n\nPlayers over profits.\n\n#IndieGameDev #GameDev #EthicalGaming",
+      "hook": "What if every player mattered? Like, actually mattered?",
+      "theme": "Respectful Monetization",
+      "platforms": {
+        "bluesky": {
+          "success": true,
+          "platform": "bluesky",
+          "uri": "at://did:plc:lb4jy3h5kqhtgemunsuheqzd/app.bsky.feed.post/3mgzw4p24cm2o",
+          "cid": "bafyreidpv5bporzi27k7ext36ms7qutzwiijbu3okk6wvxpdenhffz3dp4",
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mgzw4p24cm2o",
+          "timestamp": "2026-03-14T17:08:13.203Z"
+        },
+        "mastodon": {
+          "success": true,
+          "platform": "mastodon",
+          "id": "116228623580163431",
+          "url": "https://mastodon.social/@AscendantContinuum/116228623580163431",
+          "timestamp": "2026-03-14T17:07:30.273Z"
+        },
+        "discord": {
+          "success": true,
+          "platform": "discord",
+          "timestamp": "2026-03-14T17:08:14.397Z"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-03-14T17:09:05.945Z",
+      "type": "designPhilosophy",
+      "content": "Games don't have to manipulate players to succeed.\n\n8 colorblind modes.\nEach one reveals DIFFERENT hidden content.\n\nAccessibility isn't accommodation.\nIt's a discovery system.\n\nDifferent vision = different universe secrets.\n\nInnovation through inclusion.\n\n#IndieGameDev #GameDev #EthicalGaming",
+      "hook": "Games don't have to manipulate players to succeed.",
+      "theme": "Accessibility Innovation",
+      "platforms": {
+        "bluesky": {
+          "success": true,
+          "platform": "bluesky",
+          "uri": "at://did:plc:lb4jy3h5kqhtgemunsuheqzd/app.bsky.feed.post/3mgzw6bvddw26",
+          "cid": "bafyreicgbik5u66zqd7m7omwln2thcb2zvanhcilxhta22j6mxs4opd7pi",
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mgzw6bvddw26",
+          "timestamp": "2026-03-14T17:09:06.634Z"
+        },
+        "mastodon": {
+          "success": true,
+          "platform": "mastodon",
+          "id": "116228627061870877",
+          "url": "https://mastodon.social/@AscendantContinuum/116228627061870877",
+          "timestamp": "2026-03-14T17:08:23.367Z"
+        },
+        "discord": {
+          "success": true,
+          "platform": "discord",
+          "timestamp": "2026-03-14T17:09:07.388Z"
+        }
+      }
     }
   ],
   "stats": {

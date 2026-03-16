@@ -12,17 +12,5 @@
       <title>The Ascendant Continuum</title>
       <link>https://ascendantcontinuum.web.app/blog/</link>
     </image>
-
-    <item>
-      <title><![CDATA[Dealing with Impostor Syndrome as an Indie Developer]]></title>
-      <link>https://ascendantcontinuum.web.app/blog/posts/dealing-with-impostor-syndrome-as-an-indie-developer.html</link>
-      <guid isPermaLink="true">https://ascendantcontinuum.web.app/blog/posts/dealing-with-impostor-syndrome-as-an-indie-developer.html</guid>
-      <pubDate>Sun, 15 Mar 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Behind the Scenes]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[team]]></category>
-      <category><![CDATA[process]]></category>
-      <description><![CDATA[Every single day I wonder if I'm wasting my time. The game isn't as polished as AAA titles. My code is messy compared to senior engineers at big studios. The art is decent but not stunning. Marketing ...]]></description>
-    </item>
   </channel>
 </rss>

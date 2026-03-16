@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using AscendantContinuum.Core;
 using AscendantContinuum.Systems;
 using AscendantContinuum.Emberforge;
@@ -24,6 +25,9 @@ namespace AscendantContinuum.Realms.Emberforge
         // ── Inspector refs ────────────────────────────────────────────────
         [Header("Emberforge Components")]
         [SerializeField] private EmberforgeSparks sparksSystem;
+
+        [Header("UI")]
+        [SerializeField] private TMP_Text sparkCounterText;
 
         // ── Unity lifecycle ────────────────────────────────────────────────
         protected override void Awake()
@@ -57,6 +61,10 @@ namespace AscendantContinuum.Realms.Emberforge
         // ── Handlers ──────────────────────────────────────────────────────
         private void HandleSparkCollected(int totalSparks)
         {
+            // Update UI counter
+            if (sparkCounterText != null)
+                sparkCounterText.text = $"Sparks: {totalSparks}/20";
+
             // Each collected spark = 1 unit of CollectSparks challenge progress
             OnRealmProgressMade(ChallengeType.CollectSparks, amount: 1, sparks: totalSparks);
 

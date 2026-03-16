@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.cinemachine": "3.1.2",
     "com.unity.collab-proxy": "2.11.3",
     "com.unity.feature.mobile": "1.0.0",
@@ -10,7 +11,9 @@
     "com.unity.mobile.android-logcat": "1.4.7",
     "com.unity.mobile.notifications": "2.4.3",
     "com.unity.probuilder": "6.0.3",
+    "com.unity.purchasing": "4.12.2",
     "com.unity.render-pipelines.universal": "17.3.0",
+    "com.unity.services.analytics": "6.0.1",
     "com.unity.shadergraph": "17.3.0",
     "com.unity.test-framework": "1.6.0",
     "com.unity.timeline": "1.8.10",
@@ -47,8 +50,6 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "com.unity.services.analytics": "6.0.1",
-    "com.unity.purchasing": "4.12.2"
+    "com.unity.modules.xr": "1.0.0"
   }
 }
