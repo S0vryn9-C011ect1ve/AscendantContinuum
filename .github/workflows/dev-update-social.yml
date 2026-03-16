@@ -44,7 +44,7 @@ jobs:
           MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          DRY_RUN: 'false'
+          DRY_RUN: 'true'
         run: node scripts/automation/post-dev-update.js
 
       - name: 💾 Commit posting history
