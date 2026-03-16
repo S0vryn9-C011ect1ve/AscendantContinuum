@@ -508,28 +508,6 @@ const BLOG_THEMES = {
                         content: 'Development costs: $9,200 to date. Monthly operational costs: $150 (Firebase, domain, tools). Target: $15,000 first-year revenue to cover costs + sustainable income. Free-to-play model with cosmetic purchases averaging $4.99. Need 3,000 paying users (12% of 25,000 installs) to hit target—achievable based on similar games. Alternative: premium model at $4.99 (need 3,000 purchases). Haven\'t decided yet; will A/B test. Point is: indie games don\'t need huge budgets if you\'re strategic. Financial literacy matters as much as programming skill.'
                     }
                 ]
-            },
-            {
-                title: 'Dealing with Impostor Syndrome as an Indie Developer',
-                hook: 'Every indie dev battles self-doubt. Here\'s how I cope with feeling like a fraud.',
-                sections: [
-                    {
-                        heading: 'The Constant Voice of Self-Doubt',
-                        content: 'Every single day I wonder if I\'m wasting my time. The game isn\'t as polished as AAA titles. My code is messy compared to senior engineers at big studios. The art is decent but not stunning. Marketing feels uncomfortable and self-promotional. Competitors have bigger teams, more budget, better connections. Why would anyone play my game when thousands of alternatives exist? This voice never goes away—I\'ve learned to acknowledge it without obeying it. Impostor syndrome doesn\'t mean you\'re an impostor; it means you care about quality.'
-                    },
-                    {
-                        heading: 'Strategies for Managing Self-Doubt',
-                        content: 'I keep a "wins" journal: player testimonials, development milestones, technical problems solved, positive feedback. When self-doubt spirals, I read it. I compare myself only to past me, never to others—am I better than I was 6 months ago? Yes, measurably. I share work-in-progress publicly despite fear of judgment—transparency builds accountability and reveals that others have similar struggles. I remind myself that "good enough shipped" beats "perfect imagined." The Ascendant Continuum isn\'t perfect, but it exists. Most game ideas never become playable. Existence is an achievement.'
-                    },
-                    {
-                        heading: 'Community Support and Peer Connections',
-                        content: 'Solo dev is isolating. I joined indie dev Discord servers (Gamedev.tv, IndieGameDevs, Unity official). Sharing struggles with peers who understand is therapeutic—everyone battles impostor syndrome, even successful devs. I participate in Screenshot Saturday (weekly Twitter event showing game progress). The feedback loop—sharing work, receiving encouragement, seeing others\' struggles—normalizes the emotional rollercoaster. I have three "accountability buddies" (other solo devs) who I check in with weekly. We share goals, celebrate wins, commiserate over setbacks. Community doesn\'t eliminate impostor syndrome but makes it bearable.'
-                    },
-                    {
-                        heading: 'Reframing Failure as Learning',
-                        content: 'I\'ve abandoned three previous game projects before The Ascendant Continuum. For years I saw these as failures, embarrassments I didn\'t mention. Now I see them as tuition paid for skills: Project 1 taught me Unity basics, Project 2 taught me why scope management matters, Project 3 taught me sustainable development practices. The Ascendant Continuum only exists because I learned from those "failures." The gamedev graveyard is full of abandoned projects—that doesn\'t make developers frauds. It makes us learners. Every failed project contains lessons that inform future success. Reframing failure reduces shame and enables growth.'
-                    }
-                ]
             }
         ]
     }
