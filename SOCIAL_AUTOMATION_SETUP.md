@@ -1,14 +1,50 @@
 # Social Media Automation Setup Guide
 
-## Current Status: DRY RUN MODE ✅
+## 🎉 100% FREE LOCAL AUTOMATION (RECOMMENDED)
 
-All workflows are currently running in **DRY RUN** mode, which means:
-- ✅ Workflows run successfully without failing
-- ✅ Content is generated and logged
-- ✅ No actual posts are made to social media
-- ✅ You can see what WOULD be posted in GitHub Actions logs
+**GitHub Actions has billing issues?** Use **Windows Task Scheduler** instead - completely FREE, runs on your local machine!
 
-This lets you test the automation without needing credentials configured yet.
+### Quick Setup (5 minutes):
+
+1. **Configure credentials:**
+   ```powershell
+   # Copy example file
+   Copy-Item .env.example .env
+   
+   # Edit .env with your credentials (Notepad)
+   notepad .env
+   ```
+
+2. **Install automation (requires Admin):**
+   ```powershell
+   # Right-click PowerShell → Run as Administrator
+   .\setup-local-automation.ps1
+   ```
+
+3. **Test it:**
+   ```powershell
+   # Dry run test (no actual posting)
+   .\scripts\automation\run-daily-social.ps1 -DryRun
+   
+   # Check logs
+   Get-Content .\logs\social-automation-*.log -Tail 20
+   ```
+
+4. **Done!** Tasks auto-run daily:
+   - 📱 Social posts: 2 PM UTC (9 AM EST) daily
+   - 📝 Blog posts: 10 AM UTC (5 AM EST) daily
+
+### Benefits:
+- ✅ 100% FREE - No cloud costs, no GitHub Actions billing
+- ✅ Runs on YOUR machine - Full control
+- ✅ Easy debugging - Logs saved locally
+- ✅ Works when logged out (PC must be ON)
+
+---
+
+## Alternative: GitHub Actions (May Have Billing)
+
+**Note:** GitHub Actions failed due to billing issues. If you have a paid plan or public repo, you can use workflows:
 
 ---
 
