@@ -1,8 +1,32 @@
 {
-  "posts": [],
+  "posts": [
+    {
+      "title": "From Healthcare to Game Dev: Building My First Game",
+      "slug": "from-healthcare-to-game-dev-building-my-first-game",
+      "date": "2026-03-16",
+      "themeName": "Behind the Scenes",
+      "tags": [
+        "behind-the-scenes",
+        "first-game",
+        "disability",
+        "career-change",
+        "learning-unity"
+      ],
+      "excerpt": "After a workplace injury ended my healthcare career, I'm learning Unity to build my first game - a magical adventure that reconnects people with nature and the night sky.",
+      "hook": "A workplace injury ended one career. It's starting another."
+    }
+  ],
   "stats": {
-    "totalPosts": 0,
-    "byTheme": {},
-    "byTag": {}
+    "totalPosts": 1,
+    "byTheme": {
+      "Behind the Scenes": 1
+    },
+    "byTag": {
+      "behind-the-scenes": 1,
+      "first-game": 1,
+      "disability": 1,
+      "career-change": 1,
+      "learning-unity": 1
+    }
   }
 }

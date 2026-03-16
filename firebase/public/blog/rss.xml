@@ -12,5 +12,19 @@
       <title>The Ascendant Continuum</title>
       <link>https://ascendantcontinuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[From Healthcare to Game Dev: Building My First Game]]></title>
+      <link>https://ascendantcontinuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</link>
+      <guid isPermaLink="true">https://ascendantcontinuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</guid>
+      <pubDate>Sat, 16 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Behind the Scenes]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <category><![CDATA[first-game]]></category>
+      <category><![CDATA[disability]]></category>
+      <category><![CDATA[career-change]]></category>
+      <category><![CDATA[learning-unity]]></category>
+      <description><![CDATA[After a workplace injury ended my healthcare career, I'm learning Unity to build my first game - a magical adventure that reconnects people with nature and the night sky.]]></description>
+    </item>
   </channel>
 </rss>
