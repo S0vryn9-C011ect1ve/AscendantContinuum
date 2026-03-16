@@ -14,19 +14,34 @@
       ],
       "excerpt": "After a workplace injury ended my healthcare career, I'm learning Unity to build my first game - a magical adventure that reconnects people with nature and the night sky.",
       "hook": "A workplace injury ended one career. It's starting another."
+    },
+    {
+      "title": "Budget Breakdown: Developing a Game for Under $10K",
+      "slug": "budget-breakdown-developing-a-game-for-under-10k",
+      "date": "2026-03-16",
+      "tags": [
+        "development",
+        "team",
+        "process"
+      ],
+      "themeName": "Behind the Scenes",
+      "excerpt": "Total expenditure through beta: $9,200. Breakdown: art assets $2,400 (character concepts, UI elements, realm designs), audio $800 (soundscapes, effects, no music yet), tools/subscriptions $1,200/year ..."
     }
   ],
   "stats": {
-    "totalPosts": 1,
+    "totalPosts": 2,
     "byTheme": {
-      "Behind the Scenes": 1
+      "Behind the Scenes": 2
     },
     "byTag": {
       "behind-the-scenes": 1,
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
-      "learning-unity": 1
+      "learning-unity": 1,
+      "development": 1,
+      "team": 1,
+      "process": 1
     }
   }
 }

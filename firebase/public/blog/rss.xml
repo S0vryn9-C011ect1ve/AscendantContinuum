@@ -5,7 +5,7 @@
     <link>https://ascendantcontinuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Mar 2026 20:51:33 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2026 23:33:40 GMT</lastBuildDate>
     <atom:link href="https://ascendantcontinuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendantcontinuum.web.app/favicon.png</url>
@@ -17,7 +17,7 @@
       <title><![CDATA[From Healthcare to Game Dev: Building My First Game]]></title>
       <link>https://ascendantcontinuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</link>
       <guid isPermaLink="true">https://ascendantcontinuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</guid>
-      <pubDate>Sat, 16 Mar 2026 00:00:00 GMT</pubDate>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
       <category><![CDATA[Behind the Scenes]]></category>
       <category><![CDATA[behind-the-scenes]]></category>
       <category><![CDATA[first-game]]></category>
@@ -25,6 +25,18 @@
       <category><![CDATA[career-change]]></category>
       <category><![CDATA[learning-unity]]></category>
       <description><![CDATA[After a workplace injury ended my healthcare career, I'm learning Unity to build my first game - a magical adventure that reconnects people with nature and the night sky.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Budget Breakdown: Developing a Game for Under $10K]]></title>
+      <link>https://ascendantcontinuum.web.app/blog/posts/budget-breakdown-developing-a-game-for-under-10k.html</link>
+      <guid isPermaLink="true">https://ascendantcontinuum.web.app/blog/posts/budget-breakdown-developing-a-game-for-under-10k.html</guid>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Behind the Scenes]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[team]]></category>
+      <category><![CDATA[process]]></category>
+      <description><![CDATA[Total expenditure through beta: $9,200. Breakdown: art assets $2,400 (character concepts, UI elements, realm designs), audio $800 (soundscapes, effects, no music yet), tools/subscriptions $1,200/year ...]]></description>
     </item>
   </channel>
 </rss>
