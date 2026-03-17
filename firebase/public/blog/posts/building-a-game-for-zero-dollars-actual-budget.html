@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="The honest truth about building The Ascendant Continuum: $0 spent on game development. Here's the actual budget breakdown and how I'm building a game with free tools.">
+    <meta property="og:title" content="Building a Game for $0: My Actual Budget - The Ascendant Continuum">
+    <meta property="og:description"
+        content="The honest truth about building The Ascendant Continuum: $0 spent on game development. Here's the actual budget breakdown and how I'm building a game with free tools.">
+    <meta property="og:type" content="article">
+    <meta property="og:url"
+        content="https://ascendant-continuum.firebaseapp.com/blog/posts/building-a-game-for-zero-dollars-actual-budget.html">
+    <meta property="article:published_time" content="2026-03-17">
+    <meta property="article:author" content="The Ascendant Continuum Team">
+    <meta property="article:tag" content="budget">
+    <meta property="article:tag" content="indie-dev">
+    <meta property="article:tag" content="transparency">
+    <meta property="article:tag" content="free-tools">
+    <meta property="article:tag" content="bootstrap">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building a Game for $0: My Actual Budget">
+    <meta name="twitter:description"
+        content="The honest truth: $0 spent on game development. Here's how I'm building The Ascendant Continuum with free tools.">
+    <title>Building a Game for $0: My Actual Budget - The Ascendant Continuum Dev Blog</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/images.css">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link rel="canonical"
+        href="https://ascendant-continuum.firebaseapp.com/blog/posts/building-a-game-for-zero-dollars-actual-budget.html">
+    <style>
+        .blog-post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5rem var(--spacing-md) var(--spacing-xl);
+        }
+
+        .blog-nav-breadcrumb {
+            padding-bottom: var(--spacing-md);
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+        }
+
+        .blog-nav-breadcrumb a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+
+        .blog-nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-post-header {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .blog-post-meta {
+            display: flex;
+            gap: var(--spacing-sm);
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .blog-post-tag {
+            background: rgba(78, 205, 196, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .blog-post-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blog-post-hook {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 4px solid var(--color-secondary);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+
+        .blog-post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+
+        .blog-post-content h2 {
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.8rem;
+            color: var(--color-primary);
+        }
+
+        .blog-post-content h3 {
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.4rem;
+            color: var(--color-secondary);
+        }
+
+        .blog-post-content p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .blog-post-content ul,
+        .blog-post-content ol {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-lg);
+        }
+
+        .blog-post-content li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .budget-table {
+            width: 100%;
+            margin: var(--spacing-lg) 0;
+            border-collapse: collapse;
+        }
+
+        .budget-table th,
+        .budget-table td {
+            padding: var(--spacing-sm);
+            text-align: left;
+            border-bottom: 1px solid rgba(78, 205, 196, 0.2);
+        }
+
+        .budget-table th {
+            background: rgba(78, 205, 196, 0.2);
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .budget-table .cost-free {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .budget-table .cost-paid {
+            color: var(--color-secondary);
+            font-weight: 600;
+        }
+
+        .total-section {
+            background: rgba(78, 205, 196, 0.1);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin: var(--spacing-lg) 0;
+            text-align: center;
+        }
+
+        .total-section .total-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: var(--spacing-sm) 0;
+        }
+
+        .correction-note {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid rgba(255, 193, 7, 0.6);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin: var(--spacing-md) 0;
+        }
+
+        .correction-note strong {
+            color: rgba(255, 193, 7, 1);
+        }
+
+        @media (max-width: 768px) {
+            .blog-post-container {
+                padding: 3rem var(--spacing-sm) var(--spacing-lg);
+            }
+
+            .blog-post-title {
+                font-size: 1.8rem;
+            }
+
+            .total-section .total-amount {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav
+        style="padding: var(--spacing-md) var(--spacing-lg); background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px);">
+        <div
+            style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <a href="../../index.html" style="text-decoration: none;">
+                <h1
+                    style="margin: 0; font-size: 1.5rem; background: var(--gradient-hero); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                    The Ascendant Continuum
+                </h1>
+            </a>
+            <div style="display: flex; gap: var(--spacing-md);">
+                <a href="../index.html"
+                    style="color: var(--color-text); text-decoration: none; transition: color 0.3s;">Blog</a>
+                <a href="../../index.html#features"
+                    style="color: var(--color-text); text-decoration: none; transition: color 0.3s;">Features</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="blog-post-container">
+        <div class="blog-nav-breadcrumb">
+            <a href="../../index.html">Home</a> / <a href="../index.html">Blog</a> / Building a Game for $0: My Actual
+            Budget
+        </div>
+
+        <article>
+            <header class="blog-post-header">
+                <div class="blog-post-meta">
+                    <span>📅 March 17, 2026</span>
+                    <span>⏱ 5 min read</span>
+                    <span>💰 Budget: $0</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: var(--spacing-md);">
+                    <span class="blog-post-tag">budget</span>
+                    <span class="blog-post-tag">indie-dev</span>
+                    <span class="blog-post-tag">transparency</span>
+                    <span class="blog-post-tag">free-tools</span>
+                    <span class="blog-post-tag">bootstrap</span>
+                </div>
+                <h1 class="blog-post-title">Building a Game for $0: My Actual Budget</h1>
+                <p class="blog-post-hook">
+                    "The honest truth: I've spent exactly $0 on game development. Here's how I'm building The Ascendant
+                    Continuum entirely with free tools."
+                </p>
+            </header>
+
+            <div class="blog-post-content">
+                <div class="correction-note">
+                    <strong>Previous Inaccuracy Corrected:</strong> My automation previously generated incorrect budget
+                    claims suggesting thousands of dollars in expenses. That was false. This post sets the record
+                    straight with the actual numbers.
+                </div>
+
+                <h2>The Reality: $0 Game Development Budget</h2>
+                <p>
+                    Let me be completely transparent: <strong>I have spent $0 on developing The Ascendant
+                        Continuum.</strong>
+                </p>
+                <p>
+                    Not $10K. Not $1K. Not even $100. Zero dollars on game development itself.
+                </p>
+                <p>
+                    The only money I'm spending right now is <strong>$10/month for GitHub Copilot Pro</strong>, which
+                    helps me code faster (I'm learning Unity as I go, and it's been invaluable).
+                </p>
+
+                <div class="total-section">
+                    <h3>Total Game Development Cost</h3>
+                    <div class="total-amount">$0.00</div>
+                    <p style="color: var(--color-secondary); margin-top: var(--spacing-sm);">
+                        (Plus $10/month for Copilot Pro, unrelated to game budget)
+                    </p>
+                </div>
+
+                <h2>The Actual Budget Breakdown</h2>
+                <p>
+                    Here's every tool, service, and resource I'm using to build this game:
+                </p>
+
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Tool/Service</th>
+                            <th>Cost</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Game Engine</strong></td>
+                            <td>Unity Personal</td>
+                            <td class="cost-free">$0</td>
+                            <td>Free for projects under $200K revenue/year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Code Editor</strong></td>
+                            <td>Visual Studio Code</td>
+                            <td class="cost-free">$0</td>
+                            <td>Free and open source</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI Assistance</strong></td>
+                            <td>GitHub Copilot Pro</td>
+                            <td class="cost-paid">$10/mo</td>
+                            <td>Only paid expense - helps me learn Unity faster</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backend/Database</strong></td>
+                            <td>Firebase (Spark Plan)</td>
+                            <td class="cost-free">$0</td>
+                            <td>Free tier: Firestore, Auth, Hosting, Analytics</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Version Control</strong></td>
+                            <td>Git + GitHub</td>
+                            <td class="cost-free">$0</td>
+                            <td>Free for public repos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Automation</strong></td>
+                            <td>Windows Task Scheduler</td>
+                            <td class="cost-free">$0</td>
+                            <td>Built into Windows - handles daily social posts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Graphics</strong></td>
+                            <td>Unity built-in + free assets</td>
+                            <td class="cost-free">$0</td>
+                            <td>Particle systems, shaders, Asset Store free content</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Audio</strong></td>
+                            <td>Audacity + free samples</td>
+                            <td class="cost-free">$0</td>
+                            <td>Open source audio editor + freesound.org</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Design/Prototyping</strong></td>
+                            <td>Figma (Free tier)</td>
+                            <td class="cost-free">$0</td>
+                            <td>UI mockups and design work</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Testing</strong></td>
+                            <td>Unity Play Mode Tests</td>
+                            <td class="cost-free">$0</td>
+                            <td>Built into Unity</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Documentation</strong></td>
+                            <td>Markdown files + GitHub</td>
+                            <td class="cost-free">$0</td>
+                            <td>Simple, version-controlled docs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Analytics</strong></td>
+                            <td>Firebase Analytics</td>
+                            <td class="cost-free">$0</td>
+                            <td>Free tier covers everything I need</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Accessibility Testing</strong></td>
+                            <td>Color Oracle, Sim Daltonism</td>
+                            <td class="cost-free">$0</td>
+                            <td>Free colorblind simulation tools</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>No Contractors. No Outsourcing. Just Free Tools.</h2>
+                <p>
+                    I'm not paying for:
+                </p>
+                <ul>
+                    <li>❌ Art contractors</li>
+                    <li>❌ Audio engineers</li>
+                    <li>❌ Programming help</li>
+                    <li>❌ Asset packs (using only free Unity Asset Store content)</li>
+                    <li>❌ Marketing services</li>
+                    <li>❌ Testing services</li>
+                </ul>
+                <p>
+                    This is 100% solo dev work, using 100% free tools (except Copilot Pro, which isn't game-specific).
+                </p>
+
+                <h2>Why I'm Building for Free</h2>
+                <p>
+                    <strong>Reality:</strong> I'm disabled. Workplace injury ended my healthcare career. I don't have a
+                    game development budget.
+                </p>
+                <p>
+                    I'm building this game because:
+                </p>
+                <ol>
+                    <li>I need to create something meaningful after losing my career</li>
+                    <li>I have time (not working full-time)</li>
+                    <li>Modern free tools make this possible</li>
+                    <li>I want to prove accessibility-first design can work</li>
+                </ol>
+                <p>
+                    The $0 budget isn't a choice—it's a constraint. But it turns out, you can build a lot with free
+                    tools in 2026.
+                </p>
+
+                <h2>How Firebase Free Tier Powers Everything</h2>
+                <p>
+                    Firebase's Spark (free) plan gives me:
+                </p>
+                <ul>
+                    <li><strong>Firestore:</strong> 1 GB storage, 50K reads/day, 20K writes/day (plenty for early
+                        development)</li>
+                    <li><strong>Authentication:</strong> Email, Google, Apple sign-in (free forever)</li>
+                    <li><strong>Hosting:</strong> 10 GB storage, 360 MB/day bandwidth</li>
+                    <li><strong>Cloud Functions:</strong> 2M invocations/month</li>
+                    <li><strong>Analytics:</strong> Unlimited events</li>
+                </ul>
+                <p>
+                    When the game scales beyond free tier limits, I'll need to upgrade. But for early development and
+                    testing? Firebase free tier is perfect.
+                </p>
+
+                <h2>Unity Asset Store: Free Content Goldmine</h2>
+                <p>
+                    Unity Asset Store has thousands of free assets:
+                </p>
+                <ul>
+                    <li>Particle effect packs</li>
+                    <li>UI templates</li>
+                    <li>Sound effects</li>
+                    <li>Shaders</li>
+                    <li>Scripts and tools</li>
+                </ul>
+                <p>
+                    I'm using only free assets (with proper attribution). No paid asset packs. Quality might not be AAA,
+                    but it's good enough for an indie solo dev project.
+                </p>
+
+                <h2>GitHub Copilot Pro: The One Paid Tool</h2>
+                <p>
+                    <strong>$10/month</strong> - This is the only money I'm spending, and it's not game-specific.
+                </p>
+                <p>
+                    Why I pay for it:
+                </p>
+                <ul>
+                    <li>I'm learning Unity C# from scratch</li>
+                    <li>Copilot helps me code 3-5x faster</li>
+                    <li>It explains patterns I don't understand</li>
+                    <li>Catches bugs before I commit</li>
+                    <li>Writes boilerplate so I can focus on design</li>
+                </ul>
+                <p>
+                    As a beginner learning Unity, Copilot is worth every penny. But it's a productivity tool, not a game
+                    development expense.
+                </p>
+
+                <h2>The Hidden "Costs" (Time and Learning)</h2>
+                <p>
+                    While monetary cost is $0, I'm paying in:
+                </p>
+                <ul>
+                    <li><strong>Time:</strong> 6+ months of daily development</li>
+                    <li><strong>Learning curve:</strong> Hundreds of hours learning Unity</li>
+                    <li><strong>Frustration:</strong> Debugging, failing, restarting</li>
+                    <li><strong>Opportunity cost:</strong> Time I could spend on other things</li>
+                </ul>
+                <p>
+                    But these aren't dollar costs. And honestly? Learning Unity is the whole point.
+                </p>
+
+                <h2>When I'll Need to Spend Money</h2>
+                <p>
+                    Eventually, I'll need to pay for:
+                </p>
+                <ul>
+                    <li><strong>App Store fees:</strong> $99/year (Apple), $25 one-time (Google Play)</li>
+                    <li><strong>Firebase upgrade:</strong> If the game exceeds free tier (good problem to have)</li>
+                    <li><strong>Domain name:</strong> If I want a custom domain (~$12/year)</li>
+                    <li><strong>Professional audio/art:</strong> If I decide to commission work later</li>
+                </ul>
+                <p>
+                    But that's future spending. Right now? $0 on game development.
+                </p>
+
+                <h2>Why I'm Sharing This</h2>
+                <p>
+                    <strong>Transparency matters.</strong> I made a mistake when my automation generated false budget
+                    claims. That was wrong, and I'm correcting it.
+                </p>
+                <p>
+                    The truth:
+                </p>
+                <ul>
+                    <li>✅ I'm building a real game</li>
+                    <li>✅ It has real accessibility features (5 colorblind modes, etc.)</li>
+                    <li>✅ It's in early development</li>
+                    <li>✅ I'm spending $0 on game development</li>
+                    <li>✅ I'm learning as I go</li>
+                </ul>
+                <p>
+                    No fake launch claims. No inflated budgets. Just honest solo dev work with free tools.
+                </p>
+
+                <h2>Advice for Other Broke Indie Devs</h2>
+                <p>
+                    If you're like me (no budget, lots of time, willing to learn), here's what works:
+                </p>
+                <ol>
+                    <li><strong>Use Unity Personal:</strong> It's free and powerful</li>
+                    <li><strong>Master Firebase free tier:</strong> Backend solved, $0 cost</li>
+                    <li><strong>GitHub for everything:</strong> Version control + CI/CD + automation</li>
+                    <li><strong>Free Asset Store content:</strong> It's not AAA, but it's enough</li>
+                    <li><strong>Learn by doing:</strong> YouTube tutorials, Unity docs, trial and error</li>
+                    <li><strong>Build in public:</strong> Free accountability and feedback</li>
+                </ol>
+
+                <h2>The Bottom Line</h2>
+                <div class="total-section">
+                    <h3>Game Development Budget</h3>
+                    <div class="total-amount">$0</div>
+                    <p style="color: var(--color-secondary); margin-top: var(--spacing-sm);">
+                        Copilot Pro ($10/month) is a productivity tool, not a game expense
+                    </p>
+                    <p style="color: var(--color-text); margin-top: var(--spacing-md); font-size: 0.95rem;">
+                        Everything else: Unity Personal, Firebase, GitHub, Asset Store freebies, Windows Task Scheduler,
+                        open-source tools.
+                    </p>
+                </div>
+
+                <p>
+                    You don't need thousands of dollars to build a game. You need time, patience, and a willingness to
+                    learn.
+                </p>
+                <p>
+                    I'm proving it's possible. One $0 feature at a time.
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <footer
+        style="text-align: center; padding: var(--spacing-xl) var(--spacing-md); background: rgba(0, 0, 0, 0.5); margin-top: var(--spacing-xxl);">
+        <p style="color: var(--color-secondary); margin-bottom: var(--spacing-sm);">
+            &copy; 2026 The Ascendant Continuum. Built with $0, free tools, and determination.
+        </p>
+        <div style="display: flex; justify-content: center; gap: var(--spacing-md); flex-wrap: wrap;">
+            <a href="../../index.html" style="color: var(--color-text); text-decoration: none;">Home</a>
+            <a href="../index.html" style="color: var(--color-text); text-decoration: none;">Blog</a>
+            <a href="../../index.html#features" style="color: var(--color-text); text-decoration: none;">Features</a>
+        </div>
+    </footer>
+</body>
+
+</html>

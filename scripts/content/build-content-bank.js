@@ -17,8 +17,8 @@ const additionalContent = [
     {
         id: 21,
         type: "devUpdate",
-        hook: "Shipped v2.0 today. Here's everything that changed.",
-        body: "v2.0 Release Notes:\n\n✓ 8 colorblind modes (each reveals unique content)\n✓ Real moon phase integration\n✓ NPC collective memory system\n✓ Digital Sunset wellness feature\n✓ 5 magical realms (Emberforge, Verdant, Echo, Dawn, Lantern)\n\nRelease Candidate 1 is live. WebGL playable now: ascendant-continuum.firebaseapp.com/play",
+        hook: "Building this game one feature at a time.",
+        body: "Current development progress:\n\n✓ 5 colorblind modes (each reveals unique content)\n✓ Real moon phase integration\n✓ NPC collective memory system\n✓ Digital Sunset wellness feature\n✓ 5 magical realms (Emberforge, Verdant, Echo, Dawn, Lantern)\n\nSolo dev, learning Unity, building in public. Early development stage.",
         platforms: ["bluesky", "mastodon"],
         media: null,
         priority: "high",
@@ -137,8 +137,8 @@ const additionalContent = [
     {
         id: 33,
         type: "devUpdate",
-        hook: "WebGL launch is live. Here's what surprised me.",
-        body: "Launched WebGL version yesterday.\n\nExpected: desktop players only.\nReality: 40% mobile browsers, 35% desktop, 25% tablets.\n\nLesson: WebGL = truly cross-platform.\nNo app store approval.\nNo downloads.\nInstant play.\n\nThe web still wins for accessibility.",
+        hook: "Testing WebGL builds. Here's what surprised me.",
+        body: "Testing local WebGL builds for cross-platform compatibility.\n\nPotential reach: mobile browsers, desktop, tablets.\n\nWhy WebGL?\n- Truly cross-platform\n- No app store approval needed\n- No downloads\n- Instant play\n\nThe web still wins for accessibility. Building toward public release.",
         platforms: ["bluesky", "mastodon"],
         media: null,
         priority: "low",
@@ -167,8 +167,8 @@ const additionalContent = [
     {
         id: 36,
         type: "devUpdate",
-        hook: "From prototype to Release Candidate in 6 months.",
-        body: "Timeline:\n\nMonth 1-2: Core systems (rituals, realms)\nMonth 3-4: Accessibility features (8 modes)\nMonth 5: Procedural generation + lunar integration\nMonth 6: Polish, testing, WebGL optimization\n\nNow: Release Candidate 1, playable live.\n\nNext: App Store/Google Play submission.\n\nSpeed matters. Perfection doesn't.",
+        hook: "6 months of solo dev progress.",
+        body: "Timeline:\n\nMonth 1-2: Core systems (rituals, realms)\nMonth 3-4: Accessibility features (5 colorblind modes)\nMonth 5: Procedural generation + lunar integration\nMonth 6: Polish, testing, WebGL optimization\n\nNow: Functional prototype, active development.\n\nGoal: Public release when it's ready.\n\nProgress matters. Learning as I go.",
         platforms: ["bluesky", "mastodon"],
         media: null,
         priority: "medium",
@@ -723,8 +723,8 @@ const additionalContent = [
     {
         id: 91,
         type: "behindScenes",
-        hook: "The architecture decision that saved us months.",
-        body: "Early decision: build for WebGL first, mobile later.\n\nReasoning:\n- Instant distribution (no app store approval)\n- Faster iteration (no build times)\n- Cross-platform by default\n- Easier testing\n\nResult: Release Candidate 1 in 6 months.\n\nPlatform choice = velocity multiplier.",
+        hook: "The architecture decision that saved me months.",
+        body: "Early decision: build for WebGL first, mobile later.\n\nReasoning:\n- Instant distribution (no app store approval)\n- Faster iteration (no build times)\n- Cross-platform by default\n- Easier testing\n\nResult: Functional prototype in 6 months.\n\nPlatform choice = velocity multiplier.",
         platforms: ["bluesky", "mastodon"],
         media: null,
         priority: "medium",

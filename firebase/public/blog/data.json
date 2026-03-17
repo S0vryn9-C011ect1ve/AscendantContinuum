@@ -1,6 +1,36 @@
 {
   "posts": [
     {
+      "title": "Building a Game for $0: My Actual Budget",
+      "slug": "building-a-game-for-zero-dollars-actual-budget",
+      "date": "2026-03-17",
+      "themeName": "Transparency",
+      "tags": [
+        "budget",
+        "indie-dev",
+        "transparency",
+        "free-tools",
+        "bootstrap"
+      ],
+      "excerpt": "The honest truth: I've spent exactly $0 on game development. Here's how I'm building The Ascendant Continuum entirely with free tools (except $10/month for Copilot Pro).",
+      "hook": "The honest truth: I've spent exactly $0 on game development. Here's the actual budget breakdown."
+    },
+    {
+      "title": "5 Colorblind Modes: Accessibility as Gameplay",
+      "slug": "five-colorblind-modes-accessibility-as-gameplay",
+      "date": "2026-03-17",
+      "themeName": "Technical Deep Dive",
+      "tags": [
+        "accessibility",
+        "colorblind",
+        "game-design",
+        "technical",
+        "innovation"
+      ],
+      "excerpt": "The Ascendant Continuum features 5 colorblind modes - but they're not just accessibility options. Each mode reveals completely different hidden content. Here's how it works.",
+      "hook": "Different vision isn't a limitation—it's a different way to experience the universe."
+    },
+    {
       "title": "From Healthcare to Game Dev: Building My First Game",
       "slug": "from-healthcare-to-game-dev-building-my-first-game",
       "date": "2026-03-16",
@@ -17,11 +47,23 @@
     }
   ],
   "stats": {
-    "totalPosts": 1,
+    "totalPosts": 3,
     "byTheme": {
+      "Transparency": 1,
+      "Technical Deep Dive": 1,
       "Behind the Scenes": 1
     },
     "byTag": {
+      "budget": 1,
+      "indie-dev": 1,
+      "transparency": 1,
+      "free-tools": 1,
+      "bootstrap": 1,
+      "accessibility": 1,
+      "colorblind": 1,
+      "game-design": 1,
+      "technical": 1,
+      "innovation": 1,
       "behind-the-scenes": 1,
       "first-game": 1,
       "disability": 1,

@@ -32,7 +32,7 @@ const TECHNICAL_TOPICS = {
     },
     accessibilityArchitecture: {
         title: 'Accessibility Mode Architecture',
-        context: 'How we built 8 colorblind modes that unlock different content',
+        context: 'How we built 5 colorblind modes that unlock different content',
         insights: [
             'Custom shader variants for each vision type',
             'No duplicate UI assets - all generated from base colors',

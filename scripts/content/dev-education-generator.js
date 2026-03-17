@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename);
 
 const EDUCATION_TOPICS = {
     accessibilityShaders: {
-        title: 'Making Unity UI Accessible: 8 Colorblind Modes Without Breaking Your Design',
+        title: 'Making Unity UI Accessible: 5 Colorblind Modes Without Breaking Your Design',
         problem: 'Most games duplicate UI assets for accessibility. Wasteful and hard to maintain.',
         solution: 'Use Unity Shader Graph with color transformation matrices per vision type',
         keyPoints: [
