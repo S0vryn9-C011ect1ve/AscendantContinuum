@@ -18,7 +18,7 @@ const additionalContent = [
         id: 21,
         type: "devUpdate",
         hook: "Shipped v2.0 today. Here's everything that changed.",
-        body: "v2.0 Release Notes:\n\n✓ 8 colorblind modes (each reveals unique content)\n✓ Real moon phase integration\n✓ NPC collective memory system\n✓ Digital Sunset wellness feature\n✓ 5 magical realms (Emberforge, Verdant, Echo, Dawn, Lantern)\n\nRelease Candidate 1 is live. WebGL playable now: ascendant-continuum.web.app/play",
+        body: "v2.0 Release Notes:\n\n✓ 8 colorblind modes (each reveals unique content)\n✓ Real moon phase integration\n✓ NPC collective memory system\n✓ Digital Sunset wellness feature\n✓ 5 magical realms (Emberforge, Verdant, Echo, Dawn, Lantern)\n\nRelease Candidate 1 is live. WebGL playable now: ascendant-continuum.firebaseapp.com/play",
         platforms: ["bluesky", "mastodon"],
         media: null,
         priority: "high",

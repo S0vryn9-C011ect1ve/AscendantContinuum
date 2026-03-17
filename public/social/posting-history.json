@@ -129,18 +129,102 @@
           "timestamp": "2026-03-14T17:09:07.388Z"
         }
       }
+    },
+    {
+      "id": 6,
+      "contentId": 1,
+      "contentType": "devUpdate",
+      "hook": "Most games add accessibility as an option. We made it a feature.",
+      "timestamp": "2026-03-17T02:13:47.351Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mh7vjpk6c427"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116242092767333986"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "contentId": 6,
+      "contentType": "devEducation",
+      "hook": "Steal this Unity system for your game.",
+      "timestamp": "2026-03-17T02:15:00.318Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mh7vlvbvmc2a"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116242097546503782"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "contentId": 2,
+      "contentType": "devUpdate",
+      "hook": "This feature broke my brain (in the best way).",
+      "timestamp": "2026-03-17T02:15:36.932Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mh7vmyb2cv2w"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116242099946586578"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 3,
+    "totalPosts": 6,
     "byPlatform": {
-      "bluesky": 3,
-      "mastodon": 3,
-      "discord": 1
+      "bluesky": 6,
+      "mastodon": 6,
+      "discord": 4
     },
     "byType": {
-      "devUpdate": 0,
-      "devEducation": 0,
+      "devUpdate": 2,
+      "devEducation": 1,
       "designPhilosophy": 2,
       "behindScenes": 0,
       "loreSnippet": 1

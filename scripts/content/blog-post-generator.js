@@ -486,28 +486,6 @@ const BLOG_THEMES = {
                         content: 'I\'m a decent programmer, mediocre designer, terrible artist, and incompetent musician. Hiring professionals for weaknesses is cheaper than struggling alone. I spent $2,400 on art contractors (character designs, realm concepts, UI assets)—would\'ve taken me 6 months to produce inferior results. Spent $800 on audio (ambient realm soundscapes, UI feedback sounds). Cost analysis: my time is worth ~$50/hour (opportunity cost of contract work I could do instead). If a contractor can do it better in fewer hours, hire them. Reserve your time for work only you can do—core design and programming.'
                     }
                 ]
-            },
-            {
-                title: 'Budget Breakdown: Developing a Game for Under $10K',
-                hook: 'Most indie games cost $50K-$500K to develop. Here\'s how we did it for under $10,000.',
-                sections: [
-                    {
-                        heading: 'Total Costs Through Beta Launch',
-                        content: 'Total expenditure through beta: $9,200. Breakdown: art assets $2,400 (character concepts, UI elements, realm designs), audio $800 (soundscapes, effects, no music yet), tools/subscriptions $1,200/year (Unity Pro, Adobe CC, Firebase Blaze Plan, productivity tools), contractor consulting $3,200 (accessibility consultant 40 hours @ $50/hour, narrative designer 20 hours @ $60/hour), server/hosting $600/year (Firebase, domain, CDN), miscellaneous $1,000 (app store fees, testing devices, legal consultation for privacy policy). This is 90% less than typical indie budgets. How?'
-                    },
-                    {
-                        heading: 'Free and Open-Source Tools',
-                        content: 'We use free tools wherever possible: Blender for 3D modeling (free), GIMP for texture editing (free, though contractor uses Photoshop), Audacity for audio editing (free), Git/GitHub for version control (free tier), Notion for documentation (free tier), Firebase free tier covered first 6 months of development (only paid when traffic increased). Unity Personal is free until $100K revenue. Most game engines have generous free tiers. Paid tools become necessary at scale, but you can prototype and validate for nearly $0. Many indies spend money prematurely on tools they don\'t need yet.'
-                    },
-                    {
-                        heading: 'Strategic Hiring and Contractor Management',
-                        content: 'Instead of hiring full-time team members ($80K+ salary each), I hire contractors for specific deliverables: "Design 5 character concepts in this style" ($400, 10 hours), "Record 20 ambient soundscapes" ($300, 8 hours). This requires clear specifications and strong art direction on my part—contractors need detailed briefs. I use Fiverr, Upwork, and gamedev Discord servers to find talent. Always view portfolios, start with small test tasks, pay fairly ($40-80/hour depending on skill level). Contractors give you expert work without long-term employment commitments.'
-                    },
-                    {
-                        heading: 'Revenue Projections and Sustainability',
-                        content: 'Development costs: $9,200 to date. Monthly operational costs: $150 (Firebase, domain, tools). Target: $15,000 first-year revenue to cover costs + sustainable income. Free-to-play model with cosmetic purchases averaging $4.99. Need 3,000 paying users (12% of 25,000 installs) to hit target—achievable based on similar games. Alternative: premium model at $4.99 (need 3,000 purchases). Haven\'t decided yet; will A/B test. Point is: indie games don\'t need huge budgets if you\'re strategic. Financial literacy matters as much as programming skill.'
-                    }
-                ]
             }
         ]
     }

@@ -368,14 +368,13 @@ function printSummary(content, results) {
 // CLI EXECUTION
 // ═══════════════════════════════════════════════════════════════
 
-if (import.meta.url === `file://${process.argv[1]}`) {
-    runScheduler()
-        .then(() => {
-            console.log('✅ Scheduler completed successfully');
-            process.exit(0);
-        })
-        .catch((error) => {
-            console.error('❌ Scheduler failed:', error);
-            process.exit(1);
-        });
-}
+// Run scheduler when executed directly (not imported)
+runScheduler()
+    .then(() => {
+        console.log('✅ Scheduler completed successfully');
+        process.exit(0);
+    })
+    .catch((error) => {
+        console.error('❌ Scheduler failed:', error);
+        process.exit(1);
+    });
