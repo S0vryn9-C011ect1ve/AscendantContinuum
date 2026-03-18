@@ -234,7 +234,7 @@ const BLOG_THEMES = {
                     },
                     {
                         heading: 'Player-Created Content Integration',
-                        content: 'We launched a "Sigil Gallery" where players submit custom sigil designs. The community votes on favorites, and winners get integrated into the game as official cosmetic options (with creator credit and revenue sharing—creators get 30% of sales). Player-written time capsule messages that receive high ratings become "featured lore" visible to all players. Community-created puzzle concepts are refined by our designers and integrated as optional challenge content. Players aren\'t just consumers—they\'re contributors to the living world.'
+                        content: 'We\'re planning a "Sigil Gallery" where players will be able to submit custom sigil designs. The community will vote on favorites, and winners will be integrated into the game as official cosmetic options (with creator credit and revenue sharing—creators get 30% of sales). Player-written time capsule messages that receive high ratings will become "featured lore" visible to all players. Community-created puzzle concepts will be refined by our designers and integrated as optional challenge content. Players won\'t just be consumers—they\'ll be contributors to the living world.'
                     },
                     {
                         heading: 'Transparent Development Roadmap',
@@ -259,7 +259,7 @@ const BLOG_THEMES = {
                 sections: [
                     {
                         heading: 'The Mobile Performance Gap',
-                        content: 'The Ascendant Continuum launched on WebGL first—60fps on desktop, smooth 30fps on modern phones via browser. Then we compiled to native Android expecting better performance. Instead: 12fps on flagship phones, complete crashes on mid-range devices, 8-second load times, and thermal throttling after 3 minutes. The culprits: excessive overdraw from layered post-processing, inefficient texture atlasing creating hundreds of draw calls, memory leaks in our event system, and garbage collection spikes during realm transitions that froze the game for 800ms.'
+                        content: 'The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting better performance, we encountered challenges: 12fps on flagship phones, crashes on mid-range devices, 8-second load times, and thermal throttling after 3 minutes. The culprits: excessive overdraw from layered post-processing, inefficient texture atlasing creating hundreds of draw calls, memory leaks in our event system, and garbage collection spikes during realm transitions that froze the game for 800ms.'
                     },
                     {
                         heading: 'Profiling with Unity and Android Tools',
