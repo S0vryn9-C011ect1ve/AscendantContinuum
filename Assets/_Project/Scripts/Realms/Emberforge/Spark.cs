@@ -17,6 +17,7 @@ namespace AscendantContinuum.Emberforge
         [Header("Visual")]
         [SerializeField] private Color sparkColor = new Color(1f, 0.6f, 0.2f);
         [SerializeField] private float pulseSpeed = 2f;
+        [SerializeField] private GameObject collectVFXPrefab; // Particle effect on collect
         
         private Vector3 startPosition;
         private float timeOffset;
@@ -75,6 +76,23 @@ namespace AscendantContinuum.Emberforge
 
         private void CollectSpark()
         {
+            // Play VFX at spark position before collecting
+            if (collectVFXPrefab != null)
+            {
+                GameObject vfx = Instantiate(collectVFXPrefab, transform.position, Quaternion.identity);
+                ParticleSystem ps = vfx.GetComponent<ParticleSystem>();
+                if (ps != null)
+                {
+                    ps.Play();
+                    Debug.Log($"[Spark] Playing VFX at {transform.position}");
+                }
+                Destroy(vfx, 2f); // Clean up after 2 seconds
+            }
+            else
+            {
+                Debug.LogWarning("[Spark] collectVFXPrefab is null! Not assigned in Inspector.");
+            }
+
             manager?.CollectSpark(gameObject);
         }
 

@@ -50,17 +50,39 @@ namespace AscendantContinuum.UI
             if (_shown) return;
             _shown = true;
 
-            gameObject.SetActive(true);
+            Debug.Log("[RealmCompletionPanel] ShowCompletion called - activating panel");
+
+            // Make sure panel is active BEFORE setting up UI
+            if (!gameObject.activeSelf)
+                gameObject.SetActive(true);
+
+            Debug.Log("[RealmCompletionPanel] Panel activated, setting UI text");
 
             if (titleText != null)    titleText.text    = title;
             if (scoreText != null)    scoreText.text    = score;
             if (subtitleText != null) subtitleText.text = "✦  Ascendant Continuum  ✦";
 
             // Hide all stars initially
-            foreach (var s in starImages)
-                if (s != null) s.color = new Color(1f, 1f, 1f, 0f);
+            if (starImages != null && starImages.Length > 0)
+            {
+                foreach (var s in starImages)
+                    if (s != null) s.color = new Color(1f, 1f, 1f, 0f);
+            }
 
-            StartCoroutine(AnimateIn(stars));
+            Debug.Log("[RealmCompletionPanel] Starting animation coroutine");
+
+            // Start animation on next frame to ensure GameObject is fully active
+            StartCoroutine(AnimateInDelayed(stars));
+        }
+
+        private IEnumerator AnimateInDelayed(int stars)
+        {
+            Debug.Log("[RealmCompletionPanel] AnimateInDelayed - waiting one frame");
+            // Wait one frame to ensure GameObject is fully activated
+            yield return null;
+            Debug.Log("[RealmCompletionPanel] Starting AnimateIn");
+            yield return AnimateIn(stars);
+            Debug.Log("[RealmCompletionPanel] Animation complete");
         }
 
         private IEnumerator AnimateIn(int stars)
@@ -69,6 +91,7 @@ namespace AscendantContinuum.UI
             if (panelGroup != null)
             {
                 panelGroup.alpha = 0f;
+                panelGroup.interactable = false; // Disable clicks during animation
                 float t = 0f;
                 while (t < fadeInDuration)
                 {
@@ -77,6 +100,7 @@ namespace AscendantContinuum.UI
                     yield return null;
                 }
                 panelGroup.alpha = 1f;
+                panelGroup.interactable = true; // Re-enable clicks
             }
 
             // Play VFX
@@ -87,26 +111,29 @@ namespace AscendantContinuum.UI
             AccessibilityManager.Instance?.TriggerHaptic(HapticType.Success);
 
             // Reveal stars one by one
-            int clampedStars = Mathf.Clamp(stars, 0, starImages.Length);
-            for (int i = 0; i < clampedStars; i++)
+            if (starImages != null && starImages.Length > 0)
             {
-                yield return new WaitForSeconds(starRevealDelay);
-                if (starImages[i] != null)
+                int clampedStars = Mathf.Clamp(stars, 0, starImages.Length);
+                for (int i = 0; i < clampedStars; i++)
                 {
-                    // Pop-in tween
-                    float elapsed = 0f;
-                    float dur = 0.2f;
-                    while (elapsed < dur)
+                    yield return new WaitForSeconds(starRevealDelay);
+                    if (starImages[i] != null)
                     {
-                        elapsed += Time.deltaTime;
-                        float p = elapsed / dur;
-                        float scale = Mathf.LerpUnclamped(0f, 1f,
-                            p < 0.7f ? p / 0.7f * 1.2f : 1.2f - (p - 0.7f) / 0.3f * 0.2f);
-                        starImages[i].transform.localScale = Vector3.one * scale;
-                        starImages[i].color = new Color(1f, 0.88f, 0.2f, 1f);
-                        yield return null;
+                        // Pop-in tween
+                        float elapsed = 0f;
+                        float dur = 0.2f;
+                        while (elapsed < dur)
+                        {
+                            elapsed += Time.deltaTime;
+                            float p = elapsed / dur;
+                            float scale = Mathf.LerpUnclamped(0f, 1f,
+                                p < 0.7f ? p / 0.7f * 1.2f : 1.2f - (p - 0.7f) / 0.3f * 0.2f);
+                            starImages[i].transform.localScale = Vector3.one * scale;
+                            starImages[i].color = new Color(1f, 0.88f, 0.2f, 1f);
+                            yield return null;
+                        }
+                        starImages[i].transform.localScale = Vector3.one;
                     }
-                    starImages[i].transform.localScale = Vector3.one;
                 }
             }
         }

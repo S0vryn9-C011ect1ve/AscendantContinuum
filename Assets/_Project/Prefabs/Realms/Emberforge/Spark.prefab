@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: c6d7ed8246a6a8040a4b672bddb08a72, type: 3}
-  m_Color: {r: 1, g: 0.55, b: 0.1, a: 1}
+  m_Color: {r: 1, g: 0.54901963, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -141,7 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6eb97e86ce5944bba04293d3267b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: AscendantContinuum.Runtime::AscendantContinuum.Emberforge.Spark
-  floatSpeed: 1
-  floatAmplitude: 0.5
+  floatSpeed: 0.8
+  floatAmplitude: 0.4
   sparkColor: {r: 1, g: 0.6, b: 0.2, a: 1}
   pulseSpeed: 2
+  collectVFXPrefab: {fileID: 6761264795575635451, guid: 28219c33eee73af499599f521492318d, type: 3}

@@ -138,22 +138,37 @@ namespace AscendantContinuum.Astronomy
         private void EnableNewMoonSecrets()
         {
             // Dark-only secrets become visible
-            GameObject[] darkSecrets = GameObject.FindGameObjectsWithTag("NewMoonSecret");
-            foreach (var secret in darkSecrets)
+            try
             {
-                secret.SetActive(true);
+                GameObject[] darkSecrets = GameObject.FindGameObjectsWithTag("NewMoonSecret");
+                foreach (var secret in darkSecrets)
+                {
+                    secret.SetActive(true);
+                }
+                Debug.Log("[MoonPhaseEffects] 🌑 New moon secrets revealed!");
             }
-            
-            Debug.Log("[MoonPhaseEffects] 🌑 New moon secrets revealed!");
+            catch (UnityException)
+            {
+                // Tag not defined - skip New Moon secrets for now
+                Debug.LogWarning("[MoonPhaseEffects] NewMoonSecret tag not defined. Add it in Project Settings > Tags and Layers.");
+            }
         }
 
         private void EnableFullMoonSecrets()
         {
             // Bright-only secrets
-            GameObject[] brightSecrets = GameObject.FindGameObjectsWithTag("FullMoonSecret");
-            foreach (var secret in brightSecrets)
+            try
             {
-                secret.SetActive(true);
+                GameObject[] brightSecrets = GameObject.FindGameObjectsWithTag("FullMoonSecret");
+                foreach (var secret in brightSecrets)
+                {
+                    secret.SetActive(true);
+                }
+            }
+            catch (UnityException)
+            {
+                // Tag not defined - skip Full Moon secrets for now
+                Debug.LogWarning("[MoonPhaseEffects] FullMoonSecret tag not defined. Add it in Project Settings > Tags and Layers.");
             }
             
             Debug.Log("[MoonPhaseEffects] 🌕 Full moon secrets revealed!");

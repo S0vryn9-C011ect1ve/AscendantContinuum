@@ -74,8 +74,8 @@ namespace AscendantContinuum.Realms.Emberforge
                 case 1:
                     TryUnlockAchievement("first_spark");
                     // Puzzle Chain — first spark initiates an elemental chain if none active
-                    if (!PuzzleChainManager.Instance.HasActiveChain)
-                        PuzzleChainManager.Instance?.StartElementalChain("Emberforge");
+                    if (PuzzleChainManager.Instance != null && !PuzzleChainManager.Instance.HasActiveChain)
+                        PuzzleChainManager.Instance.StartElementalChain("Emberforge");
                     break;
                 case 100:
                     TryUnlockAchievement("spark_collector_100");

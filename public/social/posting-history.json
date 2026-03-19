@@ -241,17 +241,45 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 10,
+      "contentId": 4,
+      "contentType": "devUpdate",
+      "hook": "Just built a game mechanic that literally doesn't exist elsewhere.",
+      "timestamp": "2026-03-18T18:00:42.946Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mhe2xexpxe2u"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116251481869732835"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 7,
+    "totalPosts": 8,
     "byPlatform": {
-      "bluesky": 7,
-      "mastodon": 7,
-      "discord": 5
+      "bluesky": 8,
+      "mastodon": 8,
+      "discord": 6
     },
     "byType": {
-      "devUpdate": 2,
+      "devUpdate": 3,
       "devEducation": 2,
       "designPhilosophy": 2,
       "behindScenes": 0,
