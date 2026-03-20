@@ -44,14 +44,27 @@
       ],
       "excerpt": "After a workplace injury ended my healthcare career, I'm learning Unity to build my first game - a magical adventure that reconnects people with nature and the night sky.",
       "hook": "A workplace injury ended one career. It's starting another."
+    },
+    {
+      "title": "State Management with ScriptableObjects",
+      "slug": "state-management-with-scriptableobjects",
+      "date": "2026-03-20",
+      "tags": [
+        "tutorial",
+        "unity",
+        "game-dev"
+      ],
+      "themeName": "Tutorial",
+      "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play..."
     }
   ],
   "stats": {
-    "totalPosts": 3,
+    "totalPosts": 4,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 1,
-      "Behind the Scenes": 1
+      "Behind the Scenes": 1,
+      "Tutorial": 1
     },
     "byTag": {
       "budget": 1,
@@ -68,7 +81,10 @@
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
-      "learning-unity": 1
+      "learning-unity": 1,
+      "tutorial": 1,
+      "unity": 1,
+      "game-dev": 1
     }
   }
 }

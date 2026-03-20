@@ -2,21 +2,61 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Ascendant Continuum Dev Blog</title>
-    <link>https://ascendantcontinuum.web.app/blog/</link>
+    <link>https://ascendant-continuum.firebaseapp.com/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Mar 2026 23:33:40 GMT</lastBuildDate>
-    <atom:link href="https://ascendantcontinuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Mar 2026 14:02:10 GMT</lastBuildDate>
+    <atom:link href="https://ascendant-continuum.firebaseapp.com/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
-      <url>https://ascendantcontinuum.web.app/favicon.png</url>
+      <url>https://ascendant-continuum.firebaseapp.com/favicon.png</url>
       <title>The Ascendant Continuum</title>
-      <link>https://ascendantcontinuum.web.app/blog/</link>
+      <link>https://ascendant-continuum.firebaseapp.com/blog/</link>
     </image>
 
     <item>
+      <title><![CDATA[State Management with ScriptableObjects]]></title>
+      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/state-management-with-scriptableobjects.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/state-management-with-scriptableobjects.html</guid>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Tutorial]]></category>
+      <category><![CDATA[tutorial]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[game-dev]]></category>
+      <description><![CDATA[Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play...]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Building a Game for $0: My Actual Budget]]></title>
+      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/building-a-game-for-zero-dollars-actual-budget.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/building-a-game-for-zero-dollars-actual-budget.html</guid>
+      <pubDate>Tue, 17 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Transparency]]></category>
+      <category><![CDATA[budget]]></category>
+      <category><![CDATA[indie-dev]]></category>
+      <category><![CDATA[transparency]]></category>
+      <category><![CDATA[free-tools]]></category>
+      <category><![CDATA[bootstrap]]></category>
+      <description><![CDATA[The honest truth: I've spent exactly $0 on game development. Here's how I'm building The Ascendant Continuum entirely with free tools (except $10/month for Copilot Pro).]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[5 Colorblind Modes: Accessibility as Gameplay]]></title>
+      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/five-colorblind-modes-accessibility-as-gameplay.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/five-colorblind-modes-accessibility-as-gameplay.html</guid>
+      <pubDate>Tue, 17 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Technical Deep Dive]]></category>
+      <category><![CDATA[accessibility]]></category>
+      <category><![CDATA[colorblind]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[technical]]></category>
+      <category><![CDATA[innovation]]></category>
+      <description><![CDATA[The Ascendant Continuum features 5 colorblind modes - but they're not just accessibility options. Each mode reveals completely different hidden content. Here's how it works.]]></description>
+    </item>
+
+    <item>
       <title><![CDATA[From Healthcare to Game Dev: Building My First Game]]></title>
-      <link>https://ascendantcontinuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</link>
-      <guid isPermaLink="true">https://ascendantcontinuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</guid>
+      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</guid>
       <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
       <category><![CDATA[Behind the Scenes]]></category>
       <category><![CDATA[behind-the-scenes]]></category>
@@ -25,18 +65,6 @@
       <category><![CDATA[career-change]]></category>
       <category><![CDATA[learning-unity]]></category>
       <description><![CDATA[After a workplace injury ended my healthcare career, I'm learning Unity to build my first game - a magical adventure that reconnects people with nature and the night sky.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Budget Breakdown: Developing a Game for Under $10K]]></title>
-      <link>https://ascendantcontinuum.web.app/blog/posts/budget-breakdown-developing-a-game-for-under-10k.html</link>
-      <guid isPermaLink="true">https://ascendantcontinuum.web.app/blog/posts/budget-breakdown-developing-a-game-for-under-10k.html</guid>
-      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Behind the Scenes]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[team]]></category>
-      <category><![CDATA[process]]></category>
-      <description><![CDATA[Total expenditure through beta: $9,200. Breakdown: art assets $2,400 (character concepts, UI elements, realm designs), audio $800 (soundscapes, effects, no music yet), tools/subscriptions $1,200/year ...]]></description>
     </item>
   </channel>
 </rss>
