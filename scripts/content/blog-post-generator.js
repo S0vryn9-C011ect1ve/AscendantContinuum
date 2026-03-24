@@ -223,28 +223,6 @@ const BLOG_THEMES = {
                         content: 'We implement proactive addiction prevention: spending limits you can set yourself that can\'t be changed for 30 days (preventing impulse spending during dopamine highs), weekly spending reports to increase financial awareness, and voluntary session time limits with enforced cooldown periods. We display total spending prominently: "You\'ve spent $47.23 on this game since January 2025." Some players appreciate this transparency; others find it confronting. Both responses are valid, and both reduce compulsive spending. We sacrifice short-term revenue for long-term player wellbeing.'
                     }
                 ]
-            },
-            {
-                title: 'Community-Driven Development: Players as Co-Creators',
-                hook: 'What if players didn\'t just consume content, but shaped the world alongside developers?',
-                sections: [
-                    {
-                        heading: 'Beyond Bug Reports: True Collaboration',
-                        content: 'Most "community feedback" means players report bugs and occasionally vote in polls. We wanted deeper partnership. Our community council includes 12 elected player representatives who have direct input on design decisions, NDA access to upcoming features, and quarterly meetings with the dev team. Major decisions (should we add PvP? should events have time limits?) go to community vote. We\'ve vetoed our own ideas based on community consensus. This is slow but creates better outcomes and passionate advocates.'
-                    },
-                    {
-                        heading: 'Player-Created Content Integration',
-                        content: 'We\'re planning a "Sigil Gallery" where players will be able to submit custom sigil designs. The community will vote on favorites, and winners will be integrated into the game as official cosmetic options (with creator credit and revenue sharing—creators get 30% of sales). Player-written time capsule messages that receive high ratings will become "featured lore" visible to all players. Community-created puzzle concepts will be refined by our designers and integrated as optional challenge content. Players won\'t just be consumers—they\'ll be contributors to the living world.'
-                    },
-                    {
-                        heading: 'Transparent Development Roadmap',
-                        content: 'Our roadmap is fully public on a Notion board: "In Development" (actively coding), "Designed" (specs written, not started), "Considering" (community proposals we\'re evaluating), "Rejected" (ideas we tried and why they failed). We publish monthly dev diaries showing actual code, discussing technical challenges, and admitting mistakes. Transparency builds trust. When we miss deadlines, we explain why. When features don\'t work as intended, we share post-mortems. Treating players as intelligent adults creates loyal communities.'
-                    },
-                    {
-                        heading: 'Modding Support and API Access',
-                        content: 'We provide an official API for community tool developers: sigil analysis, lore databases, player statistics (anonymized), aggregate world state data. Community developers have built stat trackers, realm guides, puzzle solvers, and even a machine learning model that predicts optimal ritual timings. We sponsor an annual "Continuum API Challenge" where developers compete to build the most creative tools. The winning entry (a musical sigil visualizer) was so good we hired the creator and integrated their tool officially.'
-                    }
-                ]
             }
         ]
     },
@@ -360,101 +338,6 @@ const BLOG_THEMES = {
                     {
                         heading: 'Memory Management and Unloading',
                         content: 'Addressables provides fine-grained memory control. When you leave a realm, we call Addressables.Release() to unload all realm-specific assets, immediately reclaiming memory. DontUnloadUnusedAsset is no longer needed—we control unloading explicitly. We track memory using Unity Profiler and found realm transitions now release 200-350MB instantly. For low-memory devices (detected via SystemInfo.systemMemorySize), we unload previous realm before loading next, ensuring memory usage never exceeds 600MB even on budget Android phones with 2GB RAM.'
-                    }
-                ]
-            }
-        ]
-    },
-
-    communityInsight: {
-        name: 'Community Insight',
-        tags: ['community', 'player-stories', 'updates'],
-        topics: [
-            {
-                title: 'Player-Driven Lore: The Archivist Movement',
-                hook: 'Players are documenting hidden lore faster than we expected—and finding secrets we forgot we added.',
-                sections: [
-                    {
-                        heading: 'The Emergence of Community Archivists',
-                        content: 'Three months after soft launch, players created "The Codex"—a collaborative wiki documenting every sigil pattern variation, NPC dialogue branch, time-gated event timing, and hidden discovery location. What started as a Reddit thread with 12 contributors evolved into a 500-page living document with contributions from 200+ players across 14 countries. They\'ve created interactive maps, relationship diagrams between NPCs, and even machine learning models to predict procedural sigil generation based on playstyle inputs.'
-                    },
-                    {
-                        heading: 'Discovering Our Own Secrets',
-                        content: 'Procedural generation and layered systems create emergent outcomes even developers don\'t anticipate. A player discovered a rare sigil pattern (probability: 0.002%) that occurs when you complete rituals only during blue moon phases while using tritanopia mode—we\'d never seen it in testing. Another found a dialogue bug that accidentally created a beautiful narrative thread between two NPCs who aren\'t programmed to reference each other. The bug was so thematically perfect we kept it and wrote retroactive lore justifying it. The community knows our game better than we do.'
-                    },
-                    {
-                        heading: 'Official Support for Community Documentation',
-                        content: 'We added API endpoints specifically for archivists: sigil pattern analysis, aggregate player choice statistics, lore timestamp verification, discovery probability calculations. The Codex now updates automatically using our API, displaying real-time data about how many players have found specific secrets. We sponsor quarterly "Archivist Summits" where community researchers present findings to the dev team and each other. Some community discoveries influence future updates—player theories about NPC relationships have been promoted to official canon.'
-                    },
-                    {
-                        heading: 'The Philosophy of Co-Created Worlds',
-                        content: 'Traditional game development views players as consumers: developers create, players consume. We see players as collaborative storytellers. When players invest hundreds of hours documenting lore, solving meta-puzzles, building tools, creating fan theories, and generating artwork, they\'re not just playing—they\'re co-authoring the world. Our job shifts from sole creators to curators and facilitators. The most meaningful lore isn\'t written by developers; it\'s the emergent narratives created by thousands of players interacting with systems we designed. The Codex is more valuable than any lore doc we could write.'
-                    }
-                ]
-            },
-            {
-                title: 'Speedrunning a Meditation Game: The Ritual Rush Community',
-                hook: 'We designed a slow-paced mindfulness experience. Players turned it into competitive speedrunning.',
-                sections: [
-                    {
-                        heading: 'The Unexpected Speedrunning Community',
-                        content: 'The Ascendant Continuum was designed for 1-5 minute meditative sessions, not speed. Ritual completion rewards patience, accessibility features encourage exploration, and there are no timers or leaderboards. Then players discovered "Ritual Rush"—completing all five realm rituals in minimal time by exploiting accessibility mode transitions, optimal gesture sequences, and frame-perfect inputs. A Discord server emerged with 400+ members competing for world records. Current record: 47.2 seconds for all five rituals. We never intended this, but it\'s brilliant.'
-                    },
-                    {
-                        heading: 'Emergent Skill Expression',
-                        content: 'Speedrunners discovered depth we didn\'t design explicitly. Switching accessibility modes mid-ritual cancels animation frames, saving 0.3 seconds. Specific gesture start positions reduce travel distance. Haptic feedback provides frame-perfect timing cues. Predictive asset loading (intended to improve perceived performance) becomes a strategic decision—preloading the next realm before completing current ritual saves 1.2 seconds. What we saw as quality-of-life features, speedrunners weaponized as optimization vectors. The skill ceiling is shockingly high for a meditation game.'
-                    },
-                    {
-                        heading: 'Supporting a Community We Didn\'t Plan For',
-                        content: 'We could have patched out speedrun techniques (some players requested this, claiming it violates game spirit). Instead, we embraced it: added optional in-game timer mode, created separate leaderboards for different categories (Any%, All Secrets, Accessibility%), and sponsored a charity speedrun marathon that raised $14,000 for accessibility nonprofits. We learned that players defining their own goals is more valuable than enforcing our intended experience. The game is meditative *and* competitive depending on how you choose to play.'
-                    },
-                    {
-                        heading: 'Design Lessons from Emergent Play',
-                        content: 'Speedrunning taught us about our own game. We discovered animation cancels we hadn\'t noticed, realized certain accessibility features were redundant, and identified performance bottlenecks through speedrunners\' technical analysis. Their optimization pressure revealed bugs (some preservation-worthy, others fixed). Most importantly: we learned to design systems with verbs (actions players can take) rather than nouns (things we intend players to do). Give players tools and watch them create uses you never imagined. The Ritual Rush community transformed our game into something richer than we planned.'
-                    }
-                ]
-            },
-            {
-                title: 'Accessibility Success Stories: Players Who Couldn\'t Game Before',
-                hook: 'We designed for accessibility. Then we heard from players who had never finished a game before.',
-                sections: [
-                    {
-                        heading: 'Letters from New Gamers',
-                        content: 'Our support inbox receives messages that make us cry: a 67-year-old player with macular degeneration who uses screen reader mode and finished their first video game ever. A parent with cerebral palsy who plays one-handed mode with their child. A deaf player who discovered dozens of secrets through haptic-only clues that hearing players missed. A teenager with ADHD who finally found a game that respects their attention span. These aren\'t rare stories—we get 5-10 per week. Many players explicitly state this is the *only* game they can play comfortably.'
-                    },
-                    {
-                        heading: 'The Motor Accessibility Revolution',
-                        content: 'Our most impactful feature (according to player feedback) isn\'t colorblind modes or screen readers—it\'s the complete elimination of timing requirements. Every gesture can be performed slowly. Rituals have no fail states. Puzzles don\'t have time limits. Reflexes aren\'t required anywhere. This was designed for motor-impaired players, but it benefits everyone: parents playing with one hand while holding a baby, players with arthritis, anyone playing on a crowded bus. Removing artificial time pressure isn\'t just accessible—it\'s better design that respects player circumstances.'
-                    },
-                    {
-                        heading: 'Screen Reader Mode as Preferred Experience',
-                        content: 'We expected screen reader mode would be used only by blind players. Instead, 8% of all players use it at least occasionally—not for accessibility, but because the narrated descriptions are more immersive than visual UI. Voice actors brought personality to every element: items have whimsical descriptions, UI buttons have contextual flavor text, environmental narration creates atmosphere unavailable in visual mode. Some sighted players explicitly prefer screen reader mode. This validates our philosophy: accessibility features that delight everyone, not just accommodate disabilities.'
-                    },
-                    {
-                        heading: 'Community Accessibility Testing',
-                        content: 'We pay community members with disabilities to test new features before release ($50/hour, professional QA rates). They\'ve caught issues like: keyboard navigation loops, haptic timing that triggers motion sickness, screen reader instructions that make puzzles unsolvable, color combinations that fail in specific rare colorblindness types. These testers aren\'t just catching bugs—they\'re co-designing features. The ritual skip feature came from a tester with limited play time. The gesture simplification came from a tester with tremors. Paying disabled players for expertise creates better games and provides income to a marginalized community.'
-                    }
-                ]
-            },
-            {
-                title: 'The Time Capsule Network: Asynchronous Social Magic',
-                hook: 'Players are leaving messages for strangers they\'ll never meet. The results are unexpectedly profound.',
-                sections: [
-                    {
-                        heading: 'How Time Capsules Work',
-                        content: 'At designated locations across the five realms, players can bury time capsules—messages, advice, hints, or personal reflections. These surface for future players based on complex matching: similar sigil patterns indicate playstyle similarity, puzzle progress determines hint relevance, emotional tone matching uses sentiment analysis, geographic proximity (timezone-based) creates local communities. You might find a capsule left 6 months ago by someone halfway across the world who plays just like you, or discover a hint from last week left by someone in your city.'
-                    },
-                    {
-                        heading: 'Unexpected Emotional Depth',
-                        content: 'We expected gameplay tips and memes. Instead, most capsules are profound: encouragement during difficult times, philosophical reflections on game themes mirroring real-life struggles, gratitude messages to future players, memorial messages for deceased loved ones who would\'ve enjoyed the game. Players treat time capsules as meditative journaling—writing to unknown future travelers creates intimacy without social anxiety. The community has created unwritten rules: certain locations are for hints, others for personal reflection, others for collaborative storytelling. It\'s beautiful and completely emergent.'
-                    },
-                    {
-                        heading: 'Technical Implementation of Matching',
-                        content: 'Firebase Cloud Functions analyze each capsule\'s metadata: author\'s sigil hash (playstyle fingerprint), location coordinates, puzzle progress when buried, sentiment score from Google\'s Natural Language API, language, timestamp. When you visit a capsule location, the function queries for matches: players with similar playstyle (cosine similarity on behavior vectors), appropriate progress level (not spoilers), positive sentiment if you\'ve had recent difficult sessions (detected via quit frequency). Each player sees different capsules personalized to their journey. We cache matches client-side to reduce Cloud Functions costs.'
-                    },
-                    {
-                        heading: 'Moderation and Community Health',
-                        content: 'Asynchronous messaging needs moderation. We use Google\'s Perspective API for toxicity detection (rejects <5% of capsules), community flagging (3 flags triggers human review), and positive reinforcement (popular capsules award "Wisdom" badges). We hired two part-time moderators ($20/hour) who review flagged content within 24 hours. Surprisingly, moderation load is minimal—the capsule system\'s design encourages thoughtfulness. Character limits (280 characters) prevent rants. The delay before surfacing (capsules aren\'t visible until 24 hours after burial) creates reflective distance. Community-driven moderation works when systems encourage prosocial behavior by default.'
                     }
                 ]
             }
