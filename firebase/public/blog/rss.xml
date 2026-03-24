@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.firebaseapp.com/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Mar 2026 14:01:12 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 24 Mar 2026 14:01:14 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.firebaseapp.com/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.firebaseapp.com/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.firebaseapp.com/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Speedrunning a Meditation Game: The Ritual Rush Community]]></title>
+      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/speedrunning-a-meditation-game-the-ritual-rush-community.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/speedrunning-a-meditation-game-the-ritual-rush-community.html</guid>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Community Insight]]></category>
+      <category><![CDATA[community]]></category>
+      <category><![CDATA[player-stories]]></category>
+      <category><![CDATA[updates]]></category>
+      <description><![CDATA[The Ascendant Continuum was designed for 1-5 minute meditative sessions, not speed. Ritual completion rewards patience, accessibility features encourage exploration, and there are no timers or leaderb...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>

@@ -80,17 +80,30 @@
       ],
       "themeName": "Dev Diary",
       "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
+    },
+    {
+      "title": "Speedrunning a Meditation Game: The Ritual Rush Community",
+      "slug": "speedrunning-a-meditation-game-the-ritual-rush-community",
+      "date": "2026-03-24",
+      "tags": [
+        "community",
+        "player-stories",
+        "updates"
+      ],
+      "themeName": "Community Insight",
+      "excerpt": "The Ascendant Continuum was designed for 1-5 minute meditative sessions, not speed. Ritual completion rewards patience, accessibility features encourage exploration, and there are no timers or leaderb..."
     }
   ],
   "stats": {
-    "totalPosts": 6,
+    "totalPosts": 7,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 1,
       "Behind the Scenes": 1,
       "Tutorial": 1,
       "Design Philosophy": 1,
-      "Dev Diary": 1
+      "Dev Diary": 1,
+      "Community Insight": 1
     },
     "byTag": {
       "budget": 1,
@@ -113,7 +126,10 @@
       "game-dev": 1,
       "ethics": 1,
       "philosophy": 1,
-      "development": 1
+      "development": 1,
+      "community": 1,
+      "player-stories": 1,
+      "updates": 1
     }
   }
 }
