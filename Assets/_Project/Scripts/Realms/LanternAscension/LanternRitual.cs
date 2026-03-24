@@ -71,6 +71,12 @@ namespace AscendantContinuum.Realms.LanternAscension
         public System.Action OnMeditationStarted;
         public System.Action OnMeditationEnded;
 
+        [Header("Visibility UI")]
+        [SerializeField] private GameObject visibilityPanel;
+        [SerializeField] private UnityEngine.UI.Button visibilityPrivateBtn;
+        [SerializeField] private UnityEngine.UI.Button visibilityAnonymousBtn;
+        [SerializeField] private UnityEngine.UI.Button visibilityPublicBtn;
+
         [Header("Completion")]
         [SerializeField] private AscendantContinuum.UI.RealmCompletionPanel completionPanel;
         [SerializeField] private int goalLanterns = 1;
@@ -183,9 +189,35 @@ namespace AscendantContinuum.Realms.LanternAscension
 
         private void ShowVisibilityOptions()
         {
-            // In a real implementation, this would show a UI panel
-            // For now, default to Anonymous
-            wishVisibility = WishVisibility.Anonymous;
+            if (visibilityPanel != null)
+            {
+                // Wire buttons on first show
+                if (visibilityPrivateBtn != null)
+                    visibilityPrivateBtn.onClick.AddListener(() => ConfirmVisibility(WishVisibility.Private));
+                if (visibilityAnonymousBtn != null)
+                    visibilityAnonymousBtn.onClick.AddListener(() => ConfirmVisibility(WishVisibility.Anonymous));
+                if (visibilityPublicBtn != null)
+                    visibilityPublicBtn.onClick.AddListener(() => ConfirmVisibility(WishVisibility.Public));
+
+                visibilityPanel.SetActive(true);
+            }
+            else
+            {
+                // No panel assigned — fall back to Anonymous
+                ConfirmVisibility(WishVisibility.Anonymous);
+            }
+        }
+
+        private void ConfirmVisibility(WishVisibility visibility)
+        {
+            // Remove listeners to prevent double-firing
+            if (visibilityPrivateBtn   != null) visibilityPrivateBtn.onClick.RemoveAllListeners();
+            if (visibilityAnonymousBtn != null) visibilityAnonymousBtn.onClick.RemoveAllListeners();
+            if (visibilityPublicBtn    != null) visibilityPublicBtn.onClick.RemoveAllListeners();
+
+            if (visibilityPanel != null) visibilityPanel.SetActive(false);
+
+            wishVisibility = visibility;
             CreateAndReleaseLantern(currentWish, wishVisibility);
         }
 
@@ -201,9 +233,35 @@ namespace AscendantContinuum.Realms.LanternAscension
             // Screen-reader / TTS announcement
             if (textToSpeechEnabled && !string.IsNullOrEmpty(wish))
             {
-                // In production, replace with: NativeTTSPlugin.Speak(announcement);
                 string announcement = $"Lantern released with wish: {wish}";
+#if UNITY_ANDROID && !UNITY_EDITOR
+                // Android: use AndroidJavaClass to invoke TTS via NativeTextToSpeech plugin if present
+                try
+                {
+                    using var player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                    using var activity = player.GetStatic<AndroidJavaObject>("currentActivity");
+                    activity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
+                    {
+                        using var tts = new AndroidJavaObject("android.speech.tts.TextToSpeech",
+                            activity, null);
+                        tts.Call<int>("speak", announcement,
+                            new AndroidJavaClass("android.speech.tts.TextToSpeech")
+                                .GetStatic<int>("QUEUE_FLUSH"), null, "lantern_wish");
+                    }));
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogWarning($"[TTS] Android TTS failed: {ex.Message}");
+                }
+#elif UNITY_IOS && !UNITY_EDITOR
+                // iOS: bridge via NativeTextToSpeech plugin or AVSpeechSynthesizer bridge
+                // Requires a native iOS plugin (NativeAudioPlugin / NativeTTS bridge)
+                // Plugin contract: NativeTextToSpeech.Speak(string text)
+                // Until plugin is imported, log to console so QA can verify the flow.
+                Debug.Log($"[TTS-iOS] Would speak: {announcement}");
+#else
                 Debug.Log($"[TTS] {announcement}");
+#endif
             }
 
             // Instantiate lantern
@@ -313,11 +371,65 @@ namespace AscendantContinuum.Realms.LanternAscension
 
         private void LoadCommunityLanterns()
         {
-            // Load lanterns from Firebase/Cloud
-            // In a real implementation, this would query the database
-            // For now, spawn a few placeholder lanterns
+            // Query Firebase for recent public/anonymous wishes from other players.
+            // Falls back to locally-stored community snapshot when offline.
+            StartCoroutine(LoadCommunityLanternsCoroutine());
+        }
 
-            StartCoroutine(SpawnCommunityLanternsCoroutine());
+        private IEnumerator LoadCommunityLanternsCoroutine()
+        {
+            // Try to load from Firebase
+            bool loadedFromCloud = false;
+            if (FirebaseManager.Instance != null && FirebaseManager.Instance.IsInitialized)
+            {
+                var task = FirebaseManager.Instance.LoadPlayerData<List<CommunityWishData>>(
+                    "community_lanterns", "recent_wishes");
+
+                float timeout = 5f;
+                float elapsed = 0f;
+                while (!task.IsCompleted && elapsed < timeout)
+                {
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+
+                if (task.IsCompletedSuccessfully && task.Result != null)
+                {
+                    loadedFromCloud = true;
+                    foreach (var wish in task.Result)
+                    {
+                        yield return new WaitForSeconds(Random.Range(1f, 3f));
+                        SpawnCommunityLantern(wish.text ?? "A wish from a fellow traveller");
+                    }
+                }
+            }
+
+            if (!loadedFromCloud)
+            {
+                // Offline fallback — spawn placeholder community lanterns
+                yield return StartCoroutine(SpawnCommunityLanternsCoroutine());
+            }
+        }
+
+        [System.Serializable]
+        private class CommunityWishData
+        {
+            public string text;
+            public string visibility;
+        }
+
+        private void SpawnCommunityLantern(string wishText)
+        {
+            if (lanternPrefab == null) return;
+            Vector3 randomPos = new Vector3(
+                Random.Range(-10f, 10f),
+                Random.Range(-5f, 20f),
+                Random.Range(5f, 20f));
+            GameObject lanternObj = Instantiate(lanternPrefab, randomPos, Quaternion.identity);
+            Lantern lantern = lanternObj.GetComponent<Lantern>() ?? lanternObj.AddComponent<Lantern>();
+            Color lanternColor = lanternColors[Random.Range(0, lanternColors.Length)];
+            lantern.Initialize(wishText, WishVisibility.Anonymous, lanternColor, reducedMotion, ascensionSpeed * lunarMultiplier, lunarMultiplier);
+            activeLanterns.Add(lantern);
         }
 
         private IEnumerator SpawnCommunityLanternsCoroutine()

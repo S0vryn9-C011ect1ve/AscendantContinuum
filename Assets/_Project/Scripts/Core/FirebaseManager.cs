@@ -197,5 +197,30 @@ namespace AscendantContinuum.Core
         public bool IsConnected => isConnected;
         public object CurrentUser => null;
         public string UserId => null;
+
+        /// <summary>
+        /// Deletes all Firestore data for the current user (GDPR right-to-erasure).
+        /// Calls the "deleteUserData" Cloud Function when the real SDK is wired.
+        /// </summary>
+        public async Task DeleteUserData(string userId)
+        {
+            if (!isInitialized || string.IsNullOrEmpty(userId)) return;
+
+            try
+            {
+                using (var cts = new CancellationTokenSource(defaultTimeoutMs))
+                {
+                    // TODO: when real Firebase SDK is integrated, replace with:
+                    // var fn = FirebaseFunctions.DefaultInstance.GetHttpsCallable("deleteUserData");
+                    // await fn.CallAsync(new Dictionary<string, object> { { "uid", userId } });
+                    await Task.Delay(50, cts.Token);
+                    Debug.Log($"[FirebaseManager] DeleteUserData called for uid={userId} (simulated).");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"[FirebaseManager] DeleteUserData failed: {ex.Message}");
+            }
+        }
     }
 }

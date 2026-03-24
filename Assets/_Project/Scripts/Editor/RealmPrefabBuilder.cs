@@ -702,10 +702,16 @@ namespace AscendantContinuum.Editor
             // Configure camera
             ConfigureRealmCamera(scene, new Color(0.12f, 0.05f, 0.02f));
 
-            // Wire EmberforgeSparks
+            // Scaffold gameplay root if scene is empty
             var sparks = FindInScene<EmberforgeSparks>(scene);
-            if (sparks != null)
-                SetPrefabField(sparks, "sparkPrefab", sparkPrefab);
+            if (sparks == null)
+            {
+                var root = GetOrCreateSceneRoot(scene, "[ Emberforge Gameplay ]");
+                sparks = GetOrAdd<EmberforgeSparks>(root);
+                GetOrAdd<AscendantContinuum.Realms.Emberforge.EmberforgeController>(root);
+                Debug.Log("[RealmPrefabBuilder] Scaffolded Emberforge gameplay root.");
+            }
+            SetPrefabField(sparks, "sparkPrefab", sparkPrefab);
 
             // BackButton
             WireBackButton(scene);
@@ -721,7 +727,7 @@ namespace AscendantContinuum.Editor
             SetHUDRealmName(scene, "The Emberforge — Collect the Dancing Sparks");
 
             // Background image + colour tint
-            SetRealmBackgroundImage(scene, "Assets/_Project/Art/Backgrounds/bg_emberforge.png");
+            SetRealmBackgroundImage(scene, "Assets/_Project/Art/AscendantContinuumGameGraphics/bg_emberforge.png");
             SetBackgroundColor(scene, Color.white);
 
             SaveAndCloseScene(scene);
@@ -734,9 +740,16 @@ namespace AscendantContinuum.Editor
 
             ConfigureRealmCamera(scene, new Color(0.03f, 0.12f, 0.05f));
 
+            // Scaffold gameplay root if scene is empty
             var garden = FindInScene<VerdantGarden>(scene);
-            if (garden != null)
-                SetPrefabField(garden, "plantPrefab", plantPrefab);
+            if (garden == null)
+            {
+                var root = GetOrCreateSceneRoot(scene, "[ Verdant Gameplay ]");
+                garden = GetOrAdd<VerdantGarden>(root);
+                GetOrAdd<AscendantContinuum.Verdant.VerdantController>(root);
+                Debug.Log("[RealmPrefabBuilder] Scaffolded Verdant gameplay root.");
+            }
+            SetPrefabField(garden, "plantPrefab", plantPrefab);
 
             WireBackButton(scene);
             var sp2 = EnsureSettingsPanel(scene);
@@ -756,19 +769,27 @@ namespace AscendantContinuum.Editor
 
             ConfigureRealmCamera(scene, new Color(0.02f, 0.02f, 0.14f));
 
+            // Scaffold gameplay root if scene is empty
             var tracer = FindInScene<ConstellationTracer>(scene);
-            if (tracer != null)
+            if (tracer == null)
             {
-                SetPrefabField(tracer, "starPrefab", starPrefab);
-                SetLineRendererPrefabField(tracer, "lineRendererPrefab", lineRenPrefab);
+                var root = GetOrCreateSceneRoot(scene, "[ EchoFields Gameplay ]");
+                tracer = GetOrAdd<ConstellationTracer>(root);
+                GetOrAdd<AscendantContinuum.EchoFields.EchoFieldsController>(root);
+                // Create secret-tagged helpers for moon-phase accessibility
+                CreateTaggedChild(root, "[ NewMoon Secret ]", "NewMoonSecret");
+                CreateTaggedChild(root, "[ FullMoon Secret ]", "FullMoonSecret");
+                Debug.Log("[RealmPrefabBuilder] Scaffolded EchoFields gameplay root.");
             }
+            SetPrefabField(tracer, "starPrefab", starPrefab);
+            SetLineRendererPrefabField(tracer, "lineRendererPrefab", lineRenPrefab);
 
             WireBackButton(scene);
             var sp3 = EnsureSettingsPanel(scene);
             EnsurePauseMenu(scene, sp3);
             EnsureCompletionPanel(scene, tracer);
             SetHUDRealmName(scene, "The Echo Fields — Trace the Constellations");
-            SetRealmBackgroundImage(scene, "Assets/_Project/Art/Backgrounds/bg_echofields.png");
+            SetRealmBackgroundImage(scene, "Assets/_Project/Art/AscendantContinuumGameGraphics/bg_EchoFields.png");
             SetBackgroundColor(scene, Color.white);
 
             SaveAndCloseScene(scene);
@@ -781,6 +802,15 @@ namespace AscendantContinuum.Editor
 
             ConfigureRealmCamera(scene, new Color(0.12f, 0.10f, 0.02f));
 
+            // Scaffold gameplay root if scene is empty
+            if (FindGoInScene(scene, "[ DawnCitadel Gameplay ]") == null)
+            {
+                var root = GetOrCreateSceneRoot(scene, "[ DawnCitadel Gameplay ]");
+                GetOrAdd<LightRefractionPuzzle>(root);
+                GetOrAdd<AscendantContinuum.Realms.DawnCitadel.DawnCitadelController>(root);
+                Debug.Log("[RealmPrefabBuilder] Scaffolded DawnCitadel gameplay root.");
+            }
+
             // Build a default puzzle layout inside the Gameplay root
             BuildDawnCitadelPuzzle(scene, prismPrefab, targetPrefab, lineRenPrefab);
 
@@ -790,7 +820,7 @@ namespace AscendantContinuum.Editor
             EnsurePauseMenu(scene, sp4);
             EnsureCompletionPanel(scene, puzzle);
             SetHUDRealmName(scene, "The Dawn Citadel — Bend Light, Reveal Truth");
-            SetRealmBackgroundImage(scene, "Assets/_Project/Art/Backgrounds/bg_dawncitadel.jpg");
+            SetRealmBackgroundImage(scene, "Assets/_Project/Art/AscendantContinuumGameGraphics/bg_DawnCitadel.jpeg");
             SetBackgroundColor(scene, Color.white);
 
             SaveAndCloseScene(scene);
@@ -803,24 +833,29 @@ namespace AscendantContinuum.Editor
 
             ConfigureRealmCamera(scene, new Color(0.06f, 0.03f, 0.12f));
 
+            // Scaffold gameplay root if scene is empty
             var ritual = FindInScene<LanternRitual>(scene);
-            if (ritual != null)
+            if (ritual == null)
             {
-                SetPrefabField(ritual, "lanternPrefab", lanternPrefab);
-
-                // Ensure a release point transform exists
-                EnsureLanternReleasePoint(scene, ritual);
-
-                // Ensure a wish input panel exists
-                EnsureWishInputPanel(scene, ritual);
+                var root = GetOrCreateSceneRoot(scene, "[ LanternAscension Gameplay ]");
+                ritual = GetOrAdd<LanternRitual>(root);
+                GetOrAdd<AscendantContinuum.Realms.LanternAscension.LanternAscensionController>(root);
+                Debug.Log("[RealmPrefabBuilder] Scaffolded LanternAscension gameplay root.");
             }
+            SetPrefabField(ritual, "lanternPrefab", lanternPrefab);
+
+            // Ensure a release point transform exists
+            EnsureLanternReleasePoint(scene, ritual);
+
+            // Ensure a wish input panel exists
+            EnsureWishInputPanel(scene, ritual);
 
             WireBackButton(scene);
             var sp5 = EnsureSettingsPanel(scene);
             EnsurePauseMenu(scene, sp5);
             EnsureCompletionPanel(scene, ritual);
             SetHUDRealmName(scene, "The Lantern Ascension — Release Your Wish");
-            SetRealmBackgroundImage(scene, "Assets/_Project/Art/Backgrounds/bg_lanternascension.jpg");
+            SetRealmBackgroundImage(scene, "Assets/_Project/Art/AscendantContinuumGameGraphics/bg_LanternAscension.jpeg");
             SetBackgroundColor(scene, Color.white);
 
             SaveAndCloseScene(scene);
@@ -2264,6 +2299,36 @@ namespace AscendantContinuum.Editor
             }
             return null;
         }
+
+        /// <summary>
+        /// Gets or creates a root-level GameObject in the given scene.
+        /// </summary>
+        private static GameObject GetOrCreateSceneRoot(UnityEngine.SceneManagement.Scene scene, string name)
+        {
+            foreach (var root in scene.GetRootGameObjects())
+                if (root.name == name) return root;
+
+            var go = new GameObject(name);
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(go, scene);
+            return go;
+        }
+
+        /// <summary>
+        /// Creates a child GameObject with a specific Unity tag.
+        /// Only creates if not already present under parent.
+        /// </summary>
+        private static GameObject CreateTaggedChild(GameObject parent, string childName, string tag)
+        {
+            var existing = parent.transform.Find(childName);
+            if (existing != null) return existing.gameObject;
+
+            var go = new GameObject(childName);
+            go.transform.SetParent(parent.transform, false);
+            try { go.tag = tag; }
+            catch { Debug.LogWarning($"[RealmPrefabBuilder] Tag '{tag}' not defined in TagManager — add it in Project Settings."); }
+            return go;
+        }
+
 
         private static GameObject FindGoInScene(
             UnityEngine.SceneManagement.Scene scene, string name)

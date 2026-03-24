@@ -42,6 +42,10 @@ namespace AscendantContinuum.UI
         [Header("Visual Effects")]
         [SerializeField] private ParticleSystem unlockParticles;
         
+        [Header("Toast Notification")]
+        [SerializeField] private GameObject toastPrefab;   // Assign a panel with TextMeshProUGUI child named "ToastText"
+        [SerializeField] private Transform toastContainer; // Canvas overlay root - falls back to self
+        
         // State
         private List<AchievementItemUI> achievementItems = new List<AchievementItemUI>();
         private string currentCategory = "All";
@@ -250,9 +254,87 @@ namespace AscendantContinuum.UI
         
         private void ShowUnlockToast(Achievement achievement)
         {
-            // Create a toast notification
-            // In a real implementation, this would be a UI popup
-            Debug.Log($"Achievement Unlocked: {achievement.Title}");
+            StartCoroutine(ShowToastCoroutine(achievement.Title));
+        }
+
+        private System.Collections.IEnumerator ShowToastCoroutine(string titleText)
+        {
+            Transform root = toastContainer != null ? toastContainer : transform;
+
+            // Create or reuse toast panel
+            GameObject toast = null;
+            if (toastPrefab != null)
+            {
+                toast = Instantiate(toastPrefab, root);
+            }
+            else
+            {
+                // Build a minimal toast at runtime when no prefab is assigned
+                toast = new GameObject("AchievementToast");
+                toast.transform.SetParent(root, false);
+
+                var canvas = toast.AddComponent<Canvas>();
+                canvas.overrideSorting = true;
+                canvas.sortingOrder = 100;
+
+                var bg = new GameObject("Background");
+                bg.transform.SetParent(toast.transform, false);
+                var img = bg.AddComponent<Image>();
+                img.color = new Color(0.1f, 0.05f, 0.2f, 0.92f);
+                var rt = bg.GetComponent<RectTransform>();
+                rt.sizeDelta = new Vector2(320, 72);
+
+                var label = new GameObject("ToastText");
+                label.transform.SetParent(bg.transform, false);
+                var tmp = label.AddComponent<TextMeshProUGUI>();
+                tmp.text = $"✦ Achievement Unlocked: {titleText}";
+                tmp.fontSize = 14;
+                tmp.alignment = TextAlignmentOptions.Center;
+                tmp.color = Color.white;
+                var lrt = label.GetComponent<RectTransform>();
+                lrt.anchorMin = Vector2.zero;
+                lrt.anchorMax = Vector2.one;
+                lrt.offsetMin = new Vector2(8, 4);
+                lrt.offsetMax = new Vector2(-8, -4);
+            }
+
+            // Set text if prefab has a "ToastText" child
+            var textComp = toast.GetComponentInChildren<TextMeshProUGUI>();
+            if (textComp != null && toastPrefab != null)
+                textComp.text = $"✦ Achievement Unlocked: {titleText}";
+
+            // Fade in
+            var canvasGroup = toast.GetComponent<CanvasGroup>();
+            if (canvasGroup == null) canvasGroup = toast.AddComponent<CanvasGroup>();
+            canvasGroup.alpha = 0f;
+
+            bool reducedMotion = AccessibilityManager.Instance != null &&
+                                 AccessibilityManager.Instance.IsReducedMotionEnabled();
+
+            float fadeDuration = reducedMotion ? 0f : 0.3f;
+            float holdDuration = 2.5f;
+            float elapsed = 0f;
+
+            while (elapsed < fadeDuration)
+            {
+                canvasGroup.alpha = elapsed / fadeDuration;
+                elapsed += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            canvasGroup.alpha = 1f;
+
+            yield return new WaitForSecondsRealtime(holdDuration);
+
+            // Fade out
+            elapsed = 0f;
+            while (elapsed < fadeDuration)
+            {
+                canvasGroup.alpha = 1f - (elapsed / fadeDuration);
+                elapsed += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            Destroy(toast);
         }
         
         #endregion

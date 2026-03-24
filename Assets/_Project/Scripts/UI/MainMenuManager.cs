@@ -468,21 +468,28 @@ namespace AscendantContinuum.UI
         
         private void LoadPlayerInfo()
         {
-            // Load player data
-            // In a real implementation, this would load from SaveSystem
-            
+            var playerData = Core.SaveSystem.Instance?.CurrentPlayerData;
+
             if (playerLevelText != null)
             {
+                // Derive a display level from progression completions when available,
+                // otherwise fall back to a PlayerPrefs stub value.
                 int level = PlayerPrefs.GetInt("PlayerLevel", 1);
+                if (Progression.ProgressionManager.Instance != null)
+                {
+                    var pd = Progression.ProgressionManager.Instance.GetProgressionData();
+                    if (pd != null)
+                        level = Mathf.Max(1, pd.totalRealmCompletions + 1);
+                }
                 playerLevelText.text = $"Level {level}";
             }
-            
+
             if (sigilCountText != null)
             {
-                int sigils = PlayerPrefs.GetInt("SigilCount", 0);
+                int sigils = playerData != null ? playerData.sigilCountTotal : PlayerPrefs.GetInt("SigilCount", 0);
                 sigilCountText.text = $"{sigils} Sigils";
             }
-            
+
             // Load player's personal sigil
             if (playerSigilImage != null)
             {

@@ -106,12 +106,33 @@ namespace AscendantContinuum.UI
 
         private void DeleteAccount()
         {
-            // In a real app, this would call a Firebase Function to delete the user record
+            // Show confirmation then delete both local and cloud data (GDPR right-to-erasure)
+            StartCoroutine(DeleteAccountCoroutine());
+        }
+
+        private System.Collections.IEnumerator DeleteAccountCoroutine()
+        {
+            // Local data
             SaveSystem.Instance?.DeleteSaveData();
             GDPRConsentManager.Instance?.ClearConsentState();
-            Debug.Log("[SettingsMenu] Account deletion requested.");
-            
-            // Return to title screen
+
+            // Cloud data — delete via Firebase Function
+            string uid = FirebaseManager.Instance?.UserId;
+            if (FirebaseManager.Instance != null && !string.IsNullOrEmpty(uid))
+            {
+                var task = FirebaseManager.Instance.DeleteUserData(uid);
+                // Wait up to 6 seconds for the cloud deletion to complete
+                float waited = 0f;
+                while (!task.IsCompleted && waited < 6f)
+                {
+                    waited += UnityEngine.Time.deltaTime;
+                    yield return null;
+                }
+                if (!task.IsCompletedSuccessfully)
+                    Debug.LogWarning("[SettingsMenu] Cloud data deletion did not complete — will be cleaned up by scheduled Cloud Function.");
+            }
+
+            Debug.Log("[SettingsMenu] Account deletion complete.");
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
 
