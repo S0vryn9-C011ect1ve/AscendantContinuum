@@ -13,8 +13,9 @@ namespace AscendantContinuum.Realms.Verdant
         [Header("Growth Configuration")]
         [SerializeField] private float growthTimePerStage = 30f; // 30 seconds per stage
         [SerializeField] private bool requiresWater = true;
-        [SerializeField] private float swaySpeed = 1f;
-        [SerializeField] private float swayAmount = 0.05f;
+        [SerializeField] private float swaySpeed = 1.6f;
+        [SerializeField] private float swayAmount = 0.12f;
+        [SerializeField] private float idleMovementMultiplier = 0.75f;
 
         [Header("Visual Components")]
         [SerializeField] private SpriteRenderer spriteRenderer;
@@ -23,6 +24,9 @@ namespace AscendantContinuum.Realms.Verdant
         [SerializeField] private Sprite plantSprite;
         [SerializeField] private Sprite bloomSprite;
         [SerializeField] private ParticleSystem bloomParticles;
+
+        [Header("VFX")]
+        [SerializeField] private GameObject waterVFXPrefab;
 
         [Header("Audio")]
         [SerializeField] private AudioClip waterSound;
@@ -35,6 +39,7 @@ namespace AscendantContinuum.Realms.Verdant
         private float stageTimer = 0f;
         private bool isWatered = false;
         private bool isGrowing = false;
+        private float verticalPhase;
 
         // Sway Animation
         private Vector3 originalPosition;
@@ -42,6 +47,9 @@ namespace AscendantContinuum.Realms.Verdant
 
         // Accessibility
         private bool reducedMotion = false;
+
+        // Scale
+        private float baseScale = 1f;
 
         // Events
         public System.Action<MagicalPlant> OnBloom;
@@ -52,8 +60,9 @@ namespace AscendantContinuum.Realms.Verdant
             if (spriteRenderer == null)
                 spriteRenderer = GetComponent<SpriteRenderer>();
 
-            originalPosition = transform.localPosition;
             swayOffset = Random.Range(0f, Mathf.PI * 2f);
+            verticalPhase = Random.Range(0f, Mathf.PI * 2f);
+            // Note: originalPosition is saved in Initialize() after positioning
         }
 
         private void Start()
@@ -64,12 +73,13 @@ namespace AscendantContinuum.Realms.Verdant
                 reducedMotion = AccessibilityManager.Instance.IsReducedMotionEnabled();
             }
 
+            CalculateBaseScale();
             SetStageVisuals(GrowthStage.Seed);
         }
 
         private void Update()
         {
-            if (isGrowing && !reducedMotion)
+            if (!reducedMotion)
             {
                 ApplySwayAnimation();
             }
@@ -78,14 +88,27 @@ namespace AscendantContinuum.Realms.Verdant
         #region Growth Management
 
         /// <summary>
+        /// Initializes the plant with custom growth time
+        /// </summary>
+        public void Initialize(float customGrowthTime)
+        {
+            growthTimePerStage = customGrowthTime;
+            originalPosition = transform.localPosition; // Save position AFTER it's been set
+        }
+
+        /// <summary>
         /// Waters the plant, enabling growth if required
         /// </summary>
         public void Water()
         {
             if (!requiresWater || isWatered || currentStage == GrowthStage.Bloom || currentStage == GrowthStage.Fading)
+            {
+                Debug.Log($"[MagicalPlant] Water skipped - requiresWater: {requiresWater}, isWatered: {isWatered}, stage: {currentStage}");
                 return;
+            }
 
             isWatered = true;
+            Debug.Log($"[MagicalPlant] Plant watered! Starting growth...");
 
             // Play water effect
             if (AudioManager.Instance != null && waterSound != null)
@@ -93,6 +116,19 @@ namespace AscendantContinuum.Realms.Verdant
 
             if (AccessibilityManager.Instance != null)
                 AccessibilityManager.Instance.TriggerHaptic(HapticType.Light);
+
+            // Spawn water particle VFX
+            if (waterVFXPrefab != null)
+            {
+                GameObject vfx = Instantiate(waterVFXPrefab, transform.position, Quaternion.identity);
+                ParticleSystem ps = vfx.GetComponent<ParticleSystem>();
+                if (ps != null) ps.Play();
+                Destroy(vfx, 2f);
+            }
+            else
+            {
+                SpawnFallbackWaterBurst();
+            }
 
             // Start growing
             if (!isGrowing)
@@ -239,35 +275,82 @@ namespace AscendantContinuum.Realms.Verdant
 
         #region Visuals
 
+        /// <summary>
+        /// Computes baseScale so the Bloom stage plant occupies ~16% of the camera height.
+        /// Called once in Start() before SetStageVisuals.
+        /// </summary>
+        private void CalculateBaseScale()
+        {
+            Sprite refSprite = seedSprite ?? sproutSprite ?? plantSprite ?? bloomSprite;
+            if (refSprite == null) { baseScale = 0.1f; return; }
+            float naturalH = refSprite.bounds.size.y;
+            if (naturalH < 0.001f) { baseScale = 0.1f; return; }
+            Camera cam = Camera.main;
+            float camH = (cam != null) ? cam.orthographicSize * 2f : 12f;
+            // Target: Bloom stage = ~16% of camera view height
+            baseScale = (camH * 0.16f) / naturalH;
+        }
+
         private void SetStageVisuals(GrowthStage stage)
         {
             switch (stage)
             {
                 case GrowthStage.Seed:
                     spriteRenderer.sprite = seedSprite;
-                    transform.localScale = Vector3.one * 0.5f;
+                    transform.localScale = Vector3.one * (baseScale * 0.65f);
                     break;
                 case GrowthStage.Sprout:
                     spriteRenderer.sprite = sproutSprite;
-                    transform.localScale = Vector3.one * 0.75f;
+                    transform.localScale = Vector3.one * (baseScale * 0.75f);
                     break;
                 case GrowthStage.Plant:
                     spriteRenderer.sprite = plantSprite;
-                    transform.localScale = Vector3.one * 1f;
+                    transform.localScale = Vector3.one * (baseScale * 0.88f);
                     break;
                 case GrowthStage.Bloom:
                     spriteRenderer.sprite = bloomSprite;
-                    transform.localScale = Vector3.one * 1.2f;
+                    transform.localScale = Vector3.one * (baseScale * 1.0f);
                     break;
             }
         }
 
         private void ApplySwayAnimation()
         {
-            if (currentStage == GrowthStage.Seed) return;
+            float growthFactor = isGrowing ? 1f : idleMovementMultiplier;
+            float stageFactor = currentStage == GrowthStage.Seed ? 0.75f : 1f;
+            float amp = swayAmount * growthFactor * stageFactor;
 
-            float sway = Mathf.Sin((Time.time * swaySpeed) + swayOffset) * swayAmount;
-            transform.localPosition = originalPosition + new Vector3(sway, 0f, 0f);
+            float swayX = Mathf.Sin((Time.time * swaySpeed) + swayOffset) * amp;
+            float swayY = Mathf.Cos((Time.time * (swaySpeed * 0.75f)) + verticalPhase) * (amp * 0.45f);
+            transform.localPosition = originalPosition + new Vector3(swayX, swayY, 0f);
+        }
+
+        private void SpawnFallbackWaterBurst()
+        {
+            GameObject vfx = new GameObject("WaterBurstFallback");
+            vfx.transform.position = transform.position;
+
+            var ps = vfx.AddComponent<ParticleSystem>();
+            var main = ps.main;
+            main.duration = 0.35f;
+            main.startLifetime = 0.35f;
+            main.startSpeed = 1.8f;
+            main.startSize = 0.08f;
+            main.startColor = new Color(0.55f, 0.95f, 1f, 1f);
+            main.maxParticles = 20;
+            main.loop = false;
+            main.simulationSpace = ParticleSystemSimulationSpace.World;
+
+            var emission = ps.emission;
+            emission.rateOverTime = 0f;
+            emission.SetBursts(new[] { new ParticleSystem.Burst(0f, 12) });
+
+            var shape = ps.shape;
+            shape.shapeType = ParticleSystemShapeType.Circle;
+            shape.radius = 0.08f;
+
+            ps.Play();
+            Destroy(vfx, 1f);
         }
 
         private IEnumerator BloomFlashEffect()
@@ -299,6 +382,8 @@ namespace AscendantContinuum.Realms.Verdant
 
         private void OnMouseDown()
         {
+            Debug.Log($"[MagicalPlant] Plant clicked! Stage: {currentStage}, Watered: {isWatered}");
+
             if (currentStage == GrowthStage.Bloom)
             {
                 // Clicking a bloomed plant creates positive feedback
@@ -307,6 +392,11 @@ namespace AscendantContinuum.Realms.Verdant
 
                 if (AccessibilityManager.Instance != null)
                     AccessibilityManager.Instance.TriggerHaptic(HapticType.Light);
+            }
+            else
+            {
+                // Water the plant if it needs it
+                Water();
             }
         }
 

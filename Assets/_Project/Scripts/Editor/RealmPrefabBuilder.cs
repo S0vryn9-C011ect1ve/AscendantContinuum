@@ -9,6 +9,7 @@ using TMPro;
 // Gameplay scripts
 using AscendantContinuum.Emberforge;
 using AscendantContinuum.Verdant;
+using AscendantContinuum.Realms.Verdant;   // AscendantContinuum.Realms.Verdant.MagicalPlant
 using AscendantContinuum.EchoFields;
 using AscendantContinuum.Realms.EchoFields;  // Star
 using AscendantContinuum.Realms.DawnCitadel;
@@ -141,7 +142,7 @@ namespace AscendantContinuum.Editor
         private static void EnsureMainMenuBackground(
             UnityEngine.SceneManagement.Scene scene)
         {
-            const string bgPath = "Assets/_Project/Art/Backgrounds/bg_echofields.png";
+            const string bgPath = "Assets/_Project/Art/AscendantContinuumGameGraphics/bg_HomeMainMenu.jpeg";
             EnsureTextureIsSprite(bgPath);
             var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(bgPath);
             if (sprite == null)
@@ -165,6 +166,8 @@ namespace AscendantContinuum.Editor
             sr.sortingOrder = -100;
             sr.drawMode     = SpriteDrawMode.Simple;
 
+            var alive = GetOrAdd<AscendantContinuum.UI.BackgroundAliveMotion>(bgGO);
+
             // Ensure there is a camera set up
             Camera cam = null;
             foreach (var root in scene.GetRootGameObjects())
@@ -184,9 +187,9 @@ namespace AscendantContinuum.Editor
             cam.clearFlags = CameraClearFlags.SolidColor;
             cam.backgroundColor = new Color(0.04f, 0.02f, 0.1f);
 
-            // Scale background to stretch-fill  (portrait 9:16, ortho size 6)
-            const float viewH = 12f;
-            const float viewW = 12f * 9f / 16f;
+            // Scale background to stretch-fill camera view
+            float viewH = cam.orthographicSize * 2f;
+            float viewW = viewH * cam.aspect;
             float ppu     = sprite.pixelsPerUnit > 0f ? sprite.pixelsPerUnit : 100f;
             float spriteH = sprite.rect.height / ppu;
             float spriteW = sprite.rect.width  / ppu;
@@ -544,7 +547,7 @@ namespace AscendantContinuum.Editor
             col.radius = 0.5f;
             col.isTrigger = true;
 
-            go.AddComponent<MagicalPlant>();
+            go.AddComponent<AscendantContinuum.Realms.Verdant.MagicalPlant>();
 
             return SavePrefab(go, path);
         }
@@ -740,7 +743,7 @@ namespace AscendantContinuum.Editor
             EnsurePauseMenu(scene, sp2);
             EnsureCompletionPanel(scene, garden);
             SetHUDRealmName(scene, "The Verdant Garden — Nurture Life");
-            SetRealmBackgroundImage(scene, "Assets/_Project/Art/Backgrounds/bg_verdant.png");
+            SetRealmBackgroundImage(scene, "Assets/_Project/Art/AscendantContinuumGameGraphics/bg_VerdantSantuary.png");
             SetBackgroundColor(scene, Color.white);
 
             SaveAndCloseScene(scene);
@@ -1969,11 +1972,31 @@ namespace AscendantContinuum.Editor
             sr.sortingOrder = -100;
             sr.drawMode     = SpriteDrawMode.Simple;
 
+            var alive = GetOrAdd<AscendantContinuum.UI.BackgroundAliveMotion>(bgGO);
+            var parallax = GetOrAdd<AscendantContinuum.UI.ParallaxBackground>(bgGO);
+            
+            // Ensure AmbientParticles child exists for floating particles
+            var ambientChild = FindGoInScene(scene, "[ Ambient Particles ]");
+            if (ambientChild == null)
+            {
+                ambientChild = new GameObject("[ Ambient Particles ]");
+                ambientChild.transform.SetParent(bgGO.transform, false);
+                Undo.RegisterCreatedObjectUndo(ambientChild, "Create AmbientParticles");
+            }
+            var ambientComp = GetOrAdd<AscendantContinuum.UI.AmbientParticles>(ambientChild);
+            ConfigureAmbientParticlesForRealm(scene.name, ambientComp);
+
             // Stretch-to-fill: scale X and Y independently so the ENTIRE image fills
             // the camera viewport with no cropping, regardless of image aspect ratio.
-            // Camera ortho size = 6  →  viewport = 12 units tall, 21.33 units wide (9:16 portrait)
-            const float viewH = 12f;
-            const float viewW = 12f * 9f / 16f;   // portrait mobile (9:16)
+            Camera cam = null;
+            foreach (var root in scene.GetRootGameObjects())
+            {
+                cam = root.GetComponentInChildren<Camera>(true);
+                if (cam != null) break;
+            }
+
+            float viewH = cam != null ? cam.orthographicSize * 2f : 12f;
+            float viewW = cam != null ? viewH * cam.aspect : (12f * 9f / 16f);
 
             float ppu     = sprite.pixelsPerUnit > 0f ? sprite.pixelsPerUnit : 100f;
             float spriteH = sprite.rect.height / ppu;
@@ -2004,6 +2027,112 @@ namespace AscendantContinuum.Editor
 
             if (needsReimport)
                 importer.SaveAndReimport();
+        }
+
+        private static void ConfigureAmbientParticlesForRealm(string sceneName, AscendantContinuum.UI.AmbientParticles ambient)
+        {
+            if (ambient == null) return;
+
+            string lower = sceneName.ToLowerInvariant();
+
+            GameObject p1;
+            int c1;
+            float d1;
+            float v1;
+            GameObject p2;
+            int c2;
+            float d2;
+            float v2;
+
+            if (lower.Contains("ember"))
+            {
+                p1 = CreateAmbientParticlePrefab("EmberSparkle", new Color(1f, 0.6f, 0.2f), 32);
+                c1 = 6; d1 = 0.12f; v1 = 0.03f;
+                p2 = CreateAmbientParticlePrefab("EmberGlow", new Color(1f, 0.4f, 0.1f, 0.6f), 28);
+                c2 = 4; d2 = 0.08f; v2 = 0.02f;
+            }
+            else if (lower.Contains("verdant"))
+            {
+                p1 = CreateAmbientParticlePrefab("BotanicalPetal", new Color(0.3f, 0.9f, 0.4f), 30);
+                c1 = 7; d1 = 0.06f; v1 = 0.015f;
+                p2 = CreateAmbientParticlePrefab("LifeMote", new Color(0.6f, 1f, 0.7f, 0.7f), 24);
+                c2 = 5; d2 = 0.04f; v2 = 0.01f;
+            }
+            else if (lower.Contains("echo"))
+            {
+                p1 = CreateAmbientParticlePrefab("EchoStar", new Color(0.7f, 0.85f, 1f), 32);
+                c1 = 8; d1 = 0.05f; v1 = 0.012f;
+                p2 = CreateAmbientParticlePrefab("CosmicDust", new Color(0.5f, 0.7f, 1f, 0.5f), 20);
+                c2 = 5; d2 = 0.03f; v2 = 0.008f;
+            }
+            else if (lower.Contains("dawn"))
+            {
+                p1 = CreateAmbientParticlePrefab("DawnGlow", new Color(1f, 0.95f, 0.6f), 28);
+                c1 = 6; d1 = 0.07f; v1 = 0.02f;
+                p2 = CreateAmbientParticlePrefab("CelestialMote", new Color(1f, 0.8f, 0.4f, 0.6f), 24);
+                c2 = 4; d2 = 0.05f; v2 = 0.015f;
+            }
+            else if (lower.Contains("lantern"))
+            {
+                p1 = CreateAmbientParticlePrefab("WisdomGlow", new Color(0.9f, 0.7f, 1f), 30);
+                c1 = 5; d1 = 0.06f; v1 = 0.015f;
+                p2 = CreateAmbientParticlePrefab("SpiritMist", new Color(0.8f, 0.5f, 1f, 0.5f), 26);
+                c2 = 4; d2 = 0.04f; v2 = 0.01f;
+            }
+            else
+            {
+                p1 = CreateAmbientParticlePrefab("CosmicStar", new Color(0.8f, 0.9f, 1f), 32);
+                c1 = 5; d1 = 0.05f; v1 = 0.012f;
+                p2 = CreateAmbientParticlePrefab("CosmicGlow", new Color(0.7f, 0.6f, 1f, 0.6f), 28);
+                c2 = 3; d2 = 0.03f; v2 = 0.008f;
+            }
+
+            var so = new SerializedObject(ambient);
+            var types = so.FindProperty("particleTypes");
+            if (types == null) return;
+
+            types.arraySize = 2;
+            SetParticleSettings(types.GetArrayElementAtIndex(0), p1, c1, d1, v1);
+            SetParticleSettings(types.GetArrayElementAtIndex(1), p2, c2, d2, v2);
+            so.ApplyModifiedProperties();
+        }
+
+        private static void SetParticleSettings(SerializedProperty element, GameObject prefab, int count, float driftSpeed, float speedVariance)
+        {
+            if (element == null) return;
+            var prefabProp = element.FindPropertyRelative("particlePrefab");
+            var countProp = element.FindPropertyRelative("count");
+            var driftProp = element.FindPropertyRelative("driftSpeed");
+            var varianceProp = element.FindPropertyRelative("speedVariance");
+
+            if (prefabProp != null) prefabProp.objectReferenceValue = prefab;
+            if (countProp != null) countProp.intValue = count;
+            if (driftProp != null) driftProp.floatValue = driftSpeed;
+            if (varianceProp != null) varianceProp.floatValue = speedVariance;
+        }
+
+        private static GameObject CreateAmbientParticlePrefab(string name, Color color, int size)
+        {
+            string prefabPath = $"Assets/_Project/Prefabs/VFX/AmbientParticles/{name}.prefab";
+            var existing = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+            if (existing != null) return existing;
+
+            var sprite = GetOrCreateCircleSprite(name, color, size);
+            if (sprite == null) return null;
+
+            var go = new GameObject(name);
+            var sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = sprite;
+            sr.color = color;
+            sr.sortingOrder = 1;
+
+            var prefabDir = Path.GetDirectoryName(prefabPath);
+            if (!string.IsNullOrEmpty(prefabDir) && !Directory.Exists(prefabDir))
+                Directory.CreateDirectory(prefabDir);
+
+            var saved = PrefabUtility.SaveAsPrefabAsset(go, prefabPath);
+            UnityEngine.Object.DestroyImmediate(go);
+            return saved;
         }
 
         // ════════════════════════════════════════════════════════════════════

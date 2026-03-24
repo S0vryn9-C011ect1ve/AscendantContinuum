@@ -1298,6 +1298,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205099536}
   m_CullTransparentMesh: 1
+--- !u!1 &238529752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 238529753}
+  - component: {fileID: 238529754}
+  m_Layer: 0
+  m_Name: '[ Ambient Particles ]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &238529753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238529752}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 982550990}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &238529754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238529752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b8ac07f25e05b449f25e2c61a2d05d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AscendantContinuum.Runtime::AscendantContinuum.UI.AmbientParticles
+  particleTypes:
+  - particlePrefab: {fileID: 0}
+    count: 5
+    driftSpeed: 0.06
+    speedVariance: 0.015
+  - particlePrefab: {fileID: 0}
+    count: 4
+    driftSpeed: 0.04
+    speedVariance: 0.01
+  useCamera: 1
+  spawnBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 10, y: 6, z: 0.5}
+  horizontalDriftAmount: 0.2
+  verticalBobAmount: 0.05
+  bobSpeed: 0.3
+  particleLifespan: 120
+  fadeAtLife: 1
+  disableWhenReducedMotion: 1
 --- !u!1 &242998078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,8 +1900,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1895759724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3398,8 +3461,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 275464906}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4588,6 +4651,8 @@ GameObject:
   m_Component:
   - component: {fileID: 982550990}
   - component: {fileID: 982550989}
+  - component: {fileID: 982550991}
+  - component: {fileID: 982550992}
   m_Layer: 0
   m_Name: '[ Background ]'
   m_TagString: Untagged
@@ -4664,11 +4729,55 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 0.6591797, y: 1.171875, z: 1}
+  m_LocalScale: {x: 2.0833335, y: 1.171875, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 238529753}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &982550991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982550988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16343362b318f324daeff209b696625d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AscendantContinuum.Runtime::AscendantContinuum.UI.BackgroundAliveMotion
+  driftX: 0.25
+  driftY: 0.18
+  driftSpeed: 0.22
+  upwardFloat: 0.06
+  upwardResetRange: 0.5
+  breatheAmount: 0.04
+  breatheSpeed: 0.28
+  enableBrightnessPulse: 1
+  uplightColor: {r: 1, g: 0.97, b: 0.85, a: 1}
+  pulseStrength: 0.22
+  pulseSpeed: 0.35
+  disableWhenReducedMotion: 1
+--- !u!114 &982550992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982550988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2227641691f6064fa24977c5f5d7da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AscendantContinuum.Runtime::AscendantContinuum.UI.ParallaxBackground
+  layer1Speed: 0.8
+  layer2Speed: 0.5
+  layer3Speed: 0.25
+  driftX: 0.15
+  driftY: 0.1
+  driftSpeed: 0.15
+  disableWhenReducedMotion: 1
 --- !u!1 &986160184
 GameObject:
   m_ObjectHideFlags: 0
@@ -6374,8 +6483,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 35305322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8132,8 +8241,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1383695555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

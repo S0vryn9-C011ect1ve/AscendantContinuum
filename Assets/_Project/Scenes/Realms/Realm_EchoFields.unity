@@ -1149,6 +1149,8 @@ GameObject:
   m_Component:
   - component: {fileID: 234182835}
   - component: {fileID: 234182834}
+  - component: {fileID: 234182836}
+  - component: {fileID: 234182837}
   m_Layer: 0
   m_Name: '[ Background ]'
   m_TagString: Untagged
@@ -1225,11 +1227,55 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 1.3183594, y: 2.34375, z: 1}
+  m_LocalScale: {x: 4.166667, y: 2.34375, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1322640659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &234182836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234182833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16343362b318f324daeff209b696625d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AscendantContinuum.Runtime::AscendantContinuum.UI.BackgroundAliveMotion
+  driftX: 0.25
+  driftY: 0.18
+  driftSpeed: 0.22
+  upwardFloat: 0.06
+  upwardResetRange: 0.5
+  breatheAmount: 0.04
+  breatheSpeed: 0.28
+  enableBrightnessPulse: 1
+  uplightColor: {r: 1, g: 0.97, b: 0.85, a: 1}
+  pulseStrength: 0.22
+  pulseSpeed: 0.35
+  disableWhenReducedMotion: 1
+--- !u!114 &234182837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234182833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2227641691f6064fa24977c5f5d7da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AscendantContinuum.Runtime::AscendantContinuum.UI.ParallaxBackground
+  layer1Speed: 0.8
+  layer2Speed: 0.5
+  layer3Speed: 0.25
+  driftX: 0.15
+  driftY: 0.1
+  driftSpeed: 0.15
+  disableWhenReducedMotion: 1
 --- !u!1 &277208212
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,8 +3210,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1453563566}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4059,8 +4105,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1214935879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4429,8 +4475,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 612530209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6642,6 +6688,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312198708}
   m_CullTransparentMesh: 1
+--- !u!1 &1322640658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1322640659}
+  - component: {fileID: 1322640660}
+  m_Layer: 0
+  m_Name: '[ Ambient Particles ]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1322640659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322640658}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 234182835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1322640660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322640658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b8ac07f25e05b449f25e2c61a2d05d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AscendantContinuum.Runtime::AscendantContinuum.UI.AmbientParticles
+  particleTypes:
+  - particlePrefab: {fileID: 0}
+    count: 8
+    driftSpeed: 0.05
+    speedVariance: 0.012
+  - particlePrefab: {fileID: 0}
+    count: 5
+    driftSpeed: 0.03
+    speedVariance: 0.008
+  useCamera: 1
+  spawnBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 10, y: 6, z: 0.5}
+  horizontalDriftAmount: 0.2
+  verticalBobAmount: 0.05
+  bobSpeed: 0.3
+  particleLifespan: 120
+  fadeAtLife: 1
+  disableWhenReducedMotion: 1
 --- !u!1 &1328556871
 GameObject:
   m_ObjectHideFlags: 0
@@ -7502,8 +7611,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 996837318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8140,7 +8249,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4294957542
   m_fontColor: {r: 0.9, g: 0.85, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -8153,7 +8262,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2

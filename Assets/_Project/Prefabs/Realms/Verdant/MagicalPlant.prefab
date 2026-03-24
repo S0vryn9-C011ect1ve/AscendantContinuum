@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7853031672646731632}
   - component: {fileID: 2661758536663439630}
   - component: {fileID: 7489063180215242562}
-  - component: {fileID: 4198104244742369214}
+  - component: {fileID: 2366427314122224491}
   m_Layer: 0
   m_Name: MagicalPlant
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,15 +83,15 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 0.2, g: 0.8, b: 0.3, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3491c5ff2d4675a41b8bb25cd61ae94b, type: 3}
+  m_Color: {r: 1, g: 0.9803922, b: 0.9803922, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!58 &7489063180215242562
 CircleCollider2D:
@@ -128,8 +128,8 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
---- !u!114 &4198104244742369214
+  m_Radius: 1
+--- !u!114 &2366427314122224491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,10 +138,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5089913894348736784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: d6d2ba54372aee748b2e5ae84c7d7847, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: AscendantContinuum.Runtime::AscendantContinuum.Verdant.MagicalPlant
-  seedSprite: {fileID: 0}
-  sproutSprite: {fileID: 0}
-  plantSprite: {fileID: 0}
-  bloomSprite: {fileID: 0}
+  m_EditorClassIdentifier: AscendantContinuum.Runtime::AscendantContinuum.Realms.Verdant.MagicalPlant
+  growthTimePerStage: 30
+  requiresWater: 1
+  swaySpeed: 1.5
+  swayAmount: 0.15
+  spriteRenderer: {fileID: 2661758536663439630}
+  seedSprite: {fileID: 21300000, guid: 3491c5ff2d4675a41b8bb25cd61ae94b, type: 3}
+  sproutSprite: {fileID: 21300000, guid: 97d0d69c3406cac4eb892e0a538df598, type: 3}
+  plantSprite: {fileID: 21300000, guid: 8d404e25f33121a41a96770e88d409f8, type: 3}
+  bloomSprite: {fileID: 21300000, guid: 7f057c1f7f3ed964ebca42129b9c18b5, type: 3}
+  bloomParticles: {fileID: 6966757037526495590, guid: 28219c33eee73af499599f521492318d, type: 3}
+  waterVFXPrefab: {fileID: 6761264795575635451, guid: 28219c33eee73af499599f521492318d, type: 3}
+  waterSound: {fileID: 0}
+  growthSound: {fileID: 0}
+  bloomSound: {fileID: 0}

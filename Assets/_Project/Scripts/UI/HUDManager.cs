@@ -272,6 +272,9 @@ namespace AscendantContinuum.UI
         
         public void ShowNotification(string message, NotificationType type = NotificationType.Info)
         {
+            // Guard: object may have been destroyed (e.g. scene unloaded mid-coroutine)
+            if (!this) return;
+
             if (isNotificationShowing)
             {
                 // Queue notification

@@ -414,6 +414,7 @@ MonoBehaviour:
   musicFadeIn: 2
   musicFadeOut: 1.5
   sparksSystem: {fileID: 585969549}
+  sparkCounterText: {fileID: 0}
 --- !u!4 &585969551
 Transform:
   m_ObjectHideFlags: 0

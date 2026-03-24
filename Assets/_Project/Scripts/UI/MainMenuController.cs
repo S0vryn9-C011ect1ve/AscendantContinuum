@@ -120,6 +120,8 @@ namespace AscendantContinuum.UI
             if (seasonPassButton != null)
                 seasonPassButton.onClick.AddListener(() => SeasonPassUIManager.Instance?.OpenPanel());
 
+            TryAutoBindRealmButtons();
+            SetRealmButtonsVisible(false);
             InitializeRealmButtons();
 
             // Set title with glow effect
@@ -263,7 +265,7 @@ namespace AscendantContinuum.UI
 
         private void OnPlayClicked()
         {
-            StartCoroutine(TransitionToRealm());
+            SetRealmButtonsVisible(true);
         }
 
         /// <summary>Wire each realm-select button to its scene and lock it based on progression.</summary>
@@ -356,6 +358,53 @@ namespace AscendantContinuum.UI
             if (!SceneService.TryLoadScene(targetScene))
             {
                 SceneService.TryLoadScene(SceneNames.Emberforge);
+            }
+        }
+
+        private void TryAutoBindRealmButtons()
+        {
+            if (realmSelectButtons != null && realmSelectButtons.Length == 5)
+            {
+                bool allAssigned = true;
+                for (int i = 0; i < realmSelectButtons.Length; i++)
+                {
+                    if (realmSelectButtons[i] == null)
+                    {
+                        allAssigned = false;
+                        break;
+                    }
+                }
+                if (allAssigned) return;
+            }
+
+            realmSelectButtons = new Button[5];
+            realmSelectButtons[0] = FindButtonByName("RealmBtn_Emberforge");
+            realmSelectButtons[1] = FindButtonByName("RealmBtn_Verdant");
+            realmSelectButtons[2] = FindButtonByName("RealmBtn_EchoFields");
+            realmSelectButtons[3] = FindButtonByName("RealmBtn_DawnCitadel");
+            realmSelectButtons[4] = FindButtonByName("RealmBtn_LanternAscension");
+        }
+
+        private static Button FindButtonByName(string buttonName)
+        {
+            var allButtons = FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            for (int i = 0; i < allButtons.Length; i++)
+            {
+                if (allButtons[i] != null && allButtons[i].name == buttonName)
+                    return allButtons[i];
+            }
+
+            return null;
+        }
+
+        private void SetRealmButtonsVisible(bool visible)
+        {
+            if (realmSelectButtons == null) return;
+
+            for (int i = 0; i < realmSelectButtons.Length; i++)
+            {
+                if (realmSelectButtons[i] != null)
+                    realmSelectButtons[i].gameObject.SetActive(visible);
             }
         }
 

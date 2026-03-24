@@ -138,14 +138,14 @@ With `MagicalPlant` selected in Hierarchy, look at **Inspector**:
 - Just make sure **`Is Trigger`** is ✅ checked
 - **Radius:** should be `0.5` or higher
 
-### Step 4: Assign Plant Sprite
+### Step 4: Assign Starting Sprite
 
 In **Inspector**, find **`Sprite Renderer`** component:
 
 1. Look for field: **`Sprite`**
 2. Click the little **circle ⊙** next to it
-3. Search for: **`plant`**
-4. Select: **`Plant_sprite`**
+3. Search for: **`seed`**
+4. Select: **`plant_seed`** (or just "seed")
 
 **Color:**
 - Make sure **`Color`** is **white** (not transparent)
@@ -155,26 +155,40 @@ In **Inspector**, find **`Sprite Renderer`** component:
 
 In **Inspector**, find **`Magical Plant (Script)`** component:
 
+*(You just added this fresh component - nice work! Now let's configure it...)*
+
 **Growth Configuration:**
-- **Growth Time Per Stage:** `30` (30 seconds per stage = 2 minutes total)
-- **Requires Water:** ✅ CHECK (plants need clicking)
+- **Growth Time Per Stage:** Type `30` (30 seconds per stage = 2 minutes total)
+- **Requires Water:** ✅ CHECK the box (plants need clicking)
 - **Sway Speed:** `1`
 - **Sway Amount:** `0.05`
 
 **Visual Components:**
 - **Sprite Renderer:** Should auto-fill with `Sprite Renderer (Sprite Renderer)`
-  - If empty: Click the circle ⊙, select `Sprite Renderer`
+  - If it says "None": Click the circle ⊙, type `sprite`, select `Sprite Renderer`
 
-**Sprites (4 stages):**
-*For now, use the same sprite for all 4 stages. We'll customize later:*
-- **Seed Sprite:** Click ⊙, select `Plant_sprite`
-- **Sprout Sprite:** Click ⊙, select `Plant_sprite`  
-- **Plant Sprite:** Click ⊙, select `Plant_sprite`
-- **Bloom Sprite:** Click ⊙, select `Plant_sprite` (or find a bloom/flower sprite if you have one)
+**Sprites (Assign the 4 Growth Stages):**
+
+*Click the circle ⊙ next to each field and select the matching sprite:*
+
+1. **Seed Sprite:** 
+   - Click ⊙ → search `seed` → select **`plant_seed`**
+   
+2. **Sprout Sprite:** 
+   - Click ⊙ → search `sprout` → select **`plant_sprout`**
+   
+3. **Plant Sprite:** 
+   - Click ⊙ → search `growing` → select **`plant_growing`**
+   
+4. **Bloom Sprite:** 
+   - Click ⊙ → search `bloom` → select **`plant_bloom`**
 
 **Bloom Particles:** Leave as `None` for now (optional polish later)
 
-**Audio:** Leave all as `None` (we'll add audio later)
+**Audio (All 3 fields):** Leave as `None` (we'll add audio later)
+- Water Sound
+- Grow Sound  
+- Bloom Sound
 
 ### Step 6: Save & Exit Prefab
 

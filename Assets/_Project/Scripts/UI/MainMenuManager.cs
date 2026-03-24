@@ -30,6 +30,9 @@ namespace AscendantContinuum.UI
         
         [Header("Realm Selection")]
         [SerializeField] private Button[] realmButtons;
+        [SerializeField] private Button realmBackButton;
+        [SerializeField] private Text realmsLabel;
+        [SerializeField] private GameObject realmOverlay;
         [SerializeField] private string[] realmSceneNames;
 
         [Header("Onboarding")]
@@ -53,9 +56,15 @@ namespace AscendantContinuum.UI
         [Header("Visual Effects")]
         [SerializeField] private ParticleSystem ambientParticles;
         [SerializeField] private Image fadePanel;
+
+        private Coroutine realmButtonsRoutine;
         
         private void Start()
         {
+            TryAutoBindRealmButtons();
+            EnsureDefaultRealmSceneNames();
+            SetRealmButtonsVisible(false, immediate: true);
+
             // Initialize menu
             ShowMainPanel();
             LoadPlayerInfo();
@@ -106,8 +115,13 @@ namespace AscendantContinuum.UI
             
             if (quitButton != null)
                 quitButton.onClick.AddListener(() => OnQuitClicked());
+
+            if (realmBackButton != null)
+                realmBackButton.onClick.AddListener(() => BackToMain());
             
             // Setup realm buttons
+            if (realmButtons == null) return;
+
             for (int i = 0; i < realmButtons.Length; i++)
             {
                 int index = i; // Capture for closure
@@ -124,28 +138,7 @@ namespace AscendantContinuum.UI
         
         private void OnPlayClicked()
         {
-            PlayButtonSound();
-
-            string lastRealm = GameManager.Instance != null
-                ? GameManager.Instance.GetLastRealmOrDefault("Emberforge")
-                : PlayerPrefs.GetString("LastRealm", "Emberforge");
-
-            bool shouldRunOnboarding = GameManager.Instance != null && GameManager.Instance.ShouldRunOnboarding();
-            bool onboardingAvailable = Application.CanStreamedLevelBeLoaded(onboardingSceneName);
-
-            string initialScene = ResolveInitialPlayScene(
-                shouldRunOnboarding,
-                lastRealm,
-                onboardingSceneName,
-                onboardingAvailable
-            );
-
-            if (shouldRunOnboarding)
-            {
-                GameManager.Instance?.MarkOnboardingCompleted();
-            }
-
-            LoadRealm(initialScene);
+            ShowRealmSelect();
         }
         
         private void OnDailyChallengeClicked()
@@ -193,6 +186,7 @@ namespace AscendantContinuum.UI
             HideAllPanels();
             if (mainPanel != null)
                 mainPanel.SetActive(true);
+            SetRealmButtonsVisible(false);
         }
         
         private void ShowRealmSelect()
@@ -200,7 +194,11 @@ namespace AscendantContinuum.UI
             PlayButtonSound();
             HideAllPanels();
             if (realmSelectPanel != null)
+            {
                 realmSelectPanel.SetActive(true);
+            }
+
+            SetRealmButtonsVisible(true);
         }
         
         private void ShowSettings()
@@ -231,6 +229,237 @@ namespace AscendantContinuum.UI
             if (realmSelectPanel != null) realmSelectPanel.SetActive(false);
             if (settingsPanel != null) settingsPanel.SetActive(false);
             if (creditsPanel != null) creditsPanel.SetActive(false);
+        }
+
+        private void TryAutoBindRealmButtons()
+        {
+            if (realmButtons != null && realmButtons.Length == 5)
+            {
+                bool alreadyBound = true;
+                for (int i = 0; i < realmButtons.Length; i++)
+                {
+                    if (realmButtons[i] == null)
+                    {
+                        alreadyBound = false;
+                        break;
+                    }
+                }
+                if (alreadyBound) return;
+            }
+
+            realmButtons = new Button[5];
+            realmButtons[0] = FindButtonByName("RealmBtn_Emberforge");
+            realmButtons[1] = FindButtonByName("RealmBtn_Verdant");
+            realmButtons[2] = FindButtonByName("RealmBtn_EchoFields");
+            realmButtons[3] = FindButtonByName("RealmBtn_DawnCitadel");
+            realmButtons[4] = FindButtonByName("RealmBtn_LanternAscension");
+
+            if (realmBackButton == null)
+                realmBackButton = FindButtonByName("RealmBackButton");
+
+            if (realmOverlay == null)
+            {
+                var allTransforms = FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                foreach (var t in allTransforms)
+                    if (t != null && t.name == "[ Realm Overlay ]")
+                    {
+                        realmOverlay = t.gameObject;
+                        break;
+                    }
+            }
+
+            if (realmsLabel == null)
+            {
+                var labels = FindObjectsByType<Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                for (int i = 0; i < labels.Length; i++)
+                {
+                    if (labels[i] != null && labels[i].name == "RealmsLabel")
+                    {
+                        realmsLabel = labels[i];
+                        break;
+                    }
+                }
+            }
+        }
+
+        private Button FindButtonByName(string buttonName)
+        {
+            Transform t = transform.root.Find(buttonName);
+            if (t != null) return t.GetComponent<Button>();
+
+            var allButtons = FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            for (int i = 0; i < allButtons.Length; i++)
+            {
+                if (allButtons[i] != null && allButtons[i].name == buttonName)
+                    return allButtons[i];
+            }
+
+            return null;
+        }
+
+        private void SetRealmButtonsVisible(bool visible, bool immediate = false)
+        {
+            if (realmButtonsRoutine != null)
+            {
+                StopCoroutine(realmButtonsRoutine);
+                realmButtonsRoutine = null;
+            }
+
+            if (immediate)
+            {
+                ApplyRealmButtonsStateInstant(visible);
+                return;
+            }
+
+            realmButtonsRoutine = StartCoroutine(AnimateRealmButtons(visible));
+        }
+
+        private void ApplyRealmButtonsStateInstant(bool visible)
+        {
+            if (realmOverlay != null)
+                realmOverlay.SetActive(visible);
+
+            if (realmButtons != null)
+            {
+                for (int i = 0; i < realmButtons.Length; i++)
+                {
+                    if (realmButtons[i] != null)
+                    {
+                        realmButtons[i].gameObject.SetActive(visible);
+                        var g = EnsureCanvasGroup(realmButtons[i].gameObject);
+                        g.alpha = visible ? 1f : 0f;
+                        realmButtons[i].transform.localScale = Vector3.one;
+                    }
+                }
+            }
+
+            if (realmBackButton != null)
+            {
+                realmBackButton.gameObject.SetActive(visible);
+                var g = EnsureCanvasGroup(realmBackButton.gameObject);
+                g.alpha = visible ? 1f : 0f;
+                realmBackButton.transform.localScale = Vector3.one;
+            }
+
+            if (realmsLabel != null)
+            {
+                realmsLabel.gameObject.SetActive(visible);
+                var g = EnsureCanvasGroup(realmsLabel.gameObject);
+                g.alpha = visible ? 1f : 0f;
+                realmsLabel.transform.localScale = Vector3.one;
+            }
+        }
+
+        private System.Collections.IEnumerator AnimateRealmButtons(bool visible)
+        {
+            if (!visible)
+            {
+                // Quick fade-out everything at once
+                var items = GetRealmItems();
+                float elapsed = 0f;
+                while (elapsed < 0.15f)
+                {
+                    elapsed += Time.deltaTime;
+                    float alpha = 1f - Mathf.Clamp01(elapsed / 0.15f);
+                    foreach (var go in items)
+                        if (go != null) EnsureCanvasGroup(go).alpha = alpha;
+                    yield return null;
+                }
+                ApplyRealmButtonsStateInstant(false);
+                realmButtonsRoutine = null;
+                yield break;
+            }
+
+            // Fade in the overlay backdrop quickly
+            if (realmOverlay != null)
+            {
+                realmOverlay.SetActive(true);
+                var overlayCg = EnsureCanvasGroup(realmOverlay);
+                overlayCg.alpha = 0f;
+                float e = 0f;
+                while (e < 0.12f)
+                {
+                    e += Time.deltaTime;
+                    overlayCg.alpha = Mathf.Clamp01(e / 0.12f);
+                    yield return null;
+                }
+                overlayCg.alpha = 1f;
+            }
+
+            // Reset all items to invisible/scaled-down before stagger
+            var staggerItems = GetRealmItems();
+            foreach (var go in staggerItems)
+            {
+                if (go == null) continue;
+                go.SetActive(true);
+                var cg = EnsureCanvasGroup(go);
+                cg.alpha = 0f;
+                go.transform.localScale = new Vector3(0.88f, 0.88f, 1f);
+            }
+
+            // Stagger: fire each item 75 ms after the previous (overlapping animations)
+            for (int i = 0; i < staggerItems.Length; i++)
+            {
+                if (staggerItems[i] != null)
+                    StartCoroutine(RevealItem(staggerItems[i], 0.18f));
+
+                if (i < staggerItems.Length - 1)
+                    yield return new WaitForSeconds(0.075f);
+            }
+
+            // Wait for last item's reveal to complete
+            yield return new WaitForSeconds(0.18f);
+            realmButtonsRoutine = null;
+        }
+
+        private System.Collections.IEnumerator RevealItem(GameObject go, float duration)
+        {
+            if (go == null) yield break;
+            var cg = EnsureCanvasGroup(go);
+            var startScale = new Vector3(0.88f, 0.88f, 1f);
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / duration));
+                cg.alpha = t;
+                go.transform.localScale = Vector3.Lerp(startScale, Vector3.one, t);
+                yield return null;
+            }
+            cg.alpha = 1f;
+            go.transform.localScale = Vector3.one;
+        }
+
+        private GameObject[] GetRealmItems()
+        {
+            var items = new System.Collections.Generic.List<GameObject>();
+            if (realmsLabel != null) items.Add(realmsLabel.gameObject);
+            if (realmButtons != null)
+                foreach (var b in realmButtons)
+                    if (b != null) items.Add(b.gameObject);
+            if (realmBackButton != null) items.Add(realmBackButton.gameObject);
+            return items.ToArray();
+        }
+
+        private CanvasGroup EnsureCanvasGroup(GameObject go)
+        {
+            var cg = go.GetComponent<CanvasGroup>();
+            if (cg == null) cg = go.AddComponent<CanvasGroup>();
+            return cg;
+        }
+
+        private void EnsureDefaultRealmSceneNames()
+        {
+            if (realmSceneNames != null && realmSceneNames.Length == 5) return;
+
+            realmSceneNames = new[]
+            {
+                SceneNames.Emberforge,
+                SceneNames.Verdant,
+                SceneNames.EchoFields,
+                SceneNames.DawnCitadel,
+                SceneNames.LanternAscension
+            };
         }
         
         #endregion

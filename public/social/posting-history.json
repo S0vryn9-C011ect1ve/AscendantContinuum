@@ -269,19 +269,131 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 11,
+      "contentId": 41,
+      "contentType": "devEducation",
+      "hook": "Unity optimization 101: memory management for mobile.",
+      "timestamp": "2026-03-19T18:00:52.788Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mhglgl2wvm2f"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116257144770731728"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "contentId": 21,
+      "contentType": "devUpdate",
+      "hook": "Building this game one feature at a time.",
+      "timestamp": "2026-03-20T18:00:41.234Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mhj3v5hucy2w"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116262806310906965"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "contentId": 14,
+      "contentType": "designPhilosophy",
+      "hook": "Revenue from joy, not addiction.",
+      "timestamp": "2026-03-21T19:28:20.696Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mhlraufabf26"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116268813419292458"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "contentId": 27,
+      "contentType": "devUpdate",
+      "hook": "Most indie devs skip this step. That's why they fail.",
+      "timestamp": "2026-03-23T18:01:10.829Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mhqnb2ogwn2o"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116279791391369412"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 8,
+    "totalPosts": 12,
     "byPlatform": {
-      "bluesky": 8,
-      "mastodon": 8,
-      "discord": 6
+      "bluesky": 12,
+      "mastodon": 12,
+      "discord": 10
     },
     "byType": {
-      "devUpdate": 3,
-      "devEducation": 2,
-      "designPhilosophy": 2,
+      "devUpdate": 5,
+      "devEducation": 3,
+      "designPhilosophy": 3,
       "behindScenes": 0,
       "loreSnippet": 1
     }

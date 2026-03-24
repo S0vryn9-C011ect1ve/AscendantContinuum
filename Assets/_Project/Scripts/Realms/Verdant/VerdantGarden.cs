@@ -4,6 +4,7 @@ using AscendantContinuum.Core;
 using AscendantContinuum.Astronomy;
 using AscendantContinuum.Systems;
 using AscendantContinuum.Social;
+using AscendantContinuum.Realms.Verdant;
 
 namespace AscendantContinuum.Verdant
 {
@@ -17,9 +18,12 @@ namespace AscendantContinuum.Verdant
         [SerializeField] private GameObject plantPrefab;
         [SerializeField] private int maxPlants = 10;
         [SerializeField] private float growthTimePerStage = 30f; // seconds
+        [SerializeField] [Range(0.05f, 1f)] private float plantDisplayScale = 0.32f;
 
         [Header("Spawn Settings")]
         [SerializeField] private Vector2 gardenSize = new Vector2(8f, 6f);
+        [SerializeField] private float minSpawnDistance = 3.1f;
+        [SerializeField] private int spawnPositionAttempts = 24;
 
         [Header("Audio")]
         [SerializeField] private AudioClip waterSound;
@@ -29,7 +33,7 @@ namespace AscendantContinuum.Verdant
         [SerializeField] private AscendantContinuum.UI.RealmCompletionPanel completionPanel;
         [SerializeField] private int goalPlants = 5;
 
-        private List<MagicalPlant> activePlants = new List<MagicalPlant>();
+        private List<AscendantContinuum.Realms.Verdant.MagicalPlant> activePlants = new List<AscendantContinuum.Realms.Verdant.MagicalPlant>();
         private int totalPlantsGrown = 0;
         private bool _completionShown = false;
 
@@ -52,15 +56,12 @@ namespace AscendantContinuum.Verdant
         {
             if (activePlants.Count >= maxPlants) return;
 
-            // Random position in garden
-            Vector3 position = new Vector3(
-                Random.Range(-gardenSize.x / 2f, gardenSize.x / 2f),
-                Random.Range(-gardenSize.y / 2f, gardenSize.y / 2f),
-                0f
-            );
+            Vector3 position = GetSpreadOutSpawnPosition();
 
-            GameObject plantObj = Instantiate(plantPrefab, position, Quaternion.identity, transform);
-            MagicalPlant plant = plantObj.GetComponent<MagicalPlant>();
+            GameObject plantObj = Instantiate(plantPrefab, transform);
+            plantObj.transform.localPosition = position; // Set local position explicitly
+            plantObj.transform.localScale = Vector3.one * plantDisplayScale;
+            AscendantContinuum.Realms.Verdant.MagicalPlant plant = plantObj.GetComponent<AscendantContinuum.Realms.Verdant.MagicalPlant>();
 
             if (plant != null)
             {
@@ -71,12 +72,46 @@ namespace AscendantContinuum.Verdant
                     : growthTimePerStage;
 
                 plant.Initialize(effectiveGrowthTime);
-                plant.OnBloomed += HandlePlantBloomed;
+                plant.OnBloom += HandlePlantBloomed;
                 activePlants.Add(plant);
             }
         }
 
-        public void WaterPlant(MagicalPlant plant)
+        private Vector3 GetSpreadOutSpawnPosition()
+        {
+            Vector3 fallback = Vector3.zero;
+
+            for (int attempt = 0; attempt < spawnPositionAttempts; attempt++)
+            {
+                Vector3 candidate = new Vector3(
+                    Random.Range(-gardenSize.x, gardenSize.x),
+                    Random.Range(-gardenSize.y, gardenSize.y),
+                    0f
+                );
+
+                fallback = candidate;
+                bool tooClose = false;
+
+                for (int i = 0; i < activePlants.Count; i++)
+                {
+                    var existing = activePlants[i];
+                    if (existing == null || !existing.gameObject.activeInHierarchy) continue;
+
+                    if (Vector3.Distance(existing.transform.localPosition, candidate) < minSpawnDistance)
+                    {
+                        tooClose = true;
+                        break;
+                    }
+                }
+
+                if (!tooClose)
+                    return candidate;
+            }
+
+            return fallback;
+        }
+
+        public void WaterPlant(AscendantContinuum.Realms.Verdant.MagicalPlant plant)
         {
             if (!activePlants.Contains(plant)) return;
 
@@ -92,7 +127,7 @@ namespace AscendantContinuum.Verdant
             Core.AccessibilityManager.Instance?.TriggerHaptic(Core.HapticType.Light);
         }
 
-        private void HandlePlantBloomed(MagicalPlant plant)
+        private void HandlePlantBloomed(AscendantContinuum.Realms.Verdant.MagicalPlant plant)
         {
             totalPlantsGrown++;
 
@@ -165,12 +200,27 @@ namespace AscendantContinuum.Verdant
         private float growthTimePerStage = 30f;
         private bool isWatered = false;
         private float lastWaterTime = 0f;
+        private float baseScale = 1f;
 
         public System.Action<MagicalPlant> OnBloomed;
 
         private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void Start()
+        {
+            // Camera-relative base scale so Bloom = ~16% of camera height
+            Sprite refSprite = seedSprite ?? sproutSprite ?? plantSprite ?? bloomSprite;
+            if (refSprite != null)
+            {
+                float naturalH = refSprite.bounds.size.y;
+                Camera cam = Camera.main;
+                float camH = (cam != null) ? cam.orthographicSize * 2f : 12f;
+                if (naturalH > 0.001f)
+                    baseScale = (camH * 0.16f) / naturalH;
+            }
         }
 
         public void Initialize(float growthTime)
@@ -232,19 +282,19 @@ namespace AscendantContinuum.Verdant
             {
                 case 0:
                     spriteRenderer.sprite = seedSprite;
-                    transform.localScale = Vector3.one * 0.5f;
+                    transform.localScale = Vector3.one * (baseScale * 0.65f);
                     break;
                 case 1:
                     spriteRenderer.sprite = sproutSprite;
-                    transform.localScale = Vector3.one * 0.7f;
+                    transform.localScale = Vector3.one * (baseScale * 0.75f);
                     break;
                 case 2:
                     spriteRenderer.sprite = plantSprite;
-                    transform.localScale = Vector3.one * 1f;
+                    transform.localScale = Vector3.one * (baseScale * 0.88f);
                     break;
                 case 3:
                     spriteRenderer.sprite = bloomSprite;
-                    transform.localScale = Vector3.one * 1.2f;
+                    transform.localScale = Vector3.one * (baseScale * 1.0f);
                     break;
             }
         }

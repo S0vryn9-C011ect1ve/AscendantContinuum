@@ -62,14 +62,46 @@ namespace AscendantContinuum.Editor
             // Remove old UI children to avoid duplicates
             ClearChildren(canvasGO, keep: new[] { "FadePanel" });
 
+            // ── Solid fill — prevents camera background bleeding through art gaps ──
+            var solidFill = new GameObject("SolidFill");
+            solidFill.transform.SetParent(canvasGO.transform, false);
+            var fillImg = solidFill.AddComponent<Image>();
+            fillImg.color = new Color(0.04f, 0.02f, 0.12f);
+            Stretch(solidFill);
+            solidFill.GetComponent<RectTransform>().SetAsFirstSibling();
+
             // Assets
             var logoSprite = LoadSprite(LOGO_PATH);
-            var bgTex      = LoadSprite("Assets/_Project/Art/Backgrounds/bg_verdant.png")
+            var bgTex      = LoadSprite("Assets/_Project/Art/AscendantContinuumGameGraphics/bg_HomeMainMenu.jpeg")
+                          ?? LoadSprite("Assets/_Project/Art/Backgrounds/bg_echofields.png")
                           ?? LoadSprite("Assets/_Project/Art/Backgrounds/bg_emberforge.png");
 
-            // ── Background ────────────────────────────────────────────────
+            // ── Background — CSS-cover behaviour (EnvelopeParent) ────────
+            // Scale the image up until BOTH axes cover the canvas; center-crop any overflow.
             var bgGO = MakeImage(canvasGO, "Background", bgTex, new Color(0.05f, 0.04f, 0.14f));
-            Stretch(bgGO);
+            bgGO.GetComponent<Image>().preserveAspect = false;
+            var bgRt = bgGO.GetComponent<RectTransform>();
+            bgRt.anchorMin = bgRt.anchorMax = bgRt.pivot = new Vector2(0.5f, 0.5f);
+            bgRt.anchoredPosition = Vector2.zero;
+            bgRt.sizeDelta = Vector2.zero;
+            var bgArf = bgGO.AddComponent<AspectRatioFitter>();
+            bgArf.aspectMode  = AspectRatioFitter.AspectMode.EnvelopeParent;
+            bgArf.aspectRatio = bgTex != null ? bgTex.rect.width / bgTex.rect.height : (16f / 9f);
+            var alive = bgGO.GetComponent<AscendantContinuum.UI.BackgroundAliveMotion>();
+            if (alive == null) alive = bgGO.AddComponent<AscendantContinuum.UI.BackgroundAliveMotion>();
+            
+            var parallax = bgGO.GetComponent<AscendantContinuum.UI.ParallaxBackground>();
+            if (parallax == null) parallax = bgGO.AddComponent<AscendantContinuum.UI.ParallaxBackground>();
+            
+            var ambientChild = bgGO.transform.Find("[ Ambient Particles ]");
+            if (ambientChild == null)
+            {
+                var ambObj = new GameObject("[ Ambient Particles ]");
+                ambObj.transform.SetParent(bgGO.transform, false);
+                ambientChild = ambObj.transform;
+            }
+            var ambient = ambientChild.GetComponent<AscendantContinuum.UI.AmbientParticles>();
+            if (ambient == null) ambient = ambientChild.gameObject.AddComponent<AscendantContinuum.UI.AmbientParticles>();
 
             // ── Logo ──────────────────────────────────────────────────────
             var logoGO = MakeImage(canvasGO, "LogoImage", logoSprite, new Color(0.2f, 0.1f, 0.4f));
@@ -93,8 +125,48 @@ namespace AscendantContinuum.Editor
 
             // Add quit button (web/desktop only caveat — safe to leave wired)
             var quitBtn = MakeButton(canvasGO, "QuitButton", "EXIT",
-                new Vector2(0f, -245f), new Color32(60, 20, 20, 200));
-            quitBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(200f, 52f);
+                new Vector2(0f, -215f), new Color32(60, 20, 20, 200));
+            quitBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(200f, 44f);
+
+            // ── Realm Overlay (full-screen, shown when realm select is active) ──
+            var realmOverlayGO = new GameObject("[ Realm Overlay ]");
+            realmOverlayGO.transform.SetParent(canvasGO.transform, false);
+            var overlayImg = realmOverlayGO.AddComponent<Image>();
+            overlayImg.color = new Color(0.02f, 0.01f, 0.09f, 0.82f);
+            var overlayRt = realmOverlayGO.GetComponent<RectTransform>();
+            overlayRt.anchorMin = Vector2.zero;
+            overlayRt.anchorMax = Vector2.one;
+            overlayRt.offsetMin = overlayRt.offsetMax = Vector2.zero;
+            overlayRt.SetAsLastSibling(); // draw on top
+
+            var realmsLabel = MakeText(realmOverlayGO, "RealmsLabel",
+                "✦  CHOOSE YOUR REALM  ✦",
+                new Vector2(0f, 195f), new Vector2(520f, 44f),
+                fontSize: 20, color: new Color(0.85f, 0.75f, 1f));
+
+            var realmEntries = new (string objName, string label, Color32 color)[]
+            {
+                ("RealmBtn_Emberforge",       "⚒  EMBERFORGE",         new Color32(160, 65, 20, 240)),
+                ("RealmBtn_Verdant",          "🌿  VERDANT SANCTUARY",  new Color32(25, 110, 50, 240)),
+                ("RealmBtn_EchoFields",       "✧  ECHO FIELDS",        new Color32(20, 70, 160, 240)),
+                ("RealmBtn_DawnCitadel",      "☀  DAWN CITADEL",       new Color32(150, 115, 15, 240)),
+                ("RealmBtn_LanternAscension", "🏮  LANTERN ASCENSION",  new Color32(95, 30, 145, 240)),
+            };
+
+            var realmBtns = new GameObject[5];
+            for (int i = 0; i < realmEntries.Length; i++)
+            {
+                var rb = MakeButton(realmOverlayGO, realmEntries[i].objName, realmEntries[i].label,
+                    new Vector2(0f, 120f - i * 68f), realmEntries[i].color);
+                rb.GetComponent<RectTransform>().sizeDelta = new Vector2(440f, 62f);
+                var lbl = rb.transform.Find("Text")?.GetComponent<Text>();
+                if (lbl != null) lbl.fontSize = 18;
+                realmBtns[i] = rb;
+            }
+
+            var realmBackBtn = MakeButton(realmOverlayGO, "RealmBackButton", "← BACK TO MENU",
+                new Vector2(0f, -220f), new Color32(50, 50, 80, 230));
+            realmBackBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(240f, 50f);
 
             // ── Version label ─────────────────────────────────────────────
             var verLabel = MakeText(canvasGO, "VersionText", "v0.1 ALPHA",
@@ -127,6 +199,26 @@ namespace AscendantContinuum.Editor
                 so2.FindProperty("creditsButton").objectReferenceValue     = quitBtn.GetComponent<Button>();
                 so2.FindProperty("quitButton").objectReferenceValue        = quitBtn.GetComponent<Button>();
                 so2.FindProperty("fadePanel").objectReferenceValue         = FindChildImage(canvasGO, "FadePanel");
+
+                so2.FindProperty("realmBackButton").objectReferenceValue   = realmBackBtn.GetComponent<Button>();
+                so2.FindProperty("realmsLabel").objectReferenceValue       = realmsLabel.GetComponent<Text>();
+                so2.FindProperty("realmOverlay").objectReferenceValue      = realmOverlayGO;
+
+                // Wire 5 realm buttons
+                var rbArr = so2.FindProperty("realmButtons");
+                rbArr.arraySize = 5;
+                for (int i = 0; i < 5; i++)
+                    rbArr.GetArrayElementAtIndex(i).objectReferenceValue = realmBtns[i].GetComponent<Button>();
+
+                // Wire realm scene names
+                var snArr = so2.FindProperty("realmSceneNames");
+                snArr.arraySize = 5;
+                snArr.GetArrayElementAtIndex(0).stringValue = AscendantContinuum.Core.SceneNames.Emberforge;
+                snArr.GetArrayElementAtIndex(1).stringValue = AscendantContinuum.Core.SceneNames.Verdant;
+                snArr.GetArrayElementAtIndex(2).stringValue = AscendantContinuum.Core.SceneNames.EchoFields;
+                snArr.GetArrayElementAtIndex(3).stringValue = AscendantContinuum.Core.SceneNames.DawnCitadel;
+                snArr.GetArrayElementAtIndex(4).stringValue = AscendantContinuum.Core.SceneNames.LanternAscension;
+
                 so2.ApplyModifiedProperties();
             }
         }
@@ -228,24 +320,32 @@ namespace AscendantContinuum.Editor
 
         private static GameObject GetOrCreateCanvas(Scene scene, string canvasName)
         {
+            GameObject go = null;
             foreach (var root in scene.GetRootGameObjects())
             {
-                if (root.name == canvasName) return root;
+                if (root.name == canvasName) { go = root; break; }
                 var canvas = root.GetComponentInChildren<Canvas>(true);
-                if (canvas != null && canvas.gameObject.name == canvasName)
-                    return canvas.gameObject;
+                if (canvas != null && canvas.gameObject.name == canvasName) { go = canvas.gameObject; break; }
             }
 
-            var go = new GameObject(canvasName);
-            SceneManager.MoveGameObjectToScene(go, scene);
-            var c = go.AddComponent<Canvas>();
-            c.renderMode = RenderMode.ScreenSpaceOverlay;
+            if (go == null)
+            {
+                go = new GameObject(canvasName);
+                SceneManager.MoveGameObjectToScene(go, scene);
+                go.AddComponent<Canvas>();
+                go.AddComponent<CanvasScaler>();
+                go.AddComponent<GraphicRaycaster>();
+            }
+
+            // Always enforce these settings (covers newly-created AND pre-existing canvases)
+            var c = go.GetComponent<Canvas>();
+            c.renderMode  = RenderMode.ScreenSpaceOverlay;
             c.sortingOrder = 0;
-            var cs = go.AddComponent<CanvasScaler>();
-            cs.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            var cs = go.GetComponent<CanvasScaler>();
+            cs.uiScaleMode         = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             cs.referenceResolution = new Vector2(1920, 1080);
+            cs.screenMatchMode     = CanvasScaler.ScreenMatchMode.Expand;   // never crop content
             cs.matchWidthOrHeight  = 0.5f;
-            go.AddComponent<GraphicRaycaster>();
             return go;
         }
 
@@ -270,8 +370,8 @@ namespace AscendantContinuum.Editor
             if (sprite != null)
             {
                 img.sprite = sprite;
-                img.color = Color.white;
-                img.preserveAspect = true;
+                img.color  = Color.white;
+                img.preserveAspect = false; // caller controls aspect; default to fill
             }
             else img.color = fallback;
             return go;
