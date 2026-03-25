@@ -58,18 +58,6 @@
       "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play..."
     },
     {
-      "title": "Community-Driven Development: Players as Co-Creators",
-      "slug": "community-driven-development-players-as-co-creators",
-      "date": "2026-03-21",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "Most \"community feedback\" means players report bugs and occasionally vote in polls. We wanted deeper partnership. Our community council includes 12 elected player representatives who have direct input..."
-    },
-    {
       "title": "Mobile Touch Controls: Gestures That Feel Magical",
       "slug": "mobile-touch-controls-gestures-that-feel-magical",
       "date": "2026-03-23",
@@ -82,24 +70,24 @@
       "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
     },
     {
-      "title": "Speedrunning a Meditation Game: The Ritual Rush Community",
-      "slug": "speedrunning-a-meditation-game-the-ritual-rush-community",
-      "date": "2026-03-24",
+      "title": "Solo Development Lessons: Building a Game Alone",
+      "slug": "solo-development-lessons-building-a-game-alone",
+      "date": "2026-03-25",
       "tags": [
-        "community",
-        "player-stories",
-        "updates"
+        "development",
+        "team",
+        "process"
       ],
-      "themeName": "Community Insight",
-      "excerpt": "The Ascendant Continuum was designed for 1-5 minute meditative sessions, not speed. Ritual completion rewards patience, accessibility features encourage exploration, and there are no timers or leaderb..."
+      "themeName": "Behind the Scenes",
+      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
     }
   ],
   "stats": {
-    "totalPosts": 7,
+    "totalPosts": 6,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 1,
-      "Behind the Scenes": 1,
+      "Behind the Scenes": 2,
       "Tutorial": 1,
       "Design Philosophy": 1,
       "Dev Diary": 1,
@@ -126,10 +114,12 @@
       "game-dev": 1,
       "ethics": 1,
       "philosophy": 1,
-      "development": 1,
+      "development": 2,
       "community": 1,
       "player-stories": 1,
-      "updates": 1
+      "updates": 1,
+      "team": 1,
+      "process": 1
     }
   }
 }

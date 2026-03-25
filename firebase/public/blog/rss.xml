@@ -5,7 +5,7 @@
     <link>https://ascendant-continuum.firebaseapp.com/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Mar 2026 14:01:14 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 25 Mar 2026 14:01:23 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.firebaseapp.com/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.firebaseapp.com/favicon.png</url>
@@ -14,15 +14,15 @@
     </image>
 
     <item>
-      <title><![CDATA[Speedrunning a Meditation Game: The Ritual Rush Community]]></title>
-      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/speedrunning-a-meditation-game-the-ritual-rush-community.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/speedrunning-a-meditation-game-the-ritual-rush-community.html</guid>
-      <pubDate>Tue, 24 Mar 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Community Insight]]></category>
-      <category><![CDATA[community]]></category>
-      <category><![CDATA[player-stories]]></category>
-      <category><![CDATA[updates]]></category>
-      <description><![CDATA[The Ascendant Continuum was designed for 1-5 minute meditative sessions, not speed. Ritual completion rewards patience, accessibility features encourage exploration, and there are no timers or leaderb...]]></description>
+      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
+      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Behind the Scenes]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[team]]></category>
+      <category><![CDATA[process]]></category>
+      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
     </item>
 
     <item>
@@ -35,18 +35,6 @@
       <category><![CDATA[unity]]></category>
       <category><![CDATA[behind-the-scenes]]></category>
       <description><![CDATA[Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Community-Driven Development: Players as Co-Creators]]></title>
-      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/community-driven-development-players-as-co-creators.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/community-driven-development-players-as-co-creators.html</guid>
-      <pubDate>Sat, 21 Mar 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[game-design]]></category>
-      <category><![CDATA[ethics]]></category>
-      <category><![CDATA[philosophy]]></category>
-      <description><![CDATA[Most "community feedback" means players report bugs and occasionally vote in polls. We wanted deeper partnership. Our community council includes 12 elected player representatives who have direct input...]]></description>
     </item>
 
     <item>
