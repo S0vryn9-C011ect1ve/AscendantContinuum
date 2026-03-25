@@ -199,6 +199,17 @@ namespace AscendantContinuum.Core
         public string UserId => null;
 
         /// <summary>
+        /// Enables or disables Firebase Analytics data collection (GDPR / player opt-out).
+        /// </summary>
+        public void SetAnalyticsEnabled(bool enabled)
+        {
+            // TODO: when real Firebase SDK is integrated, replace with:
+            // FirebaseAnalytics.SetAnalyticsCollectionEnabled(enabled);
+            PlayerPrefs.SetInt("Analytics", enabled ? 1 : 0);
+            Debug.Log($"[FirebaseManager] Analytics collection {(enabled ? "enabled" : "disabled")} (simulated).");
+        }
+
+        /// <summary>
         /// Deletes all Firestore data for the current user (GDPR right-to-erasure).
         /// Calls the "deleteUserData" Cloud Function when the real SDK is wired.
         /// </summary>

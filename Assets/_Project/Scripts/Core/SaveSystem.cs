@@ -328,6 +328,10 @@ namespace AscendantContinuum.Core
         public int totalSessionsCompleted = 0;
         public int consecutiveDays = 0;
         public string lastSessionDate = "";
+
+        // ── Privacy ───────────────────────────────────────────────────────
+        public bool analyticsEnabled  = true;
+        public bool allowTimeShareData = true;  // Collective energy / social features
     }
 }
 

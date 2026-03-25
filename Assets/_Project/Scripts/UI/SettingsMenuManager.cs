@@ -415,12 +415,18 @@ namespace AscendantContinuum.UI
         private void OnAnalyticsChanged(bool value)
         {
             PlayerPrefs.SetInt("Analytics", value ? 1 : 0);
-            // Update analytics collection
+            Core.FirebaseManager.Instance?.SetAnalyticsEnabled(value);
+
+            var playerData = Core.SaveSystem.Instance?.CurrentPlayerData;
+            if (playerData != null) playerData.analyticsEnabled = value;
         }
 
         private void OnShareDataChanged(bool value)
         {
             PlayerPrefs.SetInt("ShareData", value ? 1 : 0);
+
+            var playerData = Core.SaveSystem.Instance?.CurrentPlayerData;
+            if (playerData != null) playerData.allowTimeShareData = value;
         }
 
         #endregion
@@ -430,9 +436,21 @@ namespace AscendantContinuum.UI
         private void OnApplyClicked()
         {
             PlayerPrefs.Save();
+            Core.SaveSystem.Instance?.SaveGame();
 
-            // Show confirmation
-            Debug.Log("Settings applied!");
+            // Brief visual confirmation via feedback text if available
+            if (applyButton != null)
+            {
+                var label = applyButton.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+                if (label != null) StartCoroutine(FlashButtonLabel(label, "Saved!", "Apply"));
+            }
+        }
+
+        private System.Collections.IEnumerator FlashButtonLabel(TMPro.TextMeshProUGUI label, string tempText, string originalText)
+        {
+            label.text = tempText;
+            yield return new WaitForSeconds(1.5f);
+            label.text = originalText;
         }
 
         private void OnResetToDefaultClicked()

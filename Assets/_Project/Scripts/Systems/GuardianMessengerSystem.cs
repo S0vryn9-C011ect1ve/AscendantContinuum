@@ -120,14 +120,36 @@ namespace AscendantContinuum.Systems
             if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission("android.permission.POST_NOTIFICATIONS"))
                 UnityEngine.Android.Permission.RequestUserPermission("android.permission.POST_NOTIFICATIONS");
 #endif
-            // iOS notification permission is handled at the OS level via Info.plist entitlements
+#if UNITY_IOS
+            StartCoroutine(RequestiOSPermission());
+#endif
         }
 
 #if UNITY_IOS
         private System.Collections.IEnumerator RequestiOSPermission()
         {
-            // Stub: iOS push notifications require Xcode entitlements — implement when iOS app is configured.
-            yield return null;
+            // Request authorisation for alert, badge and sound notifications.
+            // Requires: Info.plist entitlements (APS Environment) set in Xcode.
+            var authRequest = new Unity.Notifications.iOS.AuthorizationRequest(
+                Unity.Notifications.iOS.AuthorizationOption.Alert |
+                Unity.Notifications.iOS.AuthorizationOption.Badge |
+                Unity.Notifications.iOS.AuthorizationOption.Sound,
+                registerForRemoteNotifications: false);
+
+            while (!authRequest.IsFinished)
+                yield return null;
+
+            if (authRequest.Granted)
+            {
+                Debug.Log("[Guardian] iOS notification permission granted.");
+                ScheduleAllNotifications();
+            }
+            else
+            {
+                Debug.Log("[Guardian] iOS notification permission denied — notifications disabled.");
+            }
+
+            authRequest.Dispose();
         }
 #endif
 

@@ -104,27 +104,55 @@ namespace AscendantContinuum.Systems
 
         private DateTime GetSunsetTime(DateTime date)
         {
-            // Simplified sunset calculation
-            // For production, use astronomical library or API
+            // Hour-angle sunset formula — accurate to ±5 min at mid-latitudes.
+            // Latitude/longitude sourced from LocationManager on first GPS fix;
+            // falls back to PlayerPrefs, then to 40°N / 0° global average.
+            float latDeg = PlayerPrefs.GetFloat("PlayerLatitude",  40f);
+            float lonDeg = PlayerPrefs.GetFloat("PlayerLongitude",  0f);
 
             int dayOfYear = date.DayOfYear;
 
-            // Approximate sunset hour based on day of year
-            // Summer solstice (day 172) = ~8:30 PM
-            // Winter solstice (day 355) = ~4:30 PM
+            // Solar declination (degrees) via Spencer equation
+            double B      = 2.0 * Math.PI * (dayOfYear - 1) / 365.0;
+            double declDeg = (180.0 / Math.PI) * (0.006918
+                - 0.399912 * Math.Cos(B)
+                + 0.070257 * Math.Sin(B)
+                - 0.006758 * Math.Cos(2 * B)
+                + 0.000907 * Math.Sin(2 * B)
+                - 0.002697 * Math.Cos(3 * B)
+                + 0.00148  * Math.Sin(3 * B));
 
-            double sunsetHour;
-            if (dayOfYear < 172) // Before summer solstice
-            {
-                sunsetHour = 16.5 + (dayOfYear / 172.0) * 4.0;
-            }
-            else // After summer solstice
-            {
-                sunsetHour = 20.5 - ((dayOfYear - 172) / 183.0) * 4.0;
-            }
+            // Equation of time (minutes) — NASA/Spencer
+            double eqTime = 229.18 * (0.000075
+                + 0.001868 * Math.Cos(B)
+                - 0.032077 * Math.Sin(B)
+                - 0.014615 * Math.Cos(2 * B)
+                - 0.04089  * Math.Sin(2 * B));
 
-            int hour = (int)sunsetHour;
-            int minute = (int)((sunsetHour - hour) * 60);
+            // Hour angle at sunset (zenith = 90.833° including refraction + solar disc)
+            double latRad  = latDeg * Math.PI / 180.0;
+            double declRad = declDeg * Math.PI / 180.0;
+            double cosH    = (Math.Cos(90.833 * Math.PI / 180.0)
+                              - Math.Sin(latRad) * Math.Sin(declRad))
+                             / (Math.Cos(latRad) * Math.Cos(declRad));
+
+            // Polar day / polar night guard
+            cosH = Math.Max(-1.0, Math.Min(1.0, cosH));
+            double hourAngleDeg = (180.0 / Math.PI) * Math.Acos(cosH);
+
+            // Solar noon in UTC minutes from midnight
+            double solarNoonUTC  = 720.0 - 4.0 * lonDeg - eqTime;
+            double sunsetUTCmin  = solarNoonUTC + 4.0 * hourAngleDeg;
+
+            // Convert to local clock time
+            double localOffsetMin = TimeZoneInfo.Local.GetUtcOffset(date).TotalMinutes;
+            double sunsetLocalMin = sunsetUTCmin + localOffsetMin;
+
+            // Clamp to 15:00–23:00 local to prevent fringe cases from affecting gameplay
+            sunsetLocalMin = Math.Max(15 * 60.0, Math.Min(23 * 60.0, sunsetLocalMin));
+
+            int hour   = (int)(sunsetLocalMin / 60) % 24;
+            int minute = (int)(sunsetLocalMin % 60);
 
             return new DateTime(date.Year, date.Month, date.Day, hour, minute, 0);
         }
