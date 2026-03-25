@@ -342,12 +342,19 @@ namespace AscendantContinuum.Systems
         {
             if (HasDeity) return false;
             if (QuizDone) return false;
-            return PlayerPrefs.GetInt("SessionCount_Total", 0) >= 4;
+            // Prefer SaveSystem (encrypted, backed-up) over legacy PlayerPrefs
+            int sessions = SaveSystem.Instance?.CurrentPlayerData?.totalSessionsCompleted
+                           ?? PlayerPrefs.GetInt("SessionCount_Total", 0);
+            return sessions >= 4;
         }
 
         /// <summary>True once the player has completed 4 or more gameplay sessions.</summary>
         public bool IsDay4UnlockAvailable()
-            => PlayerPrefs.GetInt("SessionCount_Total", 0) >= 4;
+        {
+            int sessions = SaveSystem.Instance?.CurrentPlayerData?.totalSessionsCompleted
+                           ?? PlayerPrefs.GetInt("SessionCount_Total", 0);
+            return sessions >= 4;
+        }
         // ── Screen reader summary ─────────────────────────────────────────
 
         public string GetAccessibilitySummary()

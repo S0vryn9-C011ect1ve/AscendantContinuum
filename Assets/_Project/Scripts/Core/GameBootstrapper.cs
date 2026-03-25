@@ -141,9 +141,18 @@ namespace AscendantContinuum.Core
             // Record session with Cosmic Identity so play-time metrics evolve
             CosmicIdentitySystem.Instance?.RecordSessionStart();
 
-            // Increment total session counter (shared PlayerPrefs key used by PantheonDeityEffects.ShouldShowPantheonQuiz)
-            PlayerPrefs.SetInt("SessionCount_Total", PlayerPrefs.GetInt("SessionCount_Total", 0) + 1);
+            // Increment total session counter — keep PlayerPrefs in sync for backward compat
+            int sessionTotal = PlayerPrefs.GetInt("SessionCount_Total", 0) + 1;
+            PlayerPrefs.SetInt("SessionCount_Total", sessionTotal);
             PlayerPrefs.Save();
+
+            // Mirror into SaveSystem so cloud save + encrypted backup stay current
+            var saveData = Core.SaveSystem.Instance?.CurrentPlayerData;
+            if (saveData != null)
+            {
+                saveData.totalSessionsCompleted = sessionTotal;
+                Core.SaveSystem.Instance?.SaveGame();
+            }
 
             // Day 4 gate: prompt Arcane Personality Quiz only after leaving bootstrap
             // so UI setup issues in quiz panel cannot block initial scene routing.

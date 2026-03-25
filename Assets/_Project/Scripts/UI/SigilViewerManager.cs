@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 using AscendantContinuum.Core;
 using AscendantContinuum.Systems;
 using AscendantContinuum.Data;
@@ -370,9 +371,60 @@ namespace AscendantContinuum.UI
 
         private void ShareToSocial(string imagePath)
         {
-            // Platform-specific sharing
-            // This would use native sharing plugins
-            Debug.Log($"Sharing sigil from: {imagePath}");
+#if UNITY_ANDROID
+            try
+            {
+                using var intentClass = new AndroidJavaClass("android.content.Intent");
+                string actionSend    = intentClass.GetStatic<string>("ACTION_SEND");
+                using var intent     = new AndroidJavaObject("android.content.Intent", actionSend);
+                intent.Call<AndroidJavaObject>("setType", "image/png");
+
+                // Try FileProvider (Android 7+, API 24+), fall back to file:// on older devices
+                AndroidJavaObject uri;
+                try
+                {
+                    using var player  = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                    using var ctx     = player.GetStatic<AndroidJavaObject>("currentActivity");
+                    using var file    = new AndroidJavaObject("java.io.File", imagePath);
+                    uri = new AndroidJavaClass("androidx.core.content.FileProvider")
+                        .CallStatic<AndroidJavaObject>(
+                            "getUriForFile", ctx,
+                            Application.identifier + ".fileprovider", file);
+                    intent.Call<AndroidJavaObject>("addFlags", 0x00000001); // FLAG_GRANT_READ_URI_PERMISSION
+                }
+                catch
+                {
+                    using var uriClass = new AndroidJavaClass("android.net.Uri");
+                    uri = uriClass.CallStatic<AndroidJavaObject>(
+                        "fromFile", new AndroidJavaObject("java.io.File", imagePath));
+                }
+
+                intent.Call<AndroidJavaObject>("putExtra",
+                    intentClass.GetStatic<string>("EXTRA_STREAM"), uri);
+                intent.Call<AndroidJavaObject>("putExtra",
+                    intentClass.GetStatic<string>("EXTRA_TEXT"),
+                    "My cosmic sigil from The Ascendant Continuum \u2726");
+
+                using var player2   = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                using var activity  = player2.GetStatic<AndroidJavaObject>("currentActivity");
+                var chooser = intentClass.CallStatic<AndroidJavaObject>(
+                    "createChooser", intent, "Share Sigil");
+                activity.Call("startActivity", chooser);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[SigilViewer] Share sheet failed: {ex.Message}");
+                HUDManager.Instance?.ShowNotification(
+                    "Sigil saved to device.", HUDManager.NotificationType.Info);
+            }
+#elif UNITY_IOS
+            // Copy path to clipboard; a NativeShare plugin upgrade will replace this
+            GUIUtility.systemCopyBuffer = imagePath;
+            HUDManager.Instance?.ShowNotification(
+                "Sigil saved \u2014 share from your Files app.", HUDManager.NotificationType.Info);
+#else
+            Debug.Log($"[SigilViewer] Share (Editor): {imagePath}");
+#endif
         }
 
         public void CloseSharePanel()

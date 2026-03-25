@@ -472,14 +472,17 @@ namespace AscendantContinuum.UI
 
             if (playerLevelText != null)
             {
-                // Derive a display level from progression completions when available,
-                // otherwise fall back to a PlayerPrefs stub value.
-                int level = PlayerPrefs.GetInt("PlayerLevel", 1);
+                // Derive display level: realm completions → level, or sessions / 3, or 1
+                int level = 1;
                 if (Progression.ProgressionManager.Instance != null)
                 {
                     var pd = Progression.ProgressionManager.Instance.GetProgressionData();
                     if (pd != null)
                         level = Mathf.Max(1, pd.totalRealmCompletions + 1);
+                }
+                else if (playerData != null)
+                {
+                    level = Mathf.Max(1, playerData.totalSessionsCompleted / 3 + 1);
                 }
                 playerLevelText.text = $"Level {level}";
             }

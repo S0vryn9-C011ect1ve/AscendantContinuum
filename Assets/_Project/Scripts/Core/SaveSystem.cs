@@ -190,6 +190,66 @@ namespace AscendantContinuum.Core
             }
         }
 
+        /// <summary>
+        /// Applies a JSON-encoded cloud save to the local game state.
+        /// Keeps whichever save is more recent (local vs cloud); if the cloud copy is
+        /// newer, writes it to disk and reloads accessibility/settings.
+        /// Returns true when the cloud data was accepted and applied.
+        /// Called by GooglePlayGamesManager after a successful cloud-read.
+        /// </summary>
+        public bool LoadFromCloudJson(string json)
+        {
+            if (string.IsNullOrWhiteSpace(json)) return false;
+
+            try
+            {
+                string trimmed = json.TrimStart();
+                if (!trimmed.StartsWith("{"))
+                {
+                    Debug.LogWarning("[SaveSystem] Cloud JSON is not a valid object — ignoring.");
+                    return false;
+                }
+
+                var cloudData = JsonUtility.FromJson<PlayerData>(json);
+                if (cloudData == null) return false;
+
+                // Compare timestamps: keep the more recent save
+                bool cloudNewer = false;
+                bool cloudHasTime = !string.IsNullOrEmpty(cloudData.lastSaveTime) &&
+                    DateTime.TryParse(cloudData.lastSaveTime, null,
+                        System.Globalization.DateTimeStyles.RoundtripKind, out var cloudTime);
+                bool localHasTime = !string.IsNullOrEmpty(currentPlayerData.lastSaveTime) &&
+                    DateTime.TryParse(currentPlayerData.lastSaveTime, null,
+                        System.Globalization.DateTimeStyles.RoundtripKind, out var localTime);
+
+                if (cloudHasTime && localHasTime)
+                    cloudNewer = cloudTime > localTime;
+                else
+                    cloudNewer = true; // no timestamps — trust the cloud
+
+                if (!cloudNewer)
+                {
+                    Debug.Log("[SaveSystem] Local save is newer than cloud — keeping local data.");
+                    return false;
+                }
+
+                currentPlayerData = cloudData;
+                persistedPlayTimeAtSessionStart = Mathf.Max(0, currentPlayerData.totalPlayTime);
+                sessionStartRealtime = Time.realtimeSinceStartup;
+
+                WriteCurrentPlayerDataToDisk();
+                ApplyLoadedData();
+
+                Debug.Log($"[SaveSystem] ✅ Cloud save applied — last save: {currentPlayerData.lastSaveTime}");
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[SaveSystem] ❌ Cloud load failed: {e.Message}");
+                return false;
+            }
+        }
+
         private void ApplyLoadedData()
         {
             // Restore accessibility settings
@@ -332,6 +392,9 @@ namespace AscendantContinuum.Core
         // ── Privacy ───────────────────────────────────────────────────────
         public bool analyticsEnabled  = true;
         public bool allowTimeShareData = true;  // Collective energy / social features
+
+        // ── Export tracking ───────────────────────────────────────────────
+        public int sigilExportCount = 0;        // lifetime sigil PNG/GIF shares
     }
 }
 
@@ -369,12 +432,13 @@ namespace AscendantContinuum.Core
         }
 
         /// <summary>
-        /// Records that a sigil PNG/GIF was exported. Currently logs; extend for analytics.
+        /// Records that a sigil PNG/GIF was exported and persists the lifetime count.
         /// </summary>
         public void RecordSigilExport(string sigilId)
         {
-            Debug.Log($"[SaveSystem] Sigil exported: {sigilId}");
-            // Future: increment export counter in PlayerData
+            CurrentPlayerData.sigilExportCount++;
+            Debug.Log($"[SaveSystem] Sigil exported: {sigilId} (total exports: {CurrentPlayerData.sigilExportCount})");
+            SaveGame();
         }
     }
 }

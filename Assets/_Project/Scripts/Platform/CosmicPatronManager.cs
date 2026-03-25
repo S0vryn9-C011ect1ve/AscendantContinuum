@@ -148,10 +148,17 @@ namespace AscendantContinuum.Platform
         {
 #if UNITY_PURCHASING
             // IAPManager.Instance.BuyProductId(productId);
-#else
-            // SIMULATION MODE — grant product for testing
-            Debug.Log($"[CosmicPatron] SIMULATION: Granting {productId}");
+#elif UNITY_EDITOR
+            // Dev simulation — auto-grant only inside the Unity Editor for rapid iteration
+            Debug.Log($"[CosmicPatron] EDITOR SIMULATION: Granting {productId}");
             ProcessSuccessfulPurchase(productId);
+#else
+            // Release build without Unity IAP — block purchase and inform the player
+            Debug.LogWarning($"[CosmicPatron] Unity IAP not configured. Purchase blocked: {productId}");
+            HUDManager.Instance?.ShowNotification(
+                "In-app purchases are coming soon!",
+                HUDManager.NotificationType.Info);
+            OnPurchaseFailed?.Invoke(productId);
 #endif
         }
 

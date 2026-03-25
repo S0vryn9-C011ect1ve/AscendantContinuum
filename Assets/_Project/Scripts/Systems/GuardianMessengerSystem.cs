@@ -4,6 +4,9 @@ using System.Collections.Generic;
 #if UNITY_ANDROID
 using Unity.Notifications.Android;
 #endif
+#if UNITY_IOS
+using Unity.Notifications.iOS;
+#endif
 
 namespace AscendantContinuum.Systems
 {
@@ -184,10 +187,9 @@ namespace AscendantContinuum.Systems
         {
 #if UNITY_ANDROID
             AndroidNotificationCenter.CancelAllScheduledNotifications();
-#endif
-#if UNITY_IOS
-            // iOSNotificationCenter.RemoveAllScheduledNotifications(); // Requires Xcode setup
-            Debug.Log("[Guardian] iOS CancelAll stub");
+#elif UNITY_IOS
+            iOSNotificationCenter.RemoveAllScheduledNotifications();
+            iOSNotificationCenter.RemoveAllDeliveredNotifications();
 #endif
         }
 
@@ -294,9 +296,24 @@ namespace AscendantContinuum.Systems
             Debug.Log($"[Guardian] Scheduled Android notification at {fireAt:g}: '{title}'");
 
 #elif UNITY_IOS
-            // iOS notifications require Xcode provisioning — stub for CI builds
-            Debug.Log($"[Guardian] iOS notification stub: '{title}' at {fireAt:g}");
-
+            var notification = new iOSNotification()
+            {
+                Title           = title,
+                Body            = body,
+                ShowInForeground = false,
+                Trigger         = new iOSNotificationCalendarTrigger
+                {
+                    Year   = fireAt.Year,
+                    Month  = fireAt.Month,
+                    Day    = fireAt.Day,
+                    Hour   = fireAt.Hour,
+                    Minute = fireAt.Minute,
+                    Second = fireAt.Second,
+                    Repeats = false
+                }
+            };
+            iOSNotificationCenter.ScheduleNotification(notification);
+            Debug.Log($"[Guardian] Scheduled iOS notification at {fireAt:g}: '{title}'");
 #else
             Debug.Log($"[Guardian] Notification stub (Editor): '{title}' at {fireAt:g}");
 #endif
