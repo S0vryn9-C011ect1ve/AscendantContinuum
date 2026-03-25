@@ -20,7 +20,9 @@
   },
   "overrides": {
     "@tootallnate/once": "^3.0.1",
-    "http-proxy-agent": "^7.0.0"
+    "http-proxy-agent": "^7.0.0",
+    "fast-xml-parser": ">=5.5.7",
+    "flatted": ">=3.4.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.12.0",
