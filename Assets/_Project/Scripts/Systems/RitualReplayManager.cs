@@ -238,10 +238,30 @@ namespace AscendantContinuum.Systems
 
         private void ShareViaSystem(string text, string url)
         {
-            // Platform-specific share intent placeholder
-            // Real implementation: use a NativeShare Unity plugin
-            string combined = Uri.EscapeDataString(text + " " + url);
-            Application.OpenURL($"intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={combined};end");
+            string fullText = text + "\n" + url;
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            // Android ACTION_SEND intent via URIBuilder scheme
+            // Opens the system share-chooser without requiring a NativeShare plugin.
+            string encoded = Uri.EscapeDataString(fullText);
+            Application.OpenURL(
+                $"intent:#Intent;action=android.intent.action.SEND;" +
+                $"type=text%2Fplain;" +
+                $"S.android.intent.extra.TEXT={encoded};" +
+                $"S.android.intent.extra.SUBJECT=Ascendant%20Continuum;end");
+#elif UNITY_IOS && !UNITY_EDITOR
+            // iOS doesn't support intent URIs. Copy to clipboard and prompt the player.
+            // When the NativeShare package is imported (com.unity.mobile.notifications),
+            // replace this block with: new NativeShare().SetText(fullText).Share();
+            GUIUtility.systemCopyBuffer = fullText;
+            HUDManager.Instance?.ShowNotification(
+                "\u2728 Share text copied! Paste it anywhere to share your ritual.",
+                HUDManager.NotificationType.Info);
+#else
+            // Editor / unsupported platform: put in clipboard.
+            GUIUtility.systemCopyBuffer = fullText;
+            HUDManager.Instance?.ShowNotification("Replay text copied to clipboard!", HUDManager.NotificationType.Info);
+#endif
         }
     }
 }

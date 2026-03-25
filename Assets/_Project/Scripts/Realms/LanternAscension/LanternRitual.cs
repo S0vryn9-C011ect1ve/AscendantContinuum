@@ -5,6 +5,9 @@ using TMPro;
 using AscendantContinuum.Core;
 using AscendantContinuum.Systems;
 using AscendantContinuum.Social;
+#if UNITY_IOS && !UNITY_EDITOR
+using System.Runtime.InteropServices;
+#endif
 
 namespace AscendantContinuum.Realms.LanternAscension
 {
@@ -15,6 +18,12 @@ namespace AscendantContinuum.Realms.LanternAscension
     /// </summary>
     public class LanternRitual : MonoBehaviour
     {
+#if UNITY_IOS && !UNITY_EDITOR
+        // ── iOS AVSpeechSynthesizer bridge (Assets/Plugins/iOS/NativeTTS.mm) ──
+        [DllImport("__Internal")] private static extern void _NativeTTS_Speak(string text, float rate, float pitch, float volume);
+        [DllImport("__Internal")] private static extern void _NativeTTS_Stop();
+#endif
+
         [Header("Lantern Configuration")]
         [SerializeField] private GameObject lanternPrefab;
         [SerializeField] private Transform lanternReleasePoint;
@@ -254,11 +263,8 @@ namespace AscendantContinuum.Realms.LanternAscension
                     Debug.LogWarning($"[TTS] Android TTS failed: {ex.Message}");
                 }
 #elif UNITY_IOS && !UNITY_EDITOR
-                // iOS: bridge via NativeTextToSpeech plugin or AVSpeechSynthesizer bridge
-                // Requires a native iOS plugin (NativeAudioPlugin / NativeTTS bridge)
-                // Plugin contract: NativeTextToSpeech.Speak(string text)
-                // Until plugin is imported, log to console so QA can verify the flow.
-                Debug.Log($"[TTS-iOS] Would speak: {announcement}");
+                // iOS: AVSpeechSynthesizer via Assets/Plugins/iOS/NativeTTS.mm
+                _NativeTTS_Speak(announcement, -1f, 1.0f, 0.8f);
 #else
                 Debug.Log($"[TTS] {announcement}");
 #endif

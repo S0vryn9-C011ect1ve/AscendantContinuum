@@ -137,14 +137,46 @@ namespace AscendantContinuum.Cameras
             impulse.GenerateImpulse(impulseStrength);
         }
 #else
+        /// <summary>
+        /// Without Cinemachine, "priority" maps to enable/disable so only one camera is active.
+        /// </summary>
         private static void SetCameraPriority(GameObject cam, int priority)
         {
-            // Stub (Cinemachine not available)
+            if (cam == null) return;
+            var camera = cam.GetComponent<Camera>();
+            if (camera != null) camera.enabled = (priority > 0);
+            else cam.SetActive(priority > 0);
         }
 
+        /// <summary>
+        /// Without Cinemachine, shakes Camera.main via a coroutine using perlin noise.
+        /// </summary>
         private void TriggerImpulse(GameObject cam)
         {
-            // Stub (Cinemachine not available)
+            if (!playImpulseOnEntry) return;
+            Camera target = (cam != null ? cam.GetComponent<Camera>() : null)
+                            ?? Camera.main;
+            if (target != null)
+                StartCoroutine(ShakeCameraCoroutine(target.transform, impulseStrength, 0.35f));
+        }
+
+        private static IEnumerator ShakeCameraCoroutine(Transform camTransform, float magnitude, float duration)
+        {
+            Vector3 originalPos = camTransform.localPosition;
+            float elapsed = 0f;
+            float seed = UnityEngine.Random.value * 100f;
+
+            while (elapsed < duration)
+            {
+                float fade   = 1f - (elapsed / duration);   // linear falloff
+                float offsetX = (Mathf.PerlinNoise(seed + elapsed * 20f, 0f) * 2f - 1f) * magnitude * fade;
+                float offsetY = (Mathf.PerlinNoise(0f, seed + elapsed * 20f) * 2f - 1f) * magnitude * fade;
+                camTransform.localPosition = originalPos + new Vector3(offsetX, offsetY, 0f);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            camTransform.localPosition = originalPos;
         }
 #endif
     }
