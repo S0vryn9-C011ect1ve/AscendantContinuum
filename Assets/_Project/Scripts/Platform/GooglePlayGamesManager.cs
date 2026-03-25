@@ -226,22 +226,100 @@ namespace AscendantContinuum.Platform
             if (pd == null) return;
 
             string json = JsonUtility.ToJson(pd);
-            Debug.Log("[GPGS] Queuing cloud save upload…");
 
-            // Full implementation requires PlayGamesPlatform.Instance.SavedGame
-            // This is the integration point — wire here with the plugin:
+#if UNITY_ANDROID && !UNITY_EDITOR
+            // ── Google Play Games SDK path ────────────────────────────────
+            // Uncomment when Google Play Games Unity plugin is installed:
+            //
             // var client = PlayGamesPlatform.Instance.SavedGame;
-            // client.OpenWithAutomaticConflictResolution("ascendant_save", ...);
+            // client.OpenWithAutomaticConflictResolution(
+            //     "ascendant_save", DataSource.ReadCacheOrNetwork,
+            //     ConflictResolutionStrategy.UseLongestPlaytime,
+            //     (savedGameRequestStatus, game) =>
+            //     {
+            //         if (savedGameRequestStatus != SavedGameRequestStatus.Success) return;
+            //         byte[] data = System.Text.Encoding.UTF8.GetBytes(json);
+            //         var update = SavedGameMetadataUpdate.Builder
+            //             .WithUpdatedDescription($"AscendantContinuum save {System.DateTime.UtcNow:o}")
+            //             .Build();
+            //         client.CommitUpdate(game, update, data, (status, _) =>
+            //         {
+            //             if (status == SavedGameRequestStatus.Success)
+            //             {
+            //                 PlayerPrefs.DeleteKey("cloud_save_pending");
+            //                 PlayerPrefs.Save();
+            //                 Debug.Log("[GPGS] ✅ Cloud save committed.");
+            //             }
+            //             else
+            //             {
+            //                 Debug.LogWarning($"[GPGS] Cloud save commit failed: {status}");
+            //             }
+            //         });
+            //     });
+            //
+            // ── Pending-upload queue (pre-plugin fallback) ─────────────────
             PlayerPrefs.SetString("cloud_save_pending", json);
             PlayerPrefs.Save();
+            Debug.Log("[GPGS] Cloud save queued in PlayerPrefs (plugin not yet integrated).");
+#else
+            // Editor / iOS — store locally for testing
+            PlayerPrefs.SetString("cloud_save_pending", json);
+            PlayerPrefs.Save();
+            Debug.Log("[GPGS] Stub (Editor/iOS) — save queued in PlayerPrefs.");
+#endif
         }
 
         public void LoadCloudSave()
         {
             if (!_signedIn) return;
             Debug.Log("[GPGS] Checking for cloud save…");
-            // Wire to PlayGamesPlatform.Instance.SavedGame here
-            // On success, call Core.SaveSystem.Instance?.LoadFromCloudJson(json)
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            // ── Google Play Games SDK path ────────────────────────────────
+            // Uncomment when Google Play Games Unity plugin is installed:
+            //
+            // var client = PlayGamesPlatform.Instance.SavedGame;
+            // client.OpenWithAutomaticConflictResolution(
+            //     "ascendant_save", DataSource.ReadCacheOrNetwork,
+            //     ConflictResolutionStrategy.UseLongestPlaytime,
+            //     (savedGameRequestStatus, game) =>
+            //     {
+            //         if (savedGameRequestStatus != SavedGameRequestStatus.Success) return;
+            //         client.ReadBinaryData(game, (status, data) =>
+            //         {
+            //             if (status != SavedGameRequestStatus.Success || data == null) return;
+            //             string json = System.Text.Encoding.UTF8.GetString(data);
+            //             bool applied = Core.SaveSystem.Instance?.LoadFromCloudJson(json) ?? false;
+            //             if (applied)
+            //             {
+            //                 long ts = new System.DateTimeOffset(game.LastModifiedTimestamp)
+            //                               .ToUnixTimeMilliseconds();
+            //                 OnCloudSaveLoaded?.Invoke(ts);
+            //                 PlayerPrefs.DeleteKey("cloud_save_pending");
+            //                 PlayerPrefs.Save();
+            //             }
+            //         });
+            //     });
+            //
+            // ── Pending-upload queue fallback ─────────────────────────────
+            string pending = PlayerPrefs.GetString("cloud_save_pending", null);
+            if (!string.IsNullOrEmpty(pending))
+            {
+                bool applied = Core.SaveSystem.Instance?.LoadFromCloudJson(pending) ?? false;
+                if (applied)
+                {
+                    Debug.Log("[GPGS] ✅ Applied pending cloud save from PlayerPrefs.");
+                    OnCloudSaveLoaded?.Invoke(
+                        new System.DateTimeOffset(System.DateTime.UtcNow).ToUnixTimeMilliseconds());
+                }
+            }
+            else
+            {
+                Debug.Log("[GPGS] No pending cloud save found.");
+            }
+#else
+            Debug.Log("[GPGS] Stub (Editor/iOS) — cloud load skipped.");
+#endif
         }
 
         // ── Properties ─────────────────────────────────────────────────────
