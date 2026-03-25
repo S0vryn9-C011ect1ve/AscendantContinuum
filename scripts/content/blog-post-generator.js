@@ -6,6 +6,20 @@ import { execSync } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * IMPORTANT: Before generating blog content, read docs/CONTENT_GUIDELINES.md
+ * 
+ * Key facts to maintain:
+ * - Solo developer (zero budget, no contractors, no team)
+ * - Has artistic background (freehand drawing, abstract art)
+ * - Uses GitHub Copilot Pro Plus + free tools + online courses
+ * - Game in development (zero testers/players currently)
+ * - Voice: helpful learning journey, not expert authority
+ * 
+ * NEVER claim: hired contractors, spent money, have testers, "we" (use "I")
+ * ALWAYS verify: facts about game features, dev process, personal background
+ */
+
 // Massive blog post topic library - 50+ topics across 6 themes
 const BLOG_THEMES = {
     whatsNew: {

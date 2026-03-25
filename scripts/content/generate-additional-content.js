@@ -12,6 +12,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// CONTENT ACCURACY: See docs/CONTENT_GUIDELINES.md for facts about developer, game, and voice
+// Key: Solo dev (zero budget), artistic background, Copilot + free tools, no players yet
+
 // New content following authentic solo dev voice
 const NEW_CONTENT = [
     // Learning Unity - Honest Struggles
