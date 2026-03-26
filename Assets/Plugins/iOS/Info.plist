@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+    iOS Info.plist additions for The Ascendant Continuum.
+    Unity merges this with the auto-generated Info.plist at build time.
+    Place in Assets/Plugins/iOS/ and set "Platform" to iOS in Inspector.
+
+    Required keys for App Store submission (2026):
+    • NSPhotoLibraryAddUsageDescription  — sigil PNG export to Photos
+    • NSUserTrackingUsageDescription     — Firebase Analytics IDFA (ATT)
+    • NSUserNotificationsUsageDescription — push notification permission UX
+    • UIBackgroundModes remotenotification
+-->
+<plist version="1.0">
+<dict>
+
+    <!-- ── Privacy usage descriptions (mandatory App Store) ────────────── -->
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>The Ascendant Continuum saves your personal sigil to your photo library so you can share it with others.</string>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>The Ascendant Continuum reads your photo library to let you use a custom sigil background image.</string>
+
+    <key>NSUserTrackingUsageDescription</key>
+    <string>We use your device's advertising identifier to improve the game experience and measure how players discover The Ascendant Continuum. No data is sold to third parties.</string>
+
+    <key>NSCameraUsageDescription</key>
+    <string>The Ascendant Continuum uses the camera to let you capture a photo for your cosmic identity card.</string>
+
+    <!-- ── Push notifications ───────────────────────────────────────────── -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>remote-notification</string>
+        <string>fetch</string>
+    </array>
+
+    <!-- ── App Transport Security — enforce HTTPS ───────────────────────── -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <false/>
+        <!-- Firebase requires these domains -->
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>firebaseio.com</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+        </dict>
+    </dict>
+
+    <!-- ── Face ID / biometric (future feature gate) ────────────────────── -->
+    <key>NSFaceIDUsageDescription</key>
+    <string>Use Face ID to securely access your Ascendant Continuum progress.</string>
+
+</dict>
+</plist>

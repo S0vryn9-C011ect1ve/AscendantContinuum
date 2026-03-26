@@ -395,6 +395,30 @@ namespace AscendantContinuum.Core
 
         // ── Export tracking ───────────────────────────────────────────────
         public int sigilExportCount = 0;        // lifetime sigil PNG/GIF shares
+
+        // ── Daily challenge streak (migrated from PlayerPrefs) ─────────────
+        public int  challengeStreak   = 0;      // consecutive daily completions
+        public string lastChallengeDate = "";   // yyyy-MM-dd UTC
+        public int  challengesCompletedTotal = 0;
+
+        // ── Achievements (migrated from PlayerPrefs) ─────────────────────
+        // Serialised as a JSON string to avoid Unity array-deserialisation issues
+        public string achievementsUnlockedJson = "[]"; // JSON string[] of unlocked IDs
+
+        // ── Cosmic identity (migrated from PlayerPrefs) ─────────────────
+        public string cosmicProfileJson = "";   // JSON serialised CosmicProfile
+        public string cosmicDeityChosen = "";   // e.g. "flame", "herald", "tides"...
+        public bool   pantheonQuizDone  = false;
+
+        // ── Per-realm progress (migrated from PlayerPrefs) ───────────────
+        public int lanternReleasedCount = 0;    // LanternAscension total releases
+        public int dawnSolvedCount      = 0;    // DawnCitadel puzzles solved
+        public int echoArchiveCount     = 0;    // EchoFields echoes recorded
+        public int timeCapsuleBuriedCount   = 0;
+        public int timeCapsuleOpenedCount   = 0;
+        public int meteorPendingSparks  = 0;    // MeteorShowerEvent banked sparks
+        public int mercuryRareSigilCount = 0;   // PantheonPlanetManager
+        public int natureSigilCount     = 0;    // NatureConnectionManager
     }
 }
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Network security config for The Ascendant Continuum.
+    Allows Firebase and Google Play connections over HTTPS.
+    Blocks all plaintext (cleartext) traffic in release builds.
+    Reference: AndroidManifest.xml → android:networkSecurityConfig
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <!-- Trust user-installed CAs only in debug builds (Charles/mitmproxy) -->
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Firebase domains always use TLS -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">firebaseio.com</domain>
+        <domain includeSubdomains="true">googleapis.com</domain>
+        <domain includeSubdomains="true">firebase.google.com</domain>
+        <domain includeSubdomains="true">google.com</domain>
+    </domain-config>
+
+    <!-- Allow cleartext only in debug builds (Unity editor / dev devices) -->
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </debug-overrides>
+</network-security-config>

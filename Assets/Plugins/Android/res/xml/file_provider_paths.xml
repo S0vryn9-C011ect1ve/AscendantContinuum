@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    File provider paths for sigil PNG sharing.
+    Allows FileProvider to share files from persistentDataPath.
+    Reference: AndroidManifest.xml → android:resource="@xml/file_provider_paths"
+-->
+<paths>
+    <!-- Unity's Application.persistentDataPath on Android -->
+    <external-files-path name="sigil_share" path="." />
+    <!-- Internal cache for temporary share files -->
+    <cache-path name="sigil_cache" path="." />
+    <!-- Internal files -->
+    <files-path name="sigil_internal" path="." />
+</paths>

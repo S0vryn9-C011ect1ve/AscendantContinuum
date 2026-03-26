@@ -59,6 +59,21 @@ function Resolve-UnityPath {
         }
     }
 
+    # Last-resort: scan every installed editor and pick the newest
+    $editorRoot = "C:\Program Files\Unity\Hub\Editor"
+    if (Test-Path $editorRoot) {
+        $newest = Get-ChildItem $editorRoot -Directory -ErrorAction SilentlyContinue |
+            Sort-Object Name -Descending | Select-Object -First 1
+        if ($newest) {
+            $fallback = Join-Path $newest.FullName "Editor\Unity.exe"
+            if (Test-Path $fallback) {
+                Write-Warning "[Build] Using newest installed Unity as fallback: $($newest.Name)"
+                return $fallback
+            }
+        }
+    }
+
+    # Absolute last resort (original hardcoded path kept for CI images that pin this version)
     return "C:\Program Files\Unity\Hub\Editor\2022.3.18f1\Editor\Unity.exe"
 }
 

@@ -197,7 +197,37 @@ namespace AscendantContinuum.Systems
                 }
             };
 
-            Debug.Log($"[LiveEventEngine] Calendar loaded: {_calendar.Count} events.");
+            // ── Annual recurrence: advance any event whose peak has passed ──
+            // For events marked isAnnual, roll the peakUtc forward by whole years
+            // until it's within the next 400 days, so the calendar stays current.
+            DateTime now = DateTime.UtcNow;
+            for (int i = 0; i < _calendar.Count; i++)
+            {
+                var evt = _calendar[i];
+                if (!evt.isAnnual) continue;
+
+                // Roll forward until the event is either in the future or within echo window
+                while (evt.peakUtc.AddDays(evt.durationDays) < now.AddDays(-1))
+                {
+                    int yearDelta = now.Year - evt.peakUtc.Year + 1;
+                    evt.peakUtc = evt.peakUtc.AddYears(yearDelta);
+                    // Update exclusive title year tag
+                    if (evt.exclusiveTitle.Length > 0 && evt.exclusiveTitle[evt.exclusiveTitle.Length - 1] >= '0')
+                    {
+                        // Strip old year suffix and append new one
+                        int lastSpace = evt.exclusiveTitle.LastIndexOf(' ');
+                        if (lastSpace >= 0 && int.TryParse(evt.exclusiveTitle.Substring(lastSpace + 1), out _))
+                            evt.exclusiveTitle = evt.exclusiveTitle.Substring(0, lastSpace + 1) + evt.peakUtc.Year;
+                    }
+                    // Update id year tag so event achievements are year-specific
+                    int underscoreYear = evt.id.LastIndexOf('_');
+                    if (underscoreYear >= 0 && int.TryParse(evt.id.Substring(underscoreYear + 1), out _))
+                        evt.id = evt.id.Substring(0, underscoreYear + 1) + evt.peakUtc.Year;
+                }
+                _calendar[i] = evt;
+            }
+
+            Debug.Log($"[LiveEventEngine] Calendar loaded: {_calendar.Count} events (recurring through {now.Year + 1}).");
         }
 
         // ── Event check loop ───────────────────────────────────────────────
