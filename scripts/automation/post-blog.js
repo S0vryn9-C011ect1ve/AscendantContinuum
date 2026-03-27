@@ -45,7 +45,7 @@ function saveBlogData(data) {
 
 // Generate RSS feed
 function generateRSSFeed(posts) {
-    const siteUrl = 'https://ascendant-continuum.firebaseapp.com';
+    const siteUrl = 'https://ascendant-continuum.web.app';
     const feedUrl = `${siteUrl}/blog/rss.xml`;
     const now = new Date().toUTCString();
 
@@ -89,7 +89,7 @@ ${rssItems}
 
 // Generate HTML template for blog post
 function generatePostHTML(post) {
-    const postUrl = `https://ascendant-continuum.firebaseapp.com/blog/posts/${post.slug}.html`;
+    const postUrl = `https://ascendant-continuum.web.app/blog/posts/${post.slug}.html`;
     const shareTextEncoded = encodeURIComponent(`${post.title}\n\n${post.hook}\n\nRead more:`);
 
     return `<!DOCTYPE html>
@@ -285,7 +285,7 @@ function generatePostHTML(post) {
 
 // Post blog link to social media
 async function postToSocialMedia(post) {
-    const postUrl = `https://ascendant-continuum.firebaseapp.com/blog/posts/${post.slug}.html`;
+    const postUrl = `https://ascendant-continuum.web.app/blog/posts/${post.slug}.html`;
     const socialText = `📝 New blog post: ${post.title}\n\n${post.hook}\n\nRead more: ${postUrl}\n\n#GameDev #Unity #AccessibilityFirst #IndieGame`;
 
     try {

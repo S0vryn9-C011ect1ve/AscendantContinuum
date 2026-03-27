@@ -437,18 +437,80 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 17,
+      "contentId": 42,
+      "contentType": "devEducation",
+      "hook": "If you only learn one thing about WebGL, learn this.",
+      "topics": [
+        "unity-tech"
+      ],
+      "timestamp": "2026-03-27T17:33:06.019Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mi2nm2m55s23"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116302333554953190"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "contentId": 32,
+      "contentType": "devUpdate",
+      "hook": "Zero monetization dark patterns. By design.",
+      "topics": [
+        "realms-lore",
+        "monetization",
+        "anti-fomo"
+      ],
+      "timestamp": "2026-03-27T17:37:20.027Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true
+        },
+        {
+          "platform": "mastodon",
+          "success": true
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 14,
+    "totalPosts": 16,
     "byPlatform": {
-      "bluesky": 14,
-      "mastodon": 14,
-      "discord": 12
+      "bluesky": 16,
+      "mastodon": 16,
+      "discord": 14
     },
     "byType": {
-      "devUpdate": 6,
-      "devEducation": 4,
+      "devUpdate": 7,
+      "devEducation": 5,
       "designPhilosophy": 3,
       "behindScenes": 0,
       "loreSnippet": 1

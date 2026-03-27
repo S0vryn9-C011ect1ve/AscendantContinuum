@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Ascendant Continuum Dev Blog</title>
-    <link>https://ascendant-continuum.firebaseapp.com/blog/</link>
+    <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Mar 2026 14:01:47 GMT</lastBuildDate>
-    <atom:link href="https://ascendant-continuum.firebaseapp.com/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Mar 2026 17:41:33 GMT</lastBuildDate>
+    <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
-      <url>https://ascendant-continuum.firebaseapp.com/favicon.png</url>
+      <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
-      <link>https://ascendant-continuum.firebaseapp.com/blog/</link>
+      <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
 
     <item>
       <title><![CDATA[Building Accessibility-First Gameplay: Color as Discovery]]></title>
-      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html</guid>
+      <link>https://ascendant-continuum.web.app/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html</guid>
       <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
       <category><![CDATA[Dev Diary]]></category>
       <category><![CDATA[development]]></category>
@@ -26,9 +26,21 @@
     </item>
 
     <item>
+      <title><![CDATA[Realm Transitions: Seamless World-Hopping]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/realm-transitions-seamless-world-hopping.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/realm-transitions-seamless-world-hopping.html</guid>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Traditional RPGs hide loading with progress bars, spinning icons, or "tip screens." These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ...]]></description>
+    </item>
+
+    <item>
       <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
-      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
+      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
       <pubDate>Wed, 25 Mar 2026 00:00:00 GMT</pubDate>
       <category><![CDATA[Behind the Scenes]]></category>
       <category><![CDATA[development]]></category>
@@ -39,8 +51,8 @@
 
     <item>
       <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
-      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
+      <link>https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
       <pubDate>Mon, 23 Mar 2026 00:00:00 GMT</pubDate>
       <category><![CDATA[Dev Diary]]></category>
       <category><![CDATA[development]]></category>
@@ -51,8 +63,8 @@
 
     <item>
       <title><![CDATA[State Management with ScriptableObjects]]></title>
-      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/state-management-with-scriptableobjects.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/state-management-with-scriptableobjects.html</guid>
+      <link>https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html</guid>
       <pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate>
       <category><![CDATA[Tutorial]]></category>
       <category><![CDATA[tutorial]]></category>
@@ -63,8 +75,8 @@
 
     <item>
       <title><![CDATA[Building a Game for $0: My Actual Budget]]></title>
-      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/building-a-game-for-zero-dollars-actual-budget.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/building-a-game-for-zero-dollars-actual-budget.html</guid>
+      <link>https://ascendant-continuum.web.app/blog/posts/building-a-game-for-zero-dollars-actual-budget.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/building-a-game-for-zero-dollars-actual-budget.html</guid>
       <pubDate>Tue, 17 Mar 2026 00:00:00 GMT</pubDate>
       <category><![CDATA[Transparency]]></category>
       <category><![CDATA[budget]]></category>
@@ -77,8 +89,8 @@
 
     <item>
       <title><![CDATA[5 Colorblind Modes: Accessibility as Gameplay]]></title>
-      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/five-colorblind-modes-accessibility-as-gameplay.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/five-colorblind-modes-accessibility-as-gameplay.html</guid>
+      <link>https://ascendant-continuum.web.app/blog/posts/five-colorblind-modes-accessibility-as-gameplay.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/five-colorblind-modes-accessibility-as-gameplay.html</guid>
       <pubDate>Tue, 17 Mar 2026 00:00:00 GMT</pubDate>
       <category><![CDATA[Technical Deep Dive]]></category>
       <category><![CDATA[accessibility]]></category>
@@ -91,8 +103,8 @@
 
     <item>
       <title><![CDATA[From Healthcare to Game Dev: Building My First Game]]></title>
-      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</guid>
+      <link>https://ascendant-continuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</guid>
       <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
       <category><![CDATA[Behind the Scenes]]></category>
       <category><![CDATA[behind-the-scenes]]></category>
