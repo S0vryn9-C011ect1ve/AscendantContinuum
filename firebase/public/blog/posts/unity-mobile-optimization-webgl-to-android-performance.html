@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting be...">
+    <meta property="og:title" content="Unity Mobile Optimization: WebGL to Android Performance - The Ascendant Continuum">
+    <meta property="og:description" content="The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting be...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ascendant-continuum.web.app/blog/posts/unity-mobile-optimization-webgl-to-android-performance.html">
+    <meta property="article:published_time" content="2026-03-27">
+    <meta property="article:author" content="The Ascendant Continuum Team">
+    <meta property="article:tag" content="tutorial">
+    <meta property="article:tag" content="unity">
+    <meta property="article:tag" content="game-dev">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Unity Mobile Optimization: WebGL to Android Performance">
+    <meta name="twitter:description" content="The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting be...">
+    <title>Unity Mobile Optimization: WebGL to Android Performance - The Ascendant Continuum Dev Blog</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/images.css">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/unity-mobile-optimization-webgl-to-android-performance.html">
+    <style>
+        .blog-post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5rem var(--spacing-md) var(--spacing-xl);
+        }
+        .blog-nav-breadcrumb {
+            padding-bottom: var(--spacing-md);
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+        }
+        .blog-nav-breadcrumb a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+        .blog-nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .blog-post-header {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .blog-post-meta {
+            display: flex;
+            gap: var(--spacing-sm);
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        .blog-post-tag {
+            background: rgba(78, 205, 196, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .blog-post-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .blog-post-hook {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 4px solid var(--color-secondary);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .blog-post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-light);
+        }
+        .blog-post-content h2 {
+            font-size: 1.75rem;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
+        }
+        .blog-post-content p {
+            margin-bottom: var(--spacing-md);
+            white-space: pre-wrap;
+        }
+        .blog-post-footer {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .blog-back-link {
+            display: inline-block;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            margin-bottom: var(--spacing-md);
+        }
+        .blog-back-link:hover {
+            transform: translateX(-4px);
+        }
+        .blog-share-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            margin-top: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        .blog-share-btn {
+            padding: 0.5rem 1rem;
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--color-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+        .blog-share-btn:hover {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .blog-post-title {
+                font-size: 2rem;
+            }
+            .blog-post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav" aria-label="Primary">
+        <div class="container top-nav-inner">
+            <a href="/" class="top-nav-brand">Ascendant Continuum</a>
+            <div class="top-nav-links">
+                <a href="/#latest" class="top-nav-link">Updates</a>
+                <a href="/blog/" class="top-nav-link">Blog</a>
+                <a href="/#faq" class="top-nav-link">FAQ</a>
+                <a href="/#signup" class="top-nav-link">Waitlist</a>
+                <a href="/play/" class="top-nav-link top-nav-link-play">Play</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="blog-post-container">
+        <div class="blog-nav-breadcrumb">
+            <a href="/">Home</a> / <a href="/blog/">Blog</a> / Unity Mobile Optimization: WebGL to Android Performance
+        </div>
+
+        <header class="blog-post-header">
+            <div class="blog-post-meta">
+                <time datetime="2026-03-27">March 26, 2026</time>
+                <span class="blog-post-tag">tutorial</span><span class="blog-post-tag">unity</span><span class="blog-post-tag">game-dev</span>
+            </div>
+            <h1 class="blog-post-title">Unity Mobile Optimization: WebGL to Android Performance</h1>
+        </header>
+
+        <div class="blog-post-content">
+            
+        <p class="blog-post-hook">WebGL ran smoothly at 60fps. Android was a slideshow at 12fps. Here's how we fixed it.</p>
+        
+            <h2>The Mobile Performance Gap</h2>
+            <p>The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting better performance, we encountered challenges: 12fps on flagship phones, crashes on mid-range devices, 8-second load times, and thermal throttling after 3 minutes. The culprits: excessive overdraw from layered post-processing, inefficient texture atlasing creating hundreds of draw calls, memory leaks in our event system, and garbage collection spikes during realm transitions that froze the game for 800ms.</p>
+        
+
+            <h2>Profiling with Unity and Android Tools</h2>
+            <p>We used Unity Profiler connected to Android devices via ADB to identify bottlenecks: 51% GPU time spent on post-processing (bloom, vignette, color grading layered inefficiently), 28% on particle systems (instantiating/destroying instead of pooling), 300-800ms GC spikes every 30 seconds (string allocations in Update loops, event system creating delegate garbage). Android's GPU Profiler revealed excessive texture swaps (72 per frame) and fragment shader overdraw of 4.2x average (every pixel rendered 4 times due to transparent layers).</p>
+        
+
+            <h2>Post-Processing Stack Optimization</h2>
+            <p>Reduced post-processing from 12 effects to 4 on mobile using platform-specific build configurations. Bloom, color grading, and vignette were baked into a single custom shader instead of separate passes—one shader calculating all three effects simultaneously reduced GPU time by 68%. Implemented dynamic quality scaling: when framerate drops below 30fps, effects automatically disable (starting with most expensive) until performance recovers, then gradually re-enable. Added quality presets based on device tier detected at launch.</p>
+        
+
+            <h2>Memory Management and GC Elimination</h2>
+            <p>Implemented object pooling for all frequently instantiated objects (particles, UI elements, temporary effects)—eliminated 95% of allocations. Replaced string concatenation with StringBuilder and cached all dialog text. Moved from event delegates (which allocate) to lightweight enum-based message systems. Aggressively unloaded unused realm assets during transitions using Addressables. Result: 60fps on flagship devices, 45fps on mid-range, 30fps on budget phones, with GC spikes reduced to 8ms (imperceptible). Load time dropped from 8 seconds to 1.2 seconds.</p>
+        
+    
+        </div>
+
+        <footer class="blog-post-footer">
+            <a href="/blog/" class="blog-back-link">← Back to all posts</a>
+            
+            <div class="blog-share-buttons">
+                <a href="https://bsky.app/intent/compose?text=Unity%20Mobile%20Optimization%3A%20WebGL%20to%20Android%20Performance%0A%0AWebGL%20ran%20smoothly%20at%2060fps.%20Android%20was%20a%20slideshow%20at%2012fps.%20Here's%20how%20we%20fixed%20it.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Funity-mobile-optimization-webgl-to-android-performance.html" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="blog-share-btn">📱 Share on Bluesky</a>
+                <a href="https://mastodon.social/share?text=Unity%20Mobile%20Optimization%3A%20WebGL%20to%20Android%20Performance%0A%0AWebGL%20ran%20smoothly%20at%2060fps.%20Android%20was%20a%20slideshow%20at%2012fps.%20Here's%20how%20we%20fixed%20it.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Funity-mobile-optimization-webgl-to-android-performance.html" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="blog-share-btn">🐘 Share on Mastodon</a>
+            </div>
+        </footer>
+    </article>
+</body>
+</html>

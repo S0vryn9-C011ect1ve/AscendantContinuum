@@ -5,7 +5,7 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Mar 2026 17:41:33 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2026 17:49:36 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
@@ -35,6 +35,30 @@
       <category><![CDATA[unity]]></category>
       <category><![CDATA[behind-the-scenes]]></category>
       <description><![CDATA[Traditional RPGs hide loading with progress bars, spinning icons, or "tip screens." These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ...]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Addressables and Asset Management at Scale]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/addressables-and-asset-management-at-scale.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/addressables-and-asset-management-at-scale.html</guid>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Tutorial]]></category>
+      <category><![CDATA[tutorial]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[game-dev]]></category>
+      <description><![CDATA[Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets that most players would never see: all fiv...]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Unity Mobile Optimization: WebGL to Android Performance]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/unity-mobile-optimization-webgl-to-android-performance.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/unity-mobile-optimization-webgl-to-android-performance.html</guid>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Tutorial]]></category>
+      <category><![CDATA[tutorial]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[game-dev]]></category>
+      <description><![CDATA[The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting be...]]></description>
     </item>
 
     <item>

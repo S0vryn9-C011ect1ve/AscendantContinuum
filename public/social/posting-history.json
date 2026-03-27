@@ -499,17 +499,75 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 19,
+      "contentId": 101,
+      "contentType": "devUpdate",
+      "hook": "Player feedback changed everything (in a good way).",
+      "topics": [],
+      "timestamp": "2026-03-27T17:48:33.799Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mi2ohlsyc32i"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116302394116998489"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "contentId": 105,
+      "contentType": "devUpdate",
+      "hook": "Sigil sharing just got magical.",
+      "topics": [],
+      "timestamp": "2026-03-27T17:48:49.630Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mi2oi4unbk24"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116302395287401538"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 16,
+    "totalPosts": 18,
     "byPlatform": {
-      "bluesky": 16,
-      "mastodon": 16,
-      "discord": 14
+      "bluesky": 18,
+      "mastodon": 18,
+      "discord": 16
     },
     "byType": {
-      "devUpdate": 7,
+      "devUpdate": 9,
       "devEducation": 5,
       "designPhilosophy": 3,
       "behindScenes": 0,
