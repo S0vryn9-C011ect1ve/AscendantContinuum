@@ -409,17 +409,45 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 16,
+      "contentId": 29,
+      "contentType": "devUpdate",
+      "hook": "This accessibility feature became our best marketing angle.",
+      "timestamp": "2026-03-26T18:01:04.523Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mhy6pf26xr2n"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116296781752707148"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 13,
+    "totalPosts": 14,
     "byPlatform": {
-      "bluesky": 13,
-      "mastodon": 13,
-      "discord": 11
+      "bluesky": 14,
+      "mastodon": 14,
+      "discord": 12
     },
     "byType": {
-      "devUpdate": 5,
+      "devUpdate": 6,
       "devEducation": 4,
       "designPhilosophy": 3,
       "behindScenes": 0,

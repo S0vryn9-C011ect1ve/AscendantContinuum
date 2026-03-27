@@ -55,8 +55,23 @@ const config = {
         behindScenes: 0.10,
     },
     hookRotationDays: 30, // Don't reuse hooks within 30 days
+    contentCooldownDays: 30, // Don't repost same content within 30 days
+    topicCooldownDays: 7, // Spread similar topics apart by 7 days minimum
     postDelay: 2000, // ms between platform posts (rate limiting)
     dryRun: process.env.DRY_RUN === 'true', // Test mode (no actual posting)
+};
+
+// Topic keyword groups for diversity tracking
+const TOPIC_KEYWORDS = {
+    'colorblind-accessibility': ['colorblind', 'colour.?blind', 'color.?blind', 'vision type', 'protanopia', 'deuteranopia', 'tritanopia', 'accessibility mode'],
+    'npc-memory': ['npc', 'game character', 'collective memory', 'collective intelligence'],
+    'moon-phases': ['moon', 'lunar', 'celestial'],
+    'digital-sunset': ['digital sunset', 'rest', 'wellness'],
+    'realms-lore': ['emberforge', 'verdant', 'echo fields', 'dawn', 'lantern', 'realm'],
+    'procedural-generation': ['procedural', 'algorithm-created', 'procedurally'],
+    'monetization': ['monetization', 'pay-to-win', 'dlc', 'cosmetics', 'revenue'],
+    'unity-tech': ['unity profiler', 'webgl', 'draw calls', 'fps', 'shader'],
+    'anti-fomo': ['fomo', 'daily login', 'grind', 'addiction'],
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -126,58 +141,183 @@ export async function runScheduler() {
 // ═══════════════════════════════════════════════════════════════
 
 /**
- * Select content from bank based on rotation rules
+ * Detect topic from content text
+ */
+function detectTopics(content) {
+    const text = `${content.hook} ${content.body}`.toLowerCase();
+    const topics = [];
+
+    for (const [topic, keywords] of Object.entries(TOPIC_KEYWORDS)) {
+        for (const keyword of keywords) {
+            const regex = new RegExp(keyword, 'i');
+            if (regex.test(text)) {
+                topics.push(topic);
+                break; // Only add topic once
+            }
+        }
+    }
+
+    return topics;
+}
+
+/**
+ * Get recent topics from posting history (last N days)
+ */
+function getRecentTopics(postingHistory, days = 7) {
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - days);
+
+    const recentTopics = new Set();
+
+    postingHistory.posts
+        .filter(post => new Date(post.timestamp) > cutoffDate)
+        .forEach(post => {
+            if (post.topics) {
+                post.topics.forEach(topic => recentTopics.add(topic));
+            }
+        });
+
+    return recentTopics;
+}
+
+/**
+ * Calculate days since last use
+ */
+function daysSinceLastUse(lastUsedDate) {
+    if (!lastUsedDate) return Infinity;
+    const lastUsed = new Date(lastUsedDate);
+    const now = new Date();
+    const diffMs = now - lastUsed;
+    return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+}
+
+/**
+ * Select content from bank based on smart rotation rules
  */
 function selectContent(contentBank, postingHistory) {
     const today = new Date().toISOString().split('T')[0];
     const dayOfWeek = new Date().getDay(); // 0 = Sunday, 6 = Saturday
 
-    // Filter: get unused content
-    const unusedContent = contentBank.content.filter(item => !item.used);
+    // Get recently used topics to avoid repetition
+    const recentTopics = getRecentTopics(postingHistory, config.topicCooldownDays);
 
-    if (unusedContent.length === 0) {
-        // All content used, reset the pool
-        console.log('♻️  All content used, resetting pool...');
-        contentBank.content.forEach(item => item.used = false);
-        return selectContent(contentBank, postingHistory); // Recurse with reset pool
+    // Filter: content that hasn't been used recently (30-day cooldown)
+    const availableContent = contentBank.content.filter(item => {
+        const daysSince = daysSinceLastUse(item.lastUsed);
+        return !item.used || daysSince >= config.contentCooldownDays;
+    });
+
+    if (availableContent.length === 0) {
+        console.log('⚠️  All content in cooldown period. Resetting oldest posts...');
+
+        // Reset posts that are past cooldown
+        contentBank.content.forEach(item => {
+            const daysSince = daysSinceLastUse(item.lastUsed);
+            if (daysSince >= config.contentCooldownDays) {
+                item.used = false;
+            }
+        });
+
+        // If still nothing available, force reset everything
+        const stillAvailable = contentBank.content.filter(item => !item.used);
+        if (stillAvailable.length === 0) {
+            console.log('♻️  Force resetting all content (emergency fallback)');
+            contentBank.content.forEach(item => item.used = false);
+            return selectContent(contentBank, postingHistory);
+        }
     }
 
     // Apply time-based content type preferences
     let preferredTypes = [];
 
     if (dayOfWeek >= 1 && dayOfWeek <= 5) {
-        // Weekdays: dev updates
+        // Weekdays: dev updates & education
         preferredTypes = ['devUpdate', 'devEducation'];
     } else {
         // Weekends: philosophy + lore
         preferredTypes = ['designPhilosophy', 'loreSnippet'];
     }
 
-    // Try to get preferred type first
-    let candidates = unusedContent.filter(item => preferredTypes.includes(item.type));
+    // Filter by preferred type first
+    let candidates = availableContent.filter(item => preferredTypes.includes(item.type));
 
-    // If no preferred type available, use any
+    // If no preferred type available, use any available content
     if (candidates.length === 0) {
-        candidates = unusedContent;
+        candidates = availableContent.filter(item => !item.used);
+        if (candidates.length === 0) {
+            candidates = availableContent; // Use anything if nothing unused
+        }
     }
 
-    // Sort by priority (high > medium > low)
-    const priorityOrder = { high: 3, medium: 2, low: 1 };
-    candidates.sort((a, b) => {
-        return (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
+    // Filter out content with recently used topics (avoid topic repetition)
+    const topicDiverseCandidates = candidates.filter(item => {
+        const topics = detectTopics(item);
+        return !topics.some(topic => recentTopics.has(topic));
     });
 
-    // Avoid posting same type as last post (diversity)
+    // If topic filtering removed everything, use original candidates
+    if (topicDiverseCandidates.length > 0) {
+        candidates = topicDiverseCandidates;
+        console.log(`✓ Topic diversity filter: ${topicDiverseCandidates.length} candidates (avoiding: ${Array.from(recentTopics).join(', ')})`);
+    }
+
+    // Avoid posting same type as last post (type diversity)
     const lastPost = postingHistory.posts[postingHistory.posts.length - 1];
     if (lastPost && candidates.length > 1) {
         const differentType = candidates.find(c => c.type !== lastPost.contentType);
         if (differentType) {
-            return differentType;
+            const sameTypeCount = candidates.filter(c => c.type === lastPost.contentType).length;
+            console.log(`✓ Type diversity: avoiding ${lastPost.contentType} (last post)`);
         }
     }
 
+    // Score each candidate based on:
+    // 1. Priority (high = 100, medium = 50, low = 25)
+    // 2. Days since last use (more points for older posts)
+    // 3. Type match bonus (preferred types get +30)
+    const priorityScore = { high: 100, medium: 50, low: 25 };
+
+    const scoredCandidates = candidates.map(item => {
+        let score = 0;
+
+        // Priority score
+        score += priorityScore[item.priority] || 0;
+
+        // Recency score (more points for posts not used recently)
+        const daysSince = daysSinceLastUse(item.lastUsed);
+        if (daysSince === Infinity) {
+            score += 200; // Never used = highest recency bonus
+        } else {
+            score += Math.min(daysSince * 5, 150); // Cap at 150 points
+        }
+
+        // Type match bonus
+        if (preferredTypes.includes(item.type)) {
+            score += 30;
+        }
+
+        // Avoid same type as last post
+        if (lastPost && item.type === lastPost.contentType && candidates.length > 1) {
+            score -= 40;
+        }
+
+        return { item, score };
+    });
+
+    // Sort by score (highest first)
+    scoredCandidates.sort((a, b) => b.score - a.score);
+
+    // Debug log top 3 candidates
+    console.log('\n📊 Top candidates:');
+    scoredCandidates.slice(0, 3).forEach((candidate, i) => {
+        const daysSince = daysSinceLastUse(candidate.item.lastUsed);
+        const daysSinceStr = daysSince === Infinity ? 'never' : `${daysSince}d ago`;
+        console.log(`   ${i + 1}. [Score: ${candidate.score}] #${candidate.item.id} - ${candidate.item.hook.substring(0, 50)}... (${candidate.item.type}, priority: ${candidate.item.priority}, last: ${daysSinceStr})`);
+    });
+    console.log('');
+
     // Return top candidate
-    return candidates[0];
+    return scoredCandidates[0]?.item || null;
 }
 
 /**
@@ -311,11 +451,15 @@ function updateContentBank(contentBank, contentId) {
  * Log posting results to history
  */
 function logPostingHistory(history, content, results) {
+    // Detect topics for this post
+    const topics = detectTopics(content);
+
     const post = {
         id: history.posts.length + 1,
         contentId: content.id,
         contentType: content.type,
         hook: content.hook,
+        topics: topics, // Track topics for diversity
         timestamp: new Date().toISOString(),
         platforms: results.map(r => r.platform),
         results: results.map(r => ({

@@ -746,7 +746,7 @@ namespace AscendantContinuum.Editor
             {
                 var root = GetOrCreateSceneRoot(scene, "[ Verdant Gameplay ]");
                 garden = GetOrAdd<VerdantGarden>(root);
-                GetOrAdd<AscendantContinuum.Verdant.VerdantController>(root);
+                GetOrAdd<AscendantContinuum.Realms.Verdant.VerdantController>(root);
                 Debug.Log("[RealmPrefabBuilder] Scaffolded Verdant gameplay root.");
             }
             SetPrefabField(garden, "plantPrefab", plantPrefab);
@@ -775,7 +775,7 @@ namespace AscendantContinuum.Editor
             {
                 var root = GetOrCreateSceneRoot(scene, "[ EchoFields Gameplay ]");
                 tracer = GetOrAdd<ConstellationTracer>(root);
-                GetOrAdd<AscendantContinuum.EchoFields.EchoFieldsController>(root);
+                GetOrAdd<AscendantContinuum.Realms.EchoFields.EchoFieldsController>(root);
                 // Create secret-tagged helpers for moon-phase accessibility
                 CreateTaggedChild(root, "[ NewMoon Secret ]", "NewMoonSecret");
                 CreateTaggedChild(root, "[ FullMoon Secret ]", "FullMoonSecret");

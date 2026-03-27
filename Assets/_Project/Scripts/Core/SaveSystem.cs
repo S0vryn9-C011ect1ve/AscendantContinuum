@@ -215,12 +215,14 @@ namespace AscendantContinuum.Core
 
                 // Compare timestamps: keep the more recent save
                 bool cloudNewer = false;
+                DateTime cloudTime = DateTime.MinValue;
+                DateTime localTime = DateTime.MinValue;
                 bool cloudHasTime = !string.IsNullOrEmpty(cloudData.lastSaveTime) &&
                     DateTime.TryParse(cloudData.lastSaveTime, null,
-                        System.Globalization.DateTimeStyles.RoundtripKind, out var cloudTime);
+                        System.Globalization.DateTimeStyles.RoundtripKind, out cloudTime);
                 bool localHasTime = !string.IsNullOrEmpty(currentPlayerData.lastSaveTime) &&
                     DateTime.TryParse(currentPlayerData.lastSaveTime, null,
-                        System.Globalization.DateTimeStyles.RoundtripKind, out var localTime);
+                        System.Globalization.DateTimeStyles.RoundtripKind, out localTime);
 
                 if (cloudHasTime && localHasTime)
                     cloudNewer = cloudTime > localTime;
