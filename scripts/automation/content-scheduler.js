@@ -192,6 +192,24 @@ function daysSinceLastUse(lastUsedDate) {
 }
 
 /**
+ * Get content IDs that have been posted recently (within cooldown period)
+ */
+function getRecentlyPostedIds(postingHistory, days) {
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - days);
+
+    const recentIds = new Set();
+
+    postingHistory.posts
+        .filter(post => new Date(post.timestamp) > cutoffDate)
+        .forEach(post => {
+            recentIds.add(post.contentId);
+        });
+
+    return recentIds;
+}
+
+/**
  * Select content from bank based on smart rotation rules
  */
 function selectContent(contentBank, postingHistory) {
@@ -201,30 +219,49 @@ function selectContent(contentBank, postingHistory) {
     // Get recently used topics to avoid repetition
     const recentTopics = getRecentTopics(postingHistory, config.topicCooldownDays);
 
-    // Filter: content that hasn't been used recently (30-day cooldown)
+    // Get content IDs posted recently (source of truth: posting history, not content-bank)
+    const recentlyPostedIds = getRecentlyPostedIds(postingHistory, config.contentCooldownDays);
+
+    console.log(`🚫 Recently posted (last ${config.contentCooldownDays} days): ${recentlyPostedIds.size} posts excluded`);
+
+    // Filter: content that hasn't been posted in the last 30 days
     const availableContent = contentBank.content.filter(item => {
-        const daysSince = daysSinceLastUse(item.lastUsed);
-        return !item.used || daysSince >= config.contentCooldownDays;
+        return !recentlyPostedIds.has(item.id);
     });
 
     if (availableContent.length === 0) {
-        console.log('⚠️  All content in cooldown period. Resetting oldest posts...');
+        console.log('⚠️  All content posted within last 30 days!');
+        console.log('♻️  Resetting cooldown - will select least recently posted content');
 
-        // Reset posts that are past cooldown
-        contentBank.content.forEach(item => {
-            const daysSince = daysSinceLastUse(item.lastUsed);
-            if (daysSince >= config.contentCooldownDays) {
-                item.used = false;
+        // Find the oldest post from history
+        const postDates = new Map();
+        postingHistory.posts.forEach(post => {
+            const existingDate = postDates.get(post.contentId);
+            const postDate = new Date(post.timestamp);
+            if (!existingDate || postDate > existingDate) {
+                postDates.set(post.contentId, postDate);
             }
         });
 
-        // If still nothing available, force reset everything
-        const stillAvailable = contentBank.content.filter(item => !item.used);
-        if (stillAvailable.length === 0) {
-            console.log('♻️  Force resetting all content (emergency fallback)');
-            contentBank.content.forEach(item => item.used = false);
-            return selectContent(contentBank, postingHistory);
-        }
+        // Get all content sorted by how long ago it was posted
+        const allContentWithDates = contentBank.content.map(item => {
+            const lastPosted = postDates.get(item.id);
+            const daysSince = lastPosted
+                ? Math.floor((new Date() - lastPosted) / (1000 * 60 * 60 * 24))
+                : Infinity;
+            return { item, daysSince, lastPosted };
+        });
+
+        // Sort by oldest first
+        allContentWithDates.sort((a, b) => b.daysSince - a.daysSince);
+
+        console.log(`   Selecting from posts not used in ${allContentWithDates[0].daysSince}+ days`);
+
+        // Use the 10 oldest posts as available pool
+        return selectContent(
+            { ...contentBank, content: allContentWithDates.slice(0, 10).map(x => x.item) },
+            postingHistory
+        );
     }
 
     // Apply time-based content type preferences
@@ -243,10 +280,7 @@ function selectContent(contentBank, postingHistory) {
 
     // If no preferred type available, use any available content
     if (candidates.length === 0) {
-        candidates = availableContent.filter(item => !item.used);
-        if (candidates.length === 0) {
-            candidates = availableContent; // Use anything if nothing unused
-        }
+        candidates = availableContent; // Use all available content
     }
 
     // Filter out content with recently used topics (avoid topic repetition)
@@ -273,9 +307,19 @@ function selectContent(contentBank, postingHistory) {
 
     // Score each candidate based on:
     // 1. Priority (high = 100, medium = 50, low = 25)
-    // 2. Days since last use (more points for older posts)
+    // 2. Days since last post (from posting history - more points for older posts)
     // 3. Type match bonus (preferred types get +30)
     const priorityScore = { high: 100, medium: 50, low: 25 };
+
+    // Build map of content ID -> last posted date
+    const lastPostedMap = new Map();
+    postingHistory.posts.forEach(post => {
+        const existing = lastPostedMap.get(post.contentId);
+        const postDate = new Date(post.timestamp);
+        if (!existing || postDate > existing) {
+            lastPostedMap.set(post.contentId, postDate);
+        }
+    });
 
     const scoredCandidates = candidates.map(item => {
         let score = 0;
@@ -283,11 +327,12 @@ function selectContent(contentBank, postingHistory) {
         // Priority score
         score += priorityScore[item.priority] || 0;
 
-        // Recency score (more points for posts not used recently)
-        const daysSince = daysSinceLastUse(item.lastUsed);
-        if (daysSince === Infinity) {
-            score += 200; // Never used = highest recency bonus
+        // Recency score (more points for posts not posted recently)
+        const lastPosted = lastPostedMap.get(item.id);
+        if (!lastPosted) {
+            score += 200; // Never posted = highest recency bonus
         } else {
+            const daysSince = Math.floor((new Date() - lastPosted) / (1000 * 60 * 60 * 24));
             score += Math.min(daysSince * 5, 150); // Cap at 150 points
         }
 
@@ -301,7 +346,7 @@ function selectContent(contentBank, postingHistory) {
             score -= 40;
         }
 
-        return { item, score };
+        return { item, score, lastPosted };
     });
 
     // Sort by score (highest first)
@@ -310,7 +355,9 @@ function selectContent(contentBank, postingHistory) {
     // Debug log top 3 candidates
     console.log('\n📊 Top candidates:');
     scoredCandidates.slice(0, 3).forEach((candidate, i) => {
-        const daysSince = daysSinceLastUse(candidate.item.lastUsed);
+        const daysSince = candidate.lastPosted
+            ? Math.floor((new Date() - candidate.lastPosted) / (1000 * 60 * 60 * 24))
+            : Infinity;
         const daysSinceStr = daysSince === Infinity ? 'never' : `${daysSince}d ago`;
         console.log(`   ${i + 1}. [Score: ${candidate.score}] #${candidate.item.id} - ${candidate.item.hook.substring(0, 50)}... (${candidate.item.type}, priority: ${candidate.item.priority}, last: ${daysSinceStr})`);
     });
