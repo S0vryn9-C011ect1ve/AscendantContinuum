@@ -80,17 +80,29 @@
       ],
       "themeName": "Behind the Scenes",
       "excerpt": "Building The Ascendant Continuum completely solo—programming, art, audio, design. Zero budget. Just me, GitHub Copilot Pro Plus, online courses, and creative determination. Here's what I've learned about tr..."
+    },
+    {
+      "title": "Building Accessibility-First Gameplay: Color as Discovery",
+      "slug": "building-accessibility-first-gameplay-color-as-discovery",
+      "date": "2026-03-27",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Dev Diary",
+      "excerpt": "Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these..."
     }
   ],
   "stats": {
-    "totalPosts": 6,
+    "totalPosts": 7,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 1,
       "Behind the Scenes": 2,
       "Tutorial": 1,
       "Design Philosophy": 1,
-      "Dev Diary": 1,
+      "Dev Diary": 2,
       "Community Insight": 1
     },
     "byTag": {
@@ -104,17 +116,17 @@
       "game-design": 2,
       "technical": 1,
       "innovation": 1,
-      "behind-the-scenes": 2,
+      "behind-the-scenes": 3,
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
       "tutorial": 1,
-      "unity": 2,
+      "unity": 3,
       "game-dev": 1,
       "ethics": 1,
       "philosophy": 1,
-      "development": 2,
+      "development": 3,
       "community": 1,
       "player-stories": 1,
       "updates": 1,

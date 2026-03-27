@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.firebaseapp.com/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Mar 2026 14:01:23 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2026 14:01:47 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.firebaseapp.com/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.firebaseapp.com/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.firebaseapp.com/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Building Accessibility-First Gameplay: Color as Discovery]]></title>
+      <link>https://ascendant-continuum.firebaseapp.com/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.firebaseapp.com/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html</guid>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
@@ -22,7 +34,7 @@
       <category><![CDATA[development]]></category>
       <category><![CDATA[team]]></category>
       <category><![CDATA[process]]></category>
-      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
+      <description><![CDATA[Building The Ascendant Continuum completely solo—programming, art, audio, design. Zero budget. Just me, GitHub Copilot Pro Plus, online courses, and creative determination. Here's what I've learned about tr...]]></description>
     </item>
 
     <item>
