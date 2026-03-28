@@ -128,17 +128,29 @@
       ],
       "themeName": "Tutorial",
       "excerpt": "The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting be..."
+    },
+    {
+      "title": "Realm Transitions: Seamless World-Hopping",
+      "slug": "realm-transitions-seamless-world-hopping",
+      "date": "2026-03-28",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Dev Diary",
+      "excerpt": "Traditional RPGs hide loading with progress bars, spinning icons, or \"tip screens.\" These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ..."
     }
   ],
   "stats": {
-    "totalPosts": 10,
+    "totalPosts": 11,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 1,
       "Behind the Scenes": 2,
       "Tutorial": 3,
       "Design Philosophy": 1,
-      "Dev Diary": 3,
+      "Dev Diary": 4,
       "Community Insight": 1
     },
     "byTag": {
@@ -152,17 +164,17 @@
       "game-design": 2,
       "technical": 1,
       "innovation": 1,
-      "behind-the-scenes": 4,
+      "behind-the-scenes": 5,
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
       "tutorial": 3,
-      "unity": 6,
+      "unity": 7,
       "game-dev": 3,
       "ethics": 1,
       "philosophy": 1,
-      "development": 4,
+      "development": 5,
       "community": 1,
       "player-stories": 1,
       "updates": 1,

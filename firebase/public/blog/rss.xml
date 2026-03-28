@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Mar 2026 17:49:36 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2026 14:01:15 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Realm Transitions: Seamless World-Hopping]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/realm-transitions-seamless-world-hopping.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/realm-transitions-seamless-world-hopping.html</guid>
+      <pubDate>Sat, 28 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Traditional RPGs hide loading with progress bars, spinning icons, or "tip screens." These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Building Accessibility-First Gameplay: Color as Discovery]]></title>
