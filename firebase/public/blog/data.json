@@ -141,16 +141,29 @@
       ],
       "themeName": "Technical Deep Dive",
       "excerpt": "What if NPCs remembered not just YOUR actions, but the collective actions of every player who's ever interacted with them? Here's how we built a shared memory system that makes game characters feel truly alive."
+    },
+    {
+      "title": "Sigil Crafting System: Discovering and Naming Rituals",
+      "slug": "sigil-crafting-system-discovering-and-naming-rituals",
+      "date": "2026-03-29",
+      "tags": [
+        "game-design",
+        "community",
+        "systems",
+        "social"
+      ],
+      "themeName": "Design Philosophy",
+      "excerpt": "What if the first player to discover a sigil combination gets to name it globally for everyone? A deep dive into our community-driven crafting system where your discoveries become permanent legacies."
     }
   ],
   "stats": {
-    "totalPosts": 11,
+    "totalPosts": 12,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 2,
       "Behind the Scenes": 2,
       "Tutorial": 3,
-      "Design Philosophy": 1,
+      "Design Philosophy": 2,
       "Dev Diary": 3,
       "Community Insight": 1
     },
@@ -162,7 +175,7 @@
       "bootstrap": 1,
       "accessibility": 1,
       "colorblind": 1,
-      "game-design": 2,
+      "game-design": 3,
       "technical": 1,
       "innovation": 2,
       "behind-the-scenes": 3,
@@ -176,6 +189,9 @@
       "ethics": 1,
       "philosophy": 1,
       "ai": 1,
+      "community": 1,
+      "systems": 1,
+      "social": 1,
       "development": 6,
       "community": 1,
       "player-stories": 1,

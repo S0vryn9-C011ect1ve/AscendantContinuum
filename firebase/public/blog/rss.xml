@@ -5,7 +5,7 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Mar 2026 18:07:19 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 29 Mar 2026 18:37:09 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
@@ -24,6 +24,19 @@
       <category><![CDATA[ai]]></category>
       <category><![CDATA[innovation]]></category>
       <description><![CDATA[What if NPCs remembered not just YOUR actions, but the collective actions of every player who's ever interacted with them? Here's how we built a shared memory system that makes game characters feel truly alive.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Sigil Crafting System: Discovering and Naming Rituals]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/sigil-crafting-system-discovering-and-naming-rituals.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/sigil-crafting-system-discovering-and-naming-rituals.html</guid>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[community]]></category>
+      <category><![CDATA[systems]]></category>
+      <category><![CDATA[social]]></category>
+      <description><![CDATA[What if the first player to discover a sigil combination gets to name it globally for everyone? A deep dive into our community-driven crafting system where your discoveries become permanent legacies.]]></description>
     </item>
 
     <item>
