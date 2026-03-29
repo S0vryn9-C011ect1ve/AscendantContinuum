@@ -178,17 +178,7 @@
                 "mastodon",
                 "discord"
             ],
-            "content": "Screenshot Saturday incoming! 📸\n\nThis week: Accessibility secrets revealed in different colorblind modes.\n\nProtanopia players, you'll recognize the Crimson Veil runes.\n\n#ScreenshotSaturday #IndieGame #Accessibility"
-        },
-        {
-            "id": "community-2",
-            "category": "community",
-            "platforms": [
-                "bluesky",
-                "mastodon",
-                "discord"
-            ],
-            "content": "Looking for beta testers with:\n\n• Colorblind modes (any type)\n• Screen reader experience\n• Motion sensitivity\n• ADHD/Autism/Dyslexia\n\nYour accessibility needs = your expertise.\n\nDM if interested!\n\n#BetaTesting #Accessibility #IndieGameDev"
+            "content": "Screenshot Saturday incoming! 📸\n\nThis week: Accessibility secrets revealed in different colorblind modes.\n\nProtanopia mode shows hidden runes. Deuteranopia reveals emerald text.\n\n#ScreenshotSaturday #IndieGame #Accessibility"
         },
         {
             "id": "technical-1",
@@ -229,16 +219,6 @@
                 "discord"
             ],
             "content": "This week's accomplishments:\n\n• Created 4 new blog posts about real game systems\n• Documented daily challenge adaptation\n• Explained accessibility secrets implementation\n• Shared playstyle personalization mechanics\n• Detailed ethical battle pass design\n\n#IndieGameDev #Transparency"
-        },
-        {
-            "id": "appreciation-1",
-            "category": "community",
-            "platforms": [
-                "bluesky",
-                "mastodon",
-                "discord"
-            ],
-            "content": "Shout-out to disabled players who've been giving feedback.\n\nYour lived experience is invaluable. You're not testers—you're co-designers.\n\nThis game wouldn't exist without your perspectives.\n\n🙏\n\n#Accessibility #GameDev #Community"
         },
         {
             "id": "appreciation-2",
@@ -328,21 +308,50 @@
                 "mastodon",
                 "discord"
             ],
-            "content": "Alpha release timeline:\n\n📅 Q2 2026: Closed alpha (accessibility testers)\n📅 Q3 2026: Open beta (WebGL)\n📅 Q4 2026: Android launch\n📅 Q1 2027: iOS launch\n\nSlow, intentional, community-driven.\n\n#IndieGameDev #Roadmap"
+            "content": "Development roadmap:\n\n📅 Q2 2026: Alpha build (solo testing)\n📅 Q3 2026: Beta (WebGL)\n📅 Q4 2026: Android launch\n📅 Q1 2027: iOS launch\n\nSlow, intentional, solo-built.\n\n#IndieGameDev #Roadmap"
+        },
+        {
+            "id": "founders-echo-1",
+            "category": "feature",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "Launch-day players get \"Founder's Echo\" sigils.\n\nNot for money.\nNot for skill.\nFor being there first.\n\nYour rituals become permanent lore.\nFuture players discover YOUR creations.\n\nParticipation > Performance.\n\n#IndieGame #Community"
+        },
+        {
+            "id": "founders-echo-2",
+            "category": "feature",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "Early player rituals = archaeological discoveries for others.\n\nLaunch-day = Founder status.\nYour sigils = permanent universe lore.\n\nLegacy without leaderboards.\nContribution without competition.\n\n#GameDev #PlayerLegacy"
+        },
+        {
+            "id": "founders-echo-3",
+            "category": "values",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "Most games: you're player #482,391.\n\nUs: Your rituals become fossils. NPCs remember you. Launch-day = Founder status. Your choices shape future experiences.\n\nEvery player visible. Forever.\n\n#IndieGameDev #CommunityFirst"
         }
     ],
     "metadata": {
         "totalPosts": 34,
         "categories": {
-            "feature": 10,
+            "feature": 12,
             "ethics": 2,
-            "values": 5,
+            "values": 6,
             "development": 7,
-            "community": 4,
+            "community": 2,
             "engagement": 2,
             "technical": 2,
             "marketing": 2
-        },
-        "lastUpdated": "2026-03-29"
+        }
     }
 }
