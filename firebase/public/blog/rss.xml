@@ -5,7 +5,7 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Mar 2026 18:37:09 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 29 Mar 2026 18:54:54 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
@@ -37,6 +37,66 @@
       <category><![CDATA[systems]]></category>
       <category><![CDATA[social]]></category>
       <description><![CDATA[What if the first player to discover a sigil combination gets to name it globally for everyone? A deep dive into our community-driven crafting system where your discoveries become permanent legacies.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Daily Challenges: Accessibility-First Design]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/daily-challenges-accessibility-first-design.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/daily-challenges-accessibility-first-design.html</guid>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[accessibility]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[daily-challenges]]></category>
+      <category><![CDATA[inclusive-design]]></category>
+      <category><![CDATA[technical]]></category>
+      <description><![CDATA[How Ascendant Continuum's daily challenges adapt to your accessibility settings, creating fair and meaningful goals for every player. Reduced motion mode? You get meditation challenges instead of speed runs.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Accessibility Secrets: Hidden Content for Every Vision]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/accessibility-secrets-hidden-content-for-every-vision.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/accessibility-secrets-hidden-content-for-every-vision.html</guid>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[accessibility]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[secrets]]></category>
+      <category><![CDATA[colorblind]]></category>
+      <category><![CDATA[inclusive-design]]></category>
+      <category><![CDATA[screen-reader]]></category>
+      <category><![CDATA[neurodivergent]]></category>
+      <description><![CDATA[Different colorblind modes, screen readers, and accessibility settings reveal completely different secrets. Protanopia reveals Crimson Veil runes. Deuteranopia unlocks Emerald Mysteries. Your accessibility needs are your superpower.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Your Playstyle Shapes Your Sigil: Behavioral Personalization]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/your-playstyle-shapes-your-sigil.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/your-playstyle-shapes-your-sigil.html</guid>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Technical Deep Dive]]></category>
+      <category><![CDATA[personalization]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[behavioral-analytics]]></category>
+      <category><![CDATA[player-identity]]></category>
+      <category><![CDATA[technical]]></category>
+      <category><![CDATA[sigils]]></category>
+      <description><![CDATA[The game tracks how you play—your pace, favorite realms, interaction patterns—then generates a personal sigil that reflects your unique playstyle. Morning player? Explorer? Speedrunner? The game knows.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Battle Pass Without FOMO: Ethical Seasonal Content]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/battle-pass-without-fomo.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/battle-pass-without-fomo.html</guid>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[monetization]]></category>
+      <category><![CDATA[ethics]]></category>
+      <category><![CDATA[battle-pass]]></category>
+      <category><![CDATA[seasonal-content]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[anti-fomo]]></category>
+      <description><![CDATA[A 9-week seasonal battle pass with zero FOMO, no gameplay advantages, and rewards that return in future seasons. Cosmetics only. Parental spending caps. A battle pass designed for players, not profits.]]></description>
     </item>
 
     <item>
