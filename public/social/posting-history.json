@@ -557,21 +557,141 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 21,
+      "contentId": 107,
+      "contentType": "devUpdate",
+      "hook": "The feature everyone requested is finally here.",
+      "topics": [],
+      "timestamp": "2026-03-27T18:14:11.864Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mi2pvetoeh2l"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116302494811622783"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "contentId": 19,
+      "contentType": "designPhilosophy",
+      "hook": "What if every player mattered? Like, actually mattered?",
+      "topics": [
+        "npc-memory"
+      ],
+      "timestamp": "2026-03-28T18:00:10.810Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mi57lhlaep2n"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116308102487797090"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "contentId": 148,
+      "contentType": "loreSnippet",
+      "hook": "Daily Constellation Challenge connects everyone",
+      "topics": [
+        "procedural-generation"
+      ],
+      "timestamp": "2026-03-29T18:03:43.612Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mi7q7sq3st2y"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116313776736766259"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "contentId": 71,
+      "contentType": "designPhilosophy",
+      "hook": "Games don't have to manipulate players to succeed.",
+      "topics": [],
+      "timestamp": "2026-03-29T18:04:40.177Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mi7qbj2adz2j"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116313780463541154"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 18,
+    "totalPosts": 22,
     "byPlatform": {
-      "bluesky": 18,
-      "mastodon": 18,
-      "discord": 16
+      "bluesky": 22,
+      "mastodon": 22,
+      "discord": 20
     },
     "byType": {
-      "devUpdate": 9,
+      "devUpdate": 10,
       "devEducation": 5,
-      "designPhilosophy": 3,
+      "designPhilosophy": 5,
       "behindScenes": 0,
-      "loreSnippet": 1
+      "loreSnippet": 2
     }
   },
   "meta": {
