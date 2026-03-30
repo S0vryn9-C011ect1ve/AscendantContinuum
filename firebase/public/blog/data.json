@@ -202,6 +202,18 @@
       ],
       "themeName": "Design Philosophy",
       "excerpt": "A 9-week seasonal battle pass with zero FOMO, no gameplay advantages, and rewards that return in future seasons. Cosmetics only. Parental spending caps. A battle pass designed for players, not profits."
+    },
+    {
+      "title": "Solo Development Lessons: Building a Game Alone",
+      "slug": "solo-development-lessons-building-a-game-alone",
+      "date": "2026-03-30",
+      "tags": [
+        "development",
+        "team",
+        "process"
+      ],
+      "themeName": "Behind the Scenes",
+      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
     }
   ],
   "stats": {
@@ -209,7 +221,7 @@
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 3,
-      "Behind the Scenes": 2,
+      "Behind the Scenes": 3,
       "Tutorial": 3,
       "Design Philosophy": 5,
       "Dev Diary": 3,
@@ -240,11 +252,11 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 6,
+      "development": 7,
       "player-stories": 1,
       "updates": 1,
-      "team": 2,
-      "process": 2,
+      "team": 3,
+      "process": 3,
       "daily-challenges": 1,
       "inclusive-design": 2,
       "secrets": 1,

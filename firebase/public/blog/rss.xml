@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Mar 2026 18:54:54 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 14:03:22 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Behind the Scenes]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[team]]></category>
+      <category><![CDATA[process]]></category>
+      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[NPCs That Remember: Collective Memory Across Sessions]]></title>
@@ -145,18 +157,6 @@
       <category><![CDATA[unity]]></category>
       <category><![CDATA[game-dev]]></category>
       <description><![CDATA[The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting be...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
-      <pubDate>Wed, 25 Mar 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Behind the Scenes]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[team]]></category>
-      <category><![CDATA[process]]></category>
-      <description><![CDATA[Building The Ascendant Continuum completely solo—programming, art, audio, design. Zero budget. Just me, GitHub Copilot Pro Plus, online courses, and creative determination. Here's what I've learned about tr...]]></description>
     </item>
 
     <item>
