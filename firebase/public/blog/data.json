@@ -70,18 +70,6 @@
       "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
     },
     {
-      "title": "Solo Development Lessons: Building a Game Alone",
-      "slug": "solo-development-lessons-building-a-game-alone",
-      "date": "2026-03-25",
-      "tags": [
-        "development",
-        "team",
-        "process"
-      ],
-      "themeName": "Behind the Scenes",
-      "excerpt": "Building The Ascendant Continuum completely solo—programming, art, audio, design. Zero budget. Just me, GitHub Copilot Pro Plus, online courses, and creative determination. Here's what I've learned about tr..."
-    },
-    {
       "title": "Building Accessibility-First Gameplay: Color as Discovery",
       "slug": "building-accessibility-first-gameplay-color-as-discovery",
       "date": "2026-03-27",
