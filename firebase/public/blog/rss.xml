@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Mar 2026 14:03:22 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2026 14:02:14 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[State Management with ScriptableObjects]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html</guid>
+      <pubDate>Tue, 31 Mar 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Tutorial]]></category>
+      <category><![CDATA[tutorial]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[game-dev]]></category>
+      <description><![CDATA[Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>

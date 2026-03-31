@@ -214,15 +214,27 @@
       ],
       "themeName": "Behind the Scenes",
       "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
+    },
+    {
+      "title": "State Management with ScriptableObjects",
+      "slug": "state-management-with-scriptableobjects",
+      "date": "2026-03-31",
+      "tags": [
+        "tutorial",
+        "unity",
+        "game-dev"
+      ],
+      "themeName": "Tutorial",
+      "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play..."
     }
   ],
   "stats": {
-    "totalPosts": 16,
+    "totalPosts": 17,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 3,
       "Behind the Scenes": 3,
-      "Tutorial": 3,
+      "Tutorial": 4,
       "Design Philosophy": 5,
       "Dev Diary": 3,
       "Community Insight": 1
@@ -243,9 +255,9 @@
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
-      "tutorial": 3,
-      "unity": 7,
-      "game-dev": 3,
+      "tutorial": 4,
+      "unity": 8,
+      "game-dev": 4,
       "ethics": 2,
       "philosophy": 1,
       "ai": 1,
