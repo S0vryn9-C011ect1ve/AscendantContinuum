@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="How we protected our projects from recent npm supply chain attacks (axios, LiteLLM, LofyGang). Complete guide with 6 protection layers, code examples, and emergency procedures.">
+    <meta property="og:title"
+        content="How We Protected Our Projects from npm Supply Chain Attacks - The Ascendant Continuum">
+    <meta property="og:description"
+        content="Solo developer guide to protecting against axios, LiteLLM, and LofyGang attacks. 6-layer security implementation in 1 hour.">
+    <meta property="og:type" content="article">
+    <meta property="og:url"
+        content="https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html">
+    <meta property="article:published_time" content="2026-04-02">
+    <meta property="article:author" content="The Ascendant Continuum Team">
+    <meta property="article:tag" content="security">
+    <meta property="article:tag" content="npm">
+    <meta property="article:tag" content="development">
+    <meta property="article:tag" content="webdev">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="npm Supply Chain Attack Protection Guide">
+    <meta name="twitter:description"
+        content="How a solo developer protected live users and projects from axios, LiteLLM, and LofyGang attacks in one afternoon.">
+    <title>How We Protected Our Projects from npm Supply Chain Attacks - The Ascendant Continuum Dev Blog</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/images.css">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link rel="canonical"
+        href="https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html">
+    <style>
+        .blog-post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5rem var(--spacing-md) var(--spacing-xl);
+        }
+
+        .blog-nav-breadcrumb {
+            padding-bottom: var(--spacing-md);
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+        }
+
+        .blog-nav-breadcrumb a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+
+        .blog-nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-post-header {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .blog-post-meta {
+            display: flex;
+            gap: var(--spacing-sm);
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .blog-post-tag {
+            background: rgba(255, 107, 107, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #ff6b6b;
+        }
+
+        .blog-post-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blog-post-hook {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 4px solid #ff6b6b;
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+
+        .blog-post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-light);
+        }
+
+        .blog-post-content h2 {
+            font-size: 1.75rem;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
+        }
+
+        .blog-post-content h3 {
+            font-size: 1.4rem;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-secondary);
+        }
+
+        .blog-post-content p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .blog-post-content ul,
+        .blog-post-content ol {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-lg);
+        }
+
+        .blog-post-content li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .blog-post-content pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .blog-post-content code {
+            font-family: 'Courier New', monospace;
+            background: rgba(78, 205, 196, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .blog-post-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .blog-post-content blockquote {
+            border-left: 4px solid var(--color-secondary);
+            padding-left: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+            font-style: italic;
+            color: var(--color-secondary);
+        }
+
+        .blog-post-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--spacing-md) 0;
+        }
+
+        .blog-post-content th,
+        .blog-post-content td {
+            padding: var(--spacing-sm);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+
+        .blog-post-content th {
+            background: rgba(78, 205, 196, 0.2);
+            font-weight: bold;
+        }
+
+        .warning-box {
+            background: rgba(255, 107, 107, 0.1);
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .success-box {
+            background: rgba(78, 205, 196, 0.1);
+            border: 2px solid rgba(78, 205, 196, 0.3);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .blog-post-footer {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blog-post-container">
+        <div class="blog-nav-breadcrumb">
+            <a href="../../index.html">Home</a> / <a href="../index.html">Blog</a> / npm Supply Chain Security
+        </div>
+
+        <article class="blog-post-header">
+            <h1 class="blog-post-title">How We Protected Our Projects from the Latest npm Supply Chain Attacks (And How
+                You Can Too)</h1>
+            <div class="blog-post-meta">
+                <span>📅 April 2, 2026</span>
+                <span>⏱️ 12 min read</span>
+                <span class="blog-post-tag">🔒 Security</span>
+                <span class="blog-post-tag">npm</span>
+                <span class="blog-post-tag">Web Development</span>
+            </div>
+            <div class="blog-post-hook">
+                🚨 Three major npm packages were compromised this week. Here's how we protected our live beta testers
+                and projects in one afternoon—and how you can implement the same 6-layer security stack in under an
+                hour.
+            </div>
+        </article>
+
+        <div class="blog-post-content">
+            <h2>The Wake-Up Call</h2>
+            <p>Over the past few days, scary news has been breaking in the developer community: <strong>three major npm
+                    packages were compromised</strong> within 48 hours. As a solo indie developer working on multiple
+                projects, I knew I had to act fast.</p>
+
+            <p><strong>Context:</strong> I'm a one-person operation running two projects:</p>
+            <ul>
+                <li><strong><a href="https://3mpwrapp.pages.dev/" target="_blank" rel="noopener">3mpwrApp</a></strong> -
+                    A social justice advocacy platform with <strong>live beta testers</strong> (real users depending on
+                    it)</li>
+                <li><strong>Ascendant Continuum</strong> - My social card game project (currently just me testing)</li>
+            </ul>
+
+            <p><strong>My priority?</strong> Protect 3mpwrApp first. Live users trump solo development every time. Once
+                I confirmed 3mpwrApp was secure, I applied the same protections to Ascendant Continuum. This blog post
+                covers what I learned from securing both projects.</p>
+
+            <p>The compromised packages included:</p>
+            <ul>
+                <li><strong>axios</strong> (1.14.1 and 0.30.4) - One of the most popular HTTP clients, downloaded
+                    millions of times weekly</li>
+                <li><strong>LiteLLM</strong> (1.82.7 and 1.82.8) - An AI library that was silently stealing credentials
+                </li>
+                <li><strong>separadordeinfocc</strong> - A brand new malware package from the "LofyGang" group</li>
+            </ul>
+
+            <p>If you're a developer using npm, you're potentially at risk. <strong>Here's what I did to protect my
+                    projects, and how you can do the same—even if you're not a security expert.</strong></p>
+
+            <h2>What Are Supply Chain Attacks? (In Plain English)</h2>
+            <p>Imagine you're building a house. Instead of making every brick yourself, you buy pre-made bricks from
+                suppliers. A <strong>supply chain attack</strong> is when someone sneaks a fake brick into the supply
+                chain—one that looks normal but has a hidden camera or tracking device inside.</p>
+
+            <p>In software development, we use "packages" (reusable code libraries) instead of bricks. When attackers
+                compromise these packages, they can:</p>
+            <ul>
+                <li>Steal your passwords and API keys</li>
+                <li>Send your data to their servers</li>
+                <li>Install backdoors in your app</li>
+                <li>Access your users' information</li>
+            </ul>
+
+            <p><strong>The scary part?</strong> You didn't write the malicious code—you just installed it thinking it
+                was safe.</p>
+
+            <h2>The Attacks That Happened This Week</h2>
+
+            <h3>1. axios: The Trojan Horse HTTP Client</h3>
+            <p><strong>What happened:</strong> On March 31, 2026, attackers published two compromised versions of axios
+                (1.14.1 and 0.30.4) containing malicious dependencies.</p>
+
+            <p><strong>Timeline:</strong></p>
+            <ul>
+                <li>15:10 UTC - Attackers registered domains specifically for the attack</li>
+                <li>16:00 UTC - Compromised axios versions published</li>
+                <li>16:30 UTC - Security researchers detected the malware</li>
+                <li>18:00 UTC - Packages removed from npm</li>
+            </ul>
+
+            <p><strong>The danger:</strong> axios is used in millions of projects. If you ran
+                <code>npm install axios</code> during that two-hour window, you could have been compromised.</p>
+
+            <h3>2. LiteLLM: The Credential Thief</h3>
+            <p><strong>What happened:</strong> Versions 1.82.7 and 1.82.8 of LiteLLM contained a backdoor that
+                exfiltrated host credentials (environment variables, API keys, tokens) to an attacker-controlled server.
+            </p>
+
+            <p><strong>Why it's scary:</strong> Many developers store API keys in environment variables. This malware
+                specifically targeted those.</p>
+
+            <h3>3. separadordeinfocc: The Windows Infostealer</h3>
+            <p><strong>What happened:</strong> A brand new package published April 1, 2026 by the "LofyGang" group. It
+                contains a Windows infostealer that:</p>
+            <ul>
+                <li>Connects to a command-and-control server</li>
+                <li>Steals system information</li>
+                <li>Harvests credentials</li>
+            </ul>
+
+            <p><strong>Current status:</strong> Was still live on npm at time of writing.</p>
+
+            <h2>How I Protected My Projects (6 Layers of Defense)</h2>
+            <p>When I saw these attacks, I spent the day implementing a multi-layered security approach. As a solo
+                developer, I needed something that:</p>
+            <ul>
+                <li>Worked automatically (no manual monitoring)</li>
+                <li>Didn't slow down development</li>
+                <li>Didn't require a security degree to understand</li>
+            </ul>
+
+            <p>Here's what I implemented:</p>
+
+            <div class="success-box">
+                <h3>🛡️ Layer 1: The 7-Day Installation Delay (CRITICAL)</h3>
+                <p><strong>What it does:</strong> Prevents installing any package published less than 7 days ago.</p>
+                <p><strong>Why it works:</strong> Most malicious packages are detected within hours to days. This gives
+                    the security community time to find and report them.</p>
+                <p><strong>How to implement:</strong></p>
+                <pre><code># Add to .npmrc file in your project root
+min-release-age=7</code></pre>
+                <p><strong>Real impact:</strong> All three attacks this week would have been blocked automatically. The
+                    axios compromise was detected in 30 minutes—we would have been safe for 6 days and 23.5 hours.</p>
+            </div>
+
+            <div class="success-box">
+                <h3>🚫 Layer 2: Disable Install Scripts (CRITICAL)</h3>
+                <p><strong>What it does:</strong> Prevents packages from running arbitrary code when you install them.
+                </p>
+                <p><strong>Why it works:</strong> Many attacks use install scripts to execute malware during
+                    <code>npm install</code>.</p>
+                <p><strong>How to implement:</strong></p>
+                <pre><code># Add to .npmrc file
+ignore-scripts=true</code></pre>
+                <p><strong>Trade-off:</strong> Some legitimate packages need install scripts. You can enable them
+                    per-package when needed, but defaults to safe.</p>
+            </div>
+
+            <h3>Layer 3: Use <code>npm ci</code> Instead of <code>npm install</code></h3>
+            <p><strong>What it does:</strong> Installs exact versions from <code>package-lock.json</code> without
+                modifying it.</p>
+            <p><strong>Why it works:</strong> Ensures everyone gets the same, tested versions.</p>
+            <p><strong>How to implement:</strong></p>
+            <pre><code># Instead of this:
+npm install
+
+# Use this:
+npm ci</code></pre>
+
+            <h3>Layer 4: Version Overrides (Force Safe Versions)</h3>
+            <p><strong>What it does:</strong> Forces minimum safe versions for critical packages, even if dependencies
+                try to use older versions.</p>
+            <p><strong>How to implement:</strong></p>
+            <pre><code>// In package.json
+{
+  "overrides": {
+    "axios": ">=1.13.5",
+    "gaxios": ">=6.7.1",
+    "fast-xml-parser": ">=5.5.7"
+  }
+}</code></pre>
+
+            <h3>Layer 5: Weekly Automated Security Scans</h3>
+            <p><strong>What it does:</strong> GitHub Actions runs security audits every Monday and on package.json
+                changes.</p>
+            <p>No manual monitoring needed. Perfect for solo developers. For complete implementation details, see our <a
+                    href="https://github.com/S0vryn9-C011ect1ve/AscendantContinuum/blob/main/docs/security/WEEKLY_SCAN_SETUP.md"
+                    target="_blank" rel="noopener">weekly scan setup guide</a>.</p>
+
+            <h3>Layer 6: Socket.dev Integration (Optional but Recommended)</h3>
+            <p><strong>What it does:</strong> Real-time malware detection and supply chain risk analysis.</p>
+            <pre><code># Install Socket.dev CLI
+npm install -g @socketsecurity/cli
+
+# Scan your project
+socket scan .</code></pre>
+
+            <h2>Quick Start Guide for Other Developers</h2>
+            <p>Want to protect your project right now? Here's the 5-minute version:</p>
+
+            <h3>Step 1: Create <code>.npmrc</code> in your project root</h3>
+            <pre><code># NPM Security Configuration
+
+# Wait 7 days before installing new packages
+min-release-age=7
+
+# Disable install scripts by default
+ignore-scripts=true
+
+# Save exact versions
+save-exact=true
+
+# Keep package-lock strict
+package-lock=true
+
+# Enable auditing
+audit=true
+audit-level=high</code></pre>
+
+            <h3>Step 2: Add security overrides to <code>package.json</code></h3>
+            <pre><code>{
+  "overrides": {
+    "axios": ">=1.13.5",
+    "gaxios": ">=6.7.1",
+    "fast-xml-parser": ">=5.5.7",
+    "flatted": ">=3.4.2"
+  }
+}</code></pre>
+
+            <h3>Step 3: Always commit <code>package-lock.json</code></h3>
+            <pre><code># Make sure it's not in .gitignore
+git add package-lock.json
+git commit -m "chore: Add package-lock.json for security"</code></pre>
+
+            <h3>Step 4: Use <code>npm ci</code> for installations</h3>
+            <pre><code># In your README (and for yourself on different machines):
+npm ci  # Install dependencies (use this!)
+
+# NOT: npm install</code></pre>
+
+            <h2>Real-World Impact: What I Prevented</h2>
+            <p>Let's talk numbers. Here's what would have happened <strong>without</strong> these protections as a solo
+                developer:</p>
+
+            <h3>Scenario 1: The Busy Developer</h3>
+            <pre><code># Monday morning, updating dependencies
+npm install axios
+
+# Without protection: Gets axios@1.14.1 (compromised) ❌
+# With protection: Install blocked, safe from attack ✅</code></pre>
+
+            <h3>Scenario 2: Future Contributors (When the Project Grows)</h3>
+            <pre><code># When someone eventually contributes, clones repo
+npm install
+
+# Without protection: Could modify package-lock.json ❌
+# With npm ci: Installs exact same versions as me ✅</code></pre>
+
+            <h2>Tools and Resources</h2>
+            <h3>Free Security Tools</h3>
+            <ul>
+                <li><strong>Socket.dev</strong> - Real-time malware detection (free tier available)</li>
+                <li><strong>npm audit</strong> - Built-in vulnerability scanner</li>
+                <li><strong>Dependabot</strong> - GitHub's automated dependency updates</li>
+            </ul>
+
+            <h3>My Documentation</h3>
+            <p>I open-sourced the complete security setup (so you don't have to figure it out yourself):</p>
+            <ul>
+                <li><a href="https://github.com/S0vryn9-C011ect1ve/AscendantContinuum/blob/main/docs/security/SUPPLY_CHAIN_PROTECTION.md"
+                        target="_blank" rel="noopener">Supply Chain Protection Guide</a></li>
+                <li><a href="https://github.com/S0vryn9-C011ect1ve/AscendantContinuum/blob/main/docs/security/WEEKLY_SCAN_SETUP.md"
+                        target="_blank" rel="noopener">Weekly Scan Setup</a></li>
+                <li><a href="https://github.com/S0vryn9-C011ect1ve/AscendantContinuum/blob/main/docs/security/QUICK_REFERENCE.md"
+                        target="_blank" rel="noopener">Quick Reference</a></li>
+            </ul>
+
+            <h2>FAQ</h2>
+            <h3>Q: Should I be worried if I don't code?</h3>
+            <p>A: If you use apps or websites, you're indirectly affected. Encourage the developers of apps you use to
+                implement these protections. Ask: "Do you have supply chain security measures?"</p>
+
+            <h3>Q: Will these protections slow down development?</h3>
+            <p>A: The 7-day delay only affects <em>new</em> packages you're adding. Existing dependencies install
+                normally. As a solo dev rushing to launch, I was worried about this—but it's been a non-issue. Small
+                price for significant security.</p>
+
+            <h3>Q: What if I need a package that's less than 7 days old?</h3>
+            <p>A: You can override the delay for specific installs, but do your research first! Check Socket.dev, review
+                the package code, verify the publisher.</p>
+
+            <h2>Final Thoughts</h2>
+            <p>Yesterday, I was just trying to build cool projects. Today, I spent hours learning about supply chain
+                security because <strong>I had to</strong>.</p>
+
+            <p>But here's the thing: <strong>Security isn't a feature you add later.</strong> It's foundational. Like
+                good architecture or clean code, it's something you build in from the start.</p>
+
+            <p>The good news? It's not as hard as it sounds. With the right tools and practices, even solo developers
+                can protect their projects from sophisticated attacks.</p>
+
+            <p><strong>The million-dollar question:</strong> If you ran <code>npm install</code> today, are you
+                confident nothing malicious got through?</p>
+
+            <p>If you hesitated, start with that <code>.npmrc</code> file. It takes 2 minutes and could save your
+                project.</p>
+
+            <div class="warning-box">
+                <h3>⚠️ Emergency Response Checklist</h3>
+                <p>If you discover you installed a compromised package:</p>
+                <ul>
+                    <li>✅ <strong>Immediately rotate ALL credentials</strong> (API keys, passwords, tokens)</li>
+                    <li>✅ <strong>Review git history</strong> for accidental credential commits</li>
+                    <li>✅ <strong>Scan systems</strong> for malware with updated antivirus</li>
+                    <li>✅ <strong>Check logs</strong> for unauthorized access</li>
+                    <li>✅ <strong>Update package.json overrides</strong> to prevent reinstallation</li>
+                    <li>✅ <strong>Document the incident</strong> for team/stakeholders</li>
+                    <li>✅ <strong>Report to npm</strong> if not already reported</li>
+                    <li>✅ <strong>Share learnings</strong> with the community</li>
+                </ul>
+            </div>
+
+            <h2 style="text-align: center;">Stay Safe Out There</h2>
+            <p>Thanks for reading! If this helped you, please share it with other developers. The more of us
+                implementing these protections, the harder we make it for attackers.</p>
+
+            <p>Got questions or improvements to suggest? Reach out at <a
+                    href="mailto:ascendantcontinuum@gmail.com">ascendantcontinuum@gmail.com</a> or open an issue on our
+                <a href="https://github.com/S0vryn9-C011ect1ve/AscendantContinuum" target="_blank" rel="noopener">GitHub
+                    repo</a>.</p>
+
+            <p><strong>Stay secure, keep building, and remember: Security is a community effort.</strong></p>
+
+            <hr style="margin: 3rem 0; border: none; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+
+            <p style="font-size: 0.9rem; color: var(--color-secondary);"><strong>About the Author:</strong> I'm a solo
+                indie developer running two projects: <a href="https://3mpwrapp.pages.dev/" target="_blank"
+                    rel="noopener">3mpwrApp</a> (a social justice advocacy platform with live beta testers) and
+                Ascendant Continuum (a social card game with AI-powered content automation). Not a security expert—just
+                a developer juggling multiple projects who learned these lessons the hard way (and caffeinated through
+                the panic) so you don't have to.</p>
+
+            <p style="font-size: 0.9rem; color: var(--color-secondary);"><strong>Last Updated:</strong> April 2,
+                2026<br>
+                <strong>Threat Level:</strong> ELEVATED (multiple active supply chain attacks)
+            </p>
+        </div>
+
+        <div class="blog-post-footer">
+            <a href="../index.html" style="color: var(--color-secondary); text-decoration: none; font-size: 1.1rem;">←
+                Back to Blog</a>
+            <div style="margin-top: var(--spacing-md); font-size: 0.9rem; color: var(--color-secondary);">
+                <p>Share this post:</p>
+                <div
+                    style="display: flex; gap: var(--spacing-sm); justify-content: center; margin-top: var(--spacing-sm);">
+                    <a href="https://twitter.com/intent/tweet?text=npm%20Supply%20Chain%20Attack%20Protection%20Guide&url=https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html"
+                        target="_blank" rel="noopener" style="color: var(--color-secondary);">Twitter</a>
+                    <span>|</span>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html"
+                        target="_blank" rel="noopener" style="color: var(--color-secondary);">LinkedIn</a>
+                    <span>|</span>
+                    <a href="https://reddit.com/submit?url=https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html&title=npm%20Supply%20Chain%20Attack%20Protection%20Guide"
+                        target="_blank" rel="noopener" style="color: var(--color-secondary);">Reddit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

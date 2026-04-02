@@ -1,6 +1,21 @@
 {
   "posts": [
     {
+      "title": "How We Protected Our Projects from npm Supply Chain Attacks (And How You Can Too)",
+      "slug": "npm-supply-chain-attacks-protection-guide",
+      "date": "2026-04-02",
+      "themeName": "Technical Deep Dive",
+      "tags": [
+        "security",
+        "npm",
+        "development",
+        "webdev",
+        "tools"
+      ],
+      "excerpt": "Three major npm packages were compromised this week (axios, LiteLLM, LofyGang). Here's how we protected our live beta testers and projects in one afternoon with a 6-layer security stack—and how you can implement it in under an hour.",
+      "hook": "🚨 Three major npm packages were compromised this week. Here's how we protected our live beta testers and projects in one afternoon."
+    },
+    {
       "title": "Building a Game for $0: My Actual Budget",
       "slug": "building-a-game-for-zero-dollars-actual-budget",
       "date": "2026-03-17",
@@ -241,10 +256,10 @@
     }
   ],
   "stats": {
-    "totalPosts": 18,
+    "totalPosts": 19,
     "byTheme": {
       "Transparency": 1,
-      "Technical Deep Dive": 3,
+      "Technical Deep Dive": 4,
       "Behind the Scenes": 3,
       "Tutorial": 5,
       "Design Philosophy": 5,
@@ -276,7 +291,7 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 7,
+      "development": 8,
       "player-stories": 1,
       "updates": 1,
       "team": 3,
@@ -293,7 +308,11 @@
       "monetization": 1,
       "battle-pass": 1,
       "seasonal-content": 1,
-      "anti-fomo": 1
+      "anti-fomo": 1,
+      "security": 1,
+      "npm": 1,
+      "webdev": 1,
+      "tools": 1
     }
   }
 }
