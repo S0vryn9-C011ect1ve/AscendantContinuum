@@ -339,10 +339,110 @@
                 "discord"
             ],
             "content": "Most games: you're player #482,391.\n\nUs: Your rituals become fossils. NPCs remember you. Launch-day = Founder status. Your choices shape future experiences.\n\nEvery player visible. Forever.\n\n#IndieGameDev #CommunityFirst"
+        },
+        {
+            "id": "blog-real-stargazing",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Real Stargazing - The Anti-Screen-Time Mechanic\n\nThe only mobile game that rewards you for putting your phone down. Gyroscope + GPS verification = 3x XP for playing outside.\n\nRead: https://ascendant-continuum.web.app/blog/posts/real-stargazing-anti-screen-time-mechanic.html\n\n#GameDev #IndieGame"
+        },
+        {
+            "id": "blog-cosmic-identity",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Cosmic Identity System\n\nNo character creation screen. Your identity emerges from 50+ behavioral metrics. Are you a Midnight Sage, Nature Mystic, or Dawn Seeker?\n\nRead: https://ascendant-continuum.web.app/blog/posts/cosmic-identity-system-alignments.html\n\n#GameDesign"
+        },
+        {
+            "id": "blog-eternal-archive",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: The Eternal Archive\n\nLocked for your first 30 days. No IAP unlocks. No hacks. When it opens, you see EVERY ritual, decision, time capsule you've created.\n\nRead: https://ascendant-continuum.web.app/blog/posts/eternal-archive-30-day-unlock.html\n\n#DelayedGratification"
+        },
+        {
+            "id": "blog-dawn-citadel",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Dawn Citadel Light Refraction Physics\n\nNot fake game logic. Real Snell's Law. Red light bends differently than blue. Solving puzzles = learning physics.\n\nRead: https://ascendant-continuum.web.app/blog/posts/dawn-citadel-light-refraction-physics.html\n\n#STEM #EdTech"
+        },
+        {
+            "id": "blog-living-lore",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Living Lore - Universe Rewrites Its Own History\n\nCollective player morality literally rewrites mythology. 60%+ choose Compassion for 7 days? Lore tables update permanently.\n\nRead: https://ascendant-continuum.web.app/blog/posts/living-lore-universe-rewrites-history.html\n\n#EmergentNarrative"
+        },
+        {
+            "id": "blog-time-capsules",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Time Capsules - Messages to Your Future Self\n\nWrite it. Lock for 30/90/365 days. Seal. No deletion. No early unlock. Your past self speaks to future self, uninterrupted.\n\nRead: https://ascendant-continuum.web.app/blog/posts/time-capsules-messages-to-future-self.html\n\n#MentalHealth"
+        },
+        {
+            "id": "blog-meteor-showers",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Meteor Showers - Real Astronomy Unlocks Game Content\n\nPerseids (Aug 12-13) = The Burning event. Geminids (Dec 13-14) = Twin Deity. 8 real meteor showers/year trigger content.\n\nRead: https://ascendant-continuum.web.app/blog/posts/meteor-showers-real-astronomy-game-events.html\n\n#Astronomy"
+        },
+        {
+            "id": "blog-lantern-ascension",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Lantern Ascension - Fluid Dynamics as Gameplay\n\nYour ritual lantern obeys Navier-Stokes equations. Buoyancy, drag, wind, rain—all simulated at 60 FPS. Master physics = 4x effectiveness.\n\nRead: https://ascendant-continuum.web.app/blog/posts/lantern-ascension-fluid-dynamics-gameplay.html\n\n#PhysicsSimulation"
+        },
+        {
+            "id": "blog-community-mysteries",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Community Mysteries That Take Months to Solve\n\n100+ players, fragmented clues, real cryptography, 1-6 months to solve. The Unsolved Vault: 143 players, 8 months, still locked.\n\nRead: https://ascendant-continuum.web.app/blog/posts/community-mysteries-months-to-solve.html\n\n#ARG #Community"
+        },
+        {
+            "id": "blog-weather-integration",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Weather Integration - When Rain Actually Delays Rituals\n\nOpenWeather API makes your local weather the difficulty. Rain = -20%. Thunderstorms = dangerous. Safety > engagement.\n\nRead: https://ascendant-continuum.web.app/blog/posts/weather-integration-real-rain-delays-rituals.html\n\n#RealWorldSync"
         }
     ],
     "metadata": {
-        "totalPosts": 34,
+        "totalPosts": 44,
         "categories": {
             "feature": 12,
             "ethics": 2,
@@ -351,7 +451,8 @@
             "community": 2,
             "engagement": 2,
             "technical": 2,
-            "marketing": 2
+            "marketing": 2,
+            "blog-announcement": 10
         }
     }
 }

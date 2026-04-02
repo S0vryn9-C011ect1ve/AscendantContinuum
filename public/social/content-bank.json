@@ -2257,7 +2257,8 @@
       "body": "Tech stack:\n1. Gyroscope detects phone angle (Vector3.Angle)\n2. GPS location + timezone\n3. Sun position calculation (below horizon?)\n4. OpenWeather API (cloud coverage)\n\nCan't cheat by tilting phone indoors. We check ALL variables.",
       "platforms": [
         "bluesky",
-        "mastodon"
+        "mastodon",
+        "discord"
       ],
       "priority": "medium",
       "media": null,
@@ -2298,7 +2299,8 @@
       "body": "Traditional RPG: Choose class upfront.\n\nAscendant Continuum: Play for 2 weeks. System observes:\n- Do you play at night? (Midnight Sage)\n- Do you prioritize nature realm? (Nature Mystic)\n- Do you use accessibility features? (Accessibility Pioneer)\n\nIdentity = reflection, not declaration.",
       "platforms": [
         "bluesky",
-        "mastodon"
+        "mastodon",
+        "discord"
       ],
       "priority": "high",
       "media": null,
@@ -2310,7 +2312,9 @@
       "hook": "50+ behavioral metrics tracked for Cosmic Identity",
       "body": "CosmicIdentitySystem.cs monitors:\n- Total minutes in each realm\n- Time of day preference (dawn/noon/dusk/midnight)\n- Ritual success rate\n- Social vs solo play\n- Accessibility features used\n\nCalculates alignment every 7 days. Can shift based on behavior change.",
       "platforms": [
-        "mastodon"
+        "bluesky",
+        "mastodon",
+        "discord"
       ],
       "priority": "low",
       "media": null,
@@ -2378,7 +2382,9 @@
       "hook": "How Living Lore aggregates morality",
       "body": "Firebase Cloud Functions:\n- Daily cron (midnight UTC)\n- Counts Compassion vs Justice choices (last 7 days)\n- If dominance > 60%, triggers lore rewrite\n- Updates Firestore lore tables\n\nServer-side. Can't be datamined. Emergent narrative.",
       "platforms": [
-        "mastodon"
+        "bluesky",
+        "mastodon",
+        "discord"
       ],
       "priority": "low",
       "media": null,
@@ -2391,7 +2397,8 @@
       "body": "Scholar NPC tells you: 'The gods created mortals to serve.'\n\nAfter community shifts to Compassion:\nSame NPC: 'Wait, old texts say gods created mortals as partners...'\n\nContradiction = proof the world evolves. Not a bug.",
       "platforms": [
         "bluesky",
-        "mastodon"
+        "mastodon",
+        "discord"
       ],
       "priority": "medium",
       "media": null,
@@ -2417,7 +2424,9 @@
       "hook": "Meteor showers sync to real astronomical data",
       "body": "When Perseids peak:\n- Radiant point = Perseus constellation\n- ZHR = 100 meteors/hour (real rate)\n- Velocity = 37 mi/s (real speed)\n\nSimulation matches reality. If you stargaze IRL, earn 3x rewards.",
       "platforms": [
-        "mastodon"
+        "bluesky",
+        "mastodon",
+        "discord"
       ],
       "priority": "low",
       "media": null,
@@ -2457,7 +2466,9 @@
       "hook": "Implementing Snell's Law in Unity",
       "body": "LightRefractionPuzzle.cs:\n```csharp\nfloat refracted = Mathf.Asin((n1/n2) * Mathf.Sin(incident));\n```\n\nRed light (700nm) bends less than blue (400nm).\n\nEach wavelength = separate raycast. Mobile phones running optics simulations.",
       "platforms": [
-        "mastodon"
+        "bluesky",
+        "mastodon",
+        "discord"
       ],
       "priority": "low",
       "media": null,
@@ -2470,7 +2481,8 @@
       "body": "Most games: Lantern floats up in straight line.\n\nAscendant Continuum:\n- Buoyancy (hot air rises)\n- Drag (orientation matters)\n- Wind (real weather data)\n- Rain (cools lantern, reduces lift)\n\nNavier-Stokes equations at 60 FPS.",
       "platforms": [
         "bluesky",
-        "mastodon"
+        "mastodon",
+        "discord"
       ],
       "priority": "high",
       "media": null,
@@ -2524,7 +2536,9 @@
       "hook": "Anti-datamining: Solutions don't exist in client app",
       "body": "Server-side triggers only.\n\nClient knows: 'Something happens when X.'\nServer knows: 'When X, send Fragment Y.'\n\nDataminers see conditions, not rewards. Community must solve legitimately.",
       "platforms": [
-        "mastodon"
+        "bluesky",
+        "mastodon",
+        "discord"
       ],
       "priority": "low",
       "media": null,
@@ -2578,7 +2592,9 @@
       "hook": "Weather API updates every 30 minutes",
       "body": "Fetch:\n- Condition (rain/snow/clear)\n- Temperature (affects buoyancy)\n- Wind speed/direction\n- Precipitation volume\n- Cloud coverage (%)\n\nReal weather = real tactical decisions (wait for clear skies or accept penalty).",
       "platforms": [
-        "mastodon"
+        "bluesky",
+        "mastodon",
+        "discord"
       ],
       "priority": "low",
       "media": null,
@@ -2591,7 +2607,8 @@
       "body": "During storms:\n- Lightning strike chance: 5%/min\n- 2-second warning (screen flashes)\n- Dodge mechanic (swipe away)\n- Success = +50% effectiveness\n- Failure = lose components, 10-min lockout\n\nAncient peoples feared storms. We gamify that.",
       "platforms": [
         "bluesky",
-        "mastodon"
+        "mastodon",
+        "discord"
       ],
       "priority": "medium",
       "media": null,
