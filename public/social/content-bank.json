@@ -1,12 +1,12 @@
 {
   "meta": {
-    "totalItems": 186,
+    "totalItems": 206,
     "contentDistribution": {
-      "devUpdate": 51,
-      "devEducation": 52,
-      "designPhilosophy": 39,
-      "behindScenes": 22,
-      "loreSnippet": 22
+      "devUpdate": 56,
+      "devEducation": 56,
+      "designPhilosophy": 44,
+      "behindScenes": 25,
+      "loreSnippet": 25
     },
     "lastUpdated": "2026-04-02T00:00:00.000Z"
   },
@@ -2639,6 +2639,286 @@
         "discord"
       ],
       "priority": "low",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 187,
+      "type": "devUpdate",
+      "hook": "1% chance. Can't be farmed. Can't be bought.",
+      "body": "Serendipity system:\n- 1 in 100 rituals → deity appears\n- 6 different deities, each with unique interactions\n- No pity system. Pure randomness.\n\n0.6% chance you'll go 500 rituals without seeing one.\n\nRarity creates stories worth telling.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 188,
+      "type": "designPhilosophy",
+      "hook": "We chose surprise over certainty",
+      "body": "Serendipity vs Grind:\n\nGrinding = predictable, guaranteed, feels like work\nSerendipity = unpredictable, never guaranteed, feels like discovery\n\nMost games optimize for guaranteed rewards.\nWe optimize for memorable moments.\n\n1%. Forever.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 189,
+      "type": "loreSnippet",
+      "hook": "The Warden asks one question, then vanishes",
+      "body": "'Why do you seek power?'\n\nYou have 60 seconds to type your answer. No right or wrong. Just honesty.\n\nYour answer is saved forever.\n\nSerendipity encounters = 1% chance. Most players will never meet The Warden.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 190,
+      "type": "behindScenes",
+      "hook": "Internal debate: Is 1% too rare?",
+      "body": "Team argued for hours.\n\n'Too rare. Wasted dev time. Players will complain.'\n\nvs\n\n'Creates genuine surprise. Builds community stories. Respects player intelligence.'\n\nWe chose 1%. And we're not changing it.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 191,
+      "type": "devUpdate",
+      "hook": "Your rituals become archaeology",
+      "body": "Fossil system:\n- Day 0: Complete ritual\n- Day 7: Fossilizes\n- Day 30: Other players can excavate it\n\nThey see your sigil, weather, moon phase, success/failure.\nBut NOT your identity.\n\nAsynchronous multiplayer through time.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 192,
+      "type": "devEducation",
+      "hook": "Most fossils will never be discovered. And that's okay.",
+      "body": "Math:\n10,000 players × 1,000 rituals = 10 million fossils\nEach player excavates ~500/year = 5 million discoveries\n\n50% never found.\n\nNot all history gets uncovered. That's archaeology.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 193,
+      "type": "loreSnippet",
+      "hook": "'Someone was here, three weeks ago. You can still feel the echo...'",
+      "body": "Fossil Excavation:\n\nFOSSIL RECORD #47,291\nLocation: Echo Fields, Northern Glade\nDate: March 15, 2026, 2:47 AM\nSigil: Lunar Bloom + Echo Resonance\nResult: SUCCESS\n\nConnection without interaction.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 194,
+      "type": "designPhilosophy",
+      "hook": "Fossils = past tense. Ghosts = present tense.",
+      "body": "Most games show ghosted players (transparent avatars playing RIGHT NOW).\n\nWe show fossils (traces of players WEEKS AGO).\n\nLess pressure. More curiosity.\n\nYou're not competing. You're discovering history.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 195,
+      "type": "devUpdate",
+      "hook": "6 seconds. That's all you get.",
+      "body": "Ritual Replay system:\n- Game auto-captures your ritual's PEAK moment\n- AI analyzes visual FX, audio, input intensity\n- Saves 6-second clip (1080p)\n\nNo recording apps. No editing.\nJust the essence.\n\nShare or keep private. Your choice.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 196,
+      "type": "behindScenes",
+      "hook": "Why 6 seconds? Vine taught us.",
+      "body": "TikTok/Reels: 15-60 sec (requires editing, hooks, retention tactics)\nVine (RIP): 6 sec (pure creativity through constraint)\n\n6 seconds forces essence over filler.\nNo time for boring setup.\n\nCreativity through limitation.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 197,
+      "type": "devEducation",
+      "hook": "Rolling buffer = memory-efficient recording",
+      "body": "Can't record entire ritual (battery drain).\n\nSolution: CircularBuffer\n- Stores last 6 seconds at any time\n- Minimal memory footprint\n- 1080p @ 30 FPS\n\nWhen ritual completes → saves peak window.\n\nSmart recording without the cost.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "low",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 198,
+      "type": "loreSnippet",
+      "hook": "'I deleted the game. But I kept the replays. They're memories now.'",
+      "body": "Alpha tester feedback:\n\n'I watched my first successful ritual replay 20 times. I cried. I didn't think I could do it, and there it was—proof that I DID.'\n\nReplays became emotional artifacts.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 199,
+      "type": "devUpdate",
+      "hook": "The game knows when YOUR sun rises (in real life)",
+      "body": "Sunrise/Sunset awareness:\n- Uses SunCalc library + GPS\n- Accuracy: ±2 minutes\n- Dawn Ritual window: 30 min before → 30 min after sunrise\n\nRewards:\n- 2× XP\n- Dawn Blessing buff (24 hours)\n\nReal-time solar sync. No in-game clock.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 200,
+      "type": "designPhilosophy",
+      "hook": "Quality over quantity. 10 minutes at the right moment > 8 hours of grinding.",
+      "body": "Traditional game: 'Play for 8 hours = 8 hours of rewards'\n\nAscendant Continuum: 'Play 10 minutes at dawn = more rewards than all-day players'\n\nWe don't want you playing constantly. We want you experiencing reality.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 201,
+      "type": "devEducation",
+      "hook": "Seasonal fairness: Winter sunrise = 3× XP",
+      "body": "Winter sunrise: 7:00 AM (easier to wake up)\nSummer sunrise: 5:30 AM (MUCH harder)\n\nRewards scale to difficulty:\n- Sunrise before 6 AM = 3× XP\n- 6-7 AM = 2× XP\n- After 7 AM = 1.5× XP\n\nRespecting your effort.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 202,
+      "type": "behindScenes",
+      "hook": "'I haven't watched a sunrise in 10 years. I cried.'",
+      "body": "Alpha tester:\n\n'Set alarm for 6:15 AM. Went outside for Dawn Ritual. Not because of the game—because I forgot how beautiful mornings are.'\n\nAccidental mental health benefit: Vitamin D, circadian rhythm, outdoor time.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 203,
+      "type": "devUpdate",
+      "hook": "This game will NEVER come to PC",
+      "body": "Mobile-first. Mobile-only. Forever.\n\nWhy?\n- GPS gameplay (PC = stuck at home)\n- Real-time weather (mobile sensors)\n- Always-with-you design\n- Touch > keyboard for sigil drawing\n\nConstraint breeds creativity. We're doubling down.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 204,
+      "type": "designPhilosophy",
+      "hook": "One-handed play is a design constraint, not a limitation",
+      "body": "You're outside. At night. Holding a flashlight.\nOr on a bus. Holding a handrail.\nOr drinking coffee.\n\nAll UI reachable within thumb zone on 6.7\" screen.\n\nOne hand free = you can still play.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 205,
+      "type": "devEducation",
+      "hook": "Battery target: 15 min gameplay = 5% drain",
+      "body": "Mobile optimization:\n- Rituals are SHORT (2-5 min)\n- Aggressive LOD scaling\n- Particle pooling\n- Thermal monitoring (reduces FX if device > 45°C)\n\nRespect the battery. Respect the player.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "low",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 206,
+      "type": "designPhilosophy",
+      "hook": "Focused excellence over broad mediocrity",
+      "body": "'No PC version? Skip.' - PC Gamer on Reddit\n'FINALLY a game designed for phones, not ported!' - Mobile Gamer\n\nWe're okay losing PC-only gamers.\n\nBest MOBILE game we can make > mediocre multi-platform game.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
       "media": null,
       "used": false
     }

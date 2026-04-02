@@ -439,10 +439,60 @@
                 "discord"
             ],
             "content": "📝 New Blog Post: Weather Integration - When Rain Actually Delays Rituals\n\nOpenWeather API makes your local weather the difficulty. Rain = -20%. Thunderstorms = dangerous. Safety > engagement.\n\nRead: https://ascendant-continuum.web.app/blog/posts/weather-integration-real-rain-delays-rituals.html\n\n#RealWorldSync"
+        },
+        {
+            "id": "blog-serendipity-moments",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Serendipity Moments - 1% Deity Encounters\n\n1% chance. Pure randomness. No grinding. When a deity appears, you have 60 seconds. Rarity creates value.\n\nRead: https://ascendant-continuum.web.app/blog/posts/serendipity-moments-1-percent-deity-encounters.html\n\n#EmergentGameplay"
+        },
+        {
+            "id": "blog-archaeological-fossils",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Archaeological Fossils - Your Actions Become History\n\nYour rituals fossilize after 7 days. 30 days later, other players excavate them. Asynchronous multiplayer through archaeological time.\n\nRead: https://ascendant-continuum.web.app/blog/posts/archaeological-fossils-player-actions-become-history.html\n\n#PersistentWorld"
+        },
+        {
+            "id": "blog-ritual-replay",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Ritual Replay - 6-Second Video Essence Capture\n\nGame auto-captures your ritual's peak 6 seconds. No recording apps. No editing. Share or keep private. Creativity through constraint.\n\nRead: https://ascendant-continuum.web.app/blog/posts/ritual-replay-6-second-video-essence-capture.html\n\n#CreativeExpression"
+        },
+        {
+            "id": "blog-sunrise-sunset",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Sunrise/Sunset Awareness - Real-Time Solar Rewards\n\nGame knows when YOUR sun rises (SunCalc + GPS). Catch dawn rituals for 2× XP + Dawn Blessing. Winter early risers get 3× XP.\n\nRead: https://ascendant-continuum.web.app/blog/posts/sunrise-sunset-awareness-real-time-solar-rewards.html\n\n#RealWorldSync"
+        },
+        {
+            "id": "blog-mobile-first",
+            "category": "blog-announcement",
+            "platforms": [
+                "bluesky",
+                "mastodon",
+                "discord"
+            ],
+            "content": "📝 New Blog Post: Mobile-First Design - No PC Port (Ever)\n\nThis game will NEVER come to PC. Mobile-first, mobile-only, forever. GPS, accelerometer, always-with-you design. Constraint breeds creativity.\n\nRead: https://ascendant-continuum.web.app/blog/posts/mobile-first-design-no-pc-port-ever.html\n\n#MobileFirst"
         }
     ],
     "metadata": {
-        "totalPosts": 44,
+        "totalPosts": 49,
         "categories": {
             "feature": 12,
             "ethics": 2,
@@ -452,7 +502,7 @@
             "engagement": 2,
             "technical": 2,
             "marketing": 2,
-            "blog-announcement": 10
+            "blog-announcement": 15
         }
     }
 }

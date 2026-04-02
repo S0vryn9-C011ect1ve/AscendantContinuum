@@ -1,6 +1,82 @@
 {
   "posts": [
     {
+      "title": "Serendipity Moments: 1% Deity Encounters",
+      "slug": "serendipity-moments-1-percent-deity-encounters",
+      "date": "2026-04-02",
+      "themeName": "Emergent Gameplay",
+      "tags": [
+        "serendipity",
+        "deity-encounters",
+        "rare-events",
+        "procedural-surprises",
+        "1-percent-chance"
+      ],
+      "excerpt": "1% chance deity encounters. No grinding. Pure randomness. When it happens, you're face-to-face with a deity who exists only for you for 60 seconds. Rarity creates value.",
+      "hook": "1% chance. Pure randomness. Deities appear when you least expect them."
+    },
+    {
+      "title": "Archaeological Fossils: Your Actions Become History",
+      "slug": "archaeological-fossils-player-actions-become-history",
+      "date": "2026-04-02",
+      "themeName": "Persistent World",
+      "tags": [
+        "fossils",
+        "archaeology",
+        "player-legacy",
+        "persistent-world",
+        "time-mechanics"
+      ],
+      "excerpt": "Your ritual fossilizes after 7 days. 30 days later, other players excavate it. Your gameplay becomes their discovery. Asynchronous multiplayer through archaeological time.",
+      "hook": "Your rituals fossilize. Future players excavate your history."
+    },
+    {
+      "title": "Ritual Replay: 6-Second Video Essence Capture",
+      "slug": "ritual-replay-6-second-video-essence-capture",
+      "date": "2026-04-02",
+      "themeName": "Creative Expression",
+      "tags": [
+        "ritual-replay",
+        "video-capture",
+        "essence-recording",
+        "sharing",
+        "6-seconds"
+      ],
+      "excerpt": "The game automatically captures your ritual's peak 6 seconds. No recording apps. No editing. Just the essence. Share it or keep it private. Your choice.",
+      "hook": "6 seconds. Your ritual's peak moment, automatically captured."
+    },
+    {
+      "title": "Sunrise/Sunset Awareness: Real-Time Solar Rewards",
+      "slug": "sunrise-sunset-awareness-real-time-solar-rewards",
+      "date": "2026-04-02",
+      "themeName": "Real-World Integration",
+      "tags": [
+        "sunrise",
+        "sunset",
+        "solar-mechanics",
+        "rewards",
+        "time-awareness",
+        "real-world-sync"
+      ],
+      "excerpt": "The game knows when the sun rises in YOUR location. Catch dawn or dusk rituals for 2× XP and solar blessings. Seasonal adjustments reward winter early risers with 3× XP.",
+      "hook": "The game knows when YOUR actual sunrise happens. Be there for 2× XP."
+    },
+    {
+      "title": "Mobile-First Design: No PC Port (Ever)",
+      "slug": "mobile-first-design-no-pc-port-ever",
+      "date": "2026-04-02",
+      "themeName": "Design Philosophy",
+      "tags": [
+        "mobile-first",
+        "design-constraints",
+        "accessibility",
+        "no-pc-port",
+        "touch-interface"
+      ],
+      "excerpt": "This game will never come to PC. Mobile-first, mobile-only, forever. GPS, accelerometer, always-with-you design. Constraint breeds creativity. We're doubling down on mobile excellence.",
+      "hook": "No PC port. Ever. This game is designed for the device in your pocket."
+    },
+    {
       "title": "Real Stargazing: The Anti-Screen-Time Mechanic",
       "slug": "real-stargazing-anti-screen-time-mechanic",
       "date": "2026-04-02",
