@@ -9,7 +9,9 @@
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "security:audit": "npm audit",
+    "security:check-deps": "npm list axios gaxios"
   },
   "engines": {
     "node": "20"
@@ -19,6 +21,8 @@
     "firebase-functions": "^5.1.0"
   },
   "overrides": {
+    "axios": ">=1.13.5",
+    "gaxios": ">=6.7.1",
     "@tootallnate/once": "^3.0.1",
     "http-proxy-agent": "^7.0.0",
     "fast-xml-parser": ">=5.5.7",

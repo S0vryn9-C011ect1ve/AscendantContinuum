@@ -677,17 +677,104 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 25,
+      "contentId": 111,
+      "contentType": "devUpdate",
+      "hook": "Accessibility audit results: we exceeded WCAG AAA.",
+      "topics": [],
+      "timestamp": "2026-03-30T18:01:00.575Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3micakm5rvv2c"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116319429969226940"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "contentId": 120,
+      "contentType": "devUpdate",
+      "hook": "Community feature request → implemented in 48 hours.",
+      "topics": [],
+      "timestamp": "2026-03-31T18:01:07.587Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mieqyjyjdh2y"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116325090212330695"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "contentId": 125,
+      "contentType": "devUpdate",
+      "hook": "Hidden feature: the Eternal Archive.",
+      "topics": [],
+      "timestamp": "2026-04-01T18:02:26.226Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mihbl2d6jh2y"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116330760314351248"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 22,
+    "totalPosts": 25,
     "byPlatform": {
-      "bluesky": 22,
-      "mastodon": 22,
-      "discord": 20
+      "bluesky": 25,
+      "mastodon": 25,
+      "discord": 23
     },
     "byType": {
-      "devUpdate": 10,
+      "devUpdate": 13,
       "devEducation": 5,
       "designPhilosophy": 5,
       "behindScenes": 0,

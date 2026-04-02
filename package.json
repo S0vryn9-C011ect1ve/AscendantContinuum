@@ -16,7 +16,15 @@
         "content:philosophy": "node scripts/content/design-philosophy-generator.js",
         "content:behind-scenes": "node scripts/content/behind-scenes-generator.js",
         "content:lore": "node scripts/content/lore-snippet-generator.js",
-        "content:education": "node scripts/content/dev-education-generator.js"
+        "content:education": "node scripts/content/dev-education-generator.js",
+        "security:audit": "npm audit",
+        "security:audit-fix": "npm audit fix",
+        "security:check-axios": "npm list axios",
+        "security:full-scan": "npm audit && npm list axios && npm outdated",
+        "security:weekly": "node scripts/security/security-scan.js",
+        "security:socket": "socket scan . || echo 'Socket CLI not installed. Run: npm i -g @socketsecurity/cli'",
+        "safe-install": "npm ci",
+        "safe-add": "npm install --min-release-age=7"
     },
     "dependencies": {
         "@atproto/api": "^0.12.0",
@@ -25,7 +33,12 @@
         "node-fetch": "^3.3.2"
     },
     "overrides": {
-        "axios": ">=1.13.5"
+        "axios": ">=1.13.5",
+        "gaxios": ">=6.7.1",
+        "@tootallnate/once": "^3.0.1",
+        "http-proxy-agent": "^7.0.0",
+        "fast-xml-parser": ">=5.5.7",
+        "flatted": ">=3.4.2"
     },
     "engines": {
         "node": ">=18.0.0"
