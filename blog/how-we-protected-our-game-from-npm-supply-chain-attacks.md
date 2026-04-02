@@ -10,7 +10,7 @@ Over the past few days, scary news has been breaking in the developer community:
 
 **Context:** I'm a one-person operation running two projects:
 - **[3mpwrApp](https://3mpwrapp.pages.dev/)** - A social justice advocacy platform with **live beta testers** (real users depending on it)
-- **Ascendant Continuum** - My social card game project (currently just me testing)
+- **Ascendant Continuum** - My social game project (currently just me testing)
 
 **My priority?** Protect 3mpwrApp first. Live users trump solo development every time. Once I confirmed 3mpwrApp was secure, I applied the same protections to Ascendant Continuum. This blog post covers what I learned from securing both projects.
 
@@ -458,7 +458,7 @@ This isn't just about one game or one project. **Every developer** using npm sho
 
 ## Final Thoughts
 
-Yesterday, I was just trying to build a cool card game. Today, I spent hours learning about supply chain security because **I had to**.
+Yesterday, I was just trying to build a cool game. Today, I spent hours learning about supply chain security because **I had to**.
 
 But here's the thing: **Security isn't a feature you add later.** It's foundational. Like good architecture or clean code, it's something you build in from the start.
 
@@ -480,7 +480,7 @@ Stay secure, keep building, and remember: **Security is a community effort.**
 
 ---
 
-**About the Author:** I'm a solo indie developer running two projects: [3mpwrApp](https://3mpwrapp.pages.dev/) (a social justice advocacy platform with live beta testers) and Ascendant Continuum (a social card game with AI-powered content automation). Not a security expert—just a developer juggling multiple projects who learned these lessons the hard way (and caffeinated through the panic) so you don't have to.
+**About the Author:** I'm a solo indie developer running two projects: [3mpwrApp](https://3mpwrapp.pages.dev/) (a social justice advocacy platform with live beta testers) and Ascendant Continuum (a social game with AI-powered content automation). Not a security expert—just a developer juggling multiple projects who learned these lessons the hard way (and caffeinated through the panic) so you don't have to.
 
 **Last Updated:** April 1, 2026  
 **Threat Level:** ELEVATED (multiple active supply chain attacks)
