@@ -1,6 +1,155 @@
 {
   "posts": [
     {
+      "title": "Real Stargazing: The Anti-Screen-Time Mechanic",
+      "slug": "real-stargazing-anti-screen-time-mechanic",
+      "date": "2026-04-02",
+      "themeName": "Design Philosophy",
+      "tags": [
+        "real-stargazing",
+        "gyroscope",
+        "anti-screen-time",
+        "outdoor-gameplay",
+        "night-sky"
+      ],
+      "excerpt": "The only mobile game that rewards you for putting your phone down. Hold your phone to the actual night sky, and our gyroscope + GPS verification system gives you 3x XP for playing outside.",
+      "hook": "Your phone's gyroscope becomes a celestial navigation tool tonight."
+    },
+    {
+      "title": "Cosmic Identity System: Twelve Alignments That Emerge",
+      "slug": "cosmic-identity-system-alignments",
+      "date": "2026-04-02",
+      "themeName": "Design Philosophy",
+      "tags": [
+        "cosmic-identity",
+        "behavioral-tracking",
+        "alignments",
+        "character-development",
+        "emergent-gameplay"
+      ],
+      "excerpt": "No character creation screen. Your identity emerges from how you play. Are you a Midnight Sage, Nature Mystic, or Dawn Seeker? The game tracks 50+ metrics and reveals who you've become.",
+      "hook": "Are you a Midnight Sage, Nature Mystic, or Dawn Seeker? Your playstyle decides."
+    },
+    {
+      "title": "The Eternal Archive: Unlocked After 30 Days",
+      "slug": "eternal-archive-30-day-unlock",
+      "date": "2026-04-02",
+      "themeName": "Design Philosophy",
+      "tags": [
+        "eternal-archive",
+        "delayed-gratification",
+        "time-capsules",
+        "decision-tree",
+        "ritual-gallery"
+      ],
+      "excerpt": "You can't access it early. No IAP unlocks. No hacks. Day 30, the Archive opens, revealing every ritual, decision, and time capsule you've created. Delayed gratification as emotional design.",
+      "hook": "The Eternal Archive stays locked for your first 30 days. No shortcuts."
+    },
+    {
+      "title": "Dawn Citadel: Light Refraction Physics as Puzzles",
+      "slug": "dawn-citadel-light-refraction-physics",
+      "date": "2026-04-02",
+      "themeName": "Technical Deep Dive",
+      "tags": [
+        "physics",
+        "snells-law",
+        "optics",
+        "educational-gaming",
+        "puzzle-design"
+      ],
+      "excerpt": "Not fake game logic. Real optics. Dawn Citadel puzzles use actual Snell's Law calculations. Red light bends differently than blue. Solving puzzles teaches real physics.",
+      "hook": "Dawn Citadel puzzles use actual light refraction physics (Snell's Law)."
+    },
+    {
+      "title": "Living Lore: When the Universe Rewrites Its Own History",
+      "slug": "living-lore-universe-rewrites-history",
+      "date": "2026-04-02",
+      "themeName": "Technical Deep Dive",
+      "tags": [
+        "living-lore",
+        "dynamic-narrative",
+        "collective-morality",
+        "emergent-storytelling",
+        "firebase"
+      ],
+      "excerpt": "Collective player morality literally rewrites the game's mythology. Choose Compassion for 7 days? Lore tables update. The community authors the universe through actions, not votes.",
+      "hook": "Collective player behavior literally rewrites the universe's history."
+    },
+    {
+      "title": "Time Capsules: Writing Messages to Your Future Self",
+      "slug": "time-capsules-messages-to-future-self",
+      "date": "2026-04-02",
+      "themeName": "Emotional Design",
+      "tags": [
+        "time-capsules",
+        "delayed-gratification",
+        "reflection",
+        "mental-health",
+        "self-discovery"
+      ],
+      "excerpt": "Write a message. Lock it for 30/90/365 days. Seal it. You can't delete or open early. Your past self speaks to your future self, uninterrupted. The distance proves growth.",
+      "hook": "Time Capsules you can't delete or open early. Your past self has something to say."
+    },
+    {
+      "title": "Meteor Showers: When Real Astronomy Unlocks Game Content",
+      "slug": "meteor-showers-real-astronomy-game-events",
+      "date": "2026-04-02",
+      "themeName": "Real-World Sync",
+      "tags": [
+        "meteor-showers",
+        "astronomy",
+        "perseids",
+        "geminids",
+        "real-time-events"
+      ],
+      "excerpt": "August 12-13: Perseids = massive in-game event. December 13-14: Geminids = Twin Deity encounter. 8 real meteor showers per year trigger exclusive content. Earth's orbit schedules our events.",
+      "hook": "The Perseids happen whether you play or not. We just sync the game to them."
+    },
+    {
+      "title": "Lantern Ascension: Fluid Dynamics as Gameplay",
+      "slug": "lantern-ascension-fluid-dynamics-gameplay",
+      "date": "2026-04-02",
+      "themeName": "Physics Simulation",
+      "tags": [
+        "lantern-ascension",
+        "fluid-dynamics",
+        "physics",
+        "buoyancy",
+        "ritual-mechanic"
+      ],
+      "excerpt": "Your ritual lantern obeys Navier-Stokes equations. Buoyancy, drag, wind, rain—all simulated at 60 FPS. Master the physics, achieve 4x effectiveness. Stratosphere Achievement: only 2% succeed.",
+      "hook": "Your phone becomes a hot air balloon simulator. Real fluid dynamics at 60 FPS."
+    },
+    {
+      "title": "Community Mysteries That Take Months to Solve",
+      "slug": "community-mysteries-months-to-solve",
+      "date": "2026-04-02",
+      "themeName": "Collaborative Gameplay",
+      "tags": [
+        "community-mysteries",
+        "cryptography",
+        "collaborative-puzzles",
+        "secret-hunts",
+        "long-term-gameplay"
+      ],
+      "excerpt": "Puzzles requiring 100+ players to coordinate. Fragmented clues across time zones. Real cryptography. Expected solve time: 1-6 months. The Unsolved Vault: 143 players, 8 months, still locked.",
+      "hook": "Some puzzles take 100+ players and 6 months to solve. That's the feature."
+    },
+    {
+      "title": "Weather Integration: When Rain Actually Delays Rituals",
+      "slug": "weather-integration-real-rain-delays-rituals",
+      "date": "2026-04-02",
+      "themeName": "Real-World Sync",
+      "tags": [
+        "weather-integration",
+        "openweather-api",
+        "environmental-gameplay",
+        "adaptive-difficulty"
+      ],
+      "excerpt": "OpenWeather API sync makes your local weather the difficulty setting. Rain = -20% effectiveness. Thunderstorms = dangerous dodge mechanic. Fog = visibility 20m. We care about safety > engagement.",
+      "hook": "Your local thunderstorm becomes a game mechanic. Real weather, real consequences."
+    },
+    {
       "title": "How We Protected Our Projects from npm Supply Chain Attacks (And How You Can Too)",
       "slug": "npm-supply-chain-attacks-protection-guide",
       "date": "2026-04-02",
@@ -29,21 +178,6 @@
       ],
       "excerpt": "The honest truth: I've spent exactly $0 on game development. Here's how I'm building The Ascendant Continuum entirely with free tools (except $10/month for Copilot Pro).",
       "hook": "The honest truth: I've spent exactly $0 on game development. Here's the actual budget breakdown."
-    },
-    {
-      "title": "5 Colorblind Modes: Accessibility as Gameplay",
-      "slug": "five-colorblind-modes-accessibility-as-gameplay",
-      "date": "2026-03-17",
-      "themeName": "Technical Deep Dive",
-      "tags": [
-        "accessibility",
-        "colorblind",
-        "game-design",
-        "technical",
-        "innovation"
-      ],
-      "excerpt": "The Ascendant Continuum features 5 colorblind modes - but they're not just accessibility options. Each mode reveals completely different hidden content. Here's how it works.",
-      "hook": "Different vision isn't a limitation—it's a different way to experience the universe."
     },
     {
       "title": "From Healthcare to Game Dev: Building My First Game",
@@ -83,18 +217,6 @@
       ],
       "themeName": "Dev Diary",
       "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
-    },
-    {
-      "title": "Building Accessibility-First Gameplay: Color as Discovery",
-      "slug": "building-accessibility-first-gameplay-color-as-discovery",
-      "date": "2026-03-27",
-      "tags": [
-        "development",
-        "unity",
-        "behind-the-scenes"
-      ],
-      "themeName": "Dev Diary",
-      "excerpt": "Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these..."
     },
     {
       "title": "Realm Transitions: Seamless World-Hopping",
@@ -157,20 +279,6 @@
       ],
       "themeName": "Design Philosophy",
       "excerpt": "What if the first player to discover a sigil combination gets to name it globally for everyone? A deep dive into our community-driven crafting system where your discoveries become permanent legacies."
-    },
-    {
-      "title": "Daily Challenges: Accessibility-First Design",
-      "slug": "daily-challenges-accessibility-first-design",
-      "date": "2026-03-29",
-      "tags": [
-        "accessibility",
-        "game-design",
-        "daily-challenges",
-        "inclusive-design",
-        "technical"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "How Ascendant Continuum's daily challenges adapt to your accessibility settings, creating fair and meaningful goals for every player. Reduced motion mode? You get meditation challenges instead of speed runs."
     },
     {
       "title": "Accessibility Secrets: Hidden Content for Every Vision",

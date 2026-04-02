@@ -1,14 +1,14 @@
 {
   "meta": {
-    "totalItems": 156,
+    "totalItems": 186,
     "contentDistribution": {
       "devUpdate": 51,
-      "devEducation": 42,
-      "designPhilosophy": 31,
-      "behindScenes": 15,
-      "loreSnippet": 17
+      "devEducation": 52,
+      "designPhilosophy": 39,
+      "behindScenes": 22,
+      "loreSnippet": 22
     },
-    "lastUpdated": "2026-03-27T17:25:51.592Z"
+    "lastUpdated": "2026-04-02T00:00:00.000Z"
   },
   "content": [
     {
@@ -227,7 +227,8 @@
       ],
       "media": null,
       "priority": "low",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-02T00:00:00.000Z"
     },
     {
       "id": 16,
@@ -356,7 +357,8 @@
       ],
       "media": null,
       "priority": "medium",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-02T00:00:00.000Z"
     },
     {
       "id": 25,
@@ -442,7 +444,8 @@
       ],
       "media": null,
       "priority": "medium",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-02T00:00:00.000Z"
     },
     {
       "id": 31,
@@ -2216,6 +2219,409 @@
         "discord"
       ],
       "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 157,
+      "type": "devEducation",
+      "hook": "Your phone's gyroscope becomes a celestial navigation tool tonight",
+      "body": "Real Stargazing = game mechanic:\n- Hold phone to actual sky\n- Gyroscope detects angle (30-150° = sky-facing)\n- GPS + time verify night\n- Earn 3x XP for playing OUTSIDE\n\nOnly mobile game that rewards putting phone down to look up.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 158,
+      "type": "designPhilosophy",
+      "hook": "Anti-screen-time mechanic in a mobile game",
+      "body": "Contradiction? No. Philosophy.\n\nReal Stargazing bonus:\n- Play outside at night = 3x effectiveness\n- Can't fake it (GPS + time + gyroscope verify)\n- Weather matters (clouds reduce visibility)\n\nThe game WANTS you to stop playing and look at stars.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 159,
+      "type": "behindScenes",
+      "hook": "How we verify you're actually stargazing",
+      "body": "Tech stack:\n1. Gyroscope detects phone angle (Vector3.Angle)\n2. GPS location + timezone\n3. Sun position calculation (below horizon?)\n4. OpenWeather API (cloud coverage)\n\nCan't cheat by tilting phone indoors. We check ALL variables.",
+      "platforms": [
+        "bluesky",
+        "mastodon"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 160,
+      "type": "loreSnippet",
+      "hook": "Stargazing unlocks forgotten deity encounters",
+      "body": "When you look up IRL, rare chance:\n- Warden appears (judges your humility)\n- Veilkeeper whispers secrets\n- 1% encounter rate, ONLY during real stargazing\n\nSerendipity rewards those who look beyond the screen.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 161,
+      "type": "devEducation",
+      "hook": "Are you a Midnight Sage, Nature Mystic, or Dawn Seeker?",
+      "body": "Cosmic Identity System = 12 alignments emerging from behavior:\n- NOT character creation\n- NOT quiz results\n- Emerges from 50+ tracked metrics (time played, realms visited, choices made)\n\nYour identity BECOMES what you do.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 162,
+      "type": "designPhilosophy",
+      "hook": "No character creation screen. Your playstyle IS your character.",
+      "body": "Traditional RPG: Choose class upfront.\n\nAscendant Continuum: Play for 2 weeks. System observes:\n- Do you play at night? (Midnight Sage)\n- Do you prioritize nature realm? (Nature Mystic)\n- Do you use accessibility features? (Accessibility Pioneer)\n\nIdentity = reflection, not declaration.",
+      "platforms": [
+        "bluesky",
+        "mastodon"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 163,
+      "type": "behindScenes",
+      "hook": "50+ behavioral metrics tracked for Cosmic Identity",
+      "body": "CosmicIdentitySystem.cs monitors:\n- Total minutes in each realm\n- Time of day preference (dawn/noon/dusk/midnight)\n- Ritual success rate\n- Social vs solo play\n- Accessibility features used\n\nCalculates alignment every 7 days. Can shift based on behavior change.",
+      "platforms": [
+        "mastodon"
+      ],
+      "priority": "low",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 164,
+      "type": "designPhilosophy",
+      "hook": "The Eternal Archive stays locked for your first 30 days",
+      "body": "You can't access it early. No IAP unlocks. No hacks.\n\nDay 30 = Archive opens.\n\nInside: EVERY ritual, decision, time capsule, fossil you've created.\n\nDelayed gratification = emotional payoff when it unlocks.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 165,
+      "type": "devEducation",
+      "hook": "What's inside the Eternal Archive?",
+      "body": "Unlocks Day 30:\n- Ritual Gallery (6-sec videos of every ritual)\n- Decision Tree (all moral choices visualized)\n- Time Capsule Vault (messages to future self)\n- Fossil Record (Archaeological finds)\n\nYour entire journey, preserved forever.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 166,
+      "type": "loreSnippet",
+      "hook": "Time Capsules you can't delete or open early",
+      "body": "Write message. Lock for 30/90/365 days. Seal.\n\nNo editing. No early unlock. No deletion.\n\nYour past self speaks to future self uninterrupted.\n\nWhen it unlocks, you've CHANGED. The message proves the distance.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 167,
+      "type": "devEducation",
+      "hook": "Collective player behavior literally rewrites the universe's history",
+      "body": "Living Lore system:\n- Tracks global moral choices (Compassion vs Justice)\n- If 60%+ choose Compassion for 7 days → lore tables update\n- Stories change permanently\n\nThe community authors the mythology through actions, not votes.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 168,
+      "type": "behindScenes",
+      "hook": "How Living Lore aggregates morality",
+      "body": "Firebase Cloud Functions:\n- Daily cron (midnight UTC)\n- Counts Compassion vs Justice choices (last 7 days)\n- If dominance > 60%, triggers lore rewrite\n- Updates Firestore lore tables\n\nServer-side. Can't be datamined. Emergent narrative.",
+      "platforms": [
+        "mastodon"
+      ],
+      "priority": "low",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 169,
+      "type": "designPhilosophy",
+      "hook": "What if the lore contradicts itself? That's a feature.",
+      "body": "Scholar NPC tells you: 'The gods created mortals to serve.'\n\nAfter community shifts to Compassion:\nSame NPC: 'Wait, old texts say gods created mortals as partners...'\n\nContradiction = proof the world evolves. Not a bug.",
+      "platforms": [
+        "bluesky",
+        "mastodon"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 170,
+      "type": "devEducation",
+      "hook": "August 12-13: Perseid meteor shower = massive in-game event",
+      "body": "Real astronomy triggers game content:\n- Perseids (Aug 12-13) = 'The Burning' event\n- Geminids (Dec 13-14) = Twin Deity appearance\n- 8 major showers/year\n\nWe don't schedule events. Earth's orbit does.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 171,
+      "type": "behindScenes",
+      "hook": "Meteor showers sync to real astronomical data",
+      "body": "When Perseids peak:\n- Radiant point = Perseus constellation\n- ZHR = 100 meteors/hour (real rate)\n- Velocity = 37 mi/s (real speed)\n\nSimulation matches reality. If you stargaze IRL, earn 3x rewards.",
+      "platforms": [
+        "mastodon"
+      ],
+      "priority": "low",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 172,
+      "type": "loreSnippet",
+      "hook": "Collect Meteor Fragments ONLY during real meteor showers",
+      "body": "Crafting materials:\n- Iron Fragments (85% of meteors)\n- Stony (13%)\n- Carbonaceous (0.5%, Geminids only)\n\nMiss the Perseids? Wait til December. No rushing. Patience = mechanic.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 173,
+      "type": "devEducation",
+      "hook": "Dawn Citadel puzzles use actual light refraction physics",
+      "body": "Not fake game logic. Real optics:\n- Snell's Law (n1 sin θ1 = n2 sin θ2)\n- Wavelength-specific bending (red ≠ blue)\n- RGB channels refract at different angles\n\nSolving puzzles = learning physics.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 174,
+      "type": "behindScenes",
+      "hook": "Implementing Snell's Law in Unity",
+      "body": "LightRefractionPuzzle.cs:\n```csharp\nfloat refracted = Mathf.Asin((n1/n2) * Mathf.Sin(incident));\n```\n\nRed light (700nm) bends less than blue (400nm).\n\nEach wavelength = separate raycast. Mobile phones running optics simulations.",
+      "platforms": [
+        "mastodon"
+      ],
+      "priority": "low",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 175,
+      "type": "designPhilosophy",
+      "hook": "Lantern Ascension = fluid dynamics become gameplay",
+      "body": "Most games: Lantern floats up in straight line.\n\nAscendant Continuum:\n- Buoyancy (hot air rises)\n- Drag (orientation matters)\n- Wind (real weather data)\n- Rain (cools lantern, reduces lift)\n\nNavier-Stokes equations at 60 FPS.",
+      "platforms": [
+        "bluesky",
+        "mastodon"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 176,
+      "type": "devEducation",
+      "hook": "Why your lantern stopped rising: Physics",
+      "body": "Common mistakes:\n- Released too early (internal air not hot enough)\n- Released during rain (water cools it)\n- Vigorous swipe (paper tears)\n- Wrong time of day (cold night air reduces buoyancy)\n\nMaster the physics = 4x effectiveness.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 177,
+      "type": "loreSnippet",
+      "hook": "Stratosphere Achievement: Only 2% of players have this",
+      "body": "Send lantern above 500m.\n\nRequires:\n- Perfect weather (clear, calm, dawn)\n- 30s warm-up\n- Thermal column catch\n- Clean release\n- Luck\n\nMost players attempt 50-200 times before success. Worth it.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 178,
+      "type": "devEducation",
+      "hook": "Community Mysteries that take MONTHS to solve",
+      "body": "No single player has enough info.\n\n- Player A finds clue in Tokyo (3 AM)\n- Player B finds different clue in NYC (7 PM)\n- Player C does astronomy math (London)\n- 100+ players, 6 weeks, 2000 Discord messages\n\nCollaboration = mandatory.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 179,
+      "type": "behindScenes",
+      "hook": "Anti-datamining: Solutions don't exist in client app",
+      "body": "Server-side triggers only.\n\nClient knows: 'Something happens when X.'\nServer knows: 'When X, send Fragment Y.'\n\nDataminers see conditions, not rewards. Community must solve legitimately.",
+      "platforms": [
+        "mastodon"
+      ],
+      "priority": "low",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 180,
+      "type": "designPhilosophy",
+      "hook": "The Unsolved Vault: 143 players, 8 months, still unsolved",
+      "body": "Inscription: 'The answer erases the question. The question remembers the answer.'\n\nTheories:\n- Time paradox?\n- Schrödinger reference?\n- Memetic puzzle?\n\nStill locked. That's the point. Some mysteries outlive impatience.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 181,
+      "type": "loreSnippet",
+      "hook": "QR codes hidden at Stonehenge, Machu Picchu, Chichen Itza",
+      "body": "ARG elements:\n- Physical locations tied to astronomical alignments\n- Players travel IRL (or locals help)\n- Scan QR = unlock for EVERYONE\n\nNot wealth-gating. Global coordination. Shared discovery.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 182,
+      "type": "devEducation",
+      "hook": "Real weather affects ritual effectiveness",
+      "body": "OpenWeather API sync:\n- Rain = -20% effectiveness\n- Thunderstorms = dangerous (5% lightning strike/min)\n- Snow = +30% timer (slower but easier)\n- Fog = visibility drops to 20m\n\nYour local weather = difficulty setting.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "high",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 183,
+      "type": "behindScenes",
+      "hook": "Weather API updates every 30 minutes",
+      "body": "Fetch:\n- Condition (rain/snow/clear)\n- Temperature (affects buoyancy)\n- Wind speed/direction\n- Precipitation volume\n- Cloud coverage (%)\n\nReal weather = real tactical decisions (wait for clear skies or accept penalty).",
+      "platforms": [
+        "mastodon"
+      ],
+      "priority": "low",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 184,
+      "type": "designPhilosophy",
+      "hook": "Thunderstorms = high-risk, high-reward",
+      "body": "During storms:\n- Lightning strike chance: 5%/min\n- 2-second warning (screen flashes)\n- Dodge mechanic (swipe away)\n- Success = +50% effectiveness\n- Failure = lose components, 10-min lockout\n\nAncient peoples feared storms. We gamify that.",
+      "platforms": [
+        "bluesky",
+        "mastodon"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 185,
+      "type": "loreSnippet",
+      "hook": "First Snow triggers Winter Solstice Deity encounter",
+      "body": "When OpenWeather reports first snow in your location:\n- Winter Solstice Deity appears (once per year)\n- Special quest chain\n- Exclusive cosmetics\n\nTropical regions: Event triggers Dec 21 regardless. Fair alternative.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "medium",
+      "media": null,
+      "used": false
+    },
+    {
+      "id": 186,
+      "type": "designPhilosophy",
+      "hook": "We won't encourage play during dangerous weather",
+      "body": "Hurricanes/typhoons:\n- Ritual sites CLOSED\n- Message: 'The gods are angry. Return when storm passes.'\n\nSafety > engagement. We care about players, not just retention metrics.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "priority": "low",
       "media": null,
       "used": false
     }
