@@ -35,11 +35,204 @@
             </header>
 
             <div class="blog-post-content">
-                <p>See full blog post in markdown: <a
-                        href="../../../blog/archaeological-fossils-player-actions-become-history.md">archaeological-fossils-player-actions-become-history.md</a>
-                </p>
-                <p><em>This HTML file serves as a placeholder. Full content available in the markdown version during
-                        development.</em></p>
+                <h2>Your Ritual Becomes Someone Else's Archaeological Dig</h2>
+                <p>Complete a ritual today.</p>
+                <p><strong>7 days later:</strong> It "fossilizes."</p>
+                <p><strong>30 days later:</strong> Other players can "excavate" it.</p>
+                <p><strong>Your gameplay becomes their discovery.</strong></p>
+
+                <h2>How the Fossil System Works</h2>
+                <h3>Every Ritual Leaves a Trace</h3>
+                <p>When you complete a ritual:</p>
+
+                <p><strong>Immediate:</strong></p>
+                <ul>
+                    <li>Ritual completes normally</li>
+                    <li>You get rewards</li>
+                    <li>Sigil activates</li>
+                </ul>
+
+                <p><strong>7 Days Later (Fossilization):</strong></p>
+                <pre><code>// From FossilizationManager.js (Firebase Cloud Function)
+exports.fossilizeRituals = functions.pubsub
+    .schedule('0 0 * * *') // Daily at midnight UTC
+    .onRun(async (context) => {
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+        
+        const rituals = await getRitualsOlderThan(sevenDaysAgo);
+        
+        rituals.forEach(ritual => {
+            createFossil({
+                playerId: anonymize(ritual.playerId),
+                location: ritual.location,
+                sigilUsed: ritual.sigilUsed,
+                timestamp: ritual.completedAt,
+                outcome: ritual.success ? 'success' : 'failure',
+                weatherConditions: ritual.weather,
+                moonPhase: ritual.moonPhase
+            });
+        });
+    });</code></pre>
+
+                <p><strong>30 Days Later (Excavation Unlocks):</strong></p>
+                <ul>
+                    <li>Fossil becomes "mature"</li>
+                    <li>Appears in other players' worlds</li>
+                    <li>Can be excavated for rewards</li>
+                </ul>
+                <p><strong>Your ritual = their archaeology.</strong></p>
+
+                <h2>What Information Fossils Preserve</h2>
+                <h3>Data Stored:</h3>
+                <p>✅ <strong>Location</strong> (GPS coordinates, rounded to ~100m)<br>
+                    ✅ <strong>Sigil combination</strong> used<br>
+                    ✅ <strong>Success or failure</strong><br>
+                    ✅ <strong>Timestamp</strong> (date + time)<br>
+                    ✅ <strong>Weather conditions</strong> (rain, clear, snow, etc.)<br>
+                    ✅ <strong>Moon phase</strong><br>
+                    ✅ <strong>Realm</strong> (which of the 5 realms)</p>
+
+                <p>❌ <strong>Player identity</strong> (anonymized)<br>
+                    ❌ <strong>Exact technique</strong> (not recorded)<br>
+                    ❌ <strong>Player stats</strong> (privacy)</p>
+
+                <p><strong>You see WHAT happened, not WHO did it.</strong></p>
+
+                <h2>Finding Fossils</h2>
+                <h3>Fossil Radar (Unlocks Day 14)</h3>
+                <p>In-game tool that detects nearby fossils:</p>
+
+                <p><strong>Visual:</strong></p>
+                <ul>
+                    <li>Shimmer effect at fossil locations</li>
+                    <li>Intensity = age (older = brighter)</li>
+                    <li>Color = type (success = gold, failure = silver)</li>
+                </ul>
+                <p><strong>Range:</strong> 500 meters</p>
+                <p><strong>Limit:</strong> Shows 5 nearest fossils at a time</p>
+
+                <h3>Excavation Process</h3>
+                <ol>
+                    <li><strong>Approach fossil location</strong> (within 10m)</li>
+                    <li><strong>Initiate dig</strong> (tap + hold for 3 seconds)</li>
+                    <li><strong>Mini-game:</strong>
+                        <ul>
+                            <li>Brush away layers (swipe gently)</li>
+                            <li>Reveal ritual details gradually</li>
+                            <li>30-second excavation</li>
+                        </ul>
+                    </li>
+                    <li><strong>Fossil revealed:</strong></li>
+                </ol>
+
+                <pre><code>FOSSIL RECORD #47,291
+
+Location: Echo Fields, Northern Glade
+Date: March 15, 2026, 2:47 AM
+Sigil: Lunar Bloom + Echo Resonance
+Result: SUCCESS
+Moon Phase: Waxing Crescent (32%)
+Weather: Clear, 12°C
+
+"Someone performed this ritual under the stars,
+three weeks ago. You can still feel the echo..."</code></pre>
+
+                <p><strong>Rewards:</strong></p>
+                <ul>
+                    <li><strong>Knowledge Fragment</strong> (lore collectible)</li>
+                    <li><strong>10 XP</strong> (small)</li>
+                    <li><strong>Fossil added to your collection</strong></li>
+                </ul>
+
+                <h2>Fossil Categories</h2>
+
+                <h3>Common Fossils (80%)</h3>
+                <p>Standard rituals. Nothing special.</p>
+                <p><strong>Reward:</strong> 10 XP, lore fragment</p>
+
+                <h3>Rare Fossils (15%)</h3>
+                <p>Unusual conditions:</p>
+                <ul>
+                    <li>Performed during meteor shower</li>
+                    <li>Extreme weather (blizzard, thunderstorm)</li>
+                    <li>Solar/lunar eclipse</li>
+                    <li>First of the day globally</li>
+                </ul>
+                <p><strong>Reward:</strong> 50 XP, rare lore fragment, cosmetic item</p>
+
+                <h3>Legendary Fossils (5%)</h3>
+                <p><strong>Launch Day Rituals:</strong></p>
+                <ul>
+                    <li>Any ritual from first 24 hours</li>
+                    <li>Marked "Founder's Fossil"</li>
+                    <li><strong>Permanent</strong> (never decays)</li>
+                </ul>
+                <p><strong>Reward:</strong> 200 XP, unique cosmetic, achievement</p>
+
+                <h2>Why Fossils Matter</h2>
+
+                <h3>1. Asynchronous Multiplayer</h3>
+                <p>You never play "with" other players directly. But you <strong>discover their traces</strong>.</p>
+                <p><strong>Example:</strong> You're exploring Echo Fields at 3 AM. You find a fossil from someone who
+                    was there <strong>exact same spot</strong> one month ago, also at 3 AM.</p>
+                <p><strong>Feeling:</strong> <em>"I'm not alone in this weird late-night ritual habit."</em></p>
+                <p><strong>Connection without interaction.</strong></p>
+
+                <h3>2. Learning From History</h3>
+                <p><strong>Scenario:</strong> You keep failing "Lunar Bloom" ritual. You excavate a SUCCESS fossil for
+                    the same sigil.</p>
+                <p><strong>Details reveal:</strong></p>
+                <ul>
+                    <li>They did it during Waxing Crescent (not Full Moon like you tried)</li>
+                    <li>Clear weather</li>
+                    <li>2:30 AM (darkness matters)</li>
+                </ul>
+                <p><strong>You learn from their fossilized success.</strong></p>
+
+                <h3>3. Proof of Early Adoption</h3>
+                <p><strong>Launch day players:</strong> Every ritual you complete becomes a <strong>Founder's
+                        Fossil</strong>.</p>
+                <p><strong>Permanent legacy:</strong></p>
+                <ul>
+                    <li>Never decays</li>
+                    <li>Always marked "FOUNDER"</li>
+                    <li>Future players excavate YOUR history</li>
+                    <li>You shaped the early game</li>
+                </ul>
+                <p><strong>Participation = immortality.</strong></p>
+
+                <h2>The Philosophy</h2>
+                <p>Most games have <strong>ghosts</strong> (see other players' transparent avatars).</p>
+                <p>We have <strong>fossils</strong> (see other players' <em>actions</em>).</p>
+
+                <p><strong>Difference:</strong></p>
+                <ul>
+                    <li><strong>Ghosts</strong> = present tense (they're playing RIGHT NOW)</li>
+                    <li><strong>Fossils</strong> = past tense (they WERE here weeks ago)</li>
+                </ul>
+
+                <p><strong>We prefer asynchronous connection.</strong> You're not comparing your live performance to
+                    someone else's. You're discovering history.</p>
+                <p><strong>Less pressure. More curiosity.</strong></p>
+
+                <h2>Final Thought</h2>
+                <p>Every ritual you complete becomes part of the world's history.</p>
+                <p><strong>Maybe someone excavates it. Maybe no one does.</strong></p>
+                <p>But it's there.</p>
+                <p><strong>Your gameplay is archaeology for future players.</strong></p>
+                <p><strong>Play like you're making history.</strong> Because you are.</p>
+
+                <hr style="margin: 2rem 0; border: 1px solid rgba(255,255,255,0.1);">
+
+                <h3>Related Posts</h3>
+                <ul>
+                    <li><a href="./eternal-archive-30-day-unlock.html">The Eternal Archive: 30-Day Unlock</a></li>
+                    <li><a href="./time-capsules-messages-to-future-self.html">Time Capsules: Messages to Future
+                            Self</a></li>
+                    <li><a href="./community-mysteries-months-to-solve.html">Community Mysteries: Months to Solve</a>
+                    </li>
+                </ul>
             </div>
         </article>
     </div>

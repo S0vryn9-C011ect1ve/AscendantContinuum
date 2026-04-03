@@ -35,11 +35,206 @@
             </header>
 
             <div class="blog-post-content">
-                <p>See full blog post in markdown: <a
-                        href="../../../blog/ritual-replay-6-second-video-essence-capture.md">ritual-replay-6-second-video-essence-capture.md</a>
+                <h2>Your Ritual, Preserved Forever (But Only 6 Seconds)</h2>
+                <p>Complete any ritual.</p>
+                <p><strong>System automatically captures 6 seconds</strong> of your most critical moment.</p>
+                <p>No recording apps. No editing. Pure essence.</p>
+                <p><strong>Then share it. Or keep it private. Your choice.</strong></p>
+
+                <h2>How Ritual Replay Works</h2>
+                <h3>Automatic Capture System</h3>
+                <p><strong>You don't press "record."</strong></p>
+                <p>The game watches your entire ritual and identifies <strong>the peak moment</strong>:</p>
+
+                <pre><code>// From RitualReplayManager.cs
+public class ReplayMoment {
+    public float timestamp;
+    public float intensity; // Calculated from:
+                            // - Visual FX density
+                            // - Audio peak
+                            // - Player input velocity
+                            // - Sigil activation timing
+}
+
+void AnalyzeRitual(Ritual ritual) {
+    List&lt;ReplayMoment&gt; moments = new List&lt;ReplayMoment&gt;();
+    
+    foreach (var frame in ritual.frames) {
+        float intensity = CalculateIntensity(frame);
+        moments.Add(new ReplayMoment(frame.time, intensity));
+    }
+    
+    // Find peak 6-second window
+    ReplayMoment peak = moments.OrderByDescending(m =&gt; m.intensity).First();
+    CaptureReplay(peak.timestamp - 3f, peak.timestamp + 3f); // 6 sec total
+}</code></pre>
+
+                <p><strong>The moment YOU felt the ritual climax = the moment captured.</strong></p>
+
+                <h2>What Gets Captured</h2>
+                <h3>Video Elements:</h3>
+                <p>✅ <strong>Your ritual gestures</strong> (hand movements, sigil drawing)<br>
+                    ✅ <strong>Visual FX</strong> (particle systems, light beams, auras)<br>
+                    ✅ <strong>Sigil manifestation</strong> (the moment it activates)<br>
+                    ✅ <strong>Environment</strong> (weather, time of day, moon phase)<br>
+                    ✅ <strong>Audio</strong> (ambient sounds, ritual hum, activation sound)</p>
+
+                <p>❌ <strong>Your face</strong> (camera never shows you)<br>
+                    ❌ <strong>Your location</strong> (GPS data not visible)<br>
+                    ❌ <strong>UI elements</strong> (clean capture, no HUD)</p>
+
+                <p><strong>Cinematic replay, not screen recording.</strong></p>
+
+                <h2>The 6-Second Philosophy</h2>
+                <h3>Why 6 Seconds?</h3>
+                <p><strong>TikTok/Reels:</strong> 15-60 seconds (requires editing, hooks, retention tactics)<br>
+                    <strong>Vine (RIP):</strong> 6 seconds (pure creativity constraint)
                 </p>
-                <p><em>This HTML file serves as a placeholder. Full content available in the markdown version during
-                        development.</em></p>
+
+                <p><strong>We chose 6 seconds because:</strong></p>
+                <ol>
+                    <li><strong>Forces essence over filler</strong> (no time for boring setup)</li>
+                    <li><strong>Respects viewer attention</strong> (you can watch 20 replays in 2 minutes)</li>
+                    <li><strong>Small file size</strong> (easier sharing, faster uploads)</li>
+                    <li><strong>Creativity through constraint</strong> (limitation breeds innovation)</li>
+                </ol>
+                <p><strong>6 seconds = one perfect moment.</strong></p>
+
+                <h2>Replay Gallery (In-Game)</h2>
+                <h3>Your Personal Collection</h3>
+                <p><strong>Access:</strong> Main menu → Rituals → Replay Gallery</p>
+
+                <p><strong>Layout:</strong></p>
+                <ul>
+                    <li>Thumbnail grid (3 columns)</li>
+                    <li>Chronological or "favorites" sort</li>
+                    <li>Filter by sigil, realm, success/failure</li>
+                </ul>
+
+                <p><strong>Each replay shows:</strong></p>
+                <ul>
+                    <li>6-second video loop</li>
+                    <li>Ritual date/time</li>
+                    <li>Sigil used</li>
+                    <li>Success/failure indicator</li>
+                    <li>View count (if shared publicly)</li>
+                    <li>Comments (if public)</li>
+                </ul>
+
+                <h2>Sharing Options</h2>
+
+                <h3>1. Keep Private (Default)</h3>
+                <p>Replay stored locally only. <strong>You're the only one who sees it.</strong></p>
+
+                <h3>2. Share with Followers</h3>
+                <p>If you have followers (opt-in social features), they can see your replays.</p>
+                <p><strong>Use case:</strong> Small friend group sharing cool moments</p>
+
+                <h3>3. Public Gallery</h3>
+                <p>Upload to community gallery. <strong>Anyone can discover it.</strong></p>
+                <p><strong>Moderation:</strong></p>
+                <ul>
+                    <li>Auto-scan for inappropriate content</li>
+                    <li>Community reporting</li>
+                    <li>Manual review for flagged replays</li>
+                </ul>
+
+                <h3>4. Export to Device</h3>
+                <p>Download as MP4 (1080p, ~2 MB file size).</p>
+                <p>Share on Instagram, TikTok, Discord, anywhere.</p>
+                <p><strong>No watermark.</strong> (We're not monsters.)</p>
+
+                <h2>The Unexpected Creativity</h2>
+                <h3>1. Failure Montages</h3>
+                <p>Players sharing their most spectacular FAILURES:</p>
+                <ul>
+                    <li>Sigil misfires</li>
+                    <li>Accidental explosion effects</li>
+                    <li>Comedic timing (ritual fails just as phone rings)</li>
+                </ul>
+                <p><strong>"Fail Gallery" becomes most popular section.</strong></p>
+
+                <h3>2. Environmental Storytelling</h3>
+                <p>Players performing rituals in visually stunning locations:</p>
+                <ul>
+                    <li>Mountaintop at sunrise</li>
+                    <li>Beach during storm</li>
+                    <li>Snow-covered forest</li>
+                    <li>Urban rooftop</li>
+                </ul>
+                <p><strong>Replay becomes photography.</strong></p>
+
+                <h3>3. Choreographed Sequences</h3>
+                <p>Groups timing rituals to create <strong>sequential replays</strong>:</p>
+                <p><strong>Player A:</strong> Starts ritual at 0:00<br>
+                    <strong>Player B:</strong> Activates sigil at 0:06<br>
+                    <strong>Player C:</strong> Completes at 0:12
+                </p>
+                <p><strong>When viewed back-to-back:</strong> Looks like one continuous ritual across space.</p>
+                <p><strong>Accidental collaborative art.</strong></p>
+
+                <h2>Technical Implementation</h2>
+                <h3>Recording System</h3>
+                <p><strong>Challenge:</strong> Can't record entire ritual (battery drain, storage).</p>
+                <p><strong>Solution:</strong> Rolling buffer.</p>
+
+                <pre><code>// Pseudocode
+CircularBuffer&lt;VideoFrame&gt; buffer = new CircularBuffer&lt;VideoFrame&gt;(
+    capacity: 180 frames // 6 seconds @ 30 FPS
+);
+
+void Update() {
+    buffer.Add(CaptureCurrentFrame());
+    
+    if (RitualCompleted) {
+        ReplayMoment peak = IdentifyPeakMoment();
+        SaveReplay(buffer.GetRange(peak.startFrame, peak.endFrame));
+    }
+}</code></pre>
+
+                <p><strong>Result:</strong></p>
+                <ul>
+                    <li>Only stores last 6 seconds at any time</li>
+                    <li>Minimal memory footprint</li>
+                    <li>High quality (1080p)</li>
+                </ul>
+
+                <h2>The Philosophy</h2>
+                <p>Most games: Streaming requires OBS, overlays, editing.</p>
+                <p><strong>Ascendant Continuum:</strong> Your best moment is automatically captured.</p>
+                <p><strong>No setup. No editing. Just share (or don't).</strong></p>
+                <p><strong>Creativity through automatic curation.</strong></p>
+
+                <h2>Unexpected Emotional Impact</h2>
+                <p><strong>Alpha tester feedback:</strong></p>
+                <blockquote>
+                    <p><em>"I watched my first successful ritual replay 20 times. I cried. I didn't think I could do it,
+                            and there it was—proof that I DID."</em></p>
+                </blockquote>
+                <blockquote>
+                    <p><em>"My grandfather passed away. We used to stargaze together. I performed a ritual at his
+                            favorite spot. The replay is all I have left of that moment."</em></p>
+                </blockquote>
+                <blockquote>
+                    <p><em>"I deleted the game. But I kept the replays. They're memories now."</em></p>
+                </blockquote>
+                <p><strong>Replays became more than gameplay. They became emotional artifacts.</strong></p>
+
+                <h2>Final Thought</h2>
+                <p>6 seconds. That's all you get.</p>
+                <p><strong>Make it count.</strong></p>
+
+                <hr style="margin: 2rem 0; border: 1px solid rgba(255,255,255,0.1);">
+
+                <h3>Related Posts</h3>
+                <ul>
+                    <li><a href="./real-stargazing-anti-screen-time-mechanic.html">Real Stargazing: Anti-Screen-Time
+                            Mechanic</a></li>
+                    <li><a href="./time-capsules-messages-to-future-self.html">Time Capsules: Messages to Future
+                            Self</a></li>
+                    <li><a href="./community-mysteries-months-to-solve.html">Community Mysteries: Months to Solve</a>
+                    </li>
+                </ul>
             </div>
         </article>
     </div>

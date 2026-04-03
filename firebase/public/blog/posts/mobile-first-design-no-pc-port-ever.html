@@ -35,11 +35,309 @@
             </header>
 
             <div class="blog-post-content">
-                <p>See full blog post in markdown: <a
-                        href="../../../blog/mobile-first-design-no-pc-port-ever.md">mobile-first-design-no-pc-port-ever.md</a>
+                <h2>This Game Will Never Come to PC</h2>
+                <p>Not as a port.</p>
+                <p>Not as a remaster.</p>
+                <p><strong>Mobile-first. Mobile-only. Forever.</strong></p>
+
+                <h2>Why We're Mobile-Only</h2>
+                <h3>Constraint Breeds Creativity</h3>
+                <p><strong>Traditional game dev:</strong> "Design for PC, then downgrade for mobile."</p>
+                <p><strong>Result:</strong></p>
+                <ul>
+                    <li>Clunky touch controls (virtual joysticks overlaying screen)</li>
+                    <li>UI too small</li>
+                    <li>Features cut to "fit" mobile</li>
+                </ul>
+                <p><strong>Our approach:</strong> "Design for mobile. Ignore PC entirely."</p>
+                <p><strong>Result:</strong></p>
+                <ul>
+                    <li>Touch is PRIMARY interaction (not adapted)</li>
+                    <li>UI designed for 5-inch screens (not shrunk from 27-inch monitors)</li>
+                    <li>Features ONLY possible on mobile (GPS, accelerometer, camera, always-with-you)</li>
+                </ul>
+                <p><strong>No compromises.</strong></p>
+
+                <h2>What Mobile-First Actually Means</h2>
+
+                <h3>1. Touch is Intentional, Not Adapted</h3>
+                <p><strong>Bad mobile design (ported from PC):</strong></p>
+                <pre><code>[↑] [←] [→] [↓]  (virtual D-pad)
+[A] [B]           (virtual buttons)</code></pre>
+                <p><strong>Feels like:</strong> Playing with mittens on.</p>
+                <p><strong>Our design:</strong></p>
+                <p><strong>Sigil Drawing:</strong></p>
+                <ul>
+                    <li>Swipe gestures (natural to touch)</li>
+                    <li>Pressure sensitivity (3D Touch / Force Touch)</li>
+                    <li>Multi-touch (two-finger rituals)</li>
+                </ul>
+                <p><strong>No virtual buttons. Just your fingers on glass.</strong></p>
+
+                <h3>2. One-Handed Play</h3>
+                <p><strong>Most mobile games:</strong> Require landscape mode + both hands.</p>
+                <p><strong>Ascendant Continuum:</strong> Designed for one-handed portrait mode.</p>
+                <p><strong>Why?</strong></p>
+                <p>You're outside. At night. Holding a flashlight in one hand.</p>
+                <p><strong>Or:</strong> You're on a bus. Holding a handrail.</p>
+                <p><strong>Or:</strong> You've got coffee in one hand.</p>
+                <p><strong>One hand free = you can still play.</strong></p>
+                <p><strong>Code constraint:</strong></p>
+                <pre><code>// All UI elements must be reachable within "thumb zone"
+// on 6.7" display (iPhone 14 Pro Max)
+bool IsReachable(UIElement element) {
+    float thumbRadius = 75mm; // Average thumb reach
+    return element.position.y < Screen.height * 0.75f;
+}</code></pre>
+                <p><strong>If you can't reach it with your thumb, it gets moved.</strong></p>
+
+                <h3>3. Screen Size Aware (But Backwards)</h3>
+                <p><strong>Traditional responsive design:</strong> Design for desktop, scale down for mobile.</p>
+                <p><strong>Our process:</strong></p>
+                <ol>
+                    <li>Design for <strong>iPhone SE (4.7" screen)</strong> - smallest modern iPhone</li>
+                    <li>Scale UP for larger phones</li>
+                    <li>Ignore tablets/iPads (they get phone UI, just bigger)</li>
+                </ol>
+                <p><strong>Why?</strong> If it works on a 4.7" screen, it works EVERYWHERE.</p>
+                <p><strong>No one gets a worse experience.</strong></p>
+
+                <h2>Features Only Possible on Mobile</h2>
+
+                <h3>1. GPS-Based Gameplay</h3>
+                <p><strong>PC version would require:</strong></p>
+                <ul>
+                    <li>Manually entering coordinates (tedious)</li>
+                    <li>Or being stuck at home location (boring)</li>
+                </ul>
+                <p><strong>Mobile:</strong></p>
+                <ul>
+                    <li>Always knows where you are</li>
+                    <li>Rituals adapt to location</li>
+                    <li>Fossils appear based on proximity</li>
+                </ul>
+                <p><strong>Can't replicate on PC without feeling forced.</strong></p>
+
+                <h3>2. Real-Time Weather</h3>
+                <p><strong>PC:</strong></p>
+                <ul>
+                    <li>Looks up weather via ZIP code? (clunky)</li>
+                    <li>Syncs with desktop weather app? (unreliable)</li>
+                </ul>
+                <p><strong>Mobile:</strong></p>
+                <ul>
+                    <li>GPS → weather API → instant accuracy</li>
+                    <li>Accelerometer detects if you're actually outside</li>
+                    <li>Camera detects ambient light (sunrise/sunset validation)</li>
+                </ul>
+                <p><strong>Mobile sensors = seamless integration.</strong></p>
+
+                <h3>3. Always-With-You Design</h3>
+                <p><strong>PC games:</strong> You sit down to play.</p>
+                <p><strong>Mobile:</strong> The game is in your pocket.</p>
+                <p><strong>Notification:</strong></p>
+                <pre><code>Meteor shower tonight at 11:47 PM.
+Perfect ritual conditions in 2 hours.</code></pre>
+                <p>You're already outside with friends? Pull out phone. 2-minute ritual. Done.</p>
+                <p><strong>No PC player is lugging a laptop to a park at midnight.</strong></p>
+
+                <h3>4. Camera Integration</h3>
+                <p><strong>Planned feature (Year 2): AR Sigil Overlays</strong></p>
+                <ul>
+                    <li>Point camera at sky</li>
+                    <li>See constellation alignments</li>
+                    <li>Sigils appear overlaid on real stars</li>
+                </ul>
+                <p><strong>PC with webcam?</strong> Doesn't work. Webcams don't aim at sky.</p>
+                <p><strong>Mobile camera?</strong> Perfect. You're ALREADY looking up.</p>
+
+                <h2>What We Lose (And We're Okay With It)</h2>
+
+                <h3>No Keyboard Shortcuts</h3>
+                <p>PC gamers love hotkeys. <strong>We don't have them.</strong></p>
+                <p><strong>Trade-off:</strong> Touch gestures are MORE expressive than keyboard combos.</p>
+                <p>Drawing sigils > pressing "Q-W-E-R" combo.</p>
+
+                <h3>No High-End Graphics</h3>
+                <p><strong>PC:</strong> RTX 4090 can render photorealistic water.</p>
+                <p><strong>Mobile:</strong> Limited to what iPhone 12 can handle.</p>
+                <p><strong>Our stance:</strong> Art style > raw polygons.</p>
+                <p><strong>We optimize for aesthetic beauty, not graphical fidelity.</strong></p>
+                <p>Stylized shaders, particle effects, lighting that works on mid-range phones.</p>
+                <p><strong>Beauty through constraint.</strong></p>
+
+                <h3>No Modding</h3>
+                <p><strong>PC games:</strong> Mod community extends lifespan.</p>
+                <p><strong>Mobile:</strong> Walled gardens (App Store / Play Store) = no mods.</p>
+                <p><strong>We accept this.</strong></p>
+                <p><strong>Instead:</strong></p>
+                <ul>
+                    <li>Built-in customization (cosmetics, sigil personalization)</li>
+                    <li>Community input → official updates</li>
+                    <li>User-generated content via in-game tools (ritual sharing)</li>
+                </ul>
+                <p><strong>Controlled ecosystem, but still creative.</strong></p>
+
+                <h2>Performance Optimization for Mobile</h2>
+
+                <h3>Battery Constraint</h3>
+                <p><strong>Problem:</strong> 3D games drain battery.</p>
+                <p><strong>Traditional solution:</strong> "Just plug in while playing."</p>
+                <p><strong>Our solution: Rituals are SHORT (2-5 minutes).</strong></p>
+                <p>You don't need 90 minutes of battery.</p>
+                <p><strong>15 minutes of gameplay = 5% battery drain</strong> (target).</p>
+                <p><strong>How?</strong></p>
+                <ul>
+                    <li>Aggressive LOD (level of detail) scaling</li>
+                    <li>Particle system pooling</li>
+                    <li>Screen dims during idle moments</li>
+                    <li>Background processes paused</li>
+                </ul>
+
+                <h3>Thermal Management</h3>
+                <p><strong>Problem:</strong> Phone gets HOT during intense gameplay.</p>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Frame rate cap (60 FPS max, not 120)</li>
+                    <li>Dynamic resolution scaling</li>
+                    <li>Thermal monitoring (if device > 45°C, reduce FX)</li>
+                </ul>
+                <p><strong>Better to play longer at lower settings than crash from overheat.</strong></p>
+
+                <h3>Download Size</h3>
+                <p><strong>Target:</strong> Under 250 MB initial download.</p>
+                <p><strong>Why?</strong></p>
+                <ul>
+                    <li>Cellular download-friendly (no Wi-Fi needed)</li>
+                    <li>Doesn't eat storage space</li>
+                    <li>Faster onboarding</li>
+                </ul>
+                <p><strong>How?</strong></p>
+                <ul>
+                    <li>Procedural generation (textures, not pre-baked)</li>
+                    <li>Asset streaming (download realms as you unlock them)</li>
+                    <li>Compressed audio</li>
+                </ul>
+                <p><strong>No 50 GB install like AAA games.</strong></p>
+
+                <h2>Accessibility Advantages of Mobile</h2>
+
+                <h3>Screen Reader Integration</h3>
+                <p><strong>Mobile OS:</strong> Built-in accessibility features (iOS VoiceOver / Android TalkBack).</p>
+                <p><strong>PC:</strong> Requires third-party tools (JAWS, NVDA).</p>
+                <p>Every UI element has VoiceOver labels:</p>
+                <pre><code>accessibilityLabel = "Lunar Bloom sigil. Unlocked. Tap to equip.";</code></pre>
+                <p><strong>Blind players can navigate entirely by audio.</strong></p>
+
+                <h3>Haptic Feedback</h3>
+                <p><strong>Mobile:</strong> Advanced haptics (Taptic Engine on iPhone).</p>
+                <p><strong>PC:</strong> Keyboard has none. Mouse has basic vibration (if gaming mouse).</p>
+                <p><strong>Our use:</strong></p>
+                <ul>
+                    <li>Sigil activation = satisfying "thunk" haptic</li>
+                    <li>Ritual success = celebratory haptic pulse</li>
+                    <li>Error = sharp warning haptic</li>
+                </ul>
+                <p><strong>Tactile feedback enhances immersion.</strong></p>
+
+                <h3>Colorblind Modes</h3>
+                <p><strong>Built into iOS/Android:</strong> System-wide color filters.</p>
+                <p><strong>Our support:</strong></p>
+                <ul>
+                    <li>Design UI to work with all OS colorblind modes</li>
+                    <li>Test with Deuteranopia, Protanopia, Tritanopia filters</li>
+                    <li>Icon shapes differ (not just colors)</li>
+                </ul>
+                <p><strong>Accessible by default, not as afterthought.</strong></p>
+
+                <h2>The "But I Want to Play on PC" Response</h2>
+                <p><strong>We hear you.</strong></p>
+                <p><strong>Counter-offer:</strong> Use an <strong>Android emulator</strong> (Bluestacks, LDPlayer).</p>
+                <p><strong>Limitations:</strong></p>
+                <ul>
+                    <li>No GPS (stuck at emulator's fake location)</li>
+                    <li>No accelerometer (can't detect real movement)</li>
+                    <li>No real-world weather sync</li>
+                    <li>Loses 80% of game's magic</li>
+                </ul>
+                <p><strong>Will it work?</strong> Technically, yes.</p>
+                <p><strong>Will it feel right?</strong> No.</p>
+                <p><strong>And we're okay with that.</strong></p>
+                <p>This game is MEANT to be played outside, phone in hand, under real sky.</p>
+                <p><strong>Emulating it defeats the purpose.</strong></p>
+
+                <h2>Revenue Implications</h2>
+                <p><strong>PC gamers:</strong> "I'd pay $60 for a PC version!"</p>
+                <p><strong>Our math:</strong></p>
+                <p><strong>Option A: PC Port</strong></p>
+                <ul>
+                    <li>Development cost: $200,000 (porting, QA, Steam integration)</li>
+                    <li>Potential sales: 10,000 copies @ $30 = $300,000</li>
+                    <li>Net: $100,000 profit</li>
+                </ul>
+                <p><strong>Option B: Stay Mobile-Only, Deepen Mobile Features</strong></p>
+                <ul>
+                    <li>Development cost: $100,000 (AR features, more sigils)</li>
+                    <li>Improves retention: +15% (keeps players longer)</li>
+                    <li>In-app cosmetics revenue: +$500,000/year</li>
+                </ul>
+                <p><strong>Mobile-only is MORE profitable.</strong></p>
+                <p>And aligns with our vision.</p>
+                <p><strong>Easy choice.</strong></p>
+
+                <h2>The Philosophy</h2>
+                <p><strong>Most indie devs:</strong> "If we succeed on mobile, we'll port to PC!"</p>
+                <p><strong>Us:</strong> "If we succeed on mobile, we'll make mobile BETTER."</p>
+                <p>PC is not an "upgrade."</p>
+                <p><strong>It's a different platform with different strengths.</strong></p>
+                <p>We chose mobile.</p>
+                <p><strong>And we're doubling down.</strong></p>
+
+                <h2>What We Learned From Other Mobile-First Games</h2>
+
+                <h3>Monument Valley</h3>
+                <p><strong>Lesson:</strong> Touch gestures can be MORE expressive than mouse clicks.</p>
+                <p><strong>Applied:</strong> Sigil drawing uses swipes, pressure, multi-touch.</p>
+
+                <h3>Pokémon GO</h3>
+                <p><strong>Lesson:</strong> GPS + real-world integration = magic.</p>
+                <p><strong>Applied:</strong> Fossils, real astronomy, sunrise/sunset mechanics.</p>
+
+                <h3>Alto's Odyssey</h3>
+                <p><strong>Lesson:</strong> Simple one-handed controls = accessible to everyone.</p>
+                <p><strong>Applied:</strong> All rituals playable one-handed.</p>
+
+                <h3>Sky: Children of the Light</h3>
+                <p><strong>Lesson:</strong> Mobile can be beautiful AND performant.</p>
+                <p><strong>Applied:</strong> Stylized art direction, optimized for mid-range phones.</p>
+
+                <h2>The 5-Year Vision</h2>
+                <p><strong>2026:</strong> Launch on iOS + Android<br>
+                    <strong>2027:</strong> Deepen mobile features (AR, more sensors)<br>
+                    <strong>2028:</strong> Cross-platform social (but still mobile-only gameplay)<br>
+                    <strong>2029:</strong> Apple Watch companion app (notifications, quick rituals)<br>
+                    <strong>2030:</strong> VR integration? (Mobile VR like Quest, not PC VR)
                 </p>
-                <p><em>This HTML file serves as a placeholder. Full content available in the markdown version during
-                        development.</em></p>
+                <p><strong>Notice:</strong> No PC port in roadmap.</p>
+                <p><strong>We're committed.</strong></p>
+
+                <h2>Final Thought</h2>
+                <p><strong>Every game doesn't need to be on every platform.</strong></p>
+                <p>Some games are BETTER when they embrace constraints.</p>
+                <p><strong>This is a mobile game.</strong></p>
+                <p>Not a PC game you can play on mobile.</p>
+
+                <hr style="margin: 2rem 0; border: 1px solid rgba(255,255,255,0.1);">
+
+                <h3>Related Posts</h3>
+                <ul>
+                    <li><a href="./real-stargazing-anti-screen-time-mechanic.html">Real Stargazing: Anti-Screen-Time
+                            Mechanic</a></li>
+                    <li><a href="./touch-interface-pressure-drawing-no-buttons.html">Touch Interface: Pressure Drawing
+                            (No Buttons)</a></li>
+                    <li><a href="./design-philosophy-player-agency-over-grinding.html">Design Philosophy: Player Agency
+                            Over Grinding</a></li>
+                </ul>
             </div>
         </article>
     </div>
