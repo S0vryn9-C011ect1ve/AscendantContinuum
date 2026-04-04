@@ -449,15 +449,27 @@
       ],
       "themeName": "Tutorial",
       "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play..."
+    },
+    {
+      "title": "Addressables and Asset Management at Scale",
+      "slug": "addressables-and-asset-management-at-scale",
+      "date": "2026-04-04",
+      "tags": [
+        "tutorial",
+        "unity",
+        "game-dev"
+      ],
+      "themeName": "Tutorial",
+      "excerpt": "Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets that most players would never see: all fiv..."
     }
   ],
   "stats": {
-    "totalPosts": 32,
+    "totalPosts": 33,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 4,
       "Behind the Scenes": 3,
-      "Tutorial": 6,
+      "Tutorial": 7,
       "Design Philosophy": 5,
       "Dev Diary": 3,
       "Community Insight": 1
@@ -478,9 +490,9 @@
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
-      "tutorial": 6,
-      "unity": 10,
-      "game-dev": 6,
+      "tutorial": 7,
+      "unity": 11,
+      "game-dev": 7,
       "ethics": 2,
       "philosophy": 1,
       "ai": 1,
