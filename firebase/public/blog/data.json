@@ -461,17 +461,29 @@
       ],
       "themeName": "Tutorial",
       "excerpt": "Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets that most players would never see: all fiv..."
+    },
+    {
+      "title": "Unity WebGL Performance: From 15fps to 60fps",
+      "slug": "unity-webgl-performance-from-15fps-to-60fps",
+      "date": "2026-04-05",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Dev Diary",
+      "excerpt": "When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi..."
     }
   ],
   "stats": {
-    "totalPosts": 33,
+    "totalPosts": 34,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 4,
       "Behind the Scenes": 3,
       "Tutorial": 7,
       "Design Philosophy": 5,
-      "Dev Diary": 3,
+      "Dev Diary": 4,
       "Community Insight": 1
     },
     "byTag": {
@@ -485,13 +497,13 @@
       "game-design": 7,
       "technical": 3,
       "innovation": 2,
-      "behind-the-scenes": 3,
+      "behind-the-scenes": 4,
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
       "tutorial": 7,
-      "unity": 11,
+      "unity": 12,
       "game-dev": 7,
       "ethics": 2,
       "philosophy": 1,
@@ -499,7 +511,7 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 8,
+      "development": 9,
       "player-stories": 1,
       "updates": 1,
       "team": 3,

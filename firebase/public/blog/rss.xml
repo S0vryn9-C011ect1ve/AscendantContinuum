@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Apr 2026 14:01:11 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 05 Apr 2026 14:02:27 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Unity WebGL Performance: From 15fps to 60fps]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/unity-webgl-performance-from-15fps-to-60fps.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/unity-webgl-performance-from-15fps-to-60fps.html</guid>
+      <pubDate>Sun, 05 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Addressables and Asset Management at Scale]]></title>
@@ -271,18 +283,6 @@
       <category><![CDATA[unity]]></category>
       <category><![CDATA[game-dev]]></category>
       <description><![CDATA[Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets that most players would never see: all fiv...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[State Management with ScriptableObjects]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html</guid>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Tutorial]]></category>
-      <category><![CDATA[tutorial]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[game-dev]]></category>
-      <description><![CDATA[Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play...]]></description>
     </item>
   </channel>
 </rss>
