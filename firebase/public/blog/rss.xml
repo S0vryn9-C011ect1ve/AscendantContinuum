@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Apr 2026 14:02:27 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2026 14:00:42 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
+      <pubDate>Mon, 06 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Behind the Scenes]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[team]]></category>
+      <category><![CDATA[process]]></category>
+      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Unity WebGL Performance: From 15fps to 60fps]]></title>
@@ -271,18 +283,6 @@
       <category><![CDATA[webdev]]></category>
       <category><![CDATA[tools]]></category>
       <description><![CDATA[Three major npm packages were compromised this week (axios, LiteLLM, LofyGang). Here's how we protected our live beta testers and projects in one afternoon with a 6-layer security stack—and how you can implement it in under an hour.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Addressables and Asset Management at Scale]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/addressables-and-asset-management-at-scale.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/addressables-and-asset-management-at-scale.html</guid>
-      <pubDate>Wed, 01 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Tutorial]]></category>
-      <category><![CDATA[tutorial]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[game-dev]]></category>
-      <description><![CDATA[Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets that most players would never see: all fiv...]]></description>
     </item>
   </channel>
 </rss>

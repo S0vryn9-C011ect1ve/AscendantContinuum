@@ -473,14 +473,26 @@
       ],
       "themeName": "Dev Diary",
       "excerpt": "When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi..."
+    },
+    {
+      "title": "Solo Development Lessons: Building a Game Alone",
+      "slug": "solo-development-lessons-building-a-game-alone",
+      "date": "2026-04-06",
+      "tags": [
+        "development",
+        "team",
+        "process"
+      ],
+      "themeName": "Behind the Scenes",
+      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
     }
   ],
   "stats": {
-    "totalPosts": 34,
+    "totalPosts": 35,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 4,
-      "Behind the Scenes": 3,
+      "Behind the Scenes": 4,
       "Tutorial": 7,
       "Design Philosophy": 5,
       "Dev Diary": 4,
@@ -511,11 +523,11 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 9,
+      "development": 10,
       "player-stories": 1,
       "updates": 1,
-      "team": 3,
-      "process": 3,
+      "team": 4,
+      "process": 4,
       "daily-challenges": 1,
       "inclusive-design": 2,
       "secrets": 1,
