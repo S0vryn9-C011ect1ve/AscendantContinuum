@@ -45,33 +45,60 @@ jobs:
       
       # Check for compromised packages (based on latest threats)
       - name: 🚨 Check for Known Compromised Packages
+        id: threat-scan
         run: |
           echo "=== Checking for Known Compromised Packages ==="
+          
+          THREATS_FOUND=0
+          THREAT_DETAILS=""
           
           # Check axios versions (compromised: 1.14.1, 0.30.4)
           AXIOS_VERSION=$(npm list axios --depth=0 2>/dev/null | grep axios@ | sed 's/.*axios@//' | sed 's/ .*//')
           if [ "$AXIOS_VERSION" = "1.14.1" ] || [ "$AXIOS_VERSION" = "0.30.4" ]; then
             echo "⚠️ CRITICAL: Compromised axios version detected: $AXIOS_VERSION"
-            exit 1
+            THREATS_FOUND=$((THREATS_FOUND + 1))
+            THREAT_DETAILS="${THREAT_DETAILS}- axios@${AXIOS_VERSION} (COMPROMISED)\n"
           else
             echo "✅ Axios version safe: $AXIOS_VERSION"
           fi
           
-          # Check for malicious packages
+          # April 2026 threat database
           MALICIOUS_PACKAGES=(
             "litellm@1.82.7"
             "litellm@1.82.8"
             "separadordeinfocc"
+            "strapi-plugin-health"
+            "strapi-plugin-sync"
+            "strapi-plugin-seed"
+            "strapi-plugin-locale"
+            "strapi-plugin-form"
+            "strapi-plugin-notify"
+            "strapi-plugin-api"
+            "mgc@1.2.1"
+            "mgc@1.2.2"
+            "mgc@1.2.3"
+            "mgc@1.2.4"
           )
           
           for pkg in "${MALICIOUS_PACKAGES[@]}"; do
             if npm list "$pkg" --depth=999 2>/dev/null | grep -q "$pkg"; then
               echo "🚨 CRITICAL: Malicious package detected: $pkg"
-              exit 1
+              THREATS_FOUND=$((THREATS_FOUND + 1))
+              THREAT_DETAILS="${THREAT_DETAILS}- ${pkg} (MALICIOUS)\n"
             fi
           done
           
-          echo "✅ No known malicious packages detected"
+          echo "threats_found=$THREATS_FOUND" >> $GITHUB_OUTPUT
+          echo "threat_details<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$THREAT_DETAILS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          if [ $THREATS_FOUND -gt 0 ]; then
+            echo "🚨 ALERT: $THREATS_FOUND compromised packages detected!"
+            exit 1
+          else
+            echo "✅ No known malicious packages detected"
+          fi
       
       # Generate security report
       - name: 📊 Generate Security Report
@@ -136,18 +163,76 @@ jobs:
           retention-days: 90
       
       # Create issue if high/critical vulnerabilities found
-      - name: 🚨 Create Security Issue
+      - name: 🚨 Create Security Alert Issue
         if: failure()
         uses: actions/github-script@v7
         with:
           script: |
+            const threatDetails = `${{ steps.threat-scan.outputs.threat_details }}` || 'Unknown threats detected';
+            const threatsFound = `${{ steps.threat-scan.outputs.threats_found }}` || 'unknown';
+            
             github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '🚨 Security Scan Failed - ' + new Date().toISOString().split('T')[0],
-              body: `## Security Scan Alert
+              title: '🚨 SECURITY ALERT: Compromised Packages Detected - ' + new Date().toISOString().split('T')[0],
+              labels: ['security', 'critical', 'automated'],
+              body: `## 🚨 CRITICAL SECURITY ALERT
               
-              The weekly security scan has detected issues that require immediate attention.
+              **Automated scan detected ${threatsFound} compromised package(s) in Ascendant Continuum project.**
+              
+              ### ⚠️ Threats Detected
+              
+              ${threatDetails}
+              
+              ### 🛡️ Immediate Actions Required
+              
+              1. **DO NOT** install or update any packages until resolved
+              2. Review \`package-lock.json\` for suspicious changes
+              3. Run manual audit: \`npm audit\`
+              4. Check for unauthorized git commits
+              5. Rotate all API keys and credentials (assume compromise)
+              
+              ### 📊 Scan Details
+              
+              - **Workflow Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+              - **Triggered By:** ${{ github.event_name }}
+              - **Branch:** ${{ github.ref_name }}
+              - **Commit:** ${{ github.sha }}
+              
+              ### 📋 Next Steps
+              
+              - [ ] Verify threat authenticity (check npm advisories)
+              - [ ] Update \`package.json\` overrides to block compromised versions
+              - [ ] Test all functionality after remediation
+              - [ ] Update threat database in \`docs/security/SUPPLY_CHAIN_PROTECTION.md\`
+              - [ ] Close this issue once resolved
+              
+              ### 🔗 Resources
+              
+              - [Supply Chain Protection Guide](docs/security/SUPPLY_CHAIN_PROTECTION.md)
+              - [Security Audit Report](SECURITY_AUDIT_APRIL_6_2026.md)
+              - [npm Security Advisories](https://www.npmjs.com/advisories)
+              - [Socket.dev Blog](https://socket.dev/blog)
+              
+              ---
+              
+              **Priority:** 🔴 CRITICAL  
+              **Auto-generated by:** Weekly Security Scan  
+              **Assignee:** @${{ github.repository_owner }}
+              `
+            });
+      
+      # Send email notification on failure (if email configured)
+      - name: 📧 Send Email Alert
+        if: failure()
+        run: |
+          echo "🚨 SECURITY ALERT: Scan failed - compromised packages detected"
+          echo "Issue created in GitHub: Check repository notifications"
+          echo ""
+          echo "To enable email alerts, configure GitHub repository settings:"
+          echo "Settings > Notifications > Email notifications"
+          echo ""
+          echo "Or add email delivery using GitHub Actions marketplace actions"
               
               **Scan Date:** ${new Date().toUTCString()}
               **Workflow Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
