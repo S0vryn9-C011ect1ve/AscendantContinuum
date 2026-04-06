@@ -1,16 +1,33 @@
 # Supply Chain Attack Protection - April 2026
 
-## 🚨 Active Threats (Last Updated: April 1, 2026)
+## 🚨 Active Threats (Last Updated: April 6, 2026)
 
 ### Recently Compromised Packages
 
-| Package | Compromised Versions | Attack Type | Status |
-|---------|---------------------|-------------|--------|
-| **axios** | 1.14.1, 0.30.4 | Malicious dependency injection | ✅ PROTECTED |
-| **LiteLLM** | 1.82.7, 1.82.8 | Credential exfiltration backdoor | ✅ PROTECTED |
-| **separadordeinfocc** | 1.0.0 | LofyGang malware/infostealer | ✅ PROTECTED |
-| **Railway** | N/A | CDN caching data leak | ℹ️ External service |
-| **OpenAI Codex** | N/A | Command injection vulnerability | ℹ️ External API |
+| Package | Compromised Versions | Attack Type | Detected | Status |
+|---------|---------------------|-------------|----------|--------|
+| **strapi-plugin-health** | Unknown | Supply chain attack | April 3, 2026 | ✅ PROTECTED |
+| **strapi-plugin-sync** | Unknown | Supply chain attack | April 3, 2026 | ✅ PROTECTED |
+| **strapi-plugin-seed** | Unknown | Supply chain attack | April 3, 2026 | ✅ PROTECTED |
+| **strapi-plugin-locale** | Unknown | Supply chain attack | April 3, 2026 | ✅ PROTECTED |
+| **strapi-plugin-form** | Unknown | Supply chain attack | April 3, 2026 | ✅ PROTECTED |
+| **strapi-plugin-notify** | Unknown | Supply chain attack | April 3, 2026 | ✅ PROTECTED |
+| **strapi-plugin-api** | Unknown | Supply chain attack | April 3, 2026 | ✅ PROTECTED |
+| **mgc** | 1.2.1-1.2.4 | GitHub-hosted payloads, C2 active | April 3, 2026 | ✅ PROTECTED |
+| **axios** | 1.14.1, 0.30.4 | Malicious dependency injection | March 31, 2026 | ✅ PROTECTED |
+| **axios** (2nd attack) | Unknown | UNC1069 social engineering | April 3, 2026 | ✅ PROTECTED |
+| **LiteLLM** | 1.82.7, 1.82.8 | Credential exfiltration backdoor | April 1, 2026 | ✅ PROTECTED |
+| **separadordeinfocc** | 1.0.0 | LofyGang malware/infostealer | April 1, 2026 | ✅ PROTECTED |
+| **Railway** | N/A | CDN caching data leak | March 2026 | ℹ️ External service |
+| **OpenAI Codex** | N/A | Command injection vulnerability | March 2026 | ℹ️ External API |
+
+### ⚠️ BREAKING: New Attack Wave - April 3, 2026
+
+**7 Strapi plugins compromised** - Malicious code on npm but not GitHub  
+**mgc package** - Versions 1.2.1-1.2.4 with GitHub-hosted payloads, C2 server live but not yet weaponized  
+**axios targeted AGAIN** - UNC1069 used social engineering (cloned founder's identity, fake Slack workspace, scheduled call) to push trojanized update
+
+**All blocked by our 7-day delay** - Attacks only 3 days old as of April 6, 2026 ✅
 
 ### Attack Patterns Observed
 1. **Supply chain injection** - Malicious dependencies added to popular packages
@@ -18,6 +35,14 @@
 3. **Credential exfiltration** - Stealing environment variables and tokens
 4. **C2 communication** - Backdoors connecting to attacker servers
 5. **Fast rotation** - Attackers register domains minutes before package publish
+6. **Social engineering (NEW)** - UNC1069 tactics:
+   - Clone maintainer identities
+   - Create convincing fake Slack workspaces
+   - Schedule video calls to build trust
+   - Deploy "updates" that install malware (e.g., WAVESHAPER.V2)
+   - Steal npm credentials to push trojanized packages
+7. **GitHub-hosted payloads (NEW)** - Malicious code hosted on GitHub to evade npm scanning
+8. **Coordinated multi-package attacks** - 7+ packages compromised simultaneously (Strapi plugins)
 
 ---
 
