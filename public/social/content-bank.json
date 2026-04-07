@@ -1,14 +1,14 @@
 {
   "meta": {
-    "totalItems": 206,
+    "totalItems": 250,
     "contentDistribution": {
-      "devUpdate": 56,
+      "devUpdate": 81,
       "devEducation": 56,
-      "designPhilosophy": 44,
-      "behindScenes": 25,
-      "loreSnippet": 25
+      "designPhilosophy": 51,
+      "behindScenes": 34,
+      "loreSnippet": 28
     },
-    "lastUpdated": "2026-04-02T00:00:00.000Z"
+    "lastUpdated": "2026-04-07T00:00:00.000Z"
   },
   "content": [
     {
@@ -2926,6 +2926,622 @@
       ],
       "priority": "high",
       "media": null,
+      "used": false
+    },
+    {
+      "id": 207,
+      "type": "devUpdate",
+      "hook": "Solo dev. Zero budget. No testers. WebGL game launching soon.",
+      "body": "The Ascendant Continuum:\n\n• Built entirely alone (no team, no testers)\n• ZERO DOLLARS budget (free tools + determination)\n• 5 mystical realms, each unique\n• 1-5 minute relaxing sessions\n• WebGL live NOW: ascendant-continuum.web.app/play\n\nProof that passion beats funding.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 208,
+      "type": "devUpdate",
+      "hook": "Emberforge realm: where you literally play with fire 🔥",
+      "body": "Emberforge mechanics:\n\n• Collect dancing flame sparks\n• Forge mystical fire patterns\n• Control heat intensity puzzles\n• Create molten light sculptures\n\nAfter playing: game suggests 'go watch a real sunrise'\n\nDigital magic → real-world connection.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 209,
+      "type": "devUpdate",
+      "hook": "Verdant Sanctuary: the realm that tells you to touch grass (literally)",
+      "body": "Verdant mechanics:\n\n• Water glowing magical plants\n• Watch blooms in real-time\n• Attract peaceful creatures\n• Solve organic vine mazes\n\nPost-session prompt: 'Go touch actual grass for 60 seconds'\n\nWe're serious about nature connection.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 210,
+      "type": "devUpdate",
+      "hook": "Echo Fields: trace constellations, discover player echoes from months ago",
+      "body": "Echo Fields mechanics:\n\n• Connect stars to form constellations\n• Find messages from past players\n• Leave time capsules for future players\n• Create star maps others discover\n\nYour constellations become permanent.\n\nFuture players see YOUR creations.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 211,
+      "type": "devUpdate",
+      "hook": "Dawn Citadel: manipulate prismatic light through crystals",
+      "body": "Dawn Citadel mechanics:\n\n• Split light rays through crystals\n• Create light-based musical instruments\n• Bend light to reveal hidden paths\n• Capture beams in crystal vessels\n\nPost-session: 'Watch golden hour light today'\n\nReminds you to notice real light.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 212,
+      "type": "devUpdate",
+      "hook": "Lantern Ascension: release wishes to the sky, find wishes from players worldwide",
+      "body": "Lantern Ascension mechanics:\n\n• Release glowing wish lanterns\n• Discover others' wishes globally\n• Join synchronized meditation circles\n• Connect with nearby players\n\nEvery 1000 wishes = Wish Storm event.\n\nYour wish might trigger it for 10,000 people.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 213,
+      "type": "behindScenes",
+      "hook": "Building a game alone: here's what zero budget actually means",
+      "body": "No budget reality:\n\n• Unity (free)\n• Blender (free)\n• GIMP/Krita (free)\n• Firebase free tier\n• GitHub free tier\n• No testers = I am the QA\n• No marketing team = I write all posts\n\nLimitations breed creativity.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 214,
+      "type": "devUpdate",
+      "hook": "Your sigil: a magical symbol that evolves based on HOW you play",
+      "body": "Sigil system:\n\n• Generated from your play style\n• Changes based on rituals chosen\n• Reflects preferred realms\n• Unique to every player\n• Visible to others in Echo Fields\n\nNo two sigils identical.\n\nYour gameplay = your magical identity.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 215,
+      "type": "devUpdate",
+      "hook": "The game syncs with actual moon phases. Full moon ≠ new moon gameplay.",
+      "body": "Lunar mechanics:\n\n• Pulls real-world moon data\n• Full moon = amplified rituals\n• New moon = introspective challenges\n• Eclipse events = rare content\n• Changes daily automatically\n\nReal celestial events affect gameplay.\n\nThe sky is literally part of the game.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 216,
+      "type": "behindScenes",
+      "hook": "Solo dev means: I'm the designer, programmer, artist, marketer, and janitor",
+      "body": "Roles I fill alone:\n\n• Game design\n• Unity programming (C#)\n• UI/UX design\n• 3D modeling\n• Shader writing\n• Marketing/social\n• Customer support\n• Server maintenance\n\nNo team. Just me. And coffee.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 217,
+      "type": "devUpdate",
+      "hook": "1 million sparks collected globally = legendary artifact unlocks for EVERYONE",
+      "body": "Collective events:\n\n• Emberforge: 1M sparks → forge legendary item\n• Verdant: 100K plants → World Tree blooms\n• Echo: 100K constellations → celestial map complete\n• Dawn: light puzzles → Eternal Lighthouse\n• Lantern: 1K wishes → Wish Storm\n\nIndividual actions → global rewards.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 218,
+      "type": "designPhilosophy",
+      "hook": "Anti-FOMO by design: the game literally tells you to take breaks",
+      "body": "Digital Sunset feature:\n\n• After 5-10 min: 'You've gained your daily spark'\n• Gentle reminder to close app\n• No penalties for missing days\n• Progress persists always\n• Universe evolves offline\n\nWe want you to live life, not grind.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 219,
+      "type": "devUpdate",
+      "hook": "WebGL version is FREE and playable RIGHT NOW in your browser",
+      "body": "Play today:\n\nascendant-continuum.web.app/play\n\n• No download required\n• Works on any device\n• Chrome/Firefox/Safari/Edge\n• Mobile & desktop\n• Free forever\n\nAndroid/iOS coming soon.\n\nZero barriers to entry.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 220,
+      "type": "behindScenes",
+      "hook": "No testers = I discovered bugs by accidentally playing my own game at 2 AM",
+      "body": "Solo testing reality:\n\n• Found ritual softlock at 3 AM\n• Discovered UI bug while half-asleep\n• Caught progression blocker during 'fun' playtest\n• Every bug found by me\n\nNo QA team.\n\nJust exhausted playthroughs.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "low",
+      "used": false
+    },
+    {
+      "id": 221,
+      "type": "devUpdate",
+      "hook": "NPCs remember EVERYTHING every player tells them. Globally.",
+      "body": "Collective NPC memory:\n\n• Every conversation aggregated\n• Characters evolve based on community\n• Launch players teach future players\n• Dialogue changes over time\n• No AI - just collective intelligence\n\nYour words become lore.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 222,
+      "type": "designPhilosophy",
+      "hook": "No pay-to-win. No loot boxes. No energy systems. No ads. How do we make money?",
+      "body": "Ethical monetization:\n\n• WebGL free forever\n• Mobile: cosmetic-only purchases\n• Realm skins (visual only)\n• Sigil designs (vanity)\n• Lantern colors (aesthetic)\n\nGameplay identical for everyone.\n\nRevenue from joy, not manipulation.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 223,
+      "type": "devUpdate",
+      "hook": "The Archive of Travelers: every player leaves a permanent mark",
+      "body": "Player legacy system:\n\n• Completed realm → entry in Archive\n• Future players read your journey\n• Your sigil style documented\n• Choices recorded forever\n• Discoverable by others\n\nYou're not just playing.\n\nYou're writing history.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 224,
+      "type": "behindScenes",
+      "hook": "Built with Unity 6000.3.9f1, C#, and a dangerous amount of caffeine",
+      "body": "Tech stack:\n\n• Unity 6000.3.9f1 (latest)\n• C# (.NET Core)\n• Firebase (hosting + Firestore)\n• Custom shaders (HLSL)\n• WebGL build pipeline\n• Git + GitHub Actions CI/CD\n\nAll free tools. Zero budget.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "low",
+      "used": false
+    },
+    {
+      "id": 225,
+      "type": "devUpdate",
+      "hook": "Weather integration: rainy day? Verdant Sanctuary blooms extra beautiful",
+      "body": "Real-world sync:\n\n• Game checks local weather\n• Rain → Verdant blooms more\n• Clear night → Echo Fields stargazing prompt\n• Sunny → Dawn Citadel light puzzles active\n• Syncs with your environment\n\nDigital world mirrors real world.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 226,
+      "type": "devUpdate",
+      "hook": "Built-in 'Nature Quests': complete real-world actions for in-game rewards",
+      "body": "Nature Quest examples:\n\n• 'Find 3 different leaf shapes' → unlock\n• 'Watch clouds for 5 minutes' → sigil upgrade\n• 'Listen to bird sounds' → Echo Fields bonus\n• 'Feel sunlight for 60 seconds' → Emberforge boost\n\nGamifying touching grass.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 227,
+      "type": "behindScenes",
+      "hook": "The feature that took 2 weeks: making accessibility unlock DIFFERENT content",
+      "body": "Accessibility development:\n\n• Week 1: Implement 5 colorblind modes\n• Week 2: Design unique secrets for each\n• Result: Protanopia ≠ Deuteranopia ≠ Tritanopia\n• Each mode = different discovery\n• Equal value, not accommodation\n\nHardest feature. Most proud feature.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 228,
+      "type": "designPhilosophy",
+      "hook": "Monument Valley meets Animal Crossing meets meditation app",
+      "body": "Game philosophy:\n\n• Visual beauty (Monument Valley)\n• Daily gentle rituals (Animal Crossing)\n• Mindfulness mechanics (Calm/Headspace)\n• 1-5 minute sessions\n• Zero stress design\n\nPuzzle-adventure + meditation.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 229,
+      "type": "devUpdate",
+      "hook": "Cross-platform cloud save: start on browser, continue on mobile (coming soon)",
+      "body": "Cloud sync features:\n\n• Anonymous cloud saves (opt-in)\n• Firebase Firestore backend\n• Works across all platforms\n• No login required (device ID)\n• Optional account linking\n\nSeamless progression everywhere.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 230,
+      "type": "behindScenes",
+      "hook": "Debugging WebGL builds at midnight because 'it works in editor'",
+      "body": "WebGL debugging nightmares:\n\n• Works in Unity Editor ✓\n• Breaks in WebGL build ✗\n• 3 AM: found corrupt shader\n• 4 AM: fixed, tested, deployed\n• 5 AM: sleep\n\nSolo dev = solo debugging hell.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "low",
+      "used": false
+    },
+    {
+      "id": 231,
+      "type": "loreSnippet",
+      "hook": "The First Spark: origin story of the five realms",
+      "body": "Before the realms:\n\n• Universe was formless potential\n• First Spark divided into 5 essences\n• Fire → Emberforge\n• Life → Verdant Sanctuary\n• Memory → Echo Fields\n• Light → Dawn Citadel\n• Hope → Lantern Ascension\n\nYou're collecting the original Spark.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 232,
+      "type": "devUpdate",
+      "hook": "Procedural generation: 10,000+ unique ritual combinations",
+      "body": "Ritual system:\n\n• Base elements × realm mechanics × moon phase\n• 50 base rituals\n• 5 realms\n• 8 moon phases\n• Weather modifiers\n\nResult: virtually infinite combinations.\n\nNo two playthroughs identical.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 233,
+      "type": "devUpdate",
+      "hook": "Accessibility modes unlock different content - here's the full breakdown",
+      "body": "Mode-exclusive content:\n\n• Protanopia (red-blind) → fire runes in Emberforge\n• Deuteranopia (green-blind) → water sigils in Verdant\n• Tritanopia (blue-blind) → earth patterns in Echo Fields\n• Monochromacy → shadow secrets in Dawn Citadel\n• Standard → light-spectrum puzzles\n\nAll equal. All different.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 234,
+      "type": "behindScenes",
+      "hook": "The cost spreadsheet: how I built a game for exactly zero dollars",
+      "body": "Actual costs breakdown:\n\n• Unity Personal: FREE\n• Firebase Spark: FREE\n• GitHub: FREE\n• Blender: FREE (open source)\n• GIMP/Krita: FREE (open source)\n• Domain: FREE (.web.app subdomain)\n• Hosting: FREE (Firebase tier)\n\nTotal spent: ZERO DOLLARS.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 235,
+      "type": "designPhilosophy",
+      "hook": "Why the game kicks you out after 5-10 minutes",
+      "body": "Digital Sunset philosophy:\n\n• Mobile games = addiction engines\n• We're anti-that\n• Play 5-10 min → gentle logout prompt\n• 'You've done great. Go live life.'\n• No FOMO, no streaks, no guilt\n\nGames should enhance life, not replace it.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 236,
+      "type": "devUpdate",
+      "hook": "The ritual you perform today affects gameplay for players worldwide tomorrow",
+      "body": "Collective influence system:\n\n• Your rituals → statistical aggregation\n• Popular combos = boosted next day\n• Rare discoveries = global hints\n• Community shapes meta\n• No direct PvP, pure cooperation\n\nEvery action ripples outward.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 237,
+      "type": "devUpdate",
+      "hook": "Sound design: every realm has binaural beats tuned to brainwave states",
+      "body": "Audio engineering:\n\n• Emberforge: 40Hz gamma (focus)\n• Verdant: 10Hz alpha (relaxation)\n• Echo Fields: 4Hz theta (meditation)\n• Dawn Citadel: 14Hz beta (creativity)\n• Lantern: 7.83Hz (Schumann resonance)\n\nNeuroscience-backed relaxation.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 238,
+      "type": "behindScenes",
+      "hook": "I learned shader programming just to make the realms glow properly",
+      "body": "Skills learned for this project:\n\n• HLSL shader language\n• Particle system optimization\n• WebGL performance tuning\n• Firebase Firestore querying\n• Social media API integration\n\nSolo dev = forced polymath.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "low",
+      "used": false
+    },
+    {
+      "id": 239,
+      "type": "devUpdate",
+      "hook": "Mobile release: Android first (May 2026), iOS shortly after",
+      "body": "Mobile roadmap:\n\n• WebGL: LIVE NOW (all browsers)\n• Android: May 2026 (Google Play)\n• iOS: June 2026 (App Store)\n• All versions free\n• Optional cosmetic purchases\n• Cross-platform cloud saves\n\nWebGL = preview. Mobile = full experience.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 240,
+      "type": "loreSnippet",
+      "hook": "Why the five realms exist in the first place",
+      "body": "Realm origins lore:\n\n• Ancient civilizations collapsed into chaos\n• Five seekers meditated for balance\n• Each discovered one essence\n• Built realms to preserve knowledge\n• You're the successor learning their wisdom\n\nNot just a game. A pilgrimage.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "low",
+      "used": false
+    },
+    {
+      "id": 241,
+      "type": "devUpdate",
+      "hook": "GitHub Actions automation: every commit triggers blog post, social media, weekly digest",
+      "body": "Automation pipeline:\n\n• Commit pushed → GitHub Actions trigger\n• Generate What's New entry\n• Create blog post\n• Schedule social media posts\n• Weekly digest (Mondays)\n• All automatic, zero manual work\n\nBuilt by a solo dev who hates repetition.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 242,
+      "type": "behindScenes",
+      "hook": "Built 206+ social media posts BEFORE launch because I'm terrified of marketing",
+      "body": "Marketing preparation:\n\n• 206 pre-written posts\n• Content types: dev updates, lore, philosophy\n• Scheduled via automation\n• Platforms: Bluesky, Mastodon, Discord\n• Why? Solo dev = no time for daily posting\n\nAutomation or burnout. I chose automation.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 243,
+      "type": "designPhilosophy",
+      "hook": "We respect your time more than your wallet",
+      "body": "Time-first design:\n\n• 1-5 minute sessions\n• No waiting timers\n• No energy systems\n• No forced grinding\n• Full game playable for free\n\nMost games optimize for revenue.\n\nWe optimize for respect.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 244,
+      "type": "devUpdate",
+      "hook": "Unity optimization: WebGL build went from 45MB to 12MB",
+      "body": "Optimization work:\n\n• Texture atlasing\n• Mesh LOD reduction\n• Shader stripping\n• Asset bundle compression\n• Code minification\n\nResult: 73% size reduction.\n\n12MB = loads in seconds even on slow connections.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 245,
+      "type": "devUpdate",
+      "hook": "The game tracks ZERO personal data. No analytics. No tracking. Just gameplay.",
+      "body": "Privacy commitment:\n\n• No Google Analytics\n• No Facebook Pixel\n• No advertising IDs\n• Optional anonymous cloud saves\n• All data stays local\n\nYour gameplay is yours alone.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 246,
+      "type": "behindScenes",
+      "hook": "Coffee consumed during development: approximately 847 cups (and counting)",
+      "body": "Solo dev fuel:\n\n• Morning coffee: code architecture\n• Afternoon coffee: bug fixing\n• Evening coffee: shader optimization\n• Midnight coffee: 'just one more feature'\n• 3 AM coffee: regret\n\nCaffeine is a programming language.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "low",
+      "used": false
+    },
+    {
+      "id": 247,
+      "type": "loreSnippet",
+      "hook": "The Wanderer: you're not the first traveler, but you might be the last",
+      "body": "Player role lore:\n\n• Previous travelers left echoes\n• You find their messages in Echo Fields\n• Their wisdom guides you\n• Your journey becomes guidance for next traveler\n• Cycle continues\n\nYou're both student and teacher.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "medium",
+      "used": false
+    },
+    {
+      "id": 248,
+      "type": "devUpdate",
+      "hook": "Localization: English first, Spanish/French/German coming summer 2026",
+      "body": "Language roadmap:\n\n• Launch: English\n• Summer 2026: Spanish, French, German\n• Fall 2026: Japanese, Portuguese, Italian\n• All translations done carefully (no Google Translate)\n• Community translators welcome\n\nAccessible globally.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "low",
+      "used": false
+    },
+    {
+      "id": 249,
+      "type": "designPhilosophy",
+      "hook": "Anti-grind philosophy: if it feels like work, we remove it",
+      "body": "Design principle:\n\n• No daily login rewards (FOMO)\n• No limited-time events (pressure)\n• No grinding for resources (tedium)\n• No pay-to-skip-wait (manipulation)\n• Just pure exploration\n\nFun should never feel like obligation.",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
+      "used": false
+    },
+    {
+      "id": 250,
+      "type": "devUpdate",
+      "hook": "Launch date: May 15, 2026. WebGL playable NOW. Mobile coming soon.",
+      "body": "Timeline:\n\n• April 2026: WebGL beta testing (NOW!)\n• May 15, 2026: Official launch\n• May 30, 2026: Android release\n• June 15, 2026: iOS release\n• Summer 2026: Content updates\n\nPlay the browser version today:\nascendant-continuum.web.app/play",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "media": null,
+      "priority": "high",
       "used": false
     }
   ]
