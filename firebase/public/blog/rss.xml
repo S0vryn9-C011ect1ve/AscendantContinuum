@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Apr 2026 14:00:42 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2026 14:01:16 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Why We Reject FOMO: Designing Without Dark Patterns]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</guid>
+      <pubDate>Tue, 07 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[ethics]]></category>
+      <category><![CDATA[philosophy]]></category>
+      <description><![CDATA[Modern free-to-play games are engineered with "urgency mechanics"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
@@ -269,20 +281,6 @@
       <category><![CDATA[environmental-gameplay]]></category>
       <category><![CDATA[adaptive-difficulty]]></category>
       <description><![CDATA[OpenWeather API sync makes your local weather the difficulty setting. Rain = -20% effectiveness. Thunderstorms = dangerous dodge mechanic. Fog = visibility 20m. We care about safety > engagement.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[How We Protected Our Projects from npm Supply Chain Attacks (And How You Can Too)]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Technical Deep Dive]]></category>
-      <category><![CDATA[security]]></category>
-      <category><![CDATA[npm]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[webdev]]></category>
-      <category><![CDATA[tools]]></category>
-      <description><![CDATA[Three major npm packages were compromised this week (axios, LiteLLM, LofyGang). Here's how we protected our live beta testers and projects in one afternoon with a 6-layer security stack—and how you can implement it in under an hour.]]></description>
     </item>
   </channel>
 </rss>

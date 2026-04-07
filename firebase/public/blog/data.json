@@ -485,16 +485,28 @@
       ],
       "themeName": "Behind the Scenes",
       "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
+    },
+    {
+      "title": "Why We Reject FOMO: Designing Without Dark Patterns",
+      "slug": "why-we-reject-fomo-designing-without-dark-patterns",
+      "date": "2026-04-07",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Design Philosophy",
+      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy..."
     }
   ],
   "stats": {
-    "totalPosts": 35,
+    "totalPosts": 36,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 4,
       "Behind the Scenes": 4,
       "Tutorial": 7,
-      "Design Philosophy": 5,
+      "Design Philosophy": 6,
       "Dev Diary": 4,
       "Community Insight": 1
     },
@@ -506,7 +518,7 @@
       "bootstrap": 1,
       "accessibility": 3,
       "colorblind": 2,
-      "game-design": 7,
+      "game-design": 8,
       "technical": 3,
       "innovation": 2,
       "behind-the-scenes": 4,
@@ -517,8 +529,8 @@
       "tutorial": 7,
       "unity": 12,
       "game-dev": 7,
-      "ethics": 2,
-      "philosophy": 1,
+      "ethics": 3,
+      "philosophy": 2,
       "ai": 1,
       "community": 2,
       "systems": 1,
