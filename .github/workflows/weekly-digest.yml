@@ -1,0 +1,67 @@
+name: Weekly Digest
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Monday at 9 AM UTC (4 AM EST)
+  workflow_dispatch:  # Manual trigger
+
+# Prevent concurrent runs
+concurrency:
+  group: whatsnew-weekly
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate-weekly:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Generate weekly digest
+        run: node scripts/automation/generate-weekly.js
+      
+      - name: Commit weekly digest
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add firebase/public/whats-new/data.json firebase/public/blog/posts/weekly-digest-*.html 2>/dev/null || true
+          if ! git diff --quiet HEAD firebase/public/whats-new/ firebase/public/blog/posts/weekly-digest-*.html 2>/dev/null; then
+            git commit -m "chore: weekly digest for week of $(date +%Y-%m-%d)"
+            git push
+            echo "CHANGES_COMMITTED=true" >> $GITHUB_ENV
+          else
+            echo "No changes to commit"
+            echo "CHANGES_COMMITTED=false" >> $GITHUB_ENV
+          fi
+      
+      - name: Deploy to Firebase
+        if: env.CHANGES_COMMITTED == 'true'
+        run: |
+          cd firebase
+          npm install -g firebase-tools
+          firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}"
+      
+      - name: Post weekly summary to social media
+        if: env.CHANGES_COMMITTED == 'true'
+        env:
+          BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          MASTODON_API_URL: ${{ secrets.MASTODON_API_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: node scripts/automation/post-weekly-digest.js

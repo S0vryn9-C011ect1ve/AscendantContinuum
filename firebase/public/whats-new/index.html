@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="What's New - Daily development updates and changelog for The Ascendant Continuum. See what we're building in real-time.">
+    <title>What's New - The Ascendant Continuum</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/images.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <style>
+        .whats-new-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 1rem 4rem;
+        }
+
+        .whats-new-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .whats-new-header h1 {
+            font-size: 2.5rem;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .whats-new-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-secondary);
+            opacity: 0.9;
+        }
+
+        .section-divider {
+            margin: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .section-divider h2 {
+            font-size: 1.8rem;
+            color: var(--color-accent);
+            display: inline-block;
+            padding: 0 2rem;
+            background: var(--color-bg-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3) 20%, rgba(139, 92, 246, 0.3) 80%, transparent);
+            z-index: 0;
+        }
+
+        .update-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .update-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .update-date {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .update-stats {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .update-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .update-stat-icon {
+            font-size: 0.85rem;
+        }
+
+        .update-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .update-section h4 {
+            font-size: 1rem;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .update-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .update-section li {
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            position: relative;
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .update-section li::before {
+            content: '•';
+            position: absolute;
+            left: 0.5rem;
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+
+        .update-link {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 6px;
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .update-link:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateX(3px);
+        }
+
+        .archive-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .archive-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .archive-week {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.4rem;
+        }
+
+        .archive-stats {
+            font-size: 0.85rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .no-updates {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--color-secondary);
+            font-style: italic;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--color-secondary);
+        }
+
+        .breadcrumb {
+            padding: 5rem 0 1rem 0;
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+        }
+
+        .breadcrumb a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .whats-new-header h1 {
+                font-size: 2rem;
+            }
+
+            .update-stats {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="top-nav" aria-label="Primary">
+        <div class="container top-nav-inner">
+            <a href="/" class="top-nav-brand">Ascendant Continuum</a>
+            <div class="top-nav-links">
+                <a href="/#about" class="top-nav-link">What Is This?</a>
+                <a href="/whats-new/" class="top-nav-link">What's New</a>
+                <a href="/blog/" class="top-nav-link">Blog</a>
+                <a href="/#faq" class="top-nav-link">FAQ</a>
+                <a href="/#signup" class="top-nav-link">Waitlist</a>
+                <a href="/play/" class="top-nav-link top-nav-link-play">Play</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="whats-new-container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> / What's New
+        </div>
+
+        <header class="whats-new-header">
+            <h1>What's New</h1>
+            <p class="whats-new-subtitle">Daily development updates and changelog - see what we're building in
+                real-time</p>
+        </header>
+
+        <!-- Recent Updates Section -->
+        <div class="section-divider">
+            <h2>📅 Recent (Last 30 Days)</h2>
+        </div>
+        <div id="recent-updates">
+            <div class="loading">Loading recent updates...</div>
+        </div>
+
+        <!-- Archive Section -->
+        <div class="section-divider">
+            <h2>📚 Archive (30+ Days Ago)</h2>
+        </div>
+        <div id="archive-updates">
+            <div class="loading">Loading archive...</div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>The Ascendant Continuum</h3>
+                    <p>A relaxing puzzle-adventure game where short sessions create lasting journeys</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="footer-links">
+                        <a href="https://bsky.app/profile/ascendantcontinuum.bsky.social" target="_blank"
+                            rel="noopener">Bluesky</a>
+                        <a href="https://mastodon.gamedev.place/@ascendantcontinuum" target="_blank"
+                            rel="noopener">Mastodon</a>
+                        <a href="https://github.com/ascendantcontinuum" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <div class="footer-links">
+                        <a href="/privacy.html">Privacy</a>
+                        <a href="/terms.html">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The Ascendant Continuum. Built with intention.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Load and display What's New data
+        async function loadWhatsNew() {
+            try {
+                const response = await fetch('/whats-new/data.json');
+                const data = await response.json();
+
+                const today = new Date();
+                const thirtyDaysAgo = new Date(today);
+                thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+                // Separate recent and archive
+                const recentUpdates = [];
+                const archiveUpdates = [];
+
+                data.dailyUpdates.forEach(update => {
+                    const updateDate = new Date(update.date);
+                    if (updateDate >= thirtyDaysAgo) {
+                        recentUpdates.push(update);
+                    } else {
+                        archiveUpdates.push(update);
+                    }
+                });
+
+                // Render recent updates
+                renderRecentUpdates(recentUpdates);
+
+                // Render archive (grouped by week)
+                renderArchive(archiveUpdates, data.weeklyDigests || []);
+
+            } catch (error) {
+                console.error('Error loading What\'s New data:', error);
+                document.getElementById('recent-updates').innerHTML =
+                    '<div class="no-updates">Error loading updates. Please try again later.</div>';
+                document.getElementById('archive-updates').innerHTML =
+                    '<div class="no-updates">Error loading archive.</div>';
+            }
+        }
+
+        function renderRecentUpdates(updates) {
+            const container = document.getElementById('recent-updates');
+
+            if (updates.length === 0) {
+                container.innerHTML = '<div class="no-updates">No updates in the last 30 days.</div>';
+                return;
+            }
+
+            container.innerHTML = updates.map(update => `
+                <div class="update-card">
+                    <div class="update-date">${formatDate(update.date)}</div>
+                    <div class="update-stats">
+                        <span class="update-stat">
+                            <span class="update-stat-icon">📦</span>
+                            ${update.totalCommits} commit${update.totalCommits !== 1 ? 's' : ''}
+                        </span>
+                        ${update.categories.features > 0 ? `
+                        <span class="update-stat">
+                            <span class="update-stat-icon">✨</span>
+                            ${update.categories.features} feature${update.categories.features !== 1 ? 's' : ''}
+                        </span>
+                        ` : ''}
+                        ${update.categories.fixes > 0 ? `
+                        <span class="update-stat">
+                            <span class="update-stat-icon">🐛</span>
+                            ${update.categories.fixes} fix${update.categories.fixes !== 1 ? 'es' : ''}
+                        </span>
+                        ` : ''}
+                        ${update.categories.improvements > 0 ? `
+                        <span class="update-stat">
+                            <span class="update-stat-icon">⚡</span>
+                            ${update.categories.improvements} improvement${update.categories.improvements !== 1 ? 's' : ''}
+                        </span>
+                        ` : ''}
+                    </div>
+                    
+                    ${update.highlights.features && update.highlights.features.length > 0 ? `
+                    <div class="update-section">
+                        <h4><span>✨</span> Features</h4>
+                        <ul>
+                            ${update.highlights.features.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                    
+                    ${update.highlights.fixes && update.highlights.fixes.length > 0 ? `
+                    <div class="update-section">
+                        <h4><span>🐛</span> Fixes</h4>
+                        <ul>
+                            ${update.highlights.fixes.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                    
+                    ${update.highlights.improvements && update.highlights.improvements.length > 0 ? `
+                    <div class="update-section">
+                        <h4><span>⚡</span> Improvements</h4>
+                        <ul>
+                            ${update.highlights.improvements.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                    
+                    ${update.blogPostUrl ? `
+                    <a href="${update.blogPostUrl}" class="update-link">📖 Read Full Daily Update →</a>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        function renderArchive(dailyUpdates, weeklyDigests) {
+            const container = document.getElementById('archive-updates');
+
+            // Group daily updates by week
+            const weeklyGroups = {};
+
+            dailyUpdates.forEach(update => {
+                const date = new Date(update.date);
+                const weekStart = getWeekStart(date);
+                const weekKey = weekStart.toISOString().split('T')[0];
+
+                if (!weeklyGroups[weekKey]) {
+                    weeklyGroups[weekKey] = {
+                        weekStart: weekStart,
+                        updates: [],
+                        totalCommits: 0,
+                        totalFeatures: 0,
+                        totalFixes: 0,
+                        totalImprovements: 0
+                    };
+                }
+
+                weeklyGroups[weekKey].updates.push(update);
+                weeklyGroups[weekKey].totalCommits += update.totalCommits || 0;
+                weeklyGroups[weekKey].totalFeatures += update.categories.features || 0;
+                weeklyGroups[weekKey].totalFixes += update.categories.fixes || 0;
+                weeklyGroups[weekKey].totalImprovements += update.categories.improvements || 0;
+            });
+
+            // Find weekly digest posts for each week
+            const digestsByWeek = {};
+            weeklyDigests.forEach(digest => {
+                const weekKey = digest.weekStart;
+                digestsByWeek[weekKey] = digest;
+            });
+
+            // Sort weeks descending
+            const sortedWeeks = Object.keys(weeklyGroups).sort((a, b) => new Date(b) - new Date(a));
+
+            if (sortedWeeks.length === 0) {
+                container.innerHTML = '<div class="no-updates">No archived updates yet.</div>';
+                return;
+            }
+
+            container.innerHTML = sortedWeeks.map(weekKey => {
+                const week = weeklyGroups[weekKey];
+                const digest = digestsByWeek[weekKey];
+                const weekEnd = new Date(week.weekStart);
+                weekEnd.setDate(weekEnd.getDate() + 6);
+
+                return `
+                    <div class="archive-card">
+                        <div class="archive-week">
+                            Week of ${formatDate(week.weekStart.toISOString().split('T')[0])} - ${formatDate(weekEnd.toISOString().split('T')[0])}
+                        </div>
+                        <div class="archive-stats">
+                            ${week.totalFeatures} feature${week.totalFeatures !== 1 ? 's' : ''} · 
+                            ${week.totalFixes} fix${week.totalFixes !== 1 ? 'es' : ''} · 
+                            ${week.totalImprovements} improvement${week.totalImprovements !== 1 ? 's' : ''}
+                        </div>
+                        ${digest && digest.blogPostUrl ? `
+                        <a href="${digest.blogPostUrl}" class="update-link">📖 Read Weekly Digest →</a>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        function getWeekStart(date) {
+            const d = new Date(date);
+            const day = d.getDay();
+            const diff = d.getDate() - day + (day === 0 ? -6 : 1); // Monday
+            return new Date(d.setDate(diff));
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load on page load
+        loadWhatsNew();
+    </script>
+</body>
+
+</html>
