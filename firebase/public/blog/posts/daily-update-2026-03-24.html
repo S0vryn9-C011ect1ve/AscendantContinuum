@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What's New: March 23, 2026 | The Ascendant Continuum</title>
-    <meta name="description" content="Daily development update for March 23, 2026: 6 commits with 2 features, 1 fixes, and 0 improvements.">
+    <meta name="description" content="Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0 improvements.">
     <meta property="og:title" content="Daily Update - March 23, 2026">
-    <meta property="og:description" content="Daily development update for March 23, 2026: 6 commits with 2 features, 1 fixes, and 0 improvements.">
+    <meta property="og:description" content="Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0 improvements.">
     <meta property="og:type" content="article">
     <link rel="stylesheet" href="../styles.css">
 </head>
@@ -19,33 +19,33 @@
             <h1>Daily Update: March 23, 2026</h1>
             <div class="post-meta">
                 <time datetime="2026-03-24">March 23, 2026</time>
-                <span class="post-stats">6 commits</span>
+                <span class="post-stats">5 commits</span>
             </div>
         </header>
 
         <div class="post-content">
-            <p class="lead">Daily development update for March 23, 2026: 6 commits with 2 features, 1 fixes, and 0 improvements.</p>
+            <p class="lead">Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0 improvements.</p>
 
 
             <h2>✨ Features</h2>
             <p>We shipped 2 new features today:</p>
             <ul>
-                <li>IOS TTS plugin, platform share intent, camera shake fallback.</li>
-                <li>Complete stub implementations - scene scaffolding, GDPR, UI toasts, SaveSystem wiring.</li>
+                <li>IOS TTS plugin, platform share intent, camera shake fallback: Assets/Plugins/iOS/NativeTTS.mm: new native iOS plugin wrapping AVSpeechSynthesizer. Exposes _NativeTTS_Speak(text, rate, pitch, volume...</li>
+                <li>Complete stub implementations - scene scaffolding, GDPR, UI toasts, SaveSystem wiring: RealmPrefabBuilder: add GetOrCreateSceneRoot + CreateTaggedChild helpers so all 5 Wire methods can scaffold em...</li>
             </ul>
     
 
             <h2>🐛 Bug Fixes</h2>
             <p>Squashed 1 bug to improve stability:</p>
             <ul>
-                <li>Wire settings persistence, iOS notifications, improved sunset calc, analytics opt-out.</li>
+                <li>Wire settings persistence, iOS notifications, improved sunset calc, analytics opt-out: FirebaseManager: add SetAnalyticsEnabled(bool) - wires to Firebase Analytics SDK when integrated, SaveSystem/P...</li>
             </ul>
     
 
 
             <h2>📊 Development Stats</h2>
             <ul>
-                <li><strong>Total commits:</strong> 6</li>
+                <li><strong>Total commits:</strong> 5</li>
                 <li><strong>Features:</strong> 2</li>
                 <li><strong>Bug fixes:</strong> 1</li>
                 <li><strong>Improvements:</strong> 0</li>

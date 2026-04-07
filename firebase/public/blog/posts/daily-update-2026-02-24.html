@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What's New: February 23, 2026 | The Ascendant Continuum</title>
-    <meta name="description" content="Daily development update for February 23, 2026: 18 commits with 1 features, 10 fixes, and 2 improvements.">
+    <meta name="description" content="Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0 improvements.">
     <meta property="og:title" content="Daily Update - February 23, 2026">
-    <meta property="og:description" content="Daily development update for February 23, 2026: 18 commits with 1 features, 10 fixes, and 2 improvements.">
+    <meta property="og:description" content="Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0 improvements.">
     <meta property="og:type" content="article">
     <link rel="stylesheet" href="../styles.css">
 </head>
@@ -19,46 +19,39 @@
             <h1>Daily Update: February 23, 2026</h1>
             <div class="post-meta">
                 <time datetime="2026-02-24">February 23, 2026</time>
-                <span class="post-stats">18 commits</span>
+                <span class="post-stats">8 commits</span>
             </div>
         </header>
 
         <div class="post-content">
-            <p class="lead">Daily development update for February 23, 2026: 18 commits with 1 features, 10 fixes, and 2 improvements.</p>
+            <p class="lead">Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0 improvements.</p>
 
 
             <h2>✨ Features</h2>
             <p>We shipped 1 new feature today:</p>
             <ul>
-                <li>Revenue strategy, pantheon deity effects, realm wiring.</li>
+                <li>Revenue strategy, pantheon deity effects, realm wiring: ShopUIManager: full shop panel for Cosmic Patron IAP + 5 cosmetics, PantheonDeityEffects: all 6 deity gameplay modifiers (Flame/Herald/Archiv...</li>
             </ul>
     
 
             <h2>🐛 Bug Fixes</h2>
             <p>Squashed 5 bugs to improve stability:</p>
             <ul>
-                <li>Invalid firebase.json trailing brace; make non-hosting deploys non-blocking.</li>
-                <li>Stub iOS notifications, use Permission API for Android.</li>
-                <li>GuardianMessengerSystem notification API errors.</li>
-                <li>Wrap Handheld.Vibrate() in platform guard in CosmicTreasureHunt.</li>
-                <li>Last compile error + remove premature Google Play deploy.</li>
+                <li>GuardianMessengerSystem notification API errors: Android: RequestUserPermission() does not exist, use StartCoroutine(RequestPermission()), iOS: remove Unity.Notifications.iOS using directive (assem...</li>
+                <li>Wrap Handheld.Vibrate() in platform guard in CosmicTreasureHunt - 66055835b5ecfb1150eb8bc3692902eaddec7723.</li>
+                <li>Resolve compile errors surfaced by CI build: HUDManager: add static Instance singleton (Awake with dedup guard), AccessibilityManager: add Announce(string) method for screen reader support.</li>
+                <li>Correct unity-builder inputs and make free-disk-space Linux-only: buildPath -> buildsPath (correct game-ci input name), Free Disk Space step now conditional on runner.os == Linux.</li>
+                <li>CI workflow failures - firebase config, iOS runner, android non-blocking: firebase/.firebaserc: add project ID 'ascendant-continuum' (CLI was failing with no project), firebase/firebase.json: add h...</li>
             </ul>
     
 
-            <h2>⚡ Improvements</h2>
-            <p>Made 2 optimizations:</p>
-            <ul>
-                <li>Shrink WebGL WASM to fix wasm-opt OOM on CI (strip engine code, no exceptions, no compression, no threads).</li>
-                <li>Disable dev build for WebGL CI (smaller WASM, faster emscripten); fix swallowed exceptions in Android/iOS build methods.</li>
-            </ul>
-    
 
             <h2>📊 Development Stats</h2>
             <ul>
-                <li><strong>Total commits:</strong> 18</li>
+                <li><strong>Total commits:</strong> 8</li>
                 <li><strong>Features:</strong> 1</li>
-                <li><strong>Bug fixes:</strong> 10</li>
-                <li><strong>Improvements:</strong> 2</li>
+                <li><strong>Bug fixes:</strong> 6</li>
+                <li><strong>Improvements:</strong> 0</li>
                 
             </ul>
 

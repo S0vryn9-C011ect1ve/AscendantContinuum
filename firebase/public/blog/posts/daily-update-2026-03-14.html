@@ -30,17 +30,17 @@
             <h2>✨ Features</h2>
             <p>We shipped 1 new feature today:</p>
             <ul>
-                <li>Social media automation system.</li>
+                <li>Social media automation system: Daily posting to Bluesky, Mastodon, Discord, 100 pre-written content items with viral hooks.</li>
             </ul>
     
 
             <h2>🐛 Bug Fixes</h2>
             <p>Squashed 4 bugs to improve stability:</p>
             <ul>
-                <li>Improve workflow error handling and git operations.</li>
-                <li>Filter out automated commits from dev updates.</li>
-                <li>Add write permissions to social media workflows.</li>
-                <li>Resolve workflow failures.</li>
+                <li>Improve workflow error handling and git operations: Fix malformed step in dev-update-social.yml, Improve git commit logic to handle no-changes case gracefully.</li>
+                <li>Filter out automated commits from dev updates: Skip commits with [skip ci], Skip commits from github-actions bot.</li>
+                <li>Add write permissions to social media workflows: Add permissions: contents: write to all 3 workflows, Required for workflows to push posting history back to repo.</li>
+                <li>Resolve workflow failures: Create missing post-dev-update.js and post-philosophy.js scripts, Standardize Node.js version to 20 across all workflows.</li>
             </ul>
     
 

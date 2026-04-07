@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What's New: March 2, 2026 | The Ascendant Continuum</title>
-    <meta name="description" content="Daily development update for March 2, 2026: 12 commits with 0 features, 4 fixes, and 0 improvements.">
+    <meta name="description" content="Daily development update for March 2, 2026: 5 commits with 0 features, 4 fixes, and 0 improvements.">
     <meta property="og:title" content="Daily Update - March 2, 2026">
-    <meta property="og:description" content="Daily development update for March 2, 2026: 12 commits with 0 features, 4 fixes, and 0 improvements.">
+    <meta property="og:description" content="Daily development update for March 2, 2026: 5 commits with 0 features, 4 fixes, and 0 improvements.">
     <meta property="og:type" content="article">
     <link rel="stylesheet" href="../styles.css">
 </head>
@@ -19,29 +19,29 @@
             <h1>Daily Update: March 2, 2026</h1>
             <div class="post-meta">
                 <time datetime="2026-03-03">March 2, 2026</time>
-                <span class="post-stats">12 commits</span>
+                <span class="post-stats">5 commits</span>
             </div>
         </header>
 
         <div class="post-content">
-            <p class="lead">Daily development update for March 2, 2026: 12 commits with 0 features, 4 fixes, and 0 improvements.</p>
+            <p class="lead">Daily development update for March 2, 2026: 5 commits with 0 features, 4 fixes, and 0 improvements.</p>
 
 
 
             <h2>🐛 Bug Fixes</h2>
             <p>Squashed 4 bugs to improve stability:</p>
             <ul>
-                <li>Improve Build.ps1 UPM preflight to accept exit code 1 and check for compile errors.</li>
-                <li>Correctly convert Vector2 dominantDirection to angle in test.</li>
-                <li>EditMode test compilation errors and add Build.ps1 UPM preflight.</li>
-                <li>Resolve build-breaking API mismatches and session counter duplication.</li>
+                <li>Improve Build.ps1 UPM preflight to accept exit code 1 and check for compile errors: Accept Unity exit code 1 (often just warnings) in addition to 0, Check for actual compile errors (error CS) in ad...</li>
+                <li>Correctly convert Vector2 dominantDirection to angle in test: Use Atan2 to extract angle from direction vector before DeltaAngle comparison.</li>
+                <li>EditMode test compilation errors and add Build.ps1 UPM preflight: Qualify ambiguous Object references in DailyChallengeShareCardTests.cs, Qualify ambiguous Object references in SeasonControllerTest...</li>
+                <li>Resolve build-breaking API mismatches and session counter duplication: remove duplicate SessionCount_Total increment from SessionManager, add Unity.Services.Core + Unity.Services.Analytics referenc...</li>
             </ul>
     
 
 
             <h2>📊 Development Stats</h2>
             <ul>
-                <li><strong>Total commits:</strong> 12</li>
+                <li><strong>Total commits:</strong> 5</li>
                 <li><strong>Features:</strong> 0</li>
                 <li><strong>Bug fixes:</strong> 4</li>
                 <li><strong>Improvements:</strong> 0</li>

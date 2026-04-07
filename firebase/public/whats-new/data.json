@@ -1,37 +1,37 @@
 {
-  "lastUpdated": "2026-04-07T20:44:30.960Z",
+  "lastUpdated": "2026-04-07T21:21:37.337Z",
   "dailyUpdates": [
     {
       "date": "2026-04-07",
       "totalCommits": 6,
       "categories": {
         "features": 1,
-        "fixes": 0,
+        "fixes": 1,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
         "features": [
-          "Add What's New system with automated updates."
+          "Improve homepage organization and add realms detail page: Add 'Learn More About Realms' button linking to /realms/, Create /realms/index.html with placeholder for detailed realm information."
         ],
-        "fixes": [],
+        "fixes": [
+          "Generate complete historical What's New data (33 days) - fe2f92b15e3e171c8a9a6e09ee780597d52a91df."
+        ],
         "improvements": []
       },
       "blogPostUrl": "/blog/posts/daily-update-2026-04-07.html"
     },
     {
       "date": "2026-04-06",
-      "totalCommits": 3,
+      "totalCommits": 1,
       "categories": {
-        "features": 1,
+        "features": 0,
         "fixes": 0,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
-        "features": [
-          "Enhanced monitoring alerts + Socket.dev GitHub App setup (no npm install)."
-        ],
+        "features": [],
         "fixes": [],
         "improvements": []
       },
@@ -87,21 +87,17 @@
     },
     {
       "date": "2026-04-02",
-      "totalCommits": 8,
+      "totalCommits": 4,
       "categories": {
-        "features": 3,
+        "features": 0,
         "fixes": 1,
         "improvements": 0,
         "docs": 2
       },
       "highlights": {
-        "features": [
-          "5 new blog posts + 20 social media posts + 5 blog announcements - Serendipity, Fossils, Ritual Replay, Solar Rewards, Mobile-First.",
-          "Blog announcements + ensure all social posts target all platforms (Discord, Mastodon, Bluesky).",
-          "Publish npm supply chain security blog post."
-        ],
+        "features": [],
         "fixes": [
-          "5 new blog post HTML files - add proper blog structure, CSS, navigation, and metadata."
+          "5 new blog post HTML files - add proper blog structure, CSS, navigation, and metadata - fa186d45d17e4737e40d28d0aae13a40e2f08114."
         ],
         "improvements": []
       },
@@ -118,7 +114,7 @@
       },
       "highlights": {
         "features": [
-          "Add comprehensive supply chain protection with weekly automated scans."
+          "Add comprehensive supply chain protection with weekly automated scans: Add 7-day installation delay protection (min-release-age=7), Disable install scripts by default (ignore-scripts=true)."
         ],
         "fixes": [],
         "improvements": []
@@ -159,22 +155,18 @@
     },
     {
       "date": "2026-03-29",
-      "totalCommits": 5,
+      "totalCommits": 1,
       "categories": {
-        "features": 3,
-        "fixes": 1,
+        "features": 1,
+        "fixes": 0,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
         "features": [
-          "4 factual blog posts and 34 diverse social media posts based on real game systems.",
-          "Factual blog post about Sigil Crafting System based on real game code.",
-          "New content: NPC collective memory blog post and ethical game design social post."
+          "4 factual blog posts and 34 diverse social media posts based on real game systems - e6d8da9a4724e4a0f07bc7ef7517fe38928d565c."
         ],
-        "fixes": [
-          "Shorten all 105 social media posts to fit Bluesky 300-char limit."
-        ],
+        "fixes": [],
         "improvements": []
       },
       "blogPostUrl": "/blog/posts/daily-update-2026-03-29.html"
@@ -197,21 +189,19 @@
     },
     {
       "date": "2026-03-27",
-      "totalCommits": 5,
+      "totalCommits": 4,
       "categories": {
-        "features": 1,
+        "features": 0,
         "fixes": 3,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
-        "features": [
-          "New social media post and blog article."
-        ],
+        "features": [],
         "fixes": [
-          "Blog URLs and remove duplicate accessibility post.",
-          "Duplicate post issue - use posting history as source of truth.",
-          "Social media content scheduler for better topic diversity."
+          "Blog URLs and remove duplicate accessibility post: Blog links used firebaseapp.com (404 errors), Correct URL: https://ascendant-continuum.web.app.",
+          "Duplicate post issue - use posting history as source of truth: Priority fix script overwrote content-bank.json, Lost 'used' and 'lastUsed' tracking data.",
+          "Social media content scheduler for better topic diversity: Too many high-priority accessibility posts, No cooldown period for recently posted content."
         ],
         "improvements": []
       },
@@ -219,29 +209,26 @@
     },
     {
       "date": "2026-03-25",
-      "totalCommits": 7,
+      "totalCommits": 5,
       "categories": {
-        "features": 3,
-        "fixes": 1,
+        "features": 2,
+        "fixes": 0,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
         "features": [
-          "Platform submission requirements + cloud functions + PlayerData migration.",
-          "Implement gameplay stubs - iOS notifs, share intent, IAP guard, session tracking.",
-          "Content guidelines for accuracy and voice consistency."
+          "Implement gameplay stubs - iOS notifs, share intent, IAP guard, session tracking: Gate purchase simulation to UNITY_EDITOR only; release builds without.",
+          "Content guidelines for accuracy and voice consistency: Created docs/CONTENT_GUIDELINES.md - comprehensive reference."
         ],
-        "fixes": [
-          "Patch all npm vulnerabilities (0 vulns across root + firebase)."
-        ],
+        "fixes": [],
         "improvements": []
       },
       "blogPostUrl": "/blog/posts/daily-update-2026-03-25.html"
     },
     {
       "date": "2026-03-24",
-      "totalCommits": 6,
+      "totalCommits": 5,
       "categories": {
         "features": 2,
         "fixes": 1,
@@ -250,11 +237,11 @@
       },
       "highlights": {
         "features": [
-          "IOS TTS plugin, platform share intent, camera shake fallback.",
-          "Complete stub implementations - scene scaffolding, GDPR, UI toasts, SaveSystem wiring."
+          "IOS TTS plugin, platform share intent, camera shake fallback: Assets/Plugins/iOS/NativeTTS.mm: new native iOS plugin wrapping AVSpeechSynthesizer. Exposes _NativeTTS_Speak(text, rate, pitch, volume...",
+          "Complete stub implementations - scene scaffolding, GDPR, UI toasts, SaveSystem wiring: RealmPrefabBuilder: add GetOrCreateSceneRoot + CreateTaggedChild helpers so all 5 Wire methods can scaffold em..."
         ],
         "fixes": [
-          "Wire settings persistence, iOS notifications, improved sunset calc, analytics opt-out."
+          "Wire settings persistence, iOS notifications, improved sunset calc, analytics opt-out: FirebaseManager: add SetAnalyticsEnabled(bool) - wires to Firebase Analytics SDK when integrated, SaveSystem/P..."
         ],
         "improvements": []
       },
@@ -262,18 +249,16 @@
     },
     {
       "date": "2026-03-23",
-      "totalCommits": 2,
+      "totalCommits": 1,
       "categories": {
         "features": 0,
-        "fixes": 1,
+        "fixes": 0,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
         "features": [],
-        "fixes": [
-          "Plant scale + background cover fill; add UI polish scripts."
-        ],
+        "fixes": [],
         "improvements": []
       },
       "blogPostUrl": "/blog/posts/daily-update-2026-03-23.html"
@@ -350,24 +335,22 @@
     },
     {
       "date": "2026-03-16",
-      "totalCommits": 9,
+      "totalCommits": 6,
       "categories": {
-        "features": 3,
-        "fixes": 4,
+        "features": 2,
+        "fixes": 3,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
         "features": [
-          "Add 100% FREE local automation (Windows Task Scheduler).",
-          "Enable live posting - DRY_RUN mode disabled.",
-          "Massive website expansion + delete inaccurate blog post."
+          "Enable live posting - DRY_RUN mode disabled: Changed all workflows from DRY_RUN=true to false.",
+          "Massive website expansion + delete inaccurate blog post: Deleted impostor syndrome blog (inaccurate - user's first game project)."
         ],
         "fixes": [
-          "Automation: Remove inaccurate content + switch to working domain.",
-          "Enable DRY_RUN mode to prevent workflow failures.",
-          "Remove inaccurate impostor syndrome blog topic.",
-          "Add automation deployment guide and testing scripts."
+          "Enable DRY_RUN mode to prevent workflow failures - 8569f80224679df493bf367902f60d428409e4ba.",
+          "Remove inaccurate impostor syndrome blog topic: Removed 'Dealing with Impostor Syndrome' from Behind the Scenes theme.",
+          "Add automation deployment guide and testing scripts: Created AUTOMATION_DEPLOYMENT_GUIDE.md with step-by-step fix instructions, Added deploy-automation.ps1 for quick testing and deployment."
         ],
         "improvements": []
       },
@@ -384,9 +367,9 @@
       },
       "highlights": {
         "features": [
-          "Add Discord auto-sharing to blog posts.",
-          "Expand social media content bank from 100 to 136 items.",
-          "Complete automated blog system with 50+ topics, RSS, and social integration."
+          "Add Discord auto-sharing to blog posts: Bluesky, Mastodon.",
+          "Expand social media content bank from 100 to 136 items: Community engagement & player feedback responses, Unity technical tutorials (coroutines, ScriptableObjects, Addressables).",
+          "Complete automated blog system with 50+ topics, RSS, and social integration: Created blog content generator with 6 themes, 50+ detailed topics, Added 'What's New' blog posts from git commits."
         ],
         "fixes": [],
         "improvements": []
@@ -404,13 +387,13 @@
       },
       "highlights": {
         "features": [
-          "Social media automation system."
+          "Social media automation system: Daily posting to Bluesky, Mastodon, Discord, 100 pre-written content items with viral hooks."
         ],
         "fixes": [
-          "Improve workflow error handling and git operations.",
-          "Filter out automated commits from dev updates.",
-          "Add write permissions to social media workflows.",
-          "Resolve workflow failures."
+          "Improve workflow error handling and git operations: Fix malformed step in dev-update-social.yml, Improve git commit logic to handle no-changes case gracefully.",
+          "Filter out automated commits from dev updates: Skip commits with [skip ci], Skip commits from github-actions bot.",
+          "Add write permissions to social media workflows: Add permissions: contents: write to all 3 workflows, Required for workflows to push posting history back to repo.",
+          "Resolve workflow failures: Create missing post-dev-update.js and post-philosophy.js scripts, Standardize Node.js version to 20 across all workflows."
         ],
         "improvements": []
       },
@@ -428,7 +411,7 @@
       "highlights": {
         "features": [],
         "fixes": [
-          "Resolve 9 low-severity npm vulnerabilities in firebase/functions."
+          "Resolve 9 low-severity npm vulnerabilities in firebase/functions: Upgrade firebase-admin 12.1.0 -> 13.7.0 (pinned exact), Add npm overrides to force safe transitive versions:."
         ],
         "improvements": []
       },
@@ -445,7 +428,7 @@
       },
       "highlights": {
         "features": [
-          "Wire progression pipeline + touch input for all realms."
+          "Wire progression pipeline + touch input for all realms: All 5 realm scripts fire GameEvents.RaiseRealmCompleted() on completion, LightRefractionPuzzle.CompletePuzzle() now calls completionPanel.Sho..."
         ],
         "fixes": [],
         "improvements": []
@@ -463,7 +446,7 @@
       },
       "highlights": {
         "features": [
-          "Add all visual assets, audio pipeline, website logo/favicon, privacy/terms."
+          "Add all visual assets, audio pipeline, website logo/favicon, privacy/terms - ab2502fc6bcc1754d935af96b33d8933cb0bd892."
         ],
         "fixes": [],
         "improvements": []
@@ -472,7 +455,7 @@
     },
     {
       "date": "2026-03-03",
-      "totalCommits": 12,
+      "totalCommits": 5,
       "categories": {
         "features": 0,
         "fixes": 4,
@@ -482,10 +465,10 @@
       "highlights": {
         "features": [],
         "fixes": [
-          "Improve Build.ps1 UPM preflight to accept exit code 1 and check for compile errors.",
-          "Correctly convert Vector2 dominantDirection to angle in test.",
-          "EditMode test compilation errors and add Build.ps1 UPM preflight.",
-          "Resolve build-breaking API mismatches and session counter duplication."
+          "Improve Build.ps1 UPM preflight to accept exit code 1 and check for compile errors: Accept Unity exit code 1 (often just warnings) in addition to 0, Check for actual compile errors (error CS) in ad...",
+          "Correctly convert Vector2 dominantDirection to angle in test: Use Atan2 to extract angle from direction vector before DeltaAngle comparison.",
+          "EditMode test compilation errors and add Build.ps1 UPM preflight: Qualify ambiguous Object references in DailyChallengeShareCardTests.cs, Qualify ambiguous Object references in SeasonControllerTest...",
+          "Resolve build-breaking API mismatches and session counter duplication: remove duplicate SessionCount_Total increment from SessionManager, add Unity.Services.Core + Unity.Services.Analytics referenc..."
         ],
         "improvements": []
       },
@@ -493,20 +476,20 @@
     },
     {
       "date": "2026-03-01",
-      "totalCommits": 6,
+      "totalCommits": 5,
       "categories": {
-        "features": 6,
+        "features": 5,
         "fixes": 0,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
         "features": [
-          "Realm completion wires, OnSigilCrafted bus event, Day-4 session counter.",
-          "Android 13 POST_NOTIFICATIONS permission request + ShopUIManager season pass card.",
-          "Android production build pipeline + GDPR notification gates.",
-          "System integration sprint — all critical wires connected.",
-          "UI layer — PantheonQuizPanel, SeasonPassUIManager, SeasonTierRow, PlayMode smoke tests."
+          "Realm completion wires, OnSigilCrafted bus event, Day-4 session counter: GameBootstrapper: increment PlayerPrefs SessionCount_Total each session start, RealmController: add CompleteRealm(int score)...",
+          "Android 13 POST_NOTIFICATIONS permission request + ShopUIManager season pass card - 57878403c58a54f1f04315688245d57d866d93a3.",
+          "System integration sprint — all critical wires connected: MainMenuManager + MainMenuController: seasonPassButton field +, CosmicPatronManager.ProcessSuccessfulPurchase: PRODUCT_PATRON_MONTHLY.",
+          "UI layer — PantheonQuizPanel, SeasonPassUIManager, SeasonTierRow, PlayMode smoke tests: PantheonQuizPanel: 5-question arcane personality quiz with weighted deity scoring,, SeasonPassUIManager: full...",
+          "Phase A-D complete — analytics, season pass, Day4 quiz, TDD suite: AnalyticsManager: UGS Analytics SDK wiring, GameEvents handlers, CustomEvent recording, RitualReplayManager: GameEvents subscripti..."
         ],
         "fixes": [],
         "improvements": []
@@ -515,17 +498,15 @@
     },
     {
       "date": "2026-02-27",
-      "totalCommits": 5,
+      "totalCommits": 1,
       "categories": {
-        "features": 1,
+        "features": 0,
         "fixes": 0,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
-        "features": [
-          "Add agent personality and memory system (SOUL, USER, HEARTBEAT, TOOLS, LEARNINGS, MEMORY + loader)."
-        ],
+        "features": [],
         "fixes": [],
         "improvements": []
       },
@@ -551,23 +532,21 @@
     },
     {
       "date": "2026-02-25",
-      "totalCommits": 7,
+      "totalCommits": 5,
       "categories": {
-        "features": 3,
+        "features": 1,
         "fixes": 3,
         "improvements": 0,
         "docs": 1
       },
       "highlights": {
         "features": [
-          "Commercial launch readiness (GDPR, Performance, Notifications, FTUE) and website update.",
-          "Add gallery section and update social media links.",
-          "Add homepage + move game to /play/ subpage."
+          "Add homepage + move game to /play/ subpage: firebase/public/index.html: full cosmic landing page with star field,, firebase/public/.gitignore: exclude CI-generated play/ directory."
         ],
         "fixes": [
-          "Add missing assembly references for UI and iOS Notifications.",
-          "WebGL crash - lastBreakTime pre-Start bug, exception visibility, link.xml type preservation.",
-          "IOS Guardian notifications guard, Android Social namespace, non-WebGL builds non-blocking."
+          "Add missing assembly references for UI and iOS Notifications - 6e5dfcd9da8af4c7a62a3df0bead95937f0731b9.",
+          "WebGL crash - lastBreakTime pre-Start bug, exception visibility, link.xml type preservation: MindfulPlayManager: init sessionStartTime/lastBreakTime in Awake() not Start(), MindfulPlayManager: guar...",
+          "IOS Guardian notifications guard, Android Social namespace, non-WebGL builds non-blocking - d4c9a4c883545314e043cdf237a7b9e73e8c8a8a."
         ],
         "improvements": []
       },
@@ -575,67 +554,60 @@
     },
     {
       "date": "2026-02-24",
-      "totalCommits": 18,
+      "totalCommits": 8,
       "categories": {
         "features": 1,
-        "fixes": 10,
-        "improvements": 2,
-        "docs": 0
-      },
-      "highlights": {
-        "features": [
-          "Revenue strategy, pantheon deity effects, realm wiring."
-        ],
-        "fixes": [
-          "Invalid firebase.json trailing brace; make non-hosting deploys non-blocking.",
-          "Stub iOS notifications, use Permission API for Android.",
-          "GuardianMessengerSystem notification API errors.",
-          "Wrap Handheld.Vibrate() in platform guard in CosmicTreasureHunt.",
-          "Last compile error + remove premature Google Play deploy."
-        ],
-        "improvements": [
-          "Shrink WebGL WASM to fix wasm-opt OOM on CI (strip engine code, no exceptions, no compression, no threads).",
-          "Disable dev build for WebGL CI (smaller WASM, faster emscripten); fix swallowed exceptions in Android/iOS build methods."
-        ]
-      },
-      "blogPostUrl": "/blog/posts/daily-update-2026-02-24.html"
-    },
-    {
-      "date": "2026-02-16",
-      "totalCommits": 3,
-      "categories": {
-        "features": 1,
-        "fixes": 1,
+        "fixes": 6,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
         "features": [
-          "Complete realms UI build automation."
+          "Revenue strategy, pantheon deity effects, realm wiring: ShopUIManager: full shop panel for Cosmic Patron IAP + 5 cosmetics, PantheonDeityEffects: all 6 deity gameplay modifiers (Flame/Herald/Archiv..."
         ],
         "fixes": [
-          "Adjust firestore rate limiting."
+          "GuardianMessengerSystem notification API errors: Android: RequestUserPermission() does not exist, use StartCoroutine(RequestPermission()), iOS: remove Unity.Notifications.iOS using directive (assem...",
+          "Wrap Handheld.Vibrate() in platform guard in CosmicTreasureHunt - 66055835b5ecfb1150eb8bc3692902eaddec7723.",
+          "Resolve compile errors surfaced by CI build: HUDManager: add static Instance singleton (Awake with dedup guard), AccessibilityManager: add Announce(string) method for screen reader support.",
+          "Correct unity-builder inputs and make free-disk-space Linux-only: buildPath -> buildsPath (correct game-ci input name), Free Disk Space step now conditional on runner.os == Linux.",
+          "CI workflow failures - firebase config, iOS runner, android non-blocking: firebase/.firebaserc: add project ID 'ascendant-continuum' (CLI was failing with no project), firebase/firebase.json: add h..."
         ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-02-24.html"
+    },
+    {
+      "date": "2026-02-16",
+      "totalCommits": 1,
+      "categories": {
+        "features": 0,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [],
         "improvements": []
       },
       "blogPostUrl": "/blog/posts/daily-update-2026-02-16.html"
     },
     {
       "date": "2026-02-01",
-      "totalCommits": 9,
+      "totalCommits": 8,
       "categories": {
-        "features": 6,
+        "features": 5,
         "fixes": 0,
         "improvements": 0,
         "docs": 2
       },
       "highlights": {
         "features": [
-          "Complete cosmic bridge vision - nature connection, sacred timing, mindful play.",
-          "Real astronomical data integration - moon phases, constellations, meteor showers.",
-          "Complete game progression systems - Sigils, Achievements, Daily Challenges, Realm Rituals.",
-          "Advanced game systems - Input, Audio, VFX, Data Models, Realm Transitions.",
-          "Core game systems - GameManager, AccessibilityManager, Firebase, SaveSystem, and Emberforge mechanics."
+          "Real astronomical data integration - moon phases, constellations, meteor showers: CosmicDataManager: Real moon phase calculations, 15 major stars with coordinates, MoonPhaseEffects: Gameplay multip...",
+          "Complete game progression systems - Sigils, Achievements, Daily Challenges, Realm Rituals: Unique player sigils based on playstyle metrics, 5 base shapes (triangle, hexagon, circle, square, star).",
+          "Advanced game systems - Input, Audio, VFX, Data Models, Realm Transitions: TouchInputManager: Mobile-first touch/swipe/pinch with accessibility support, AudioManager: Spatial audio with pooling, cr...",
+          "Core game systems - GameManager, AccessibilityManager, Firebase, SaveSystem, and Emberforge mechanics: GameManager: Central state management, 60 FPS targeting, auto-save on pause/quit, Accessibilit...",
+          "Add Firebase configuration and project structure: Initialize Assets/_Project folder structure, Add Firebase security rules (Firestore + Storage)."
         ],
         "fixes": [],
         "improvements": []

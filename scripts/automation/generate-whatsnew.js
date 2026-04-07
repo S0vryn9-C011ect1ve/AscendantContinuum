@@ -47,22 +47,25 @@ function getCommitsByDateRange(since, until) {
         const untilDate = new Date(until);
         untilDate.setHours(23, 59, 59, 999);
 
-        const cmd = `git log --since="${sinceDate.toISOString()}" --until="${untilDate.toISOString()}" --pretty=format:"%H|%an|%ae|%ad|%s" --date=iso`;
+        const cmd = `git log --since="${sinceDate.toISOString()}" --until="${untilDate.toISOString()}" --pretty=format:"%H|||%an|||%ae|||%ad|||%s|||%b" --date=iso`;
         const output = execSync(cmd, { encoding: 'utf-8' }).trim();
 
         if (!output) return [];
 
-        return output.split('\n').map(line => {
-            const [hash, author, email, date, message] = line.split('|');
+        return output.split('\n\n').map(entry => {
+            const parts = entry.split('|||');
+            if (parts.length < 6) return null;
+            const [hash, author, email, date, subject, body] = parts;
             return {
                 hash: hash.trim(),
                 author: author.trim(),
                 email: email.trim(),
                 date: date.trim(),
-                message: message.trim(),
-                subject: message.trim().split('\n')[0]
+                subject: subject.trim(),
+                body: body ? body.trim() : '',
+                message: subject.trim()
             };
-        });
+        }).filter(Boolean);
     } catch (error) {
         console.error('Error getting commits:', error.message);
         return [];
@@ -90,15 +93,17 @@ function getRecentCommits(days = 1) {
  */
 function getAllCommitsByDay() {
     try {
-        const cmd = `git log --pretty=format:"%H|%an|%ae|%ad|%s" --date=short`;
+        const cmd = `git log --pretty=format:"%H|||%an|||%ae|||%ad|||%s|||%b" --date=short`;
         const output = execSync(cmd, { encoding: 'utf-8' }).trim();
 
         if (!output) return {};
 
         const commitsByDay = {};
 
-        output.split('\n').forEach(line => {
-            const [hash, author, email, date, message] = line.split('|');
+        output.split('\n\n').forEach(entry => {
+            const parts = entry.split('|||');
+            if (parts.length < 6) return;
+            const [hash, author, email, date, subject, body] = parts;
             const dateKey = date.trim();
 
             if (!commitsByDay[dateKey]) {
@@ -110,8 +115,9 @@ function getAllCommitsByDay() {
                 author: author.trim(),
                 email: email.trim(),
                 date: dateKey,
-                message: message.trim(),
-                subject: message.trim().split('\n')[0]
+                subject: subject.trim(),
+                body: body ? body.trim() : '',
+                message: subject.trim()
             });
         });
 
@@ -159,23 +165,46 @@ function categorizeCommit(message) {
 }
 
 /**
- * Clean commit message for display
- * @param {string} message - Raw commit message
- * @returns {string} - Cleaned message
+ * Clean commit message for display - extracts meaningful details from subject and body
+ * @param {Object} commit - Commit object with subject and body
+ * @returns {string} - Cleaned, detailed message
  */
-function cleanMessage(message) {
-    // Remove conventional commit prefixes
-    let clean = message.replace(/^(feat|feature|fix|bug|docs?|chore|refactor|perf|test|ci|build|improve|add|update|create|implement)[\s:]+/i, '');
+function cleanMessage(commit) {
+    let message = commit.subject || commit.message;
+    const body = commit.body || '';
 
-    // Capitalize first letter
-    clean = clean.charAt(0).toUpperCase() + clean.slice(1);
+    // Remove conventional commit prefix
+    message = message.replace(/^(feat|feature|fix|bug|docs?|chore|refactor|perf|test|ci|build|improve|add|update|create|implement)[\s:]+/i, '');
 
-    // Ensure it ends with period if it doesn't have punctuation
-    if (!clean.match(/[.!?]$/)) {
-        clean += '.';
+    // If there's a body, extract first meaningful line or bullet point
+    if (body) {
+        const lines = body.split('\n').map(l => l.trim()).filter(l => l && !l.match(/^[-#*]/));
+        const bullets = body.match(/^[-*]\s+(.+)$/gm);
+
+        if (bullets && bullets.length > 0) {
+            // Get first 2-3 bullet points
+            const details = bullets.slice(0, 2).map(b => b.replace(/^[-*]\s+/, '').trim());
+            message = message + ': ' + details.join(', ');
+        } else if (lines.length > 0 && lines[0].length > 10) {
+            // Add first meaningful line from body
+            message = message + ' - ' + lines[0];
+        }
     }
 
-    return clean;
+    // Capitalize first letter
+    message = message.charAt(0).toUpperCase() + message.slice(1);
+
+    // Ensure it ends with period if it doesn't have punctuation
+    if (!message.match(/[.!?]$/)) {
+        message += '.';
+    }
+
+    // Limit length to reasonable display size
+    if (message.length > 200) {
+        message = message.substring(0, 197) + '...';
+    }
+
+    return message;
 }
 
 /**
@@ -203,7 +232,7 @@ function generateDailyUpdate(commits, date) {
 
     commits.forEach(commit => {
         const category = categorizeCommit(commit.message);
-        const cleaned = cleanMessage(commit.subject);
+        const cleaned = cleanMessage(commit);
 
         categories[category].push(cleaned);
 
