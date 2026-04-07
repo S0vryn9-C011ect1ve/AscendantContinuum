@@ -1,6 +1,21 @@
 {
   "posts": [
     {
+      "title": "How We Built Enterprise-Grade Security Into Our Indie Game (For Free)",
+      "slug": "how-we-built-enterprise-security-into-our-indie-game",
+      "date": "2026-04-07",
+      "themeName": "Technical Deep Dive",
+      "tags": [
+        "security",
+        "development",
+        "indie-dev",
+        "automation",
+        "behind-the-scenes"
+      ],
+      "excerpt": "We built 6 layers of automated security protection into Ascendant Continuum to block malicious code attacks. Here's how we achieved enterprise-grade security for free as a solo indie developer.",
+      "hook": "11 malicious packages blocked. 6 layers of protection. Zero monthly costs. Maximum paranoia mode achieved."
+    },
+    {
       "title": "Serendipity Moments: 1% Deity Encounters",
       "slug": "serendipity-moments-1-percent-deity-encounters",
       "date": "2026-04-02",
@@ -500,10 +515,10 @@
     }
   ],
   "stats": {
-    "totalPosts": 36,
+    "totalPosts": 37,
     "byTheme": {
       "Transparency": 1,
-      "Technical Deep Dive": 4,
+      "Technical Deep Dive": 5,
       "Behind the Scenes": 4,
       "Tutorial": 7,
       "Design Philosophy": 6,
@@ -512,7 +527,7 @@
     },
     "byTag": {
       "budget": 1,
-      "indie-dev": 1,
+      "indie-dev": 2,
       "transparency": 1,
       "free-tools": 1,
       "bootstrap": 1,
@@ -521,7 +536,7 @@
       "game-design": 8,
       "technical": 3,
       "innovation": 2,
-      "behind-the-scenes": 4,
+      "behind-the-scenes": 5,
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
@@ -535,7 +550,7 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 10,
+      "development": 11,
       "player-stories": 1,
       "updates": 1,
       "team": 4,
@@ -553,7 +568,8 @@
       "battle-pass": 1,
       "seasonal-content": 1,
       "anti-fomo": 1,
-      "security": 1,
+      "automation": 1,
+      "security": 2,
       "npm": 1,
       "webdev": 1,
       "tools": 1
