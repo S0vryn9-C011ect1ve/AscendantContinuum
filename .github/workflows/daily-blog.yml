@@ -47,9 +47,9 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add firebase/public/blog/*.json firebase/public/blog/*.xml firebase/public/blog/posts/*.html 2>/dev/null || true
-          if ! git diff --quiet HEAD firebase/public/blog/ 2>/dev/null; then
+          if git diff --cached --quiet; then
+            echo "No new blog post to commit"
+          else
             git commit -m "blog: automated daily post [skip ci]"
             git push
-          else
-            echo "No new blog post to commit"
           fi

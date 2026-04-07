@@ -40,13 +40,13 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add firebase/public/whats-new/data.json firebase/public/blog/posts/daily-update-*.html 2>/dev/null || true
-          if ! git diff --quiet HEAD firebase/public/whats-new/ firebase/public/blog/posts/daily-update-*.html 2>/dev/null; then
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            echo "CHANGES_COMMITTED=false" >> $GITHUB_ENV
+          else
             git commit -m "chore: daily What's New update $(date +%Y-%m-%d)"
             git push
             echo "CHANGES_COMMITTED=true" >> $GITHUB_ENV
-          else
-            echo "No changes to commit"
-            echo "CHANGES_COMMITTED=false" >> $GITHUB_ENV
           fi
       
       - name: Deploy to Firebase

@@ -50,11 +50,11 @@ jobs:
           git config user.email "bot@ascendant-continuum.com"
           git add public/social/posting-history.json || true
           git add public/social/content-bank.json || true
-          if ! git diff --quiet HEAD 2>/dev/null; then
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
             git commit -m "chore: update social media posting history [skip ci]"
             git push
-          else
-            echo "No changes to commit"
           fi
       
       - name: Create issue on failure
