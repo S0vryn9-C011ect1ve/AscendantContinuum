@@ -118,7 +118,7 @@ All 6 protection layers are **ACTIVE** and **EFFECTIVE**:
 | 3. Package Lock Enforcement | ✅ Active | **PROTECTED** - Exact versions enforced |
 | 4. Security Overrides | ✅ Active | **PROTECTED** - axios@1.13.6 locked |
 | 5. Weekly Automated Scans | ✅ Active | **MONITORING** - GitHub Actions running |
-| 6. Security Scanner Script | ✅ Active | **AVAILABLE** - Manual scans possible |
+| 6. Socket.dev GitHub App | ✅ **ACTIVE** (April 7, 2026) | **REAL-TIME** - 0-day protection enabled |
 
 ---
 

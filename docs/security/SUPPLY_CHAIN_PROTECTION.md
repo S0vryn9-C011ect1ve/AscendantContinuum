@@ -119,10 +119,11 @@ npm ci  # Only works if package-lock.json exists
 - Version verification against safe minimums
 - Automatic issue creation if threats detected
 
-### Layer 6: Socket.dev Integration (Optional)
+### Layer 6: Socket.dev Integration ✅ **ACTIVE**
 
-**What:** Free malware protection using Socket.dev's CLI tool  
-**Install:** `npm install -g @socketsecurity/cli`  
+**What:** Real-time malware protection using Socket.dev GitHub App  
+**Status:** Installed and monitoring (April 7, 2026)  
+**Integration:** GitHub App (NO npm install required)  
 **Usage:**
 ```bash
 socket npm install   # Instead of npm install
