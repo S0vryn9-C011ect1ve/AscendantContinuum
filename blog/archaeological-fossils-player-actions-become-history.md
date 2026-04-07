@@ -27,9 +27,7 @@ When you complete a ritual:
 **Immediate:**
 - Ritual completes normally
 - You get rewards
-- Sigi
-
-l activates
+- Sigil activates
 
 **7 Days Later (Fossilization):**
 ```javascript

@@ -124,17 +124,41 @@ npm ci  # Only works if package-lock.json exists
 **What:** Real-time malware protection using Socket.dev GitHub App  
 **Status:** Installed and monitoring (April 7, 2026)  
 **Integration:** GitHub App (NO npm install required)  
-**Usage:**
+
+**Primary Protection: Socket GitHub App** ✅  
+The GitHub App is your main Layer 6 protection:
+- ✅ Real-time monitoring of package installations
+- ✅ Detects 0-day threats (not yet in CVE databases)  
+- ✅ Scans pull requests automatically
+- ✅ Comments on PRs with security findings
+- ✅ Complements the 7-day delay (catches threats immediately)
+- ✅ Works on ALL platforms (Windows, Mac, Linux)
+
+**Optional: Socket CLI** (v1.1.78 installed)  
+Available for manual scanning:
 ```bash
-socket npm install   # Instead of npm install
-socket scan .        # Scan existing dependencies
+socket scan .               # Scan existing dependencies
+socket npm info <package>   # Check package before installing
 ```
 
-**Features:**
-- Real-time malware detection
-- Supply chain risk analysis
-- Typosquatting detection
-- Free tier available
+**Windows Note:**  
+Socket wrapper mode (auto-interception of npm commands) requires bash and is not supported on Windows PowerShell. However, the Socket GitHub App provides equivalent real-time protection automatically.
+
+**Why it's critical:**  
+The 7-day delay protects against recently compromised packages. Socket.dev catches threats that:
+- Are brand new (0-day exploits)
+- Bypass CVE databases  
+- Use sophisticated evasion techniques
+- Appear in pull requests before merge
+
+**Verification:**
+- ✅ Socket Security visible in repository settings  
+- ✅ AscendantContinuum repository selected and authorized  
+- ✅ Real-time 0-day malware protection enabled
+
+**Documentation:**
+- [SOCKET_DEV_VERIFICATION.md](./SOCKET_DEV_VERIFICATION.md) - Verification status
+- [SOCKET_CLI_WINDOWS_STATUS.md](./SOCKET_CLI_WINDOWS_STATUS.md) - Windows details
 
 ---
 

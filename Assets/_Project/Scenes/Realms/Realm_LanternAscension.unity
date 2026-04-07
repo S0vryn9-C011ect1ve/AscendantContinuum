@@ -4478,6 +4478,10 @@ MonoBehaviour:
   meditationDuration: 300
   cameraTransform: {fileID: 0}
   cameraDriftSpeed: 0.1
+  visibilityPanel: {fileID: 0}
+  visibilityPrivateBtn: {fileID: 0}
+  visibilityAnonymousBtn: {fileID: 0}
+  visibilityPublicBtn: {fileID: 0}
   completionPanel: {fileID: 86062560}
   goalLanterns: 1
 --- !u!114 &930864408

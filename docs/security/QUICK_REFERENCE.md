@@ -23,6 +23,21 @@ npm run security:check-axios
 
 # Auto-fix vulnerabilities
 npm run security:audit-fix
+
+# Socket.dev scan (manual)
+npm run security:socket
+```
+
+### Socket CLI Commands (Optional)
+```bash
+# Check package before installing
+socket npm info <package-name>
+
+# Scan current project
+socket scan .
+
+# Check installed dependencies
+socket npm list
 ```
 
 ### Firebase Functions
