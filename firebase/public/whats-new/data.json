@@ -1,11 +1,653 @@
 {
-    "lastUpdated": "2026-04-07T00:00:00Z",
-    "dailyUpdates": [],
-    "weeklyDigests": [],
-    "meta": {
-        "totalDailyUpdates": 0,
-        "totalWeeklyDigests": 0,
-        "oldestUpdateDate": null,
-        "newestUpdateDate": null
+  "lastUpdated": "2026-04-07T20:44:30.960Z",
+  "dailyUpdates": [
+    {
+      "date": "2026-04-07",
+      "totalCommits": 6,
+      "categories": {
+        "features": 1,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Add What's New system with automated updates."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-04-07.html"
+    },
+    {
+      "date": "2026-04-06",
+      "totalCommits": 3,
+      "categories": {
+        "features": 1,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Enhanced monitoring alerts + Socket.dev GitHub App setup (no npm install)."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-04-06.html"
+    },
+    {
+      "date": "2026-04-05",
+      "totalCommits": 1,
+      "categories": {
+        "features": 0,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-04-05.html"
+    },
+    {
+      "date": "2026-04-04",
+      "totalCommits": 1,
+      "categories": {
+        "features": 0,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-04-04.html"
+    },
+    {
+      "date": "2026-04-03",
+      "totalCommits": 1,
+      "categories": {
+        "features": 0,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-04-03.html"
+    },
+    {
+      "date": "2026-04-02",
+      "totalCommits": 8,
+      "categories": {
+        "features": 3,
+        "fixes": 1,
+        "improvements": 0,
+        "docs": 2
+      },
+      "highlights": {
+        "features": [
+          "5 new blog posts + 20 social media posts + 5 blog announcements - Serendipity, Fossils, Ritual Replay, Solar Rewards, Mobile-First.",
+          "Blog announcements + ensure all social posts target all platforms (Discord, Mastodon, Bluesky).",
+          "Publish npm supply chain security blog post."
+        ],
+        "fixes": [
+          "5 new blog post HTML files - add proper blog structure, CSS, navigation, and metadata."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-04-02.html"
+    },
+    {
+      "date": "2026-04-01",
+      "totalCommits": 2,
+      "categories": {
+        "features": 1,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Add comprehensive supply chain protection with weekly automated scans."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-04-01.html"
+    },
+    {
+      "date": "2026-03-31",
+      "totalCommits": 1,
+      "categories": {
+        "features": 0,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-31.html"
+    },
+    {
+      "date": "2026-03-30",
+      "totalCommits": 2,
+      "categories": {
+        "features": 0,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-30.html"
+    },
+    {
+      "date": "2026-03-29",
+      "totalCommits": 5,
+      "categories": {
+        "features": 3,
+        "fixes": 1,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "4 factual blog posts and 34 diverse social media posts based on real game systems.",
+          "Factual blog post about Sigil Crafting System based on real game code.",
+          "New content: NPC collective memory blog post and ethical game design social post."
+        ],
+        "fixes": [
+          "Shorten all 105 social media posts to fit Bluesky 300-char limit."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-29.html"
+    },
+    {
+      "date": "2026-03-28",
+      "totalCommits": 2,
+      "categories": {
+        "features": 0,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-28.html"
+    },
+    {
+      "date": "2026-03-27",
+      "totalCommits": 5,
+      "categories": {
+        "features": 1,
+        "fixes": 3,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "New social media post and blog article."
+        ],
+        "fixes": [
+          "Blog URLs and remove duplicate accessibility post.",
+          "Duplicate post issue - use posting history as source of truth.",
+          "Social media content scheduler for better topic diversity."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-27.html"
+    },
+    {
+      "date": "2026-03-25",
+      "totalCommits": 7,
+      "categories": {
+        "features": 3,
+        "fixes": 1,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Platform submission requirements + cloud functions + PlayerData migration.",
+          "Implement gameplay stubs - iOS notifs, share intent, IAP guard, session tracking.",
+          "Content guidelines for accuracy and voice consistency."
+        ],
+        "fixes": [
+          "Patch all npm vulnerabilities (0 vulns across root + firebase)."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-25.html"
+    },
+    {
+      "date": "2026-03-24",
+      "totalCommits": 6,
+      "categories": {
+        "features": 2,
+        "fixes": 1,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "IOS TTS plugin, platform share intent, camera shake fallback.",
+          "Complete stub implementations - scene scaffolding, GDPR, UI toasts, SaveSystem wiring."
+        ],
+        "fixes": [
+          "Wire settings persistence, iOS notifications, improved sunset calc, analytics opt-out."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-24.html"
+    },
+    {
+      "date": "2026-03-23",
+      "totalCommits": 2,
+      "categories": {
+        "features": 0,
+        "fixes": 1,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [
+          "Plant scale + background cover fill; add UI polish scripts."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-23.html"
+    },
+    {
+      "date": "2026-03-21",
+      "totalCommits": 1,
+      "categories": {
+        "features": 0,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-21.html"
+    },
+    {
+      "date": "2026-03-20",
+      "totalCommits": 1,
+      "categories": {
+        "features": 0,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-20.html"
+    },
+    {
+      "date": "2026-03-18",
+      "totalCommits": 3,
+      "categories": {
+        "features": 0,
+        "fixes": 1,
+        "improvements": 1,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [
+          "Content accuracy: remove misleading 'shipped/launched' language from social posts and blog generator."
+        ],
+        "improvements": [
+          "Budget blog: remove inaccuracy note, add visual creation info, include app store fees."
+        ]
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-18.html"
+    },
+    {
+      "date": "2026-03-17",
+      "totalCommits": 1,
+      "categories": {
+        "features": 1,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Blog posts: 5 colorblind modes technical +  budget breakdown + fix all inaccurate social content."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-17.html"
+    },
+    {
+      "date": "2026-03-16",
+      "totalCommits": 9,
+      "categories": {
+        "features": 3,
+        "fixes": 4,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Add 100% FREE local automation (Windows Task Scheduler).",
+          "Enable live posting - DRY_RUN mode disabled.",
+          "Massive website expansion + delete inaccurate blog post."
+        ],
+        "fixes": [
+          "Automation: Remove inaccurate content + switch to working domain.",
+          "Enable DRY_RUN mode to prevent workflow failures.",
+          "Remove inaccurate impostor syndrome blog topic.",
+          "Add automation deployment guide and testing scripts."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-16.html"
+    },
+    {
+      "date": "2026-03-15",
+      "totalCommits": 3,
+      "categories": {
+        "features": 3,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Add Discord auto-sharing to blog posts.",
+          "Expand social media content bank from 100 to 136 items.",
+          "Complete automated blog system with 50+ topics, RSS, and social integration."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-15.html"
+    },
+    {
+      "date": "2026-03-14",
+      "totalCommits": 5,
+      "categories": {
+        "features": 1,
+        "fixes": 4,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Social media automation system."
+        ],
+        "fixes": [
+          "Improve workflow error handling and git operations.",
+          "Filter out automated commits from dev updates.",
+          "Add write permissions to social media workflows.",
+          "Resolve workflow failures."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-14.html"
+    },
+    {
+      "date": "2026-03-13",
+      "totalCommits": 1,
+      "categories": {
+        "features": 0,
+        "fixes": 1,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [
+          "Resolve 9 low-severity npm vulnerabilities in firebase/functions."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-13.html"
+    },
+    {
+      "date": "2026-03-12",
+      "totalCommits": 1,
+      "categories": {
+        "features": 1,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Wire progression pipeline + touch input for all realms."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-12.html"
+    },
+    {
+      "date": "2026-03-06",
+      "totalCommits": 1,
+      "categories": {
+        "features": 1,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Add all visual assets, audio pipeline, website logo/favicon, privacy/terms."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-06.html"
+    },
+    {
+      "date": "2026-03-03",
+      "totalCommits": 12,
+      "categories": {
+        "features": 0,
+        "fixes": 4,
+        "improvements": 0,
+        "docs": 1
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [
+          "Improve Build.ps1 UPM preflight to accept exit code 1 and check for compile errors.",
+          "Correctly convert Vector2 dominantDirection to angle in test.",
+          "EditMode test compilation errors and add Build.ps1 UPM preflight.",
+          "Resolve build-breaking API mismatches and session counter duplication."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-03.html"
+    },
+    {
+      "date": "2026-03-01",
+      "totalCommits": 6,
+      "categories": {
+        "features": 6,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Realm completion wires, OnSigilCrafted bus event, Day-4 session counter.",
+          "Android 13 POST_NOTIFICATIONS permission request + ShopUIManager season pass card.",
+          "Android production build pipeline + GDPR notification gates.",
+          "System integration sprint — all critical wires connected.",
+          "UI layer — PantheonQuizPanel, SeasonPassUIManager, SeasonTierRow, PlayMode smoke tests."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-03-01.html"
+    },
+    {
+      "date": "2026-02-27",
+      "totalCommits": 5,
+      "categories": {
+        "features": 1,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Add agent personality and memory system (SOUL, USER, HEARTBEAT, TOOLS, LEARNINGS, MEMORY + loader)."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-02-27.html"
+    },
+    {
+      "date": "2026-02-26",
+      "totalCommits": 1,
+      "categories": {
+        "features": 1,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Ecosystem governance framework (Step 7 Business OS)."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-02-26.html"
+    },
+    {
+      "date": "2026-02-25",
+      "totalCommits": 7,
+      "categories": {
+        "features": 3,
+        "fixes": 3,
+        "improvements": 0,
+        "docs": 1
+      },
+      "highlights": {
+        "features": [
+          "Commercial launch readiness (GDPR, Performance, Notifications, FTUE) and website update.",
+          "Add gallery section and update social media links.",
+          "Add homepage + move game to /play/ subpage."
+        ],
+        "fixes": [
+          "Add missing assembly references for UI and iOS Notifications.",
+          "WebGL crash - lastBreakTime pre-Start bug, exception visibility, link.xml type preservation.",
+          "IOS Guardian notifications guard, Android Social namespace, non-WebGL builds non-blocking."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-02-25.html"
+    },
+    {
+      "date": "2026-02-24",
+      "totalCommits": 18,
+      "categories": {
+        "features": 1,
+        "fixes": 10,
+        "improvements": 2,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Revenue strategy, pantheon deity effects, realm wiring."
+        ],
+        "fixes": [
+          "Invalid firebase.json trailing brace; make non-hosting deploys non-blocking.",
+          "Stub iOS notifications, use Permission API for Android.",
+          "GuardianMessengerSystem notification API errors.",
+          "Wrap Handheld.Vibrate() in platform guard in CosmicTreasureHunt.",
+          "Last compile error + remove premature Google Play deploy."
+        ],
+        "improvements": [
+          "Shrink WebGL WASM to fix wasm-opt OOM on CI (strip engine code, no exceptions, no compression, no threads).",
+          "Disable dev build for WebGL CI (smaller WASM, faster emscripten); fix swallowed exceptions in Android/iOS build methods."
+        ]
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-02-24.html"
+    },
+    {
+      "date": "2026-02-16",
+      "totalCommits": 3,
+      "categories": {
+        "features": 1,
+        "fixes": 1,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [
+          "Complete realms UI build automation."
+        ],
+        "fixes": [
+          "Adjust firestore rate limiting."
+        ],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-02-16.html"
+    },
+    {
+      "date": "2026-02-01",
+      "totalCommits": 9,
+      "categories": {
+        "features": 6,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 2
+      },
+      "highlights": {
+        "features": [
+          "Complete cosmic bridge vision - nature connection, sacred timing, mindful play.",
+          "Real astronomical data integration - moon phases, constellations, meteor showers.",
+          "Complete game progression systems - Sigils, Achievements, Daily Challenges, Realm Rituals.",
+          "Advanced game systems - Input, Audio, VFX, Data Models, Realm Transitions.",
+          "Core game systems - GameManager, AccessibilityManager, Firebase, SaveSystem, and Emberforge mechanics."
+        ],
+        "fixes": [],
+        "improvements": []
+      },
+      "blogPostUrl": "/blog/posts/daily-update-2026-02-01.html"
     }
+  ],
+  "weeklyDigests": [],
+  "meta": {
+    "totalDailyUpdates": 33,
+    "totalWeeklyDigests": 0,
+    "oldestUpdateDate": "2026-02-01",
+    "newestUpdateDate": "2026-04-07"
+  }
 }

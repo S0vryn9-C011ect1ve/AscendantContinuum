@@ -355,7 +355,7 @@ async function main() {
 }
 
 // Run if called directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url.endsWith(path.basename(process.argv[1]))) {
     main().catch(error => {
         console.error('❌ Error:', error);
         process.exit(1);
