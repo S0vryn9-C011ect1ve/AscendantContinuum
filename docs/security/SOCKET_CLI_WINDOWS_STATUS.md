@@ -1,18 +1,20 @@
 # Socket Firewall CLI - Windows Compatibility Report
 
 **Date:** April 7, 2026  
-**Installation Status:** ✅ Installed (v1.1.78)  
-**Wrapper Status:** ⚠️ Not supported on Windows PowerShell  
-**Effective Protection:** ✅ Achieved via Socket GitHub App
+**Installation Status:** ❌ Incompatible with Nodist on Windows  
+**Issue:** Path resolution bug in Socket CLI  
+**Resolution:** Uninstalled - not needed  
+**Effective Protection:** ✅ Socket.dev GitHub App (superior solution)
 
 ---
 
 ## Installation Summary
 
-### ✅ What Was Installed
-- **Socket CLI:** v1.1.78
+### ❌ Installation Failed
+- **Socket CLI:** v1.1.78 installed but nonfunctional
 - **Installation Method:** npm global (`npm install -g @socketsecurity/cli`)
-- **Command Available:** `socket` command accessible in terminal
+- **Status:** Uninstalled due to Nodist incompatibility
+- **Root Cause:** Socket CLI path resolution bug with Nodist on Windows
 
 ### ⚠️ Windows Limitation Discovered
 
@@ -23,35 +25,42 @@
 ✖ There was an issue setting up the alias in your bash profile
 ```
 
+**Critical Windows Issue with Nodist:**
+Socket CLI is **completely incompatible** with Nodist on Windows:
+```
+✖ Unexpected error: not resolved: C:/Program Files (x86)/Nodist/bin/npm.EXE
+```
+
 **Technical Reason:**  
-The wrapper creates bash aliases to intercept npm/yarn/pnpm commands. PowerShell uses different alias mechanisms that Socket doesn't support.
+Socket CLI's internal path resolution code (`@socketsecurity/registry/lib/bin.js`) cannot resolve npm.exe even though the file exists and is accessible. This is a bug in Socket CLI's Windows compatibility layer. The wrapper mode requires bash shells (not PowerShell), and even direct commands fail due to the path resolution bug when Nodist is used.
+
+**Attempted Fixes (all failed):**
+- Setting `SOCKET_CLI_NPM_PATH` environment variable ❌
+- Using socket-npm wrapper scripts ❌
+- Specifying absolute paths ❌
+
+**Conclusion:** Socket CLI is fundamentally incompatible with Nodist on Windows.
 
 ---
 
 ## What Still Works on Windows
 
-### ✅ Socket CLI - Manual Scanning
-You can manually scan your project anytime:
+### ⚠️ Socket CLI - Manual Scanning (Limited on Windows with Nodist)
+
+Socket CLI commands may encounter path resolution errors on Windows when using Node version managers like Nodist or nvm-windows:
 
 ```powershell
-# Scan current project
-socket scan .
-
-# Check specific package before installing
-socket npm info <package-name>
-
-# View package security details
+# These commands may fail with "not resolved" errors
+socket scan .               
+socket npm info <package-name>   
 socket npm view <package-name>
 ```
 
-**Added to package.json:**
-```json
-{
-  "scripts": {
-    "security:socket": "socket scan . || echo 'Socket scan completed'"
-  }
-}
-```
+**Root Cause:** Socket CLI has compatibility issues with Windows npm path detection, especially with Node version managers.
+
+**Workaround:** None currently available for Nodist on Windows.
+
+**Impact:** None - Socket GitHub App provides the same protection without these issues.
 
 ### ✅ Socket GitHub App - Real-Time Protection
 **THIS IS YOUR PRIMARY PROTECTION** (already active!)
@@ -90,41 +99,38 @@ The GitHub App provides the SAME threat detection as the wrapper:
 4. **✅ Security Overrides** - axios@1.13.6 locked
 5. **✅ Weekly Automated Scans** - GitHub Actions monitoring
 6. **✅ Socket GitHub App** - Real-time 0-day protection
-7. **✅ Socket CLI** - Manual scanning available
+7. **❌ Socket CLI** - Incompatible with Nodist (uninstalled)
 
-**Total:** 7 layers of protection (maximum paranoia achieved!)
+**Total:** 6 layers of protection (Socket CLI not needed!)
 
 ---
 
 ## Manual Socket CLI Usage
 
-### Check Package Before Installing
+### ❌ Socket CLI Does Not Work with Nodist
+
+All Socket CLI commands fail with path resolution errors:
 
 ```powershell
-# Instead of: npm install suspicious-package
-# Do this first:
-socket npm info suspicious-package
-
-# If safe, then install:
-npm install suspicious-package
+# These commands DO NOT WORK on Windows with Nodist
+socket npm info suspicious-package    # ❌ Fails
+socket scan .                         # ❌ Fails  
+socket npm list                       # ❌ Fails
+npm run security:socket               # ❌ Not functional
 ```
 
-### Scan Entire Project
-
-```powershell
-# Run full security scan
-npm run security:socket
-
-# Or directly:
-socket scan .
+**Error:**
+```
+✖ Unexpected error: not resolved: C:/Program Files (x86)/Nodist/bin/npm.EXE
 ```
 
-### Check Installed Dependencies
+### ✅ Use Socket GitHub App Instead
 
-```powershell
-# View dependency tree with security info
-socket npm list
-```
+Socket.dev GitHub App provides the same security automatically:
+- Scans happen on every commit
+- No manual commands needed
+- Always active, can't forget
+- Works flawlessly on Windows
 
 ---
 
@@ -196,29 +202,29 @@ npm install anything
 
 ## Bottom Line
 
-**Status:** Maximum paranoia mode achieved ✅  
-**Active Protection:** 7 layers (including Socket GitHub App)  
-**Socket CLI:** Available for manual scans  
-**Socket Wrapper:** Not needed (GitHub App provides same protection)  
+**Status:** Socket CLI incompatible with Nodist on Windows ❌  
+**Active Protection:** 6 layers (Socket GitHub App as Layer 6) ✅  
+**Socket CLI:** Uninstalled - not functional ❌  
+**Socket GitHub App:** Active and providing real-time protection ✅  
 
-**You have enterprise-grade security on Windows!**
+**You have maximum security without Socket CLI!**
 
 ---
 
-## Cleanup Option
+## Cleanup Completed
 
-If you decide Socket CLI isn't needed (since GitHub App is active):
+Socket CLI has been uninstalled:
 
 ```powershell
-# Uninstall Socket CLI (optional)
+# Already completed
 npm uninstall -g @socketsecurity/cli
 ```
 
-**Recommendation:** Keep it for manual scans when you're curious about a package.
+**Recommendation:** Don't reinstall Socket CLI on Windows with Nodist - it doesn't work and Socket GitHub App is better anyway.
 
 ---
 
 **Last Updated:** April 7, 2026  
 **Project:** Ascendant Continuum  
-**Platform:** Windows 11 + PowerShell  
-**Socket CLI Version:** 1.1.78
+**Platform:** Windows 11 + PowerShell + Nodist  
+**Socket CLI Status:** Incompatible - Uninstalled

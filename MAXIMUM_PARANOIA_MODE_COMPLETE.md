@@ -3,7 +3,7 @@
 **Date:** April 7, 2026  
 **Project:** Ascendant Continuum  
 **Security Level:** Enterprise-grade for solo developer  
-**Platform:** Windows 11 + PowerShell
+**Platform:** Windows 11 + PowerShell + Nodist
 
 ---
 
@@ -60,12 +60,12 @@ You requested "maximum paranoia mode" for npm supply chain attack protection.
 **Effectiveness:** Detects threats IMMEDIATELY (complements 7-day delay)  
 **Status:** ✅ **VERIFIED AND ACTIVE** (April 7, 2026)
 
-### ✅ Layer 7: Socket CLI (Optional)
-**Configuration:** Socket CLI v1.1.78 installed globally  
-**Protection:** Manual package scanning  
-**Usage:** `socket npm info <package>` before installing  
-**Windows Note:** Wrapper mode (auto-interception) not supported on PowerShell  
-**Status:** INSTALLED (manual scanning available)
+### ⚠️ Layer 7: Socket CLI (Incompatible with Nodist)
+**Configuration:** Attempted installation but incompatible with Windows + Nodist  
+**Issue:** Socket CLI has a path resolution bug with Nodist on Windows  
+**Error:** `not resolved: C:/Program Files (x86)/Nodist/bin/npm.EXE`  
+**Status:** UNINSTALLED (not needed - GitHub App provides same protection)  
+**Alternative:** Socket.dev GitHub App provides superior real-time protection
 
 ---
 
@@ -99,9 +99,9 @@ You requested "maximum paranoia mode" for npm supply chain attack protection.
 Main Project:             0 vulnerabilities ✅
 Firebase Functions:       4 low-risk dev dependencies (accepted) ✅
 Compromised Packages:     0 found ✅
-Protection Layers:        7 active ✅
-Socket.dev Status:        VERIFIED AND ACTIVE ✅
-Socket CLI:               v1.1.78 installed ✅
+Protection Layers:        6 active ✅
+Socket.dev GitHub App:    VERIFIED AND ACTIVE ✅
+Socket CLI:               Incompatible with Nodist, uninstalled ❌
 ```
 
 ### Recent Threat Blocks (March 31 - April 6, 2026)
@@ -194,7 +194,7 @@ npm run security:socket
 ## 📚 Complete Documentation
 
 ### Security Guides
-- [SUPPLY_CHAIN_PROTECTION.md](docs/security/SUPPLY_CHAIN_PROTECTION.md) - Complete threat database and all 7 layers
+- [SUPPLY_CHAIN_PROTECTION.md](docs/security/SUPPLY_CHAIN_PROTECTION.md) - Complete threat database and all 6 layers
 - [WEEKLY_SCAN_SETUP.md](docs/security/WEEKLY_SCAN_SETUP.md) - GitHub Actions automation
 - [MONITORING_ALERTS_SETUP.md](docs/security/MONITORING_ALERTS_SETUP.md) - Alert configuration
 - [QUICK_REFERENCE.md](docs/security/QUICK_REFERENCE.md) - Command cheat sheet
@@ -218,8 +218,9 @@ npm run security:socket
 - [x] Security overrides applied (6 packages)
 - [x] Weekly automated scans active
 - [x] Socket.dev GitHub App installed and verified
-- [x] Socket CLI installed (v1.1.78)
+- [x] Socket CLI attempted (incompatible with Nodist, uninstalled)
 - [x] 11 known threats tracked
+- [x] Automatic GitHub issue creation
 - [x] Automatic GitHub issue creation
 - [x] Comprehensive documentation written
 - [x] Blog post published (security awareness)
@@ -281,7 +282,7 @@ The only time you'll hear about security:
 You have successfully implemented enterprise-grade npm supply chain security that exceeds the protection of most Fortune 500 companies.
 
 **What you accomplished:**
-- 🛡️ 7 layers of active protection
+- 🛡️ 6 layers of active protection
 - 🤖 Fully automated monitoring
 - 📊 Real-time threat intelligence
 - 🔍 0-day vulnerability detection
@@ -318,7 +319,7 @@ You have successfully implemented enterprise-grade npm supply chain security tha
 Built an invisible security shield that automatically protects your project from malicious code hidden in npm packages.
 
 **How does it work?**  
-7 layers of automated protection that check every piece of code before it reaches your project.
+6 layers of automated protection that check every piece of code before it reaches your project.
 
 **What do you need to do?**  
 Nothing. It runs automatically and alerts you if anything suspicious is detected.

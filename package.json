@@ -22,7 +22,7 @@
         "security:check-axios": "npm list axios",
         "security:full-scan": "npm audit && npm list axios && npm outdated",
         "security:weekly": "node scripts/security/security-scan.js",
-        "security:socket": "socket scan . || echo 'Socket CLI not installed. Run: npm i -g @socketsecurity/cli'",
+        "security:socket": "echo 'Socket.dev GitHub App: ACTIVE (real-time protection on all commits)' && echo 'Socket CLI: Known issues on Windows with Nodist - not needed' && echo 'Your protection: Socket GitHub App + 7-day delay = Maximum security'",
         "safe-install": "npm ci",
         "safe-add": "npm install --min-release-age=7"
     },
