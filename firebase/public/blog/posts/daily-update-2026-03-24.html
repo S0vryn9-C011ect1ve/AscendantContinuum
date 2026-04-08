@@ -30,15 +30,15 @@
             <h2>✨ Features</h2>
             <p>We shipped 2 new features today:</p>
             <ul>
-                <li>IOS TTS plugin, platform share intent, camera shake fallback: Assets/Plugins/iOS/NativeTTS.mm: new native iOS plugin wrapping AVSpeechSynthesizer. Exposes _NativeTTS_Speak(text, rate, pitch, volume...</li>
-                <li>Complete stub implementations - scene scaffolding, GDPR, UI toasts, SaveSystem wiring: RealmPrefabBuilder: add GetOrCreateSceneRoot + CreateTaggedChild helpers so all 5 Wire methods can scaffold em...</li>
+                <li>IOS TTS plugin, platform share intent, camera shake fallback: Assets/Plugins/iOS/NativeTTS.mm: new native iOS plugin wrapping AVSpeechSynthesizer. Exposes _NativeTTS_Speak(text, rate, pitch, volume), _NativeTTS_Stop(), _NativeTTS_IsSpeaking() via extern C. Single synthesizer instance prevents overlap; cancels prior speech before new utterance; uses device locale voice.; LanternRitual.cs: wire [...</li>
+                <li>Complete stub implementations - scene scaffolding, GDPR, UI toasts, SaveSystem wiring: RealmPrefabBuilder: add GetOrCreateSceneRoot + CreateTaggedChild helpers so all 5 Wire methods can scaffold empty realm scenes; AchievementDisplayManager: replace Debug.Log stub with animated coroutine toast (fade in/hold/fade out, reduced-motion aware, runtime-built fallback when no prefab assigned); MainMen...</li>
             </ul>
     
 
             <h2>🐛 Bug Fixes</h2>
             <p>Squashed 1 bug to improve stability:</p>
             <ul>
-                <li>Wire settings persistence, iOS notifications, improved sunset calc, analytics opt-out: FirebaseManager: add SetAnalyticsEnabled(bool) - wires to Firebase Analytics SDK when integrated, SaveSystem/P...</li>
+                <li>Wire settings persistence, iOS notifications, improved sunset calc, analytics opt-out: FirebaseManager: add SetAnalyticsEnabled(bool) - wires to Firebase Analytics SDK when integrated; SaveSystem/PlayerData: add analyticsEnabled + allowTimeShareData fields; SettingsMenuManager: OnAnalyticsChanged now calls FirebaseManager.SetAnalyticsEnabled + persists to PlayerData; OnShareDataChanged persists...</li>
             </ul>
     
 

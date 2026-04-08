@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What's New: April 6, 2026 | The Ascendant Continuum</title>
-    <meta name="description" content="Daily development update for April 6, 2026: 6 commits with 1 features, 1 fixes, and 0 improvements.">
+    <meta name="description" content="Daily development update for April 6, 2026: 11 commits with 5 features, 2 fixes, and 0 improvements.">
     <meta property="og:title" content="Daily Update - April 6, 2026">
-    <meta property="og:description" content="Daily development update for April 6, 2026: 6 commits with 1 features, 1 fixes, and 0 improvements.">
+    <meta property="og:description" content="Daily development update for April 6, 2026: 11 commits with 5 features, 2 fixes, and 0 improvements.">
     <meta property="og:type" content="article">
     <link rel="stylesheet" href="../styles.css">
 </head>
@@ -19,24 +19,29 @@
             <h1>Daily Update: April 6, 2026</h1>
             <div class="post-meta">
                 <time datetime="2026-04-07">April 6, 2026</time>
-                <span class="post-stats">6 commits</span>
+                <span class="post-stats">11 commits</span>
             </div>
         </header>
 
         <div class="post-content">
-            <p class="lead">Daily development update for April 6, 2026: 6 commits with 1 features, 1 fixes, and 0 improvements.</p>
+            <p class="lead">Daily development update for April 6, 2026: 11 commits with 5 features, 2 fixes, and 0 improvements.</p>
 
 
             <h2>✨ Features</h2>
-            <p>We shipped 1 new feature today:</p>
+            <p>We shipped 5 new features today:</p>
             <ul>
-                <li>Improve homepage organization and add realms detail page: Add 'Learn More About Realms' button linking to /realms/, Create /realms/index.html with placeholder for detailed realm information.</li>
+                <li>Add Realms link to navigation menu on all pages - 9ee0636021e21b2b7fda61d5f1f03972058ce952.</li>
+                <li>Streamline homepage and populate realms page: Removed detailed realm breakdowns (moved to /realms/); Removed extensive nature connection section; Removed massive collective action section; Reduced from 941 lines to 574 lines (39% smaller); Now focuses on high-level overview with link to realms.</li>
+                <li>44 new social media posts emphasizing solo dev story and game details: Zero budget development ( spent); Solo developer journey (no team, no testers); Detailed gameplay mechanics for all 5 realms; Technical achievements (Unity, WebGL, shaders); Ethical design philosophy (anti-FOMO, anti-grind); Real-world integration (moon phases, weather, nature quests); Collective gameplay features; Launch ti...</li>
+                <li>Improve What's New detail and fix homepage HTML: Enhanced commit message parsing to include bullet points from commit body; Each update now shows comprehensive details (features, fixes, improvements); Fixed broken HTML tags between realms and accessibility sections; Regenerated all historical What's New data with detailed messages.</li>
+                <li>Improve homepage organization and add realms detail page: Add 'Learn More About Realms' button linking to /realms/; Create /realms/index.html with placeholder for detailed realm information; Streamline homepage by directing detailed content to dedicated page.</li>
             </ul>
     
 
             <h2>🐛 Bug Fixes</h2>
-            <p>Squashed 1 bug to improve stability:</p>
+            <p>Squashed 2 bugs to improve stability:</p>
             <ul>
+                <li>Resolve GitHub Actions workflow failures: Changed 'git diff --quiet HEAD' to 'git diff --cached --quiet' in all workflows; Standardized Bluesky secret names to BLUESKY_IDENTIFIER/BLUESKY_PASSWORD; Updated test-social.yml to use Node 20 (consistent with other workflows); Fixed commit logic to properly detect staged changes before committing.</li>
                 <li>Generate complete historical What's New data (33 days) - fe2f92b15e3e171c8a9a6e09ee780597d52a91df.</li>
             </ul>
     
@@ -44,9 +49,9 @@
 
             <h2>📊 Development Stats</h2>
             <ul>
-                <li><strong>Total commits:</strong> 6</li>
-                <li><strong>Features:</strong> 1</li>
-                <li><strong>Bug fixes:</strong> 1</li>
+                <li><strong>Total commits:</strong> 11</li>
+                <li><strong>Features:</strong> 5</li>
+                <li><strong>Bug fixes:</strong> 2</li>
                 <li><strong>Improvements:</strong> 0</li>
                 
             </ul>

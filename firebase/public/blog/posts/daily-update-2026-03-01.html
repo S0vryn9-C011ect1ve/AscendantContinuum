@@ -30,11 +30,11 @@
             <h2>✨ Features</h2>
             <p>We shipped 5 new features today:</p>
             <ul>
-                <li>Realm completion wires, OnSigilCrafted bus event, Day-4 session counter: GameBootstrapper: increment PlayerPrefs SessionCount_Total each session start, RealmController: add CompleteRealm(int score)...</li>
+                <li>Realm completion wires, OnSigilCrafted bus event, Day-4 session counter: GameBootstrapper: increment PlayerPrefs SessionCount_Total each session start; RealmController: add CompleteRealm(int score) helper -> GameEvents.RaiseRealmCompleted; EmberforgeController: CompleteRealm(totalSparks) at 1000-spark milestone; VerdantController: CompleteRealm(totalBlooms) at 10-bloom mastery; EchoFieldsContro...</li>
                 <li>Android 13 POST_NOTIFICATIONS permission request + ShopUIManager season pass card - 57878403c58a54f1f04315688245d57d866d93a3.</li>
-                <li>System integration sprint — all critical wires connected: MainMenuManager + MainMenuController: seasonPassButton field +, CosmicPatronManager.ProcessSuccessfulPurchase: PRODUCT_PATRON_MONTHLY.</li>
-                <li>UI layer — PantheonQuizPanel, SeasonPassUIManager, SeasonTierRow, PlayMode smoke tests: PantheonQuizPanel: 5-question arcane personality quiz with weighted deity scoring,, SeasonPassUIManager: full...</li>
-                <li>Phase A-D complete — analytics, season pass, Day4 quiz, TDD suite: AnalyticsManager: UGS Analytics SDK wiring, GameEvents handlers, CustomEvent recording, RitualReplayManager: GameEvents subscripti...</li>
+                <li>System integration sprint — all critical wires connected: MainMenuManager + MainMenuController: seasonPassButton field +; CosmicPatronManager.ProcessSuccessfulPurchase: PRODUCT_PATRON_MONTHLY; LocalNotificationManager: added LiveEventChannelId const +; GameBootstrapper.Start(): wired LiveEventEngine.OnEventApproaching; HUDManager: Season Pass mini-bar — seasonXPBar Slider +; All 6 files: 0 comp...</li>
+                <li>UI layer — PantheonQuizPanel, SeasonPassUIManager, SeasonTierRow, PlayMode smoke tests: PantheonQuizPanel: 5-question arcane personality quiz with weighted deity scoring,; SeasonPassUIManager: full season battle pass UI — header (XP bar, tier, week),; SeasonTierRow: reusable locked/unlocked/claimed tier row component for season pass; RealmLoopSmokeTests (PlayMode): 11 new tests covering; GameBo...</li>
+                <li>Phase A-D complete — analytics, season pass, Day4 quiz, TDD suite: AnalyticsManager: UGS Analytics SDK wiring, GameEvents handlers, CustomEvent recording; RitualReplayManager: GameEvents subscriptions, 6-second capture window, share card builder; SeasonController: 9-week battle pass, free/premium reward tracks, XP award on sigil/chain/celestial; PantheonDeityEffects: Day4 gate methods (ShouldSh...</li>
             </ul>
     
 

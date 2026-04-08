@@ -176,18 +176,21 @@ function cleanMessage(commit) {
     // Remove conventional commit prefix
     message = message.replace(/^(feat|feature|fix|bug|docs?|chore|refactor|perf|test|ci|build|improve|add|update|create|implement)[\s:]+/i, '');
 
-    // If there's a body, extract first meaningful line or bullet point
+    // If there's a body, extract ALL meaningful content
     if (body) {
-        const lines = body.split('\n').map(l => l.trim()).filter(l => l && !l.match(/^[-#*]/));
-        const bullets = body.match(/^[-*]\s+(.+)$/gm);
+        const lines = body.split('\n').map(l => l.trim()).filter(l => l);
+        const bullets = lines.filter(l => l.match(/^[-*]\s+/));
 
-        if (bullets && bullets.length > 0) {
-            // Get first 2-3 bullet points
-            const details = bullets.slice(0, 2).map(b => b.replace(/^[-*]\s+/, '').trim());
-            message = message + ': ' + details.join(', ');
-        } else if (lines.length > 0 && lines[0].length > 10) {
-            // Add first meaningful line from body
-            message = message + ' - ' + lines[0];
+        if (bullets.length > 0) {
+            // Get ALL bullet points for detailed descriptions
+            const details = bullets.map(b => b.replace(/^[-*]\s+/, '').trim());
+            message = message + ': ' + details.join('; ');
+        } else {
+            // Extract first paragraph from body (non-empty lines joined)
+            const paragraph = lines.filter(l => !l.match(/^(feat|fix|add|update|improve|create)/i)).slice(0, 4).join(' ');
+            if (paragraph.length > 15) {
+                message = message + ' - ' + paragraph;
+            }
         }
     }
 
@@ -199,9 +202,9 @@ function cleanMessage(commit) {
         message += '.';
     }
 
-    // Limit length to reasonable display size
-    if (message.length > 200) {
-        message = message.substring(0, 197) + '...';
+    // Increased character limit for richer details
+    if (message.length > 400) {
+        message = message.substring(0, 397) + '...';
     }
 
     return message;
