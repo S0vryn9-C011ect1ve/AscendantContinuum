@@ -5,13 +5,39 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Apr 2026 14:01:16 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2026 14:01:06 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[How We Built Enterprise-Grade Security Into Our Indie Game (For Free)]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/how-we-built-enterprise-security-into-our-indie-game.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/how-we-built-enterprise-security-into-our-indie-game.html</guid>
+      <pubDate>Tue, 07 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Technical Deep Dive]]></category>
+      <category><![CDATA[security]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[indie-dev]]></category>
+      <category><![CDATA[automation]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[We built 6 layers of automated security protection into Ascendant Continuum to block malicious code attacks. Here's how we achieved enterprise-grade security for free as a solo indie developer.]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Why We Reject FOMO: Designing Without Dark Patterns]]></title>
@@ -254,33 +280,6 @@
       <category><![CDATA[buoyancy]]></category>
       <category><![CDATA[ritual-mechanic]]></category>
       <description><![CDATA[Your ritual lantern obeys Navier-Stokes equations. Buoyancy, drag, wind, rain—all simulated at 60 FPS. Master the physics, achieve 4x effectiveness. Stratosphere Achievement: only 2% succeed.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Community Mysteries That Take Months to Solve]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/community-mysteries-months-to-solve.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/community-mysteries-months-to-solve.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Collaborative Gameplay]]></category>
-      <category><![CDATA[community-mysteries]]></category>
-      <category><![CDATA[cryptography]]></category>
-      <category><![CDATA[collaborative-puzzles]]></category>
-      <category><![CDATA[secret-hunts]]></category>
-      <category><![CDATA[long-term-gameplay]]></category>
-      <description><![CDATA[Puzzles requiring 100+ players to coordinate. Fragmented clues across time zones. Real cryptography. Expected solve time: 1-6 months. The Unsolved Vault: 143 players, 8 months, still locked.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Weather Integration: When Rain Actually Delays Rituals]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/weather-integration-real-rain-delays-rituals.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/weather-integration-real-rain-delays-rituals.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Real-World Sync]]></category>
-      <category><![CDATA[weather-integration]]></category>
-      <category><![CDATA[openweather-api]]></category>
-      <category><![CDATA[environmental-gameplay]]></category>
-      <category><![CDATA[adaptive-difficulty]]></category>
-      <description><![CDATA[OpenWeather API sync makes your local weather the difficulty setting. Rain = -20% effectiveness. Thunderstorms = dangerous dodge mechanic. Fog = visibility 20m. We care about safety > engagement.]]></description>
     </item>
   </channel>
 </rss>
