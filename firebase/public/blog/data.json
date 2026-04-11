@@ -524,15 +524,27 @@
       ],
       "themeName": "Dev Diary",
       "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
+    },
+    {
+      "title": "Shader Programming: Custom Effects for Magical Worlds",
+      "slug": "shader-programming-custom-effects-for-magical-worlds",
+      "date": "2026-04-11",
+      "tags": [
+        "tutorial",
+        "unity",
+        "game-dev"
+      ],
+      "themeName": "Tutorial",
+      "excerpt": "Unity provides Standard shader (PBR), Unlit shader (performance), and Shader Graph (node-based visual programming). These cover 80% of use cases but don't create distinctive visuals. Every Unity game ..."
     }
   ],
   "stats": {
-    "totalPosts": 38,
+    "totalPosts": 39,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 4,
-      "Tutorial": 7,
+      "Tutorial": 8,
       "Design Philosophy": 6,
       "Dev Diary": 5,
       "Community Insight": 1
@@ -553,9 +565,9 @@
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
-      "tutorial": 7,
-      "unity": 13,
-      "game-dev": 7,
+      "tutorial": 8,
+      "unity": 14,
+      "game-dev": 8,
       "ethics": 3,
       "philosophy": 2,
       "ai": 1,

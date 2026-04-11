@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Apr 2026 14:01:06 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 11 Apr 2026 14:01:09 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Shader Programming: Custom Effects for Magical Worlds]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/shader-programming-custom-effects-for-magical-worlds.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/shader-programming-custom-effects-for-magical-worlds.html</guid>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Tutorial]]></category>
+      <category><![CDATA[tutorial]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[game-dev]]></category>
+      <description><![CDATA[Unity provides Standard shader (PBR), Unlit shader (performance), and Shader Graph (node-based visual programming). These cover 80% of use cases but don't create distinctive visuals. Every Unity game ...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
@@ -266,20 +278,6 @@
       <category><![CDATA[geminids]]></category>
       <category><![CDATA[real-time-events]]></category>
       <description><![CDATA[August 12-13: Perseids = massive in-game event. December 13-14: Geminids = Twin Deity encounter. 8 real meteor showers per year trigger exclusive content. Earth's orbit schedules our events.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Lantern Ascension: Fluid Dynamics as Gameplay]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/lantern-ascension-fluid-dynamics-gameplay.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/lantern-ascension-fluid-dynamics-gameplay.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Physics Simulation]]></category>
-      <category><![CDATA[lantern-ascension]]></category>
-      <category><![CDATA[fluid-dynamics]]></category>
-      <category><![CDATA[physics]]></category>
-      <category><![CDATA[buoyancy]]></category>
-      <category><![CDATA[ritual-mechanic]]></category>
-      <description><![CDATA[Your ritual lantern obeys Navier-Stokes equations. Buoyancy, drag, wind, rain—all simulated at 60 FPS. Master the physics, achieve 4x effectiveness. Stratosphere Achievement: only 2% succeed.]]></description>
     </item>
   </channel>
 </rss>
