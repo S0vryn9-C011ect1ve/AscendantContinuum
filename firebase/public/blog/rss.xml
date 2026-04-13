@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Apr 2026 14:01:09 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 13 Apr 2026 14:02:00 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
+      <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Shader Programming: Custom Effects for Magical Worlds]]></title>
@@ -264,20 +276,6 @@
       <category><![CDATA[mental-health]]></category>
       <category><![CDATA[self-discovery]]></category>
       <description><![CDATA[Write a message. Lock it for 30/90/365 days. Seal it. You can't delete or open early. Your past self speaks to your future self, uninterrupted. The distance proves growth.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Meteor Showers: When Real Astronomy Unlocks Game Content]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/meteor-showers-real-astronomy-game-events.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/meteor-showers-real-astronomy-game-events.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Real-World Sync]]></category>
-      <category><![CDATA[meteor-showers]]></category>
-      <category><![CDATA[astronomy]]></category>
-      <category><![CDATA[perseids]]></category>
-      <category><![CDATA[geminids]]></category>
-      <category><![CDATA[real-time-events]]></category>
-      <description><![CDATA[August 12-13: Perseids = massive in-game event. December 13-14: Geminids = Twin Deity encounter. 8 real meteor showers per year trigger exclusive content. Earth's orbit schedules our events.]]></description>
     </item>
   </channel>
 </rss>

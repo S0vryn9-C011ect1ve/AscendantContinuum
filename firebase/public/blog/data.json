@@ -536,17 +536,29 @@
       ],
       "themeName": "Tutorial",
       "excerpt": "Unity provides Standard shader (PBR), Unlit shader (performance), and Shader Graph (node-based visual programming). These cover 80% of use cases but don't create distinctive visuals. Every Unity game ..."
+    },
+    {
+      "title": "Mobile Touch Controls: Gestures That Feel Magical",
+      "slug": "mobile-touch-controls-gestures-that-feel-magical",
+      "date": "2026-04-13",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Dev Diary",
+      "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
     }
   ],
   "stats": {
-    "totalPosts": 39,
+    "totalPosts": 40,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 4,
       "Tutorial": 8,
       "Design Philosophy": 6,
-      "Dev Diary": 5,
+      "Dev Diary": 6,
       "Community Insight": 1
     },
     "byTag": {
@@ -560,13 +572,13 @@
       "game-design": 8,
       "technical": 3,
       "innovation": 2,
-      "behind-the-scenes": 6,
+      "behind-the-scenes": 7,
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
       "tutorial": 8,
-      "unity": 14,
+      "unity": 15,
       "game-dev": 8,
       "ethics": 3,
       "philosophy": 2,
@@ -574,7 +586,7 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 12,
+      "development": 13,
       "player-stories": 1,
       "updates": 1,
       "team": 4,
