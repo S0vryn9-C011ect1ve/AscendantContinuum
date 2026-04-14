@@ -548,16 +548,28 @@
       ],
       "themeName": "Dev Diary",
       "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
+    },
+    {
+      "title": "Why We Reject FOMO: Designing Without Dark Patterns",
+      "slug": "why-we-reject-fomo-designing-without-dark-patterns",
+      "date": "2026-04-14",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Design Philosophy",
+      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy..."
     }
   ],
   "stats": {
-    "totalPosts": 40,
+    "totalPosts": 41,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 4,
       "Tutorial": 8,
-      "Design Philosophy": 6,
+      "Design Philosophy": 7,
       "Dev Diary": 6,
       "Community Insight": 1
     },
@@ -569,7 +581,7 @@
       "bootstrap": 1,
       "accessibility": 3,
       "colorblind": 2,
-      "game-design": 8,
+      "game-design": 9,
       "technical": 3,
       "innovation": 2,
       "behind-the-scenes": 7,
@@ -580,8 +592,8 @@
       "tutorial": 8,
       "unity": 15,
       "game-dev": 8,
-      "ethics": 3,
-      "philosophy": 2,
+      "ethics": 4,
+      "philosophy": 3,
       "ai": 1,
       "community": 2,
       "systems": 1,

@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Apr 2026 14:02:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 14 Apr 2026 14:02:46 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Why We Reject FOMO: Designing Without Dark Patterns]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[ethics]]></category>
+      <category><![CDATA[philosophy]]></category>
+      <description><![CDATA[Modern free-to-play games are engineered with "urgency mechanics"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
@@ -262,20 +274,6 @@
       <category><![CDATA[emergent-storytelling]]></category>
       <category><![CDATA[firebase]]></category>
       <description><![CDATA[Collective player morality literally rewrites the game's mythology. Choose Compassion for 7 days? Lore tables update. The community authors the universe through actions, not votes.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Time Capsules: Writing Messages to Your Future Self]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/time-capsules-messages-to-future-self.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/time-capsules-messages-to-future-self.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Emotional Design]]></category>
-      <category><![CDATA[time-capsules]]></category>
-      <category><![CDATA[delayed-gratification]]></category>
-      <category><![CDATA[reflection]]></category>
-      <category><![CDATA[mental-health]]></category>
-      <category><![CDATA[self-discovery]]></category>
-      <description><![CDATA[Write a message. Lock it for 30/90/365 days. Seal it. You can't delete or open early. Your past self speaks to your future self, uninterrupted. The distance proves growth.]]></description>
     </item>
   </channel>
 </rss>
