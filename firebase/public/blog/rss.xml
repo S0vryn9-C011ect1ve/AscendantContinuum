@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Apr 2026 14:02:46 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2026 14:02:03 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
+      <pubDate>Sat, 18 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Why We Reject FOMO: Designing Without Dark Patterns]]></title>
@@ -260,20 +272,6 @@
       <category><![CDATA[educational-gaming]]></category>
       <category><![CDATA[puzzle-design]]></category>
       <description><![CDATA[Not fake game logic. Real optics. Dawn Citadel puzzles use actual Snell's Law calculations. Red light bends differently than blue. Solving puzzles teaches real physics.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Living Lore: When the Universe Rewrites Its Own History]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/living-lore-universe-rewrites-history.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/living-lore-universe-rewrites-history.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Technical Deep Dive]]></category>
-      <category><![CDATA[living-lore]]></category>
-      <category><![CDATA[dynamic-narrative]]></category>
-      <category><![CDATA[collective-morality]]></category>
-      <category><![CDATA[emergent-storytelling]]></category>
-      <category><![CDATA[firebase]]></category>
-      <description><![CDATA[Collective player morality literally rewrites the game's mythology. Choose Compassion for 7 days? Lore tables update. The community authors the universe through actions, not votes.]]></description>
     </item>
   </channel>
 </rss>

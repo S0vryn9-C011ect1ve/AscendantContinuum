@@ -560,17 +560,29 @@
       ],
       "themeName": "Design Philosophy",
       "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy..."
+    },
+    {
+      "title": "Mobile Touch Controls: Gestures That Feel Magical",
+      "slug": "mobile-touch-controls-gestures-that-feel-magical",
+      "date": "2026-04-18",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Dev Diary",
+      "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
     }
   ],
   "stats": {
-    "totalPosts": 41,
+    "totalPosts": 42,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 4,
       "Tutorial": 8,
       "Design Philosophy": 7,
-      "Dev Diary": 6,
+      "Dev Diary": 7,
       "Community Insight": 1
     },
     "byTag": {
@@ -584,13 +596,13 @@
       "game-design": 9,
       "technical": 3,
       "innovation": 2,
-      "behind-the-scenes": 7,
+      "behind-the-scenes": 8,
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
       "tutorial": 8,
-      "unity": 15,
+      "unity": 16,
       "game-dev": 8,
       "ethics": 4,
       "philosophy": 3,
@@ -598,7 +610,7 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 13,
+      "development": 14,
       "player-stories": 1,
       "updates": 1,
       "team": 4,
