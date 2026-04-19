@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Apr 2026 14:02:03 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 19 Apr 2026 14:01:51 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Accessibility Innovation: Beyond Compliance]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/accessibility-innovation-beyond-compliance.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/accessibility-innovation-beyond-compliance.html</guid>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[ethics]]></category>
+      <category><![CDATA[philosophy]]></category>
+      <description><![CDATA[WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay....]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
@@ -258,20 +270,6 @@
       <category><![CDATA[decision-tree]]></category>
       <category><![CDATA[ritual-gallery]]></category>
       <description><![CDATA[You can't access it early. No IAP unlocks. No hacks. Day 30, the Archive opens, revealing every ritual, decision, and time capsule you've created. Delayed gratification as emotional design.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Dawn Citadel: Light Refraction Physics as Puzzles]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/dawn-citadel-light-refraction-physics.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/dawn-citadel-light-refraction-physics.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Technical Deep Dive]]></category>
-      <category><![CDATA[physics]]></category>
-      <category><![CDATA[snells-law]]></category>
-      <category><![CDATA[optics]]></category>
-      <category><![CDATA[educational-gaming]]></category>
-      <category><![CDATA[puzzle-design]]></category>
-      <description><![CDATA[Not fake game logic. Real optics. Dawn Citadel puzzles use actual Snell's Law calculations. Red light bends differently than blue. Solving puzzles teaches real physics.]]></description>
     </item>
   </channel>
 </rss>
