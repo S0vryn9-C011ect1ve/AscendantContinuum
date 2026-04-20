@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Apr 2026 14:01:51 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 20 Apr 2026 14:03:22 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Ethical Monetization: Fair Pricing in an Exploitative Industry]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/ethical-monetization-fair-pricing-in-an-exploitative-industry.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/ethical-monetization-fair-pricing-in-an-exploitative-industry.html</guid>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[ethics]]></category>
+      <category><![CDATA[philosophy]]></category>
+      <description><![CDATA[Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Accessibility Innovation: Beyond Compliance]]></title>
@@ -256,20 +268,6 @@
       <category><![CDATA[character-development]]></category>
       <category><![CDATA[emergent-gameplay]]></category>
       <description><![CDATA[No character creation screen. Your identity emerges from how you play. Are you a Midnight Sage, Nature Mystic, or Dawn Seeker? The game tracks 50+ metrics and reveals who you've become.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[The Eternal Archive: Unlocked After 30 Days]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/eternal-archive-30-day-unlock.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/eternal-archive-30-day-unlock.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[eternal-archive]]></category>
-      <category><![CDATA[delayed-gratification]]></category>
-      <category><![CDATA[time-capsules]]></category>
-      <category><![CDATA[decision-tree]]></category>
-      <category><![CDATA[ritual-gallery]]></category>
-      <description><![CDATA[You can't access it early. No IAP unlocks. No hacks. Day 30, the Archive opens, revealing every ritual, decision, and time capsule you've created. Delayed gratification as emotional design.]]></description>
     </item>
   </channel>
 </rss>

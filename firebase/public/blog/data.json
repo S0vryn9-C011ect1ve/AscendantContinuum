@@ -584,16 +584,28 @@
       ],
       "themeName": "Design Philosophy",
       "excerpt": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay...."
+    },
+    {
+      "title": "Ethical Monetization: Fair Pricing in an Exploitative Industry",
+      "slug": "ethical-monetization-fair-pricing-in-an-exploitative-industry",
+      "date": "2026-04-20",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Design Philosophy",
+      "excerpt": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add..."
     }
   ],
   "stats": {
-    "totalPosts": 43,
+    "totalPosts": 44,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 4,
       "Tutorial": 8,
-      "Design Philosophy": 8,
+      "Design Philosophy": 9,
       "Dev Diary": 7,
       "Community Insight": 1
     },
@@ -605,7 +617,7 @@
       "bootstrap": 1,
       "accessibility": 3,
       "colorblind": 2,
-      "game-design": 10,
+      "game-design": 11,
       "technical": 3,
       "innovation": 2,
       "behind-the-scenes": 8,
@@ -616,8 +628,8 @@
       "tutorial": 8,
       "unity": 16,
       "game-dev": 8,
-      "ethics": 5,
-      "philosophy": 4,
+      "ethics": 6,
+      "philosophy": 5,
       "ai": 1,
       "community": 2,
       "systems": 1,
