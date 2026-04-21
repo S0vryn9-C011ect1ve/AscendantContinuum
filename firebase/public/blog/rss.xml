@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Apr 2026 14:03:22 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 21 Apr 2026 14:02:19 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Realm Transitions: Seamless World-Hopping]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/realm-transitions-seamless-world-hopping.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/realm-transitions-seamless-world-hopping.html</guid>
+      <pubDate>Tue, 21 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Traditional RPGs hide loading with progress bars, spinning icons, or "tip screens." These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Ethical Monetization: Fair Pricing in an Exploitative Industry]]></title>
@@ -254,20 +266,6 @@
       <category><![CDATA[outdoor-gameplay]]></category>
       <category><![CDATA[night-sky]]></category>
       <description><![CDATA[The only mobile game that rewards you for putting your phone down. Hold your phone to the actual night sky, and our gyroscope + GPS verification system gives you 3x XP for playing outside.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Cosmic Identity System: Twelve Alignments That Emerge]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/cosmic-identity-system-alignments.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/cosmic-identity-system-alignments.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[cosmic-identity]]></category>
-      <category><![CDATA[behavioral-tracking]]></category>
-      <category><![CDATA[alignments]]></category>
-      <category><![CDATA[character-development]]></category>
-      <category><![CDATA[emergent-gameplay]]></category>
-      <description><![CDATA[No character creation screen. Your identity emerges from how you play. Are you a Midnight Sage, Nature Mystic, or Dawn Seeker? The game tracks 50+ metrics and reveals who you've become.]]></description>
     </item>
   </channel>
 </rss>

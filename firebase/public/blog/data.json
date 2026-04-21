@@ -596,17 +596,29 @@
       ],
       "themeName": "Design Philosophy",
       "excerpt": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add..."
+    },
+    {
+      "title": "Realm Transitions: Seamless World-Hopping",
+      "slug": "realm-transitions-seamless-world-hopping",
+      "date": "2026-04-21",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Dev Diary",
+      "excerpt": "Traditional RPGs hide loading with progress bars, spinning icons, or \"tip screens.\" These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ..."
     }
   ],
   "stats": {
-    "totalPosts": 44,
+    "totalPosts": 45,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 4,
       "Tutorial": 8,
       "Design Philosophy": 9,
-      "Dev Diary": 7,
+      "Dev Diary": 8,
       "Community Insight": 1
     },
     "byTag": {
@@ -620,13 +632,13 @@
       "game-design": 11,
       "technical": 3,
       "innovation": 2,
-      "behind-the-scenes": 8,
+      "behind-the-scenes": 9,
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
       "tutorial": 8,
-      "unity": 16,
+      "unity": 17,
       "game-dev": 8,
       "ethics": 6,
       "philosophy": 5,
@@ -634,7 +646,7 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 14,
+      "development": 15,
       "player-stories": 1,
       "updates": 1,
       "team": 4,
