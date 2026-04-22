@@ -608,15 +608,27 @@
       ],
       "themeName": "Dev Diary",
       "excerpt": "Traditional RPGs hide loading with progress bars, spinning icons, or \"tip screens.\" These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ..."
+    },
+    {
+      "title": "State Management with ScriptableObjects",
+      "slug": "state-management-with-scriptableobjects",
+      "date": "2026-04-22",
+      "tags": [
+        "tutorial",
+        "unity",
+        "game-dev"
+      ],
+      "themeName": "Tutorial",
+      "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play..."
     }
   ],
   "stats": {
-    "totalPosts": 45,
+    "totalPosts": 46,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 4,
-      "Tutorial": 8,
+      "Tutorial": 9,
       "Design Philosophy": 9,
       "Dev Diary": 8,
       "Community Insight": 1
@@ -637,9 +649,9 @@
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
-      "tutorial": 8,
-      "unity": 17,
-      "game-dev": 8,
+      "tutorial": 9,
+      "unity": 18,
+      "game-dev": 9,
       "ethics": 6,
       "philosophy": 5,
       "ai": 1,
