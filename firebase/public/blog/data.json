@@ -620,16 +620,28 @@
       ],
       "themeName": "Tutorial",
       "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play..."
+    },
+    {
+      "title": "Accessibility Innovation: Beyond Compliance",
+      "slug": "accessibility-innovation-beyond-compliance",
+      "date": "2026-04-23",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Design Philosophy",
+      "excerpt": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay...."
     }
   ],
   "stats": {
-    "totalPosts": 46,
+    "totalPosts": 47,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 4,
       "Tutorial": 9,
-      "Design Philosophy": 9,
+      "Design Philosophy": 10,
       "Dev Diary": 8,
       "Community Insight": 1
     },
@@ -641,7 +653,7 @@
       "bootstrap": 1,
       "accessibility": 3,
       "colorblind": 2,
-      "game-design": 11,
+      "game-design": 12,
       "technical": 3,
       "innovation": 2,
       "behind-the-scenes": 9,
@@ -652,8 +664,8 @@
       "tutorial": 9,
       "unity": 18,
       "game-dev": 9,
-      "ethics": 6,
-      "philosophy": 5,
+      "ethics": 7,
+      "philosophy": 6,
       "ai": 1,
       "community": 2,
       "systems": 1,

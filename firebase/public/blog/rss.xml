@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Apr 2026 14:01:14 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 23 Apr 2026 14:01:40 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Accessibility Innovation: Beyond Compliance]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/accessibility-innovation-beyond-compliance.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/accessibility-innovation-beyond-compliance.html</guid>
+      <pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[ethics]]></category>
+      <category><![CDATA[philosophy]]></category>
+      <description><![CDATA[WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay....]]></description>
+    </item>
 
     <item>
       <title><![CDATA[State Management with ScriptableObjects]]></title>
@@ -250,20 +262,6 @@
       <category><![CDATA[time-awareness]]></category>
       <category><![CDATA[real-world-sync]]></category>
       <description><![CDATA[The game knows when the sun rises in YOUR location. Catch dawn or dusk rituals for 2× XP and solar blessings. Seasonal adjustments reward winter early risers with 3× XP.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Mobile-First Design: No PC Port (Ever)]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/mobile-first-design-no-pc-port-ever.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-first-design-no-pc-port-ever.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[mobile-first]]></category>
-      <category><![CDATA[design-constraints]]></category>
-      <category><![CDATA[accessibility]]></category>
-      <category><![CDATA[no-pc-port]]></category>
-      <category><![CDATA[touch-interface]]></category>
-      <description><![CDATA[This game will never come to PC. Mobile-first, mobile-only, forever. GPS, accelerometer, always-with-you design. Constraint breeds creativity. We're doubling down on mobile excellence.]]></description>
     </item>
   </channel>
 </rss>
