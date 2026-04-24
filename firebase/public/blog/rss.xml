@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Apr 2026 14:01:40 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2026 14:02:20 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Ethical Monetization: Fair Pricing in an Exploitative Industry]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/ethical-monetization-fair-pricing-in-an-exploitative-industry.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/ethical-monetization-fair-pricing-in-an-exploitative-industry.html</guid>
+      <pubDate>Fri, 24 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[ethics]]></category>
+      <category><![CDATA[philosophy]]></category>
+      <description><![CDATA[Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Accessibility Innovation: Beyond Compliance]]></title>
@@ -247,21 +259,6 @@
       <category><![CDATA[sharing]]></category>
       <category><![CDATA[6-seconds]]></category>
       <description><![CDATA[The game automatically captures your ritual's peak 6 seconds. No recording apps. No editing. Just the essence. Share it or keep it private. Your choice.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Sunrise/Sunset Awareness: Real-Time Solar Rewards]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/sunrise-sunset-awareness-real-time-solar-rewards.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/sunrise-sunset-awareness-real-time-solar-rewards.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Real-World Integration]]></category>
-      <category><![CDATA[sunrise]]></category>
-      <category><![CDATA[sunset]]></category>
-      <category><![CDATA[solar-mechanics]]></category>
-      <category><![CDATA[rewards]]></category>
-      <category><![CDATA[time-awareness]]></category>
-      <category><![CDATA[real-world-sync]]></category>
-      <description><![CDATA[The game knows when the sun rises in YOUR location. Catch dawn or dusk rituals for 2× XP and solar blessings. Seasonal adjustments reward winter early risers with 3× XP.]]></description>
     </item>
   </channel>
 </rss>
