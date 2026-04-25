@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Apr 2026 14:02:20 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 25 Apr 2026 14:01:36 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Behind the Scenes]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[team]]></category>
+      <category><![CDATA[process]]></category>
+      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Ethical Monetization: Fair Pricing in an Exploitative Industry]]></title>
@@ -245,20 +257,6 @@
       <category><![CDATA[persistent-world]]></category>
       <category><![CDATA[time-mechanics]]></category>
       <description><![CDATA[Your ritual fossilizes after 7 days. 30 days later, other players excavate it. Your gameplay becomes their discovery. Asynchronous multiplayer through archaeological time.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Ritual Replay: 6-Second Video Essence Capture]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/ritual-replay-6-second-video-essence-capture.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/ritual-replay-6-second-video-essence-capture.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Creative Expression]]></category>
-      <category><![CDATA[ritual-replay]]></category>
-      <category><![CDATA[video-capture]]></category>
-      <category><![CDATA[essence-recording]]></category>
-      <category><![CDATA[sharing]]></category>
-      <category><![CDATA[6-seconds]]></category>
-      <description><![CDATA[The game automatically captures your ritual's peak 6 seconds. No recording apps. No editing. Just the essence. Share it or keep it private. Your choice.]]></description>
     </item>
   </channel>
 </rss>
