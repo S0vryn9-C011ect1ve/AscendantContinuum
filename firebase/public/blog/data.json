@@ -656,14 +656,26 @@
       ],
       "themeName": "Behind the Scenes",
       "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
+    },
+    {
+      "title": "Solo Development Lessons: Building a Game Alone",
+      "slug": "solo-development-lessons-building-a-game-alone",
+      "date": "2026-04-26",
+      "tags": [
+        "development",
+        "team",
+        "process"
+      ],
+      "themeName": "Behind the Scenes",
+      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
     }
   ],
   "stats": {
-    "totalPosts": 49,
+    "totalPosts": 50,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
-      "Behind the Scenes": 5,
+      "Behind the Scenes": 6,
       "Tutorial": 9,
       "Design Philosophy": 11,
       "Dev Diary": 8,
@@ -694,11 +706,11 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 16,
+      "development": 17,
       "player-stories": 1,
       "updates": 1,
-      "team": 5,
-      "process": 5,
+      "team": 6,
+      "process": 6,
       "daily-challenges": 1,
       "inclusive-design": 2,
       "secrets": 1,

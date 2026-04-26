@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Apr 2026 14:01:36 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2026 14:01:40 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Behind the Scenes]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[team]]></category>
+      <category><![CDATA[process]]></category>
+      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
@@ -243,20 +255,6 @@
       <category><![CDATA[procedural-surprises]]></category>
       <category><![CDATA[1-percent-chance]]></category>
       <description><![CDATA[1% chance deity encounters. No grinding. Pure randomness. When it happens, you're face-to-face with a deity who exists only for you for 60 seconds. Rarity creates value.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Archaeological Fossils: Your Actions Become History]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/archaeological-fossils-player-actions-become-history.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/archaeological-fossils-player-actions-become-history.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Persistent World]]></category>
-      <category><![CDATA[fossils]]></category>
-      <category><![CDATA[archaeology]]></category>
-      <category><![CDATA[player-legacy]]></category>
-      <category><![CDATA[persistent-world]]></category>
-      <category><![CDATA[time-mechanics]]></category>
-      <description><![CDATA[Your ritual fossilizes after 7 days. 30 days later, other players excavate it. Your gameplay becomes their discovery. Asynchronous multiplayer through archaeological time.]]></description>
     </item>
   </channel>
 </rss>
