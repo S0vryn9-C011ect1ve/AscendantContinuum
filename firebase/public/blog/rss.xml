@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 Apr 2026 14:01:40 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 27 Apr 2026 14:01:50 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
@@ -241,20 +253,6 @@
       <category><![CDATA[unity]]></category>
       <category><![CDATA[game-dev]]></category>
       <description><![CDATA[Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Serendipity Moments: 1% Deity Encounters]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/serendipity-moments-1-percent-deity-encounters.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/serendipity-moments-1-percent-deity-encounters.html</guid>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Emergent Gameplay]]></category>
-      <category><![CDATA[serendipity]]></category>
-      <category><![CDATA[deity-encounters]]></category>
-      <category><![CDATA[rare-events]]></category>
-      <category><![CDATA[procedural-surprises]]></category>
-      <category><![CDATA[1-percent-chance]]></category>
-      <description><![CDATA[1% chance deity encounters. No grinding. Pure randomness. When it happens, you're face-to-face with a deity who exists only for you for 60 seconds. Rarity creates value.]]></description>
     </item>
   </channel>
 </rss>
