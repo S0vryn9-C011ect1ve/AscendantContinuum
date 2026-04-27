@@ -77,19 +77,20 @@
       "hook": "The game knows when YOUR actual sunrise happens. Be there for 2× XP."
     },
     {
-      "title": "Mobile-First Design: No PC Port (Ever)",
-      "slug": "mobile-first-design-no-pc-port-ever",
-      "date": "2026-04-02",
-      "themeName": "Design Philosophy",
+      "title": "Cross-Platform Design: Building for Mobile, Tablet & Desktop",
+      "slug": "cross-platform-design-mobile-tablet-desktop",
+      "date": "2026-04-27",
+      "themeName": "Learning Journey",
       "tags": [
-        "mobile-first",
-        "design-constraints",
-        "accessibility",
-        "no-pc-port",
-        "touch-interface"
+        "cross-platform",
+        "learning-journey",
+        "solo-dev",
+        "mobile",
+        "tablet",
+        "desktop"
       ],
-      "excerpt": "This game will never come to PC. Mobile-first, mobile-only, forever. GPS, accelerometer, always-with-you design. Constraint breeds creativity. We're doubling down on mobile excellence.",
-      "hook": "No PC port. Ever. This game is designed for the device in your pocket."
+      "excerpt": "Learning to build Ascendant Continuum for phones, tablets, and desktop computers. My journey figuring out cross-platform design as a solo developer.",
+      "hook": "One game, every screen. Learning cross-platform design one platform at a time."
     },
     {
       "title": "Real Stargazing: The Anti-Screen-Time Mechanic",

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Building Ascendant Continuum for mobile, tablet, and desktop. Learning cross-platform design as a solo developer.">
+    <meta property="og:title"
+        content="Cross-Platform Design: Building for Mobile, Tablet & Desktop - The Ascendant Continuum">
+    <meta property="og:description"
+        content="My journey learning to build a game that works great on phones, tablets, and desktop computers.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-04-27">
+    <title>Cross-Platform Design: Building for Mobile, Tablet & Desktop - The Ascendant Continuum Dev Blog</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+</head>
+
+<body>
+    <div class="blog-post-container">
+        <nav class="blog-nav-breadcrumb">
+            <a href="../../index.html">Home</a> / <a href="../index.html">Blog</a> / Cross-Platform Design
+        </nav>
+
+        <article class="blog-post">
+            <header class="blog-post-header">
+                <h1 class="blog-post-title">Cross-Platform Design: Building for Mobile, Tablet & Desktop</h1>
+                <div class="blog-post-meta">
+                    <span>April 27, 2026</span>
+                    <span class="blog-post-tag">cross-platform</span>
+                    <span class="blog-post-tag">learning-journey</span>
+                    <span class="blog-post-tag">solo-dev</span>
+                </div>
+                <p class="blog-post-hook">Learning to build a game that works great everywhere: phones, tablets, and
+                    desktop computers.</p>
+            </header>
+
+            <div class="blog-post-content">
+                <h2>The Goal: One Game, Every Screen</h2>
+                <p>Ascendant Continuum will be available on:</p>
+                <ul>
+                    <li><strong>Mobile</strong> (iOS & Android phones)</li>
+                    <li><strong>Tablets</strong> (iPads & Android tablets)</li>
+                    <li><strong>Desktop</strong> (Windows, Mac, Linux)</li>
+                </ul>
+                <p>As a solo developer learning game development from scratch, this is both exciting and challenging.
+                    I'm figuring out how to make the experience feel natural on each platform while keeping it
+                    manageable as one person.</p>
+
+                <h2>Why Cross-Platform?</h2>
+                <h3>Players Should Choose Their Device</h3>
+                <p>Everyone has different preferences:</p>
+                <ul>
+                    <li>Some people love playing games on their phone during commutes</li>
+                    <li>Others prefer the larger screen of a tablet for more detailed experiences</li>
+                    <li>Desktop players appreciate mouse/keyboard precision and big monitors</li>
+                </ul>
+                <p>Rather than force one option, I want to support all of them. Players should be able to pick what
+                    works best for their lifestyle.</p>
+
+                <h3>Accessibility Through Choice</h3>
+                <p>Different platforms help different needs:</p>
+                <ul>
+                    <li><strong>Mobile:</strong> Built-in accessibility features (VoiceOver, TalkBack), always available
+                    </li>
+                    <li><strong>Tablet:</strong> Larger touch targets, easier for motor control challenges</li>
+                    <li><strong>Desktop:</strong> External assistive devices, screen readers, customizable input</li>
+                </ul>
+                <p>By supporting multiple platforms, I'm also supporting more accessibility options without building
+                    everything from scratch.</p>
+
+                <h2>The Design Challenges I'm Learning</h2>
+
+                <h3>1. Touch vs. Mouse/Keyboard</h3>
+                <p><strong>The challenge:</strong> Rituals need to feel good whether you're drawing with your finger or
+                    clicking with a mouse.</p>
+                <p><strong>What I'm learning:</strong></p>
+                <ul>
+                    <li>Touch interfaces need larger hit areas (fingers are less precise than cursors)</li>
+                    <li>Desktop can support more complex controls (keyboard shortcuts, right-click menus)</li>
+                    <li>Both need to feel intentional and satisfying</li>
+                </ul>
+
+                <pre><code>// Example: Detecting input type in Unity
+void DetectInputMethod() {
+    if (Input.touchCount > 0) {
+        // Touch input - adjust UI for fingers
+        buttonSize = 60px;
+    } else {
+        // Mouse input - can use smaller, precise elements  
+        buttonSize = 40px;
+    }
+}</code></pre>
+
+                <h3>2. Screen Size Variations</h3>
+                <p><strong>The challenge:</strong> A 6-inch phone screen is very different from a 27-inch desktop
+                    monitor.</p>
+                <p><strong>What I'm learning:</strong></p>
+                <ul>
+                    <li>Design for the smallest screen first (phone), then scale up</li>
+                    <li>Use Unity's Canvas Scaler to adapt UI dynamically</li>
+                    <li>Critical info should always be visible, even on small screens</li>
+                    <li>Desktop can show more details and helper text</li>
+                </ul>
+
+                <h3>3. Performance Across Devices</h3>
+                <p><strong>The challenge:</strong> Phones have less power than gaming PCs.</p>
+                <p><strong>What I'm learning:</strong></p>
+                <ul>
+                    <li>Optimize for mobile first (if it runs well on a phone, it'll fly on desktop)</li>
+                    <li>Use quality settings to scale graphics up for powerful devices</li>
+                    <li>Test on older devices, not just the latest hardware</li>
+                </ul>
+
+                <pre><code>// Quality settings adjustment
+void SetQualityBasedOnPlatform() {
+    #if UNITY_ANDROID || UNITY_IOS
+        QualitySettings.SetQualityLevel(1); // Medium quality for mobile
+    #else
+        QualitySettings.SetQualityLevel(2); // High quality for desktop
+    #endif
+}</code></pre>
+
+                <h2>Features That Work Everywhere</h2>
+
+                <h3>Rituals & Sigil Drawing</h3>
+                <ul>
+                    <li><strong>Mobile/Tablet:</strong> Draw with your finger using touch</li>
+                    <li><strong>Desktop:</strong> Draw with mouse, or use keyboard shortcuts for quick selections</li>
+                </ul>
+
+                <h3>Real-World Integration</h3>
+                <ul>
+                    <li><strong>Mobile:</strong> GPS location, real-time weather, accelerometer</li>
+                    <li><strong>Desktop:</strong> IP-based location (less precise but still functional), weather API,
+                        optional GPS with external devices</li>
+                </ul>
+
+                <h3>Progress Sync</h3>
+                <p>Start on your phone, continue on desktop. Firebase handles cross-platform save syncing so you never
+                    lose progress.</p>
+
+                <h2>What I'm Still Figuring Out</h2>
+
+                <h3>Mobile-Specific Features</h3>
+                <p>Some features work better on mobile (GPS, camera, always-with-you notifications). I'm learning how to
+                    make these optional but valuable, rather than essential. Desktop players shouldn't feel like they're
+                    missing core experiences.</p>
+
+                <h3>Desktop Advantages</h3>
+                <p>Desktop has more screen space and precision input. I'm exploring how to use that without making the
+                    mobile version feel limited. Maybe detailed stats, expanded lore, or community features work better
+                    on big screens?</p>
+
+                <h3>Testing Across Platforms</h3>
+                <p>As a solo dev, I can't test on every device. I'm learning to:</p>
+                <ul>
+                    <li>Use Unity's Device Simulator for different screen sizes</li>
+                    <li>Test on my own phone (Android) and laptop (Windows)</li>
+                    <li>Use cloud testing services for iOS devices I don't own</li>
+                </ul>
+
+                <h2>The Learning Curve</h2>
+                <p>I'm not a professional game developer - I'm learning as I build. Cross-platform design adds
+                    complexity, but it also feels right for the type of game I want to create.</p>
+
+                <h3>Helpful Resources I've Found:</h3>
+                <ul>
+                    <li><strong>Unity's UI Toolkit documentation</strong> (responsive design patterns)</li>
+                    <li><strong>Game dev YouTube channels</strong> (Brackeys, Sebastian Lague)</li>
+                    <li><strong>Trial and error</strong> (lots of rebuilding UI when I realize something doesn't scale)
+                    </li>
+                </ul>
+
+                <h2>Why I'm Sharing This</h2>
+                <p>I'm documenting my journey as I build, not as an expert giving advice. If you're also learning game
+                    development, maybe seeing someone else figure things out in real-time is helpful.</p>
+                <p>Cross-platform design is challenging, but it's also rewarding. When a ritual feels good on both a
+                    phone and a desktop mouse, that's a small victory worth celebrating.</p>
+
+                <h2>What's Next</h2>
+                <ul>
+                    <li>Continue refining touch controls for mobile</li>
+                    <li>Add keyboard shortcuts for desktop power users</li>
+                    <li>Test on more devices (borrowing friends' tablets and phones)</li>
+                    <li>Optimize performance for mid-range Android devices</li>
+                </ul>
+
+                <p>This is a learning journey, and I'm figuring it out one platform at a time.</p>
+
+                <hr style="margin: 2rem 0; border: 1px solid rgba(255,255,255,0.1);">
+
+                <h3>Related Posts</h3>
+                <ul>
+                    <li><a href="./mobile-touch-controls-gestures-that-feel-magical.html">Mobile Touch Controls:
+                            Gestures That Feel Magical</a></li>
+                    <li><a href="./unity-mobile-optimization-webgl-to-android-performance.html">Unity Mobile
+                            Optimization: WebGL to Android Performance</a></li>
+                    <li><a href="./solo-development-lessons-building-a-game-alone.html">Solo Development: Lessons from
+                            Building a Game Alone</a></li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</body>
+
+</html>

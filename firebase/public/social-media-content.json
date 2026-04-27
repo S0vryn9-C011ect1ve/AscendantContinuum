@@ -18,7 +18,7 @@
                 "mastodon",
                 "discord"
             ],
-            "content": "Most games: \"Complete 5 levels in under 2 minutes!\"\n\nAscendant Continuum: Checks your accessibility settings first.\n\nVestibular sensitivity? Here's a calm meditation challenge instead.\n\nBecause daily challenges should bring players back—not drive them away.\n\n#AccessibleGaming"
+            "content": "Daily challenges that adapt to you:\n\nReduced motion enabled? Meditation challenges.\nColorblind mode active? Exclusive colorblind secrets.\nVestibular sensitivity? Calm challenges.\n\nBecause daily challenges should bring players back—not drive them away.\n\n#AccessibleGaming"
         },
         {
             "id": "accessibility-secrets-1",
@@ -118,7 +118,7 @@
                 "mastodon",
                 "discord"
             ],
-            "content": "Most games ask: \"How do we monetize players?\"\n\nWe ask: \"How do we respect players while funding development?\"\n\nThe answer: Transparent costs. No tricks. Ethical design.\n\nShort-term revenue < Long-term trust.\n\n#GameDev #Ethics"
+            "content": "Our monetization question: \"How do we respect players while funding development?\"\n\nThe answer: Transparent costs. No tricks. Ethical design.\n\nShort-term revenue < Long-term trust.\n\n#GameDev #Ethics"
         },
         {
             "id": "realms-1",
@@ -338,7 +338,7 @@
                 "mastodon",
                 "discord"
             ],
-            "content": "Most games: you're player #482,391.\n\nUs: Your rituals become fossils. NPCs remember you. Launch-day = Founder status. Your choices shape future experiences.\n\nEvery player visible. Forever.\n\n#IndieGameDev #CommunityFirst"
+            "content": "Building a game where every player matters:\n\nYour rituals become fossils. NPCs remember you. Launch-day = Founder status. Your choices shape future experiences.\n\nEvery player visible. Forever.\n\n#IndieGameDev #CommunityFirst"
         },
         {
             "id": "blog-real-stargazing",
@@ -481,14 +481,14 @@
             "content": "📝 New Blog Post: Sunrise/Sunset Awareness - Real-Time Solar Rewards\n\nGame knows when YOUR sun rises (SunCalc + GPS). Catch dawn rituals for 2× XP + Dawn Blessing. Winter early risers get 3× XP.\n\nRead: https://ascendant-continuum.web.app/blog/posts/sunrise-sunset-awareness-real-time-solar-rewards.html\n\n#RealWorldSync"
         },
         {
-            "id": "blog-mobile-first",
+            "id": "blog-cross-platform",
             "category": "blog-announcement",
             "platforms": [
                 "bluesky",
                 "mastodon",
                 "discord"
             ],
-            "content": "📝 New Blog Post: Mobile-First Design - No PC Port (Ever)\n\nThis game will NEVER come to PC. Mobile-first, mobile-only, forever. GPS, accelerometer, always-with-you design. Constraint breeds creativity.\n\nRead: https://ascendant-continuum.web.app/blog/posts/mobile-first-design-no-pc-port-ever.html\n\n#MobileFirst"
+            "content": "📝 New Blog Post: Cross-Platform Design - Building for Mobile, Tablet & Desktop\n\nLearning to build a game that works great everywhere. My journey figuring out cross-platform development as a solo dev.\n\nRead: https://ascendant-continuum.web.app/blog/posts/cross-platform-design-mobile-tablet-desktop.html\n\n#CrossPlatform #LearningJourney"
         }
     ],
     "metadata": {

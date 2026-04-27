@@ -219,8 +219,8 @@
                 <span class="blog-post-tag">Web Development</span>
             </div>
             <div class="blog-post-hook">
-                🚨 Three major npm packages were compromised this week. Here's how we protected our live beta testers
-                and projects in one afternoon—and how you can implement the same 6-layer security stack in under an
+                🚨 Three major npm packages were compromised this week. Here's how I protected my projects
+                in one afternoon—and how you can implement the same 6-layer security stack in under an
                 hour.
             </div>
         </article>
@@ -231,12 +231,12 @@
                     packages were compromised</strong> within 48 hours. As a solo indie developer working on multiple
                 projects, I knew I had to act fast.</p>
 
-            <p><strong>Context:</strong> I'm a one-person operation running two projects:</p>
+            <p><strong>Context:</strong> I'm a solo developer working on two projects:</p>
             <ul>
                 <li><strong><a href="https://3mpwrapp.pages.dev/" target="_blank" rel="noopener">3mpwrApp</a></strong> -
-                    A social justice advocacy platform with <strong>live beta testers</strong> (real users depending on
+                    A social justice advocacy platform with <strong>live users</strong> (real people depending on
                     it)</li>
-                <li><strong>Ascendant Continuum</strong> - My social card game project (currently just me testing)</li>
+                <li><strong>Ascendant Continuum</strong> - My mobile game project (solo development and testing)</li>
             </ul>
 
             <p><strong>My priority?</strong> Protect 3mpwrApp first. Live users trump solo development every time. Once
@@ -287,7 +287,8 @@
             </ul>
 
             <p><strong>The danger:</strong> axios is used in millions of projects. If you ran
-                <code>npm install axios</code> during that two-hour window, you could have been compromised.</p>
+                <code>npm install axios</code> during that two-hour window, you could have been compromised.
+            </p>
 
             <h3>2. LiteLLM: The Credential Thief</h3>
             <p><strong>What happened:</strong> Versions 1.82.7 and 1.82.8 of LiteLLM contained a backdoor that
@@ -336,7 +337,8 @@ min-release-age=7</code></pre>
                 <p><strong>What it does:</strong> Prevents packages from running arbitrary code when you install them.
                 </p>
                 <p><strong>Why it works:</strong> Many attacks use install scripts to execute malware during
-                    <code>npm install</code>.</p>
+                    <code>npm install</code>.
+                </p>
                 <p><strong>How to implement:</strong></p>
                 <pre><code># Add to .npmrc file
 ignore-scripts=true</code></pre>
@@ -515,7 +517,8 @@ npm install
             <p>Got questions or improvements to suggest? Reach out at <a
                     href="mailto:ascendantcontinuum@gmail.com">ascendantcontinuum@gmail.com</a> or open an issue on our
                 <a href="https://github.com/S0vryn9-C011ect1ve/AscendantContinuum" target="_blank" rel="noopener">GitHub
-                    repo</a>.</p>
+                    repo</a>.
+            </p>
 
             <p><strong>Stay secure, keep building, and remember: Security is a community effort.</strong></p>
 
@@ -523,8 +526,8 @@ npm install
 
             <p style="font-size: 0.9rem; color: var(--color-secondary);"><strong>About the Author:</strong> I'm a solo
                 indie developer running two projects: <a href="https://3mpwrapp.pages.dev/" target="_blank"
-                    rel="noopener">3mpwrApp</a> (a social justice advocacy platform with live beta testers) and
-                Ascendant Continuum (a social card game with AI-powered content automation). Not a security expert—just
+                    rel="noopener">3mpwrApp</a> (a social justice advocacy platform with live users) and
+                Ascendant Continuum (a mobile game with cross-platform support). Not a security expert—just
                 a developer juggling multiple projects who learned these lessons the hard way (and caffeinated through
                 the panic) so you don't have to.</p>
 

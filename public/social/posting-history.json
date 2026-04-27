@@ -947,21 +947,532 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 34,
+      "contentId": 167,
+      "contentType": "devEducation",
+      "hook": "Collective player behavior literally rewrites the universe's history",
+      "topics": [],
+      "timestamp": "2026-04-08T18:01:16.398Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3miyurp34l32y"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116370392535537355"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "contentId": 187,
+      "contentType": "devUpdate",
+      "hook": "1% chance. Can't be farmed. Can't be bought.",
+      "topics": [],
+      "timestamp": "2026-04-09T18:09:54.828Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mj3fq3n2f22i"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116376088866202192"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "contentId": 170,
+      "contentType": "devEducation",
+      "hook": "August 12-13: Perseid meteor shower = massive in-game event",
+      "topics": [],
+      "timestamp": "2026-04-10T18:00:33.269Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mj5vmpsjla2y"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116381710959612043"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "contentId": 72,
+      "contentType": "designPhilosophy",
+      "hook": "What happens when you remove FOMO from a game?",
+      "topics": [
+        "monetization",
+        "anti-fomo"
+      ],
+      "timestamp": "2026-04-11T18:01:26.106Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mjag4xz3il2f"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116387376203866471"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "contentId": 150,
+      "contentType": "loreSnippet",
+      "hook": "Screen Reader mode reveals audio-only secrets",
+      "topics": [
+        "npc-memory"
+      ],
+      "timestamp": "2026-04-12T18:01:40.760Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mjcwnxv2jm2m"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116393043086935358"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "contentId": 121,
+      "contentType": "devUpdate",
+      "hook": "The five realms, explained.",
+      "topics": [
+        "realms-lore"
+      ],
+      "timestamp": "2026-04-13T18:01:51.271Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mjfh44heck2m"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116398703699695763"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "contentId": 57,
+      "contentType": "devEducation",
+      "hook": "The performance boost you're missing: object pooling.",
+      "topics": [
+        "unity-tech"
+      ],
+      "timestamp": "2026-04-17T18:05:03.456Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mjpj6r3jr52u"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116421368233142330"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "contentId": 74,
+      "contentType": "designPhilosophy",
+      "hook": "The game industry's biggest lie: engagement = success.",
+      "topics": [
+        "anti-fomo"
+      ],
+      "timestamp": "2026-04-18T18:02:17.209Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mjrziqieev2x"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116427019685167125"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "contentId": 152,
+      "contentType": "loreSnippet",
+      "hook": "Ritual naming system: First discoverer names it forever",
+      "topics": [],
+      "timestamp": "2026-04-19T18:01:26.358Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mjujw5no522w"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116432678672764381"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "contentId": 126,
+      "contentType": "devUpdate",
+      "hook": "Moon phases affect gameplay (literally).",
+      "topics": [
+        "moon-phases"
+      ],
+      "timestamp": "2026-04-20T18:03:39.634Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mjx2j2bzsd2u"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116438349724723231"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "contentId": 161,
+      "contentType": "devEducation",
+      "hook": "Are you a Midnight Sage, Nature Mystic, or Dawn Seeker?",
+      "topics": [
+        "realms-lore"
+      ],
+      "timestamp": "2026-04-21T18:01:29.448Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mjzku4j7of2y"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116444003564102702"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "contentId": 195,
+      "contentType": "devUpdate",
+      "hook": "6 seconds. That's all you get.",
+      "topics": [],
+      "timestamp": "2026-04-22T18:01:56.275Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mk43dsslpg2g"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116449667596262883"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "contentId": 178,
+      "contentType": "devEducation",
+      "hook": "Community Mysteries that take MONTHS to solve",
+      "topics": [],
+      "timestamp": "2026-04-23T18:10:54.371Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mk6mcinuvv2m"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116455364790410499"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "contentId": 203,
+      "contentType": "devUpdate",
+      "hook": "This game will NEVER come to PC",
+      "topics": [],
+      "timestamp": "2026-04-24T18:01:12.293Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mkb4adh3zn2v"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116460989294350107"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "contentId": 75,
+      "contentType": "designPhilosophy",
+      "hook": "Anti-grind philosophy: why we cap sessions at 5 minutes.",
+      "topics": [
+        "digital-sunset",
+        "anti-fomo"
+      ],
+      "timestamp": "2026-04-25T18:02:50.266Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mkdms6gxfi2i"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116466658037707106"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "contentId": 198,
+      "contentType": "loreSnippet",
+      "hook": "'I deleted the game. But I kept the replays. They're memories now.'",
+      "topics": [],
+      "timestamp": "2026-04-26T18:00:22.314Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mkg53bqsfr2u"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116472307560818340"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "contentId": 182,
+      "contentType": "devEducation",
+      "hook": "Real weather affects ritual effectiveness",
+      "topics": [],
+      "timestamp": "2026-04-27T18:01:54.406Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mkinnmljly2i"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116477977394840310"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 31,
+    "totalPosts": 48,
     "byPlatform": {
-      "bluesky": 31,
-      "mastodon": 31,
-      "discord": 29
+      "bluesky": 48,
+      "mastodon": 48,
+      "discord": 46
     },
     "byType": {
-      "devUpdate": 15,
-      "devEducation": 7,
-      "designPhilosophy": 6,
+      "devUpdate": 20,
+      "devEducation": 13,
+      "designPhilosophy": 9,
       "behindScenes": 0,
-      "loreSnippet": 3
+      "loreSnippet": 6
     }
   },
   "meta": {

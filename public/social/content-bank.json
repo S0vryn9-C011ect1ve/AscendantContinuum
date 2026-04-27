@@ -14,8 +14,8 @@
     {
       "id": 1,
       "type": "devUpdate",
-      "hook": "Most games add accessibility as an option. We made it a feature.",
-      "body": "Colorblind modes reveal DIFFERENT hidden content.\n\nProtanopia = fire runes (Emberforge)\nDeuteranopia = water sigils (Verdant)\nTritanopia = earth patterns (Echo Fields)\n\nAccessibility = gameplay discovery.\n\nBuilt in Unity with custom shaders.",
+      "hook": "Learning to make accessibility part of the gameplay itself.",
+      "body": "Colorblind modes reveal DIFFERENT hidden content:\n\nProtanopia = fire runes (Emberforge)\nDeuteranopia = water sigils (Verdant)\nTritanopia = earth patterns (Echo Fields)\n\nTurning accessibility into discovery.\n\nBuilt in Unity with custom shaders.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -73,8 +73,8 @@
     {
       "id": 5,
       "type": "devUpdate",
-      "hook": "Every game does {X}. We're doing {Y} instead.",
-      "body": "Most games: daily login rewards, FOMO, grind.\n\nUs: 1-5 min sessions, Digital Sunset (reminds you to rest), universe evolves while you're away.\n\nNo daily rewards. No FOMO. No grind.\n\nRevenue from cosmetics, not addiction.",
+      "hook": "Exploring game design that respects player time.",
+      "body": "I'm building: 1-5 min sessions, Digital Sunset (reminds you to rest), universe evolves while you're away.\n\nNo daily rewards. No FOMO. No grind.\n\nLearning to monetize ethically through cosmetics.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -102,8 +102,8 @@
     {
       "id": 7,
       "type": "devEducation",
-      "hook": "Most Unity devs get accessibility wrong. Here's the right way.",
-      "body": "Accessibility isn't an afterthought.\n\nWrong: Settings toggle\n\nRight: Core gameplay feature\n- Different modes = different content\n- Market as unique discovery\n- Test every feature in every mode\n- Design from Day 1\n\nAccessibility = innovation.",
+      "hook": "What I'm learning about accessibility in Unity.",
+      "body": "Building accessibility from the start, not as an afterthought.\n\nMy approach:\n- Different modes = different content\n- Unique discovery opportunities\n- Testing every feature in every mode\n- Design from Day 1\n\nAccessibility drives innovation.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -276,8 +276,8 @@
     {
       "id": 19,
       "type": "designPhilosophy",
-      "hook": "What if every player mattered?",
-      "body": "Most games: you're player #482,391.\n\nUs: Your rituals become fossils. NPCs remember you. Launch-day = founder status. Your choices shape future experiences.\n\nEvery player visible. Forever.",
+      "hook": "Building a game where every player matters.",
+      "body": "In Ascendant Continuum:\n\nYour rituals become fossils. NPCs remember you. Launch-day = founder status. Your choices shape future experiences.\n\nTrying to make every player visible. Forever.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -651,7 +651,7 @@
       "id": 45,
       "type": "devEducation",
       "hook": "Procedural generation 101: constraints are everything.",
-      "body": "Procedural gen without constraints = chaos.\n\nBad: Random.Range everywhere.\n\nGood:\n1. Define valid combinations\n2. Validate before generation\n3. Fallback to known-good configs\n4. Test edge cases\n\nConstraints create infinite possibilities.\n\nStructure enables creativity.",
+      "body": "Procedural generation needs constraints to work well.\n\nWhat I learned:\n1. Define valid combinations\n2. Validate before generation\n3. Fallback to known-good configs\n4. Test edge cases\n\nConstraints create infinite possibilities.\n\nStructure enables creativity.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -764,7 +764,7 @@
       "id": 53,
       "type": "devEducation",
       "hook": "How I reverse-engineered smooth particle effects for mobile.",
-      "body": "Mobile particles:\n\nBad: 500 particles, alpha blend → 15 FPS\n\nGood:\n- 50-100 max\n- Additive blend\n- Burst emission\n- Atlasing\n- GPU instancing\n\nResult: 60 FPS, looks better.\n\nFewer, smarter.",
+      "body": "Mobile particle optimization I learned:\n\nStarted: 500 particles, alpha blend → 15 FPS\n\nOptimized to:\n- 50-100 max\n- Additive blend\n- Burst emission\n- Atlasing\n- GPU instancing\n\nResult: 60 FPS, looks better!\n\nFewer, smarter.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -828,7 +828,8 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-17T18:05:02.872Z"
     },
     {
       "id": 58,
@@ -890,7 +891,7 @@
       "id": 62,
       "type": "devEducation",
       "hook": "Unity (game engine) coroutines: what they're good for (and what they're not).",
-      "body": "Coroutines good for:\n✓ Timed sequences\n✓ Frame-spread ops\n✓ Simple state machines\n\nBad for:\n✗ Network calls (use async)\n✗ File ops (use async)\n✗ Complex errors\n\nRight tool, right job.",
+      "body": "When I use Coroutines vs async/await:\n\n✓ Coroutines for:\n- Timed sequences\n- Frame-spread ops\n- Simple state machines\n\n✓ Async for:\n- Network calls\n- File operations\n- Complex error handling\n\nPicking the right tool for each job.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -918,7 +919,7 @@
       "id": 64,
       "type": "devEducation",
       "hook": "Implementing color accessibility: beyond simple filters.",
-      "body": "Colorblind accessibility right:\n\n1. Don't just filter\n2. Redesign per mode\n3. Add patterns/shapes\n4. Test with Color Oracle\n5. Get colorblind testers\n\nFilters = still hard.\nRedesign = usable.\n\nAccessibility = intentional.",
+      "body": "My colorblind accessibility approach:\n\n1. Redesign per mode (not just filters)\n2. Add patterns/shapes\n3. Test with Color Oracle\n4. Get feedback from colorblind players\n\nFilters help, but redesign is better.\n\nAccessibility needs intention.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -1039,7 +1040,8 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-11T18:01:26.060Z"
     },
     {
       "id": 73,
@@ -1067,13 +1069,14 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-18T18:02:17.204Z"
     },
     {
       "id": 75,
       "type": "designPhilosophy",
       "hook": "Anti-grind philosophy: why we cap sessions at 5 minutes.",
-      "body": "Most games: keep players playing forever.\n\nUs: encourage players to leave.\n\n1-5 minute sessions.\nDigital Sunset reminder.\nNo infinite progression.\n\nWhy? Burnout kills communities.\nRespect preserves them.\n\nSustainable play = sustainable game.",
+      "body": "I'm designing the game to encourage healthy play sessions:\n\n1-5 minute sessions.\nDigital Sunset reminder.\nNo infinite progression.\n\nWhy? Burnout kills communities.\nRespect preserves them.\n\nSustainable play = sustainable game.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -1081,7 +1084,8 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-25T18:02:50.256Z"
     },
     {
       "id": 76,
@@ -1171,7 +1175,7 @@
     {
       "id": 82,
       "type": "designPhilosophy",
-      "hook": "Most games are designed to be addictive. We're doing the opposite.",
+      "hook": "Designing for engagement, not addiction.",
       "body": "Addiction mechanics we refuse:\n\n✗ Variable reward schedules\n✗ Loss aversion (energy timers)\n✗ Social obligation (guild pressure)\n✗ Escalating commitment (sunk cost)\n\nInstead: transparency, agency, boundaries.\n\nHealth > habit.",
       "platforms": [
         "bluesky",
@@ -1242,7 +1246,7 @@
       "id": 87,
       "type": "designPhilosophy",
       "hook": "Why we chose wonder over challenge.",
-      "body": "Most games: overcome difficulty.\n\nUs: experience wonder.\n\nNo fail states.\nNo game overs.\nNo punishment.\n\nJust discovery, beauty, connection.\n\nChallenge has its place.\nBut wonder is underserved.\n\nBuild for awe.",
+      "body": "Focusing on wonder over difficulty:\n\nNo fail states.\nNo game overs.\nNo punishment.\n\nJust discovery, beauty, connection.\n\nChallenge has its place, but I wanted to build for awe.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -1731,7 +1735,8 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-13T18:01:51.264Z"
     },
     {
       "id": 122,
@@ -1802,7 +1807,8 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-20T18:03:39.590Z"
     },
     {
       "id": 127,
@@ -2141,7 +2147,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-12T18:01:40.718Z"
     },
     {
       "id": 151,
@@ -2169,7 +2176,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-19T18:01:25.980Z"
     },
     {
       "id": 153,
@@ -2296,7 +2304,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-21T18:01:29.409Z"
     },
     {
       "id": 162,
@@ -2380,7 +2389,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-08T18:01:16.378Z"
     },
     {
       "id": 168,
@@ -2422,7 +2432,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-10T18:00:33.258Z"
     },
     {
       "id": 171,
@@ -2484,7 +2495,7 @@
       "id": 175,
       "type": "designPhilosophy",
       "hook": "Lantern Ascension = fluid dynamics become gameplay",
-      "body": "Most games: Lantern floats up in straight line.\n\nAscendant Continuum:\n- Buoyancy (hot air rises)\n- Drag (orientation matters)\n- Wind (real weather data)\n- Rain (cools lantern, reduces lift)\n\nNavier-Stokes equations at 60 FPS.",
+      "body": "Lantern physics I'm implementing:\n\n- Buoyancy (hot air rises)\n- Drag (orientation matters)\n- Wind (real weather data)\n- Rain (cools lantern, reduces lift)\n\nLearning Navier-Stokes equations for 60 FPS simulation.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -2534,7 +2545,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-23T18:10:54.365Z"
     },
     {
       "id": 179,
@@ -2590,7 +2602,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-27T18:01:54.403Z"
     },
     {
       "id": 183,
@@ -2660,13 +2673,14 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-09T18:09:54.818Z"
     },
     {
       "id": 188,
       "type": "designPhilosophy",
       "hook": "We chose surprise over certainty",
-      "body": "Serendipity vs Grind:\n\nGrinding = predictable, guaranteed, feels like work\nSerendipity = unpredictable, never guaranteed, feels like discovery\n\nMost games optimize for guaranteed rewards.\nWe optimize for memorable moments.\n\n1%. Forever.",
+      "body": "Serendipity vs Grind:\n\nGrinding = predictable, guaranteed, feels like work\nSerendipity = unpredictable, never guaranteed, feels like discovery\n\nI'm optimizing for memorable moments over guaranteed rewards.\n\n1%. Forever.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -2750,7 +2764,7 @@
       "id": 194,
       "type": "designPhilosophy",
       "hook": "Fossils = past tense. Ghosts = present tense.",
-      "body": "Most games show ghosted players (transparent avatars playing RIGHT NOW).\n\nWe show fossils (traces of players WEEKS AGO).\n\nLess pressure. More curiosity.\n\nYou're not competing. You're discovering history.",
+      "body": "Async multiplayer approach: showing fossils (traces of players WEEKS AGO) instead of live ghosts.\n\nLess pressure. More curiosity.\n\nYou're not competing. You're discovering history.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -2772,7 +2786,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-22T18:01:56.269Z"
     },
     {
       "id": 196,
@@ -2814,7 +2829,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-26T18:00:22.282Z"
     },
     {
       "id": 199,
@@ -2884,7 +2900,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-24T18:01:12.263Z"
     },
     {
       "id": 204,
@@ -3436,7 +3453,7 @@
       "id": 243,
       "type": "designPhilosophy",
       "hook": "We respect your time more than your wallet",
-      "body": "Time-first design:\n\n• 1-5 minute sessions\n• No waiting timers\n• No energy systems\n• No forced grinding\n• Full game playable for free\n\nMost games optimize for revenue.\n\nWe optimize for respect.",
+      "body": "Time-first design I'm implementing:\n\n• 1-5 minute sessions\n• No waiting timers\n• No energy systems\n• No forced grinding\n• Full game playable for free\n\nOptimizing for respect over revenue.",
       "platforms": [
         "bluesky",
         "mastodon",
