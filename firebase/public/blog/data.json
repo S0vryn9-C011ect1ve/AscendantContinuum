@@ -681,17 +681,29 @@
       ],
       "themeName": "Dev Diary",
       "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
+    },
+    {
+      "title": "Building Accessibility-First Gameplay: Color as Discovery",
+      "slug": "building-accessibility-first-gameplay-color-as-discovery",
+      "date": "2026-04-28",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Dev Diary",
+      "excerpt": "Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these..."
     }
   ],
   "stats": {
-    "totalPosts": 51,
+    "totalPosts": 52,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 6,
       "Tutorial": 9,
       "Design Philosophy": 11,
-      "Dev Diary": 9,
+      "Dev Diary": 10,
       "Community Insight": 1
     },
     "byTag": {
@@ -705,13 +717,13 @@
       "game-design": 13,
       "technical": 3,
       "innovation": 2,
-      "behind-the-scenes": 10,
+      "behind-the-scenes": 11,
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
       "tutorial": 9,
-      "unity": 19,
+      "unity": 20,
       "game-dev": 9,
       "ethics": 8,
       "philosophy": 7,
@@ -719,7 +731,7 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 18,
+      "development": 19,
       "player-stories": 1,
       "updates": 1,
       "team": 6,

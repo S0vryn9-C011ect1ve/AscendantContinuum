@@ -5,13 +5,40 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Apr 2026 14:01:50 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 28 Apr 2026 14:01:57 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Building Accessibility-First Gameplay: Color as Discovery]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html</guid>
+      <pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these...]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Cross-Platform Design: Building for Mobile, Tablet & Desktop]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/cross-platform-design-mobile-tablet-desktop.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/cross-platform-design-mobile-tablet-desktop.html</guid>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Learning Journey]]></category>
+      <category><![CDATA[cross-platform]]></category>
+      <category><![CDATA[learning-journey]]></category>
+      <category><![CDATA[solo-dev]]></category>
+      <category><![CDATA[mobile]]></category>
+      <category><![CDATA[tablet]]></category>
+      <category><![CDATA[desktop]]></category>
+      <description><![CDATA[Learning to build Ascendant Continuum for phones, tablets, and desktop computers. My journey figuring out cross-platform design as a solo developer.]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
@@ -229,30 +256,6 @@
       <category><![CDATA[unity]]></category>
       <category><![CDATA[behind-the-scenes]]></category>
       <description><![CDATA[When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Addressables and Asset Management at Scale]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/addressables-and-asset-management-at-scale.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/addressables-and-asset-management-at-scale.html</guid>
-      <pubDate>Sat, 04 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Tutorial]]></category>
-      <category><![CDATA[tutorial]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[game-dev]]></category>
-      <description><![CDATA[Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets that most players would never see: all fiv...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[State Management with ScriptableObjects]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html</guid>
-      <pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Tutorial]]></category>
-      <category><![CDATA[tutorial]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[game-dev]]></category>
-      <description><![CDATA[Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play...]]></description>
     </item>
   </channel>
 </rss>
