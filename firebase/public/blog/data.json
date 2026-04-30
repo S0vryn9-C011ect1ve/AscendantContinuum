@@ -705,17 +705,29 @@
       ],
       "themeName": "Behind the Scenes",
       "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
+    },
+    {
+      "title": "Mobile Touch Controls: Gestures That Feel Magical",
+      "slug": "mobile-touch-controls-gestures-that-feel-magical",
+      "date": "2026-04-30",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Dev Diary",
+      "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
     }
   ],
   "stats": {
-    "totalPosts": 53,
+    "totalPosts": 54,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 7,
       "Tutorial": 9,
       "Design Philosophy": 11,
-      "Dev Diary": 10,
+      "Dev Diary": 11,
       "Community Insight": 1
     },
     "byTag": {
@@ -729,13 +741,13 @@
       "game-design": 13,
       "technical": 3,
       "innovation": 2,
-      "behind-the-scenes": 11,
+      "behind-the-scenes": 12,
       "first-game": 1,
       "disability": 1,
       "career-change": 1,
       "learning-unity": 1,
       "tutorial": 9,
-      "unity": 20,
+      "unity": 21,
       "game-dev": 9,
       "ethics": 8,
       "philosophy": 7,
@@ -743,7 +755,7 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 20,
+      "development": 21,
       "player-stories": 1,
       "updates": 1,
       "team": 7,
