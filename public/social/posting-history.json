@@ -1458,17 +1458,139 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 51,
+      "contentId": 127,
+      "contentType": "devUpdate",
+      "hook": "Time capsules: player stories that made me cry.",
+      "topics": [
+        "realms-lore"
+      ],
+      "timestamp": "2026-04-28T18:01:39.967Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mkl63mex3p2v"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116483637649585612"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "contentId": 191,
+      "contentType": "devUpdate",
+      "hook": "Your rituals become archaeology",
+      "topics": [
+        "moon-phases"
+      ],
+      "timestamp": "2026-04-29T18:01:28.467Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mknok2d7ku2m"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116489298913367588"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "contentId": 219,
+      "contentType": "devUpdate",
+      "hook": "WebGL version is FREE and playable RIGHT NOW in your browser",
+      "topics": [
+        "unity-tech"
+      ],
+      "timestamp": "2026-04-30T18:01:03.715Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mkq6yz4gvf2i"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116494961303257363"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "contentId": 245,
+      "contentType": "devUpdate",
+      "hook": "The game tracks ZERO personal data. No analytics. No tracking. Just gameplay.",
+      "topics": [],
+      "timestamp": "2026-05-01T18:01:35.351Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mkspjeythm2m"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116500626805524398"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 48,
+    "totalPosts": 52,
     "byPlatform": {
-      "bluesky": 48,
-      "mastodon": 48,
-      "discord": 46
+      "bluesky": 52,
+      "mastodon": 52,
+      "discord": 50
     },
     "byType": {
-      "devUpdate": 20,
+      "devUpdate": 24,
       "devEducation": 13,
       "designPhilosophy": 9,
       "behindScenes": 0,

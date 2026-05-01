@@ -1441,8 +1441,8 @@
     {
       "id": 101,
       "type": "devUpdate",
-      "hook": "Player feedback changed everything (in a good way).",
-      "body": "Beta tester said: 'ritual timing feels rushed.'\n\nOur response: made timing optional.\nNow supports:\n- Timed mode (challenge seekers)\n- Relaxed mode (take your time)\n- Assisted mode (no timing at all)\n\nAccessibility = player choice.\n\nFeedback matters.",
+      "hook": "Solo dev iteration: testing my own game changed everything.",
+      "body": "During my own playtesting: 'ritual timing feels rushed.'\n\nMy response: made timing optional.\nNow supports:\n- Timed mode (challenge seekers)\n- Relaxed mode (take your time)\n- Assisted mode (no timing at all)\n\nAccessibility = player choice.\n\nNo team. Just me testing.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -1822,7 +1822,8 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-28T18:01:39.964Z"
     },
     {
       "id": 128,
@@ -2730,7 +2731,8 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-29T18:01:28.431Z"
     },
     {
       "id": 192,
@@ -2821,7 +2823,7 @@
       "id": 198,
       "type": "loreSnippet",
       "hook": "'I deleted the game. But I kept the replays. They're memories now.'",
-      "body": "Alpha tester feedback:\n\n'I watched my first successful ritual replay 20 times. I cried. I didn't think I could do it, and there it was—proof that I DID.'\n\nReplays became emotional artifacts.",
+      "body": "During my own playtesting as the solo dev:\n\n'I watched my first successful ritual replay 20 times. I cried. I didn't think I could do it, and there it was—proof that I DID.'\n\nReplays became emotional artifacts.\n\nNo testers. Just me.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -2878,7 +2880,7 @@
       "id": 202,
       "type": "behindScenes",
       "hook": "'I haven't watched a sunrise in 10 years. I cried.'",
-      "body": "Alpha tester:\n\n'Set alarm for 6:15 AM. Went outside for Dawn Ritual. Not because of the game—because I forgot how beautiful mornings are.'\n\nAccidental mental health benefit: Vitamin D, circadian rhythm, outdoor time.",
+      "body": "Solo dev moment:\n\n'Set alarm for 6:15 AM to test Dawn Ritual. Went outside. Not because of testing—because I forgot how beautiful mornings are.'\n\nAccidental mental health benefit: Vitamin D, circadian rhythm, outdoor time.\n\nNo testers. Just me discovering this.",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -3125,7 +3127,8 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-04-30T18:01:03.702Z"
     },
     {
       "id": 220,
@@ -3489,7 +3492,8 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false
+      "used": true,
+      "lastUsed": "2026-05-01T18:01:35.294Z"
     },
     {
       "id": 246,
@@ -3551,7 +3555,7 @@
       "id": 250,
       "type": "devUpdate",
       "hook": "Launch date: May 15, 2026. WebGL playable NOW. Mobile coming soon.",
-      "body": "Timeline:\n\n• April 2026: WebGL beta testing (NOW!)\n• May 15, 2026: Official launch\n• May 30, 2026: Android release\n• June 15, 2026: iOS release\n• Summer 2026: Content updates\n\nPlay the browser version today:\nascendant-continuum.web.app/play",
+      "body": "Timeline:\n\n• April 2026: WebGL LIVE for early access (NOW!)\n• May 15, 2026: Official launch\n• May 30, 2026: Android release\n• June 15, 2026: iOS release\n• Summer 2026: Content updates\n\nSolo dev. No team. No testers.\n\nPlay now: ascendant-continuum.web.app/play",
       "platforms": [
         "bluesky",
         "mastodon",
