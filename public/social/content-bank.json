@@ -1670,7 +1670,7 @@
       "id": 117,
       "type": "devUpdate",
       "hook": "Localization is harder than expected.",
-      "body": "English: 'You earned 50 gems!'\nSimple, right?\n\nProblems:\n- RTL languages (Arabic, Hebrew)\n- Gendered nouns (Spanish, French)\n- Plural forms (Russian has 3)\n- Font support (CJK)\n\nSolution: i18n libraries + native testers.",
+      "body": "English: 'You earned 50 gems!'\nSimple, right?\n\nProblems:\n- RTL languages (Arabic, Hebrew)\n- Gendered nouns (Spanish, French)\n- Plural forms (Russian has 3)\n- Font support (CJK)\n\nSolution: i18n libraries + community feedback.\n\nSolo dev = learning as I go.",
       "platforms": [
         "bluesky",
         "mastodon",
