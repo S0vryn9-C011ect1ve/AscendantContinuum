@@ -717,14 +717,26 @@
       ],
       "themeName": "Dev Diary",
       "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
+    },
+    {
+      "title": "Solo Development Lessons: Building a Game Alone",
+      "slug": "solo-development-lessons-building-a-game-alone",
+      "date": "2026-05-02",
+      "tags": [
+        "development",
+        "team",
+        "process"
+      ],
+      "themeName": "Behind the Scenes",
+      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
     }
   ],
   "stats": {
-    "totalPosts": 54,
+    "totalPosts": 55,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
-      "Behind the Scenes": 7,
+      "Behind the Scenes": 8,
       "Tutorial": 9,
       "Design Philosophy": 11,
       "Dev Diary": 11,
@@ -755,11 +767,11 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 21,
+      "development": 22,
       "player-stories": 1,
       "updates": 1,
-      "team": 7,
-      "process": 7,
+      "team": 8,
+      "process": 8,
       "daily-challenges": 1,
       "inclusive-design": 2,
       "secrets": 1,

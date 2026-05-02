@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Apr 2026 14:01:26 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 02 May 2026 14:01:06 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
+      <pubDate>Sat, 02 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Behind the Scenes]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[team]]></category>
+      <category><![CDATA[process]]></category>
+      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
@@ -244,18 +256,6 @@
       <category><![CDATA[automation]]></category>
       <category><![CDATA[behind-the-scenes]]></category>
       <description><![CDATA[We built 6 layers of automated security protection into Ascendant Continuum to block malicious code attacks. Here's how we achieved enterprise-grade security for free as a solo indie developer.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Why We Reject FOMO: Designing Without Dark Patterns]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</guid>
-      <pubDate>Tue, 07 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[game-design]]></category>
-      <category><![CDATA[ethics]]></category>
-      <category><![CDATA[philosophy]]></category>
-      <description><![CDATA[Modern free-to-play games are engineered with "urgency mechanics"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy...]]></description>
     </item>
   </channel>
 </rss>
