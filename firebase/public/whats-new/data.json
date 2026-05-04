@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-03T23:45:28.474Z",
+  "lastUpdated": "2026-05-04T11:02:01.707Z",
   "dailyUpdates": [
     {
       "date": "2026-05-03",
@@ -668,10 +668,46 @@
       "blogPostUrl": "/blog/posts/daily-update-2026-02-01.html"
     }
   ],
-  "weeklyDigests": [],
+  "weeklyDigests": [
+    {
+      "weekStart": "2026-04-27",
+      "weekEnd": "2026-05-03",
+      "daysWithUpdates": 3,
+      "totalCommits": 8,
+      "categories": {
+        "features": 0,
+        "fixes": 0,
+        "improvements": 0,
+        "docs": 0
+      },
+      "highlights": {
+        "features": [],
+        "fixes": [],
+        "improvements": []
+      },
+      "dailyPosts": [
+        {
+          "date": "2026-05-01",
+          "url": "/blog/posts/daily-update-2026-05-01.html",
+          "commits": 4
+        },
+        {
+          "date": "2026-05-02",
+          "url": "/blog/posts/daily-update-2026-05-02.html",
+          "commits": 3
+        },
+        {
+          "date": "2026-05-03",
+          "url": "/blog/posts/daily-update-2026-05-03.html",
+          "commits": 1
+        }
+      ],
+      "blogPostUrl": "/blog/posts/weekly-digest-2026-04-27.html"
+    }
+  ],
   "meta": {
     "totalDailyUpdates": 36,
-    "totalWeeklyDigests": 0,
+    "totalWeeklyDigests": 1,
     "oldestUpdateDate": "2026-02-01",
     "newestUpdateDate": "2026-05-03"
   }
