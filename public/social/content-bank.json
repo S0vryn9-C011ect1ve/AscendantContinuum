@@ -1257,7 +1257,7 @@
       "id": 77,
       "type": "designPhilosophy",
       "hook": "The real cost of dark patterns (and why we refuse to use them).",
-      "body": "Dark patterns cost:\n\n- Player trust (immediate)\n- Community health (medium)\n- Brand reputation (long-term)\n- Employee morale (ongoing)\n\nGain: short revenue bump.\n\nNot wo...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "body": "Dark patterns cost:\n\n- Player trust (immediate)\n- Community health (medium)\n- Brand reputation (long-term)\n- Developer morale (ongoing—burnout on guilt\\n\nGain: short revenue bump.\n\nNot wo...\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -1790,8 +1790,8 @@
     {
       "id": 110,
       "type": "behindScenes",
-      "hook": "Contractor collaboration lessons learned.",
-      "body": "What worked:\n- Detailed briefs\n- Milestone payments\n- Clear revision limits\n- Regular check-ins\n\nWhat didn't:\n- Vague requests\n- 100% upfront\n- Unlimited revisions\n\nClear communication = succ...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "hook": "Solo dev project management lessons learned.",
+      "body": "What worked:\n- Ruthless scope prioritization\n- Milestone-based feature releases\n- Clear revision limits (iteration caps)\n- Regular pause-and-reflect checkpoints\n\nWhat didn't:\n- Feature creep\n- Perfectionism paralysis\n- Unlimited scope\n\nManaging one person = success...\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -3089,7 +3089,7 @@
       "id": 190,
       "type": "behindScenes",
       "hook": "Internal debate: Is 1% too rare?",
-      "body": "Team argued for hours.\n\n'Too rare. Wasted dev time. Players will complain.'\n\nvs\n\n'Creates genuine surprise. Builds community stories. Respects player intelligence.'\n\nWe chose 1%. And we're not changin...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "body": "Solo dev internal debate (yes, I argued with myself for hours):\n\n'Too rare. Wasted dev time. Players will complain.'\n\nvs\n\n'Creates genuine surprise. Builds community stories. Respects player intelligence.'\n\nI chose 1%. And I'm not changin...\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",
