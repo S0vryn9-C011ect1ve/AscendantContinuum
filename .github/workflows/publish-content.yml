@@ -1,0 +1,141 @@
+name: Publish Full Content
+
+# Manual trigger or auto-trigger when a new blog post is pushed.
+# Generates all 6 content formats, validates everything, posts to all platforms.
+# Nothing posts if ANY check fails.
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Optional topic hint (e.g. "moon phase rituals")'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Dry run — generate and validate but do not post or commit'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'firebase/public/blog/posts/**'
+
+concurrency:
+  group: publish-content
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 10
+
+      # ── 2. Node.js setup ───────────────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      # ── 3. Backfill fingerprints (idempotent — safe to run every time) ────
+      - name: Seed dedup fingerprints from posting history
+        run: node scripts/validation/dedup-checker.js --backfill
+
+      # ── 4. Generate all content formats ───────────────────────────────────
+      - name: Generate full content
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          TOPIC="${{ github.event.inputs.topic }}"
+          if [ -n "$TOPIC" ]; then
+            node scripts/content/generate-full-content.js --topic "$TOPIC"
+          else
+            node scripts/content/generate-full-content.js
+          fi
+
+      # ── 5. Validate: character limits + encoding + placeholder check ───────
+      - name: Validate content (character limits + encoding)
+        run: |
+          LATEST=$(ls -t scripts/generated/content-*.json 2>/dev/null | head -1)
+          if [ -z "$LATEST" ]; then
+            echo "No generated content file found — validation skipped (dry run?)"
+            exit 0
+          fi
+          echo "Validating: $LATEST"
+          node scripts/validation/content-validator.js "$LATEST"
+
+      # ── 6. Validate: live link check ───────────────────────────────────────
+      - name: Validate links (HTTP 200 check)
+        run: |
+          node scripts/validation/link-checker.js \
+            --fail-fast \
+            https://ascendant-continuum.web.app/ \
+            https://ascendant-continuum.web.app/blog/
+
+      # ── 7. Validate: deduplication audit ──────────────────────────────────
+      - name: Deduplication check
+        run: node scripts/validation/dedup-checker.js --audit
+
+      # ── 8. Post to platforms (skipped in dry run) ──────────────────────────
+      - name: Post to Bluesky, Mastodon, Discord
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+          MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DRY_RUN: 'false'
+        run: node scripts/automation/content-scheduler.js
+
+      # ── 9. Commit blog post + updated data files ───────────────────────────
+      - name: Commit blog and data changes
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add firebase/public/blog/posts/*.html \
+                  firebase/public/blog/data.json \
+                  firebase/public/blog/rss.xml \
+                  public/social/posting-history.json \
+                  public/social/content-fingerprints.json \
+                  2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "content: publish full content package [skip ci]"
+            git push
+          fi
+
+      # ── 10. Create GitHub issue on failure ─────────────────────────────────
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '❌ Full content publish pipeline failed',
+              body: `The publish-content workflow failed. No content was posted.\n\n**Workflow:** ${context.workflow}\n**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\nCheck the logs for which validation step failed.`,
+              labels: ['automation', 'content', 'bug']
+            })

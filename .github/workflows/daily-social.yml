@@ -36,7 +36,14 @@ jobs:
       
       - name: Install dependencies
         run: npm install
-      
+
+      - name: Seed dedup fingerprints from posting history
+        run: node scripts/validation/dedup-checker.js --backfill
+
+      - name: Validate content bank (dedup audit)
+        run: node scripts/validation/dedup-checker.js --audit
+        continue-on-error: false
+
       - name: Run content scheduler
         env:
           BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
@@ -53,6 +60,7 @@ jobs:
           git config user.email "bot@ascendant-continuum.com"
           git add public/social/posting-history.json || true
           git add public/social/content-bank.json || true
+          git add public/social/content-fingerprints.json || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else

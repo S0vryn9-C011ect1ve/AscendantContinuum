@@ -1580,19 +1580,110 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 55,
+      "contentId": 84,
+      "contentType": "designPhilosophy",
+      "hook": "Why ethical game design is our competitive advantage.",
+      "topics": [],
+      "timestamp": "2026-05-02T18:00:38.720Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mkv7uxzjag2m"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116506281792322849"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "contentId": 82,
+      "contentType": "designPhilosophy",
+      "hook": "Designing for engagement, not addiction.",
+      "topics": [
+        "anti-fomo"
+      ],
+      "timestamp": "2026-05-03T20:47:29.486Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mkxzpw7xyc2u"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116512603861022626"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "contentId": 2,
+      "contentType": "devUpdate",
+      "hook": "This feature broke my brain (in the best way).",
+      "topics": [
+        "npc-memory"
+      ],
+      "timestamp": "2026-05-04T18:00:25.454Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3ml2au4rnp52v"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116517609293450708"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 52,
+    "totalPosts": 55,
     "byPlatform": {
-      "bluesky": 52,
-      "mastodon": 52,
-      "discord": 50
+      "bluesky": 55,
+      "mastodon": 55,
+      "discord": 53
     },
     "byType": {
-      "devUpdate": 24,
+      "devUpdate": 25,
       "devEducation": 13,
-      "designPhilosophy": 9,
+      "designPhilosophy": 11,
       "behindScenes": 0,
       "loreSnippet": 6
     }

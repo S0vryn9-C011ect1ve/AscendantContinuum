@@ -24,7 +24,17 @@
         "security:weekly": "node scripts/security/security-scan.js",
         "security:socket": "echo 'Socket.dev GitHub App: ACTIVE (real-time protection on all commits)' && echo 'Socket CLI: Known issues on Windows with Nodist - not needed' && echo 'Your protection: Socket GitHub App + 7-day delay = Maximum security'",
         "safe-install": "npm ci",
-        "safe-add": "npm install --min-release-age=7"
+        "safe-add": "npm install --min-release-age=7",
+        "validate:links": "node scripts/validation/link-checker.js https://ascendant-continuum.web.app/ https://ascendant-continuum.web.app/blog/",
+        "validate:content": "node scripts/validation/content-validator.js",
+        "validate:dedup": "node scripts/validation/dedup-checker.js --audit",
+        "validate:backfill": "node scripts/validation/dedup-checker.js --backfill",
+        "content:generate-all": "node scripts/content/generate-full-content.js",
+        "content:generate-dry": "node scripts/content/generate-full-content.js --dry-run",
+        "audit:content-bank": "node scripts/audit/audit-content-bank.js",
+        "audit:blog-consistency": "node scripts/audit/check-blog-consistency.js",
+        "audit:rewrite": "node scripts/audit/rewrite-content-bank.js --dry-run",
+        "audit:rewrite-live": "node scripts/audit/rewrite-content-bank.js"
     },
     "dependencies": {
         "@atproto/api": "^0.12.0",

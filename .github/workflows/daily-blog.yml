@@ -34,7 +34,7 @@ jobs:
       
       - name: Install dependencies
         run: npm install
-      
+
       - name: Generate and publish blog post
         env:
           BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
@@ -44,7 +44,14 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DRY_RUN: false
         run: node scripts/automation/post-blog.js
-      
+
+      - name: Validate blog post links (HTTP 200 check)
+        run: |
+          node scripts/validation/link-checker.js \
+            --fail-fast \
+            https://ascendant-continuum.web.app/ \
+            https://ascendant-continuum.web.app/blog/
+
       - name: Commit and push blog changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"

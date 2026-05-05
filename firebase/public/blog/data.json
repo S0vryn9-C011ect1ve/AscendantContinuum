@@ -1,281 +1,55 @@
 {
   "posts": [
     {
-      "title": "How We Built Enterprise-Grade Security Into Our Indie Game (For Free)",
-      "slug": "how-we-built-enterprise-security-into-our-indie-game",
-      "date": "2026-04-07",
-      "themeName": "Technical Deep Dive",
-      "tags": [
-        "security",
-        "development",
-        "indie-dev",
-        "automation",
-        "behind-the-scenes"
-      ],
-      "excerpt": "We built 6 layers of automated security protection into Ascendant Continuum to block malicious code attacks. Here's how we achieved enterprise-grade security for free as a solo indie developer.",
-      "hook": "11 malicious packages blocked. 6 layers of protection. Zero monthly costs. Maximum paranoia mode achieved."
-    },
-    {
-      "title": "Serendipity Moments: 1% Deity Encounters",
-      "slug": "serendipity-moments-1-percent-deity-encounters",
-      "date": "2026-04-02",
-      "themeName": "Emergent Gameplay",
-      "tags": [
-        "serendipity",
-        "deity-encounters",
-        "rare-events",
-        "procedural-surprises",
-        "1-percent-chance"
-      ],
-      "excerpt": "1% chance deity encounters. No grinding. Pure randomness. When it happens, you're face-to-face with a deity who exists only for you for 60 seconds. Rarity creates value.",
-      "hook": "1% chance. Pure randomness. Deities appear when you least expect them."
-    },
-    {
       "title": "Archaeological Fossils: Your Actions Become History",
       "slug": "archaeological-fossils-player-actions-become-history",
-      "date": "2026-04-02",
-      "themeName": "Persistent World",
-      "tags": [
-        "fossils",
-        "archaeology",
-        "player-legacy",
-        "persistent-world",
-        "time-mechanics"
-      ],
-      "excerpt": "Your ritual fossilizes after 7 days. 30 days later, other players excavate it. Your gameplay becomes their discovery. Asynchronous multiplayer through archaeological time.",
-      "hook": "Your rituals fossilize. Future players excavate your history."
-    },
-    {
-      "title": "Ritual Replay: 6-Second Video Essence Capture",
-      "slug": "ritual-replay-6-second-video-essence-capture",
-      "date": "2026-04-02",
-      "themeName": "Creative Expression",
-      "tags": [
-        "ritual-replay",
-        "video-capture",
-        "essence-recording",
-        "sharing",
-        "6-seconds"
-      ],
-      "excerpt": "The game automatically captures your ritual's peak 6 seconds. No recording apps. No editing. Just the essence. Share it or keep it private. Your choice.",
-      "hook": "6 seconds. Your ritual's peak moment, automatically captured."
-    },
-    {
-      "title": "Sunrise/Sunset Awareness: Real-Time Solar Rewards",
-      "slug": "sunrise-sunset-awareness-real-time-solar-rewards",
-      "date": "2026-04-02",
-      "themeName": "Real-World Integration",
-      "tags": [
-        "sunrise",
-        "sunset",
-        "solar-mechanics",
-        "rewards",
-        "time-awareness",
-        "real-world-sync"
-      ],
-      "excerpt": "The game knows when the sun rises in YOUR location. Catch dawn or dusk rituals for 2× XP and solar blessings. Seasonal adjustments reward winter early risers with 3× XP.",
-      "hook": "The game knows when YOUR actual sunrise happens. Be there for 2× XP."
-    },
-    {
-      "title": "Cross-Platform Design: Building for Mobile, Tablet & Desktop",
-      "slug": "cross-platform-design-mobile-tablet-desktop",
-      "date": "2026-04-27",
-      "themeName": "Learning Journey",
-      "tags": [
-        "cross-platform",
-        "learning-journey",
-        "solo-dev",
-        "mobile",
-        "tablet",
-        "desktop"
-      ],
-      "excerpt": "Learning to build Ascendant Continuum for phones, tablets, and desktop computers. My journey figuring out cross-platform design as a solo developer.",
-      "hook": "One game, every screen. Learning cross-platform design one platform at a time."
-    },
-    {
-      "title": "Real Stargazing: The Anti-Screen-Time Mechanic",
-      "slug": "real-stargazing-anti-screen-time-mechanic",
-      "date": "2026-04-02",
-      "themeName": "Design Philosophy",
-      "tags": [
-        "real-stargazing",
-        "gyroscope",
-        "anti-screen-time",
-        "outdoor-gameplay",
-        "night-sky"
-      ],
-      "excerpt": "The only mobile game that rewards you for putting your phone down. Hold your phone to the actual night sky, and our gyroscope + GPS verification system gives you 3x XP for playing outside.",
-      "hook": "Your phone's gyroscope becomes a celestial navigation tool tonight."
-    },
-    {
-      "title": "Cosmic Identity System: Twelve Alignments That Emerge",
-      "slug": "cosmic-identity-system-alignments",
-      "date": "2026-04-02",
-      "themeName": "Design Philosophy",
-      "tags": [
-        "cosmic-identity",
-        "behavioral-tracking",
-        "alignments",
-        "character-development",
-        "emergent-gameplay"
-      ],
-      "excerpt": "No character creation screen. Your identity emerges from how you play. Are you a Midnight Sage, Nature Mystic, or Dawn Seeker? The game tracks 50+ metrics and reveals who you've become.",
-      "hook": "Are you a Midnight Sage, Nature Mystic, or Dawn Seeker? Your playstyle decides."
-    },
-    {
-      "title": "The Eternal Archive: Unlocked After 30 Days",
-      "slug": "eternal-archive-30-day-unlock",
-      "date": "2026-04-02",
-      "themeName": "Design Philosophy",
-      "tags": [
-        "eternal-archive",
-        "delayed-gratification",
-        "time-capsules",
-        "decision-tree",
-        "ritual-gallery"
-      ],
-      "excerpt": "You can't access it early. No IAP unlocks. No hacks. Day 30, the Archive opens, revealing every ritual, decision, and time capsule you've created. Delayed gratification as emotional design.",
-      "hook": "The Eternal Archive stays locked for your first 30 days. No shortcuts."
-    },
-    {
-      "title": "Dawn Citadel: Light Refraction Physics as Puzzles",
-      "slug": "dawn-citadel-light-refraction-physics",
-      "date": "2026-04-02",
-      "themeName": "Technical Deep Dive",
-      "tags": [
-        "physics",
-        "snells-law",
-        "optics",
-        "educational-gaming",
-        "puzzle-design"
-      ],
-      "excerpt": "Not fake game logic. Real optics. Dawn Citadel puzzles use actual Snell's Law calculations. Red light bends differently than blue. Solving puzzles teaches real physics.",
-      "hook": "Dawn Citadel puzzles use actual light refraction physics (Snell's Law)."
-    },
-    {
-      "title": "Living Lore: When the Universe Rewrites Its Own History",
-      "slug": "living-lore-universe-rewrites-history",
-      "date": "2026-04-02",
-      "themeName": "Technical Deep Dive",
-      "tags": [
-        "living-lore",
-        "dynamic-narrative",
-        "collective-morality",
-        "emergent-storytelling",
-        "firebase"
-      ],
-      "excerpt": "Collective player morality literally rewrites the game's mythology. Choose Compassion for 7 days? Lore tables update. The community authors the universe through actions, not votes.",
-      "hook": "Collective player behavior literally rewrites the universe's history."
-    },
-    {
-      "title": "Time Capsules: Writing Messages to Your Future Self",
-      "slug": "time-capsules-messages-to-future-self",
-      "date": "2026-04-02",
-      "themeName": "Emotional Design",
-      "tags": [
-        "time-capsules",
-        "delayed-gratification",
-        "reflection",
-        "mental-health",
-        "self-discovery"
-      ],
-      "excerpt": "Write a message. Lock it for 30/90/365 days. Seal it. You can't delete or open early. Your past self speaks to your future self, uninterrupted. The distance proves growth.",
-      "hook": "Time Capsules you can't delete or open early. Your past self has something to say."
-    },
-    {
-      "title": "Meteor Showers: When Real Astronomy Unlocks Game Content",
-      "slug": "meteor-showers-real-astronomy-game-events",
-      "date": "2026-04-02",
-      "themeName": "Real-World Sync",
-      "tags": [
-        "meteor-showers",
-        "astronomy",
-        "perseids",
-        "geminids",
-        "real-time-events"
-      ],
-      "excerpt": "August 12-13: Perseids = massive in-game event. December 13-14: Geminids = Twin Deity encounter. 8 real meteor showers per year trigger exclusive content. Earth's orbit schedules our events.",
-      "hook": "The Perseids happen whether you play or not. We just sync the game to them."
-    },
-    {
-      "title": "Lantern Ascension: Fluid Dynamics as Gameplay",
-      "slug": "lantern-ascension-fluid-dynamics-gameplay",
-      "date": "2026-04-02",
-      "themeName": "Physics Simulation",
-      "tags": [
-        "lantern-ascension",
-        "fluid-dynamics",
-        "physics",
-        "buoyancy",
-        "ritual-mechanic"
-      ],
-      "excerpt": "Your ritual lantern obeys Navier-Stokes equations. Buoyancy, drag, wind, rain—all simulated at 60 FPS. Master the physics, achieve 4x effectiveness. Stratosphere Achievement: only 2% succeed.",
-      "hook": "Your phone becomes a hot air balloon simulator. Real fluid dynamics at 60 FPS."
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "Your ritual becomes someone else",
+      "hook": "Your ritual becomes someone else"
     },
     {
       "title": "Community Mysteries That Take Months to Solve",
       "slug": "community-mysteries-months-to-solve",
-      "date": "2026-04-02",
-      "themeName": "Collaborative Gameplay",
-      "tags": [
-        "community-mysteries",
-        "cryptography",
-        "collaborative-puzzles",
-        "secret-hunts",
-        "long-term-gameplay"
-      ],
-      "excerpt": "Puzzles requiring 100+ players to coordinate. Fragmented clues across time zones. Real cryptography. Expected solve time: 1-6 months. The Unsolved Vault: 143 players, 8 months, still locked.",
-      "hook": "Some puzzles take 100+ players and 6 months to solve. That's the feature."
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "Puzzles requiring 100+ players to coordinate. Fragmented clues across time zones. Real cryptography. Expected solve time: 1-6 months.",
+      "hook": "Puzzles requiring 100+ players to coordinate. Fragmented clues across time zones. Real cryptography. Expected solve time: 1-6 months."
     },
     {
-      "title": "Weather Integration: When Rain Actually Delays Rituals",
-      "slug": "weather-integration-real-rain-delays-rituals",
-      "date": "2026-04-02",
-      "themeName": "Real-World Sync",
-      "tags": [
-        "weather-integration",
-        "openweather-api",
-        "environmental-gameplay",
-        "adaptive-difficulty"
-      ],
-      "excerpt": "OpenWeather API sync makes your local weather the difficulty setting. Rain = -20% effectiveness. Thunderstorms = dangerous dodge mechanic. Fog = visibility 20m. We care about safety > engagement.",
-      "hook": "Your local thunderstorm becomes a game mechanic. Real weather, real consequences."
+      "title": "Cosmic Identity System: Twelve Alignments That Emerge",
+      "slug": "cosmic-identity-system-alignments",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "No character creation screen. Your identity emerges from how you play. Are you a Midnight Sage, Nature Mystic, or Dawn Seeker?",
+      "hook": "No character creation screen. Your identity emerges from how you play. Are you a Midnight Sage, Nature Mystic, or Dawn Seeker?"
     },
     {
-      "title": "How We Protected Our Projects from npm Supply Chain Attacks (And How You Can Too)",
-      "slug": "npm-supply-chain-attacks-protection-guide",
-      "date": "2026-04-02",
-      "themeName": "Technical Deep Dive",
-      "tags": [
-        "security",
-        "npm",
-        "development",
-        "webdev",
-        "tools"
-      ],
-      "excerpt": "Three major npm packages were compromised this week (axios, LiteLLM, LofyGang). Here's how we protected our live beta testers and projects in one afternoon with a 6-layer security stack—and how you can implement it in under an hour.",
-      "hook": "🚨 Three major npm packages were compromised this week. Here's how we protected our live beta testers and projects in one afternoon."
+      "title": "Cross-Platform Design: Building for Mobile, Tablet & Desktop",
+      "slug": "cross-platform-design-mobile-tablet-desktop",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "Building Ascendant Continuum for mobile, tablet, and desktop. Learning cross-platform design as a solo developer.",
+      "hook": "Building Ascendant Continuum for mobile, tablet, and desktop. Learning cross-platform design as a solo developer."
     },
     {
-      "title": "Building a Game for $0: My Actual Budget",
-      "slug": "building-a-game-for-zero-dollars-actual-budget",
-      "date": "2026-03-17",
-      "themeName": "Transparency",
-      "tags": [
-        "budget",
-        "indie-dev",
-        "transparency",
-        "free-tools",
-        "bootstrap"
-      ],
-      "excerpt": "The honest truth: I've spent exactly $0 on game development. Here's how I'm building The Ascendant Continuum entirely with free tools (except $10/month for Copilot Pro).",
-      "hook": "The honest truth: I've spent exactly $0 on game development. Here's the actual budget breakdown."
+      "title": "Dawn Citadel: Light Refraction Physics as Puzzles",
+      "slug": "dawn-citadel-light-refraction-physics",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "Not fake game logic. Real optics. Dawn Citadel puzzles use actual Snell",
+      "hook": "Not fake game logic. Real optics. Dawn Citadel puzzles use actual Snell"
     },
     {
       "title": "From Healthcare to Game Dev: Building My First Game",
       "slug": "from-healthcare-to-game-dev-building-my-first-game",
-      "date": "2026-03-16",
-      "themeName": "Behind the Scenes",
+      "date": "2026-05-05",
+      "themeName": "Development",
       "tags": [
         "behind-the-scenes",
         "first-game",
@@ -283,86 +57,110 @@
         "career-change",
         "learning-unity"
       ],
-      "excerpt": "After a workplace injury ended my healthcare career, I'm learning Unity to build my first game - a magical adventure that reconnects people with nature and the night sky.",
-      "hook": "A workplace injury ended one career. It's starting another."
+      "excerpt": "After a workplace injury ended my healthcare career, I",
+      "hook": "After a workplace injury ended my healthcare career, I"
     },
     {
-      "title": "State Management with ScriptableObjects",
-      "slug": "state-management-with-scriptableobjects",
-      "date": "2026-03-20",
+      "title": "How We Built Enterprise-Grade Security Into Our Indie Game (For Free)",
+      "slug": "how-we-built-enterprise-security-into-our-indie-game",
+      "date": "2026-05-05",
+      "themeName": "Development",
       "tags": [
-        "tutorial",
-        "unity",
-        "game-dev"
-      ],
-      "themeName": "Tutorial",
-      "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play..."
-    },
-    {
-      "title": "Mobile Touch Controls: Gestures That Feel Magical",
-      "slug": "mobile-touch-controls-gestures-that-feel-magical",
-      "date": "2026-03-23",
-      "tags": [
+        "security",
         "development",
-        "unity",
+        "indie-dev",
+        "automation",
         "behind-the-scenes"
       ],
-      "themeName": "Dev Diary",
-      "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
+      "excerpt": "We built 6 layers of automated security protection into Ascendant Continuum to block malicious code attacks. Here",
+      "hook": "We built 6 layers of automated security protection into Ascendant Continuum to block malicious code attacks. Here"
     },
     {
-      "title": "Realm Transitions: Seamless World-Hopping",
-      "slug": "realm-transitions-seamless-world-hopping",
-      "date": "2026-03-27",
+      "title": "How We Protected Our Projects from the Latest npm Supply Chain Attacks (And How You Can Too)",
+      "slug": "npm-supply-chain-attacks-protection-guide",
+      "date": "2026-05-05",
+      "themeName": "Development",
       "tags": [
+        "security",
+        "npm",
         "development",
-        "unity",
-        "behind-the-scenes"
+        "webdev"
       ],
-      "themeName": "Dev Diary",
-      "excerpt": "Traditional RPGs hide loading with progress bars, spinning icons, or \"tip screens.\" These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ..."
+      "excerpt": "How we protected our projects from recent npm supply chain attacks (axios, LiteLLM, LofyGang). Complete guide with 6 protection layers, code examples, and emergency procedures.",
+      "hook": "How we protected our projects from recent npm supply chain attacks (axios, LiteLLM, LofyGang). Complete guide with 6 protection layers, code examples, and em..."
     },
     {
-      "title": "Addressables and Asset Management at Scale",
-      "slug": "addressables-and-asset-management-at-scale",
-      "date": "2026-03-27",
-      "tags": [
-        "tutorial",
-        "unity",
-        "game-dev"
-      ],
-      "themeName": "Tutorial",
-      "excerpt": "Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets that most players would never see: all fiv..."
+      "title": "Lantern Ascension: Fluid Dynamics as Gameplay",
+      "slug": "lantern-ascension-fluid-dynamics-gameplay",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "Your ritual lantern obeys Navier-Stokes equations. Buoyancy, drag, wind, rain—all simulated at 60 FPS. Real fluid dynamics as gameplay.",
+      "hook": "Your ritual lantern obeys Navier-Stokes equations. Buoyancy, drag, wind, rain—all simulated at 60 FPS. Real fluid dynamics as gameplay."
     },
     {
-      "title": "Unity Mobile Optimization: WebGL to Android Performance",
-      "slug": "unity-mobile-optimization-webgl-to-android-performance",
-      "date": "2026-03-27",
-      "tags": [
-        "tutorial",
-        "unity",
-        "game-dev"
-      ],
-      "themeName": "Tutorial",
-      "excerpt": "The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting be..."
+      "title": "Living Lore: When the Universe Rewrites Its Own History",
+      "slug": "living-lore-universe-rewrites-history",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "Collective player morality literally rewrites the game",
+      "hook": "Collective player morality literally rewrites the game"
     },
     {
-      "title": "NPCs That Remember: Collective Memory Across Sessions",
-      "slug": "npcs-that-remember-collective-memory-across-sessions",
-      "date": "2026-03-29",
+      "title": "Meteor Showers: When Real Astronomy Unlocks Game Content",
+      "slug": "meteor-showers-real-astronomy-game-events",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "Real meteor showers trigger in-game events. Perseids, Geminids, and 8 major annual showers unlock exclusive content. Earth",
+      "hook": "Real meteor showers trigger in-game events. Perseids, Geminids, and 8 major annual showers unlock exclusive content. Earth"
+    },
+    {
+      "title": "Real Stargazing: The Anti-Screen-Time Mechanic",
+      "slug": "real-stargazing-anti-screen-time-mechanic",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "The only mobile game that rewards you for putting your phone down. Hold your phone to the actual night sky, and our gyroscope + GPS verification system gives you 3x XP for playing outside.",
+      "hook": "The only mobile game that rewards you for putting your phone down. Hold your phone to the actual night sky, and our gyroscope + GPS verification system gives..."
+    },
+    {
+      "title": "Realm Dwellers That Remember: Collective Memory Across Sessions",
+      "slug": "realm-dwellers-that-remember-collective-memory-across-sessions",
+      "date": "2026-05-05",
+      "themeName": "Technical Deep Dive",
       "tags": [
         "game-design",
         "unity",
         "ai",
         "innovation"
       ],
-      "themeName": "Technical Deep Dive",
-      "excerpt": "What if NPCs remembered not just YOUR actions, but the collective actions of every player who's ever interacted with them? Here's how we built a shared memory system that makes game characters feel truly alive."
+      "excerpt": "What if Realm Dwellers remembered not just YOUR actions, but the collective actions of every player? Here",
+      "hook": "What if Realm Dwellers remembered not just YOUR actions, but the collective actions of every player? Here"
+    },
+    {
+      "title": "Ritual Replay: 6-Second Video Essence Capture",
+      "slug": "ritual-replay-6-second-video-essence-capture",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "Your ritual",
+      "hook": "Your ritual"
+    },
+    {
+      "title": "Serendipity Moments: 1% Deity Encounters",
+      "slug": "serendipity-moments-1-percent-deity-encounters",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "1% chance deity encounters. No grinding. Pure randomness. When serendipity happens, it",
+      "hook": "1% chance deity encounters. No grinding. Pure randomness. When serendipity happens, it"
     },
     {
       "title": "Sigil Crafting System: Discovering and Naming Rituals",
       "slug": "sigil-crafting-system-discovering-and-naming-rituals",
-      "date": "2026-03-29",
+      "date": "2026-05-05",
       "tags": [
         "game-design",
         "community",
@@ -370,7 +168,292 @@
         "social"
       ],
       "themeName": "Design Philosophy",
-      "excerpt": "What if the first player to discover a sigil combination gets to name it globally for everyone? A deep dive into our community-driven crafting system where your discoveries become permanent legacies."
+      "excerpt": "How the first player to discover a sigil combination gets to name it globally for everyone. A deep dive into our community-driven crafting system.",
+      "hook": "How the first player to discover a sigil combination gets to name it globally for everyone. A deep dive into our community-driven crafting system."
+    },
+    {
+      "title": "Sunrise/Sunset Awareness: Real-Time Solar Rewards",
+      "slug": "sunrise-sunset-awareness-real-time-solar-rewards",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "The game knows when the sun rises in real life. Catch dawn or dusk rituals for 2× XP and solar blessings.",
+      "hook": "The game knows when the sun rises in real life. Catch dawn or dusk rituals for 2× XP and solar blessings."
+    },
+    {
+      "title": "The Ascendant Continuum",
+      "slug": "building-a-game-for-zero-dollars-actual-budget",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [
+        "budget",
+        "indie-dev",
+        "transparency",
+        "free-tools",
+        "bootstrap"
+      ],
+      "excerpt": "The honest truth about building The Ascendant Continuum: $0 spent on game development. Here",
+      "hook": "The honest truth about building The Ascendant Continuum: $0 spent on game development. Here"
+    },
+    {
+      "title": "The Eternal Archive: Unlocked After 30 Days",
+      "slug": "eternal-archive-30-day-unlock",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "You can",
+      "hook": "You can"
+    },
+    {
+      "title": "Time Capsules: Writing Messages to Your Future Self",
+      "slug": "time-capsules-messages-to-future-self",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "Write a message. Lock it for 30/90/365 days. Seal it. You can",
+      "hook": "Write a message. Lock it for 30/90/365 days. Seal it. You can"
+    },
+    {
+      "title": "Weather Integration: When Rain Actually Delays Rituals",
+      "slug": "weather-integration-real-rain-delays-rituals",
+      "date": "2026-05-05",
+      "themeName": "Development",
+      "tags": [],
+      "excerpt": "OpenWeather API sync makes your local weather the difficulty setting. Rain, thunderstorms, fog—all affect gameplay. Real weather, real consequences.",
+      "hook": "OpenWeather API sync makes your local weather the difficulty setting. Rain, thunderstorms, fog—all affect gameplay. Real weather, real consequences."
+    },
+    {
+      "title": "Why We Reject FOMO: Designing Without Dark Patterns",
+      "slug": "why-we-reject-fomo-designing-without-dark-patterns",
+      "date": "2026-05-03",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Development",
+      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy...",
+      "hook": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusiv..."
+    },
+    {
+      "title": "Solo Development Lessons: Building a Game Alone",
+      "slug": "solo-development-lessons-building-a-game-alone",
+      "date": "2026-05-02",
+      "tags": [
+        "development",
+        "team",
+        "process"
+      ],
+      "themeName": "Development",
+      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn",
+      "hook": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn"
+    },
+    {
+      "title": "Daily Update: May 1, 2026",
+      "slug": "daily-update-2026-05-01",
+      "date": "2026-05-01",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for May 1, 2026: 3 commits with 0 features, 1 fixes, and 0 improvements.",
+      "hook": "Daily development update for May 1, 2026: 3 commits with 0 features, 1 fixes, and 0 improvements."
+    },
+    {
+      "title": "Mobile Touch Controls: Gestures That Feel Magical",
+      "slug": "mobile-touch-controls-gestures-that-feel-magical",
+      "date": "2026-04-30",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Development",
+      "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...",
+      "hook": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We ne..."
+    },
+    {
+      "title": "Building Accessibility-First Gameplay: Color as Discovery",
+      "slug": "building-accessibility-first-gameplay-color-as-discovery",
+      "date": "2026-04-28",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Development",
+      "excerpt": "Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these...",
+      "hook": "Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that..."
+    },
+    {
+      "title": "Ethical Monetization: Fair Pricing in an Exploitative Industry",
+      "slug": "ethical-monetization-fair-pricing-in-an-exploitative-industry",
+      "date": "2026-04-24",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Development",
+      "excerpt": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add...",
+      "hook": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha..."
+    },
+    {
+      "title": "Accessibility Innovation: Beyond Compliance",
+      "slug": "accessibility-innovation-beyond-compliance",
+      "date": "2026-04-23",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Development",
+      "excerpt": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don",
+      "hook": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don"
+    },
+    {
+      "title": "State Management with ScriptableObjects",
+      "slug": "state-management-with-scriptableobjects",
+      "date": "2026-04-22",
+      "tags": [
+        "tutorial",
+        "unity",
+        "game-dev"
+      ],
+      "themeName": "Development",
+      "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play...",
+      "hook": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that n..."
+    },
+    {
+      "title": "Realm Transitions: Seamless World-Hopping",
+      "slug": "realm-transitions-seamless-world-hopping",
+      "date": "2026-04-21",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Development",
+      "excerpt": "Traditional RPGs hide loading with progress bars, spinning icons, or \"tip screens.\" These break narrative flow and remind players they",
+      "hook": "Traditional RPGs hide loading with progress bars, spinning icons, or \"tip screens.\" These break narrative flow and remind players they"
+    },
+    {
+      "title": "Shader Programming: Custom Effects for Magical Worlds",
+      "slug": "shader-programming-custom-effects-for-magical-worlds",
+      "date": "2026-04-11",
+      "tags": [
+        "tutorial",
+        "unity",
+        "game-dev"
+      ],
+      "themeName": "Development",
+      "excerpt": "Unity provides Standard shader (PBR), Unlit shader (performance), and Shader Graph (node-based visual programming). These cover 80% of use cases but don",
+      "hook": "Unity provides Standard shader (PBR), Unlit shader (performance), and Shader Graph (node-based visual programming). These cover 80% of use cases but don"
+    },
+    {
+      "title": "Daily Update: April 6, 2026",
+      "slug": "daily-update-2026-04-07",
+      "date": "2026-04-07",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for April 6, 2026: 11 commits with 5 features, 2 fixes, and 0 improvements.",
+      "hook": "Daily development update for April 6, 2026: 11 commits with 5 features, 2 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: April 5, 2026",
+      "slug": "daily-update-2026-04-06",
+      "date": "2026-04-06",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for April 5, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for April 5, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: April 4, 2026",
+      "slug": "daily-update-2026-04-05",
+      "date": "2026-04-05",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for April 4, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for April 4, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Unity WebGL Performance: From 15fps to 60fps",
+      "slug": "unity-webgl-performance-from-15fps-to-60fps",
+      "date": "2026-04-05",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Development",
+      "excerpt": "When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi...",
+      "hook": "When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized textur..."
+    },
+    {
+      "title": "Addressables and Asset Management at Scale",
+      "slug": "addressables-and-asset-management-at-scale",
+      "date": "2026-04-04",
+      "tags": [
+        "tutorial",
+        "unity",
+        "game-dev"
+      ],
+      "themeName": "Development",
+      "excerpt": "Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets that most players would never see: all fiv...",
+      "hook": "Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets..."
+    },
+    {
+      "title": "Daily Update: April 3, 2026",
+      "slug": "daily-update-2026-04-04",
+      "date": "2026-04-04",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for April 3, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for April 3, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: April 2, 2026",
+      "slug": "daily-update-2026-04-03",
+      "date": "2026-04-03",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for April 2, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for April 2, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: April 1, 2026",
+      "slug": "daily-update-2026-04-02",
+      "date": "2026-04-02",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for April 1, 2026: 4 commits with 0 features, 1 fixes, and 0 improvements.",
+      "hook": "Daily development update for April 1, 2026: 4 commits with 0 features, 1 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: March 31, 2026",
+      "slug": "daily-update-2026-04-01",
+      "date": "2026-04-01",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 31, 2026: 2 commits with 1 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 31, 2026: 2 commits with 1 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: March 30, 2026",
+      "slug": "daily-update-2026-03-31",
+      "date": "2026-03-31",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 30, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 30, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: March 29, 2026",
+      "slug": "daily-update-2026-03-30",
+      "date": "2026-03-30",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 29, 2026: 2 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 29, 2026: 2 commits with 0 features, 0 fixes, and 0 improvements."
     },
     {
       "title": "Accessibility Secrets: Hidden Content for Every Vision",
@@ -385,23 +468,9 @@
         "screen-reader",
         "neurodivergent"
       ],
-      "themeName": "Design Philosophy",
-      "excerpt": "Different colorblind modes, screen readers, and accessibility settings reveal completely different secrets. Protanopia reveals Crimson Veil runes. Deuteranopia unlocks Emerald Mysteries. Your accessibility needs are your superpower."
-    },
-    {
-      "title": "Your Playstyle Shapes Your Sigil: Behavioral Personalization",
-      "slug": "your-playstyle-shapes-your-sigil",
-      "date": "2026-03-29",
-      "tags": [
-        "personalization",
-        "game-design",
-        "behavioral-analytics",
-        "player-identity",
-        "technical",
-        "sigils"
-      ],
-      "themeName": "Technical Deep Dive",
-      "excerpt": "The game tracks how you play—your pace, favorite realms, interaction patterns—then generates a personal sigil that reflects your unique playstyle. Morning player? Explorer? Speedrunner? The game knows."
+      "themeName": "Development",
+      "excerpt": "Different colorblind modes, screen readers, and accessibility settings reveal completely different secrets in Ascendant Continuum. Your accessibility needs are your superpower.",
+      "hook": "Different colorblind modes, screen readers, and accessibility settings reveal completely different secrets in Ascendant Continuum. Your accessibility needs a..."
     },
     {
       "title": "Battle Pass Without FOMO: Ethical Seasonal Content",
@@ -415,336 +484,258 @@
         "game-design",
         "anti-fomo"
       ],
-      "themeName": "Design Philosophy",
-      "excerpt": "A 9-week seasonal battle pass with zero FOMO, no gameplay advantages, and rewards that return in future seasons. Cosmetics only. Parental spending caps. A battle pass designed for players, not profits."
+      "themeName": "Development",
+      "excerpt": "Ascendant Continuum",
+      "hook": "Ascendant Continuum"
     },
     {
-      "title": "Solo Development Lessons: Building a Game Alone",
-      "slug": "solo-development-lessons-building-a-game-alone",
-      "date": "2026-03-30",
+      "title": "Daily Update: March 28, 2026",
+      "slug": "daily-update-2026-03-29",
+      "date": "2026-03-29",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 28, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 28, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Your Playstyle Shapes Your Sigil: Behavioral Personalization",
+      "slug": "your-playstyle-shapes-your-sigil",
+      "date": "2026-03-29",
       "tags": [
-        "development",
-        "team",
-        "process"
+        "personalization",
+        "game-design",
+        "behavioral-analytics",
+        "player-identity",
+        "technical",
+        "sigils"
       ],
-      "themeName": "Behind the Scenes",
-      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
+      "themeName": "Development",
+      "excerpt": "Ascendant Continuum tracks how you play—then generates a personal sigil that reflects your unique playstyle. Morning player? Explorer? Speedrunner? The game knows.",
+      "hook": "Ascendant Continuum tracks how you play—then generates a personal sigil that reflects your unique playstyle. Morning player? Explorer? Speedrunner? The game ..."
     },
     {
-      "title": "State Management with ScriptableObjects",
-      "slug": "state-management-with-scriptableobjects",
-      "date": "2026-03-31",
+      "title": "Daily Update: March 27, 2026",
+      "slug": "daily-update-2026-03-28",
+      "date": "2026-03-28",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 27, 2026: 2 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 27, 2026: 2 commits with 0 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: March 26, 2026",
+      "slug": "daily-update-2026-03-27",
+      "date": "2026-03-27",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 26, 2026: 4 commits with 0 features, 3 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 26, 2026: 4 commits with 0 features, 3 fixes, and 0 improvements."
+    },
+    {
+      "title": "Unity Mobile Optimization: WebGL to Android Performance",
+      "slug": "unity-mobile-optimization-webgl-to-android-performance",
+      "date": "2026-03-27",
       "tags": [
         "tutorial",
         "unity",
         "game-dev"
       ],
-      "themeName": "Tutorial",
-      "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play..."
+      "themeName": "Development",
+      "excerpt": "The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting be...",
+      "hook": "The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our ear..."
     },
     {
-      "title": "Addressables and Asset Management at Scale",
-      "slug": "addressables-and-asset-management-at-scale",
-      "date": "2026-04-01",
-      "tags": [
-        "tutorial",
-        "unity",
-        "game-dev"
-      ],
-      "themeName": "Tutorial",
-      "excerpt": "Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets that most players would never see: all fiv..."
+      "title": "Daily Update: March 24, 2026",
+      "slug": "daily-update-2026-03-25",
+      "date": "2026-03-25",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 24, 2026: 5 commits with 2 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 24, 2026: 5 commits with 2 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "State Management with ScriptableObjects",
-      "slug": "state-management-with-scriptableobjects",
-      "date": "2026-04-03",
-      "tags": [
-        "tutorial",
-        "unity",
-        "game-dev"
-      ],
-      "themeName": "Tutorial",
-      "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play..."
+      "title": "Daily Update: March 23, 2026",
+      "slug": "daily-update-2026-03-24",
+      "date": "2026-03-24",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0 improvements."
     },
     {
-      "title": "Addressables and Asset Management at Scale",
-      "slug": "addressables-and-asset-management-at-scale",
-      "date": "2026-04-04",
-      "tags": [
-        "tutorial",
-        "unity",
-        "game-dev"
-      ],
-      "themeName": "Tutorial",
-      "excerpt": "Early in development, our Android build exceeded 1.2GB—unacceptable for a game targeting players in regions with limited mobile data. Most of this was assets that most players would never see: all fiv..."
+      "title": "Daily Update: March 22, 2026",
+      "slug": "daily-update-2026-03-23",
+      "date": "2026-03-23",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 22, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 22, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Unity WebGL Performance: From 15fps to 60fps",
-      "slug": "unity-webgl-performance-from-15fps-to-60fps",
-      "date": "2026-04-05",
-      "tags": [
-        "development",
-        "unity",
-        "behind-the-scenes"
-      ],
-      "themeName": "Dev Diary",
-      "excerpt": "When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi..."
+      "title": "Daily Update: March 20, 2026",
+      "slug": "daily-update-2026-03-21",
+      "date": "2026-03-21",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 20, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 20, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Solo Development Lessons: Building a Game Alone",
-      "slug": "solo-development-lessons-building-a-game-alone",
-      "date": "2026-04-06",
-      "tags": [
-        "development",
-        "team",
-        "process"
-      ],
-      "themeName": "Behind the Scenes",
-      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
+      "title": "Daily Update: March 19, 2026",
+      "slug": "daily-update-2026-03-20",
+      "date": "2026-03-20",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 19, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 19, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Why We Reject FOMO: Designing Without Dark Patterns",
-      "slug": "why-we-reject-fomo-designing-without-dark-patterns",
-      "date": "2026-04-07",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy..."
+      "title": "Daily Update: March 17, 2026",
+      "slug": "daily-update-2026-03-18",
+      "date": "2026-03-18",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 17, 2026: 3 commits with 0 features, 1 fixes, and 1 improvements.",
+      "hook": "Daily development update for March 17, 2026: 3 commits with 0 features, 1 fixes, and 1 improvements."
     },
     {
-      "title": "Mobile Touch Controls: Gestures That Feel Magical",
-      "slug": "mobile-touch-controls-gestures-that-feel-magical",
-      "date": "2026-04-10",
-      "tags": [
-        "development",
-        "unity",
-        "behind-the-scenes"
-      ],
-      "themeName": "Dev Diary",
-      "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
+      "title": "Daily Update: March 16, 2026",
+      "slug": "daily-update-2026-03-17",
+      "date": "2026-03-17",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 16, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 16, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Shader Programming: Custom Effects for Magical Worlds",
-      "slug": "shader-programming-custom-effects-for-magical-worlds",
-      "date": "2026-04-11",
-      "tags": [
-        "tutorial",
-        "unity",
-        "game-dev"
-      ],
-      "themeName": "Tutorial",
-      "excerpt": "Unity provides Standard shader (PBR), Unlit shader (performance), and Shader Graph (node-based visual programming). These cover 80% of use cases but don't create distinctive visuals. Every Unity game ..."
+      "title": "Daily Update: March 15, 2026",
+      "slug": "daily-update-2026-03-16",
+      "date": "2026-03-16",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 15, 2026: 6 commits with 2 features, 3 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 15, 2026: 6 commits with 2 features, 3 fixes, and 0 improvements."
     },
     {
-      "title": "Mobile Touch Controls: Gestures That Feel Magical",
-      "slug": "mobile-touch-controls-gestures-that-feel-magical",
-      "date": "2026-04-13",
-      "tags": [
-        "development",
-        "unity",
-        "behind-the-scenes"
-      ],
-      "themeName": "Dev Diary",
-      "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
+      "title": "Daily Update: March 14, 2026",
+      "slug": "daily-update-2026-03-15",
+      "date": "2026-03-15",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 14, 2026: 3 commits with 3 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 14, 2026: 3 commits with 3 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Why We Reject FOMO: Designing Without Dark Patterns",
-      "slug": "why-we-reject-fomo-designing-without-dark-patterns",
-      "date": "2026-04-14",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy..."
+      "title": "Daily Update: March 13, 2026",
+      "slug": "daily-update-2026-03-14",
+      "date": "2026-03-14",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 13, 2026: 5 commits with 1 features, 4 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 13, 2026: 5 commits with 1 features, 4 fixes, and 0 improvements."
     },
     {
-      "title": "Mobile Touch Controls: Gestures That Feel Magical",
-      "slug": "mobile-touch-controls-gestures-that-feel-magical",
-      "date": "2026-04-18",
-      "tags": [
-        "development",
-        "unity",
-        "behind-the-scenes"
-      ],
-      "themeName": "Dev Diary",
-      "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
+      "title": "Daily Update: March 12, 2026",
+      "slug": "daily-update-2026-03-13",
+      "date": "2026-03-13",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 12, 2026: 1 commits with 0 features, 1 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 12, 2026: 1 commits with 0 features, 1 fixes, and 0 improvements."
     },
     {
-      "title": "Accessibility Innovation: Beyond Compliance",
-      "slug": "accessibility-innovation-beyond-compliance",
-      "date": "2026-04-19",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay...."
+      "title": "Daily Update: March 11, 2026",
+      "slug": "daily-update-2026-03-12",
+      "date": "2026-03-12",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 11, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 11, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Ethical Monetization: Fair Pricing in an Exploitative Industry",
-      "slug": "ethical-monetization-fair-pricing-in-an-exploitative-industry",
-      "date": "2026-04-20",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add..."
+      "title": "Daily Update: March 5, 2026",
+      "slug": "daily-update-2026-03-06",
+      "date": "2026-03-06",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 5, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 5, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Realm Transitions: Seamless World-Hopping",
-      "slug": "realm-transitions-seamless-world-hopping",
-      "date": "2026-04-21",
-      "tags": [
-        "development",
-        "unity",
-        "behind-the-scenes"
-      ],
-      "themeName": "Dev Diary",
-      "excerpt": "Traditional RPGs hide loading with progress bars, spinning icons, or \"tip screens.\" These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ..."
+      "title": "Daily Update: March 2, 2026",
+      "slug": "daily-update-2026-03-03",
+      "date": "2026-03-03",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for March 2, 2026: 5 commits with 0 features, 4 fixes, and 0 improvements.",
+      "hook": "Daily development update for March 2, 2026: 5 commits with 0 features, 4 fixes, and 0 improvements."
     },
     {
-      "title": "State Management with ScriptableObjects",
-      "slug": "state-management-with-scriptableobjects",
-      "date": "2026-04-22",
-      "tags": [
-        "tutorial",
-        "unity",
-        "game-dev"
-      ],
-      "themeName": "Tutorial",
-      "excerpt": "Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play..."
+      "title": "Daily Update: February 28, 2026",
+      "slug": "daily-update-2026-03-01",
+      "date": "2026-03-01",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for February 28, 2026: 5 commits with 5 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for February 28, 2026: 5 commits with 5 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Accessibility Innovation: Beyond Compliance",
-      "slug": "accessibility-innovation-beyond-compliance",
-      "date": "2026-04-23",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay...."
+      "title": "Daily Update: February 26, 2026",
+      "slug": "daily-update-2026-02-27",
+      "date": "2026-02-27",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for February 26, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for February 26, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Ethical Monetization: Fair Pricing in an Exploitative Industry",
-      "slug": "ethical-monetization-fair-pricing-in-an-exploitative-industry",
-      "date": "2026-04-24",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add..."
+      "title": "Daily Update: February 25, 2026",
+      "slug": "daily-update-2026-02-26",
+      "date": "2026-02-26",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for February 25, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for February 25, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Solo Development Lessons: Building a Game Alone",
-      "slug": "solo-development-lessons-building-a-game-alone",
-      "date": "2026-04-25",
-      "tags": [
-        "development",
-        "team",
-        "process"
-      ],
-      "themeName": "Behind the Scenes",
-      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
+      "title": "Daily Update: February 24, 2026",
+      "slug": "daily-update-2026-02-25",
+      "date": "2026-02-25",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for February 24, 2026: 5 commits with 1 features, 3 fixes, and 0 improvements.",
+      "hook": "Daily development update for February 24, 2026: 5 commits with 1 features, 3 fixes, and 0 improvements."
     },
     {
-      "title": "Solo Development Lessons: Building a Game Alone",
-      "slug": "solo-development-lessons-building-a-game-alone",
-      "date": "2026-04-26",
-      "tags": [
-        "development",
-        "team",
-        "process"
-      ],
-      "themeName": "Behind the Scenes",
-      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
+      "title": "Daily Update: February 23, 2026",
+      "slug": "daily-update-2026-02-24",
+      "date": "2026-02-24",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0 improvements.",
+      "hook": "Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0 improvements."
     },
     {
-      "title": "Mobile Touch Controls: Gestures That Feel Magical",
-      "slug": "mobile-touch-controls-gestures-that-feel-magical",
-      "date": "2026-04-27",
-      "tags": [
-        "development",
-        "unity",
-        "behind-the-scenes"
-      ],
-      "themeName": "Dev Diary",
-      "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
+      "title": "Daily Update: February 15, 2026",
+      "slug": "daily-update-2026-02-16",
+      "date": "2026-02-16",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for February 15, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for February 15, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Building Accessibility-First Gameplay: Color as Discovery",
-      "slug": "building-accessibility-first-gameplay-color-as-discovery",
-      "date": "2026-04-28",
-      "tags": [
-        "development",
-        "unity",
-        "behind-the-scenes"
-      ],
-      "themeName": "Dev Diary",
-      "excerpt": "Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these..."
-    },
-    {
-      "title": "Solo Development Lessons: Building a Game Alone",
-      "slug": "solo-development-lessons-building-a-game-alone",
-      "date": "2026-04-29",
-      "tags": [
-        "development",
-        "team",
-        "process"
-      ],
-      "themeName": "Behind the Scenes",
-      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
-    },
-    {
-      "title": "Mobile Touch Controls: Gestures That Feel Magical",
-      "slug": "mobile-touch-controls-gestures-that-feel-magical",
-      "date": "2026-04-30",
-      "tags": [
-        "development",
-        "unity",
-        "behind-the-scenes"
-      ],
-      "themeName": "Dev Diary",
-      "excerpt": "Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ..."
-    },
-    {
-      "title": "Solo Development Lessons: Building a Game Alone",
-      "slug": "solo-development-lessons-building-a-game-alone",
-      "date": "2026-05-02",
-      "tags": [
-        "development",
-        "team",
-        "process"
-      ],
-      "themeName": "Behind the Scenes",
-      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical n..."
-    },
-    {
-      "title": "Why We Reject FOMO: Designing Without Dark Patterns",
-      "slug": "why-we-reject-fomo-designing-without-dark-patterns",
-      "date": "2026-05-03",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy..."
+      "title": "Daily Update: January 31, 2026",
+      "slug": "daily-update-2026-02-01",
+      "date": "2026-02-01",
+      "themeName": "What's New",
+      "tags": [],
+      "excerpt": "Daily development update for January 31, 2026: 8 commits with 5 features, 0 fixes, and 0 improvements.",
+      "hook": "Daily development update for January 31, 2026: 8 commits with 5 features, 0 fixes, and 0 improvements."
     }
   ],
   "stats": {
-    "totalPosts": 56,
+    "totalPosts": 70,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
@@ -803,5 +794,6 @@
       "webdev": 1,
       "tools": 1
     }
-  }
+  },
+  "lastUpdated": "2026-05-05T01:32:06.483Z"
 }

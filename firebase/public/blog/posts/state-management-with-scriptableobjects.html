@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/images.css">
     <link rel="icon" type="image/png" href="../../favicon.png">
-    <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html">
+            <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html">
     <style>
         .blog-post-container {
             max-width: 800px;
@@ -181,7 +181,7 @@
         
 
             <h2>Runtime Sets for Dynamic Collections</h2>
-            <p>We created a generic "RuntimeSet" ScriptableObject that acts as a dynamic collection. ActiveNPCs is a RuntimeSet<NPC>—NPCs add themselves OnEnable, remove themselves OnDisable. Any system can query ActiveNPCs without needing references or FindObjectsOfType (which is slow). This is especially powerful for UI: a "Nearby NPCs" panel simply observes the RuntimeSet and updates automatically when NPCs enter/leave. No manual reference management, no null checks, no stale data.</p>
+            <p>We created a generic "RuntimeSet" ScriptableObject that acts as a dynamic collection. ActiveNPCs is a RuntimeSet<Realm Dweller>—Realm Dwellers add themselves OnEnable, remove themselves OnDisable. Any system can query ActiveNPCs without needing references or FindObjectsOfType (which is slow). This is especially powerful for UI: a "Nearby Realm Dwellers" panel simply observes the RuntimeSet and updates automatically when Realm Dwellers enter/leave. No manual reference management, no null checks, no stale data.</p>
         
 
             <h2>Testability and Debugging Benefits</h2>

@@ -1,0 +1,483 @@
+{
+  "fingerprints": [
+    {
+      "contentId": 9,
+      "hash": "d96ac40a2ccd12c42d0b1255597b7d09cee3c2fb2fa10182a8d148d855b84219",
+      "hook": "Building a game that respects your time, not exploits it.",
+      "body": "Anti-FOMO design:\n\n- Sessions: 1-5 minutes\n- Digital Sunset reminds you to rest\n- No daily login rewards\n- No offline punishment\n- Universe evolves while away\n\nResults persist. Progress matters.\n\nEthical design is possible.",
+      "platform": "bluesky,mastodon",
+      "links": [],
+      "postedAt": "2026-03-14T05:02:22.560Z"
+    },
+    {
+      "contentId": 16,
+      "hash": "cb166de1258e6c6cabeb2be729b73f61d0d2d71a226cadb5cc29e6d8a3f6791c",
+      "hook": "The Emberforge realm: where creation itself is the ritual.",
+      "body": "Tap flames. Hold embers. Trace sigils of fire.\n\nEach spark you release becomes a constellation for future seekers.\n\nYour creations persist in the universe. Forever.\n\n[Image: Emberforge concept art]",
+      "platform": "bluesky,mastodon",
+      "links": [],
+      "postedAt": "2026-03-14T05:02:53.092Z"
+    },
+    {
+      "contentId": 10,
+      "hash": "b350950eb8654306eaceee99acf5d55d9d7dde64e4fd4f4c9be2ebdd102dbeac",
+      "hook": "What if accessibility unlocked secrets instead of just being an option?",
+      "body": "Traditional: Accessibility = compromise.\n\nUs: Accessibility = discovery tool.\n\nColorblind modes reveal DIFFERENT secrets.\n\nNo \"default\" experience. All modes equally valid.\n\nAccessibility as innovation, not obligation.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-14T05:09:46.941Z"
+    },
+    {
+      "contentId": 1,
+      "hash": "6700aa666c30c8eceac12d84978f376fef7e91659a8fe7b4fb33af72d76d64d6",
+      "hook": "Learning to make accessibility part of the gameplay itself.",
+      "body": "Colorblind modes reveal DIFFERENT hidden content:\n\nProtanopia = fire runes (Emberforge)\nDeuteranopia = water sigils (Verdant)\nTritanopia = earth patterns (Echo Fields)\n\nTurning accessibility into discovery.\n\nBuilt in Unity with custom shaders.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-17T02:13:47.351Z"
+    },
+    {
+      "contentId": 6,
+      "hash": "4e529f784ba8c0b9bdee23ca444a98cd7e00af79029b066d65a5e7c0c8b2e5c5",
+      "hook": "Steal this Unity system for your game.",
+      "body": "Unity UI for 5 colorblind modes without duplicate assets:\n\n1. Shader color transforms (not filters)\n2. Pattern overlays\n3. Shape differentiation\n4. Test with Color Oracle\n\nOne UI, five experiences.\n\nCode: [link to gist]",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-17T02:15:00.318Z"
+    },
+    {
+      "contentId": 2,
+      "hash": "703eb558950d42b3305dd5ce05d3f7910bab9a1de1c6407077664c1f035b124a",
+      "hook": "This feature broke my brain (in the best way).",
+      "body": "game characters (NPCs) that remember what ALL players globally tell them.\n\nEvery conversation from every player gets aggregated. game characters (NPCs) evolve their dialogue based on collective wisdom.\n\nLaunch-day players teach future players through game character memory.\n\nIt's not AI. It's collective intelligence. And it works.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-17T02:15:36.932Z"
+    },
+    {
+      "contentId": 7,
+      "hash": "376d2b3f31930f078d13ce1fd83617b279b483835049876b23b22e16efa33a4c",
+      "hook": "What I'm learning about accessibility in Unity.",
+      "body": "Building accessibility from the start, not as an afterthought.\n\nMy approach:\n- Different modes = different content\n- Unique discovery opportunities\n- Testing every feature in every mode\n- Design from Day 1\n\nAccessibility drives innovation.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-17T18:02:12.741Z"
+    },
+    {
+      "contentId": 4,
+      "hash": "1ab781e9015f293e9c5dd2d7177a31d63df0c5f4f568f086fec357aff2e4659b",
+      "hook": "Just built a game mechanic that literally doesn't exist elsewhere.",
+      "body": "Accessibility modes unlock DIFFERENT secrets.\n\nProtanopia = Crimson Veil achievement\nDeuteranopia = Emerald Mysteries lore\nTritanopia = Azure Pathways\n\nEvery choice = new discovery.\n\nRevolutionary? Necessary.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-18T18:00:42.946Z"
+    },
+    {
+      "contentId": 41,
+      "hash": "ecaa79f6bcd013d04c473b893482c7de262f2787e492e7adb5bdda982dac852f",
+      "hook": "Unity optimization 101: memory management for mobile.",
+      "body": "Mobile Unity performance:\n\n1. Object pooling\n2. Texture compression (ASTC)\n3. Audio compression (Vorbis)\n4. Sprite atlasing\n5. Profile ALWAYS\n\nBefore: 400MB RAM, crashes\nAfter: 180MB RAM, runs on 2016 devices\n\nOptimization = accessibility.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-19T18:00:52.788Z"
+    },
+    {
+      "contentId": 21,
+      "hash": "f419eba07e1beb852338f5edc97ae7794cb10845a01bd0b6923e845f8c866ae8",
+      "hook": "Building this game one feature at a time.",
+      "body": "Progress:\n\n✓ 5 colorblind modes (unique content each)\n✓ Real moon phase integration\n✓ NPC collective memory\n✓ Digital Sunset wellness\n✓ 5 realms (Emberforge, Verdant, Echo, Dawn, Lantern)\n\nSolo dev, learning Unity, building in public.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-20T18:00:41.234Z"
+    },
+    {
+      "contentId": 14,
+      "hash": "4b4d4b83a7c534cfc5b272404c6ddb2fa0040785aad3d6de46a96a1d100d5f6d",
+      "hook": "Revenue from joy, not addiction.",
+      "body": "Monetization without manipulation:\n\n✓ Cosmetics (change sigil colors, particle effects)\n✓ Realm expansions (new content, not paywalls)\n✓ Support tiers (early access to features)\n\n✗ Energy systems\n✗ Loot boxes\n✗ Pay-to-win\n✗ FOMO limited offers\n\nEthical monetization is possible. Profitable too.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-21T19:28:20.696Z"
+    },
+    {
+      "contentId": 27,
+      "hash": "ecde59e125331470d28455e23a3cc7803ea19995d015a710748eeb85f697b4be",
+      "hook": "Most indie devs skip this step. That's why they fail.",
+      "body": "Accessibility testing.\n\nNot \"we'll add it later.\"\nNot \"it's too expensive.\"\nNot \"only a small percentage needs it.\"\n\nDay 1. Every feature. Every mode tested.\n\n20% of players have some accessibility need.\nThat's not niche. That's mainstream.\n\nSkip it, lose players. Simple.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-23T18:01:10.829Z"
+    },
+    {
+      "contentId": 42,
+      "hash": "5c2471c1d7edd58f8dea878fe1ba5a1f8aea3a4bc019c690a612a3590412506b",
+      "hook": "Learn this about WebGL.",
+      "body": "Unity WebGL killer: garbage collection.\n\nProblem: 100ms+ freezes.\n\nSolution:\n```csharp\nGarbageCollector.GCMode = GarbageCollector.Mode.Disabled;\nGarbageCollector.CollectIncremental(1000); // 1ms\n```\n\n60 FPS without stutters.\n\nWebGL = different rules.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-24T18:01:11.357Z"
+    },
+    {
+      "contentId": 29,
+      "hash": "e1a728e0edc6dc4e915b7c5b16d424dd0473574721e68d66235b22849adf7f0d",
+      "hook": "This accessibility feature became our best marketing.",
+      "body": "Colorblind modes revealing different secrets.\n\nStarted as: compliance.\nBecame: flagship innovation.\nResult: press coverage, excitement, demand.\n\nAccessibility = competitive advantage.\n\nDoing right is smart business.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-26T18:01:04.523Z"
+    },
+    {
+      "contentId": 32,
+      "hash": "3c2da7b5b8d2dc2a633a1b36084e0d6684958ed18f486dbece781bd02da3cb1a",
+      "hook": "Zero monetization dark patterns. By design.",
+      "body": "Monetization strategy:\n\n✓ Cosmetic upgrades (sigil colors, effects)\n✓ Realm expansions (new content)\n✓ Support tiers (patron benefits)\n\n✗ No energy timers\n✗ No loot boxes\n✗ No pay-to-win\n✗ No artificial scarcity\n✗ No FOMO\n\nEthical monetization = sustainable business.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-27T17:37:20.027Z"
+    },
+    {
+      "contentId": 101,
+      "hash": "2743a5a83eba07fb833e0e235afb59aca2540c70659f5d1c12d5543890281fc9",
+      "hook": "Solo dev iteration: testing my own game changed everything.",
+      "body": "During my own playtesting: 'ritual timing feels rushed.'\n\nMy response: made timing optional.\nNow supports:\n- Timed mode (challenge seekers)\n- Relaxed mode (take your time)\n- Assisted mode (no timing at all)\n\nAccessibility = player choice.\n\nNo team. Just me testing.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-27T17:48:33.799Z"
+    },
+    {
+      "contentId": 105,
+      "hash": "be43fd30dcb1a587fb4fc1d3c0f6836547a3550dc86fa8053298cb080eeeaa54",
+      "hook": "Sigil sharing just got magical.",
+      "body": "New feature: export your sigil as SVG.\n\nUse it:\n- As profile pic\n- On merch (coming soon)\n- In tattoos (yes, really)\n- Desktop wallpaper\n\nYour magical signature, truly yours.\n\nYour art, your game, your identity.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-27T17:48:49.630Z"
+    },
+    {
+      "contentId": 107,
+      "hash": "8e78a93132b337625b12cd65da4d231dbcdcb7ae00f23d450351d819935bd56d",
+      "hook": "The feature everyone requested is finally here.",
+      "body": "Time capsule voting system:\n\nPlayers upvote helpful capsules.\nHighly-voted capsules surface more often.\nToxic capsules sink into oblivion.\n\nCommunity-curated guidance.\n\nNo moderation needed—the community self-moderates.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-27T18:14:11.864Z"
+    },
+    {
+      "contentId": 19,
+      "hash": "3a229994813b3c1f661e3176728569c88f147b7274d6b7e16afb8ff88bbf7f18",
+      "hook": "Building a game where every player matters.",
+      "body": "In Ascendant Continuum:\n\nYour rituals become fossils. NPCs remember you. Launch-day = founder status. Your choices shape future experiences.\n\nTrying to make every player visible. Forever.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-28T18:00:10.810Z"
+    },
+    {
+      "contentId": 148,
+      "hash": "b491db23ff9302065205f268d2e354162f18ba48c599387fd658463616b4eace",
+      "hook": "Daily Constellation Challenge connects everyone",
+      "body": "Every player worldwide gets THE SAME procedural ritual daily. Share spoiler-free emoji grids (Wordle-style).\n\nGlobal touchpoint. Creates daily habit. Different success metrics (not just speed)...",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-29T18:03:43.612Z"
+    },
+    {
+      "contentId": 71,
+      "hash": "5aa758f920a490a96659a1cf008f2341218950431b4ebffea1c26e7164b9f47d",
+      "hook": "Games don't have to manipulate players to succeed.",
+      "body": "Anti-manipulation:\n\n✗ No dark patterns\n✗ No infinite treadmills\n✗ No social pressure\n✗ No artificial urgency\n\nEthical design isn't charity.\nIt's sustainable business.\n\nRespect players = long-term loyalty.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-29T18:04:40.177Z"
+    },
+    {
+      "contentId": 111,
+      "hash": "664c8e4cc53a4c8ebd0b8dee94c28c7be512340e85278e53db3a4385b26ccc65",
+      "hook": "Accessibility audit results: we exceeded WCAG AAA.",
+      "body": "WCAG compliance levels:\n\nA = minimum\nAA = standard\nAAA = exceptional\n\nOur results:\n✅ 4.8:1 contrast (exceeds AAA)\n✅ Full keyboard navigation\n✅ Screen reader optimization\n✅ No timing dependencies\n\nAccessibility is our foundation.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-30T18:01:00.575Z"
+    },
+    {
+      "contentId": 120,
+      "hash": "903a6c46e84161a1eccb79822c014205f4d6833581f999e61d054be936ccfa7e",
+      "hook": "Community feature request → implemented in 48 hours.",
+      "body": "Request: 'Can we skip ritual animations?'\n\nWhy it matters:\n- Speedrunners need it\n- Accessibility (motor impairments)\n- Replay value\n\nImplementation: hold-to-skip with 0.5s delay.\n\nShipped in 48 hours.\n\nListening > planning.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-31T18:01:07.587Z"
+    },
+    {
+      "contentId": 125,
+      "hash": "07347cd3537d6bed7cd310d25884bbf168db4ef2aacdd85d7a1554be7f6dfb70",
+      "hook": "Hidden feature: the Eternal Archive.",
+      "body": "Secret location: Eternal Archive\n\nUnlocks after: 30 day play streak\n\nContains:\n- Every time capsule you've written\n- All rituals you've completed\n- Your full decision history\n- Your evolving sigil timeline\n\nYour journey, archived forever.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-01T18:02:26.226Z"
+    },
+    {
+      "contentId": 157,
+      "hash": "a3f3065201e744dc61e69fa11d0278d5bb6a82749b1f7166170b0cee507c5b09",
+      "hook": "Your phone's gyroscope becomes a celestial navigation tool tonight",
+      "body": "Real Stargazing = game mechanic:\n- Hold phone to actual sky\n- Gyroscope detects angle (30-150° = sky-facing)\n- GPS + time verify night\n- Earn 3x XP for playing OUTSIDE\n\nOnly mobile game that rewards putting phone down to look up.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-02T18:25:54.585Z"
+    },
+    {
+      "contentId": 35,
+      "hash": "b30ddd348fe1bbbeb31cdfea046b1879e5efb38d95d0174abc4e57aee7ae0c1e",
+      "hook": "Digital Sunset: the anti-addiction feature.",
+      "body": "After 5 minutes:\n\n\"You've been exploring for 5 minutes. The universe will be here when you return.\"\n\n[Gentle reminder + optional exit]\n\nNo penalties. No pressure. Just care.\n\nGames can nurture instead of exploit.\n\nDigital wellness, built in.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-03T18:01:24.126Z"
+    },
+    {
+      "contentId": 80,
+      "hash": "11fd32fd9c87529962cfcbacdc3ca8b32361593488a28df8a81bc17d7aa7fb12",
+      "hook": "The player fantasy nobody's building for: mindful gaming.",
+      "body": "Underserved fantasy:\n\n'A game that respects my time.\nHelps me relax, not stress.\n5 minutes and feel fulfilled.\nNo guilt for leaving.'\n\nMindful gaming = blue ocean.\n\nBuild what others ignore.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-04T18:01:17.828Z"
+    },
+    {
+      "contentId": 137,
+      "hash": "85fe16cc053a8b3eaf3767bd083e3386357f619937b0f5805bfada18d57cf2a6",
+      "hook": "The Five Realms exist beyond normal space",
+      "body": "Emberforge (fire/creation), Verdant (nature/growth), Echo Fields (memory/stars), Dawn Citadel (light/knowledge), Lantern Ascension (liminal reflection)\n\nEach has unique rules, mysteries, ways of teaching seekers...",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-05T18:39:12.600Z"
+    },
+    {
+      "contentId": 52,
+      "hash": "f874720f1058289fd09c9d0cb4b7798277106d452684a74d1465bb64b04146fe",
+      "hook": "Your Unity (game engine) build is too big. Here's how to fix it.",
+      "body": "Unity build size fixes:\n\n1. Code stripping: High\n2. Texture: ASTC 6x6\n3. Audio: Vorbis 70\n4. Mesh: Med/High\n5. Strip unused shaders\n\nBefore: 120MB\nAfter: 38MB\n\n68% smaller. Same game.\n\nSize = accessibility.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-06T18:19:10.842Z"
+    },
+    {
+      "contentId": 134,
+      "hash": "478ea917be0c34ab023b44f136b726811d1c4daebc9cc18a00d4b53d292b9cde",
+      "hook": "The ritual that broke game conventions.",
+      "body": "Silence Ritual:\n\n- No music\n- No sound effects\n- No visual cues\n- Just presence\n\nPlayers said:\n'Most peaceful 2 minutes I've had in months.'\n\nSometimes less = more.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-07T18:32:36.242Z"
+    },
+    {
+      "contentId": 167,
+      "hash": "9ccb9690a524a94edfb129df54ee0a949a164a5a98934a6dac1821f2579df447",
+      "hook": "Collective player behavior literally rewrites the universe's history",
+      "body": "Living Lore system:\n- Tracks global moral choices (Compassion vs Justice)\n- If 60%+ choose Compassion for 7 days → lore tables update\n- Stories change permanently\n\nThe community authors the mythology through actions, not votes.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-08T18:01:16.398Z"
+    },
+    {
+      "contentId": 187,
+      "hash": "286eabd789413ba6a86a25ba3a1a34c8dd5f7bdc97502979e5d0680b03c632ec",
+      "hook": "1% chance. Can't be farmed. Can't be bought.",
+      "body": "Serendipity system:\n- 1 in 100 rituals → deity appears\n- 6 different deities, each with unique interactions\n- No pity system. Pure randomness.\n\n0.6% chance you'll go 500 rituals without seeing one.\n\nRarity creates stories worth telling.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-09T18:09:54.828Z"
+    },
+    {
+      "contentId": 170,
+      "hash": "7f4b2ffda20a1240c2ebdcc47ac01e766532a6aada99ea00850e91f7d3516407",
+      "hook": "August 12-13: Perseid meteor shower = massive in-game event",
+      "body": "Real astronomy triggers game content:\n- Perseids (Aug 12-13) = 'The Burning' event\n- Geminids (Dec 13-14) = Twin Deity appearance\n- 8 major showers/year\n\nWe don't schedule events. Earth's orbit does.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-10T18:00:33.269Z"
+    },
+    {
+      "contentId": 72,
+      "hash": "6d5c3825fb01bd3c449860356e1bb072bd5f5e843b81112693581f204b4c3ad8",
+      "hook": "What happens when you remove FOMO from a game?",
+      "body": "Removed FOMO:\n\n✗ No time-limited events\n✗ No daily login rewards\n✗ No limited cosmetics\n✗ No 'you missed out'\n\nResult: Players return BECAUSE they want to, not obligation.\n\nVoluntary engagement > forced retention.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-11T18:01:26.106Z"
+    },
+    {
+      "contentId": 150,
+      "hash": "c19f8780ad22413595a171400d49619f5c2ef60bd5fb0d2cdc7c1b6dd625af38",
+      "hook": "Screen Reader mode reveals audio-only secrets",
+      "body": "NPCs whisper different dialogue when VoiceOver/TalkBack active. Hidden sound-based rituals. Exclusive 'Storyteller's Sigil.'\n\nAccessibility unlocks content others can't access...",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-12T18:01:40.760Z"
+    },
+    {
+      "contentId": 121,
+      "hash": "119b2d3f62671e4fcedcb2b698eb4b76fc94607c1594348115ac622512449b60",
+      "hook": "The five realms, explained.",
+      "body": "🔥 Emberforge: Fire, forge, creation\n🌿 Verdant Hollows: Nature, growth, renewal\n🗿 Echo Fields: Stone, memory, permanence\n🌅 Dawn Cathedral: Light, hope, beginning\n🏮 Lantern Crossroads: Transition, choice, paths\n\nEach teaches different wisdom.\n\nWhere will you start?",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-13T18:01:51.271Z"
+    },
+    {
+      "contentId": 57,
+      "hash": "aaa6f2e81c1a17f076b4bc9205e8a739b542309a5d40adbd6ed1cb9c43e80e6b",
+      "hook": "The performance boost you're missing: object pooling.",
+      "body": "Instantiate/destroy = GC hell.\n\nObject pooling:\n\n```csharp\nQueue<GameObject> pool;\nGameObject Get() {\n  if (pool.Count > 0) return pool.Dequeue();\n  return Instantiate(prefab);\n}\nvoid Return(GameObject obj) {\n  pool.Enqueue(obj);\n}\n```\n\nSmooth FPS.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-17T18:05:03.456Z"
+    },
+    {
+      "contentId": 74,
+      "hash": "6b0a041ac241d0b0282c899030f6a5851cc5c3da012c684a87dbb15c69b1beab",
+      "hook": "The game industry's biggest lie: engagement = success.",
+      "body": "Engagement metrics are broken.\n\n\"Average session: 45 minutes!\"\nTranslation: Players feel trapped.\n\n\"90% day-7 return!\"\nTranslation: FOMO mechanics working.\n\nBetter metric: player wellbeing.\nDo they feel GOOD after playing?\n\nQuality > quantity.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-18T18:02:17.209Z"
+    },
+    {
+      "contentId": 152,
+      "hash": "9ef619d891d4dc790acd4d2375a1e41ffda41099545d9b7601e662d268f0829e",
+      "hook": "Ritual naming system: First discoverer names it forever",
+      "body": "Combine Double Flame + Glowing Thread = ?\n\nFirst player to discover gets to name the ritual. Name appears globally for all future players.\n\nHall of Fame for creators. Legacy...",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-19T18:01:26.358Z"
+    },
+    {
+      "contentId": 126,
+      "hash": "f1edbdf2cd85c8cdc90443e7c2c29d217ae092eb7b3527bcac8bdf1b833cffc3",
+      "hook": "Moon phases affect gameplay (literally).",
+      "body": "Real lunar data integration:\n\n🌑 New moon: Shadow rituals available\n🌓 Waxing: Growth-focused rituals\n🌕 Full moon: Enhanced sigil visibility\n🌗 Waning: Reflection rituals\n\nThe actual moon phase changes your game world.\n\nCosmic forces, real-time.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-20T18:03:39.634Z"
+    },
+    {
+      "contentId": 161,
+      "hash": "a03240ae886d1c697a6bb4df5dae2fe989769b54fe705900be599766bfa27827",
+      "hook": "Are you a Midnight Sage, Nature Mystic, or Dawn Seeker?",
+      "body": "Cosmic Identity System = 12 alignments emerging from behavior:\n- NOT character creation\n- NOT quiz results\n- Emerges from 50+ tracked metrics (time played, realms visited, choices made)\n\nYour identity BECOMES what you do.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-21T18:01:29.448Z"
+    },
+    {
+      "contentId": 195,
+      "hash": "501c00671c6615e4c617ad38d1899848e4426f873679eadf88ae9c6dfd030fdb",
+      "hook": "6 seconds. That's all you get.",
+      "body": "Ritual Replay system:\n- Game auto-captures your ritual's PEAK moment\n- AI analyzes visual FX, audio, input intensity\n- Saves 6-second clip (1080p)\n\nNo recording apps. No editing.\nJust the essence.\n\nShare or keep private. Your choice.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-22T18:01:56.275Z"
+    },
+    {
+      "contentId": 178,
+      "hash": "42fb861e4aea70a6ac88401606dca014afe0fea75f32c76c650cbfa79f0b77c6",
+      "hook": "Community Mysteries that take MONTHS to solve",
+      "body": "No single player has enough info.\n\n- Player A finds clue in Tokyo (3 AM)\n- Player B finds different clue in NYC (7 PM)\n- Player C does astronomy math (London)\n- 100+ players, 6 weeks, 2000 Discord messages\n\nCollaboration = mandatory.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-23T18:10:54.371Z"
+    },
+    {
+      "contentId": 203,
+      "hash": "5c314a1ef942cdf3cb5f2fa40f178305b9c0248b95f72a81c534f48323fc6dd5",
+      "hook": "This game will NEVER come to PC",
+      "body": "Mobile-first. Mobile-only. Forever.\n\nWhy?\n- GPS gameplay (PC = stuck at home)\n- Real-time weather (mobile sensors)\n- Always-with-you design\n- Touch > keyboard for sigil drawing\n\nConstraint breeds creativity. We're doubling down.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-24T18:01:12.293Z"
+    },
+    {
+      "contentId": 75,
+      "hash": "5a7c4b189213722e502c28074495bec7ee339c6ffefa85f6310344ac619ae972",
+      "hook": "Anti-grind philosophy: why we cap sessions at 5 minutes.",
+      "body": "I'm designing the game to encourage healthy play sessions:\n\n1-5 minute sessions.\nDigital Sunset reminder.\nNo infinite progression.\n\nWhy? Burnout kills communities.\nRespect preserves them.\n\nSustainable play = sustainable game.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-25T18:02:50.266Z"
+    },
+    {
+      "contentId": 198,
+      "hash": "12d68144ef529b74a4183f4c4eeeff3df93e571b9c62efc663db8786f354b449",
+      "hook": "'I deleted the game. But I kept the replays. They're memories now.'",
+      "body": "During my own playtesting as the solo dev:\n\n'I watched my first successful ritual replay 20 times. I cried. I didn't think I could do it, and there it was—proof that I DID.'\n\nReplays became emotional artifacts.\n\nNo testers. Just me.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-26T18:00:22.314Z"
+    },
+    {
+      "contentId": 182,
+      "hash": "f6bce22a4806066acc0494cfd1f9ade749caeabb04eff236d929c4ad1d3b7581",
+      "hook": "Real weather affects ritual effectiveness",
+      "body": "OpenWeather API sync:\n- Rain = -20% effectiveness\n- Thunderstorms = dangerous (5% lightning strike/min)\n- Snow = +30% timer (slower but easier)\n- Fog = visibility drops to 20m\n\nYour local weather = difficulty setting.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-27T18:01:54.406Z"
+    },
+    {
+      "contentId": 127,
+      "hash": "f191dfc3a5e75ea087504fff954495dc23a7d3e12da059f263134fe70a7340b6",
+      "hook": "Time capsules: player stories that made me cry.",
+      "body": "Real time capsule messages:\n\n'To whoever finds this: You matter.'\n\n'Finished this ritual after my grandmother died. She would've loved the flowers in Verdant.'\n\n'First game I've beaten since my accident. Thank you.'\n\nGames can be meaningful spaces.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-28T18:01:39.967Z"
+    },
+    {
+      "contentId": 191,
+      "hash": "a8a9abd56f7505b6adc4a6e31ad4d742bdb6ccfa13ed9f498f45f27e756003f2",
+      "hook": "Your rituals become archaeology",
+      "body": "Fossil system:\n- Day 0: Complete ritual\n- Day 7: Fossilizes\n- Day 30: Other players can excavate it\n\nThey see your sigil, weather, moon phase, success/failure.\nBut NOT your identity.\n\nAsynchronous multiplayer through time.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-29T18:01:28.467Z"
+    },
+    {
+      "contentId": 219,
+      "hash": "51a19b8eb272823c07a5bcc58e101f91195f0190e91573d30382d46c6db86b43",
+      "hook": "WebGL version is FREE and playable RIGHT NOW in your browser",
+      "body": "Play today:\n\nascendant-continuum.web.app/play\n\n• No download required\n• Works on any device\n• Chrome/Firefox/Safari/Edge\n• Mobile & desktop\n• Free forever\n\nAndroid/iOS coming soon.\n\nZero barriers to entry.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-30T18:01:03.715Z"
+    },
+    {
+      "contentId": 245,
+      "hash": "eae3e26e3ff3748e73bd59b1bd3a0f0f4ead243456c4cdafc2e894d284c424d9",
+      "hook": "The game tracks ZERO personal data. No analytics. No tracking. Just gameplay.",
+      "body": "Privacy commitment:\n\n• No Google Analytics\n• No Facebook Pixel\n• No advertising IDs\n• Optional anonymous cloud saves\n• All data stays local\n\nYour gameplay is yours alone.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-05-01T18:01:35.351Z"
+    },
+    {
+      "contentId": 84,
+      "hash": "bc5bce6f1889f2c914daaa6ccb2fcafd05295acc0ccfd622efbd6bf72cef0bcd",
+      "hook": "Why ethical game design is our competitive advantage.",
+      "body": "Competitors: race to bottom (dark patterns).\n\nUs: differentiation through ethics.\n\nPositioning:\n- 'The game that respects you'\n- 'Play mindfully'\n- 'Accessibility = discovery'\n\nPress, loyalty, brand strength.\n\nEthics = marketing gold.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-05-02T18:00:38.720Z"
+    },
+    {
+      "contentId": 82,
+      "hash": "4ded33e4fa3e07ac73d4658583a262eda275303b1fbba2f17f4b5a6675426ed2",
+      "hook": "Designing for engagement, not addiction.",
+      "body": "Addiction mechanics we refuse:\n\n✗ Variable reward schedules\n✗ Loss aversion (energy timers)\n✗ Social obligation (guild pressure)\n✗ Escalating commitment (sunk cost)\n\nInstead: transparency, agency, boundaries.\n\nHealth > habit.",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-05-03T20:47:29.486Z"
+    }
+  ],
+  "lastUpdated": "2026-05-05T01:04:22.750Z",
+  "_note": "Seeded automatically by: node scripts/validation/dedup-checker.js --backfill"
+}
