@@ -1,20 +1,25 @@
 {
-  "lastUpdated": "2026-05-05T02:18:48.157Z",
+  "lastUpdated": "2026-05-05T03:05:03.928Z",
   "dailyUpdates": [
     {
       "date": "2026-05-05",
-      "totalCommits": 5,
+      "totalCommits": 7,
+      "meaningfulCommits": 1,
+      "meaningful": true,
       "categories": {
         "features": 0,
-        "fixes": 0,
+        "fixes": 1,
         "improvements": 0,
         "docs": 0
       },
       "highlights": {
         "features": [],
-        "fixes": [],
+        "fixes": [
+          "Stop social posts firing on every push + remove analytics wording: daily-social.yml: remove push trigger (was posting to Bluesky/Mastodon/Discord on every commit); dev-update-social.yml: remove push trigger (same issue); publish-content.yml: remove push-on-blog-posts trigger (same issue); All three social workflows now run on schedule only, not on push; post-dev-update.js: filter out privacy/se..."
+        ],
         "improvements": []
       },
+      "summary": "We fixed Stop social posts firing on every push + remove analytics wording: daily-social.yml: remove push trigger (was posting to Bluesky/Mastodon/Discord on every commit); dev-update-social.yml: remove push trigger (same issue); publish-content.yml: remove push-on-blog-posts trigger (same issue); All three social automations now run on schedule only, not on push; post-dev-update.js: filter out privacy/se...",
       "blogPostUrl": "/blog/posts/daily-update-2026-05-05.html"
     },
     {
