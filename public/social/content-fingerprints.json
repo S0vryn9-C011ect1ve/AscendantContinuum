@@ -953,8 +953,17 @@
       "platform": "bluesky,mastodon,discord",
       "links": [],
       "postedAt": "2026-05-03T20:47:29.486Z"
+    },
+    {
+      "contentId": 40,
+      "hash": "02a1293fc2f43496622b0bd2a3dbbfaa58ef37469d3123320953647cc1dd925f",
+      "hook": "No streak traps, no guilt loops.",
+      "body": "Ascendant Continuum is built for short rituals you can finish and leave without penalties, timers, or fear of missing rewards. https://ascendant-continuum.web.app/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-05-05T02:51:23.660Z"
     }
   ],
-  "lastUpdated": "2026-05-05T02:51:16.162Z",
+  "lastUpdated": "2026-05-05T15:47:32.521Z",
   "_note": "Seeded automatically by: node scripts/validation/dedup-checker.js --backfill"
 }

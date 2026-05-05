@@ -1564,7 +1564,6 @@
     {
       "id": 96,
       "type": "behindScenes",
-      "hook": "Why we built our own analytics instead of using off-the-shelf.",
       "hook": "No tracking. Not now, not ever. Here's what that means.",
       "body": "Privacy commitment, confirmed:\n\n- No analytics SDKs installed\n- No event tracking\n- No advertising IDs\n- No session recording\n- Firestore used only for optional anonymous cloud saves\n\nTracking is not present anywhere in the game or website.\n\nhttps://ascendant-continuum.web.app/privacy.html",
       "platforms": [
@@ -3792,9 +3791,10 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:13:01.081Z"
+      "rewrittenAt": "2026-05-05T01:13:01.081Z",
+      "lastUsed": "2026-05-05T15:47:40.604Z"
     },
     {
       "id": 234,

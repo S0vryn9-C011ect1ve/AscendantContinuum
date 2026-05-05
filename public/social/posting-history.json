@@ -1754,17 +1754,48 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 61,
+      "contentId": 233,
+      "contentType": "devUpdate",
+      "hook": "Color mode breakdown now documented as a reference post.",
+      "topics": [
+        "colorblind-accessibility"
+      ],
+      "timestamp": "2026-05-05T15:47:40.606Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3ml4jvo5yc22v"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116522749597383955"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 56,
+    "totalPosts": 57,
     "byPlatform": {
-      "bluesky": 56,
-      "mastodon": 56,
-      "discord": 54
+      "bluesky": 57,
+      "mastodon": 57,
+      "discord": 55
     },
     "byType": {
-      "devUpdate": 26,
+      "devUpdate": 27,
       "devEducation": 13,
       "designPhilosophy": 11,
       "behindScenes": 0,
