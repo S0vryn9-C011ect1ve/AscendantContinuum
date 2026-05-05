@@ -1785,6 +1785,33 @@
           "success": true
         }
       ]
+    },
+    {
+      "timestamp": "2026-05-05T20:49:24.952Z",
+      "type": "devUpdate",
+      "content": "🔧 Dev Update\n\n✨ Feature:\n• What's New pipeline — user-impact filtering + plain English + activity gate\n\n#IndieGameDev #GameDev #Unity",
+      "platforms": {
+        "bluesky": {
+          "success": true,
+          "platform": "bluesky",
+          "uri": "at://did:plc:lb4jy3h5kqhtgemunsuheqzd/app.bsky.feed.post/3ml52rfs5du2i",
+          "cid": "bafyreibapewtfaheubppil5byru7vrl5wfszpi3c7yfjirvcnwdtpkj6pu",
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3ml52rfs5du2i",
+          "timestamp": "2026-05-05T20:49:25.455Z"
+        },
+        "mastodon": {
+          "success": true,
+          "platform": "mastodon",
+          "id": "116523936384838559",
+          "url": "https://mastodon.social/@AscendantContinuum/116523936384838559",
+          "timestamp": "2026-05-05T20:49:26.033Z"
+        },
+        "discord": {
+          "success": true,
+          "platform": "discord",
+          "timestamp": "2026-05-05T20:49:26.544Z"
+        }
+      }
     }
   ],
   "stats": {
