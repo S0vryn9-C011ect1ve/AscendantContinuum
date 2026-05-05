@@ -1725,17 +1725,46 @@
           "timestamp": "2026-05-05T02:26:39.941Z"
         }
       }
+    },
+    {
+      "id": 60,
+      "contentId": 40,
+      "contentType": "devUpdate",
+      "hook": "No streak traps, no guilt loops.",
+      "topics": [],
+      "timestamp": "2026-05-05T02:51:23.660Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3ml36jlvkxl2i"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116519697197003115"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 55,
+    "totalPosts": 56,
     "byPlatform": {
-      "bluesky": 55,
-      "mastodon": 55,
-      "discord": 53
+      "bluesky": 56,
+      "mastodon": 56,
+      "discord": 54
     },
     "byType": {
-      "devUpdate": 25,
+      "devUpdate": 26,
       "devEducation": 13,
       "designPhilosophy": 11,
       "behindScenes": 0,

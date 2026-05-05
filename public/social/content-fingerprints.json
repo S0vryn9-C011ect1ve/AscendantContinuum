@@ -476,8 +476,485 @@
       "platform": "bluesky,mastodon,discord",
       "links": [],
       "postedAt": "2026-05-03T20:47:29.486Z"
+    },
+    {
+      "contentId": 9,
+      "hash": "8292a46e3c79a2db07293e91e332d3525779a52becfa750203730a2172af78bf",
+      "hook": "Time-friendly design means players can leave with zero penalty.",
+      "body": "Digital Sunset in Ascendant Continuum is a soft stop cue, not a lockout. You keep progress, skip streak anxiety, and return when ready. https://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon",
+      "links": [],
+      "postedAt": "2026-03-14T05:02:22.560Z"
+    },
+    {
+      "contentId": 16,
+      "hash": "687e68029e03598f252e58f8643096bfd3092f3c315859f63b83bf9a1d62d73b",
+      "hook": "The Emberforge realm: where creation itself is the ritual.",
+      "body": "Tap flames. Hold embers. Trace sigils of fire.\n\nEach spark you release becomes a constellation for future seekers.\n\nYour creations persist in the universe. Forever.\n\n[Image:...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon",
+      "links": [],
+      "postedAt": "2026-03-14T05:02:53.092Z"
+    },
+    {
+      "contentId": 10,
+      "hash": "fa6acc0d9b825d914db9a49299f09191242dbba9b52de259cf3c84f81b76dca8",
+      "hook": "What if accessibility unlocked secrets instead of just being an option?",
+      "body": "Traditional: Accessibility = compromise.\n\nUs: Accessibility = discovery tool.\n\nColorblind modes reveal DIFFERENT secrets.\n\nNo \"default\" experience. All modes equ...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-14T05:09:46.941Z"
+    },
+    {
+      "contentId": 1,
+      "hash": "3cf8fcadfc7a0b5da0048f38d76978cd28828e6ab4f9cd081c1f37708f7c750b",
+      "hook": "Accessibility mode should change play, not just color.",
+      "body": "Ascendant Continuum ties each mode to different finds:\nProtanopia = Emberforge fire runes\nDeuteranopia = Verdant sigils\nTritanopia = Echo Fields patterns\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-17T02:13:47.351Z"
+    },
+    {
+      "contentId": 6,
+      "hash": "215ad0fe4b30eb4a285411f7d6523cc253e413f696a84030c685c7ace34672c1",
+      "hook": "Unity pattern: 5 colorblind modes, one UI.",
+      "body": "Shader transforms plus pattern overlays let each mode reveal distinct ritual clues in Ascendant Continuum, without duplicate assets.\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-17T02:15:00.318Z"
+    },
+    {
+      "contentId": 2,
+      "hash": "ee7c15c031fb21780d5da05603dd4a804a5491cf513ba6c63020b94aec3b61d7",
+      "hook": "Realm Dwellers remember what players share.",
+      "body": "In Ascendant Continuum, dialogue shifts from global conversation history. Early players leave traces future players hear.\n\nNot AI; Firebase aggregation.\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-17T02:15:36.932Z"
+    },
+    {
+      "contentId": 7,
+      "hash": "b279ddacca8d9269826503e00492c3d14f78e71afe46a20d2097472be1125b40",
+      "hook": "What I'm learning about accessibility in Unity.",
+      "body": "Building accessibility from the start, not as an afterthought.\n\nMy approach:\n- Different modes = different content\n- Unique discovery opportunities\n- Testing every feature in every mode...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-17T18:02:12.741Z"
+    },
+    {
+      "contentId": 4,
+      "hash": "f03622f15afab7d53f24f35b229f9ab3fe15251b7686e5c0991ac03823c82a65",
+      "hook": "Three colorblind modes, three different secrets.",
+      "body": "Protanopia: Crimson Veil.\nDeuteranopia: Emerald Mysteries.\nTritanopia: Azure Pathways.\n\nAccessibility is part of discovery in Ascendant Continuum.\n\nhttps://ascendant-continuum.web.app/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-18T18:00:42.946Z"
+    },
+    {
+      "contentId": 41,
+      "hash": "35432e338625e3cc2a42785eb8bef20d8e2a0cd5b10a8cc351e259d128e7f978",
+      "hook": "Unity optimization 101: memory management for mobile.",
+      "body": "Mobile Unity performance:\n\n1. Object pooling\n2. Texture compression (ASTC)\n3. Audio compression (Vorbis)\n4. Sprite atlasing\n5. Profile ALWAYS\n\nBefore: 400MB RAM, crashes\nAfter: 18...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-19T18:00:52.788Z"
+    },
+    {
+      "contentId": 21,
+      "hash": "bb30b30994f298a277a1312b6fed5b226533bde2181216f0b691242bc78cf86f",
+      "hook": "Current build snapshot from this week.",
+      "body": "Status: five realms online, lunar ritual logic active, Realm Dwellers memory stable, and Digital Sunset tuned for 1-5 minute sessions. https://ascendant-continuum.web.app/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-20T18:00:41.234Z"
+    },
+    {
+      "contentId": 14,
+      "hash": "25cee3392949cf330341b616c952d5b751830b0dc1ae461115de0a63f7cc6ade",
+      "hook": "Revenue from joy, not addiction.",
+      "body": "Monetization without manipulation:\n\n✓ Cosmetics (change sigil colors, particle effects)\n✓ Realm expansions (new content, not paywalls)\n✓ Support tiers (early access to features)\n\n✗ Energy systems\n✗ Lo...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-21T19:28:20.696Z"
+    },
+    {
+      "contentId": 27,
+      "hash": "1a6ebea12ad54200a3eda9b10d947162f73d6d6dc26734d816cc071d5c6fa658",
+      "hook": "Most indie devs skip this step. That's why they fail.",
+      "body": "Accessibility testing.\n\nNot \"we'll add it later.\"\nNot \"it's too expensive.\"\nNot \"only a small percentage needs it.\"\n\nDay 1. Every feature. Every mode tested.\n\n20% of players have...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-23T18:01:10.829Z"
+    },
+    {
+      "contentId": 42,
+      "hash": "4c3914e37ea21bb519bb2c0e494ac87f3cf03141315da2ccb16fa8c278d80157",
+      "hook": "Learn this about WebGL.",
+      "body": "Unity WebGL killer: garbage collection.\n\nProblem: 100ms+ freezes.\n\nSolution:\n```csharp\nGarbageCollector.GCMode = GarbageCollector.Mode.Disabled;\nGarbageCollector.CollectIncremental(1000); // 1ms\n```\n\n60 FPS wi...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-24T18:01:11.357Z"
+    },
+    {
+      "contentId": 29,
+      "hash": "4ae40e23639656c17a03b0f1ab0015fc6e5d589d30cbf41e84d7a94778363b19",
+      "hook": "This accessibility feature became our best marketing.",
+      "body": "Colorblind modes revealing different secrets.\n\nStarted as: compliance.\nBecame: flagship innovation.\nResult: press coverage, excitement, demand.\n\nAccessibility = competitive advant...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-26T18:01:04.523Z"
+    },
+    {
+      "contentId": 32,
+      "hash": "80254c3a4d678b0cd79d5cd47f056693a3599ad217364cd034171fbbd811e2e2",
+      "hook": "Zero monetization dark patterns. By design.",
+      "body": "Monetization strategy:\n\n✓ Cosmetic upgrades (sigil colors, effects)\n✓ Realm expansions (new content)\n✓ Support tiers (patron benefits)\n\n✗ No energy timers\n✗ No loot boxes\n✗ No pay-to-win\n✗...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-27T17:37:20.027Z"
+    },
+    {
+      "contentId": 101,
+      "hash": "59e72ecc11de0761b6b4e3ace362eaba3c260ccdc74e94bca232ddf8baf8f99a",
+      "hook": "Solo dev iteration: testing my own game changed everything.",
+      "body": "During my own playtesting: 'ritual timing feels rushed.'\n\nMy response: made timing optional.\nNow supports:\n- Timed mode (challenge seekers)\n- Relaxed mode (take your time)\n-...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-27T17:48:33.799Z"
+    },
+    {
+      "contentId": 105,
+      "hash": "2f26296dc310c50c96edd5caf189c2aa1152a2af8bc2495fb4796e47c6fe2644",
+      "hook": "Sigil sharing just got magical.",
+      "body": "New feature: export your sigil as SVG.\n\nUse it:\n- As profile pic\n- On merch (coming soon)\n- In tattoos (yes, really)\n- Desktop wallpaper\n\nYour magical signature, truly yours.\n\nYour art, your game, your...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-27T17:48:49.630Z"
+    },
+    {
+      "contentId": 107,
+      "hash": "78d783afca8e12d2aef4f9a748027676143a0505570aaa7cc3c54252732c4adb",
+      "hook": "The feature everyone requested is finally here.",
+      "body": "Time capsule voting system:\n\nPlayers upvote helpful capsules.\nHighly-voted capsules surface more often.\nToxic capsules sink into oblivion.\n\nCommunity-curated guidance.\n\nNo moderation ne...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-27T18:14:11.864Z"
+    },
+    {
+      "contentId": 19,
+      "hash": "4c1f2b1f082464181e7c49fa1a4d1ce113da0c4d6b50abed0f3d90ea1ba48edb",
+      "hook": "Building a game where every player matters.",
+      "body": "In Ascendant Continuum:\n\nYour rituals become fossils. Realm Dwellers remember you. Launch-day = founder status. Your choices shape future experiences.\n\nTrying to make every player visible....\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-28T18:00:10.810Z"
+    },
+    {
+      "contentId": 148,
+      "hash": "f7e151381cc32cd0b74f30ae537933725ff5637d7b21de23f57625e3ef8b1a72",
+      "hook": "Daily Constellation Challenge connects everyone",
+      "body": "Every player worldwide gets THE SAME procedural ritual daily. Share spoiler-free emoji grids (Wordle-style).\n\nGlobal touchpoint. Creates daily habit. Different success metrics (not just...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-29T18:03:43.612Z"
+    },
+    {
+      "contentId": 71,
+      "hash": "a4a3af016785aa16a9ce6a5a6a6701070a83cd8289a7c421d834c181e42bc4c9",
+      "hook": "Games don't have to manipulate players to succeed.",
+      "body": "Anti-manipulation:\n\n✗ No dark patterns\n✗ No infinite treadmills\n✗ No social pressure\n✗ No artificial urgency\n\nEthical design isn't charity.\nIt's sustainable business.\n\nRespect player...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-29T18:04:40.177Z"
+    },
+    {
+      "contentId": 111,
+      "hash": "9d0ba18d8f464f723e08c3f85d858a2874ed0765fa10bbe8d9bed547e49fba72",
+      "hook": "Accessibility audit results: we exceeded WCAG AAA.",
+      "body": "WCAG compliance levels:\n\nA = minimum\nAA = standard\nAAA = exceptional\n\nOur results:\n✅ 4.8:1 contrast (exceeds AAA)\n✅ Full keyboard navigation\n✅ Screen reader optimization\n✅ No timing...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-30T18:01:00.575Z"
+    },
+    {
+      "contentId": 120,
+      "hash": "9880bbba881f8eb272cebf83ea47c345e283c0b69d2e5900131a37654a03e48a",
+      "hook": "Community feature request → implemented in 48 hours.",
+      "body": "Request: 'Can we skip ritual animations?'\n\nWhy it matters:\n- Speedrunners need it\n- Accessibility (motor impairments)\n- Replay value\n\nImplementation: hold-to-skip with 0.5s delay....\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-03-31T18:01:07.587Z"
+    },
+    {
+      "contentId": 125,
+      "hash": "279ffab60f3238f3d716dfdcf0f51954fbeaf8f9cfe8b81a6a1f9869833974b2",
+      "hook": "Hidden feature: the Eternal Archive.",
+      "body": "Secret location: Eternal Archive\n\nUnlocks after: 30 day play streak\n\nContains:\n- Every time capsule you've written\n- All rituals you've completed\n- Your full decision history\n- Your evolving sigil...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-01T18:02:26.226Z"
+    },
+    {
+      "contentId": 157,
+      "hash": "0798466e0ddea87fa5326dd076c6f04616c69192a3b5183272713d2933985b44",
+      "hook": "Your phone's gyroscope becomes a celestial navigation tool tonight",
+      "body": "Real Stargazing = game mechanic:\n- Hold phone to actual sky\n- Gyroscope detects angle (30-150° = sky-facing)\n- GPS + time verify night\n- Earn 3x XP for playing OUTSID...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-02T18:25:54.585Z"
+    },
+    {
+      "contentId": 35,
+      "hash": "0a4adf0ac887fda5974dc43aeb5fa6a41cab51041d7f9a1c34ad02762442faa1",
+      "hook": "Digital Sunset: the anti-addiction feature.",
+      "body": "After 5 minutes:\n\n\"You've been exploring for 5 minutes. The universe will be here when you return.\"\n\n[Gentle reminder + optional exit]\n\nNo penalties. No pressure. Just care.\n\nGames can nurt...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-03T18:01:24.126Z"
+    },
+    {
+      "contentId": 80,
+      "hash": "f0fb6651f4844f750a471c397b5824ed67bd9cd6bd0ef9ddac99ae44e461dd8b",
+      "hook": "The player fantasy nobody's building for: mindful gaming.",
+      "body": "Underserved fantasy:\n\n'A game that respects my time.\nHelps me relax, not stress.\n5 minutes and feel fulfilled.\nNo guilt for leaving.'\n\nMindful gaming = blue ocean.\n\nBuild what...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-04T18:01:17.828Z"
+    },
+    {
+      "contentId": 137,
+      "hash": "50c1648b587ed22a1eb8c424ccb054df75d9e320d52bd5f07712718b3b03e513",
+      "hook": "Lore note: each realm is a lens, not just a biome.",
+      "body": "The five realms encode distinct philosophies of creation, growth, memory, illumination, and reflection. https://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-05T18:39:12.600Z"
+    },
+    {
+      "contentId": 52,
+      "hash": "2c62a92aaef9debb1f137250b2fbfdb540fd8d6cf8fb7623199edc4bbce6874c",
+      "hook": "How I cut WebGL build size without gutting visuals.",
+      "body": "Main wins were shader stripping, compressed textures, and audio settings cleanup. This was boring work and absolutely worth it. https://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-06T18:19:10.842Z"
+    },
+    {
+      "contentId": 134,
+      "hash": "13444b32fdef0b6ca705792793022eb25e0658a5804b6c1e7333f0be56578f75",
+      "hook": "The ritual that broke game conventions.",
+      "body": "Silence Ritual:\n\n- No music\n- No sound effects\n- No visual cues\n- Just presence\n\nPlayers said:\n'Most peaceful 2 minutes I've had in months.'\n\nSometimes less = more.\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-07T18:32:36.242Z"
+    },
+    {
+      "contentId": 167,
+      "hash": "b6f742703fd2361bb586d3e2de533abac31515f7916f3364adcb86583d60daee",
+      "hook": "Collective player behavior literally rewrites the universe's history",
+      "body": "Living Lore system:\n- Tracks global moral choices (Compassion vs Justice)\n- If 60%+ choose Compassion for 7 days → lore tables update\n- Stories change permanently...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-08T18:01:16.398Z"
+    },
+    {
+      "contentId": 187,
+      "hash": "1856e20a29a10c31a6f8ef85caf479fe832c6fd49959dc7b99f31ee61d23f3a7",
+      "hook": "1% chance. Can't be farmed. Can't be bought.",
+      "body": "Serendipity system:\n- 1 in 100 rituals → deity appears\n- 6 different deities, each with unique interactions\n- No pity system. Pure randomness.\n\n0.6% chance you'll go 500 rituals without se...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-09T18:09:54.828Z"
+    },
+    {
+      "contentId": 170,
+      "hash": "d42b5cdd528cc8d1e24cfab8e7f7997f2c76409773f5b4130304970617fabad8",
+      "hook": "August 12-13: Perseid meteor shower = massive in-game event",
+      "body": "Real astronomy triggers game content:\n- Perseids (Aug 12-13) = 'The Burning' event\n- Geminids (Dec 13-14) = Twin Deity appearance\n- 8 major showers/year\n\nWe don't schedule e...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-10T18:00:33.269Z"
+    },
+    {
+      "contentId": 72,
+      "hash": "a797570717cd11037357a87b81d61b6ba61b8ab58995f69424b925f92f4b9b9f",
+      "hook": "What happens when you remove FOMO from a game?",
+      "body": "Removed FOMO:\n\n✗ No time-limited events\n✗ No daily login rewards\n✗ No limited cosmetics\n✗ No 'you missed out'\n\nResult: Players return BECAUSE they want to, not obligation.\n\nVoluntary eng...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-11T18:01:26.106Z"
+    },
+    {
+      "contentId": 150,
+      "hash": "c860338aa16349749f05a455b70ad3d2c35c0c37c708031d17a30959ab16e871",
+      "hook": "Screen Reader mode reveals audio-only secrets",
+      "body": "Realm Dwellers whisper different dialogue when VoiceOver/TalkBack active. Hidden sound-based rituals. Exclusive 'Storyteller's Sigil.'\n\nAccessibility unlocks content others can't access...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-12T18:01:40.760Z"
+    },
+    {
+      "contentId": 121,
+      "hash": "a711d3f760d7b627b267b06e5558c065b5844e96754d4cd3dce2ad52871b31bd",
+      "hook": "Quick orientation for the five realms.",
+      "body": "Emberforge, Verdant Sanctuary, Echo Fields, Dawn Citadel, and Lantern Ascension each frame different ritual moods and goals. https://ascendant-continuum.web.app/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-13T18:01:51.271Z"
+    },
+    {
+      "contentId": 57,
+      "hash": "fae3a571b339c6e91e942c32287784702c3c04d5994053b82e30f8cbab449dd5",
+      "hook": "The performance boost you're missing: object pooling.",
+      "body": "Instantiate/destroy = GC hell.\n\nObject pooling:\n\n```csharp\nQueue<GameObject> pool;\nGameObject Get() {\n  if (pool.Count > 0) return pool.Dequeue();\n  return Instantiate(prefab);\n}...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-17T18:05:03.456Z"
+    },
+    {
+      "contentId": 74,
+      "hash": "886fd12b6da346ef348b42e5420233859e251e0ff93e28413896d7cfa1bb6835",
+      "hook": "The game industry's biggest lie: engagement = success.",
+      "body": "Engagement metrics are broken.\n\n\"Average session: 45 minutes!\"\nTranslation: Players feel trapped.\n\n\"90% day-7 return!\"\nTranslation: FOMO mechanics working.\n\nBetter metric: player...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-18T18:02:17.209Z"
+    },
+    {
+      "contentId": 152,
+      "hash": "a84e43dcca1d621806ce1525ef7e8517f279a4790a8727e0b4ea1c107d5f22c2",
+      "hook": "Ritual naming system: First discoverer names it forever",
+      "body": "Combine Double Flame + Glowing Thread = ?\n\nFirst player to discover gets to name the ritual. Name appears globally for all future players.\n\nHall of Fame for creators. Legacy...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-19T18:01:26.358Z"
+    },
+    {
+      "contentId": 126,
+      "hash": "49761dcdbee4a2b7a8f479317914273b3b8953f075ced552381434363e5ef3b8",
+      "hook": "Moon phase effects are subtle on purpose.",
+      "body": "In Ascendant Continuum, lunar state shifts ritual tone and visibility cues instead of flipping the whole game into event mode. https://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-20T18:03:39.634Z"
+    },
+    {
+      "contentId": 161,
+      "hash": "1a9bbf891234c721d839a58b66ed192f7604a552f846b13fadeaa0a5c2df7f7b",
+      "hook": "Are you a Midnight Sage, Nature Mystic, or Dawn Seeker?",
+      "body": "Cosmic Identity System = 12 alignments emerging from behavior:\n- NOT character creation\n- NOT quiz results\n- Emerges from 50+ tracked metrics (time played, realms visited, choic...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-21T18:01:29.448Z"
+    },
+    {
+      "contentId": 195,
+      "hash": "13896dec882ac0419f45555943ca215203b8eb2f91b41819a09f62f1d1aad4a9",
+      "hook": "6 seconds. That's all you get.",
+      "body": "Ritual Replay system:\n- Game auto-captures your ritual's PEAK moment\n- AI analyzes visual FX, audio, input intensity\n- Saves 6-second clip (1080p)\n\nNo recording apps. No editing.\nJust the essence.\n\nShar...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-22T18:01:56.275Z"
+    },
+    {
+      "contentId": 178,
+      "hash": "5fe45af2a4a08cb1583db90f1d45d9a532af8de550c1e8c89aaeea4d411aa781",
+      "hook": "Community Mysteries that take MONTHS to solve",
+      "body": "No single player has enough info.\n\n- Player A finds clue in Tokyo (3 AM)\n- Player B finds different clue in NYC (7 PM)\n- Player C does astronomy math (London)\n- 100+ players, 6 weeks, 200...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-23T18:10:54.371Z"
+    },
+    {
+      "contentId": 203,
+      "hash": "7bdfc0bbb2332be378561df2057ee670040561ce2ecb403dea0d7f46948ad320",
+      "hook": "This game will NEVER come to PC",
+      "body": "Mobile-first. Mobile-only. Forever.\n\nWhy?\n- GPS gameplay (PC = stuck at home)\n- Real-time weather (mobile sensors)\n- Always-with-you design\n- Touch > keyboard for sigil drawing\n\nConstraint breeds creat...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-24T18:01:12.293Z"
+    },
+    {
+      "contentId": 75,
+      "hash": "9bca83fe4f1a7c43900d93d26799f8385a8a5dc150ca72d2fedb629955c6cf31",
+      "hook": "Anti-grind philosophy: why we cap sessions at 5 minutes.",
+      "body": "I'm designing the game to encourage healthy play sessions:\n\n1-5 minute sessions.\nDigital Sunset reminder.\nNo infinite progression.\n\nWhy? Burnout kills communities.\nRespect pres...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-25T18:02:50.266Z"
+    },
+    {
+      "contentId": 198,
+      "hash": "3a8dfc0016f8923f3b5ddcdc9d0431acf4840aa62932a23ddc31f238b96a4fe3",
+      "hook": "'I deleted the game. But I kept the replays. They're memories now.'",
+      "body": "During my own playtesting as the solo dev:\n\n'I watched my first successful ritual replay 20 times. I cried. I didn't think I could do it, and there it was—proof that...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-26T18:00:22.314Z"
+    },
+    {
+      "contentId": 182,
+      "hash": "55ae92c37e0b4a689361762ef507c5b4e4708563de1929a574f64d98b2638050",
+      "hook": "Real weather affects ritual effectiveness",
+      "body": "OpenWeather API sync:\n- Rain = -20% effectiveness\n- Thunderstorms = dangerous (5% lightning strike/min)\n- Snow = +30% timer (slower but easier)\n- Fog = visibility drops to 20m\n\nYour local wea...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-27T18:01:54.406Z"
+    },
+    {
+      "contentId": 127,
+      "hash": "3253db8a93adc7ab57e26a04a9071f48391efb89f1466a95e7aadb0841fe53b8",
+      "hook": "Time capsules: player stories that made me cry.",
+      "body": "Real time capsule messages:\n\n'To whoever finds this: You matter.'\n\n'Finished this ritual after my grandmother died. She would've loved the flowers in Verdant.'\n\n'First game I've beaten...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-28T18:01:39.967Z"
+    },
+    {
+      "contentId": 191,
+      "hash": "73d447c177adbc60c1e302a629854f19dafe79fe20c9b4125e78f32a9e3b9b90",
+      "hook": "Your rituals become archaeology",
+      "body": "Fossil system:\n- Day 0: Complete ritual\n- Day 7: Fossilizes\n- Day 30: Other players can excavate it\n\nThey see your sigil, weather, moon phase, success/failure.\nBut NOT your identity.\n\nAsynchronous mult...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-29T18:01:28.467Z"
+    },
+    {
+      "contentId": 219,
+      "hash": "b9a14a7cdfc4f193b50ae7bcc905e17cd5469aa88e48a19b5f827c7ce44d3016",
+      "hook": "WebGL version is FREE and playable RIGHT NOW in your browser",
+      "body": "Play today:\n\nascendant-continuum.web.app/play\n\n• No download required\n• Works on any device\n• Chrome/Firefox/Safari/Edge\n• Mobile & desktop\n• Free forever\n\nAndroid/iOS comi...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-04-30T18:01:03.715Z"
+    },
+    {
+      "contentId": 245,
+      "hash": "531b6683472fde7a0fdd13a3406e6c7c338f68b18c29772adbd66ce84c0cfda4",
+      "hook": "The game tracks ZERO personal data. No analytics. No tracking. Just gameplay.",
+      "body": "Privacy commitment:\n\n• No Google Analytics\n• No Facebook Pixel\n• No advertising IDs\n• Optional anonymous cloud saves\n• All data stays local\n\nYour gameplay...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-05-01T18:01:35.351Z"
+    },
+    {
+      "contentId": 84,
+      "hash": "79c5baeb945861252bab600d1d2f5a421d70cc02c62b7f5c39600ec356daf03f",
+      "hook": "Why ethical game design is our competitive advantage.",
+      "body": "Competitors: race to bottom (dark patterns).\n\nUs: differentiation through ethics.\n\nPositioning:\n- 'The game that respects you'\n- 'Play mindfully'\n- 'Accessibility = discovery'\n\nPr...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-05-02T18:00:38.720Z"
+    },
+    {
+      "contentId": 82,
+      "hash": "92471028a757de5c541245af8062e27adcafacc95e735ddcb4dd12879d652f7d",
+      "hook": "Designing for engagement, not addiction.",
+      "body": "Addiction mechanics we refuse:\n\n✗ Variable reward schedules\n✗ Loss aversion (energy timers)\n✗ Social obligation (guild pressure)\n✗ Escalating commitment (sunk cost)\n\nInstead: transparency, age...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "platform": "bluesky,mastodon,discord",
+      "links": [],
+      "postedAt": "2026-05-03T20:47:29.486Z"
     }
   ],
-  "lastUpdated": "2026-05-05T01:04:22.750Z",
+  "lastUpdated": "2026-05-05T02:51:16.162Z",
   "_note": "Seeded automatically by: node scripts/validation/dedup-checker.js --backfill"
 }
