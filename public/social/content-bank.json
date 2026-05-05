@@ -2166,9 +2166,8 @@
     {
       "id": 133,
       "type": "devUpdate",
-      "hook": "Player behavior analytics: what we learned.",
-      "hook": "What I designed for instead of tracking players.",
-      "body": "Instead of collecting player data, I designed the game to reflect what I'd want:\n\n- Sessions that end before they overstay\n- No streak pressure\n- Accessibility built in from day one\n- Progress that feels earned, not extracted\n\nNo data needed to know what's respectful.\n\nhttps://ascendant-continuum.web.app/blog/",
+      "hook": "Design choices without telemetry.",
+      "body": "With zero tracking and zero analytics, design is guided by clear principles:\n\n- Sessions that end before they overstay\n- No streak pressure\n- Accessibility built in from day one\n- Progress that feels earned, not extracted\n\nRespect first. Data collection not required.\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",
