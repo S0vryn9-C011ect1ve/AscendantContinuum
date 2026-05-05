@@ -732,16 +732,28 @@
       "tags": [],
       "excerpt": "Daily development update for January 31, 2026: 8 commits with 5 features, 0 fixes, and 0 improvements.",
       "hook": "Daily development update for January 31, 2026: 8 commits with 5 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Ethical Monetization: Fair Pricing in an Exploitative Industry",
+      "slug": "ethical-monetization-fair-pricing-in-an-exploitative-industry",
+      "date": "2026-05-05",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Design Philosophy",
+      "excerpt": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add..."
     }
   ],
   "stats": {
-    "totalPosts": 70,
+    "totalPosts": 71,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 8,
       "Tutorial": 9,
-      "Design Philosophy": 12,
+      "Design Philosophy": 13,
       "Dev Diary": 11,
       "Community Insight": 1
     },
@@ -753,7 +765,7 @@
       "bootstrap": 1,
       "accessibility": 3,
       "colorblind": 2,
-      "game-design": 14,
+      "game-design": 15,
       "technical": 3,
       "innovation": 2,
       "behind-the-scenes": 12,
@@ -764,8 +776,8 @@
       "tutorial": 9,
       "unity": 21,
       "game-dev": 9,
-      "ethics": 9,
-      "philosophy": 8,
+      "ethics": 10,
+      "philosophy": 9,
       "ai": 1,
       "community": 2,
       "systems": 1,

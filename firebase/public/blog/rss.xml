@@ -5,7 +5,7 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 May 2026 20:47:23 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 05 May 2026 11:15:32 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
@@ -14,246 +14,224 @@
     </image>
 
     <item>
-      <title><![CDATA[Why We Reject FOMO: Designing Without Dark Patterns]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</guid>
-      <pubDate>Sun, 03 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[game-design]]></category>
-      <category><![CDATA[ethics]]></category>
-      <category><![CDATA[philosophy]]></category>
-      <description><![CDATA[Modern free-to-play games are engineered with "urgency mechanics"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy...]]></description>
+      <title><![CDATA[Archaeological Fossils: Your Actions Become History]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/archaeological-fossils-player-actions-become-history.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/archaeological-fossils-player-actions-become-history.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[Your ritual becomes someone else]]></description>
     </item>
 
     <item>
-      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
-      <pubDate>Sat, 02 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Behind the Scenes]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[team]]></category>
-      <category><![CDATA[process]]></category>
-      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
+      <title><![CDATA[Community Mysteries That Take Months to Solve]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/community-mysteries-months-to-solve.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/community-mysteries-months-to-solve.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[Puzzles requiring 100+ players to coordinate. Fragmented clues across time zones. Real cryptography. Expected solve time: 1-6 months.]]></description>
     </item>
 
     <item>
-      <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Dev Diary]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[behind-the-scenes]]></category>
-      <description><![CDATA[Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
-      <pubDate>Wed, 29 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Behind the Scenes]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[team]]></category>
-      <category><![CDATA[process]]></category>
-      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Building Accessibility-First Gameplay: Color as Discovery]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html</guid>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Dev Diary]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[behind-the-scenes]]></category>
-      <description><![CDATA[Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these...]]></description>
+      <title><![CDATA[Cosmic Identity System: Twelve Alignments That Emerge]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/cosmic-identity-system-alignments.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/cosmic-identity-system-alignments.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[No character creation screen. Your identity emerges from how you play. Are you a Midnight Sage, Nature Mystic, or Dawn Seeker?]]></description>
     </item>
 
     <item>
       <title><![CDATA[Cross-Platform Design: Building for Mobile, Tablet & Desktop]]></title>
       <link>https://ascendant-continuum.web.app/blog/posts/cross-platform-design-mobile-tablet-desktop.html</link>
       <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/cross-platform-design-mobile-tablet-desktop.html</guid>
-      <pubDate>Mon, 27 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Learning Journey]]></category>
-      <category><![CDATA[cross-platform]]></category>
-      <category><![CDATA[learning-journey]]></category>
-      <category><![CDATA[solo-dev]]></category>
-      <category><![CDATA[mobile]]></category>
-      <category><![CDATA[tablet]]></category>
-      <category><![CDATA[desktop]]></category>
-      <description><![CDATA[Learning to build Ascendant Continuum for phones, tablets, and desktop computers. My journey figuring out cross-platform design as a solo developer.]]></description>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[Building Ascendant Continuum for mobile, tablet, and desktop. Learning cross-platform design as a solo developer.]]></description>
     </item>
 
     <item>
-      <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
-      <pubDate>Mon, 27 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Dev Diary]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[unity]]></category>
+      <title><![CDATA[Dawn Citadel: Light Refraction Physics as Puzzles]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/dawn-citadel-light-refraction-physics.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/dawn-citadel-light-refraction-physics.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[Not fake game logic. Real optics. Dawn Citadel puzzles use actual Snell]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[From Healthcare to Game Dev: Building My First Game]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
       <category><![CDATA[behind-the-scenes]]></category>
-      <description><![CDATA[Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...]]></description>
+      <category><![CDATA[first-game]]></category>
+      <category><![CDATA[disability]]></category>
+      <category><![CDATA[career-change]]></category>
+      <category><![CDATA[learning-unity]]></category>
+      <description><![CDATA[After a workplace injury ended my healthcare career, I]]></description>
     </item>
 
     <item>
-      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
-      <pubDate>Sun, 26 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Behind the Scenes]]></category>
+      <title><![CDATA[How We Built Enterprise-Grade Security Into Our Indie Game (For Free)]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/how-we-built-enterprise-security-into-our-indie-game.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/how-we-built-enterprise-security-into-our-indie-game.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      <category><![CDATA[security]]></category>
       <category><![CDATA[development]]></category>
-      <category><![CDATA[team]]></category>
-      <category><![CDATA[process]]></category>
-      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
+      <category><![CDATA[indie-dev]]></category>
+      <category><![CDATA[automation]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[We built 6 layers of automated security protection into Ascendant Continuum to block malicious code attacks. Here]]></description>
     </item>
 
     <item>
-      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
-      <pubDate>Sat, 25 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Behind the Scenes]]></category>
+      <title><![CDATA[How We Protected Our Projects from the Latest npm Supply Chain Attacks (And How You Can Too)]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      <category><![CDATA[security]]></category>
+      <category><![CDATA[npm]]></category>
       <category><![CDATA[development]]></category>
-      <category><![CDATA[team]]></category>
-      <category><![CDATA[process]]></category>
-      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical n...]]></description>
+      <category><![CDATA[webdev]]></category>
+      <description><![CDATA[How we protected our projects from recent npm supply chain attacks (axios, LiteLLM, LofyGang). Complete guide with 6 protection layers, code examples, and emergency procedures.]]></description>
     </item>
 
     <item>
-      <title><![CDATA[Ethical Monetization: Fair Pricing in an Exploitative Industry]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/ethical-monetization-fair-pricing-in-an-exploitative-industry.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/ethical-monetization-fair-pricing-in-an-exploitative-industry.html</guid>
-      <pubDate>Fri, 24 Apr 2026 00:00:00 GMT</pubDate>
+      <title><![CDATA[Lantern Ascension: Fluid Dynamics as Gameplay]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/lantern-ascension-fluid-dynamics-gameplay.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/lantern-ascension-fluid-dynamics-gameplay.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[Your ritual lantern obeys Navier-Stokes equations. Buoyancy, drag, wind, rain—all simulated at 60 FPS. Real fluid dynamics as gameplay.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Living Lore: When the Universe Rewrites Its Own History]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/living-lore-universe-rewrites-history.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/living-lore-universe-rewrites-history.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[Collective player morality literally rewrites the game]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Meteor Showers: When Real Astronomy Unlocks Game Content]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/meteor-showers-real-astronomy-game-events.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/meteor-showers-real-astronomy-game-events.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[Real meteor showers trigger in-game events. Perseids, Geminids, and 8 major annual showers unlock exclusive content. Earth]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Real Stargazing: The Anti-Screen-Time Mechanic]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/real-stargazing-anti-screen-time-mechanic.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/real-stargazing-anti-screen-time-mechanic.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[The only mobile game that rewards you for putting your phone down. Hold your phone to the actual night sky, and our gyroscope + GPS verification system gives you 3x XP for playing outside.]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Realm Dwellers That Remember: Collective Memory Across Sessions]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/realm-dwellers-that-remember-collective-memory-across-sessions.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/realm-dwellers-that-remember-collective-memory-across-sessions.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Technical Deep Dive]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[ai]]></category>
+      <category><![CDATA[innovation]]></category>
+      <description><![CDATA[What if Realm Dwellers remembered not just YOUR actions, but the collective actions of every player? Here]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Ritual Replay: 6-Second Video Essence Capture]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/ritual-replay-6-second-video-essence-capture.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/ritual-replay-6-second-video-essence-capture.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[Your ritual]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Serendipity Moments: 1% Deity Encounters]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/serendipity-moments-1-percent-deity-encounters.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/serendipity-moments-1-percent-deity-encounters.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[1% chance deity encounters. No grinding. Pure randomness. When serendipity happens, it]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Sigil Crafting System: Discovering and Naming Rituals]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/sigil-crafting-system-discovering-and-naming-rituals.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/sigil-crafting-system-discovering-and-naming-rituals.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
       <category><![CDATA[Design Philosophy]]></category>
       <category><![CDATA[game-design]]></category>
-      <category><![CDATA[ethics]]></category>
-      <category><![CDATA[philosophy]]></category>
-      <description><![CDATA[Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add...]]></description>
+      <category><![CDATA[community]]></category>
+      <category><![CDATA[systems]]></category>
+      <category><![CDATA[social]]></category>
+      <description><![CDATA[How the first player to discover a sigil combination gets to name it globally for everyone. A deep dive into our community-driven crafting system.]]></description>
     </item>
 
     <item>
-      <title><![CDATA[Accessibility Innovation: Beyond Compliance]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/accessibility-innovation-beyond-compliance.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/accessibility-innovation-beyond-compliance.html</guid>
-      <pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[game-design]]></category>
-      <category><![CDATA[ethics]]></category>
-      <category><![CDATA[philosophy]]></category>
-      <description><![CDATA[WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay....]]></description>
+      <title><![CDATA[Sunrise/Sunset Awareness: Real-Time Solar Rewards]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/sunrise-sunset-awareness-real-time-solar-rewards.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/sunrise-sunset-awareness-real-time-solar-rewards.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[The game knows when the sun rises in real life. Catch dawn or dusk rituals for 2× XP and solar blessings.]]></description>
     </item>
 
     <item>
-      <title><![CDATA[State Management with ScriptableObjects]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/state-management-with-scriptableobjects.html</guid>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Tutorial]]></category>
-      <category><![CDATA[tutorial]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[game-dev]]></category>
-      <description><![CDATA[Beginner Unity projects use static variables or singleton patterns to share state between scenes and systems. This creates tight coupling—every system that needs player health references the same Play...]]></description>
+      <title><![CDATA[The Ascendant Continuum]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/building-a-game-for-zero-dollars-actual-budget.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/building-a-game-for-zero-dollars-actual-budget.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      <category><![CDATA[budget]]></category>
+      <category><![CDATA[indie-dev]]></category>
+      <category><![CDATA[transparency]]></category>
+      <category><![CDATA[free-tools]]></category>
+      <category><![CDATA[bootstrap]]></category>
+      <description><![CDATA[The honest truth about building The Ascendant Continuum: $0 spent on game development. Here]]></description>
     </item>
 
     <item>
-      <title><![CDATA[Realm Transitions: Seamless World-Hopping]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/realm-transitions-seamless-world-hopping.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/realm-transitions-seamless-world-hopping.html</guid>
-      <pubDate>Tue, 21 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Dev Diary]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[behind-the-scenes]]></category>
-      <description><![CDATA[Traditional RPGs hide loading with progress bars, spinning icons, or "tip screens." These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ...]]></description>
+      <title><![CDATA[The Eternal Archive: Unlocked After 30 Days]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/eternal-archive-30-day-unlock.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/eternal-archive-30-day-unlock.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[You can]]></description>
     </item>
 
     <item>
-      <title><![CDATA[Ethical Monetization: Fair Pricing in an Exploitative Industry]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/ethical-monetization-fair-pricing-in-an-exploitative-industry.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/ethical-monetization-fair-pricing-in-an-exploitative-industry.html</guid>
-      <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[game-design]]></category>
-      <category><![CDATA[ethics]]></category>
-      <category><![CDATA[philosophy]]></category>
-      <description><![CDATA[Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Accessibility Innovation: Beyond Compliance]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/accessibility-innovation-beyond-compliance.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/accessibility-innovation-beyond-compliance.html</guid>
-      <pubDate>Sun, 19 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[game-design]]></category>
-      <category><![CDATA[ethics]]></category>
-      <category><![CDATA[philosophy]]></category>
-      <description><![CDATA[WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay....]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
-      <pubDate>Sat, 18 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Dev Diary]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[behind-the-scenes]]></category>
-      <description><![CDATA[Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Why We Reject FOMO: Designing Without Dark Patterns]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</guid>
-      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[game-design]]></category>
-      <category><![CDATA[ethics]]></category>
-      <category><![CDATA[philosophy]]></category>
-      <description><![CDATA[Modern free-to-play games are engineered with "urgency mechanics"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
-      <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Dev Diary]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[behind-the-scenes]]></category>
-      <description><![CDATA[Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Shader Programming: Custom Effects for Magical Worlds]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/shader-programming-custom-effects-for-magical-worlds.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/shader-programming-custom-effects-for-magical-worlds.html</guid>
-      <pubDate>Sat, 11 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Tutorial]]></category>
-      <category><![CDATA[tutorial]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[game-dev]]></category>
-      <description><![CDATA[Unity provides Standard shader (PBR), Unlit shader (performance), and Shader Graph (node-based visual programming). These cover 80% of use cases but don't create distinctive visuals. Every Unity game ...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Mobile Touch Controls: Gestures That Feel Magical]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/mobile-touch-controls-gestures-that-feel-magical.html</guid>
-      <pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Dev Diary]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[unity]]></category>
-      <category><![CDATA[behind-the-scenes]]></category>
-      <description><![CDATA[Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new ...]]></description>
+      <title><![CDATA[Time Capsules: Writing Messages to Your Future Self]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/time-capsules-messages-to-future-self.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/time-capsules-messages-to-future-self.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      
+      <description><![CDATA[Write a message. Lock it for 30/90/365 days. Seal it. You can]]></description>
     </item>
   </channel>
 </rss>
