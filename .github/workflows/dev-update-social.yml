@@ -1,9 +1,6 @@
 name: Dev Update Social Posts
 
 on:
-  push:
-    branches:
-      - main
   schedule:
     # Run weekdays at 8 PM UTC (3 PM EST) to catch end-of-day commits
     - cron: '0 20 * * 1-5'

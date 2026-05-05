@@ -4,9 +4,6 @@ name: Daily Social Media Post
 # Posts content from content-bank.json to Bluesky and Mastodon
 
 on:
-  push:
-    branches:
-      - main
   schedule:
     # Cron: minute hour day month weekday
     # 0 14 * * * = 2 PM UTC daily

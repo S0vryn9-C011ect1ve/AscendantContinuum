@@ -76,10 +76,18 @@ function generateDevUpdate(commits) {
         return null;
     }
 
-    // Filter out chores and focus on meaningful changes
+    // Filter out chores, docs, and any internal/sensitive categories
     const meaningfulCommits = commits.filter(c => {
         const category = categorizeCommit(c.message);
-        return category !== 'chore' && category !== 'docs';
+        if (category === 'chore' || category === 'docs') return false;
+        // Extra guard: skip commits whose cleaned message would expose internal work
+        const msg = c.message.toLowerCase();
+        if (msg.startsWith('privacy') || msg.startsWith('security') ||
+            msg.startsWith('content:') || msg.startsWith('fix: blog') ||
+            msg.startsWith('fix: content') || msg.startsWith('chore:') ||
+            msg.includes('remove') && msg.includes('track') ||
+            msg.includes('analytics') || msg.includes('tracking')) return false;
+        return true;
     });
 
     if (meaningfulCommits.length === 0) {
@@ -112,7 +120,7 @@ function generateDevUpdate(commits) {
         const emoji = categoryEmojis[category] || '📝';
         content += `${emoji} ${category.charAt(0).toUpperCase() + category.slice(1)}:\n`;
         commits.forEach(commit => {
-            const message = commit.message.replace(/^(feat|fix|perf|style|refactor|test|chore|docs)(\(.+?\))?:\s*/i, '');
+            const message = commit.message.replace(/^(feat|fix|perf|style|refactor|test|chore|docs|privacy|security|content|build|ci)(\(.+?\))?:\s*/i, '');
             content += `• ${message}\n`;
         });
         content += '\n';

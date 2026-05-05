@@ -1501,7 +1501,7 @@
       "id": 92,
       "type": "behindScenes",
       "hook": "Here's my entire indie dev stack (and why).",
-      "body": "Indie toolkit:\n\n- Unity (WebGL)\n- Firebase (free tier)\n- Git + GitHub\n- GitHub Actions\n- Figma\n- Audacity + free assets\n- Firebase Analytics\n\nMonthly cost: $0 (free tiers).\n\nBootstrapped st...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "body": "Indie toolkit:\n\n- Unity (WebGL)\n- Firebase (free tier, Firestore only)\n- Git + GitHub\n- GitHub Actions\n- Figma\n- Audacity + free assets\n\nMonthly cost: $0 (free tiers).\n\nBootstrapped st...\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -1565,7 +1565,8 @@
       "id": 96,
       "type": "behindScenes",
       "hook": "Why we built our own analytics instead of using off-the-shelf.",
-      "body": "Custom analytics why:\n\n- Privacy-first (no third-party)\n- Exactly what we need (no bloat)\n- Own our data (no lock-in)\n- Learning opportunity\n\nCost: 2 days.\nBenefit: lifet...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "hook": "No tracking. Not now, not ever. Here's what that means.",
+      "body": "Privacy commitment, confirmed:\n\n- No analytics SDKs installed\n- No event tracking\n- No advertising IDs\n- No session recording\n- Firestore used only for optional anonymous cloud saves\n\nTracking is not present anywhere in the game or website.\n\nhttps://ascendant-continuum.web.app/privacy.html",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -2166,7 +2167,8 @@
       "id": 133,
       "type": "devUpdate",
       "hook": "Player behavior analytics: what we learned.",
-      "body": "Surprising findings:\n\n- 60% of players prefer nighttime sessions\n- Ritual skip feature used by only 8%\n- Average session: 4.2 minutes (designed for 1-5)\n- Accessibility modes used by 34% (n...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "hook": "What I designed for instead of tracking players.",
+      "body": "Instead of collecting player data, I designed the game to reflect what I'd want:\n\n- Sessions that end before they overstay\n- No streak pressure\n- Accessibility built in from day one\n- Progress that feels earned, not extracted\n\nNo data needed to know what's respectful.\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",

@@ -20,12 +20,6 @@ on:
           - 'true'
           - 'false'
 
-  push:
-    branches:
-      - main
-    paths:
-      - 'firebase/public/blog/posts/**'
-
 concurrency:
   group: publish-content
   cancel-in-progress: false
