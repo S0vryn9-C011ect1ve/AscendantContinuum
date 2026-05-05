@@ -7,6 +7,12 @@ on:
   schedule:
     - cron: '0 23 * * *'  # Daily at 11 PM UTC (6 PM EST) - end of day
   workflow_dispatch:  # Manual trigger
+    inputs:
+      force:
+        description: 'Force generation even if no user-facing changes detected'
+        required: false
+        default: 'false'
+        type: boolean
 
 # Prevent concurrent runs
 concurrency:
@@ -36,7 +42,7 @@ jobs:
         run: npm install
       
       - name: Generate What's New update
-        run: node scripts/automation/generate-whatsnew.js
+        run: node scripts/automation/generate-whatsnew.js ${{ github.event.inputs.force == 'true' && '--force' || '' }}
       
       - name: Commit What's New changes
         run: |

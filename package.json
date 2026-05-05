@@ -34,7 +34,13 @@
         "audit:content-bank": "node scripts/audit/audit-content-bank.js",
         "audit:blog-consistency": "node scripts/audit/check-blog-consistency.js",
         "audit:rewrite": "node scripts/audit/rewrite-content-bank.js --dry-run",
-        "audit:rewrite-live": "node scripts/audit/rewrite-content-bank.js"
+        "audit:rewrite-live": "node scripts/audit/rewrite-content-bank.js",
+        "whatsnew:generate": "node scripts/automation/generate-whatsnew.js",
+        "whatsnew:dry-run": "node scripts/automation/generate-whatsnew.js --dry-run",
+        "whatsnew:force": "node scripts/automation/generate-whatsnew.js --force",
+        "whatsnew:weekly": "node scripts/automation/generate-weekly.js",
+        "whatsnew:weekly-dry": "node scripts/automation/generate-weekly.js --dry-run",
+        "whatsnew:weekly-force": "node scripts/automation/generate-weekly.js --force"
     },
     "dependencies": {
         "@atproto/api": "^0.12.0",

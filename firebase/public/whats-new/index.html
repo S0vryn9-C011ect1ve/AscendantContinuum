@@ -85,25 +85,15 @@
             margin-bottom: 0.5rem;
         }
 
-        .update-stats {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            font-size: 0.9rem;
-            color: var(--color-secondary);
+        .update-summary {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--color-text);
             margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
         }
 
-        .update-stat {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .update-stat-icon {
-            font-size: 0.85rem;
+        .update-highlights {
+            margin-bottom: 0.5rem;
         }
 
         .update-section {
@@ -217,10 +207,6 @@
         @media (max-width: 768px) {
             .whats-new-header h1 {
                 font-size: 2rem;
-            }
-
-            .update-stats {
-                font-size: 0.85rem;
             }
         }
     </style>
@@ -350,60 +336,45 @@
             container.innerHTML = updates.map(update => `
                 <div class="update-card">
                     <div class="update-date">${formatDate(update.date)}</div>
-                    <div class="update-stats">
-                        <span class="update-stat">
-                            <span class="update-stat-icon">📦</span>
-                            ${update.totalCommits} commit${update.totalCommits !== 1 ? 's' : ''}
-                        </span>
-                        ${update.categories.features > 0 ? `
-                        <span class="update-stat">
-                            <span class="update-stat-icon">✨</span>
-                            ${update.categories.features} feature${update.categories.features !== 1 ? 's' : ''}
-                        </span>
+
+                    ${update.summary ? `
+                    <p class="update-summary">${escapeHtml(update.summary)}</p>
+                    ` : `
+                    <div class="update-highlights">
+                        ${update.highlights.features && update.highlights.features.length > 0 ? `
+                        <div class="update-section">
+                            <h4>What's New</h4>
+                            <ul>
+                                ${update.highlights.features.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
+                            </ul>
+                        </div>
                         ` : ''}
-                        ${update.categories.fixes > 0 ? `
-                        <span class="update-stat">
-                            <span class="update-stat-icon">🐛</span>
-                            ${update.categories.fixes} fix${update.categories.fixes !== 1 ? 'es' : ''}
-                        </span>
+                        ${update.highlights.fixes && update.highlights.fixes.length > 0 ? `
+                        <div class="update-section">
+                            <h4>Fixes</h4>
+                            <ul>
+                                ${update.highlights.fixes.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
+                            </ul>
+                        </div>
                         ` : ''}
-                        ${update.categories.improvements > 0 ? `
-                        <span class="update-stat">
-                            <span class="update-stat-icon">⚡</span>
-                            ${update.categories.improvements} improvement${update.categories.improvements !== 1 ? 's' : ''}
-                        </span>
+                        ${update.highlights.improvements && update.highlights.improvements.length > 0 ? `
+                        <div class="update-section">
+                            <h4>Improvements</h4>
+                            <ul>
+                                ${update.highlights.improvements.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
+                            </ul>
+                        </div>
+                        ` : ''}
+                        ${(!update.highlights.features || update.highlights.features.length === 0) &&
+                    (!update.highlights.fixes || update.highlights.fixes.length === 0) &&
+                    (!update.highlights.improvements || update.highlights.improvements.length === 0) ? `
+                        <p class="update-summary">Development work in progress.</p>
                         ` : ''}
                     </div>
-                    
-                    ${update.highlights.features && update.highlights.features.length > 0 ? `
-                    <div class="update-section">
-                        <h4><span>✨</span> Features</h4>
-                        <ul>
-                            ${update.highlights.features.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
-                        </ul>
-                    </div>
-                    ` : ''}
-                    
-                    ${update.highlights.fixes && update.highlights.fixes.length > 0 ? `
-                    <div class="update-section">
-                        <h4><span>🐛</span> Fixes</h4>
-                        <ul>
-                            ${update.highlights.fixes.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
-                        </ul>
-                    </div>
-                    ` : ''}
-                    
-                    ${update.highlights.improvements && update.highlights.improvements.length > 0 ? `
-                    <div class="update-section">
-                        <h4><span>⚡</span> Improvements</h4>
-                        <ul>
-                            ${update.highlights.improvements.map(f => `<li>${escapeHtml(f)}</li>`).join('')}
-                        </ul>
-                    </div>
-                    ` : ''}
-                    
+                    `}
+
                     ${update.blogPostUrl ? `
-                    <a href="${update.blogPostUrl}" class="update-link">📖 Read Full Daily Update →</a>
+                    <a href="${update.blogPostUrl}" class="update-link">Read full update →</a>
                     ` : ''}
                 </div>
             `).join('');

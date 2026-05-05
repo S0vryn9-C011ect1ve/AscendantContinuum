@@ -33,6 +33,147 @@ const isHistorical = args.includes('--historical');
 const daysArg = args.find(arg => arg.startsWith('--days='));
 const dateArg = args.find(arg => arg.startsWith('--date='));
 const dryRun = args.includes('--dry-run');
+const isForce = args.includes('--force'); // override: generate even if no meaningful changes
+
+// ── File-path based impact classification ────────────────────────────────────
+// If a commit ONLY touches these paths it is internal and should not appear publicly
+const INTERNAL_ONLY_PATHS = [
+    /^\.github\//,
+    /^scripts\/automation\//,
+    /^scripts\/posting\//,
+    /^scripts\/analytics\//,
+    /^scripts\/validation\//,
+    /^scripts\/audit\//,
+    /^scripts\/content\//,
+    /^scripts\/security\//,
+    /^package(-lock)?\.json$/,
+    /^node_modules\//,
+    /^\.gitignore$/,
+    /^\.(eslint|prettier|babel|jest).*/,
+];
+
+// Commit message patterns that are ALWAYS internal — skip regardless of files
+const SKIP_MSG_PATTERNS = [
+    /\[skip ci\]/i,
+    /github-actions\[bot\]/i,
+    /^(chore|ci|build|test|style|wip)[\ :]/i,
+    /npm audit/i,
+    /update.*depend/i,
+    /bump.*version/i,
+    /posting history/i,
+    /daily what'?s new/i,
+    /^📊/,
+];
+
+// Technical terms → plain English replacements for public-facing text
+const TECH_TO_PLAIN = [
+    [/firebase analytics/gi, 'website tracking'],
+    [/crashlytics/gi, 'crash reporting'],
+    [/firebase(?!\s+hosting)/gi, 'cloud services'],
+    [/websocket/gi, 'live connection'],
+    [/webgl/gi, 'browser version'],
+    [/\bURP\b/g, 'graphics system'],
+    [/render pipeline/gi, 'graphics engine'],
+    [/\bshader(s)?\b/gi, 'visual effect$1'],
+    [/\bprefab(s)?\b/gi, 'game object$1'],
+    [/scriptable object(s)?/gi, 'game setting$1'],
+    [/\bcoroutine(s)?\b/gi, 'background process$1'],
+    [/null reference/gi, 'technical error'],
+    [/\bdependency\b/gi, 'software component'],
+    [/\bnpm\b/g, 'software'],
+    [/\bgit\b/gi, 'code history'],
+    [/\bworkflow(s)?\b/gi, 'automation$1'],
+    [/\byaml\b/gi, 'configuration'],
+    [/\bjson\b/gi, 'data'],
+    [/\bhtml\b/gi, 'page'],
+    [/\bcss\b/gi, 'styling'],
+    [/\bapi\b/gi, 'service'],
+    [/\bsdk\b/gi, 'toolkit'],
+    [/\bUX\b/g, 'experience'],
+    [/\bUI\b/g, 'interface'],
+    [/measurementId/gi, 'tracking ID'],
+    [/analytics toggle/gi, 'privacy setting'],
+    [/dedup(-?checker)?/gi, 'duplicate check'],
+    [/content.?bank/gi, 'content library'],
+    [/\bbackfill\b/gi, 'historical data'],
+];
+
+/**
+ * Replace technical terms with plain English equivalents
+ */
+function toPlainEnglish(text) {
+    let result = text;
+    for (const [pattern, replacement] of TECH_TO_PLAIN) {
+        result = result.replace(pattern, replacement);
+    }
+    return result;
+}
+
+/**
+ * Returns the list of files changed in a commit
+ */
+function getCommitFiles(hash) {
+    try {
+        return execSync(
+            `git show --name-only --format="" ${hash}`,
+            { encoding: 'utf-8' }
+        ).trim().split('\n').filter(Boolean);
+    } catch (_) {
+        return [];
+    }
+}
+
+/**
+ * Returns true if at least one changed file is user-facing
+ * (i.e. not ALL files are in internal-only paths)
+ */
+function hasUserFacingFiles(files) {
+    if (files.length === 0) return false;
+    return !files.every(f => INTERNAL_ONLY_PATHS.some(p => p.test(f)));
+}
+
+/**
+ * Returns true if this commit should appear in the public What's New feed
+ */
+function isUserImpacting(commit) {
+    // Always skip automated/bot commits
+    if (commit.author === 'github-actions[bot]') return false;
+    if (SKIP_MSG_PATTERNS.some(p => p.test(commit.message))) return false;
+
+    // Check what files were actually changed
+    const files = getCommitFiles(commit.hash);
+    return hasUserFacingFiles(files);
+}
+
+/**
+ * Build a 2–4 sentence plain-English summary from categorised commit descriptions
+ */
+function generatePublicSummary(features, fixes, improvements) {
+    const sentences = [];
+
+    if (features.length > 0) {
+        const desc = features.slice(0, 2).map(toPlainEnglish).join(' and ');
+        sentences.push('We added ' + desc);
+    }
+    if (fixes.length > 0) {
+        const desc = fixes.slice(0, 2).map(toPlainEnglish).join(' and ');
+        sentences.push('We fixed ' + desc);
+    }
+    if (improvements.length > 0) {
+        const desc = improvements.slice(0, 2).map(toPlainEnglish).join(' and ');
+        sentences.push('We improved ' + desc);
+    }
+
+    if (sentences.length === 0) return '';
+
+    return sentences
+        .map(s => {
+            s = s.trim();
+            if (!s.match(/[.!?]$/)) s += '.';
+            return s.charAt(0).toUpperCase() + s.slice(1);
+        })
+        .join(' ');
+}
 
 /**
  * Get commits for a specific date range
@@ -217,6 +358,9 @@ function cleanMessage(commit) {
  * @returns {Object} - Daily update object
  */
 function generateDailyUpdate(commits, date) {
+    // Separate user-impacting commits from internal ones
+    const meaningfulCommits = isForce ? commits : commits.filter(isUserImpacting);
+
     const categories = {
         features: [],
         fixes: [],
@@ -233,29 +377,36 @@ function generateDailyUpdate(commits, date) {
         docs: 0
     };
 
-    commits.forEach(commit => {
+    // Categorise ONLY meaningful commits
+    meaningfulCommits.forEach(commit => {
         const category = categorizeCommit(commit.message);
         const cleaned = cleanMessage(commit);
-
         categories[category].push(cleaned);
-
-        if (categoryCounts.hasOwnProperty(category)) {
-            categoryCounts[category]++;
-        }
+        if (categoryCounts.hasOwnProperty(category)) categoryCounts[category]++;
     });
 
-    // Generate highlights (top 3-5 items per category)
+    // Generate highlights (top 3 items per category)
     const highlights = {
-        features: categories.features.slice(0, 5),
-        fixes: categories.fixes.slice(0, 5),
-        improvements: categories.improvements.slice(0, 5)
+        features: categories.features.slice(0, 3),
+        fixes: categories.fixes.slice(0, 3),
+        improvements: categories.improvements.slice(0, 3)
     };
+
+    const meaningful = meaningfulCommits.length > 0;
+
+    // Plain-English summary for the public What's New page
+    const summary = meaningful
+        ? generatePublicSummary(highlights.features, highlights.fixes, highlights.improvements)
+        : '';
 
     return {
         date,
         totalCommits: commits.length,
+        meaningfulCommits: meaningfulCommits.length,
+        meaningful,
         categories: categoryCounts,
         highlights,
+        summary,
         blogPostUrl: null // Will be set when blog post is created
     };
 }
@@ -272,30 +423,28 @@ function generateBlogPostHTML(update, allCommits) {
     const slug = `daily-update-${update.date}`;
 
     const featuresSection = update.highlights.features.length > 0 ? `
-            <h2>✨ Features</h2>
-            <p>We shipped ${update.highlights.features.length} new feature${update.highlights.features.length !== 1 ? 's' : ''} today:</p>
+            <h2>What's New</h2>
             <ul>
-                ${update.highlights.features.map(f => `<li>${f}</li>`).join('\n                ')}
+                ${update.highlights.features.map(f => `<li>${toPlainEnglish(f)}</li>`).join('\n                ')}
             </ul>
     ` : '';
 
     const fixesSection = update.highlights.fixes.length > 0 ? `
-            <h2>🐛 Bug Fixes</h2>
-            <p>Squashed ${update.highlights.fixes.length} bug${update.highlights.fixes.length !== 1 ? 's' : ''} to improve stability:</p>
+            <h2>Fixes</h2>
             <ul>
-                ${update.highlights.fixes.map(f => `<li>${f}</li>`).join('\n                ')}
+                ${update.highlights.fixes.map(f => `<li>${toPlainEnglish(f)}</li>`).join('\n                ')}
             </ul>
     ` : '';
 
     const improvementsSection = update.highlights.improvements.length > 0 ? `
-            <h2>⚡ Improvements</h2>
-            <p>Made ${update.highlights.improvements.length} optimization${update.highlights.improvements.length !== 1 ? 's' : ''}:</p>
+            <h2>Improvements</h2>
             <ul>
-                ${update.highlights.improvements.map(f => `<li>${f}</li>`).join('\n                ')}
+                ${update.highlights.improvements.map(f => `<li>${toPlainEnglish(f)}</li>`).join('\n                ')}
             </ul>
     ` : '';
 
-    const summary = `Daily development update for ${formattedDate}: ${update.totalCommits} commits with ${update.categories.features} features, ${update.categories.fixes} fixes, and ${update.categories.improvements} improvements.`;
+    const summary = update.summary ||
+        `Development update for ${formattedDate}. Work continues on the game.`;
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -486,6 +635,16 @@ async function main() {
         console.log(`Found ${commits.length} commits\n`);
 
         const update = generateDailyUpdate(commits, today);
+
+        if (!update.meaningful && !isForce) {
+            console.log('ℹ️ No user-impacting changes detected. Skipping What\'s New entry.');
+            console.log('   (Use --force to generate anyway)');
+            return;
+        }
+
+        if (!update.meaningful && isForce) {
+            console.log('⚠️  No user-impacting changes, but --force is set. Generating anyway.');
+        }
 
         // Generate blog post
         const blogHTML = generateBlogPostHTML(update, commits);
