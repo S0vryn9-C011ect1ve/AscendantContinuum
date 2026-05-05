@@ -1,22 +1,19 @@
 // Firebase Configuration
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// Your Firebase config
+// Firebase config — Analytics disabled: zero tracking by design
 const firebaseConfig = {
-  apiKey: "AIzaSyAOlS9yuWVG4Owh5mO9iLRNhRw0Q14vfVc",
-  authDomain: "ascendant-continuum.firebaseapp.com",
-  projectId: "ascendant-continuum",
-  storageBucket: "ascendant-continuum.firebasestorage.app",
-  messagingSenderId: "892573648674",
-  appId: "1:892573648674:web:085e5cf12657fa5676477b",
-  measurementId: "G-GVCXLQPKYR"
+    apiKey: "AIzaSyAOlS9yuWVG4Owh5mO9iLRNhRw0Q14vfVc",
+    authDomain: "ascendant-continuum.firebaseapp.com",
+    projectId: "ascendant-continuum",
+    storageBucket: "ascendant-continuum.firebasestorage.app",
+    messagingSenderId: "892573648674",
+    appId: "1:892573648674:web:085e5cf12657fa5676477b"
 };
 
-// Initialize Firebase
+// Initialize Firebase (Firestore only — no Analytics, no tracking)
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 console.log("🔥 Firebase initialized!");
@@ -25,7 +22,7 @@ console.log("🔥 Firebase initialized!");
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
     const particleCount = 50;
-    
+
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
@@ -42,7 +39,7 @@ function createParticles() {
         `;
         particlesContainer.appendChild(particle);
     }
-    
+
     // Add floating animation
     const style = document.createElement('style');
     style.textContent = `
@@ -59,15 +56,15 @@ function createParticles() {
 // Email Signup Handler
 document.getElementById('signup-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     const emailInput = e.target.querySelector('input[type="email"]');
     const email = emailInput.value;
     const button = e.target.querySelector('button');
-    
+
     // Disable button
     button.textContent = 'Joining...';
     button.disabled = true;
-    
+
     try {
         // Add to Firestore
         await addDoc(collection(db, 'waitlist'), {
@@ -75,27 +72,26 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
             timestamp: new Date(),
             source: 'website'
         });
-        
+
         // Success
         button.textContent = '✨ Welcome, Seeker!';
         button.style.background = '#4ecdc4';
         emailInput.value = '';
-        
-        // Track with Analytics
-        console.log('📧 Email added to waitlist:', email);
-        
+
+        console.log('📧 Email added to waitlist');
+
         // Reset after 3 seconds
         setTimeout(() => {
             button.textContent = 'Join the Waitlist';
             button.disabled = false;
             button.style.background = '';
         }, 3000);
-        
+
     } catch (error) {
         console.error('Error adding email:', error);
         button.textContent = '❌ Error - Try Again';
         button.disabled = false;
-        
+
         setTimeout(() => {
             button.textContent = 'Join the Waitlist';
         }, 3000);

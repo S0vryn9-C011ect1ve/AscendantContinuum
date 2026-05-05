@@ -18,8 +18,8 @@ namespace AscendantContinuum.Analytics
     {
         public static AnalyticsManager Instance { get; private set; }
 
-        [SerializeField] private bool enableFirebaseAnalytics = true;
-        [SerializeField] private bool enableUnityAnalytics = true;
+        [SerializeField] private bool enableFirebaseAnalytics = false;
+        [SerializeField] private bool enableUnityAnalytics = false;
 
         private DateTime sessionStartTime;
         private Dictionary<string, int> realmPlayCounts = new Dictionary<string, int>();
@@ -52,9 +52,8 @@ namespace AscendantContinuum.Analytics
 
         private void Start()
         {
+            // Analytics disabled — zero tracking by design
             SubscribeGameEvents();
-            TryInitializeUGSAnalytics();
-            LogSessionStart();
         }
 
         // ── UGS Analytics init ──────────────────────────────────────────────
