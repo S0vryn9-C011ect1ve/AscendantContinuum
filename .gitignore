@@ -60,6 +60,10 @@ Unity Hub/
 *.code-workspace
 *.pdf
 
+# Node
+node_modules/
+npm-debug.log*
+
 # Firebase
 firebase/functions/node_modules/
 firebase/functions/lib/
