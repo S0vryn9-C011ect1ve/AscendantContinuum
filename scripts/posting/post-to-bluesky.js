@@ -9,6 +9,7 @@ import { BskyAgent } from '@atproto/api';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
+import { normalizeForPublishing, truncatePreservingLastUrl } from '../utils/publish-text-utils.js';
 
 dotenv.config();
 
@@ -98,10 +99,8 @@ export async function postToBluesky(text, options = {}) {
     try {
         await initializeAgent();
 
-        // Truncate if exceeds limit
-        const truncatedText = text.length > config.maxLength
-            ? text.substring(0, config.maxLength - 3) + '...'
-            : text;
+        // Keep URLs intact if truncation is needed.
+        const truncatedText = truncatePreservingLastUrl(text, config.maxLength);
 
         const postData = {
             text: truncatedText,
@@ -230,20 +229,7 @@ async function uploadMedia(mediaPath) {
  * @returns {string} Formatted content
  */
 export function formatForBluesky(content) {
-    // Bluesky supports plain text + links
-    // Character limit: 300
-
-    let formatted = content;
-
-    // Ensure no em dashes (replace with regular dashes)
-    formatted = formatted.replace(/—/g, '-');
-
-    // Truncate if needed
-    if (formatted.length > config.maxLength) {
-        formatted = formatted.substring(0, config.maxLength - 3) + '...';
-    }
-
-    return formatted;
+    return normalizeForPublishing(content);
 }
 
 /**
@@ -292,7 +278,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const testPost = async () => {
         console.log('🧪 Testing Bluesky posting module...\n');
 
-        const testContent = "Test post from Ascendant Continuum social automation system.\n\nIf you're seeing this, authentication is working! 🎮✨";
+        const testContent = "Test post from Ascendant Continuum social automation system.\n\nIf you are seeing this, authentication is working.";
 
         const result = await postToBluesky(testContent);
 

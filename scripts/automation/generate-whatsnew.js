@@ -478,7 +478,7 @@ ${featuresSection}
 ${fixesSection}
 ${improvementsSection}
 
-            <h2>📊 Development Stats</h2>
+            <h2>Development Stats</h2>
             <ul>
                 <li><strong>Total commits:</strong> ${update.totalCommits}</li>
                 <li><strong>Features:</strong> ${update.categories.features}</li>
@@ -488,8 +488,8 @@ ${improvementsSection}
             </ul>
 
             <div class="post-footer">
-                <p><a href="/whats-new/">← Back to What's New</a></p>
-                <p><a href="/blog/">View All Blog Posts →</a></p>
+                <p><a href="/whats-new/">Back to What's New</a></p>
+                <p><a href="/blog/">View All Blog Posts</a></p>
             </div>
         </div>
     </article>
@@ -660,7 +660,7 @@ async function main() {
         saveDailyUpdate(update);
 
         // Display summary
-        console.log('\n📊 Update Summary:');
+        console.log('\nUpdate Summary:');
         console.log(`   Date: ${update.date}`);
         console.log(`   Total commits: ${update.totalCommits}`);
         console.log(`   Features: ${update.categories.features}`);

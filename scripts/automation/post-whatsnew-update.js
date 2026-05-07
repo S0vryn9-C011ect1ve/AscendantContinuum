@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url';
 import { postToBluesky } from '../posting/post-to-bluesky.js';
 import { postToMastodon } from '../posting/post-to-mastodon.js';
 import { postToDiscord } from '../posting/post-to-discord.js';
+import { ensureUrlAtEnd, normalizeForPublishing } from '../utils/publish-text-utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +20,7 @@ const DATA_FILE = path.join(__dirname, '..', '..', 'firebase', 'public', 'whats-
 const DRY_RUN = process.env.DRY_RUN === 'true';
 
 async function main() {
-    console.log('📢 Posting daily What\'s New update to social media...\n');
+    console.log('Posting daily What\'s New update to social media...\n');
 
     // Load data
     if (!fs.existsSync(DATA_FILE)) {
@@ -45,65 +46,35 @@ async function main() {
     // Create post text
     const highlights = [];
     if (todayUpdate.categories.features > 0) {
-        highlights.push(`✨ ${todayUpdate.categories.features} new feature${todayUpdate.categories.features !== 1 ? 's' : ''}`);
+        highlights.push(`${todayUpdate.categories.features} new feature${todayUpdate.categories.features !== 1 ? 's' : ''}`);
     }
     if (todayUpdate.categories.fixes > 0) {
-        highlights.push(`🐛 ${todayUpdate.categories.fixes} bug fix${todayUpdate.categories.fixes !== 1 ? 'es' : ''}`);
+        highlights.push(`${todayUpdate.categories.fixes} bug fix${todayUpdate.categories.fixes !== 1 ? 'es' : ''}`);
     }
     if (todayUpdate.categories.improvements > 0) {
-        highlights.push(`⚡ ${todayUpdate.categories.improvements} improvement${todayUpdate.categories.improvements !== 1 ? 's' : ''}`);
+        highlights.push(`${todayUpdate.categories.improvements} improvement${todayUpdate.categories.improvements !== 1 ? 's' : ''}`);
     }
 
-    const highlightText = highlights.join('\n');
+    const highlightText = highlights.length > 0 ? highlights.map(h => `- ${h}`).join('\n') : '- Internal maintenance updates';
+    const postUrl = `https://ascendant-continuum.web.app${todayUpdate.blogPostUrl}`;
 
-    const postText = `🎮 What's New - ${formattedDate}
+    const postText = ensureUrlAtEnd(`What's New - ${formattedDate}
 
 ${todayUpdate.totalCommits} commits today:
 
 ${highlightText}
 
 Read the full update:
-https://ascendant-continuum.web.app${todayUpdate.blogPostUrl}
+${postUrl}
 
-#GameDev #IndieGame #Unity #AscendantContinuum`;
+#GameDev #IndieGame #Unity #AscendantContinuum`, postUrl);
 
-    // Discord version (with embed)
-    const discordEmbed = {
-        embeds: [{
-            title: `📅 Daily Update: ${formattedDate}`,
-            description: `${todayUpdate.totalCommits} commits today`,
-            color: 0x8B5CF6, // Purple
-            fields: [
-                todayUpdate.categories.features > 0 ? {
-                    name: '✨ Features',
-                    value: `${todayUpdate.categories.features} new feature${todayUpdate.categories.features !== 1 ? 's' : ''}`,
-                    inline: true
-                } : null,
-                todayUpdate.categories.fixes > 0 ? {
-                    name: '🐛 Fixes',
-                    value: `${todayUpdate.categories.fixes} bug fix${todayUpdate.categories.fixes !== 1 ? 'es' : ''}`,
-                    inline: true
-                } : null,
-                todayUpdate.categories.improvements > 0 ? {
-                    name: '⚡ Improvements',
-                    value: `${todayUpdate.categories.improvements} improvement${todayUpdate.categories.improvements !== 1 ? 's' : ''}`,
-                    inline: true
-                } : null
-            ].filter(f => f !== null),
-            url: `https://ascendant-continuum.web.app${todayUpdate.blogPostUrl}`,
-            footer: {
-                text: 'The Ascendant Continuum'
-            },
-            timestamp: new Date().toISOString()
-        }]
-    };
-
-    console.log('📝 Post text:\n');
+    console.log('Post text:\n');
     console.log(postText);
     console.log('\n' + '═'.repeat(70) + '\n');
 
     if (DRY_RUN) {
-        console.log('🔍 DRY RUN: Skipping actual posting');
+        console.log('DRY RUN: Skipping actual posting');
         return;
     }
 
@@ -115,30 +86,30 @@ https://ascendant-continuum.web.app${todayUpdate.blogPostUrl}
     };
 
     try {
-        console.log('📤 Posting to Bluesky...');
-        results.bluesky = await postToBluesky(postText);
-        console.log('✅ Bluesky posted successfully');
+        console.log('Posting to Bluesky...');
+        results.bluesky = await postToBluesky(normalizeForPublishing(postText));
+        console.log('Bluesky posted successfully');
     } catch (error) {
         console.error('❌ Bluesky error:', error.message);
     }
 
     try {
-        console.log('📤 Posting to Mastodon...');
-        results.mastodon = await postToMastodon(postText);
-        console.log('✅ Mastodon posted successfully');
+        console.log('Posting to Mastodon...');
+        results.mastodon = await postToMastodon(normalizeForPublishing(postText));
+        console.log('Mastodon posted successfully');
     } catch (error) {
         console.error('❌ Mastodon error:', error.message);
     }
 
     try {
-        console.log('📤 Posting to Discord...');
-        results.discord = await postToDiscord(discordEmbed);
-        console.log('✅ Discord posted successfully');
+        console.log('Posting to Discord...');
+        results.discord = await postToDiscord(normalizeForPublishing(postText));
+        console.log('Discord posted successfully');
     } catch (error) {
         console.error('❌ Discord error:', error.message);
     }
 
-    console.log('\n✅ Social media posting complete\n');
+    console.log('\nSocial media posting complete\n');
 }
 
 main().catch(error => {

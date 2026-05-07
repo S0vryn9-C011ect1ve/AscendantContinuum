@@ -24,13 +24,19 @@ import {
     getContentWarning
 } from '../posting/post-to-mastodon.js';
 import {
-    postAnnouncementToDiscord,
+    postToDiscord,
     formatForDiscord,
     needsSplitting,
     postMessagesToDiscord,
     splitIntoMessages
 } from '../posting/post-to-discord.js';
 import { getHook, customizeHook } from './viral-hooks-gaming.js';
+import {
+    ensureUrlAtEnd,
+    extractLastUrl,
+    normalizeForPublishing,
+    truncatePreservingLastUrl
+} from '../utils/publish-text-utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -371,7 +377,8 @@ function selectContent(contentBank, postingHistory) {
  * Post content to specific platform
  */
 async function postToPlatform(platform, content) {
-    const fullText = `${content.hook}\n\n${content.body}`;
+    const fallbackUrl = content.url || extractLastUrl(content.body) || 'https://ascendant-continuum.web.app/blog/';
+    const fullText = ensureUrlAtEnd(`${content.hook}\n\n${content.body}`, fallbackUrl);
 
     if (config.dryRun) {
         console.log(`  [DRY RUN] Would post to ${platform}:`);
@@ -386,27 +393,29 @@ async function postToPlatform(platform, content) {
 
     try {
         if (platform === 'bluesky') {
-            const formatted = formatForBluesky(fullText);
+            const normalized = normalizeForPublishing(fullText);
 
-            if (blueskyNeedsThreading(formatted)) {
-                const thread = blueskySplitThread(formatted);
+            if (blueskyNeedsThreading(normalized)) {
+                const thread = blueskySplitThread(normalized).map(part => formatForBluesky(part));
                 const results = await postThreadToBluesky(thread);
                 return results[0]; // Return first post result
             } else {
-                return await postToBluesky(formatted, { media: content.media });
+                const singlePost = formatForBluesky(truncatePreservingLastUrl(normalized, 300));
+                return await postToBluesky(singlePost, { media: content.media });
             }
         }
 
         if (platform === 'mastodon') {
-            const formatted = formatForMastodon(fullText);
-            const contentWarning = getContentWarning(formatted, content.type);
+            const normalized = normalizeForPublishing(fullText);
+            const contentWarning = getContentWarning(content.type);
 
-            if (mastodonNeedsThreading(formatted)) {
-                const thread = mastodonSplitThread(formatted);
+            if (mastodonNeedsThreading(normalized)) {
+                const thread = mastodonSplitThread(normalized).map(part => formatForMastodon(part));
                 const results = await postThreadToMastodon(thread, { contentWarning });
                 return results[0]; // Return first post result
             } else {
-                return await postToMastodon(formatted, {
+                const singlePost = formatForMastodon(truncatePreservingLastUrl(normalized, 500));
+                return await postToMastodon(singlePost, {
                     media: content.media,
                     contentWarning,
                 });
@@ -416,19 +425,11 @@ async function postToPlatform(platform, content) {
         if (platform === 'discord') {
             const formatted = formatForDiscord(fullText);
 
-            // Discord announcements use embed format for better presentation
-            const announcement = {
-                title: content.hook,
-                description: content.body,
-                type: content.type,
-                url: content.url || null,
-            };
-
             if (needsSplitting(formatted)) {
                 const messages = splitIntoMessages(formatted);
                 return await postMessagesToDiscord(messages);
             } else {
-                return await postAnnouncementToDiscord(announcement);
+                return await postToDiscord(formatted);
             }
         }
 

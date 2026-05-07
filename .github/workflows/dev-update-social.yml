@@ -2,8 +2,8 @@ name: Dev Update Social Posts
 
 on:
   schedule:
-    # Run weekdays at 8 PM UTC (3 PM EST) to catch end-of-day commits
-    - cron: '0 20 * * 1-5'
+    # Run weekly on Monday at 8 PM UTC
+    - cron: '0 20 * * 1'
   workflow_dispatch: # Allow manual triggering
 
 permissions:

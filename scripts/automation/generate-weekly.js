@@ -139,7 +139,7 @@ function generateWeeklyBlogPostHTML(digest) {
     const shortEnd = weekEndObj.toLocaleDateString('en-US', shortFmt);
 
     const slug = `weekly-digest-${digest.weekStart}`;
-    const titleStr = `Weekly Dev Update \u2014 ${shortStart} to ${shortEnd}`;
+    const titleStr = `Weekly Dev Update - ${shortStart} to ${shortEnd}`;
 
     // Plain-English summary sentence
     const parts = [];
@@ -190,15 +190,15 @@ function generateWeeklyBlogPostHTML(digest) {
             <div class="post-category">Weekly Update</div>
             <h1>${titleStr}</h1>
             <div class="post-meta">
-                <time datetime="${digest.weekStart}">${formattedStart} \u2013 ${formattedEnd}</time>
+                <time datetime="${digest.weekStart}">${formattedStart} - ${formattedEnd}</time>
             </div>
         </header>
         <div class="post-content">
             <p class="lead">${summary}</p>
 ${featuresSection}${fixesSection}${improvementsSection}${dailyPostsSection}
             <div class="post-footer">
-                <p><a href="/whats-new/">\u2190 Back to What's New</a></p>
-                <p><a href="/blog/">View All Blog Posts \u2192</a></p>
+                <p><a href="/whats-new/">Back to What's New</a></p>
+                <p><a href="/blog/">View All Blog Posts</a></p>
             </div>
         </div>
     </article>
@@ -286,7 +286,7 @@ async function main() {
     if (meaningfulDays.length === 0 && isForce) {
         console.log('\u26A0\uFE0F  No meaningful activity, but --force is set. Generating anyway.');
     } else {
-        console.log(`\u2705 ${meaningfulDays.length} day(s) with meaningful changes \u2014 generating weekly post\n`);
+        console.log(`\u2705 ${meaningfulDays.length} day(s) with meaningful changes - generating weekly post\n`);
     }
     // ─────────────────────────────────────────────────────────────────────────
 

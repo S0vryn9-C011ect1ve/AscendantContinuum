@@ -455,45 +455,58 @@ function generateWhatsNewPost() {
 
         if (categories.features.length > 0) {
             sections.push({
-                heading: '🎉 New Features',
+                heading: 'New Features',
                 content: `This week we shipped ${categories.features.length} new feature${categories.features.length > 1 ? 's' : ''}:\n\n` +
-                    categories.features.map(c => `• ${c.subject.replace(/^(feat:|feature:|add:)\s*/i, '')}`).join('\n')
+                    categories.features.map(c => `- ${c.subject.replace(/^(feat:|feature:|add:)\s*/i, '')}`).join('\n')
             });
         }
 
         if (categories.fixes.length > 0) {
             sections.push({
-                heading: '🐛 Bug Fixes',
+                heading: 'Bug Fixes',
                 content: `We squashed ${categories.fixes.length} bug${categories.fixes.length > 1 ? 's' : ''} to improve stability:\n\n` +
-                    categories.fixes.map(c => `• ${c.subject.replace(/^(fix:|bug:)\s*/i, '')}`).join('\n')
+                    categories.fixes.map(c => `- ${c.subject.replace(/^(fix:|bug:)\s*/i, '')}`).join('\n')
             });
         }
 
         if (categories.improvements.length > 0) {
             sections.push({
-                heading: '⚡ Performance & Improvements',
+                heading: 'Performance and Improvements',
                 content: `We made ${categories.improvements.length} optimization${categories.improvements.length > 1 ? 's' : ''}:\n\n` +
-                    categories.improvements.map(c => `• ${c.subject.replace(/^(improve:|perf:|refactor:)\s*/i, '')}`).join('\n')
+                    categories.improvements.map(c => `- ${c.subject.replace(/^(improve:|perf:|refactor:)\s*/i, '')}`).join('\n')
             });
         }
 
         if (categories.docs.length > 0) {
             sections.push({
-                heading: '📚 Documentation',
-                content: categories.docs.map(c => `• ${c.subject.replace(/^(docs?:|doc:)\s*/i, '')}`).join('\n')
+                heading: 'Documentation',
+                content: categories.docs.map(c => `- ${c.subject.replace(/^(docs?:|doc:)\s*/i, '')}`).join('\n')
             });
         }
 
         // Generate summary
         const totalChanges = filteredCommits.length;
         const dateRange = `${filteredCommits[filteredCommits.length - 1].date} to ${filteredCommits[0].date}`;
+        const publishDate = filteredCommits[0].date || new Date().toISOString().split('T')[0];
 
         const title = `What's New: ${totalChanges} Update${totalChanges > 1 ? 's' : ''} This Week`;
         const hook = `Development update for ${dateRange}: ${categories.features.length} features, ${categories.fixes.length} fixes, ${categories.improvements.length} improvements.`;
+        const slug = `whats-new-${publishDate}`;
+        const excerpt = sections.length > 0
+            ? sections[0].content.replace(/\s+/g, ' ').trim().substring(0, 220) + '...'
+            : hook;
+        const content = sections.map(section => `
+            <h2>${section.heading}</h2>
+            <p>${section.content}</p>
+        `).join('\n');
 
         return {
             title,
+            slug,
+            date: publishDate,
             hook,
+            excerpt,
+            content,
             sections,
             tags: ['updates', 'changelog', 'development'],
             themeName: "What's New"
@@ -534,8 +547,11 @@ function generateBlogPost(forceWhatsNew = false) {
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-|-$/g, '');
 
-    // Generate excerpt (first 150 chars of first section)
-    const excerpt = topic.sections[0].content.substring(0, 200) + '...';
+    // Generate excerpt with minimum quality floor.
+    const excerptSource = (topic.sections[0]?.content || topic.hook || topic.title).replace(/\s+/g, ' ').trim();
+    const excerpt = excerptSource.length > 220
+        ? `${excerptSource.substring(0, 220)}...`
+        : excerptSource;
 
     // Generate full blog post content
     const content = `

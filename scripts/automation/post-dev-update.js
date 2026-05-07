@@ -6,10 +6,11 @@
 import { execSync } from 'child_process';
 import { postToBluesky } from '../posting/post-to-bluesky.js';
 import { postToMastodon } from '../posting/post-to-mastodon.js';
-import { postAnnouncementToDiscord } from '../posting/post-to-discord.js';
+import { postToDiscord } from '../posting/post-to-discord.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { normalizeForPublishing, ensureUrlAtEnd } from '../utils/publish-text-utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,9 +18,9 @@ const __dirname = path.dirname(__filename);
 const POSTING_HISTORY_PATH = path.join(__dirname, '../../public/social/posting-history.json');
 
 /**
- * Get recent commits from the last 24 hours
+ * Get recent commits from the chosen lookback window
  */
-function getRecentCommits(hours = 24) {
+function getRecentCommits(hours = 24 * 7) {
     try {
         const since = new Date(Date.now() - hours * 60 * 60 * 1000).toISOString();
         const commits = execSync(
@@ -104,31 +105,31 @@ function generateDevUpdate(commits) {
     }, {});
 
     // Create post content
-    let content = '🔧 Dev Update\n\n';
+    let content = 'Dev Update\n\n';
 
-    const categoryEmojis = {
-        feature: '✨',
-        fix: '🐛',
-        performance: '⚡',
-        style: '🎨',
-        refactor: '♻️',
-        test: '✅',
-        other: '📝'
+    const categoryLabels = {
+        feature: 'Feature',
+        fix: 'Fix',
+        performance: 'Performance',
+        style: 'Style',
+        refactor: 'Refactor',
+        test: 'Test',
+        other: 'Update'
     };
 
     Object.entries(grouped).forEach(([category, commits]) => {
-        const emoji = categoryEmojis[category] || '📝';
-        content += `${emoji} ${category.charAt(0).toUpperCase() + category.slice(1)}:\n`;
+        const label = categoryLabels[category] || 'Update';
+        content += `${label}:\n`;
         commits.forEach(commit => {
             const message = commit.message.replace(/^(feat|fix|perf|style|refactor|test|chore|docs|privacy|security|content|build|ci)(\(.+?\))?:\s*/i, '');
-            content += `• ${message}\n`;
+            content += `- ${normalizeForPublishing(message)}\n`;
         });
         content += '\n';
     });
 
-    content += `#IndieGameDev #GameDev #Unity`;
+    content += '#IndieGameDev #GameDev #Unity\n\nhttps://ascendant-continuum.web.app/whats-new/';
 
-    return content;
+    return ensureUrlAtEnd(normalizeForPublishing(content), 'https://ascendant-continuum.web.app/whats-new/');
 }
 
 /**
@@ -137,8 +138,8 @@ function generateDevUpdate(commits) {
 async function main() {
     console.log('🚀 Dev Update Poster Starting...\n');
 
-    // Get recent commits
-    const commits = getRecentCommits(24);
+    // Get weekly commits
+    const commits = getRecentCommits(24 * 7);
 
     if (commits.length === 0) {
         console.log('ℹ️  No commits in the last 24 hours');
@@ -194,13 +195,7 @@ async function main() {
     try {
         // Discord
         console.log('📡 Posting to Discord...');
-        const discordAnnouncement = {
-            title: '🔧 Dev Update',
-            description: content,
-            type: 'devUpdate',
-            url: results.platforms.bluesky?.url || null
-        };
-        const discordResult = await postAnnouncementToDiscord(discordAnnouncement);
+        const discordResult = await postToDiscord(content);
         results.platforms.discord = discordResult;
         console.log(`✅ Discord: Posted\n`);
     } catch (error) {

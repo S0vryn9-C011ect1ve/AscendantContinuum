@@ -7,6 +7,7 @@
 
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
+import { normalizeForPublishing } from '../utils/publish-text-utils.js';
 
 dotenv.config();
 
@@ -148,21 +149,7 @@ export async function postAnnouncementToDiscord(announcement) {
  * @returns {string} - Discord-formatted content
  */
 export function formatForDiscord(content) {
-    // Discord supports markdown, but has some quirks
-    let formatted = content;
-
-    // Discord uses ** for bold, * for italic (same as standard markdown)
-    // Discord uses ` for inline code, ``` for code blocks (same as standard)
-    // Discord uses > for quotes (same as standard)
-
-    // Replace smart quotes with regular quotes
-    formatted = formatted.replace(/[""]/g, '"');
-    formatted = formatted.replace(/['']/g, "'");
-
-    // Ensure proper line breaks
-    formatted = formatted.replace(/\n{3,}/g, '\n\n');
-
-    return formatted.trim();
+    return normalizeForPublishing(content);
 }
 
 /**

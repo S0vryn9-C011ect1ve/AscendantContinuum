@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url';
 import { postToBluesky } from '../posting/post-to-bluesky.js';
 import { postToMastodon } from '../posting/post-to-mastodon.js';
 import { postToDiscord } from '../posting/post-to-discord.js';
+import { ensureUrlAtEnd, normalizeForPublishing } from '../utils/publish-text-utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,7 +27,7 @@ function getWeekStart(date) {
 }
 
 async function main() {
-    console.log('📊 Posting weekly digest to social media...\n');
+    console.log('Posting weekly digest to social media...\n');
 
     // Load data
     if (!fs.existsSync(DATA_FILE)) {
@@ -60,77 +61,44 @@ async function main() {
     // Create highlights list
     const highlights = [];
     if (weeklyDigest.highlights.features.length > 0) {
-        highlights.push(`✨ ${weeklyDigest.highlights.features[0]}`);
+        highlights.push(`Feature: ${weeklyDigest.highlights.features[0]}`);
     }
     if (weeklyDigest.highlights.fixes.length > 0) {
-        highlights.push(`🐛 ${weeklyDigest.highlights.fixes[0]}`);
+        highlights.push(`Fix: ${weeklyDigest.highlights.fixes[0]}`);
     }
     if (weeklyDigest.highlights.improvements.length > 0) {
-        highlights.push(`⚡ ${weeklyDigest.highlights.improvements[0]}`);
+        highlights.push(`Improvement: ${weeklyDigest.highlights.improvements[0]}`);
     }
 
-    const highlightText = highlights.slice(0, 3).join('\n');
+    const highlightText = highlights.length > 0
+        ? highlights.slice(0, 3).map(h => `- ${h}`).join('\n')
+        : '- Various improvements';
+    const postUrl = `https://ascendant-continuum.web.app${weeklyDigest.blogPostUrl}`;
 
-    const postText = `📊 Weekly Development Digest
+    const postText = ensureUrlAtEnd(`Weekly Development Digest
 
 ${formattedStart} - ${formattedEnd}
 
 This week:
-📦 ${weeklyDigest.totalCommits} commits across ${weeklyDigest.daysWithUpdates} days
-✨ ${weeklyDigest.categories.features} features
-🐛 ${weeklyDigest.categories.fixes} fixes
-⚡ ${weeklyDigest.categories.improvements} improvements
+- ${weeklyDigest.totalCommits} commits across ${weeklyDigest.daysWithUpdates} days
+- ${weeklyDigest.categories.features} features
+- ${weeklyDigest.categories.fixes} fixes
+- ${weeklyDigest.categories.improvements} improvements
 
 Highlights:
 ${highlightText}
 
 Read the full digest:
-https://ascendant-continuum.web.app${weeklyDigest.blogPostUrl}
+${postUrl}
 
-#GameDev #IndieGame #WeeklyUpdate #AscendantContinuum`;
+#GameDev #IndieGame #WeeklyUpdate #AscendantContinuum`, postUrl);
 
-    // Discord version (with embed)
-    const discordEmbed = {
-        embeds: [{
-            title: `📊 Weekly Digest: ${formattedStart} - ${formattedEnd}`,
-            description: `${weeklyDigest.totalCommits} commits across ${weeklyDigest.daysWithUpdates} days`,
-            color: 0x8B5CF6, // Purple
-            fields: [
-                {
-                    name: '✨ Features',
-                    value: `${weeklyDigest.categories.features}`,
-                    inline: true
-                },
-                {
-                    name: '🐛 Fixes',
-                    value: `${weeklyDigest.categories.fixes}`,
-                    inline: true
-                },
-                {
-                    name: '⚡ Improvements',
-                    value: `${weeklyDigest.categories.improvements}`,
-                    inline: true
-                },
-                {
-                    name: '🌟 Top Highlights',
-                    value: highlights.slice(0, 3).join('\n') || 'Various improvements',
-                    inline: false
-                }
-            ],
-            url: `https://ascendant-continuum.web.app${weeklyDigest.blogPostUrl}`,
-            footer: {
-                text: 'The Ascendant Continuum'
-            },
-            timestamp: new Date().toISOString()
-        }]
-    };
-
-    console.log('📝 Post text:\n');
+    console.log('Post text:\n');
     console.log(postText);
     console.log('\n' + '═'.repeat(70) + '\n');
 
     if (DRY_RUN) {
-        console.log('🔍 DRY RUN: Skipping actual posting');
+        console.log('DRY RUN: Skipping actual posting');
         return;
     }
 
@@ -142,30 +110,30 @@ https://ascendant-continuum.web.app${weeklyDigest.blogPostUrl}
     };
 
     try {
-        console.log('📤 Posting to Bluesky...');
-        results.bluesky = await postToBluesky(postText);
-        console.log('✅ Bluesky posted successfully');
+        console.log('Posting to Bluesky...');
+        results.bluesky = await postToBluesky(normalizeForPublishing(postText));
+        console.log('Bluesky posted successfully');
     } catch (error) {
         console.error('❌ Bluesky error:', error.message);
     }
 
     try {
-        console.log('📤 Posting to Mastodon...');
-        results.mastodon = await postToMastodon(postText);
-        console.log('✅ Mastodon posted successfully');
+        console.log('Posting to Mastodon...');
+        results.mastodon = await postToMastodon(normalizeForPublishing(postText));
+        console.log('Mastodon posted successfully');
     } catch (error) {
         console.error('❌ Mastodon error:', error.message);
     }
 
     try {
-        console.log('📤 Posting to Discord...');
-        results.discord = await postToDiscord(discordEmbed);
-        console.log('✅ Discord posted successfully');
+        console.log('Posting to Discord...');
+        results.discord = await postToDiscord(normalizeForPublishing(postText));
+        console.log('Discord posted successfully');
     } catch (error) {
         console.error('❌ Discord error:', error.message);
     }
 
-    console.log('\n✅ Social media posting complete\n');
+    console.log('\nSocial media posting complete\n');
 }
 
 main().catch(error => {

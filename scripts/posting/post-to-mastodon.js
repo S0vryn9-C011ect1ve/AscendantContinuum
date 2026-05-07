@@ -7,6 +7,7 @@
 
 import generator from 'megalodon';
 import dotenv from 'dotenv';
+import { normalizeForPublishing, truncatePreservingLastUrl } from '../utils/publish-text-utils.js';
 
 dotenv.config();
 
@@ -62,10 +63,8 @@ export async function postToMastodon(text, options = {}) {
     }
 
     try {
-        // Truncate if exceeds limit
-        const truncatedText = text.length > config.maxLength
-            ? text.substring(0, config.maxLength - 3) + '...'
-            : text;
+        // Keep URLs intact if truncation is needed.
+        const truncatedText = truncatePreservingLastUrl(text, config.maxLength);
 
         // Create Mastodon client
         const client = generator('mastodon', config.instance, config.accessToken);
@@ -154,20 +153,7 @@ export async function postThreadToMastodon(posts, options = {}) {
  * @returns {string} Formatted content
  */
 export function formatForMastodon(content) {
-    // Mastodon supports markdown-like formatting + links
-    // Character limit: 500 (default, varies by instance)
-
-    let formatted = content;
-
-    // Mastodon allows em dashes, but let's normalize
-    formatted = formatted.replace(/—/g, '-');
-
-    // Truncate if needed
-    if (formatted.length > config.maxLength) {
-        formatted = formatted.substring(0, config.maxLength - 3) + '...';
-    }
-
-    return formatted;
+    return normalizeForPublishing(content);
 }
 
 /**
@@ -239,7 +225,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const testPost = async () => {
         console.log('🧪 Testing Mastodon posting module...\n');
 
-        const testContent = "Test post from Ascendant Continuum social automation system.\n\nIf you're seeing this, authentication is working! 🎮✨\n\n#IndieGameDev #GameDev";
+        const testContent = "Test post from Ascendant Continuum social automation system.\n\nIf you are seeing this, authentication is working.\n\n#IndieGameDev #GameDev";
 
         const result = await postToMastodon(testContent);
 

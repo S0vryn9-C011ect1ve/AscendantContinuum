@@ -5,6 +5,7 @@ import { generateBlogPost } from '../content/blog-post-generator.js';
 import { postToBluesky } from '../posting/post-to-bluesky.js';
 import { postToMastodon } from '../posting/post-to-mastodon.js';
 import { postToDiscord } from '../posting/post-to-discord.js';
+import { ensureUrlAtEnd, normalizeForPublishing } from '../utils/publish-text-utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -90,7 +91,10 @@ ${rssItems}
 // Generate HTML template for blog post
 function generatePostHTML(post) {
     const postUrl = `https://ascendant-continuum.web.app/blog/posts/${post.slug}.html`;
-    const shareTextEncoded = encodeURIComponent(`${post.title}\n\n${post.hook}\n\nRead more:`);
+    const shareTextEncoded = encodeURIComponent(`${normalizeForPublishing(post.title)}\n\n${normalizeForPublishing(post.hook)}\n\nRead more:`);
+    const safeContent = post.content && post.content.trim().length > 0
+        ? post.content
+        : `<h2>Overview</h2><p>${normalizeForPublishing(post.hook || post.excerpt || 'New development update published.')}</p>`;
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -249,7 +253,7 @@ function generatePostHTML(post) {
 
     <article class="blog-post-container">
         <div class="blog-nav-breadcrumb">
-            <a href="/">Home</a> / <a href="/blog/">Blog</a> / ${post.title}
+            <a href="/">Home</a> / <a href="/blog/">Blog</a> / ${normalizeForPublishing(post.title)}
         </div>
 
         <header class="blog-post-header">
@@ -257,25 +261,25 @@ function generatePostHTML(post) {
                 <time datetime="${post.date}">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
                 ${post.tags.map(tag => `<span class="blog-post-tag">${tag}</span>`).join('')}
             </div>
-            <h1 class="blog-post-title">${post.title}</h1>
+            <h1 class="blog-post-title">${normalizeForPublishing(post.title)}</h1>
         </header>
 
         <div class="blog-post-content">
-            ${post.content}
+            ${safeContent}
         </div>
 
         <footer class="blog-post-footer">
-            <a href="/blog/" class="blog-back-link">← Back to all posts</a>
+            <a href="/blog/" class="blog-back-link">Back to all posts</a>
             
             <div class="blog-share-buttons">
                 <a href="https://bsky.app/intent/compose?text=${shareTextEncoded}%20${encodeURIComponent(postUrl)}" 
                    target="_blank" 
                    rel="noopener noreferrer" 
-                   class="blog-share-btn">📱 Share on Bluesky</a>
+                   class="blog-share-btn">Share on Bluesky</a>
                 <a href="https://mastodon.social/share?text=${shareTextEncoded}%20${encodeURIComponent(postUrl)}" 
                    target="_blank" 
                    rel="noopener noreferrer" 
-                   class="blog-share-btn">🐘 Share on Mastodon</a>
+                   class="blog-share-btn">Share on Mastodon</a>
             </div>
         </footer>
     </article>
@@ -286,14 +290,20 @@ function generatePostHTML(post) {
 // Post blog link to social media
 async function postToSocialMedia(post) {
     const postUrl = `https://ascendant-continuum.web.app/blog/posts/${post.slug}.html`;
-    const socialText = `📝 New blog post: ${post.title}\n\n${post.hook}\n\nRead more: ${postUrl}\n\n#GameDev #Unity #AccessibilityFirst #IndieGame`;
+    const socialText = ensureUrlAtEnd(
+        `New blog post: ${normalizeForPublishing(post.title)}\n\n` +
+        `${normalizeForPublishing(post.hook)}\n\n` +
+        `Read more: ${postUrl}\n\n` +
+        '#GameDev #Unity #AccessibilityFirst #IndieGame',
+        postUrl
+    );
 
     try {
-        console.log('\n📢 Posting blog link to social media...');
+        console.log('\nPosting blog link to social media...');
 
         // Post to Bluesky
         try {
-            await postToBluesky(socialText);
+            await postToBluesky(normalizeForPublishing(socialText));
             console.log('✅ Posted to Bluesky');
         } catch (error) {
             console.error('❌ Bluesky posting failed:', error.message);
@@ -304,7 +314,7 @@ async function postToSocialMedia(post) {
 
         // Post to Mastodon
         try {
-            await postToMastodon(socialText);
+            await postToMastodon(normalizeForPublishing(socialText));
             console.log('✅ Posted to Mastodon');
         } catch (error) {
             console.error('❌ Mastodon posting failed:', error.message);
@@ -315,7 +325,7 @@ async function postToSocialMedia(post) {
 
         // Post to Discord
         try {
-            await postToDiscord(socialText);
+            await postToDiscord(normalizeForPublishing(socialText));
             console.log('✅ Posted to Discord');
         } catch (error) {
             console.error('❌ Discord posting failed:', error.message);
@@ -329,16 +339,16 @@ async function postToSocialMedia(post) {
 
 // Create and publish a new blog post
 async function publishBlogPost() {
-    console.log('🎨 Generating new blog post...');
+    console.log('Generating new blog post...');
 
     ensureDirectories();
 
     // Generate post
     const post = generateBlogPost();
-    console.log(`📝 Generated: "${post.title}"`);
-    console.log(`🎭 Theme: ${post.themeName}`);
-    console.log(`🏷️  Tags: ${post.tags.join(', ')}`);
-    console.log(`📅 Date: ${post.date}`);
+    console.log(`Generated: "${post.title}"`);
+    console.log(`Theme: ${post.themeName}`);
+    console.log(`Tags: ${post.tags.join(', ')}`);
+    console.log(`Date: ${post.date}`);
 
     // Load existing data
     const blogData = loadBlogData();
