@@ -1812,18 +1812,47 @@
           "timestamp": "2026-05-05T20:49:26.544Z"
         }
       }
+    },
+    {
+      "id": 63,
+      "contentId": 173,
+      "contentType": "devEducation",
+      "hook": "Dawn Citadel puzzles use actual light refraction physics",
+      "topics": [
+        "realms-lore"
+      ],
+      "timestamp": "2026-05-07T22:12:36.529Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true
+        },
+        {
+          "platform": "mastodon",
+          "success": true
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 57,
+    "totalPosts": 58,
     "byPlatform": {
-      "bluesky": 57,
-      "mastodon": 57,
-      "discord": 55
+      "bluesky": 58,
+      "mastodon": 58,
+      "discord": 56
     },
     "byType": {
       "devUpdate": 27,
-      "devEducation": 13,
+      "devEducation": 14,
       "designPhilosophy": 11,
       "behindScenes": 0,
       "loreSnippet": 6

@@ -5,7 +5,7 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 07 May 2026 22:12:42 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 07 May 2026 22:14:26 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
@@ -23,6 +23,18 @@
       <category><![CDATA[unity]]></category>
       <category><![CDATA[game-dev]]></category>
       <description><![CDATA[The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting better performance, we...]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
+      <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Behind the Scenes]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[team]]></category>
+      <category><![CDATA[process]]></category>
+      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical necessity due to budg...]]></description>
     </item>
 
     <item>
@@ -224,16 +236,6 @@
       <category><![CDATA[free-tools]]></category>
       <category><![CDATA[bootstrap]]></category>
       <description><![CDATA[The honest truth about building The Ascendant Continuum: $0 spent on game development. Here]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[The Eternal Archive: Unlocked After 30 Days]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/eternal-archive-30-day-unlock.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/eternal-archive-30-day-unlock.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[You can]]></description>
     </item>
   </channel>
 </rss>

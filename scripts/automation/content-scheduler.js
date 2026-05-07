@@ -124,11 +124,15 @@ export async function runScheduler() {
             }
         }
 
-        // 4. Update content bank (mark as used)
-        updateContentBank(contentBank, selectedContent.id);
+        if (!config.dryRun) {
+            // 4. Update content bank (mark as used)
+            updateContentBank(contentBank, selectedContent.id);
 
-        // 5. Log posting history
-        logPostingHistory(postingHistory, selectedContent, results);
+            // 5. Log posting history
+            logPostingHistory(postingHistory, selectedContent, results);
+        } else {
+            console.log('DRY RUN: Skipping content bank/history writes');
+        }
 
         // 6. Print summary
         printSummary(selectedContent, results);

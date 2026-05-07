@@ -14,6 +14,7 @@ const BLOG_DIR = path.join(__dirname, '..', '..', 'firebase', 'public', 'blog');
 const POSTS_DIR = path.join(BLOG_DIR, 'posts');
 const DATA_FILE = path.join(BLOG_DIR, 'data.json');
 const RSS_FILE = path.join(BLOG_DIR, 'rss.xml');
+const DRY_RUN = process.env.DRY_RUN === 'true';
 
 // Ensure directories exist
 function ensureDirectories() {
@@ -41,6 +42,10 @@ function loadBlogData() {
 
 // Save blog data
 function saveBlogData(data) {
+    if (DRY_RUN) {
+        console.log('DRY RUN: skipping data.json write');
+        return;
+    }
     fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
 }
 
@@ -84,8 +89,12 @@ ${rssItems}
   </channel>
 </rss>`;
 
-    fs.writeFileSync(RSS_FILE, rssFeed, 'utf-8');
-    console.log('✅ Generated RSS feed with', recentPosts.length, 'posts');
+    if (DRY_RUN) {
+        console.log('DRY RUN: skipping RSS write');
+    } else {
+        fs.writeFileSync(RSS_FILE, rssFeed, 'utf-8');
+        console.log('✅ Generated RSS feed with', recentPosts.length, 'posts');
+    }
 }
 
 // Generate HTML template for blog post
@@ -369,8 +378,12 @@ async function publishBlogPost() {
     // Create HTML file
     const postHTML = generatePostHTML(post);
     const postFilePath = path.join(POSTS_DIR, `${post.slug}.html`);
-    fs.writeFileSync(postFilePath, postHTML, 'utf-8');
-    console.log(`✅ Created HTML file: ${post.slug}.html`);
+    if (DRY_RUN) {
+        console.log(`DRY RUN: would create HTML file: ${post.slug}.html`);
+    } else {
+        fs.writeFileSync(postFilePath, postHTML, 'utf-8');
+        console.log(`✅ Created HTML file: ${post.slug}.html`);
+    }
 
     // Add to blog data (only metadata, not full content)
     blogData.posts.push({
@@ -392,7 +405,11 @@ async function publishBlogPost() {
     });
 
     saveBlogData(blogData);
-    console.log('✅ Updated blog data.json');
+    if (DRY_RUN) {
+        console.log('DRY RUN: skipping blog data update on disk');
+    } else {
+        console.log('✅ Updated blog data.json');
+    }
 
     // Generate RSS feed
     generateRSSFeed(blogData.posts);
