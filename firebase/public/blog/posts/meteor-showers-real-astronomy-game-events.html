@@ -32,17 +32,22 @@
                 <p class="blog-post-hook">The Perseids happen whether you play or not. We just sync the game to them.
                 </p>
             </header>
+            <div class="blog-post-content">
+                <h2>Tying Events to Real Celestial Timing</h2>
+                <p>Meteor event windows are aligned to real astronomy schedules to make timing feel grounded and meaningful.</p>
+                <p>This creates anticipation loops that are discoverable outside the game itself and reinforces a real-world cadence.</p>
 
-                        <div class="blog-post-content">
-                <h2>Overview</h2>
-                <p>The Perseids happen whether you play or not. We just sync the game to them.</p>
-                <p>This post has been restored with on-page content to replace the old placeholder version.</p>
+                <h2>Event Design Pattern</h2>
+                <p>Each event has three phases: approach, peak, and fade. Rewards and atmosphere shift by phase so participation feels dynamic.</p>
+                <p>The structure supports both short drop-in sessions and deeper sessions during peak windows.</p>
 
-                <h2>Current Focus</h2>
-                <p>Meteor Showers: When Real Astronomy Unlocks Game Content is part of the active development journal for Ascendant Continuum. This entry captures design direction, implementation notes, and practical decisions made during production.</p>
+                <h2>Reliability and Edge Cases</h2>
+                <p>Time-zone handling and daylight transitions are core reliability risks. Event checks use normalized UTC gates with local presentation layers.</p>
+                <p>This prevents event drift while still presenting timings in the player local context.</p>
 
-                <h2>What Comes Next</h2>
-                <p>Follow upcoming updates on the blog index and in the What's New feed for continuing progress and implementation details.</p>
+                <h2>Why It Improves the World</h2>
+                <p>Real-timed events reduce the feeling of arbitrary content drops. The sky cadence becomes part of world logic.</p>
+                <p>That consistency helps events feel discovered rather than announced.</p>
 
                 <p>More updates: <a href="/blog/">/blog/</a> | Daily progress: <a href="/whats-new/">/whats-new/</a></p>
             </div>
