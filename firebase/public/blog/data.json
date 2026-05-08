@@ -768,10 +768,22 @@
       ],
       "themeName": "Behind the Scenes",
       "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical necessity due to budg..."
+    },
+    {
+      "title": "What's New: 14 Updates This Week",
+      "slug": "whats-new-2026-05-07",
+      "date": "2026-05-07",
+      "tags": [
+        "updates",
+        "changelog",
+        "development"
+      ],
+      "themeName": "What's New",
+      "excerpt": "This week we shipped 1 new feature: - What's New pipeline — user-impact filtering + plain English + activity gate..."
     }
   ],
   "stats": {
-    "totalPosts": 73,
+    "totalPosts": 74,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
@@ -779,7 +791,8 @@
       "Tutorial": 10,
       "Design Philosophy": 13,
       "Dev Diary": 11,
-      "Community Insight": 1
+      "Community Insight": 1,
+      "What's New": 1
     },
     "byTag": {
       "budget": 1,
@@ -806,9 +819,9 @@
       "community": 2,
       "systems": 1,
       "social": 1,
-      "development": 23,
+      "development": 24,
       "player-stories": 1,
-      "updates": 1,
+      "updates": 2,
       "team": 9,
       "process": 9,
       "daily-challenges": 1,
@@ -828,7 +841,8 @@
       "security": 2,
       "npm": 1,
       "webdev": 1,
-      "tools": 1
+      "tools": 1,
+      "changelog": 1
     }
   },
   "lastUpdated": "2026-05-05T01:32:06.483Z"

@@ -5,7 +5,7 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 07 May 2026 22:14:26 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 08 May 2026 14:01:15 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
@@ -35,6 +35,18 @@
       <category><![CDATA[team]]></category>
       <category><![CDATA[process]]></category>
       <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical necessity due to budg...]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[What's New: 14 Updates This Week]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/whats-new-2026-05-07.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/whats-new-2026-05-07.html</guid>
+      <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[What's New]]></category>
+      <category><![CDATA[updates]]></category>
+      <category><![CDATA[changelog]]></category>
+      <category><![CDATA[development]]></category>
+      <description><![CDATA[This week we shipped 1 new feature: - What's New pipeline — user-impact filtering + plain English + activity gate...]]></description>
     </item>
 
     <item>
@@ -222,20 +234,6 @@
       <category><![CDATA[Development]]></category>
       
       <description><![CDATA[The game knows when the sun rises in real life. Catch dawn or dusk rituals for 2× XP and solar blessings.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[The Ascendant Continuum]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/building-a-game-for-zero-dollars-actual-budget.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/building-a-game-for-zero-dollars-actual-budget.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      <category><![CDATA[budget]]></category>
-      <category><![CDATA[indie-dev]]></category>
-      <category><![CDATA[transparency]]></category>
-      <category><![CDATA[free-tools]]></category>
-      <category><![CDATA[bootstrap]]></category>
-      <description><![CDATA[The honest truth about building The Ascendant Continuum: $0 spent on game development. Here]]></description>
     </item>
   </channel>
 </rss>
