@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 08 May 2026 14:01:15 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 09 May 2026 14:01:15 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Why We Reject FOMO: Designing Without Dark Patterns]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</guid>
+      <pubDate>Sat, 09 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[ethics]]></category>
+      <category><![CDATA[philosophy]]></category>
+      <description><![CDATA[Modern free-to-play games are engineered with "urgency mechanics"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish yo...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Unity Mobile Optimization: WebGL to Android Performance]]></title>
@@ -224,16 +236,6 @@
       <category><![CDATA[systems]]></category>
       <category><![CDATA[social]]></category>
       <description><![CDATA[How the first player to discover a sigil combination gets to name it globally for everyone. A deep dive into our community-driven crafting system.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Sunrise/Sunset Awareness: Real-Time Solar Rewards]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/sunrise-sunset-awareness-real-time-solar-rewards.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/sunrise-sunset-awareness-real-time-solar-rewards.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[The game knows when the sun rises in real life. Catch dawn or dusk rituals for 2× XP and solar blessings.]]></description>
     </item>
   </channel>
 </rss>
