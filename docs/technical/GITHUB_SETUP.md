@@ -1,850 +1,95 @@
-# GitHub Repository Setup - The Ascendant Continuum
+﻿# Environment and CI/CD Setup
 
-**Repository:** https://github.com/ascendantcontinuum/AscendantContinuum.git  
-**Created:** February 1, 2026  
-**Visibility:** Private (until ready for open-source)
+This is the canonical setup guide for local development, automation, and deployment.
 
----
+## Required Toolchain
 
-## 📋 Repository Structure
+- Unity 6000.3.9f1 (required)
+- Unity modules: WebGL Build Support, Android Build Support, iOS Build Support
+- Node.js 18+
+- Git
+- Firebase CLI (`npm install -g firebase-tools`)
+- Optional: GitHub CLI (`gh`)
 
-```
-AscendantContinuum/
-├── .github/
-│   ├── workflows/
-│   │   ├── unity-build.yml          # Automated Unity builds
-│   │   ├── firebase-deploy.yml      # Firebase Functions deployment
-│   │   └── security-scan.yml        # Automated security scanning
-│   ├── ISSUE_TEMPLATE/
-│   │   ├── bug_report.md
-│   │   ├── feature_request.md
-│   │   └── accessibility_issue.md   # Special template!
-│   └── PULL_REQUEST_TEMPLATE.md
-│
-├── docs/                            # All existing documentation
-│   ├── design/
-│   ├── technical/
-│   └── onboarding/
-│
-├── Assets/                          # Unity project
-│   └── _Project/
-│       ├── Scenes/
-│       ├── Scripts/
-│       ├── Prefabs/
-│       └── Resources/
-│
-├── firebase/                        # Firebase backend
-│   ├── functions/
-│   ├── firestore.rules
-│   └── storage.rules
-│
-├── .gitignore                       # Unity + Firebase ignores
-├── .gitattributes                   # LFS configuration
-├── README.md
-├── LICENSE
-└── SECURITY.md                      # Security policy
+## Local Project Setup
 
-```
+1. Clone and open the repository in Unity Hub.
+2. Confirm Unity version is exactly 6000.3.9f1.
+3. Let packages import fully before running scenes or tests.
+4. Verify build scenes are configured in `ProjectSettings/EditorBuildSettings.asset`.
 
----
+## Firebase Local Setup and Deploy
 
-## 🚀 Initial Setup
+- Canonical Firebase hosting surface is `firebase/public/`.
+- Use Firebase CLI from the `firebase/` directory when verifying hosting or project access.
+- Confirm the active Firebase project matches repository deployment settings before pushing a hosting deploy.
+- Treat Firebase hosting/deploy fixes as environment validation, not as a reason to add new root setup docs.
 
-### 1. Clone Repository
+## Build and Validation
+
+- Game build script: `Build.ps1`
+- Firebase deploy script: `Deploy-Firebase.ps1`
+- Main CI workflow: `.github/workflows/build-deploy.yml`
+
+Recommended local checks:
 
 ```powershell
-# Clone to your local machine
-cd D:\
-git clone https://github.com/ascendantcontinuum/AscendantContinuum.git
-cd "1-Ascendant Continuum Game"
-
-# Set up Git user (if not already configured)
-git config user.name "Your Name"
-git config user.email "ascendantcontinuum@gmail.com"
+npm ci
+npm run validate:auto-publish
+npm run validate:content
+npm run validate:dedup
 ```
 
-### 2. Initialize Git LFS (Large File Storage)
+## GitHub Actions Secrets (Names Only)
 
-Unity projects have large binary files (textures, audio, etc.). Use Git LFS to avoid bloating repository.
+Store all values in GitHub Secrets. Never commit values to markdown or source files.
 
-```powershell
-# Install Git LFS (download from https://git-lfs.github.com/)
-git lfs install
+Core build/deploy:
 
-# Track Unity asset types
-git lfs track "*.psd"
-git lfs track "*.png"
-git lfs track "*.jpg"
-git lfs track "*.fbx"
-git lfs track "*.wav"
-git lfs track "*.mp3"
-git lfs track "*.ogg"
-git lfs track "*.mp4"
-git lfs track "*.unity"
-git lfs track "*.prefab"
-git lfs track "*.asset"
+- `UNITY_LICENSE`
+- `UNITY_EMAIL`
+- `UNITY_PASSWORD`
+- `FIREBASE_TOKEN`
+- `ANDROID_KEYSTORE_BASE64`
+- `ANDROID_KEYSTORE_PASS`
+- `ANDROID_KEY_ALIAS`
+- `ANDROID_KEY_ALIAS_PASS`
 
-# Verify LFS is working
-git lfs ls-files
-```
+Social automation:
 
-### 3. Create .gitignore
+- `BLUESKY_IDENTIFIER`
+- `BLUESKY_PASSWORD`
+- `MASTODON_INSTANCE`
+- `MASTODON_API_URL`
+- `MASTODON_ACCESS_TOKEN`
+- `DISCORD_WEBHOOK_URL`
 
-Unity generates many temporary files that should NOT be committed:
+Compatibility note:
 
-```gitignore
-# Unity generated
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Uu]ser[Ss]ettings/
+- The current automation scripts and workflows expect `BLUESKY_IDENTIFIER` and `BLUESKY_PASSWORD`.
+- Some workflows still reference `MASTODON_API_URL` while posting modules commonly use `MASTODON_INSTANCE`; keep both populated until workflow consolidation is complete.
 
-# Asset meta files
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
+## Security Requirements
 
-# Unity cache
-[Mm]emoryCaptures/
-[Aa]sset[Ss]tore[Tt]ools*
+- Never store credentials in tracked files.
+- Rotate any previously exposed credential immediately.
+- Prefer `npm ci` over `npm install` for reproducible dependency resolution.
+- Keep `.npmrc` protections active (release-age delay, script controls).
 
-# Autogenerated VS/MD solution files
-*.csproj
-*.unityproj
-*.sln
-*.suo
-*.tmp
-*.user
-*.userprefs
-*.pidb
-*.booproj
-*.svd
-*.pdb
-*.mdb
-*.opendb
-*.VC.db
+## Branch and PR Governance
 
-# Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
+Recommended branch protection for `main`:
 
-# Rider IDE
-.idea/
-*.sln.iml
+- Require pull request reviews.
+- Require required status checks.
+- Require up-to-date branch before merge.
+- Block force push and branch deletion.
 
-# Visual Studio cache
-.vs/
-.vscode/
+## Related Canonical Docs
 
-# macOS
-.DS_Store
-
-# Windows
-Thumbs.db
-Desktop.ini
-
-# Firebase
-firebase/functions/node_modules/
-firebase/functions/lib/
-.firebase/
-firebase-debug.log
-firestore-debug.log
-
-# Environment files (NEVER commit secrets!)
-.env
-.env.local
-firebase/functions/.env
-secrets.json
-
-# Build outputs
-*.apk
-*.ipa
-*.app
-*.unitypackage
-
-# Crash logs
-sysinfo.txt
-*.stackdump
-```
-
-### 4. Create .gitattributes
-
-Ensure consistent line endings and LFS tracking:
-
-```gitattributes
-# Auto detect text files and normalize line endings to LF
-* text=auto eol=lf
-
-# Unity YAML (always LF)
-*.meta text eol=lf
-*.unity text eol=lf
-*.asset text eol=lf
-*.prefab text eol=lf
-
-# Unity binary files
-*.png filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
-*.psd filter=lfs diff=lfs merge=lfs -text
-*.fbx filter=lfs diff=lfs merge=lfs -text
-*.wav filter=lfs diff=lfs merge=lfs -text
-*.mp3 filter=lfs diff=lfs merge=lfs -text
-*.ogg filter=lfs diff=lfs merge=lfs -text
-*.mp4 filter=lfs diff=lfs merge=lfs -text
-
-# Source code (always LF)
-*.cs text eol=lf
-*.js text eol=lf
-*.json text eol=lf
-*.md text eol=lf
-*.yml text eol=lf
-*.yaml text eol=lf
-
-# Shell scripts (LF)
-*.sh text eol=lf
-
-# Windows scripts (CRLF)
-*.bat text eol=crlf
-*.cmd text eol=crlf
-*.ps1 text eol=crlf
-```
-
----
-
-## 🔒 Security Best Practices
-
-### 1. Never Commit Secrets
-
-**Files to NEVER commit:**
-- Firebase API keys (use environment variables)
-- Private signing keys
-- Database passwords
-- OAuth client secrets
-
-**Create `.env.example` file:**
-```env
-# Copy this to .env and fill in real values
-FIREBASE_API_KEY=your_api_key_here
-FIREBASE_PROJECT_ID=ascendant-continuum
-FIREBASE_STORAGE_BUCKET=ascendant-continuum.appspot.com
-UNITY_BUILD_KEY=your_build_key_here
-```
-
-**Actual `.env` file (gitignored):**
-```env
-FIREBASE_API_KEY=AIzaSyC...actual_key_here
-FIREBASE_PROJECT_ID=ascendant-continuum
-FIREBASE_STORAGE_BUCKET=ascendant-continuum.appspot.com
-UNITY_BUILD_KEY=actual_key_here
-```
-
-### 2. Use GitHub Secrets for CI/CD
-
-In GitHub repo settings → Secrets → Actions:
-
-```
-FIREBASE_SERVICE_ACCOUNT    # Firebase admin credentials
-UNITY_LICENSE               # Unity activation license
-APPLE_CERTIFICATE           # iOS code signing
-GOOGLE_PLAY_KEY             # Android keystore password
-```
-
-### 3. Enable Branch Protection
-
-Protect `main` branch:
-- ✅ Require pull request reviews (at least 1)
-- ✅ Require status checks to pass
-- ✅ Require branches to be up to date
-- ✅ No force pushes
-- ✅ No deletions
-
----
-
-## 🔄 Git Workflow
-
-### Branching Strategy
-
-```
-main                    # Production-ready code
-├── develop             # Integration branch
-│   ├── feature/emberforge-ritual
-│   ├── feature/daily-challenge
-│   ├── bugfix/particle-memory-leak
-│   └── hotfix/crash-on-launch
-```
-
-**Branch naming:**
-- `feature/description` - New features
-- `bugfix/description` - Bug fixes
-- `hotfix/description` - Urgent production fixes
-- `docs/description` - Documentation updates
-- `refactor/description` - Code refactoring
-
-### Commit Message Convention
-
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
-
-```
-<type>(<scope>): <subject>
-
-<body>
-
-<footer>
-```
-
-**Examples:**
-```bash
-feat(emberforge): Add spark collection ritual mechanic
-
-Implemented tap-to-collect sparks with particle pooling.
-Performance tested on iPhone 8 - maintains 60 FPS with 5000 particles.
-
-Closes #12
-
----
-
-fix(accessibility): Improve colorblind mode contrast in Echo Fields
-
-Adjusted sigil colors to meet WCAG AAA contrast ratio (7:1).
-Tested with all colorblind simulation modes.
-
-Fixes #45
-
----
-
-perf(particles): Reduce memory usage by 40%
-
-- Implemented object pooling for all particle systems
-- Reduced max particles from 10k to 5k on low-end devices
-- Added GPU instancing for 3x performance boost
-
-Related to #67
-
----
-
-docs(readme): Update installation instructions
-
-Added Git LFS setup steps and Unity version requirements.
-
----
-
-security(firebase): Add rate limiting to Cloud Functions
-
-Prevents DDoS attacks by limiting to 60 requests/min per IP.
-
-BREAKING CHANGE: API now returns 429 error when rate limit exceeded.
-```
-
-**Commit types:**
-- `feat` - New feature
-- `fix` - Bug fix
-- `perf` - Performance improvement
-- `refactor` - Code refactoring
-- `docs` - Documentation
-- `test` - Tests
-- `chore` - Maintenance
-- `security` - Security fix
-
-### Daily Workflow
-
-```powershell
-# 1. Start new feature
-git checkout develop
-git pull origin develop
-git checkout -b feature/new-ritual-mechanic
-
-# 2. Make changes
-# ... code, code, code ...
-
-# 3. Commit frequently (small commits!)
-git add Assets/Scripts/Rituals/NewRitualMechanic.cs
-git commit -m "feat(rituals): Add swipe gesture recognition"
-
-# 4. Push to remote
-git push origin feature/new-ritual-mechanic
-
-# 5. Create Pull Request on GitHub
-# - Add description
-# - Request review
-# - Wait for CI/CD checks
-
-# 6. After PR approved and merged
-git checkout develop
-git pull origin develop
-git branch -d feature/new-ritual-mechanic  # Delete local branch
-```
-
----
-
-## 🤖 GitHub Actions (CI/CD)
-
-### 1. Automated Unity Builds
-
-`.github/workflows/unity-build.yml`
-
-```yaml
-name: Unity Build
-
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          lfs: true
-      
-      - name: Cache Unity Library
-        uses: actions/cache@v3
-        with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
-      
-      - name: Build Unity Project
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          targetPlatform: StandaloneWindows64
-          buildName: AscendantContinuum
-      
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: Build
-          path: build
-```
-
-### 2. Firebase Functions Deployment
-
-`.github/workflows/firebase-deploy.yml`
-
-```yaml
-name: Deploy to Firebase
-
-on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'firebase/functions/**'
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      
-      - name: Install Dependencies
-        working-directory: firebase/functions
-        run: npm ci
-      
-      - name: Run Tests
-        working-directory: firebase/functions
-        run: npm test
-      
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only functions
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-```
-
-### 3. Security Scanning
-
-`.github/workflows/security-scan.yml`
-
-```yaml
-name: Security Scan
-
-on:
-  push:
-    branches: [ main, develop ]
-  schedule:
-    - cron: '0 0 * * 0'  # Weekly on Sunday
-
-jobs:
-  security:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      
-      - name: Run Dependency Check
-        uses: dependency-check/Dependency-Check_Action@main
-        with:
-          project: 'AscendantContinuum'
-          path: '.'
-          format: 'HTML'
-      
-      - name: Secret Scanning
-        uses: trufflesecurity/trufflehog@main
-        with:
-          path: ./
-          base: main
-          head: HEAD
-      
-      - name: Upload Security Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: security-report
-          path: reports/
-```
-
----
-
-## 📊 GitHub Project Board
-
-### Setup Project Board for Task Management
-
-**Columns:**
-1. **Backlog** - Future tasks
-2. **To Do** - Planned for current sprint
-3. **In Progress** - Currently working on
-4. **Review** - Awaiting code review
-5. **Testing** - QA/testing phase
-6. **Done** - Completed
-
-**Labels:**
-- `priority: critical` 🔴
-- `priority: high` 🟠
-- `priority: medium` 🟡
-- `priority: low` 🟢
-- `type: bug` 🐛
-- `type: feature` ✨
-- `type: performance` ⚡
-- `type: security` 🔒
-- `type: accessibility` ♿
-- `realm: emberforge` 🔥
-- `realm: verdant` 🌿
-- `realm: echo` 🌀
-- `realm: dawn` 🏛️
-- `realm: lantern` 🏮
-
----
-
-## 🧪 Testing Integration
-
-### Unit Testing with Unity Test Framework
-
-```csharp
-// Assets/_Project/Tests/EditMode/SigilGeneratorTests.cs
-using NUnit.Framework;
-using UnityEngine;
-
-public class SigilGeneratorTests
-{
-    [Test]
-    public void SigilGenerator_GeneratesUniqueSigils()
-    {
-        SigilGenerator gen = new SigilGenerator();
-        
-        string sigil1 = gen.GenerateSigil(12345);
-        string sigil2 = gen.GenerateSigil(67890);
-        
-        Assert.AreNotEqual(sigil1, sigil2, "Sigils should be unique for different seeds");
-    }
-    
-    [Test]
-    public void SigilGenerator_IsDeterministic()
-    {
-        SigilGenerator gen = new SigilGenerator();
-        
-        string sigil1 = gen.GenerateSigil(12345);
-        string sigil2 = gen.GenerateSigil(12345);
-        
-        Assert.AreEqual(sigil1, sigil2, "Same seed should produce same sigil");
-    }
-}
-```
-
-### Run Tests in GitHub Actions
-
-```yaml
-- name: Run Unity Tests
-  uses: game-ci/unity-test-runner@v2
-  env:
-    UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-  with:
-    testMode: EditMode
-    checkName: Unity Test Results
-```
-
----
-
-## 📝 Issue Templates
-
-### Bug Report Template
-
-`.github/ISSUE_TEMPLATE/bug_report.md`
-
-```markdown
----
-name: Bug Report
-about: Report a bug to help us improve
-title: '[BUG] '
-labels: 'type: bug'
-assignees: ''
----
-
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Tap on '...'
-3. Swipe to '...'
-4. See error
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots or screen recordings.
-
-**Device Information:**
- - Device: [e.g. iPhone 12]
- - OS: [e.g. iOS 16.3]
- - Game Version: [e.g. 1.0.2]
-
-**Accessibility Settings:**
- - Colorblind Mode: [e.g. Protanopia]
- - Reduced Motion: [Yes/No]
- - Text Size: [Small/Medium/Large]
-
-**Additional context**
-Add any other context about the problem here.
-```
-
-### Accessibility Issue Template
-
-`.github/ISSUE_TEMPLATE/accessibility_issue.md`
-
-```markdown
----
-name: Accessibility Issue
-about: Report an accessibility barrier
-title: '[A11Y] '
-labels: 'type: accessibility, priority: high'
-assignees: ''
----
-
-**Accessibility Barrier**
-Describe the barrier preventing full access to the game.
-
-**User Context**
-- Disability/Condition: [e.g. Color blindness, Motor impairment]
-- Assistive Technology: [e.g. VoiceOver, Switch Control]
-- Current Settings: [e.g. Deuteranopia mode enabled]
-
-**Expected Behavior**
-How should the feature work to be accessible?
-
-**WCAG Reference (if applicable)**
-[e.g. WCAG 2.1 Success Criterion 1.4.3 - Contrast]
-
-**Priority Level**
-- [ ] Blocker - Game unplayable
-- [ ] Critical - Major feature inaccessible
-- [ ] High - Workaround exists but difficult
-- [ ] Medium - Minor inconvenience
-
-**Screenshots/Video**
-If applicable, show the accessibility barrier.
-
-**Suggested Solution**
-How could this be improved?
-```
-
----
-
-## 🔐 SECURITY.md
-
-Create a security policy file:
-
-```markdown
-# Security Policy
-
-## Supported Versions
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.0.x   | :white_check_mark: |
-| < 1.0   | :x:                |
-
-## Reporting a Vulnerability
-
-**DO NOT create a public GitHub issue for security vulnerabilities.**
-
-Instead, email: **security@ascendantcontinuum.com**
-
-Include:
-- Description of vulnerability
-- Steps to reproduce
-- Potential impact
-- Suggested fix (if known)
-
-We will respond within 48 hours and aim to patch critical issues within 7 days.
-
-## Security Updates
-
-Security patches are released as soon as possible after verification. Users will be notified via:
-- In-app notification
-- Email (if account linked)
-- Discord announcement
-
-## Bug Bounty
-
-We currently do not have a formal bug bounty program, but responsible disclosure of serious vulnerabilities will be acknowledged and rewarded on a case-by-case basis.
-```
-
----
-
-## 📦 Release Process
-
-### Version Numbering (SemVer)
-
-```
-MAJOR.MINOR.PATCH
-
-Example: 1.2.3
-  - MAJOR (1): Breaking changes
-  - MINOR (2): New features (backward compatible)
-  - PATCH (3): Bug fixes
-```
-
-### Creating a Release
-
-```powershell
-# 1. Finish all features for release
-git checkout develop
-git pull origin develop
-
-# 2. Create release branch
-git checkout -b release/1.0.0
-
-# 3. Update version numbers
-# - Unity: Edit → Project Settings → Player → Version
-# - Firebase: firebase/functions/package.json
-# - CHANGELOG.md
-
-# 4. Commit version bump
-git commit -am "chore(release): Bump version to 1.0.0"
-
-# 5. Merge to main
-git checkout main
-git merge release/1.0.0
-
-# 6. Tag release
-git tag -a v1.0.0 -m "Release version 1.0.0 - Emberforge MVP"
-git push origin main --tags
-
-# 7. Merge back to develop
-git checkout develop
-git merge main
-
-# 8. Delete release branch
-git branch -d release/1.0.0
-```
-
-### GitHub Release
-
-Create release on GitHub:
-1. Go to Releases → Draft a new release
-2. Choose tag `v1.0.0`
-3. Title: `Version 1.0.0 - Emberforge MVP`
-4. Description:
-```markdown
-## 🎮 What's New
-
-### Features
-- ✨ Emberforge realm fully playable
-- ✨ Daily Constellation Challenge
-- ✨ Personal Sigil creation
-- ♿ Full colorblind mode support
-
-### Bug Fixes
-- 🐛 Fixed particle memory leak
-- 🐛 Improved input latency on low-end devices
-
-### Performance
-- ⚡ 40% memory usage reduction
-- ⚡ 60 FPS on iPhone 8+
-
-### Security
-- 🔒 Enhanced Firebase security rules
-- 🔒 Added rate limiting
-
-[Full Changelog](CHANGELOG.md)
-```
-
----
-
-## 🎯 Quick Reference Commands
-
-```powershell
-# Clone repository
-git clone https://github.com/ascendantcontinuum/AscendantContinuum.git
-
-# Create feature branch
-git checkout -b feature/my-feature
-
-# Commit changes
-git add .
-git commit -m "feat(scope): description"
-
-# Push to remote
-git push origin feature/my-feature
-
-# Update from remote
-git pull origin develop
-
-# Check status
-git status
-
-# View commit history
-git log --oneline --graph
-
-# Undo last commit (keep changes)
-git reset --soft HEAD~1
-
-# Discard all local changes
-git reset --hard HEAD
-
-# Create and push tag
-git tag -a v1.0.0 -m "Release 1.0.0"
-git push origin v1.0.0
-```
-
----
-
-## 📞 Support
-
-**Repository Issues:** https://github.com/ascendantcontinuum/AscendantContinuum/issues  
-**Email:** ascendantcontinuum@gmail.com  
-**Security:** security@ascendantcontinuum.com
-
----
-
-**Remember:** Commit early, commit often, push daily. Small commits are easier to review and safer to revert.
+- Build readiness: `docs/BUILD_READINESS_STATUS.md`
+- Security and supply chain: `docs/security/SUPPLY_CHAIN_PROTECTION.md`
+- Testing and verification: `docs/technical/testing-and-verification.md`
+- Social automation: `docs/social/README.md`
+- Unity scene and prefab workflows: `docs/operations/unity-scene-prefab-workflows.md`
+- Legacy migration tracker: `docs/operations/legacy-doc-consolidation-wave-tracker.md`

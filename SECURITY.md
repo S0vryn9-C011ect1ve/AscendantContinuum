@@ -1,5 +1,7 @@
 # Security Policy
 
+Canonical security implementation and supply-chain controls are documented in `docs/security/SUPPLY_CHAIN_PROTECTION.md` and `docs/security/WEEKLY_SCAN_SETUP.md`.
+
 ## 🔒 Latest Security Status
 
 **Last Scan:** April 1, 2026  
@@ -40,6 +42,12 @@ Security patches are released as soon as possible after verification. Users will
 - In-app notification
 - Email (if account linked)
 - Discord announcement
+
+## Operational References
+
+- Weekly automated scan setup: `docs/security/WEEKLY_SCAN_SETUP.md`
+- Supply-chain controls: `docs/security/SUPPLY_CHAIN_PROTECTION.md`
+- Social automation credential handling: `docs/social/README.md`
 
 ## Bug Bounty
 

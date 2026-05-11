@@ -2,6 +2,8 @@
 
 **Use this to track progress week-by-week**
 
+Canonical note: realm and implementation walkthroughs are now centralized in `docs/operations/implementation-guides.md`.
+
 ---
 
 ## 📋 WEEK 1: HIRING & BRIEFING

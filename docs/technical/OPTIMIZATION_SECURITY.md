@@ -1,5 +1,7 @@
 # Optimization & Security Guide - The Ascendant Continuum
 
+Canonical note: `OPTIMIZATION_GUIDE.md` is being consolidated into this document as the canonical optimization reference.
+
 **Version:** 1.0  
 **Last Updated:** February 1, 2026  
 **Status:** Technical Foundation  

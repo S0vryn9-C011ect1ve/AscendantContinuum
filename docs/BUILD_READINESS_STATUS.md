@@ -2,12 +2,29 @@
 
 Date: 2026-03-03
 
+Consolidation note: this file is now the canonical status destination for legacy status docs (`STATUS.md`, `CODE_STATUS.md`, `DEVELOPMENT_STATUS.md`).
+
 ## Current State
 
 - **Script Compilation**: Clean.
 - **Unity Editor**: 6000.3.9f1 installed and detected.
 - **Platform Modules**: WebGL support present; Android/iOS modules missing.
 - **EditMode Tests**: Compile blockers fixed and test run exits cleanly in batch mode.
+
+## Consolidated Operational Snapshot (Wave 1)
+
+- Runtime scripts compile cleanly in the stabilized baseline.
+- WebGL build path is validated and deployable to the live hosting surface.
+- Android/iOS verification remains environment-dependent where build modules are not installed.
+- Core systems are implemented across gameplay, accessibility, save, audio, transitions, social/event systems, and challenge loops.
+- CI/CD is active, but platform verification quality depends on Unity license/module availability in each environment.
+
+## Consolidated Legacy Highlights
+
+- EditMode compilation blockers previously reported in legacy status docs were resolved.
+- WebGL artifact generation and deployment path were validated in both scripts and workflows.
+- Known local constraint: batch builds are sensitive to active Unity editor/process lock state.
+- Security posture and supply-chain controls are documented in `docs/security/SUPPLY_CHAIN_PROTECTION.md`.
 
 ## WebGL Build Validation
 

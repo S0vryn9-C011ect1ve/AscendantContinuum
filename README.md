@@ -2,6 +2,16 @@
 
 **A mindful cosmic adventure — traverse celestial realms, grow cosmic flora, and align with the stars.**
 
+## Canonical Documentation (Wave 1)
+
+This repository is under active documentation consolidation.
+
+- Project and build readiness: `docs/BUILD_READINESS_STATUS.md`
+- Environment and CI/CD setup: `docs/technical/GITHUB_SETUP.md`
+- Security and supply chain: `docs/security/SUPPLY_CHAIN_PROTECTION.md`
+- Documentation standards: `docs/standards/repository-structure.md`, `docs/standards/naming-conventions.md`, `docs/standards/asset-management.md`
+- Legacy docs migration tracker: `docs/operations/legacy-doc-consolidation-wave-tracker.md`
+
 > 🚀 **Release Candidate 1 (Updated March 3, 2026).** WebGL is live at [ascendant-continuum.web.app](https://ascendant-continuum.web.app); Android verification is pending local Unity Android module installation.
 
 ![Version](https://img.shields.io/badge/version-1.0.0--rc-goldenrod)
@@ -81,17 +91,16 @@ We have just completed our final polish pass to ensure a flawless player experie
 
 ```
 D:\1-Ascendant Continuum Game\
-├── docs/
-│   ├── design/          # ✅ Complete game design (8 files)
-│   ├── technical/       # ✅ Architecture, API, MVP plan
-│   └── onboarding/      # ✅ 7-day player experience
-├── src/               # ⏭️ TODO: Unity implementation
-├── assets/            # ⏭️ TODO: Game assets
-├── tests/             # ⏭️ TODO: Testing suite
-└── tools/             # ⏭️ TODO: Development tools
+├── Assets/              # Unity runtime/editor project data
+├── Packages/            # Unity package manifest and lock data
+├── ProjectSettings/     # Unity project configuration
+├── firebase/            # Hosting, rules, and Cloud Functions
+├── scripts/             # Automation and validation scripts
+├── docs/                # Canonical project documentation
+└── .github/workflows/   # CI/CD and scheduled automation
 ```
 
-See [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) for complete file list.
+See `docs/operations/legacy-doc-consolidation-wave-tracker.md` for migration status and legacy mapping.
 
 ---
 

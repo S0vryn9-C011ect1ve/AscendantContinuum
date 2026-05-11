@@ -1,5 +1,7 @@
 # Social Media Automation - Testing Guide
 
+Canonical note: use `docs/social/CONTENT_GOVERNANCE.md` for approval rules before enabling or resuming automated posting.
+
 ## 🚀 Quick Start
 
 ### 1. Setup Credentials

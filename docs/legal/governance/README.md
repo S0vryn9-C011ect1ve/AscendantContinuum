@@ -1,5 +1,7 @@
 # Ecosystem Governance Framework
 
+Repository constitution note: `CONSTITUTION.md` is being consolidated into this governance surface as the canonical home for repository operating principles.
+
 This directory contains the S0vryn9 C011ect1ve ecosystem-wide governance framework, which applies to **all three platforms** (3mpwrApp, Ascendant Continuum, Mutual Aid Foundation) and the parent organization.
 
 ## 📋 Documents
@@ -96,6 +98,16 @@ This ensures disability perspectives are represented at scale in governance.
 ## 📢 This is a Living Document
 
 These documents are versioned and updated as the ecosystem matures. Current version: **v1.0 (2026-02-26)**.
+
+## Repository Operating Principles
+
+These principles govern work inside this repository during implementation and restructuring:
+
+1. Ask before creating a new architecture, framework, subsystem, or parallel pipeline.
+2. Preserve a single source of truth for rules, setup, and operational guidance.
+3. Extend and connect existing systems before creating new ones.
+4. Run relevant validation and tests before considering work complete.
+5. Prefer small, targeted changes over broad speculative rewrites.
 
 **Last updated:** 2026-02-26
 

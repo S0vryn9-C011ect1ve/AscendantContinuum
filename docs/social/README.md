@@ -2,6 +2,10 @@
 
 Automated daily content posting to Bluesky and Mastodon for pre-launch audience building.
 
+Canonical note: `public/social/` is legacy automation state, not the website root. Do not add website files there.
+
+Content quality note: use `docs/social/CONTENT_GOVERNANCE.md` as the canonical source for factual-claim, duplication, and optimization rules.
+
 ---
 
 ## 📋 Overview
@@ -39,11 +43,14 @@ cp .env.example .env
 
 Required variables:
 ```env
-BLUESKY_HANDLE=your-handle.bsky.social
-BLUESKY_APP_PASSWORD=your-app-password
+BLUESKY_IDENTIFIER=your-handle.bsky.social
+BLUESKY_PASSWORD=your-app-password
 MASTODON_INSTANCE=https://mastodon.social
+MASTODON_API_URL=https://mastodon.social
 MASTODON_ACCESS_TOKEN=your-access-token
 ```
+
+The current repo uses a mixed legacy naming set. Keep both `MASTODON_INSTANCE` and `MASTODON_API_URL` populated until workflow cleanup is complete.
 
 ### 3. Test Posting Modules
 
@@ -78,9 +85,10 @@ For automation via GitHub Actions, add these secrets to your repository:
 
 | Secret Name | Description | How to Get |
 |-------------|-------------|------------|
-| `BLUESKY_HANDLE` | Your Bluesky handle (e.g., `username.bsky.social`) | Your Bluesky profile |
-| `BLUESKY_APP_PASSWORD` | App-specific password | Bluesky Settings → App Passwords → Create |
+| `BLUESKY_IDENTIFIER` | Your Bluesky handle (e.g., `username.bsky.social`) | Your Bluesky profile |
+| `BLUESKY_PASSWORD` | App-specific password | Bluesky Settings → App Passwords → Create |
 | `MASTODON_INSTANCE` | Your Mastodon instance URL | e.g., `https://mastodon.social` |
+| `MASTODON_API_URL` | Legacy workflow alias for Mastodon base URL | Same as `MASTODON_INSTANCE` |
 | `MASTODON_ACCESS_TOKEN` | API access token | Mastodon Settings → Development → New Application |
 
 ### Getting Mastodon Access Token
@@ -113,6 +121,8 @@ scripts/
 public/social/
 ├── content-bank.json             # 100 pre-written content items
 └── posting-history.json          # Posting log + stats
+
+Future target location after migration: `tools/content-automation/state/` or equivalent canonical automation-state path.
 
 .github/workflows/
 ├── daily-social.yml              # Daily posting (2 PM UTC)
@@ -181,6 +191,17 @@ cat public/social/posting-history.json | jq '.stats'
 ---
 
 ## 🧪 Testing
+
+### Local Scheduler Alternative
+
+If GitHub Actions is unavailable or undesirable for scheduled posting, use the local PowerShell automation:
+
+```powershell
+.\setup-local-automation.ps1
+.\scripts\automation\run-daily-social.ps1 -DryRun
+```
+
+This keeps scheduling on the local machine while preserving the same content/state flow.
 
 ### Test Individual Modules
 

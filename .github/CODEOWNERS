@@ -1,0 +1,16 @@
+# Default ownership
+* @ascendantcontinuum
+
+# Unity runtime and assets
+/Assets/ @ascendantcontinuum
+/Packages/ @ascendantcontinuum
+/ProjectSettings/ @ascendantcontinuum
+
+# Automation and website
+/scripts/ @ascendantcontinuum
+/firebase/ @ascendantcontinuum
+/.github/ @ascendantcontinuum
+
+# Documentation and governance
+/docs/ @ascendantcontinuum
+/*.md @ascendantcontinuum
