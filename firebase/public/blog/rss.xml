@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 May 2026 14:01:30 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 14:01:26 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Accessibility Innovation: Beyond Compliance]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/accessibility-innovation-beyond-compliance.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/accessibility-innovation-beyond-compliance.html</guid>
+      <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[ethics]]></category>
+      <category><![CDATA[philosophy]]></category>
+      <description><![CDATA[WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay. They ensure playabi...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Why We Reject FOMO: Designing Without Dark Patterns]]></title>
@@ -225,16 +237,6 @@
       <category><![CDATA[Development]]></category>
       
       <description><![CDATA[Your ritual]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Serendipity Moments: 1% Deity Encounters]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/serendipity-moments-1-percent-deity-encounters.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/serendipity-moments-1-percent-deity-encounters.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[1% chance deity encounters. No grinding. Pure randomness. When serendipity happens, it]]></description>
     </item>
   </channel>
 </rss>

@@ -804,16 +804,28 @@
       ],
       "themeName": "Design Philosophy",
       "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish yo..."
+    },
+    {
+      "title": "Accessibility Innovation: Beyond Compliance",
+      "slug": "accessibility-innovation-beyond-compliance",
+      "date": "2026-05-11",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Design Philosophy",
+      "excerpt": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay. They ensure playabi..."
     }
   ],
   "stats": {
-    "totalPosts": 76,
+    "totalPosts": 77,
     "byTheme": {
       "Transparency": 1,
       "Technical Deep Dive": 5,
       "Behind the Scenes": 9,
       "Tutorial": 10,
-      "Design Philosophy": 15,
+      "Design Philosophy": 16,
       "Dev Diary": 11,
       "Community Insight": 1,
       "What's New": 1
@@ -826,7 +838,7 @@
       "bootstrap": 1,
       "accessibility": 3,
       "colorblind": 2,
-      "game-design": 17,
+      "game-design": 18,
       "technical": 3,
       "innovation": 2,
       "behind-the-scenes": 12,
@@ -837,8 +849,8 @@
       "tutorial": 10,
       "unity": 22,
       "game-dev": 10,
-      "ethics": 12,
-      "philosophy": 11,
+      "ethics": 13,
+      "philosophy": 12,
       "ai": 1,
       "community": 2,
       "systems": 1,
