@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What's New: February 23, 2026 | The Ascendant Continuum</title>
-    <meta name="description" content="Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0 improvements.">
+    <meta name="description"
+        content="Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0 improvements.">
     <meta property="og:title" content="Daily Update - February 23, 2026">
-    <meta property="og:description" content="Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0 improvements.">
+    <meta property="og:description"
+        content="Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0 improvements.">
     <meta property="og:type" content="article">
     <link rel="stylesheet" href="../styles.css">
-        <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/daily-update-2026-02-24.html">
+    <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/daily-update-2026-02-24.html">
 </head>
 
 <body>
@@ -25,26 +27,41 @@
         </header>
 
         <div class="post-content">
-            <p class="lead">Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0 improvements.</p>
+            <p class="lead">Daily development update for February 23, 2026: 8 commits with 1 features, 6 fixes, and 0
+                improvements.</p>
 
 
             <h2>✨ Features</h2>
-            <p>We shipped 1 new feature today:</p>
+            <p>I shipped 1 new feature today:</p>
             <ul>
-                <li>Revenue strategy, pantheon deity effects, realm wiring: ShopUIManager: full shop panel for Cosmic Patron IAP + 5 cosmetics; PantheonDeityEffects: all 6 deity gameplay modifiers (Flame/Herald/Archivist/Mechanic/Scribe/Nurturer); KindnessChainManager: patron badge appended to blessing sender name; DailyChallengeManager: bonus daily challenge slot for Cosmic Patrons; RitualReplayManager: patron em...</li>
+                <li>Revenue strategy, pantheon deity effects, realm wiring: ShopUIManager: full shop panel for Cosmic
+                    Patron IAP + 5 cosmetics; PantheonDeityEffects: all 6 deity gameplay modifiers
+                    (Flame/Herald/Archivist/Mechanic/Scribe/Nurturer); KindnessChainManager: patron badge appended to
+                    blessing sender name; DailyChallengeManager: bonus daily challenge slot for Cosmic Patrons;
+                    RitualReplayManager: patron em...</li>
             </ul>
-    
+
 
             <h2>🐛 Bug Fixes</h2>
             <p>Squashed 5 bugs to improve stability:</p>
             <ul>
-                <li>GuardianMessengerSystem notification API errors: Android: RequestUserPermission() does not exist, use StartCoroutine(RequestPermission()); iOS: remove Unity.Notifications.iOS using directive (assembly not resolving in CI);.</li>
-                <li>Wrap Handheld.Vibrate() in platform guard in CosmicTreasureHunt - 66055835b5ecfb1150eb8bc3692902eaddec7723.</li>
-                <li>Resolve compile errors surfaced by CI build: HUDManager: add static Instance singleton (Awake with dedup guard); AccessibilityManager: add Announce(string) method for screen reader support; ConstellationTracer: add 'using AscendantContinuum.Realms.EchoFields' so.</li>
-                <li>Correct unity-builder inputs and make free-disk-space Linux-only: buildPath -> buildsPath (correct game-ci input name); Free Disk Space step now conditional on runner.os == Linux.</li>
-                <li>CI workflow failures - firebase config, iOS runner, android non-blocking: firebase/.firebaserc: add project ID 'ascendant-continuum' (CLI was failing with no project); firebase/firebase.json: add hosting section with .wasm/.data MIME headers; workflow: add working-directory: ./firebase to all firebase CLI deploy steps; workflow: fix npm ci to run in ./firebase/functions (not from repo root); wo...</li>
+                <li>GuardianMessengerSystem notification API errors: Android: RequestUserPermission() does not exist,
+                    use StartCoroutine(RequestPermission()); iOS: remove Unity.Notifications.iOS using directive
+                    (assembly not resolving in CI);.</li>
+                <li>Wrap Handheld.Vibrate() in platform guard in CosmicTreasureHunt -
+                    66055835b5ecfb1150eb8bc3692902eaddec7723.</li>
+                <li>Resolve compile errors surfaced by CI build: HUDManager: add static Instance singleton (Awake with
+                    dedup guard); AccessibilityManager: add Announce(string) method for screen reader support;
+                    ConstellationTracer: add 'using AscendantContinuum.Realms.EchoFields' so.</li>
+                <li>Correct unity-builder inputs and make free-disk-space Linux-only: buildPath -> buildsPath (correct
+                    game-ci input name); Free Disk Space step now conditional on runner.os == Linux.</li>
+                <li>CI workflow failures - firebase config, iOS runner, android non-blocking: firebase/.firebaserc: add
+                    project ID 'ascendant-continuum' (CLI was failing with no project); firebase/firebase.json: add
+                    hosting section with .wasm/.data MIME headers; workflow: add working-directory: ./firebase to all
+                    firebase CLI deploy steps; workflow: fix npm ci to run in ./firebase/functions (not from repo root);
+                    wo...</li>
             </ul>
-    
+
 
 
             <h2>📊 Development Stats</h2>
@@ -53,7 +70,7 @@
                 <li><strong>Features:</strong> 1</li>
                 <li><strong>Bug fixes:</strong> 6</li>
                 <li><strong>Improvements:</strong> 0</li>
-                
+
             </ul>
 
             <div class="post-footer">

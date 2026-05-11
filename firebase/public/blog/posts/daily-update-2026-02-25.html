@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What's New: February 24, 2026 | The Ascendant Continuum</title>
-    <meta name="description" content="Daily development update for February 24, 2026: 5 commits with 1 features, 3 fixes, and 0 improvements.">
+    <meta name="description"
+        content="Daily development update for February 24, 2026: 5 commits with 1 features, 3 fixes, and 0 improvements.">
     <meta property="og:title" content="Daily Update - February 24, 2026">
-    <meta property="og:description" content="Daily development update for February 24, 2026: 5 commits with 1 features, 3 fixes, and 0 improvements.">
+    <meta property="og:description"
+        content="Daily development update for February 24, 2026: 5 commits with 1 features, 3 fixes, and 0 improvements.">
     <meta property="og:type" content="article">
     <link rel="stylesheet" href="../styles.css">
-        <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/daily-update-2026-02-25.html">
+    <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/daily-update-2026-02-25.html">
 </head>
 
 <body>
@@ -25,24 +27,33 @@
         </header>
 
         <div class="post-content">
-            <p class="lead">Daily development update for February 24, 2026: 5 commits with 1 features, 3 fixes, and 0 improvements.</p>
+            <p class="lead">Daily development update for February 24, 2026: 5 commits with 1 features, 3 fixes, and 0
+                improvements.</p>
 
 
             <h2>✨ Features</h2>
-            <p>We shipped 1 new feature today:</p>
+            <p>I shipped 1 new feature today:</p>
             <ul>
-                <li>Add homepage + move game to /play/ subpage: firebase/public/index.html: full cosmic landing page with star field,; firebase/public/.gitignore: exclude CI-generated play/ directory; build-deploy.yml: download WebGL artifact to firebase/public/play/.</li>
+                <li>Add homepage + move game to /play/ subpage: firebase/public/index.html: full cosmic landing page
+                    with star field,; firebase/public/.gitignore: exclude CI-generated play/ directory;
+                    build-deploy.yml: download WebGL artifact to firebase/public/play/.</li>
             </ul>
-    
+
 
             <h2>🐛 Bug Fixes</h2>
             <p>Squashed 3 bugs to improve stability:</p>
             <ul>
-                <li>Add missing assembly references for UI and iOS Notifications - 6e5dfcd9da8af4c7a62a3df0bead95937f0731b9.</li>
-                <li>WebGL crash - lastBreakTime pre-Start bug, exception visibility, link.xml type preservation: MindfulPlayManager: init sessionStartTime/lastBreakTime in Awake() not Start(); MindfulPlayManager: guard OnApplicationPause with _started flag; cap timeAway > 1yr; BuildMethods: WebGLExceptionSupport.None -> ExplicitlyThrownExceptionsOnly; Add Assets/link.xml: preserve Collider2D, Collision2D, Rigidbod...</li>
-                <li>IOS Guardian notifications guard, Android Social namespace, non-WebGL builds non-blocking - d4c9a4c883545314e043cdf237a7b9e73e8c8a8a.</li>
+                <li>Add missing assembly references for UI and iOS Notifications -
+                    6e5dfcd9da8af4c7a62a3df0bead95937f0731b9.</li>
+                <li>WebGL crash - lastBreakTime pre-Start bug, exception visibility, link.xml type preservation:
+                    MindfulPlayManager: init sessionStartTime/lastBreakTime in Awake() not Start(); MindfulPlayManager:
+                    guard OnApplicationPause with _started flag; cap timeAway > 1yr; BuildMethods:
+                    WebGLExceptionSupport.None -> ExplicitlyThrownExceptionsOnly; Add Assets/link.xml: preserve
+                    Collider2D, Collision2D, Rigidbod...</li>
+                <li>IOS Guardian notifications guard, Android Social namespace, non-WebGL builds non-blocking -
+                    d4c9a4c883545314e043cdf237a7b9e73e8c8a8a.</li>
             </ul>
-    
+
 
 
             <h2>📊 Development Stats</h2>

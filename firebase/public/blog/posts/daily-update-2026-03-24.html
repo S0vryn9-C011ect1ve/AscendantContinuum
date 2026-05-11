@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What's New: March 23, 2026 | The Ascendant Continuum</title>
-    <meta name="description" content="Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0 improvements.">
+    <meta name="description"
+        content="Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0 improvements.">
     <meta property="og:title" content="Daily Update - March 23, 2026">
-    <meta property="og:description" content="Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0 improvements.">
+    <meta property="og:description"
+        content="Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0 improvements.">
     <meta property="og:type" content="article">
     <link rel="stylesheet" href="../styles.css">
-        <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/daily-update-2026-03-24.html">
+    <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/daily-update-2026-03-24.html">
 </head>
 
 <body>
@@ -25,23 +27,36 @@
         </header>
 
         <div class="post-content">
-            <p class="lead">Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0 improvements.</p>
+            <p class="lead">Daily development update for March 23, 2026: 5 commits with 2 features, 1 fixes, and 0
+                improvements.</p>
 
 
             <h2>✨ Features</h2>
-            <p>We shipped 2 new features today:</p>
+            <p>I shipped 2 new features today:</p>
             <ul>
-                <li>IOS TTS plugin, platform share intent, camera shake fallback: Assets/Plugins/iOS/NativeTTS.mm: new native iOS plugin wrapping AVSpeechSynthesizer. Exposes _NativeTTS_Speak(text, rate, pitch, volume), _NativeTTS_Stop(), _NativeTTS_IsSpeaking() via extern C. Single synthesizer instance prevents overlap; cancels prior speech before new utterance; uses device locale voice.; LanternRitual.cs: wire [...</li>
-                <li>Complete stub implementations - scene scaffolding, GDPR, UI toasts, SaveSystem wiring: RealmPrefabBuilder: add GetOrCreateSceneRoot + CreateTaggedChild helpers so all 5 Wire methods can scaffold empty realm scenes; AchievementDisplayManager: replace Debug.Log stub with animated coroutine toast (fade in/hold/fade out, reduced-motion aware, runtime-built fallback when no prefab assigned); MainMen...</li>
+                <li>IOS TTS plugin, platform share intent, camera shake fallback: Assets/Plugins/iOS/NativeTTS.mm: new
+                    native iOS plugin wrapping AVSpeechSynthesizer. Exposes _NativeTTS_Speak(text, rate, pitch, volume),
+                    _NativeTTS_Stop(), _NativeTTS_IsSpeaking() via extern C. Single synthesizer instance prevents
+                    overlap; cancels prior speech before new utterance; uses device locale voice.; LanternRitual.cs:
+                    wire [...</li>
+                <li>Complete stub implementations - scene scaffolding, GDPR, UI toasts, SaveSystem wiring:
+                    RealmPrefabBuilder: add GetOrCreateSceneRoot + CreateTaggedChild helpers so all 5 Wire methods can
+                    scaffold empty realm scenes; AchievementDisplayManager: replace Debug.Log stub with animated
+                    coroutine toast (fade in/hold/fade out, reduced-motion aware, runtime-built fallback when no prefab
+                    assigned); MainMen...</li>
             </ul>
-    
+
 
             <h2>🐛 Bug Fixes</h2>
             <p>Squashed 1 bug to improve stability:</p>
             <ul>
-                <li>Wire settings persistence, iOS notifications, improved sunset calc, analytics opt-out: FirebaseManager: add SetAnalyticsEnabled(bool) - wires to Firebase Analytics SDK when integrated; SaveSystem/PlayerData: add analyticsEnabled + allowTimeShareData fields; SettingsMenuManager: OnAnalyticsChanged now calls FirebaseManager.SetAnalyticsEnabled + persists to PlayerData; OnShareDataChanged persists...</li>
+                <li>Wire settings persistence, iOS notifications, improved sunset calc, analytics opt-out:
+                    FirebaseManager: add SetAnalyticsEnabled(bool) - wires to Firebase Analytics SDK when integrated;
+                    SaveSystem/PlayerData: add analyticsEnabled + allowTimeShareData fields; SettingsMenuManager:
+                    OnAnalyticsChanged now calls FirebaseManager.SetAnalyticsEnabled + persists to PlayerData;
+                    OnShareDataChanged persists...</li>
             </ul>
-    
+
 
 
             <h2>📊 Development Stats</h2>
@@ -50,7 +65,7 @@
                 <li><strong>Features:</strong> 2</li>
                 <li><strong>Bug fixes:</strong> 1</li>
                 <li><strong>Improvements:</strong> 0</li>
-                
+
             </ul>
 
             <div class="post-footer">

@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these...">
+        content="Accessibility is part of the core design in Ascendant Continuum. Color modes, screen readers, and reduced motion shape discovery, clarity, and play.">
     <meta property="og:title"
         content="Building Accessibility-First Gameplay: Color as Discovery - The Ascendant Continuum">
     <meta property="og:description"
-        content="Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these...">
+        content="Accessibility is part of the core design in Ascendant Continuum. Color modes, screen readers, and reduced motion shape discovery, clarity, and play.">
     <meta property="og:type" content="article">
     <meta property="og:url"
         content="https://ascendant-continuum.web.app/blog/posts/building-accessibility-first-gameplay-color-as-discovery.html">
@@ -21,7 +21,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Building Accessibility-First Gameplay: Color as Discovery">
     <meta name="twitter:description"
-        content="Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these...">
+        content="Accessibility is part of the core design in Ascendant Continuum. Color modes, screen readers, and reduced motion shape discovery, clarity, and play.">
     <title>Building Accessibility-First Gameplay: Color as Discovery - The Ascendant Continuum Dev Blog</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/images.css">
@@ -201,30 +201,27 @@
             <p class="blog-post-hook">What if colorblind modes weren't just accommodations, but magical lenses revealing
                 hidden secrets?</p>
 
-            <h2>The Problem with Traditional Accessibility</h2>
-            <p>Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers
-                are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these
-                features make games "playable" rather than delightful. We asked ourselves: what if accessibility was the
-                core mechanic instead of an afterthought? What if the very tools designed to make games accessible
-                became discovery mechanisms that enhanced gameplay for everyone?</p>
+            <h2>Accessibility Should Be the Standard</h2>
+            <p>Accessibility is part of the core design from the start. Colorblind modes, screen readers, and reduced
+                motion are not side features here; they shape discovery, clarity, and the feel of the game. I asked
+                myself how accessibility could drive the experience forward, not just make it passable, and the answer
+                became a system where accessibility modes reveal meaningful information and hidden paths.</p>
 
 
             <h2>Color Modes as Magical Discovery Tools</h2>
-            <p>In The Ascendant Continuum, switching between Deuteranopia, Protanopia, and Tritanopia modes doesn't just
-                make the game playable—it reveals entirely different puzzle solutions, hidden pathways, and secret lore.
-                Each color mode is a magical lens that interacts with the world differently. Certain sigils only appear
-                in specific modes, magical barriers become visible or invisible, and Realm Dweller dialogue changes
-                based on what you can perceive. Players who can see all colors still need to use accessibility modes to
-                discover everything the game has to offer.</p>
+            <p>In The Ascendant Continuum, switching between Deuteranopia, Protanopia, and Tritanopia modes reveals
+                different puzzle solutions, hidden pathways, and secret lore. Each color mode is a magical lens that
+                interacts with the world differently. Certain sigils only appear in specific modes, magical barriers
+                become visible or invisible, and Realm Dweller dialogue changes based on what you can perceive. The
+                accessibility modes are part of how the world is understood.</p>
 
 
             <h2>Technical Implementation in Unity</h2>
-            <p>We built a shader-based system using Unity's Universal Render Pipeline with custom post-processing
-                stacks. Each accessibility mode applies transformations that don't just recolor pixels—they actually
-                change how game objects render at the shader level. We use compute shaders to analyze the scene and
-                determine which objects should be visible in each mode. The system tracks player preferences in
-                real-time and seamlessly transitions between modes without performance hits, maintaining 60fps even on
-                mobile devices.</p>
+            <p>I built a shader-based system using Unity's Universal Render Pipeline with custom post-processing
+                stacks. Each accessibility mode applies transformations that do more than recolor pixels—they change
+                how game objects render at the shader level. I use compute shaders to analyze the scene and determine
+                which objects should be visible in each mode. The system keeps transitions smooth and maintains 60fps
+                even on mobile devices.</p>
 
 
             <h2>Player Response and Community Discovery</h2>

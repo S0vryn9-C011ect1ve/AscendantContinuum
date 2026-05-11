@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Traditional RPGs hide loading with progress bars, spinning icons, or &quot;tip screens.&quot; These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ...">
+        content="Realm transitions stay immersive with additive scene loading, liminal buffers, and scene-aware preloading.">
     <meta property="og:title" content="Realm Transitions: Seamless World-Hopping - The Ascendant Continuum">
     <meta property="og:description"
-        content="Traditional RPGs hide loading with progress bars, spinning icons, or &quot;tip screens.&quot; These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ...">
+        content="Realm transitions stay immersive with additive scene loading, liminal buffers, and scene-aware preloading.">
     <meta property="og:type" content="article">
     <meta property="og:url"
         content="https://ascendant-continuum.web.app/blog/posts/realm-transitions-seamless-world-hopping.html">
@@ -20,7 +20,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Realm Transitions: Seamless World-Hopping">
     <meta name="twitter:description"
-        content="Traditional RPGs hide loading with progress bars, spinning icons, or &quot;tip screens.&quot; These break narrative flow and remind players they're in a game, not a magical world. We wanted transitions between ...">
+        content="Realm transitions stay immersive with additive scene loading, liminal buffers, and scene-aware preloading.">
     <title>Realm Transitions: Seamless World-Hopping - The Ascendant Continuum Dev Blog</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/images.css">
@@ -201,27 +201,26 @@
                 magical teleportation.</p>
 
             <h2>Why Traditional Loading Screens Fail</h2>
-            <p>Traditional RPGs hide loading with progress bars, spinning icons, or "tip screens." These break narrative
-                flow and remind players they're in a game, not a magical world. We wanted transitions between the five
-                realms to feel instantaneous and thematically appropriate—like stepping through portals or being
-                teleported by cosmic forces. Technical challenge: Unity scenes can't load instantly, and WebGL compounds
-                the problem with JavaScript compilation overhead.</p>
+            <p>Realm transitions should feel seamless instead of interrupting the moment. Additive scene loading keeps
+                the current realm interactive while the next realm comes online in the background. The goal is for each
+                transition to feel like stepping through a portal or being teleported by cosmic forces. Technical
+                challenge: Unity scenes can't load instantly, and WebGL compounds the problem with JavaScript
+                compilation overhead.</p>
 
 
             <h2>Additive Scene Loading Architecture</h2>
-            <p>We use Unity's SceneManager.LoadSceneAsync with additive mode, loading new realms in the background while
+            <p>I use Unity's SceneManager.LoadSceneAsync with additive mode, loading new realms in the background while
                 the current realm remains interactive. A small "liminal space" scene (cosmic void with swirling
                 particles) acts as a transition buffer. When you initiate a realm transition, the liminal space fades in
                 over 0.5 seconds while the new realm loads asynchronously. Once loaded, the new realm fades in smoothly
                 and the old realm unloads, reclaiming memory.</p>
 
 
-            <h2>Predictive Preloading Based on Player Behavior</h2>
-            <p>We preload likely next realms using short-term session context and explicit player choices. If you're in
-                Ember Realm and repeatedly choose Abyss Realm in the same session, related assets are prefetched during
-                idle moments. Lightweight decision logic (simple rules, not deep learning) estimates likely next
-                destinations and preloads accordingly. This creates the illusion of instant transitions because the
-                realm is already loaded when you decide to go there.</p>
+            <h2>Scene-Aware Preloading</h2>
+            <p>I preload likely next realms using the current scene and explicit player choices. If you're in Ember
+                Realm and choose Abyss Realm next, related assets can be prefetched during idle moments. Lightweight
+                decision logic (simple rules, not deep learning) keeps transitions feeling immediate because the realm
+                is already loaded when you decide to go there.</p>
 
 
             <h2>Visual Continuity and Spatial Memory</h2>

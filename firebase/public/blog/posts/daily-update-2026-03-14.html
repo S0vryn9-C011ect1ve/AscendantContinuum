@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What's New: March 13, 2026 | The Ascendant Continuum</title>
-    <meta name="description" content="Daily development update for March 13, 2026: 5 commits with 1 features, 4 fixes, and 0 improvements.">
+    <meta name="description"
+        content="Daily development update for March 13, 2026: 5 commits with 1 features, 4 fixes, and 0 improvements.">
     <meta property="og:title" content="Daily Update - March 13, 2026">
-    <meta property="og:description" content="Daily development update for March 13, 2026: 5 commits with 1 features, 4 fixes, and 0 improvements.">
+    <meta property="og:description"
+        content="Daily development update for March 13, 2026: 5 commits with 1 features, 4 fixes, and 0 improvements.">
     <meta property="og:type" content="article">
     <link rel="stylesheet" href="../styles.css">
-        <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/daily-update-2026-03-14.html">
+    <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/daily-update-2026-03-14.html">
 </head>
 
 <body>
@@ -25,25 +27,37 @@
         </header>
 
         <div class="post-content">
-            <p class="lead">Daily development update for March 13, 2026: 5 commits with 1 features, 4 fixes, and 0 improvements.</p>
+            <p class="lead">Daily development update for March 13, 2026: 5 commits with 1 features, 4 fixes, and 0
+                improvements.</p>
 
 
             <h2>✨ Features</h2>
-            <p>We shipped 1 new feature today:</p>
+            <p>I shipped 1 new feature today:</p>
             <ul>
-                <li>Social media automation system: Daily posting to Bluesky, Mastodon, Discord; 100 pre-written content items with viral hooks; GitHub Actions workflows (daily, dev updates, weekend philosophy); Content generators (dev updates, education, philosophy, behind-scenes, lore); Posting history tracking and analytics.</li>
+                <li>Social media automation system: Daily posting to Bluesky, Mastodon, Discord; 100 pre-written content
+                    items with viral hooks; GitHub Actions workflows (daily, dev updates, weekend philosophy); Content
+                    generators (dev updates, education, philosophy, behind-scenes, lore); Posting history tracking and
+                    analytics.</li>
             </ul>
-    
+
 
             <h2>🐛 Bug Fixes</h2>
             <p>Squashed 4 bugs to improve stability:</p>
             <ul>
-                <li>Improve workflow error handling and git operations: Fix malformed step in dev-update-social.yml; Improve git commit logic to handle no-changes case gracefully; Add proper error suppression with || true; Check for actual file changes before committing; All workflows now handle edge cases properly.</li>
-                <li>Filter out automated commits from dev updates: Skip commits with [skip ci]; Skip commits from github-actions bot; Prevents infinite loop in dev-update workflow.</li>
-                <li>Add write permissions to social media workflows: Add permissions: contents: write to all 3 workflows; Required for workflows to push posting history back to repo; Fixes git push permission denied errors.</li>
-                <li>Resolve workflow failures: Create missing post-dev-update.js and post-philosophy.js scripts; Standardize Node.js version to 20 across all workflows; Change npm ci to npm install for compatibility; Simplify dev-update workflow logic; Remove unused workflow steps.</li>
+                <li>Improve workflow error handling and git operations: Fix malformed step in dev-update-social.yml;
+                    Improve git commit logic to handle no-changes case gracefully; Add proper error suppression with ||
+                    true; Check for actual file changes before committing; All workflows now handle edge cases properly.
+                </li>
+                <li>Filter out automated commits from dev updates: Skip commits with [skip ci]; Skip commits from
+                    github-actions bot; Prevents infinite loop in dev-update workflow.</li>
+                <li>Add write permissions to social media workflows: Add permissions: contents: write to all 3
+                    workflows; Required for workflows to push posting history back to repo; Fixes git push permission
+                    denied errors.</li>
+                <li>Resolve workflow failures: Create missing post-dev-update.js and post-philosophy.js scripts;
+                    Standardize Node.js version to 20 across all workflows; Change npm ci to npm install for
+                    compatibility; Simplify dev-update workflow logic; Remove unused workflow steps.</li>
             </ul>
-    
+
 
 
             <h2>📊 Development Stats</h2>
@@ -52,7 +66,7 @@
                 <li><strong>Features:</strong> 1</li>
                 <li><strong>Bug fixes:</strong> 4</li>
                 <li><strong>Improvements:</strong> 0</li>
-                
+
             </ul>
 
             <div class="post-footer">

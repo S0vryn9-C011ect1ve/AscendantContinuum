@@ -39,15 +39,15 @@ const BLOG_THEMES = {
                 sections: [
                     {
                         heading: 'The Problem with Traditional Accessibility',
-                        content: 'Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these features make games "playable" rather than delightful. We asked ourselves: what if accessibility was the core mechanic instead of an afterthought? What if the very tools designed to make games accessible became discovery mechanisms that enhanced gameplay for everyone?'
+                        content: 'Accessibility is part of the core design from the start. Colorblind modes, screen readers, and reduced motion are not side features here; they shape discovery, clarity, and the feel of the game. I asked myself how accessibility could drive the experience forward, not just make it passable, and the answer became a system where accessibility modes reveal meaningful information and hidden paths.'
                     },
                     {
                         heading: 'Color Modes as Magical Discovery Tools',
-                        content: 'In The Ascendant Continuum, switching between Deuteranopia, Protanopia, and Tritanopia modes doesn\'t just make the game playable—it reveals entirely different puzzle solutions, hidden pathways, and secret lore. Each color mode is a magical lens that interacts with the world differently. Certain sigils only appear in specific modes, magical barriers become visible or invisible, and NPC dialogue changes based on what you can perceive. Players who can see all colors still need to use accessibility modes to discover everything the game has to offer.'
+                        content: 'In The Ascendant Continuum, switching between Deuteranopia, Protanopia, and Tritanopia modes reveals different puzzle solutions, hidden pathways, and secret lore. Each color mode is a magical lens that interacts with the world differently. Certain sigils only appear in specific modes, magical barriers become visible or invisible, and NPC dialogue changes based on what you can perceive. The accessibility modes are part of how the world is understood.'
                     },
                     {
                         heading: 'Technical Implementation in Unity',
-                        content: 'We built a shader-based system using Unity\'s Universal Render Pipeline with custom post-processing stacks. Each accessibility mode applies transformations that don\'t just recolor pixels—they actually change how game objects render at the shader level. We use compute shaders to analyze the scene and determine which objects should be visible in each mode. The system tracks player preferences in real-time and seamlessly transitions between modes without performance hits, maintaining 60fps even on mobile devices.'
+                        content: 'I built a shader-based system using Unity\'s Universal Render Pipeline with custom post-processing stacks. Each accessibility mode applies transformations that do more than recolor pixels—they change how game objects render at the shader level. I use compute shaders to analyze the scene and determine which objects should be visible in each mode. The system keeps transitions smooth and maintains 60fps even on mobile devices.'
                     },
                     {
                         heading: 'Player Response and Community Discovery',
@@ -57,37 +57,37 @@ const BLOG_THEMES = {
             },
             {
                 title: 'The Sigil System: Procedural Identity in Unity',
-                hook: 'Every player gets a unique magical signature generated from their playstyle—here\'s how we built it.',
+                hook: 'Every player gets a unique magical signature generated from their playstyle—here\'s how I built it.',
                 sections: [
                     {
                         heading: 'Designing Meaningful Player Identity',
-                        content: 'Traditional MMOs use avatars and character customization sliders. We wanted something deeper—a visual representation of *how* you play, not just *what* you choose at character creation. Your sigil evolves based on ritual timing patterns, exploration behaviors, dialogue choices, accessibility settings usage, and even the time of day you typically play. It\'s a procedurally generated identity that tells the story of your unique journey through the five realms.'
+                        content: 'Traditional MMOs use avatars and character customization sliders. I wanted something deeper—a visual representation of *how* you play, not just *what* you choose at character creation. Your sigil evolves based on ritual timing patterns, exploration behaviors, dialogue choices, accessibility settings usage, and even the time of day you typically play. It\'s a procedurally generated identity that tells the story of your unique journey through the five realms.'
                     },
                     {
                         heading: 'Procedural Generation Architecture',
-                        content: 'We use a deterministic hash function seeded with your player ID that takes behavior vectors (192 different metrics including ritual frequency, session length distribution, realm preferences, interaction patterns, puzzle-solving approaches) and generates mathematically consistent geometric patterns. The system uses layered SVG-style rendering with Unity\'s Vector Graphics package, allowing infinite scalability and precise mathematical relationships between pattern elements. Each behavior metric influences specific geometric properties—spiral tightness, symmetry axes, color harmonics.'
+                        content: 'I use a deterministic hash function seeded with your player ID that takes behavior vectors (192 different metrics including ritual frequency, session length distribution, realm preferences, interaction patterns, puzzle-solving approaches) and generates mathematically consistent geometric patterns. The system uses layered SVG-style rendering with Unity\'s Vector Graphics package, allowing infinite scalability and precise mathematical relationships between pattern elements. Each behavior metric influences specific geometric properties—spiral tightness, symmetry axes, color harmonics.'
                     },
                     {
                         heading: 'Balancing Uniqueness and Aesthetics',
-                        content: 'Early versions generated totally random patterns—some breathtakingly beautiful, others completely unreadable. We added aesthetic constraints: golden ratio proportions, mandala-style symmetry rules, color palette limitations based on your primary realm affinity, and geometric harmony checks using music theory principles. We run every generated sigil through an aesthetic scoring algorithm that ensures minimum beauty thresholds. Now every sigil is both statistically unique and visually coherent, reflecting your playstyle while maintaining magical beauty.'
+                        content: 'Early versions generated totally random patterns—some breathtakingly beautiful, others completely unreadable. I added aesthetic constraints: golden ratio proportions, mandala-style symmetry rules, color palette limitations based on your primary realm affinity, and geometric harmony checks using music theory principles. I run every generated sigil through an aesthetic scoring algorithm that ensures minimum beauty thresholds. Now every sigil is both statistically unique and visually coherent, reflecting your playstyle while maintaining magical beauty.'
                     },
                     {
                         heading: 'Sigil Evolution Over Time',
-                        content: 'Your sigil isn\'t static—it\'s a living document of your journey. Major story moments add new layers rendered as outer rings. Seasonal events contribute temporary flourishes that fade gracefully. Community achievements unlock shared symbolic elements that appear in all participants\' sigils. We track 47 different behavioral metrics at various time scales (daily patterns, weekly trends, seasonal shifts) that influence sigil generation. Long-term players develop intricate, multi-layered patterns that are immediately recognizable to the community.'
+                        content: 'Your sigil isn\'t static—it\'s a living document of your journey. Major story moments add new layers rendered as outer rings. Seasonal events contribute temporary flourishes that fade gracefully. Shared symbolic elements can be woven into sigils over time. The system responds to 47 different behavioral metrics at various time scales (daily patterns, weekly trends, seasonal shifts) that influence sigil generation. Long-term play reveals intricate, multi-layered patterns that feel personally recognizable.'
                     }
                 ]
             },
             {
                 title: 'Cross-Player Puzzle Chains: Asynchronous Multiplayer Design',
-                hook: 'What if your puzzle solution became the starting point for someone else\'s quest—even if you never meet?',
+                hook: 'What if your puzzle solution became the starting point for a future quest—even if the players never meet?',
                 sections: [
                     {
                         heading: 'The Challenge of Asynchronous Multiplayer',
-                        content: 'Real-time multiplayer requires coordination, compatible time zones, stable connections, and complex networking infrastructure. We wanted the social magic without the scheduling headaches or technical overhead. The solution: asynchronous puzzle chains where your actions ripple forward through time to affect future players, creating a shared narrative tapestry woven across months and years rather than synchronized moments.'
+                        content: 'Real-time multiplayer requires coordination, compatible time zones, stable connections, and complex networking infrastructure. I wanted the social magic without the scheduling headaches or technical overhead. The solution: asynchronous puzzle chains where your actions ripple forward through time to affect future players, creating a shared narrative tapestry woven across months and years rather than synchronized moments.'
                     },
                     {
                         heading: 'Firebase and Cloud Functions Architecture',
-                        content: 'Every puzzle solution, ritual completion, and discovery gets stored in Firebase Realtime Database with rich metadata (timestamp, player sigil hash, location coordinates, choices made). Cloud Functions trigger when certain patterns emerge—if 100 players choose the same deity, it unlocks new dialogue options for the next 100. Your time capsule messages surface based on future player locations, choices, and even emotional states inferred from gameplay patterns. We use Firebase\'s real-time listeners to create live-updating world state that reflects aggregate player behavior.'
+                        content: 'Every puzzle solution, ritual completion, and discovery gets stored in Firebase Realtime Database with rich metadata (timestamp, player sigil hash, location coordinates, choices made). Cloud Functions trigger when repeated choices reach a threshold, unlocking new dialogue options for the next wave of discoveries. Time capsule messages surface based on future player locations, choices, and the state of the world. Firebase\'s real-time listeners keep the world state current as new discoveries arrive.'
                     },
                     {
                         heading: 'Preventing Griefing and Abuse',
@@ -95,7 +95,7 @@ const BLOG_THEMES = {
                     },
                     {
                         heading: 'Emergent Narratives from Player Data',
-                        content: 'We\'ve witnessed incredible emergent patterns: players leaving breadcrumb trails of time capsules for later solvers, seasonal migration patterns as different realms gain popularity during real-world seasons, spontaneous community challenges where players coordinate asynchronously to achieve collective goals. The aggregate data shapes NPC dialogue—if most players choose mercy, NPCs become more trusting. World events emerge from player behavior, creating a living story driven by collective choices rather than developer-written scripts.'
+                        content: 'Emergent patterns can appear naturally: breadcrumb trails of time capsules for later solvers, seasonal migration patterns as different realms gain popularity during real-world seasons, and spontaneous community challenges where players coordinate asynchronously to achieve collective goals. The world can respond to repeated choices, with NPC dialogue and event states evolving through player action rather than fixed scripts.'
                     }
                 ]
             },
@@ -105,11 +105,11 @@ const BLOG_THEMES = {
                 sections: [
                     {
                         heading: 'The Initial Performance Disaster',
-                        content: 'When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessive draw calls (400+ per frame), uncompressed audio assets (50MB of music), and JavaScript garbage collection spikes every 2 seconds. Unity\'s default WebGL build settings are designed for feature completeness, not performance. We needed a complete optimization overhaul.'
+                        content: 'When I first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessive draw calls (400+ per frame), uncompressed audio assets (50MB of music), and JavaScript garbage collection spikes every 2 seconds. Unity\'s default WebGL build settings are designed for feature completeness, not performance. I needed a complete optimization overhaul.'
                     },
                     {
                         heading: 'Texture Compression and Progressive Loading',
-                        content: 'We implemented ETC2 texture compression for Android browsers and DXT for desktop, reducing texture memory from 200MB to 35MB. Implemented progressive loading where essential UI textures load first (500KB), followed by current realm assets (5MB), with other realms loading in the background. Used Unity\'s Addressables system to unload unused assets aggressively—transitioning between realms now triggers immediate garbage collection of old realm textures. Result: initial load time dropped from 45 seconds to 8 seconds.'
+                        content: 'I implemented ETC2 texture compression for Android browsers and DXT for desktop, reducing texture memory from 200MB to 35MB. I added progressive loading where essential UI textures load first (500KB), followed by current realm assets (5MB), with other realms loading in the background. I used Unity\'s Addressables system to unload unused assets aggressively—transitioning between realms now triggers immediate garbage collection of old realm textures. Result: initial load time dropped from 45 seconds to 8 seconds.'
                     },
                     {
                         heading: 'Draw Call Batching and Shader Optimization',
@@ -117,25 +117,25 @@ const BLOG_THEMES = {
                     },
                     {
                         heading: 'JavaScript Interop and GC Optimization',
-                        content: 'WebGL runs on JavaScript, so garbage collection is unavoidable—but we can minimize it. Implemented object pooling for all frequently instantiated objects (particles, UI elements, temporary game objects), eliminating 95% of allocations. Reduced string allocations by caching dialog text and using string builders. Moved audio playback to native Web Audio API instead of Unity\'s audio system, eliminating 200ms GC spikes. Final result: 60fps on desktop, 30fps on mid-range mobile browsers, with smooth frame pacing and no stutters.'
+                        content: 'WebGL runs on JavaScript, so garbage collection is unavoidable—but it can be minimized. I implemented object pooling for all frequently instantiated objects (particles, UI elements, temporary game objects), eliminating 95% of allocations. I reduced string allocations by caching dialog text and using string builders. I moved audio playback to native Web Audio API instead of Unity\'s audio system, eliminating 200ms GC spikes. Final result: 60fps on desktop, 30fps on mid-range mobile browsers, with smooth frame pacing and no stutters.'
                     }
                 ]
             },
             {
                 title: 'Mobile Touch Controls: Gestures That Feel Magical',
-                hook: 'Touch controls are either too simple or too complex. We found a middle ground that feels like casting spells.',
+                hook: 'Touch controls are either too simple or too complex. I found a middle ground that feels like casting spells.',
                 sections: [
                     {
                         heading: 'The Touch Control Problem',
-                        content: 'Most mobile games either use virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). We needed controls that were: intuitive for new players, precise enough for puzzle-solving, accessible for motor-impaired users, and thematically appropriate for a magical game. The solution: context-sensitive gesture recognition that adapts to player ability.'
+                        content: 'Mobile games often rely on virtual joysticks (imprecise, cover the screen) or complex gesture systems (steep learning curve, accessibility barriers). I needed controls that were: intuitive for new players, precise enough for puzzle-solving, accessible for motor-impaired users, and thematically appropriate for a magical game. The solution: context-sensitive gesture recognition that adapts to player ability.'
                     },
                     {
                         heading: 'Adaptive Gesture Recognition',
-                        content: 'Our gesture system uses Unity\'s Input System with custom recognizers that adapt sensitivity based on player success rates. If you struggle with precise swipes, the system automatically increases tolerance zones. Gestures can be performed with single finger, multiple fingers, or even stylus for maximum accessibility. We track gesture accuracy over time and provide optional training modes that teach the gesture vocabulary through interactive tutorials disguised as magical training sequences.'
+                        content: 'My gesture system uses Unity\'s Input System with custom recognizers that adapt sensitivity based on player success rates. If you struggle with precise swipes, the system automatically increases tolerance zones. Gestures can be performed with single finger, multiple fingers, or even stylus for maximum accessibility. I track gesture accuracy over time and provide optional training modes that teach the gesture vocabulary through interactive tutorials disguised as magical training sequences.'
                     },
                     {
                         heading: 'Haptic Feedback as Magical Response',
-                        content: 'Every touch creates a unique haptic response—not just generic vibrations, but rhythmic patterns that feel like magical energy flowing through your device. Casting rituals creates ascending vibration patterns. Discovering secrets triggers unique haptic signatures. Wrong gestures give gentle feedback, not punishing buzzes. We use iOS\'s Core Haptics and Android\'s Vibration API to create texture-rich feedback that makes the magic tangible. Accessibility settings let you adjust intensity or disable haptics entirely.'
+                        content: 'Every touch creates a unique haptic response—not just generic vibrations, but rhythmic patterns that feel like magical energy flowing through your device. Casting rituals creates ascending vibration patterns. Discovering secrets triggers unique haptic signatures. Wrong gestures give gentle feedback, not punishing buzzes. I use iOS\'s Core Haptics and Android\'s Vibration API to create texture-rich feedback that makes the magic tangible. Accessibility settings let you adjust intensity or disable haptics entirely.'
                     },
                     {
                         heading: 'One-Handed Mode and Motor Accessibility',
@@ -145,19 +145,19 @@ const BLOG_THEMES = {
             },
             {
                 title: 'Realm Transitions: Seamless World-Hopping',
-                hook: 'Loading screens break immersion. Here\'s how we made realm transitions feel like magical teleportation.',
+                hook: 'Loading screens break immersion. Here\'s how I made realm transitions feel like magical teleportation.',
                 sections: [
                     {
                         heading: 'Why Traditional Loading Screens Fail',
-                        content: 'Traditional RPGs hide loading with progress bars, spinning icons, or "tip screens." These break narrative flow and remind players they\'re in a game, not a magical world. We wanted transitions between the five realms to feel instantaneous and thematically appropriate—like stepping through portals or being teleported by cosmic forces. Technical challenge: Unity scenes can\'t load instantly, and WebGL compounds the problem with JavaScript compilation overhead.'
+                        content: 'Traditional RPGs hide loading with progress bars, spinning icons, or "tip screens." These break narrative flow and remind players they\'re in a game, not a magical world. I wanted transitions between the five realms to feel instantaneous and thematically appropriate—like stepping through portals or being teleported by cosmic forces. Technical challenge: Unity scenes can\'t load instantly, and WebGL compounds the problem with JavaScript compilation overhead.'
                     },
                     {
                         heading: 'Additive Scene Loading Architecture',
-                        content: 'We use Unity\'s SceneManager.LoadSceneAsync with additive mode, loading new realms in the background while the current realm remains interactive. A small "liminal space" scene (cosmic void with swirling particles) acts as a transition buffer. When you initiate a realm transition, the liminal space fades in over 0.5 seconds while the new realm loads asynchronously. Once loaded, the new realm fades in smoothly and the old realm unloads, reclaiming memory.'
+                        content: 'I use Unity\'s SceneManager.LoadSceneAsync with additive mode, loading new realms in the background while the current realm remains interactive. A small "liminal space" scene (cosmic void with swirling particles) acts as a transition buffer. When you initiate a realm transition, the liminal space fades in over 0.5 seconds while the new realm loads asynchronously. Once loaded, the new realm fades in smoothly and the old realm unloads, reclaiming memory.'
                     },
                     {
                         heading: 'Predictive Preloading Based on Player Behavior',
-                        content: 'We track which realms players typically visit next using behavioral analytics. If you\'re in the Ember Realm and historically visit the Abyss Realm 73% of the time, we preload Abyss assets in the background during idle moments. Machine learning (simple decision trees, not deep learning) predicts likely next destinations and preloads accordingly. This creates the illusion of instant transitions because the realm is already loaded when you decide to go there.'
+                        content: 'I can preload likely next destinations when the journey calls for it. If you\'re in the Ember Realm and the Abyss Realm is the next clear step, the assets can load in the background during idle moments. Simple decision trees, not deep learning, can predict likely destinations and preload accordingly. This creates the illusion of instant transitions because the realm is already loaded when you decide to go there.'
                     },
                     {
                         heading: 'Visual Continuity and Spatial Memory',
@@ -173,12 +173,12 @@ const BLOG_THEMES = {
         tags: ['game-design', 'ethics', 'philosophy'],
         topics: [
             {
-                title: 'Why We Reject FOMO: Designing Without Dark Patterns',
-                hook: 'Every major mobile game uses time pressure to manipulate behavior. We chose a different path.',
+                title: 'Why I Reject FOMO: Designing Without Dark Patterns',
+                hook: 'Every major mobile game uses time pressure to manipulate behavior. I chose a different path.',
                 sections: [
                     {
                         heading: 'The Dark Pattern Epidemic',
-                        content: 'Modern free-to-play games are engineered with "urgency mechanics"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish you for not playing at specific times. These exploit psychological vulnerabilities, creating anxiety rather than joy. Players report feeling obligated instead of excited, guilty instead of entertained. We rejected this entire paradigm because it\'s fundamentally incompatible with respectful game design.'
+                        content: 'Modern free-to-play games are engineered with "urgency mechanics"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish you for not playing at specific times. These exploit psychological vulnerabilities, creating anxiety rather than joy. Players report feeling obligated instead of excited, guilty instead of entertained. I rejected this entire paradigm because it\'s fundamentally incompatible with respectful game design.'
                     },
                     {
                         heading: 'Permanent Availability and Player Respect',
@@ -186,29 +186,29 @@ const BLOG_THEMES = {
                     },
                     {
                         heading: 'The Business Case Against FOMO',
-                        content: 'Publishers assume FOMO drives engagement metrics and revenue. Our beta data shows the opposite for long-term sustainability: players who feel trusted and respected have 3.7x longer lifetime value, 2.2x higher voluntary spending on cosmetics, and 4.1x more likely to recommend the game to friends. By eliminating artificial urgency, we\'ve increased average session length (because players engage when genuinely interested, not when guilted) and voluntary return rates. Players come back because they *want* to explore, not because they *have* to maintain a streak.'
+                        content: 'Publishers assume FOMO drives engagement metrics and revenue. I reject that approach because it turns attention into pressure. By eliminating artificial urgency, the design stays centered on curiosity and voluntary return. Players come back because they *want* to explore, not because they *have* to maintain a streak.'
                     },
                     {
                         heading: 'Practical Implementation Strategies',
-                        content: 'We use "availability cycles" instead of limited-time events—content rotates in and out based on cosmic patterns (full moons, equinoxes, constellation alignments) but *always* returns. All cosmetic items remain purchasable forever in the Archives section. We track "joy metrics" (player-reported emotional state, voluntary session extensions beyond initial intent, unsolicited positive feedback) instead of traditional "engagement metrics" (daily active users, retention rates artificially inflated by FOMO). Our KPI is "meaningful moments per session," not "sessions per user per week."'
+                        content: 'I use "availability cycles" instead of limited-time events—content rotates in and out based on cosmic patterns (full moons, equinoxes, constellation alignments) but *always* returns. All cosmetic items remain purchasable forever in the Archives section. I focus on "joy metrics" such as player-reported emotional state, voluntary session extensions beyond initial intent, and unsolicited positive feedback. The goal is meaningful moments per session, not pressure-driven retention loops.'
                     }
                 ]
             },
             {
                 title: 'Accessibility Innovation: Beyond Compliance',
-                hook: 'WCAG compliance is the floor, not the ceiling. Here\'s how we make accessibility magical.',
+                hook: 'WCAG compliance is the floor, not the ceiling. Here\'s how I make accessibility magical.',
                 sections: [
                     {
                         heading: 'Rethinking Accessibility Standards',
-                        content: 'WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don\'t inspire delight or create innovative gameplay. They ensure playability, not joy. We asked: how can accessibility features make the game *better* for everyone, not just "usable" for people with disabilities? How do we transform accommodation into advantage?'
+                        content: 'WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don\'t inspire delight or create innovative gameplay. They ensure playability, not joy. I asked how accessibility features could make the game *better* for everyone, not just "usable" for people with disabilities, and how accommodation could become part of the experience itself.'
                     },
                     {
                         heading: 'Haptic Feedback as Discovery Mechanic',
-                        content: 'Most games use haptics for explosions and collisions—simple feedback. We created a haptic language: unique vibration patterns for each of the five realms (Ember pulses feel warm and irregular, Abyss feels cold and methodical), rhythmic pulses that hint at hidden puzzle solutions (the rhythm matches the solution sequence), and gentle directional feedback that guides exploration. Players with hearing loss get spatial audio translated into directional haptics—they "feel" where sounds are coming from through vibration positioning.'
+                        content: 'Most games use haptics for explosions and collisions—simple feedback. I created a haptic language: unique vibration patterns for each of the five realms (Ember pulses feel warm and irregular, Abyss feels cold and methodical), rhythmic pulses that hint at hidden puzzle solutions (the rhythm matches the solution sequence), and gentle directional feedback that guides exploration. Players with hearing loss get spatial audio translated into directional haptics—they "feel" where sounds are coming from through vibration positioning.'
                     },
                     {
                         heading: 'Screen Reader Immersion',
-                        content: 'Standard screen reader support announces UI elements in monotone system voices: "Button. Play. Button. Settings." We worked with voice actors to record immersive narration for every game element, giving them distinct personalities and atmospheric context. Screen reader users get rich descriptions—not "healing potion" but "a crystalline vial of amber liquid that catches the light, warm to the touch, smelling of honeysuckle and starlight." They experience a parallel narrative layer unavailable to sighted players, making screen reader mode a feature, not an accommodation.'
+                        content: 'Standard screen reader support announces UI elements in monotone system voices: "Button. Play. Button. Settings." I write immersive descriptions for game elements, giving them distinct personalities and atmospheric context. Screen reader users get rich descriptions—not "healing potion" but "a crystalline vial of amber liquid that catches the light, warm to the touch, smelling of honeysuckle and starlight." They experience a parallel narrative layer that makes screen reader mode a feature, not an accommodation.'
                     },
                     {
                         heading: 'Community Co-Design Process',
