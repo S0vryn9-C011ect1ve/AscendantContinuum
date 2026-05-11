@@ -8,6 +8,7 @@ This repository contains a Unity game project, Firebase website/deployment surfa
 2. Keep changes scoped by concern: gameplay, website, automation, docs, or governance.
 3. Run relevant validation before opening a pull request.
 4. Do not place new operational docs at the repository root.
+5. Commit hooks run repository structure validation automatically, so misplaced files should be caught before they land.
 
 ## Required Local Checks
 
@@ -34,6 +35,7 @@ npm run validate:dedup
 - New docs belong under `docs/` by domain.
 - Legacy docs follow strict wave order: merge, then archive, then delete.
 - Do not store secrets or tokens in markdown files.
+- The pre-commit hook enforces repository structure automatically.
 
 ## Automation and Website Rules
 

@@ -35,3 +35,4 @@ This document defines the canonical structure and ownership model for the Ascend
 ## CI Structure Enforcement
 
 CI should fail when files are added to deprecated paths after migration gates are active.
+Local pre-commit hooks also run structure validation so new files are blocked before commit if they land in the wrong place.

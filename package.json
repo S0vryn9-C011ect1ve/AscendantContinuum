@@ -29,6 +29,8 @@
         "safe-install": "npm ci",
         "safe-add": "npm install --min-release-age=7",
         "validate:structure": "node scripts/validation/repository-structure-validator.js",
+        "organize:watch": "node scripts/automation/auto-organize-new-files.js",
+        "organize:scan": "node scripts/automation/auto-organize-new-files.js --scan-once",
         "validate:links": "node scripts/validation/link-checker.js https://ascendant-continuum.web.app/ https://ascendant-continuum.web.app/blog/",
         "validate:content": "node scripts/validation/content-validator.js",
         "validate:dedup": "node scripts/validation/dedup-checker.js --audit",

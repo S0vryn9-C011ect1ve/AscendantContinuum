@@ -8,4 +8,11 @@ if git diff --cached -- . \
   echo "Commit blocked: potential secret found in staged changes."
   exit 1
 fi
+
+echo "Auto-organizing root markdown before commit..."
+npm run organize:scan
+
+echo "Running repository structure validation..."
+npm run validate:structure
+
 exit 0
