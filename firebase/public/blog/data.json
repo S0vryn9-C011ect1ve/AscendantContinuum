@@ -1,6 +1,106 @@
 {
   "posts": [
     {
+      "title": "Accessibility Innovation: Beyond Compliance",
+      "slug": "accessibility-innovation-beyond-compliance",
+      "date": "2026-05-11",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Design Philosophy",
+      "excerpt": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay. They ensure playabi..."
+    },
+    {
+      "title": "Daily Update: May 2, 2026",
+      "slug": "daily-update-2026-05-02",
+      "date": "2026-05-02",
+      "tags": [],
+      "themeName": "What's New",
+      "excerpt": "Daily development update for May 2, 2026: 3 commits with 0 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: May 3, 2026",
+      "slug": "daily-update-2026-05-03",
+      "date": "2026-05-03",
+      "tags": [],
+      "themeName": "What's New",
+      "excerpt": "Daily development update for May 3, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: May 4, 2026",
+      "slug": "daily-update-2026-05-04",
+      "date": "2026-05-04",
+      "tags": [],
+      "themeName": "What's New",
+      "excerpt": "Daily development update for May 4, 2026: 1 commits with 0 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Daily Update: May 5, 2026",
+      "slug": "daily-update-2026-05-05",
+      "date": "2026-05-05",
+      "tags": [],
+      "themeName": "What's New",
+      "excerpt": "We improved Updated content - 42fe32fe3ea31e32a221e6a921f0d3e8831cb763."
+    },
+    {
+      "title": "Weekly Digest: April 27, 2026 - May 3, 2026",
+      "slug": "weekly-digest-2026-04-27",
+      "date": "2026-04-27",
+      "tags": [],
+      "themeName": "What's New",
+      "excerpt": "Weekly development digest: 8 commits across 3 days with 0 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "Why We Reject FOMO: Designing Without Dark Patterns",
+      "slug": "why-we-reject-fomo-designing-without-dark-patterns",
+      "date": "2026-05-10",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Design Philosophy",
+      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish yo..."
+    },
+    {
+      "title": "Solo Development Lessons: Building a Game Alone",
+      "slug": "solo-development-lessons-building-a-game-alone",
+      "date": "2026-05-07",
+      "tags": [
+        "development",
+        "solo-dev",
+        "process"
+      ],
+      "themeName": "Behind the Scenes",
+      "excerpt": "The Ascendant Continuum is a solo project built directly by one developer. This post shares practical lessons on prioritization, sustainable workflows, and shipping without external paid production support."
+    },
+    {
+      "title": "Unity Mobile Optimization: WebGL to Android Performance",
+      "slug": "unity-mobile-optimization-webgl-to-android-performance",
+      "date": "2026-05-07",
+      "tags": [
+        "tutorial",
+        "unity",
+        "game-dev"
+      ],
+      "themeName": "Tutorial",
+      "excerpt": "The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting better performance, we..."
+    },
+    {
+      "title": "What's New: 14 Updates This Week",
+      "slug": "whats-new-2026-05-07",
+      "date": "2026-05-07",
+      "tags": [
+        "updates",
+        "changelog",
+        "development"
+      ],
+      "themeName": "What's New",
+      "excerpt": "This week we shipped 1 new feature: - What's New pipeline — user-impact filtering + plain English + activity gate..."
+    },
+    {
       "title": "Archaeological Fossils: Your Actions Become History",
       "slug": "archaeological-fossils-player-actions-become-history",
       "date": "2026-05-05",
@@ -223,30 +323,16 @@
       "hook": "OpenWeather API sync makes your local weather the difficulty setting. Rain, thunderstorms, fog—all affect gameplay. Real weather, real consequences."
     },
     {
-      "title": "Why We Reject FOMO: Designing Without Dark Patterns",
-      "slug": "why-we-reject-fomo-designing-without-dark-patterns",
-      "date": "2026-05-03",
+      "title": "Ethical Monetization: Fair Pricing in an Exploitative Industry",
+      "slug": "ethical-monetization-fair-pricing-in-an-exploitative-industry",
+      "date": "2026-05-05",
       "tags": [
         "game-design",
         "ethics",
         "philosophy"
       ],
-      "themeName": "Development",
-      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy sy...",
-      "hook": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusiv..."
-    },
-    {
-      "title": "Solo Development Lessons: Building a Game Alone",
-      "slug": "solo-development-lessons-building-a-game-alone",
-      "date": "2026-05-02",
-      "tags": [
-        "development",
-        "team",
-        "process"
-      ],
-      "themeName": "Development",
-      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn",
-      "hook": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn"
+      "themeName": "Design Philosophy",
+      "excerpt": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add..."
     },
     {
       "title": "Daily Update: May 1, 2026",
@@ -282,32 +368,6 @@
       "themeName": "Development",
       "excerpt": "Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that strips away visual delight. At best, these...",
       "hook": "Most games treat accessibility as a checkbox feature. Colorblind modes are retrofitted, screen readers are afterthoughts, and reduced motion is a toggle that..."
-    },
-    {
-      "title": "Ethical Monetization: Fair Pricing in an Exploitative Industry",
-      "slug": "ethical-monetization-fair-pricing-in-an-exploitative-industry",
-      "date": "2026-04-24",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Development",
-      "excerpt": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add...",
-      "hook": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha..."
-    },
-    {
-      "title": "Accessibility Innovation: Beyond Compliance",
-      "slug": "accessibility-innovation-beyond-compliance",
-      "date": "2026-04-23",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Development",
-      "excerpt": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don",
-      "hook": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don"
     },
     {
       "title": "State Management with ScriptableObjects",
@@ -498,20 +558,20 @@
       "hook": "Daily development update for March 28, 2026: 1 commits with 1 features, 0 fixes, and 0 improvements."
     },
     {
-      "title": "Your Playstyle Shapes Your Sigil: Behavioral Personalization",
+      "title": "Your Playstyle Shapes Your Sigil: Adaptive Personalization",
       "slug": "your-playstyle-shapes-your-sigil",
       "date": "2026-03-29",
       "tags": [
         "personalization",
         "game-design",
-        "behavioral-analytics",
+        "adaptive-personalization",
         "player-identity",
         "technical",
         "sigils"
       ],
       "themeName": "Development",
-      "excerpt": "Ascendant Continuum tracks how you play—then generates a personal sigil that reflects your unique playstyle. Morning player? Explorer? Speedrunner? The game knows.",
-      "hook": "Ascendant Continuum tracks how you play—then generates a personal sigil that reflects your unique playstyle. Morning player? Explorer? Speedrunner? The game ..."
+      "excerpt": "Ascendant Continuum adapts sigil visuals from your current in-game choices and accessibility settings, so each player gets a distinct style without invasive tracking claims.",
+      "hook": "Ascendant Continuum adapts sigil visuals from current in-game choices and accessibility settings to create a distinct personal sigil style."
     },
     {
       "title": "Daily Update: March 27, 2026",
@@ -530,19 +590,6 @@
       "tags": [],
       "excerpt": "Daily development update for March 26, 2026: 4 commits with 0 features, 3 fixes, and 0 improvements.",
       "hook": "Daily development update for March 26, 2026: 4 commits with 0 features, 3 fixes, and 0 improvements."
-    },
-    {
-      "title": "Unity Mobile Optimization: WebGL to Android Performance",
-      "slug": "unity-mobile-optimization-webgl-to-android-performance",
-      "date": "2026-03-27",
-      "tags": [
-        "tutorial",
-        "unity",
-        "game-dev"
-      ],
-      "themeName": "Development",
-      "excerpt": "The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting be...",
-      "hook": "The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our ear..."
     },
     {
       "title": "Daily Update: March 24, 2026",
@@ -732,154 +779,65 @@
       "tags": [],
       "excerpt": "Daily development update for January 31, 2026: 8 commits with 5 features, 0 fixes, and 0 improvements.",
       "hook": "Daily development update for January 31, 2026: 8 commits with 5 features, 0 fixes, and 0 improvements."
-    },
-    {
-      "title": "Ethical Monetization: Fair Pricing in an Exploitative Industry",
-      "slug": "ethical-monetization-fair-pricing-in-an-exploitative-industry",
-      "date": "2026-05-05",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "Mobile gaming generates $100+ billion annually, but much of it comes from exploitative systems: loot boxes with algorithmically manipulated drop rates, gacha mechanics designed to trigger gambling add..."
-    },
-    {
-      "title": "Unity Mobile Optimization: WebGL to Android Performance",
-      "slug": "unity-mobile-optimization-webgl-to-android-performance",
-      "date": "2026-05-07",
-      "tags": [
-        "tutorial",
-        "unity",
-        "game-dev"
-      ],
-      "themeName": "Tutorial",
-      "excerpt": "The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting better performance, we..."
-    },
-    {
-      "title": "Solo Development Lessons: Building a Game Alone",
-      "slug": "solo-development-lessons-building-a-game-alone",
-      "date": "2026-05-07",
-      "tags": [
-        "development",
-        "team",
-        "process"
-      ],
-      "themeName": "Behind the Scenes",
-      "excerpt": "The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic \"lone genius\" story—it's a logistical necessity due to budg..."
-    },
-    {
-      "title": "What's New: 14 Updates This Week",
-      "slug": "whats-new-2026-05-07",
-      "date": "2026-05-07",
-      "tags": [
-        "updates",
-        "changelog",
-        "development"
-      ],
-      "themeName": "What's New",
-      "excerpt": "This week we shipped 1 new feature: - What's New pipeline — user-impact filtering + plain English + activity gate..."
-    },
-    {
-      "title": "Why We Reject FOMO: Designing Without Dark Patterns",
-      "slug": "why-we-reject-fomo-designing-without-dark-patterns",
-      "date": "2026-05-09",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish yo..."
-    },
-    {
-      "title": "Why We Reject FOMO: Designing Without Dark Patterns",
-      "slug": "why-we-reject-fomo-designing-without-dark-patterns",
-      "date": "2026-05-10",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish yo..."
-    },
-    {
-      "title": "Accessibility Innovation: Beyond Compliance",
-      "slug": "accessibility-innovation-beyond-compliance",
-      "date": "2026-05-11",
-      "tags": [
-        "game-design",
-        "ethics",
-        "philosophy"
-      ],
-      "themeName": "Design Philosophy",
-      "excerpt": "WCAG 2.1 AA and CVAA compliance provide essential baselines—minimum contrast ratios, screen reader support, keyboard navigation, captions. But they don't inspire delight or create innovative gameplay. They ensure playabi..."
     }
   ],
   "stats": {
-    "totalPosts": 77,
+    "totalPosts": 76,
     "byTheme": {
-      "Transparency": 1,
-      "Technical Deep Dive": 5,
-      "Behind the Scenes": 9,
-      "Tutorial": 10,
-      "Design Philosophy": 16,
-      "Dev Diary": 11,
-      "Community Insight": 1,
-      "What's New": 1
+      "Behind the Scenes": 1,
+      "Design Philosophy": 4,
+      "Development": 29,
+      "Technical Deep Dive": 1,
+      "Tutorial": 1,
+      "What's New": 40
     },
     "byTag": {
-      "budget": 1,
-      "indie-dev": 2,
-      "transparency": 1,
-      "free-tools": 1,
-      "bootstrap": 1,
-      "accessibility": 3,
-      "colorblind": 2,
-      "game-design": 18,
-      "technical": 3,
-      "innovation": 2,
-      "behind-the-scenes": 12,
-      "first-game": 1,
-      "disability": 1,
-      "career-change": 1,
-      "learning-unity": 1,
-      "tutorial": 10,
-      "unity": 22,
-      "game-dev": 10,
-      "ethics": 13,
-      "philosophy": 12,
+      "accessibility": 1,
       "ai": 1,
-      "community": 2,
-      "systems": 1,
-      "social": 1,
-      "development": 24,
-      "player-stories": 1,
-      "updates": 2,
-      "team": 9,
-      "process": 9,
-      "daily-challenges": 1,
-      "inclusive-design": 2,
-      "secrets": 1,
-      "screen-reader": 1,
-      "neurodivergent": 1,
-      "personalization": 1,
-      "behavioral-analytics": 1,
-      "player-identity": 1,
-      "sigils": 1,
-      "monetization": 1,
-      "battle-pass": 1,
-      "seasonal-content": 1,
       "anti-fomo": 1,
       "automation": 1,
-      "security": 2,
+      "battle-pass": 1,
+      "adaptive-personalization": 1,
+      "behind-the-scenes": 6,
+      "bootstrap": 1,
+      "budget": 1,
+      "career-change": 1,
+      "changelog": 1,
+      "colorblind": 1,
+      "community": 1,
+      "development": 8,
+      "disability": 1,
+      "ethics": 4,
+      "first-game": 1,
+      "free-tools": 1,
+      "game-design": 8,
+      "game-dev": 4,
+      "inclusive-design": 1,
+      "indie-dev": 2,
+      "innovation": 1,
+      "learning-unity": 1,
+      "monetization": 1,
+      "neurodivergent": 1,
       "npm": 1,
-      "webdev": 1,
-      "tools": 1,
-      "changelog": 1
+      "personalization": 1,
+      "philosophy": 3,
+      "player-identity": 1,
+      "process": 1,
+      "screen-reader": 1,
+      "seasonal-content": 1,
+      "secrets": 1,
+      "security": 2,
+      "sigils": 1,
+      "social": 1,
+      "solo-dev": 1,
+      "systems": 1,
+      "technical": 1,
+      "transparency": 1,
+      "tutorial": 4,
+      "unity": 9,
+      "updates": 1,
+      "webdev": 1
     }
   },
-  "lastUpdated": "2026-05-05T01:32:06.483Z"
+  "lastUpdated": "2026-05-11T19:16:03.035Z"
 }

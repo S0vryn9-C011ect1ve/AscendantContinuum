@@ -6,6 +6,7 @@ import { postToBluesky } from '../posting/post-to-bluesky.js';
 import { postToMastodon } from '../posting/post-to-mastodon.js';
 import { postToDiscord } from '../posting/post-to-discord.js';
 import { ensureUrlAtEnd, normalizeForPublishing } from '../utils/publish-text-utils.js';
+import { assertNoProhibitedContent } from '../utils/truth-and-dedupe-guard.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -116,7 +117,7 @@ function generatePostHTML(post) {
     <meta property="og:type" content="article">
     <meta property="og:url" content="${postUrl}">
     <meta property="article:published_time" content="${post.date}">
-    <meta property="article:author" content="The Ascendant Continuum Team">
+    <meta property="article:author" content="Ascendant Continuum (Solo Developer)">
     ${post.tags.map(tag => `<meta property="article:tag" content="${tag}">`).join('\n    ')}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${post.title}">
@@ -307,6 +308,8 @@ async function postToSocialMedia(post) {
         postUrl
     );
 
+    assertNoProhibitedContent(socialText, `blog social post for ${post.slug}`);
+
     try {
         console.log('\nPosting blog link to social media...');
 
@@ -352,28 +355,37 @@ async function publishBlogPost() {
 
     ensureDirectories();
 
-    // Generate post
-    const post = generateBlogPost();
+    // Load existing data
+    const blogData = loadBlogData();
+
+    // Generate a unique post (no repeated slug/title).
+    const existingSlugs = new Set(blogData.posts.map(p => p.slug));
+    const existingTitles = new Set(blogData.posts.map(p => p.title));
+    let post = null;
+    const maxAttempts = 25;
+
+    for (let i = 0; i < maxAttempts; i++) {
+        const candidate = generateBlogPost();
+        if (!existingSlugs.has(candidate.slug) && !existingTitles.has(candidate.title)) {
+            post = candidate;
+            break;
+        }
+    }
+
+    if (!post) {
+        console.log('⚠️  No unique blog post available. Skipping publish to avoid duplicates.');
+        return false;
+    }
+
+    assertNoProhibitedContent(
+        `${post.title}\n${post.hook || ''}\n${post.excerpt || ''}\n${post.content || ''}`,
+        `generated blog post ${post.slug}`
+    );
+
     console.log(`Generated: "${post.title}"`);
     console.log(`Theme: ${post.themeName}`);
     console.log(`Tags: ${post.tags.join(', ')}`);
     console.log(`Date: ${post.date}`);
-
-    // Load existing data
-    const blogData = loadBlogData();
-
-    // Check if post with same slug already exists today
-    const existingPost = blogData.posts.find(p => p.slug === post.slug && p.date === post.date);
-    if (existingPost) {
-        console.log('⚠️  Post with same title already published today. Generating alternative...');
-        // Try generating a different post
-        const alternativePost = generateBlogPost();
-        if (blogData.posts.find(p => p.slug === alternativePost.slug && p.date === alternativePost.date)) {
-            console.log('⚠️  Alternative also exists. Skipping today\'s post.');
-            return false;
-        }
-        Object.assign(post, alternativePost);
-    }
 
     // Create HTML file
     const postHTML = generatePostHTML(post);

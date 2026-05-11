@@ -1841,19 +1841,143 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 64,
+      "contentId": 239,
+      "contentType": "devUpdate",
+      "hook": "Mobile release: Android first (May 2026), iOS shortly after",
+      "topics": [
+        "unity-tech"
+      ],
+      "timestamp": "2026-05-08T18:01:16.797Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mlecpx3kuu2w"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116540258835404831"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "contentId": 103,
+      "contentType": "designPhilosophy",
+      "hook": "Mental health features shouldn't be afterthoughts.",
+      "topics": [
+        "digital-sunset"
+      ],
+      "timestamp": "2026-05-09T18:02:13.647Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mlgtbd77oc27"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116545926567692042"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "contentId": 113,
+      "contentType": "designPhilosophy",
+      "hook": "Cosmetics-only monetization: 6-month results.",
+      "topics": [
+        "monetization"
+      ],
+      "timestamp": "2026-05-10T18:00:40.323Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mljdmzwflf2u"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116551581801314696"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "contentId": 12,
+      "contentType": "devUpdate",
+      "hook": "Prototyped → tested → scrapped → rebuilt. Here's the result.",
+      "topics": [
+        "procedural-generation"
+      ],
+      "timestamp": "2026-05-11T18:02:31.700Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mllu6yamfc2u"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116557250773058354"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 58,
+    "totalPosts": 62,
     "byPlatform": {
-      "bluesky": 58,
-      "mastodon": 58,
-      "discord": 56
+      "bluesky": 62,
+      "mastodon": 62,
+      "discord": 60
     },
     "byType": {
-      "devUpdate": 27,
+      "devUpdate": 29,
       "devEducation": 14,
-      "designPhilosophy": 11,
+      "designPhilosophy": 13,
       "behindScenes": 0,
       "loreSnippet": 6
     }

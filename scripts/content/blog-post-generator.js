@@ -51,7 +51,7 @@ const BLOG_THEMES = {
                     },
                     {
                         heading: 'Player Response and Community Discovery',
-                        content: 'Early testers have formed collaborative groups where players share screenshots from different accessibility modes to solve community-wide puzzles. Someone playing in Deuteranopia mode might spot a pattern that someone in Tritanopia mode misses entirely. This creates genuine cooperative gameplay across perceived abilities, where neurodivergent players and those with different visual capabilities become essential to solving the game\'s deepest mysteries. The community has created wikis documenting which secrets appear in which modes.'
+                        content: 'Early playthrough feedback shows that people naturally share screenshots from different accessibility modes to solve broader puzzle chains. Someone using one vision mode can spot a pattern another mode does not expose as clearly. This supports cooperative discovery and encourages players to compare perspectives instead of assuming one default visual path.'
                     }
                 ]
             },
@@ -139,7 +139,7 @@ const BLOG_THEMES = {
                     },
                     {
                         heading: 'One-Handed Mode and Motor Accessibility',
-                        content: 'Designed in collaboration with motor-impaired testers, one-handed mode repositions all interactive elements to reachable zones (bottom third of screen for portrait, left or right third for landscape). Gesture timing requirements are removed—you can pause mid-gesture without penalty. All multi-touch gestures have single-touch alternatives. We support external switch controls and voice commands through system accessibility APIs. The goal: anyone with any motor ability should be able to experience the full game.'
+                        content: 'One-handed mode repositions key controls into reachable zones (bottom third in portrait, left or right third in landscape). Gesture timing requirements are relaxed so you can pause mid-gesture without penalty. Multi-touch inputs have single-touch alternatives, and the design remains compatible with external switch controls and voice-access workflows where supported by the platform.'
                     }
                 ]
             },
@@ -212,7 +212,7 @@ const BLOG_THEMES = {
                     },
                     {
                         heading: 'Community Co-Design Process',
-                        content: 'We didn\'t just hire accessibility consultants to audit our finished game—we hired them as core team members who co-designed features from the concept stage. Our lead accessibility designer is blind and contributed the screen reader poetry system. Our motor accessibility consultant has hemiplegia and designed the one-handed mode that\'s now used by 23% of all players (not just motor-impaired users—it\'s genuinely better for casual play). True accessibility requires authentic partnership, not external audits.'
+                        content: 'Accessibility quality is driven by iterative solo testing and direct community feedback. I review feedback patterns, replay difficult flows, and adjust interaction friction one pass at a time. The goal is practical usability without treating accessibility as an optional add-on. Real progress comes from consistent implementation and validation, not last-minute audits.'
                     }
                 ]
             },
@@ -360,7 +360,7 @@ const BLOG_THEMES = {
 
     behindTheScenes: {
         name: 'Behind the Scenes',
-        tags: ['development', 'team', 'process'],
+        tags: ['development', 'solo-dev', 'process'],
         topics: [
             {
                 title: 'Solo Development Lessons: Building a Game Alone',
@@ -368,7 +368,7 @@ const BLOG_THEMES = {
                 sections: [
                     {
                         heading: 'The Reality of Solo Development',
-                        content: 'The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn\'t a romantic "lone genius" story—it\'s a logistical necessity due to budget constraints. Solo dev teaches brutal prioritization: you can\'t do everything, so you must identify highest-impact features and ruthlessly cut the rest. I\'ve abandoned 60% of planned features not because they were bad ideas, but because they weren\'t essential. The game that exists focuses on core strengths and outsources weaknesses.'
+                        content: 'The Ascendant Continuum is a solo project built directly by me. No outsourcing, no contractors, and no paid production team. Solo development requires strict prioritization: not every idea ships, so I focus on the highest-impact work first. Many planned features are intentionally cut so the core experience stays coherent and finishable.'
                     },
                     {
                         heading: 'Tools and Automation for Efficiency',
@@ -379,8 +379,8 @@ const BLOG_THEMES = {
                         content: 'Solo dev is marathon, not sprint. I track time strictly: 25 hours/week maximum, never weekends, mandatory 1-week vacation every 8 weeks whether I feel I need it or not. I use Pomodoro technique (25-min work, 5-min break) to prevent hyperfocus burnout. I maintain separate hobby projects (not games—woodworking, painting) to prevent creative depletion. I\'ve declined partnerships and funding that would require unsustainable crunch. The game will take longer this way, but it\'ll actually ship. Most solo projects fail from burnout, not technical challenges.'
                     },
                     {
-                        heading: 'When to Hire Contractors vs DIY',
-                        content: 'I\'m a decent programmer, mediocre designer, terrible artist, and incompetent musician. Hiring professionals for weaknesses is cheaper than struggling alone. I spent $2,400 on art contractors (character designs, realm concepts, UI assets)—would\'ve taken me 6 months to produce inferior results. Spent $800 on audio (ambient realm soundscapes, UI feedback sounds). Cost analysis: my time is worth ~$50/hour (opportunity cost of contract work I could do instead). If a contractor can do it better in fewer hours, hire them. Reserve your time for work only you can do—core design and programming.'
+                        heading: 'DIY Scope and Constraints',
+                        content: 'Working solo means accepting tradeoffs. I choose techniques, assets, and workflows I can personally maintain over the long term. That means avoiding scope that would require external paid help, and focusing on systems I can actually ship and support. The priority is reliability and continuity, not chasing maximum complexity.'
                     }
                 ]
             }

@@ -37,6 +37,7 @@ import {
     normalizeForPublishing,
     truncatePreservingLastUrl
 } from '../utils/publish-text-utils.js';
+import { assertNoProhibitedContent } from '../utils/truth-and-dedupe-guard.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -220,6 +221,19 @@ function getRecentlyPostedIds(postingHistory, days) {
 }
 
 /**
+ * Get all content IDs that were ever posted.
+ */
+function getAllPostedIds(postingHistory) {
+    const ids = new Set();
+    postingHistory.posts.forEach(post => {
+        if (typeof post.contentId === 'number') {
+            ids.add(post.contentId);
+        }
+    });
+    return ids;
+}
+
+/**
  * Select content from bank based on smart rotation rules
  */
 function selectContent(contentBank, postingHistory) {
@@ -229,49 +243,17 @@ function selectContent(contentBank, postingHistory) {
     // Get recently used topics to avoid repetition
     const recentTopics = getRecentTopics(postingHistory, config.topicCooldownDays);
 
-    // Get content IDs posted recently (source of truth: posting history, not content-bank)
-    const recentlyPostedIds = getRecentlyPostedIds(postingHistory, config.contentCooldownDays);
+    // Get all content IDs ever posted (source of truth: posting history)
+    const postedIds = getAllPostedIds(postingHistory);
 
-    console.log(`🚫 Recently posted (last ${config.contentCooldownDays} days): ${recentlyPostedIds.size} posts excluded`);
+    console.log(`🚫 Already posted historically: ${postedIds.size} posts excluded`);
 
-    // Filter: content that hasn't been posted in the last 30 days
-    const availableContent = contentBank.content.filter(item => {
-        return !recentlyPostedIds.has(item.id);
-    });
+    // Filter: content that has never been posted before
+    const availableContent = contentBank.content.filter(item => !postedIds.has(item.id));
 
     if (availableContent.length === 0) {
-        console.log('⚠️  All content posted within last 30 days!');
-        console.log('♻️  Resetting cooldown - will select least recently posted content');
-
-        // Find the oldest post from history
-        const postDates = new Map();
-        postingHistory.posts.forEach(post => {
-            const existingDate = postDates.get(post.contentId);
-            const postDate = new Date(post.timestamp);
-            if (!existingDate || postDate > existingDate) {
-                postDates.set(post.contentId, postDate);
-            }
-        });
-
-        // Get all content sorted by how long ago it was posted
-        const allContentWithDates = contentBank.content.map(item => {
-            const lastPosted = postDates.get(item.id);
-            const daysSince = lastPosted
-                ? Math.floor((new Date() - lastPosted) / (1000 * 60 * 60 * 24))
-                : Infinity;
-            return { item, daysSince, lastPosted };
-        });
-
-        // Sort by oldest first
-        allContentWithDates.sort((a, b) => b.daysSince - a.daysSince);
-
-        console.log(`   Selecting from posts not used in ${allContentWithDates[0].daysSince}+ days`);
-
-        // Use the 10 oldest posts as available pool
-        return selectContent(
-            { ...contentBank, content: allContentWithDates.slice(0, 10).map(x => x.item) },
-            postingHistory
-        );
+        console.log('⚠️  No unused social posts left. Skipping to guarantee zero duplicates.');
+        return null;
     }
 
     // Apply time-based content type preferences
@@ -383,6 +365,7 @@ function selectContent(contentBank, postingHistory) {
 async function postToPlatform(platform, content) {
     const fallbackUrl = content.url || extractLastUrl(content.body) || 'https://ascendant-continuum.web.app/blog/';
     const fullText = ensureUrlAtEnd(`${content.hook}\n\n${content.body}`, fallbackUrl);
+    assertNoProhibitedContent(fullText, `social content #${content.id} (${platform})`);
 
     if (config.dryRun) {
         console.log(`  [DRY RUN] Would post to ${platform}:`);

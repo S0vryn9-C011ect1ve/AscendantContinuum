@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Playstyle Shapes Your Sigil: Behavioral Personalization | Ascendant Continuum</title>
+    <title>Your Playstyle Shapes Your Sigil: Adaptive Personalization | Ascendant Continuum</title>
     <meta name="description"
-        content="Ascendant Continuum tracks how you play—then generates a personal sigil that reflects your unique playstyle. Morning player? Explorer? Speedrunner? The game knows.">
+        content="Ascendant Continuum adapts sigil visuals from your current in-game choices and accessibility settings, so each player gets a distinct style without invasive tracking claims.">
     <meta property="og:title" content="Your Playstyle Shapes Your Sigil">
     <meta property="og:description"
         content="The game watches how you play: your pace, your favorite realms, your interaction patterns. Then it creates a sigil that represents YOU.">
     <meta property="og:type" content="article">
     <link rel="stylesheet" href="../styles.css">
-        <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/your-playstyle-shapes-your-sigil.html">
+    <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/your-playstyle-shapes-your-sigil.html">
 </head>
 
 <body>
     <article class="blog-post">
         <header class="post-header">
-            <h1>Your Playstyle Shapes Your Sigil: Behavioral Personalization</h1>
+            <h1>Your Playstyle Shapes Your Sigil: Adaptive Personalization</h1>
             <div class="post-meta">
                 <time datetime="2026-03-29">March 29, 2026</time>
                 <span class="reading-time">9 min read</span>
@@ -28,8 +28,9 @@
         <div class="post-content">
             <p class="lead">The game is watching you. Not in a creepy way—in a <em>caring</em> way.</p>
 
-            <p>Every tap, every swipe, every realm you visit, every time of day you play—Ascendant Continuum tracks it
-                all. Then it uses that data to generate a <strong>personal sigil</strong> that represents <em>your
+            <p>Every tap, every swipe, every realm you visit, and your current settings influence sigil rendering in
+                the active experience. Then the game uses those signals to generate a <strong>personal sigil</strong>
+                that represents <em>your
                     unique playstyle</em>.</p>
 
             <p>Morning player who loves Verdant Sanctuary? Your sigil has soft green glows and dawn-themed patterns.</p>
@@ -39,14 +40,14 @@
 
             <p>Slow, methodical explorer who uses reduced motion? Your sigil is calm, symmetrical, and grounded.</p>
 
-            <p>This isn't random. It's <strong>behavioral personalization</strong> powered by real data.</p>
+            <p>This isn't random. It's <strong>adaptive personalization</strong> powered by active gameplay context.</p>
 
-            <h2>What the Game Tracks</h2>
+            <h2>What the Game Uses</h2>
 
             <p>The <code>PlayerPlaystyleMetrics.cs</code> system monitors 50+ behavioral signals across 8 categories:
             </p>
 
-            <h3>1. Play Time Tracking</h3>
+            <h3>1. Play Time Signals</h3>
             <ul>
                 <li><strong>Total play time:</strong> How long you've been playing (minutes)</li>
                 <li><strong>Average session length:</strong> Do you play for 10 minutes or 2 hours?</li>
@@ -122,7 +123,7 @@
                 <li><strong>Preferred play time:</strong> Morning, evening, night, or flexible</li>
             </ul>
 
-            <p>The game tracks <em>when</em> you play most frequently:</p>
+            <p>The game reads <em>when</em> you play most frequently during active use:</p>
 
             <pre><code>public string PreferredPlayTime
 {
@@ -256,21 +257,21 @@
 
             <h2>Privacy & Transparency</h2>
 
-            <p>All playstyle tracking happens <strong>locally on your device</strong>. No data is sent to servers. You
+            <p>All playstyle adaptation happens <strong>locally on your device</strong>. No data is sent to servers. You
                 can view your metrics anytime:</p>
 
             <ol>
                 <li>Open Settings → Player Metrics</li>
                 <li>See your full behavioral profile</li>
-                <li>Understand exactly what the game tracks</li>
+                <li>Understand exactly what the game uses for personalization</li>
                 <li>Delete metrics and reset your sigil if desired</li>
             </ol>
 
-            <p>The game also explains <em>why</em> it tracks each metric, so there's no mystery:</p>
+            <p>The game also explains <em>why</em> it uses each metric, so there's no mystery:</p>
 
             <blockquote>
-                <p><strong>Why we track it:</strong> "Favorite realm determines your sigil's color palette."</p>
-                <p><strong>Why we track it:</strong> "Average action speed influences animation tempo."</p>
+                <p><strong>Why we use it:</strong> "Favorite realm determines your sigil's color palette."</p>
+                <p><strong>Why we use it:</strong> "Average action speed influences animation tempo."</p>
             </blockquote>
 
             <h2>Sigil Evolution Over Time</h2>
@@ -307,17 +308,17 @@
 
             <h2>For Other Developers</h2>
 
-            <p>Want to implement behavioral personalization? Here's the framework:</p>
+            <p>Want to implement adaptive personalization? Here's the framework:</p>
 
             <ol>
-                <li><strong>Track player behavior</strong> (session length, favorite areas, interaction patterns,
+                <li><strong>Use active gameplay signals</strong> (session length, favorite areas, interaction patterns,
                     completion rates)</li>
                 <li><strong>Store data locally</strong> (respect privacy, don't send everything to a server)</li>
                 <li><strong>Create archetypes</strong> (Creative, Patient, Energetic, Focused, Explorer)</li>
                 <li><strong>Map behaviors to visual styles</strong> (slow pace → calm animations, night play → darker
                     palettes)</li>
                 <li><strong>Generate personalized content</strong> that reflects player identity</li>
-                <li><strong>Be transparent</strong>—show players exactly what you track and why</li>
+                <li><strong>Be transparent</strong>—show players exactly what you use and why</li>
             </ol>
 
             <p>The code is straightforward. The emotional impact is profound.</p>

@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi...">
+    <meta name="description"
+        content="When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi...">
     <meta property="og:title" content="Unity WebGL Performance: From 15fps to 60fps - The Ascendant Continuum">
-    <meta property="og:description" content="When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi...">
+    <meta property="og:description"
+        content="When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi...">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ascendant-continuum.web.app/blog/posts/unity-webgl-performance-from-15fps-to-60fps.html">
+    <meta property="og:url"
+        content="https://ascendant-continuum.web.app/blog/posts/unity-webgl-performance-from-15fps-to-60fps.html">
     <meta property="article:published_time" content="2026-04-05">
-    <meta property="article:author" content="The Ascendant Continuum Team">
+    <meta property="article:author" content="Ascendant Continuum (Solo Developer)">
     <meta property="article:tag" content="development">
     <meta property="article:tag" content="unity">
     <meta property="article:tag" content="behind-the-scenes">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Unity WebGL Performance: From 15fps to 60fps">
-    <meta name="twitter:description" content="When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi...">
+    <meta name="twitter:description"
+        content="When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessi...">
     <title>Unity WebGL Performance: From 15fps to 60fps - The Ascendant Continuum Dev Blog</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/images.css">
     <link rel="icon" type="image/png" href="../../favicon.png">
-            <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/unity-webgl-performance-from-15fps-to-60fps.html">
+    <link rel="canonical"
+        href="https://ascendant-continuum.web.app/blog/posts/unity-webgl-performance-from-15fps-to-60fps.html">
     <style>
         .blog-post-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 5rem var(--spacing-md) var(--spacing-xl);
         }
+
         .blog-nav-breadcrumb {
             padding-bottom: var(--spacing-md);
             font-size: 0.9rem;
             color: var(--color-secondary);
         }
+
         .blog-nav-breadcrumb a {
             color: var(--color-secondary);
             text-decoration: none;
         }
+
         .blog-nav-breadcrumb a:hover {
             text-decoration: underline;
         }
+
         .blog-post-header {
             margin-bottom: var(--spacing-lg);
             padding-bottom: var(--spacing-md);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .blog-post-meta {
             display: flex;
             gap: var(--spacing-sm);
@@ -52,12 +63,14 @@
             margin-bottom: var(--spacing-md);
             flex-wrap: wrap;
         }
+
         .blog-post-tag {
             background: rgba(78, 205, 196, 0.2);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
         }
+
         .blog-post-title {
             font-size: 2.5rem;
             line-height: 1.2;
@@ -67,6 +80,7 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .blog-post-hook {
             font-size: 1.25rem;
             font-style: italic;
@@ -78,27 +92,32 @@
             border-radius: 4px;
             line-height: 1.6;
         }
+
         .blog-post-content {
             font-size: 1.1rem;
             line-height: 1.8;
             color: var(--color-light);
         }
+
         .blog-post-content h2 {
             font-size: 1.75rem;
             margin-top: var(--spacing-lg);
             margin-bottom: var(--spacing-md);
             color: var(--color-primary);
         }
+
         .blog-post-content p {
             margin-bottom: var(--spacing-md);
             white-space: pre-wrap;
         }
+
         .blog-post-footer {
             margin-top: var(--spacing-xl);
             padding-top: var(--spacing-md);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
         }
+
         .blog-back-link {
             display: inline-block;
             color: var(--color-primary);
@@ -107,9 +126,11 @@
             transition: transform 0.2s ease;
             margin-bottom: var(--spacing-md);
         }
+
         .blog-back-link:hover {
             transform: translateX(-4px);
         }
+
         .blog-share-buttons {
             display: flex;
             gap: var(--spacing-sm);
@@ -117,6 +138,7 @@
             margin-top: var(--spacing-md);
             flex-wrap: wrap;
         }
+
         .blog-share-btn {
             padding: 0.5rem 1rem;
             background: var(--gradient-card);
@@ -128,19 +150,23 @@
             transition: transform 0.2s ease;
             display: inline-block;
         }
+
         .blog-share-btn:hover {
             transform: translateY(-2px);
         }
+
         @media (max-width: 768px) {
             .blog-post-title {
                 font-size: 2rem;
             }
+
             .blog-post-content {
                 font-size: 1rem;
             }
         }
     </style>
 </head>
+
 <body>
     <nav class="top-nav" aria-label="Primary">
         <div class="container top-nav-inner">
@@ -163,47 +189,64 @@
         <header class="blog-post-header">
             <div class="blog-post-meta">
                 <time datetime="2026-04-05">April 4, 2026</time>
-                <span class="blog-post-tag">development</span><span class="blog-post-tag">unity</span><span class="blog-post-tag">behind-the-scenes</span>
+                <span class="blog-post-tag">development</span><span class="blog-post-tag">unity</span><span
+                    class="blog-post-tag">behind-the-scenes</span>
             </div>
             <h1 class="blog-post-title">Unity WebGL Performance: From 15fps to 60fps</h1>
         </header>
 
         <div class="blog-post-content">
-            
-        <p class="blog-post-hook">Our first WebGL build was a slideshow. Here's the optimization journey that made it playable.</p>
-        
+
+            <p class="blog-post-hook">Our first WebGL build was a slideshow. Here's the optimization journey that made
+                it playable.</p>
+
             <h2>The Initial Performance Disaster</h2>
-            <p>When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessive draw calls (400+ per frame), uncompressed audio assets (50MB of music), and JavaScript garbage collection spikes every 2 seconds. Unity's default WebGL build settings are designed for feature completeness, not performance. We needed a complete optimization overhaul.</p>
-        
+            <p>When we first compiled to WebGL, the game ran at 15fps on high-end desktop browsers and was completely
+                unplayable on mobile. The culprits: unoptimized texture loading (200MB initial download), excessive draw
+                calls (400+ per frame), uncompressed audio assets (50MB of music), and JavaScript garbage collection
+                spikes every 2 seconds. Unity's default WebGL build settings are designed for feature completeness, not
+                performance. We needed a complete optimization overhaul.</p>
+
 
             <h2>Texture Compression and Progressive Loading</h2>
-            <p>We implemented ETC2 texture compression for Android browsers and DXT for desktop, reducing texture memory from 200MB to 35MB. Implemented progressive loading where essential UI textures load first (500KB), followed by current realm assets (5MB), with other realms loading in the background. Used Unity's Addressables system to unload unused assets aggressively—transitioning between realms now triggers immediate garbage collection of old realm textures. Result: initial load time dropped from 45 seconds to 8 seconds.</p>
-        
+            <p>We implemented ETC2 texture compression for Android browsers and DXT for desktop, reducing texture memory
+                from 200MB to 35MB. Implemented progressive loading where essential UI textures load first (500KB),
+                followed by current realm assets (5MB), with other realms loading in the background. Used Unity's
+                Addressables system to unload unused assets aggressively—transitioning between realms now triggers
+                immediate garbage collection of old realm textures. Result: initial load time dropped from 45 seconds to
+                8 seconds.</p>
+
 
             <h2>Draw Call Batching and Shader Optimization</h2>
-            <p>Consolidated materials using texture atlases, reducing unique materials from 87 to 12. Implemented GPU instancing for repeated elements (particles, UI elements, magical effects). Wrote custom shaders that combine multiple effects (glow + color grading + distortion) into single passes instead of Unity's default multi-pass approach. Reduced draw calls from 400+ to 45 average, with peaks of 80 during intensive scenes. Frame rate jumped from 15fps to 45fps just from this change alone.</p>
-        
+            <p>Consolidated materials using texture atlases, reducing unique materials from 87 to 12. Implemented GPU
+                instancing for repeated elements (particles, UI elements, magical effects). Wrote custom shaders that
+                combine multiple effects (glow + color grading + distortion) into single passes instead of Unity's
+                default multi-pass approach. Reduced draw calls from 400+ to 45 average, with peaks of 80 during
+                intensive scenes. Frame rate jumped from 15fps to 45fps just from this change alone.</p>
+
 
             <h2>JavaScript Interop and GC Optimization</h2>
-            <p>WebGL runs on JavaScript, so garbage collection is unavoidable—but we can minimize it. Implemented object pooling for all frequently instantiated objects (particles, UI elements, temporary game objects), eliminating 95% of allocations. Reduced string allocations by caching dialog text and using string builders. Moved audio playback to native Web Audio API instead of Unity's audio system, eliminating 200ms GC spikes. Final result: 60fps on desktop, 30fps on mid-range mobile browsers, with smooth frame pacing and no stutters.</p>
-        
-    
+            <p>WebGL runs on JavaScript, so garbage collection is unavoidable—but we can minimize it. Implemented object
+                pooling for all frequently instantiated objects (particles, UI elements, temporary game objects),
+                eliminating 95% of allocations. Reduced string allocations by caching dialog text and using string
+                builders. Moved audio playback to native Web Audio API instead of Unity's audio system, eliminating
+                200ms GC spikes. Final result: 60fps on desktop, 30fps on mid-range mobile browsers, with smooth frame
+                pacing and no stutters.</p>
+
+
         </div>
 
         <footer class="blog-post-footer">
             <a href="/blog/" class="blog-back-link">← Back to all posts</a>
-            
+
             <div class="blog-share-buttons">
-                <a href="https://bsky.app/intent/compose?text=Unity%20WebGL%20Performance%3A%20From%2015fps%20to%2060fps%0A%0AOur%20first%20WebGL%20build%20was%20a%20slideshow.%20Here's%20the%20optimization%20journey%20that%20made%20it%20playable.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Funity-webgl-performance-from-15fps-to-60fps.html" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="blog-share-btn">📱 Share on Bluesky</a>
-                <a href="https://mastodon.social/share?text=Unity%20WebGL%20Performance%3A%20From%2015fps%20to%2060fps%0A%0AOur%20first%20WebGL%20build%20was%20a%20slideshow.%20Here's%20the%20optimization%20journey%20that%20made%20it%20playable.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Funity-webgl-performance-from-15fps-to-60fps.html" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="blog-share-btn">🐘 Share on Mastodon</a>
+                <a href="https://bsky.app/intent/compose?text=Unity%20WebGL%20Performance%3A%20From%2015fps%20to%2060fps%0A%0AOur%20first%20WebGL%20build%20was%20a%20slideshow.%20Here's%20the%20optimization%20journey%20that%20made%20it%20playable.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Funity-webgl-performance-from-15fps-to-60fps.html"
+                    target="_blank" rel="noopener noreferrer" class="blog-share-btn">📱 Share on Bluesky</a>
+                <a href="https://mastodon.social/share?text=Unity%20WebGL%20Performance%3A%20From%2015fps%20to%2060fps%0A%0AOur%20first%20WebGL%20build%20was%20a%20slideshow.%20Here's%20the%20optimization%20journey%20that%20made%20it%20playable.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Funity-webgl-performance-from-15fps-to-60fps.html"
+                    target="_blank" rel="noopener noreferrer" class="blog-share-btn">🐘 Share on Mastodon</a>
             </div>
         </footer>
     </article>
 </body>
+
 </html>

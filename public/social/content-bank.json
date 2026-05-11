@@ -206,9 +206,10 @@
       ],
       "media": null,
       "priority": "medium",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:08.877Z"
+      "rewrittenAt": "2026-05-05T01:07:08.877Z",
+      "lastUsed": "2026-05-11T18:02:31.658Z"
     },
     {
       "id": 13,
@@ -1686,9 +1687,10 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:09.014Z"
+      "rewrittenAt": "2026-05-05T01:07:09.014Z",
+      "lastUsed": "2026-05-09T18:02:13.642Z"
     },
     {
       "id": 104,
@@ -1710,7 +1712,7 @@
       "id": 105,
       "type": "devUpdate",
       "hook": "Sigil sharing just got magical.",
-      "body": "New feature: export your sigil as SVG.\n\nUse it:\n- As profile pic\n- On merch (coming soon)\n- In tattoos (yes, really)\n- Desktop wallpaper\n\nYour magical signature, truly yours.\n\nYour art, your game, your...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "body": "New feature: export your sigil as SVG.\n\nUse it:\n- As profile pic\n- On merch\n- In tattoos (yes, really)\n- Desktop wallpaper\n\nYour magical signature, truly yours.\n\nYour art, your game, your...\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -1849,9 +1851,10 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:09.029Z"
+      "rewrittenAt": "2026-05-05T01:07:09.029Z",
+      "lastUsed": "2026-05-10T18:00:40.297Z"
     },
     {
       "id": 114,
@@ -3719,7 +3722,7 @@
     {
       "id": 229,
       "type": "devUpdate",
-      "hook": "Cross-platform cloud save: start on browser, continue on mobile (coming soon)",
+      "hook": "Cross-platform cloud save: start on browser, continue on mobile",
       "body": "Cloud sync features:\n\n• Anonymous cloud saves (opt-in)\n• Firebase Firestore backend\n• Works across all platforms\n• No login required (device ID)\n• Optional...\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
@@ -3889,9 +3892,10 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:09.211Z"
+      "rewrittenAt": "2026-05-05T01:07:09.211Z",
+      "lastUsed": "2026-05-08T18:01:16.790Z"
     },
     {
       "id": 240,
@@ -4057,7 +4061,7 @@
     {
       "id": 250,
       "type": "devUpdate",
-      "hook": "Launch date: May 15, 2026. WebGL playable NOW. Mobile coming soon.",
+      "hook": "Launch date: May 15, 2026. WebGL playable NOW. Mobile planned after launch.",
       "body": "Timeline:\n\n• April 2026: WebGL LIVE for early access (NOW!)\n• May 15, 2026: Official launch\n• May 30, 2026: Android release\n• June 15, 2026: iOS release\n• Summer 2026...\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",

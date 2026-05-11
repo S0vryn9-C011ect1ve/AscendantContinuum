@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic &quot;lone genius&quot; story—it's a logistical necessity due to budg...">
+    <meta name="description"
+        content="The Ascendant Continuum is a solo project built directly by one developer. This post shares practical lessons on prioritization, sustainable workflows, and shipping without external paid production support.">
     <meta property="og:title" content="Solo Development Lessons: Building a Game Alone - The Ascendant Continuum">
-    <meta property="og:description" content="The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic &quot;lone genius&quot; story—it's a logistical necessity due to budg...">
+    <meta property="og:description"
+        content="The Ascendant Continuum is a solo project built directly by one developer. This post shares practical lessons on prioritization, sustainable workflows, and shipping without external paid production support.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html">
+    <meta property="og:url"
+        content="https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html">
     <meta property="article:published_time" content="2026-05-07">
-    <meta property="article:author" content="The Ascendant Continuum Team">
+    <meta property="article:author" content="Ascendant Continuum (Solo Developer)">
     <meta property="article:tag" content="development">
-    <meta property="article:tag" content="team">
+    <meta property="article:tag" content="solo-dev">
     <meta property="article:tag" content="process">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Solo Development Lessons: Building a Game Alone">
-    <meta name="twitter:description" content="The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic &quot;lone genius&quot; story—it's a logistical necessity due to budg...">
+    <meta name="twitter:description"
+        content="The Ascendant Continuum is a solo project built directly by one developer. This post shares practical lessons on prioritization, sustainable workflows, and shipping without external paid production support.">
     <title>Solo Development Lessons: Building a Game Alone - The Ascendant Continuum Dev Blog</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/images.css">
     <link rel="icon" type="image/png" href="../../favicon.png">
-    <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html">
+    <link rel="canonical"
+        href="https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html">
     <style>
         .blog-post-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 5rem var(--spacing-md) var(--spacing-xl);
         }
+
         .blog-nav-breadcrumb {
             padding-bottom: var(--spacing-md);
             font-size: 0.9rem;
             color: var(--color-secondary);
         }
+
         .blog-nav-breadcrumb a {
             color: var(--color-secondary);
             text-decoration: none;
         }
+
         .blog-nav-breadcrumb a:hover {
             text-decoration: underline;
         }
+
         .blog-post-header {
             margin-bottom: var(--spacing-lg);
             padding-bottom: var(--spacing-md);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .blog-post-meta {
             display: flex;
             gap: var(--spacing-sm);
@@ -52,12 +63,14 @@
             margin-bottom: var(--spacing-md);
             flex-wrap: wrap;
         }
+
         .blog-post-tag {
             background: rgba(78, 205, 196, 0.2);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
         }
+
         .blog-post-title {
             font-size: 2.5rem;
             line-height: 1.2;
@@ -67,6 +80,7 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .blog-post-hook {
             font-size: 1.25rem;
             font-style: italic;
@@ -78,27 +92,32 @@
             border-radius: 4px;
             line-height: 1.6;
         }
+
         .blog-post-content {
             font-size: 1.1rem;
             line-height: 1.8;
             color: var(--color-light);
         }
+
         .blog-post-content h2 {
             font-size: 1.75rem;
             margin-top: var(--spacing-lg);
             margin-bottom: var(--spacing-md);
             color: var(--color-primary);
         }
+
         .blog-post-content p {
             margin-bottom: var(--spacing-md);
             white-space: pre-wrap;
         }
+
         .blog-post-footer {
             margin-top: var(--spacing-xl);
             padding-top: var(--spacing-md);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
         }
+
         .blog-back-link {
             display: inline-block;
             color: var(--color-primary);
@@ -107,9 +126,11 @@
             transition: transform 0.2s ease;
             margin-bottom: var(--spacing-md);
         }
+
         .blog-back-link:hover {
             transform: translateX(-4px);
         }
+
         .blog-share-buttons {
             display: flex;
             gap: var(--spacing-sm);
@@ -117,6 +138,7 @@
             margin-top: var(--spacing-md);
             flex-wrap: wrap;
         }
+
         .blog-share-btn {
             padding: 0.5rem 1rem;
             background: var(--gradient-card);
@@ -128,19 +150,23 @@
             transition: transform 0.2s ease;
             display: inline-block;
         }
+
         .blog-share-btn:hover {
             transform: translateY(-2px);
         }
+
         @media (max-width: 768px) {
             .blog-post-title {
                 font-size: 2rem;
             }
+
             .blog-post-content {
                 font-size: 1rem;
             }
         }
     </style>
 </head>
+
 <body>
     <nav class="top-nav" aria-label="Primary">
         <div class="container top-nav-inner">
@@ -163,47 +189,62 @@
         <header class="blog-post-header">
             <div class="blog-post-meta">
                 <time datetime="2026-05-07">May 6, 2026</time>
-                <span class="blog-post-tag">development</span><span class="blog-post-tag">team</span><span class="blog-post-tag">process</span>
+                <span class="blog-post-tag">development</span><span class="blog-post-tag">solo-dev</span><span
+                    class="blog-post-tag">process</span>
             </div>
             <h1 class="blog-post-title">Solo Development Lessons: Building a Game Alone</h1>
         </header>
 
         <div class="blog-post-content">
-            
-        <p class="blog-post-hook">I built this game mostly alone. Here's what I learned about sustainable solo dev.</p>
-        
+
+            <p class="blog-post-hook">I built this game mostly alone. Here's what I learned about sustainable solo dev.
+            </p>
+
             <h2>The Reality of Solo Development</h2>
-            <p>The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical necessity due to budget constraints. Solo dev teaches brutal prioritization: you can't do everything, so you must identify highest-impact features and ruthlessly cut the rest. I've abandoned 60% of planned features not because they were bad ideas, but because they weren't essential. The game that exists focuses on core strengths and outsources weaknesses.</p>
-        
+            <p>The Ascendant Continuum is a solo project built directly by me. No outsourcing and no paid external
+                production team. Solo development requires strict prioritization: not every idea ships, so I focus
+                on the highest-impact work first. Many planned features are intentionally cut so the core experience
+                stays coherent and finishable.</p>
+
 
             <h2>Tools and Automation for Efficiency</h2>
-            <p>Automation saves solo devs from drowning in busywork. I use GitHub Actions for build automation (push to main triggers WebGL, Android, and iOS builds), Firebase hosting for zero-config deployment, automated testing via Unity Test Framework, and automated social media posting (this blog, daily social updates). These systems let me focus on high-value creative work instead of repetitive tasks. Initial automation setup took 40 hours; it's saved 200+ hours since. For solo devs, automation multiplies your effective team size.</p>
-        
+            <p>Automation saves solo devs from drowning in busywork. I use GitHub Actions for build automation (push to
+                main triggers WebGL, Android, and iOS builds), Firebase hosting for zero-config deployment, automated
+                testing via Unity Test Framework, and automated social media posting (this blog, daily social updates).
+                These systems let me focus on high-value creative work instead of repetitive tasks. Initial automation
+                setup took 40 hours; it's saved 200+ hours since. For solo devs, automation multiplies your effective
+                team size.</p>
+
 
             <h2>Preventing Burnout Through Sustainable Practices</h2>
-            <p>Solo dev is marathon, not sprint. I track time strictly: 25 hours/week maximum, never weekends, mandatory 1-week vacation every 8 weeks whether I feel I need it or not. I use Pomodoro technique (25-min work, 5-min break) to prevent hyperfocus burnout. I maintain separate hobby projects (not games—woodworking, painting) to prevent creative depletion. I've declined partnerships and funding that would require unsustainable crunch. The game will take longer this way, but it'll actually ship. Most solo projects fail from burnout, not technical challenges.</p>
-        
+            <p>Solo dev is marathon, not sprint. I track time strictly: 25 hours/week maximum, never weekends, mandatory
+                1-week vacation every 8 weeks whether I feel I need it or not. I use Pomodoro technique (25-min work,
+                5-min break) to prevent hyperfocus burnout. I maintain separate hobby projects (not games—woodworking,
+                painting) to prevent creative depletion. I've declined partnerships and funding that would require
+                unsustainable crunch. The game will take longer this way, but it'll actually ship. Most solo projects
+                fail from burnout, not technical challenges.</p>
 
-            <h2>When to Hire Contractors vs DIY</h2>
-            <p>I'm a decent programmer, mediocre designer, terrible artist, and incompetent musician. Hiring professionals for weaknesses is cheaper than struggling alone. I spent $2,400 on art contractors (character designs, realm concepts, UI assets)—would've taken me 6 months to produce inferior results. Spent $800 on audio (ambient realm soundscapes, UI feedback sounds). Cost analysis: my time is worth ~$50/hour (opportunity cost of contract work I could do instead). If a contractor can do it better in fewer hours, hire them. Reserve your time for work only you can do—core design and programming.</p>
-        
-    
+
+            <h2>DIY Scope and Constraints</h2>
+            <p>Working solo means accepting tradeoffs. I choose techniques, assets, and workflows I can personally
+                maintain over the long term. That means avoiding scope that would require external paid help, and
+                focusing on systems I can actually ship and support. The priority is reliability and continuity, not
+                chasing maximum complexity.</p>
+
+
         </div>
 
         <footer class="blog-post-footer">
             <a href="/blog/" class="blog-back-link">Back to all posts</a>
-            
+
             <div class="blog-share-buttons">
-                <a href="https://bsky.app/intent/compose?text=Solo%20Development%20Lessons%3A%20Building%20a%20Game%20Alone%0A%0AI%20built%20this%20game%20mostly%20alone.%20Here's%20what%20I%20learned%20about%20sustainable%20solo%20dev.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Fsolo-development-lessons-building-a-game-alone.html" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="blog-share-btn">Share on Bluesky</a>
-                <a href="https://mastodon.social/share?text=Solo%20Development%20Lessons%3A%20Building%20a%20Game%20Alone%0A%0AI%20built%20this%20game%20mostly%20alone.%20Here's%20what%20I%20learned%20about%20sustainable%20solo%20dev.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Fsolo-development-lessons-building-a-game-alone.html" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="blog-share-btn">Share on Mastodon</a>
+                <a href="https://bsky.app/intent/compose?text=Solo%20Development%20Lessons%3A%20Building%20a%20Game%20Alone%0A%0AI%20built%20this%20game%20mostly%20alone.%20Here's%20what%20I%20learned%20about%20sustainable%20solo%20dev.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Fsolo-development-lessons-building-a-game-alone.html"
+                    target="_blank" rel="noopener noreferrer" class="blog-share-btn">Share on Bluesky</a>
+                <a href="https://mastodon.social/share?text=Solo%20Development%20Lessons%3A%20Building%20a%20Game%20Alone%0A%0AI%20built%20this%20game%20mostly%20alone.%20Here's%20what%20I%20learned%20about%20sustainable%20solo%20dev.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Fsolo-development-lessons-building-a-game-alone.html"
+                    target="_blank" rel="noopener noreferrer" class="blog-share-btn">Share on Mastodon</a>
             </div>
         </footer>
     </article>
 </body>
+
 </html>
