@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 May 2026 14:01:26 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 12 May 2026 14:01:15 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[The Sigil System: Procedural Identity in Unity]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/the-sigil-system-procedural-identity-in-unity.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/the-sigil-system-procedural-identity-in-unity.html</guid>
+      <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Traditional MMOs use avatars and character customization sliders. I wanted something deeper—a visual representation of *how* you play, not just *what* you choose at character creation. Your sigil evolves based on ritual ...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Accessibility Innovation: Beyond Compliance]]></title>
@@ -38,15 +50,15 @@
     </item>
 
     <item>
-      <title><![CDATA[Why We Reject FOMO: Designing Without Dark Patterns]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/why-we-reject-fomo-designing-without-dark-patterns.html</guid>
-      <pubDate>Sat, 09 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Design Philosophy]]></category>
-      <category><![CDATA[game-design]]></category>
-      <category><![CDATA[ethics]]></category>
-      <category><![CDATA[philosophy]]></category>
-      <description><![CDATA[Modern free-to-play games are engineered with "urgency mechanics"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish yo...]]></description>
+      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
+      <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Behind the Scenes]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[solo-dev]]></category>
+      <category><![CDATA[process]]></category>
+      <description><![CDATA[The Ascendant Continuum is a solo project built directly by one developer. This post shares practical lessons on prioritization, sustainable workflows, and shipping without external paid production support.]]></description>
     </item>
 
     <item>
@@ -62,18 +74,6 @@
     </item>
 
     <item>
-      <title><![CDATA[Solo Development Lessons: Building a Game Alone]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/solo-development-lessons-building-a-game-alone.html</guid>
-      <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Behind the Scenes]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[team]]></category>
-      <category><![CDATA[process]]></category>
-      <description><![CDATA[The Ascendant Continuum is primarily a solo project: one core developer (me), with contractors for art, audio, and specialized consulting. This isn't a romantic "lone genius" story—it's a logistical necessity due to budg...]]></description>
-    </item>
-
-    <item>
       <title><![CDATA[What's New: 14 Updates This Week]]></title>
       <link>https://ascendant-continuum.web.app/blog/posts/whats-new-2026-05-07.html</link>
       <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/whats-new-2026-05-07.html</guid>
@@ -83,6 +83,16 @@
       <category><![CDATA[changelog]]></category>
       <category><![CDATA[development]]></category>
       <description><![CDATA[This week we shipped 1 new feature: - What's New pipeline — user-impact filtering + plain English + activity gate...]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[Daily Update: May 5, 2026]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/daily-update-2026-05-05.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/daily-update-2026-05-05.html</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[What's New]]></category>
+      
+      <description><![CDATA[We improved Updated content - 42fe32fe3ea31e32a221e6a921f0d3e8831cb763.]]></description>
     </item>
 
     <item>
@@ -227,16 +237,6 @@
       <category><![CDATA[ai]]></category>
       <category><![CDATA[innovation]]></category>
       <description><![CDATA[What if Realm Dwellers remembered not just YOUR actions, but the collective actions of every player? Here]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Ritual Replay: 6-Second Video Essence Capture]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/ritual-replay-6-second-video-essence-capture.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/ritual-replay-6-second-video-essence-capture.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[Your ritual]]></description>
     </item>
   </channel>
 </rss>

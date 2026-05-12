@@ -779,17 +779,30 @@
       "tags": [],
       "excerpt": "Daily development update for January 31, 2026: 8 commits with 5 features, 0 fixes, and 0 improvements.",
       "hook": "Daily development update for January 31, 2026: 8 commits with 5 features, 0 fixes, and 0 improvements."
+    },
+    {
+      "title": "The Sigil System: Procedural Identity in Unity",
+      "slug": "the-sigil-system-procedural-identity-in-unity",
+      "date": "2026-05-12",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Dev Diary",
+      "excerpt": "Traditional MMOs use avatars and character customization sliders. I wanted something deeper—a visual representation of *how* you play, not just *what* you choose at character creation. Your sigil evolves based on ritual ..."
     }
   ],
   "stats": {
-    "totalPosts": 76,
+    "totalPosts": 77,
     "byTheme": {
       "Behind the Scenes": 1,
       "Design Philosophy": 4,
       "Development": 29,
       "Technical Deep Dive": 1,
       "Tutorial": 1,
-      "What's New": 40
+      "What's New": 40,
+      "Dev Diary": 1
     },
     "byTag": {
       "accessibility": 1,
@@ -798,14 +811,14 @@
       "automation": 1,
       "battle-pass": 1,
       "adaptive-personalization": 1,
-      "behind-the-scenes": 6,
+      "behind-the-scenes": 7,
       "bootstrap": 1,
       "budget": 1,
       "career-change": 1,
       "changelog": 1,
       "colorblind": 1,
       "community": 1,
-      "development": 8,
+      "development": 9,
       "disability": 1,
       "ethics": 4,
       "first-game": 1,
@@ -834,7 +847,7 @@
       "technical": 1,
       "transparency": 1,
       "tutorial": 4,
-      "unity": 9,
+      "unity": 10,
       "updates": 1,
       "webdev": 1
     }
