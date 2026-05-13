@@ -791,17 +791,29 @@
       ],
       "themeName": "Dev Diary",
       "excerpt": "Traditional MMOs use avatars and character customization sliders. I wanted something deeper—a visual representation of *how* you play, not just *what* you choose at character creation. Your sigil evolves based on ritual ..."
+    },
+    {
+      "title": "What's New: 8 Updates This Week",
+      "slug": "whats-new-2026-05-11",
+      "date": "2026-05-11",
+      "tags": [
+        "updates",
+        "changelog",
+        "development"
+      ],
+      "themeName": "What's New",
+      "excerpt": "We squashed 2 bugs to improve stability: - harden windows automation tasks and dry-run safety - unify social post content, weekly dev cadence, and blog publishing hardening..."
     }
   ],
   "stats": {
-    "totalPosts": 77,
+    "totalPosts": 78,
     "byTheme": {
       "Behind the Scenes": 1,
       "Design Philosophy": 4,
       "Development": 29,
       "Technical Deep Dive": 1,
       "Tutorial": 1,
-      "What's New": 40,
+      "What's New": 41,
       "Dev Diary": 1
     },
     "byTag": {
@@ -815,10 +827,10 @@
       "bootstrap": 1,
       "budget": 1,
       "career-change": 1,
-      "changelog": 1,
+      "changelog": 2,
       "colorblind": 1,
       "community": 1,
-      "development": 9,
+      "development": 10,
       "disability": 1,
       "ethics": 4,
       "first-game": 1,
@@ -848,7 +860,7 @@
       "transparency": 1,
       "tutorial": 4,
       "unity": 10,
-      "updates": 1,
+      "updates": 2,
       "webdev": 1
     }
   },
