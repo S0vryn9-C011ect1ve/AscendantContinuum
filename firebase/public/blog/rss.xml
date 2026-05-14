@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 May 2026 14:01:43 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 14 May 2026 14:01:06 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Why I Reject FOMO: Designing Without Dark Patterns]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/why-i-reject-fomo-designing-without-dark-patterns.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/why-i-reject-fomo-designing-without-dark-patterns.html</guid>
+      <pubDate>Thu, 14 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Design Philosophy]]></category>
+      <category><![CDATA[game-design]]></category>
+      <category><![CDATA[ethics]]></category>
+      <category><![CDATA[philosophy]]></category>
+      <description><![CDATA[Modern free-to-play games are engineered with "urgency mechanics"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish yo...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[The Sigil System: Procedural Identity in Unity]]></title>
@@ -226,16 +238,6 @@
       <category><![CDATA[Development]]></category>
       
       <description><![CDATA[Real meteor showers trigger in-game events. Perseids, Geminids, and 8 major annual showers unlock exclusive content. Earth]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Real Stargazing: The Anti-Screen-Time Mechanic]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/real-stargazing-anti-screen-time-mechanic.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/real-stargazing-anti-screen-time-mechanic.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[The only mobile game that rewards you for putting your phone down. Hold your phone to the actual night sky, and our gyroscope + GPS verification system gives you 3x XP for playing outside.]]></description>
     </item>
   </channel>
 </rss>

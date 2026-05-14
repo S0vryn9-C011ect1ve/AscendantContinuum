@@ -803,13 +803,25 @@
       ],
       "themeName": "What's New",
       "excerpt": "We squashed 2 bugs to improve stability: - harden windows automation tasks and dry-run safety - unify social post content, weekly dev cadence, and blog publishing hardening..."
+    },
+    {
+      "title": "Why I Reject FOMO: Designing Without Dark Patterns",
+      "slug": "why-i-reject-fomo-designing-without-dark-patterns",
+      "date": "2026-05-14",
+      "tags": [
+        "game-design",
+        "ethics",
+        "philosophy"
+      ],
+      "themeName": "Design Philosophy",
+      "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish yo..."
     }
   ],
   "stats": {
-    "totalPosts": 78,
+    "totalPosts": 79,
     "byTheme": {
       "Behind the Scenes": 1,
-      "Design Philosophy": 4,
+      "Design Philosophy": 5,
       "Development": 29,
       "Technical Deep Dive": 1,
       "Tutorial": 1,
@@ -832,10 +844,10 @@
       "community": 1,
       "development": 10,
       "disability": 1,
-      "ethics": 4,
+      "ethics": 5,
       "first-game": 1,
       "free-tools": 1,
-      "game-design": 8,
+      "game-design": 9,
       "game-dev": 4,
       "inclusive-design": 1,
       "indie-dev": 2,
@@ -845,7 +857,7 @@
       "neurodivergent": 1,
       "npm": 1,
       "personalization": 1,
-      "philosophy": 3,
+      "philosophy": 4,
       "player-identity": 1,
       "process": 1,
       "screen-reader": 1,
