@@ -815,16 +815,28 @@
       ],
       "themeName": "Design Philosophy",
       "excerpt": "Modern free-to-play games are engineered with \"urgency mechanics\"—limited-time events that expire, daily login streaks that reset if you miss a day, exclusive rewards that disappear forever, energy systems that punish yo..."
+    },
+    {
+      "title": "Firebase Integration: Cloud-Powered Player Progression",
+      "slug": "firebase-integration-cloud-powered-player-progression",
+      "date": "2026-05-17",
+      "tags": [
+        "tutorial",
+        "unity",
+        "game-dev"
+      ],
+      "themeName": "Tutorial",
+      "excerpt": "Traditional games save locally—if you uninstall, change devices, or experience file corruption, progression is lost forever. Cloud saves solve this but are often afterthoughts bolted onto local systems, creating sync con..."
     }
   ],
   "stats": {
-    "totalPosts": 79,
+    "totalPosts": 80,
     "byTheme": {
       "Behind the Scenes": 1,
       "Design Philosophy": 5,
       "Development": 29,
       "Technical Deep Dive": 1,
-      "Tutorial": 1,
+      "Tutorial": 2,
       "What's New": 41,
       "Dev Diary": 1
     },
@@ -848,7 +860,7 @@
       "first-game": 1,
       "free-tools": 1,
       "game-design": 9,
-      "game-dev": 4,
+      "game-dev": 5,
       "inclusive-design": 1,
       "indie-dev": 2,
       "innovation": 1,
@@ -870,8 +882,8 @@
       "systems": 1,
       "technical": 1,
       "transparency": 1,
-      "tutorial": 4,
-      "unity": 10,
+      "tutorial": 5,
+      "unity": 11,
       "updates": 2,
       "webdev": 1
     }

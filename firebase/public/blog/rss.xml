@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 May 2026 14:01:06 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2026 14:01:54 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Firebase Integration: Cloud-Powered Player Progression]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/firebase-integration-cloud-powered-player-progression.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/firebase-integration-cloud-powered-player-progression.html</guid>
+      <pubDate>Sun, 17 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Tutorial]]></category>
+      <category><![CDATA[tutorial]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[game-dev]]></category>
+      <description><![CDATA[Traditional games save locally—if you uninstall, change devices, or experience file corruption, progression is lost forever. Cloud saves solve this but are often afterthoughts bolted onto local systems, creating sync con...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Why I Reject FOMO: Designing Without Dark Patterns]]></title>
@@ -228,16 +240,6 @@
       <category><![CDATA[Development]]></category>
       
       <description><![CDATA[Collective player morality literally rewrites the game]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Meteor Showers: When Real Astronomy Unlocks Game Content]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/meteor-showers-real-astronomy-game-events.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/meteor-showers-real-astronomy-game-events.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[Real meteor showers trigger in-game events. Perseids, Geminids, and 8 major annual showers unlock exclusive content. Earth]]></description>
     </item>
   </channel>
 </rss>
