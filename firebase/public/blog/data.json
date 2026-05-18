@@ -827,10 +827,22 @@
       ],
       "themeName": "Tutorial",
       "excerpt": "Traditional games save locally—if you uninstall, change devices, or experience file corruption, progression is lost forever. Cloud saves solve this but are often afterthoughts bolted onto local systems, creating sync con..."
+    },
+    {
+      "title": "Cross-Player Puzzle Chains: Asynchronous Multiplayer Design",
+      "slug": "cross-player-puzzle-chains-asynchronous-multiplayer-design",
+      "date": "2026-05-18",
+      "tags": [
+        "development",
+        "unity",
+        "behind-the-scenes"
+      ],
+      "themeName": "Dev Diary",
+      "excerpt": "Real-time multiplayer requires coordination, compatible time zones, stable connections, and complex networking infrastructure. I wanted the social magic without the scheduling headaches or technical overhead. The solutio..."
     }
   ],
   "stats": {
-    "totalPosts": 80,
+    "totalPosts": 81,
     "byTheme": {
       "Behind the Scenes": 1,
       "Design Philosophy": 5,
@@ -838,7 +850,7 @@
       "Technical Deep Dive": 1,
       "Tutorial": 2,
       "What's New": 41,
-      "Dev Diary": 1
+      "Dev Diary": 2
     },
     "byTag": {
       "accessibility": 1,
@@ -847,14 +859,14 @@
       "automation": 1,
       "battle-pass": 1,
       "adaptive-personalization": 1,
-      "behind-the-scenes": 7,
+      "behind-the-scenes": 8,
       "bootstrap": 1,
       "budget": 1,
       "career-change": 1,
       "changelog": 2,
       "colorblind": 1,
       "community": 1,
-      "development": 10,
+      "development": 11,
       "disability": 1,
       "ethics": 5,
       "first-game": 1,
@@ -883,7 +895,7 @@
       "technical": 1,
       "transparency": 1,
       "tutorial": 5,
-      "unity": 11,
+      "unity": 12,
       "updates": 2,
       "webdev": 1
     }

@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 May 2026 14:01:54 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2026 14:02:42 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Cross-Player Puzzle Chains: Asynchronous Multiplayer Design]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/cross-player-puzzle-chains-asynchronous-multiplayer-design.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/cross-player-puzzle-chains-asynchronous-multiplayer-design.html</guid>
+      <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[Dev Diary]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[unity]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Real-time multiplayer requires coordination, compatible time zones, stable connections, and complex networking infrastructure. I wanted the social magic without the scheduling headaches or technical overhead. The solutio...]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Firebase Integration: Cloud-Powered Player Progression]]></title>
@@ -230,16 +242,6 @@
       <category><![CDATA[Development]]></category>
       
       <description><![CDATA[Your ritual lantern obeys Navier-Stokes equations. Buoyancy, drag, wind, rain—all simulated at 60 FPS. Real fluid dynamics as gameplay.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Living Lore: When the Universe Rewrites Its Own History]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/living-lore-universe-rewrites-history.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/living-lore-universe-rewrites-history.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[Collective player morality literally rewrites the game]]></description>
     </item>
   </channel>
 </rss>
