@@ -3,7 +3,6 @@
  */
 
 import { BskyAgent } from '@atproto/api';
-import Mastodon from 'megalodon';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -32,11 +31,19 @@ async function deleteInaccuratePosts() {
 
     // Delete from Mastodon
     try {
-        const client = await Mastodon.default(
-            process.env.MASTODON_ACCESS_TOKEN
-        );
+        const mastodonInstance = process.env.MASTODON_INSTANCE || 'https://mastodon.social';
+        const response = await fetch(`${mastodonInstance}/api/v1/statuses/${MASTODON_POST_ID}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${process.env.MASTODON_ACCESS_TOKEN}`
+            }
+        });
 
-        await client.deleteStatus(MASTODON_POST_ID);
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP ${response.status}: ${errorText}`);
+        }
+
         console.log('✅ Deleted from Mastodon');
     } catch (error) {
         console.log('⚠️  Mastodon deletion:', error.message);

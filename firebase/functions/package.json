@@ -25,7 +25,7 @@
     "gaxios": ">=6.7.1",
     "@tootallnate/once": "^3.0.1",
     "http-proxy-agent": "^7.0.0",
-    "fast-xml-parser": ">=5.5.7",
+    "fast-xml-parser": ">=5.7.0",
     "flatted": ">=3.4.2",
     "protobufjs": ">=7.5.8",
     "@protobufjs/utf8": ">=1.1.1",

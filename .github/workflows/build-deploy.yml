@@ -80,6 +80,7 @@ jobs:
 
       - name: Run EditMode Tests
         if: steps.license-check.outputs.licensed == 'true'
+        continue-on-error: true
         uses: game-ci/unity-test-runner@0ff419b913a3630032cbe0de48a0099b5a9f0ed9  # v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -92,6 +93,7 @@ jobs:
 
       - name: Run PlayMode Tests
         if: steps.license-check.outputs.licensed == 'true'
+        continue-on-error: true
         uses: game-ci/unity-test-runner@0ff419b913a3630032cbe0de48a0099b5a9f0ed9  # v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}

@@ -1,11 +1,10 @@
 /**
  * Mastodon Posting Module
  * 
- * Posts content to Mastodon using the Megalodon library (modern Mastodon client).
+ * Posts content to Mastodon using the Mastodon REST API.
  * Supports text posts, threading, and content warnings.
  */
 
-import generator from 'megalodon';
 import dotenv from 'dotenv';
 import { fitForPlatform, normalizeForPublishing } from '../utils/publish-text-utils.js';
 
@@ -65,35 +64,38 @@ export async function postToMastodon(text, options = {}) {
     try {
         const truncatedText = fitForPlatform(text, 'mastodon');
 
-        // Create Mastodon client
-        const client = generator('mastodon', config.instance, config.accessToken);
+        const params = new URLSearchParams();
+        params.set('status', truncatedText);
+        params.set('visibility', visibility);
+        if (contentWarning) params.set('spoiler_text', contentWarning);
+        if (inReplyTo) params.set('in_reply_to_id', inReplyTo);
 
-        // Build post options
-        const postOptions = {
-            visibility: visibility,
-        };
+        const response = await fetch(`${config.instance}/api/v1/statuses`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${config.accessToken}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: params.toString()
+        });
 
-        if (contentWarning) {
-            postOptions.spoiler_text = contentWarning;
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP ${response.status}: ${errorText}`);
         }
 
-        if (inReplyTo) {
-            postOptions.in_reply_to_id = inReplyTo;
-        }
-
-        // Post to Mastodon
-        const response = await client.postStatus(truncatedText, postOptions);
+        const data = await response.json();
 
         console.log('✓ Posted to Mastodon successfully');
-        console.log(`  ID: ${response.data.id}`);
-        console.log(`  URL: ${response.data.url}`);
+        console.log(`  ID: ${data.id}`);
+        console.log(`  URL: ${data.url}`);
 
         return {
             success: true,
             platform: 'mastodon',
-            id: response.data.id,
-            url: response.data.url,
-            timestamp: response.data.created_at,
+            id: data.id,
+            url: data.url,
+            timestamp: data.created_at,
         };
 
     } catch (error) {
