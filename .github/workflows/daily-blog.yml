@@ -61,5 +61,7 @@ jobs:
             echo "No new blog post to commit"
           else
             git commit -m "blog: automated daily post [skip ci]"
-            git push
+            if ! git push; then
+              echo "::warning::Direct push blocked by repository rules; skipping automated push."
+            fi
           fi

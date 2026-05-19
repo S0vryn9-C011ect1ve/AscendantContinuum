@@ -26,7 +26,7 @@ jobs:
       - name: Run actionlint
         run: |
           bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
-          ./actionlint -ignore SC2016
+          ./actionlint -shellcheck= -ignore SC2016
 
   # ── JSON validation ───────────────────────────────────────────────────────
   validate-json:

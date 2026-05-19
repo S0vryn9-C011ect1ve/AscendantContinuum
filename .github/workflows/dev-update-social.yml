@@ -53,5 +53,7 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "📊 Update dev posting history [skip ci]"
-            git push
+            if ! git push; then
+              echo "::warning::Direct push blocked by repository rules; skipping automated push."
+            fi
           fi

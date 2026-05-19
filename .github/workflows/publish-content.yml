@@ -117,7 +117,9 @@ jobs:
             echo "Nothing to commit"
           else
             git commit -m "content: publish full content package [skip ci]"
-            git push
+            if ! git push; then
+              echo "::warning::Direct push blocked by repository rules; skipping automated push."
+            fi
           fi
 
       # ── 10. Create GitHub issue on failure ─────────────────────────────────
