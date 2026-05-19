@@ -70,6 +70,12 @@ firebase/functions/lib/
 .firebase/
 firebase-debug.log
 firestore-debug.log
+# Firebase config files contain project IDs and API keys — never commit these.
+# Obtain google-services.json from Firebase Console or a secure secrets manager.
+Assets/google-services.json
+Assets/google-services.json.meta
+Assets/GoogleService-Info.plist
+Assets/GoogleService-Info.plist.meta
 
 # Environment files (NEVER commit secrets!)
 .env

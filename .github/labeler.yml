@@ -1,0 +1,26 @@
+# PR auto-labeling rules
+# Matched against changed files in the pull request.
+
+unity:
+  - changed-files:
+      - any-glob-to-any-file: ["Assets/**", "Packages/**", "ProjectSettings/**", "**/*.cs", "**/*.asmdef", "**/*.unity"]
+
+ci-cd:
+  - changed-files:
+      - any-glob-to-any-file: [".github/workflows/**", ".github/dependabot.yml"]
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.md", "docs/**"]
+
+security:
+  - changed-files:
+      - any-glob-to-any-file: ["SECURITY.md", "docs/security/**", "**/package-lock.json", "**/manifest.json", "**/packages-lock.json"]
+
+firebase:
+  - changed-files:
+      - any-glob-to-any-file: ["firebase/**", "Assets/google-services.json", "Assets/GoogleService-Info.plist"]
+
+automation:
+  - changed-files:
+      - any-glob-to-any-file: ["scripts/automation/**", "scripts/validation/**", "public/social/**"]

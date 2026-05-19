@@ -1,0 +1,125 @@
+name: Lint
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: lint-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # ── actionlint: validate GitHub Actions workflow syntax ───────────────────
+  actionlint:
+    name: Validate Workflow Syntax (actionlint)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - name: Run actionlint
+        uses: raven-actions/actionlint@3a67c00a4d877fdd2ac56ac9f5cf3ce6d8a0bc89  # v2.0.0
+        with:
+          flags: "-ignore SC2016"  # Ignore single-quote shellcheck warnings (common in GitHub Actions scripts)
+
+  # ── JSON validation ───────────────────────────────────────────────────────
+  validate-json:
+    name: Validate JSON Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v4.1.0
+        with:
+          node-version: '20'
+
+      - name: Validate JSON files
+        run: |
+          set -e
+          ERRORS=0
+          validate_json() {
+            local file="$1"
+            if node -e "JSON.parse(require('fs').readFileSync('$file','utf8'))" 2>/dev/null; then
+              echo "  ✓ $file"
+            else
+              echo "  ✗ $file — INVALID JSON"
+              ERRORS=$((ERRORS + 1))
+            fi
+          }
+          echo "=== Validating JSON files ==="
+          validate_json "package.json"
+          [ -f "Packages/manifest.json" ]        && validate_json "Packages/manifest.json"
+          [ -f "Packages/packages-lock.json" ]   && validate_json "Packages/packages-lock.json"
+          [ -f ".github/dependabot.yml" ] || true  # YAML checked elsewhere
+          # Scan for any other JSON files in scripts/
+          find scripts/ -name "*.json" 2>/dev/null | while read f; do validate_json "$f"; done
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "::error::$ERRORS JSON file(s) failed validation."
+            exit 1
+          fi
+          echo ""
+          echo "All JSON files are valid."
+
+  # ── Markdown lint ─────────────────────────────────────────────────────────
+  markdown-lint:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v4.1.0
+        with:
+          node-version: '20'
+
+      - name: Run markdownlint-cli2
+        run: |
+          npx --yes markdownlint-cli2@0.17.2 \
+            "**/*.md" \
+            "!node_modules/**" \
+            "!Library/**" \
+            "!Temp/**" \
+            "!obj/**" \
+            "!Builds/**" \
+            "!firebase/functions/node_modules/**" \
+            --config .markdownlint.json || \
+          npx --yes markdownlint-cli2@0.17.2 \
+            "**/*.md" \
+            "!node_modules/**" \
+            "!Library/**" \
+            "!Temp/**" \
+            "!obj/**" \
+            "!Builds/**" \
+            "!firebase/functions/node_modules/**"
+        # Falls back without config file if .markdownlint.json doesn't exist yet
+
+  # ── npm audit: check for known vulnerabilities ───────────────────────────
+  npm-audit:
+    name: npm audit (critical only)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v4.1.0
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit for critical vulnerabilities
+        # Fail only on critical; the weekly-security-scan handles moderate/high
+        run: npm audit --audit-level=critical

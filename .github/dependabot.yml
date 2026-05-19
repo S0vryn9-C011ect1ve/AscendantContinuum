@@ -1,0 +1,71 @@
+version: 2
+updates:
+  # ── GitHub Actions ecosystem ──────────────────────────────────────────────
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    assignees:
+      - "ascendantcontinuum"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+    # Group all action updates into a single PR to reduce noise
+    groups:
+      github-actions-all:
+        patterns:
+          - "*"
+
+  # ── npm root (social automation) ─────────────────────────────────────────
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:30"
+      timezone: "UTC"
+    assignees:
+      - "ascendantcontinuum"
+    labels:
+      - "dependencies"
+      - "npm"
+    commit-message:
+      prefix: "chore(deps)"
+    # Group minor and patch updates; security updates always get their own PR
+    groups:
+      npm-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    # These packages use semver loosely — require manual review for major bumps
+    ignore:
+      - dependency-name: "@atproto/api"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "megalodon"
+        update-types: ["version-update:semver-major"]
+
+  # ── npm Firebase Functions ────────────────────────────────────────────────
+  - package-ecosystem: "npm"
+    directory: "/firebase/functions"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "10:00"
+      timezone: "UTC"
+    assignees:
+      - "ascendantcontinuum"
+    labels:
+      - "dependencies"
+      - "firebase"
+    commit-message:
+      prefix: "chore(deps-firebase)"
+    groups:
+      firebase-functions-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"

@@ -1,0 +1,42 @@
+# GitHub-generated release notes category mapping
+changelog:
+  exclude:
+    labels:
+      - skip-changelog
+    authors:
+      - github-actions[bot]
+
+  categories:
+    - title: "Features"
+      labels:
+        - feat
+        - feature
+        - enhancement
+
+    - title: "Fixes"
+      labels:
+        - fix
+        - bug
+        - bugfix
+
+    - title: "Security"
+      labels:
+        - security
+        - dependencies
+
+    - title: "CI/CD & Automation"
+      labels:
+        - ci
+        - ci-cd
+        - automation
+
+    - title: "Documentation"
+      labels:
+        - docs
+        - documentation
+
+    - title: "Maintenance"
+      labels:
+        - chore
+        - refactor
+        - test

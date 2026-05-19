@@ -7,7 +7,11 @@
 This repository is under active documentation consolidation.
 
 - Project and build readiness: `docs/BUILD_READINESS_STATUS.md`
-- Environment and CI/CD setup: `docs/technical/GITHUB_SETUP.md`
+- Environment setup: `docs/technical/GITHUB_SETUP.md`
+- CI/CD reference: `docs/CI_CD.md`
+- Release process: `docs/RELEASE.md`
+- Development guide: `docs/DEVELOPMENT.md`
+- Troubleshooting: `docs/TROUBLESHOOTING.md`
 - Security and supply chain: `docs/security/SUPPLY_CHAIN_PROTECTION.md`
 - Documentation standards: `docs/standards/repository-structure.md`, `docs/standards/naming-conventions.md`, `docs/standards/asset-management.md`
 - Legacy docs migration tracker: `docs/operations/legacy-doc-consolidation-wave-tracker.md`

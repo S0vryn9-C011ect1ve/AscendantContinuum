@@ -48,6 +48,43 @@ Security patches are released as soon as possible after verification. Users will
 - Weekly automated scan setup: `docs/security/WEEKLY_SCAN_SETUP.md`
 - Supply-chain controls: `docs/security/SUPPLY_CHAIN_PROTECTION.md`
 - Social automation credential handling: `docs/social/README.md`
+- CI/CD pipeline and secrets: `docs/CI_CD.md`
+
+---
+
+## Firebase Configuration Files
+
+`Assets/google-services.json` (Android) and `Assets/GoogleService-Info.plist` (iOS) contain
+Firebase project identifiers and API keys. **These files must never be committed to the repository.**
+
+Both paths are listed in `.gitignore`. If you find them tracked by git, remove them with:
+
+```bash
+git rm --cached Assets/google-services.json Assets/google-services.json.meta
+git rm --cached Assets/GoogleService-Info.plist Assets/GoogleService-Info.plist.meta
+git commit -m "security: remove Firebase config files from tracking"
+```
+
+Obtain these files from Firebase Console or a secure secrets manager and place them locally
+before running Unity builds. CI builds receive them through environment variables or build scripts.
+
+---
+
+## Secret Rotation Policy
+
+Rotate the following secrets **at minimum every 90 days**, or immediately after any suspected exposure:
+
+| Secret | Service | Priority |
+|--------|---------|---------|
+| `UNITY_LICENSE` | Unity Cloud / personal license | High |
+| `UNITY_EMAIL` / `UNITY_PASSWORD` | Unity account | Critical — consider migrating to `.ulf` file-based license to eliminate password |
+| `ANDROID_KEYSTORE_BASE64` / `ANDROID_KEYSTORE_PASS` / `ANDROID_KEY_ALIAS_PASS` | Android signing | Critical — rotation requires a new keystore and Play Console update |
+| `FIREBASE_TOKEN` | Firebase CLI | Medium — generate a service-account key with deployment-only IAM roles instead |
+| `BLUESKY_PASSWORD` | Bluesky | High |
+| `MASTODON_ACCESS_TOKEN` | Mastodon | Medium (scoped token) |
+| `DISCORD_WEBHOOK_URL` | Discord | Medium |
+
+Rotate secrets via: **GitHub repo → Settings → Secrets and variables → Actions.**
 
 ## Bug Bounty
 

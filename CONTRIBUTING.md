@@ -10,6 +10,18 @@ This repository contains a Unity game project, Firebase website/deployment surfa
 4. Do not place new operational docs at the repository root.
 5. Commit hooks run repository structure validation automatically, so misplaced files should be caught before they land.
 
+## Commit Message Convention
+
+Use conventional commits for all changes:
+
+- `feat(scope): add new gameplay capability`
+- `fix(scope): resolve a bug`
+- `docs(scope): update contributor or project docs`
+- `ci(scope): adjust workflow automation`
+- `security(scope): harden secrets or supply chain controls`
+
+Accepted types are enforced in CI by `.github/workflows/commitlint.yml`.
+
 ## Required Local Checks
 
 Run the checks that apply to your change:
