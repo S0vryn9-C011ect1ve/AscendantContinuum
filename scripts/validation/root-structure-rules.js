@@ -64,6 +64,7 @@ export const allowedRootFiles = new Set([
     '.env',
     '.env.example',
     '.editorconfig',
+    '.github-account-policy.json',
     '.gitattributes',
     '.gitignore',
     '.npmrc',
