@@ -34,8 +34,8 @@ import { getHook, customizeHook } from './viral-hooks-gaming.js';
 import {
     ensureUrlAtEnd,
     extractLastUrl,
+    fitForPlatform,
     normalizeForPublishing,
-    truncatePreservingLastUrl
 } from '../utils/publish-text-utils.js';
 import { assertNoProhibitedContent } from '../utils/truth-and-dedupe-guard.js';
 
@@ -380,20 +380,20 @@ async function postToPlatform(platform, content) {
 
     try {
         if (platform === 'bluesky') {
-            const normalized = normalizeForPublishing(fullText);
+            const normalized = fitForPlatform(fullText, 'bluesky');
 
             if (blueskyNeedsThreading(normalized)) {
                 const thread = blueskySplitThread(normalized).map(part => formatForBluesky(part));
                 const results = await postThreadToBluesky(thread);
                 return results[0]; // Return first post result
             } else {
-                const singlePost = formatForBluesky(truncatePreservingLastUrl(normalized, 300));
+                const singlePost = formatForBluesky(normalized);
                 return await postToBluesky(singlePost, { media: content.media });
             }
         }
 
         if (platform === 'mastodon') {
-            const normalized = normalizeForPublishing(fullText);
+            const normalized = fitForPlatform(fullText, 'mastodon');
             const contentWarning = getContentWarning(content.type);
 
             if (mastodonNeedsThreading(normalized)) {
@@ -401,7 +401,7 @@ async function postToPlatform(platform, content) {
                 const results = await postThreadToMastodon(thread, { contentWarning });
                 return results[0]; // Return first post result
             } else {
-                const singlePost = formatForMastodon(truncatePreservingLastUrl(normalized, 500));
+                const singlePost = formatForMastodon(normalized);
                 return await postToMastodon(singlePost, {
                     media: content.media,
                     contentWarning,
@@ -410,7 +410,7 @@ async function postToPlatform(platform, content) {
         }
 
         if (platform === 'discord') {
-            const formatted = formatForDiscord(fullText);
+            const formatted = formatForDiscord(fitForPlatform(fullText, 'discord'));
 
             if (needsSplitting(formatted)) {
                 const messages = splitIntoMessages(formatted);

@@ -48,7 +48,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # ── 3. Backfill fingerprints (idempotent — safe to run every time) ────
       - name: Seed dedup fingerprints from posting history

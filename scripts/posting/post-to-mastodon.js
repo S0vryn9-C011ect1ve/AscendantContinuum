@@ -7,7 +7,7 @@
 
 import generator from 'megalodon';
 import dotenv from 'dotenv';
-import { normalizeForPublishing, truncatePreservingLastUrl } from '../utils/publish-text-utils.js';
+import { fitForPlatform, normalizeForPublishing } from '../utils/publish-text-utils.js';
 
 dotenv.config();
 
@@ -63,8 +63,7 @@ export async function postToMastodon(text, options = {}) {
     }
 
     try {
-        // Keep URLs intact if truncation is needed.
-        const truncatedText = truncatePreservingLastUrl(text, config.maxLength);
+        const truncatedText = fitForPlatform(text, 'mastodon');
 
         // Create Mastodon client
         const client = generator('mastodon', config.instance, config.accessToken);

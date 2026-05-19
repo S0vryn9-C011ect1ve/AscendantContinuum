@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { generateBlogPost } from '../content/blog-post-generator.js';
 import { postToBluesky } from '../posting/post-to-bluesky.js';
@@ -48,6 +49,69 @@ function saveBlogData(data) {
         return;
     }
     fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
+}
+
+function getRecentCommitSubjects(limit = 8) {
+    try {
+        const log = execSync(`git log -n ${limit} --pretty=format:%s --no-merges`, { encoding: 'utf8' });
+        return log
+            .split('\n')
+            .map(line => line.trim())
+            .filter(Boolean)
+            .map(line => normalizeForPublishing(line.replace(/^(feat|fix|perf|refactor|docs|chore|ci|build|test)(\(.+?\))?:\s*/i, '')))
+            .filter(Boolean)
+            .slice(0, 5);
+    } catch (_error) {
+        return [];
+    }
+}
+
+function buildFallbackPost(existingSlugs = new Set(), existingTitles = new Set()) {
+    const now = new Date();
+    const date = now.toISOString().split('T')[0];
+    const stamp = now.toISOString().replace(/[-:T]/g, '').slice(0, 12);
+    const baseSlug = `dev-log-${date}`;
+    let slug = baseSlug;
+    let i = 1;
+
+    while (existingSlugs.has(slug)) {
+        slug = `${baseSlug}-${i}`;
+        i += 1;
+    }
+
+    const commits = getRecentCommitSubjects();
+    const bullets = commits.length > 0
+        ? commits.map(item => `<li>${item}</li>`).join('\n                ')
+        : '<li>Stability, polish, and accessibility-first iteration work continued.</li>';
+
+    const baseTitle = `Ascendant Continuum Dev Log - ${date}`;
+    let title = baseTitle;
+    let titleIndex = 1;
+    while (existingTitles.has(title)) {
+        title = `${baseTitle} (${titleIndex})`;
+        titleIndex += 1;
+    }
+    const hook = 'A focused build update covering the latest gameplay, content, and accessibility iteration work.';
+    const excerpt = commits.length > 0
+        ? `Latest development focus: ${commits[0]}`.slice(0, 180)
+        : 'Latest development focus: stability, polish, and accessibility-first iteration work.';
+
+    return {
+        title,
+        slug,
+        date,
+        tags: ['updates', 'development', 'behind-the-scenes'],
+        themeName: "What's New",
+        hook,
+        excerpt,
+        content: `<h2>What I worked on</h2>
+            <p>This dev log captures the latest progress from the current build cycle.</p>
+            <ul>
+                ${bullets}
+            </ul>
+            <h2>Why this matters</h2>
+            <p>Every update is aimed at making Ascendant Continuum clearer, more accessible, and more meaningful to play.</p>`
+    };
 }
 
 // Generate RSS feed
@@ -373,8 +437,8 @@ async function publishBlogPost() {
     }
 
     if (!post) {
-        console.log('⚠️  No unique blog post available. Skipping publish to avoid duplicates.');
-        return false;
+        console.log('⚠️  Topic pool exhausted. Generating commit-based fallback post.');
+        post = buildFallbackPost(existingSlugs, existingTitles);
     }
 
     assertNoProhibitedContent(

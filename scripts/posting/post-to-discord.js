@@ -7,7 +7,7 @@
 
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
-import { normalizeForPublishing } from '../utils/publish-text-utils.js';
+import { fitForPlatform, normalizeForPublishing } from '../utils/publish-text-utils.js';
 
 dotenv.config();
 
@@ -52,6 +52,8 @@ export async function postToDiscord(content, options = {}) {
     if (!webhookUrl) {
         throw new Error('DISCORD_WEBHOOK_URL environment variable not set');
     }
+
+    content = fitForPlatform(content, 'discord');
 
     // Validate content length
     if (content.length > 2000) {

@@ -839,17 +839,29 @@
       ],
       "themeName": "Dev Diary",
       "excerpt": "Real-time multiplayer requires coordination, compatible time zones, stable connections, and complex networking infrastructure. I wanted the social magic without the scheduling headaches or technical overhead. The solutio..."
+    },
+    {
+      "title": "Ascendant Continuum Dev Log - 2026-05-19",
+      "slug": "dev-log-2026-05-19",
+      "date": "2026-05-19",
+      "tags": [
+        "updates",
+        "development",
+        "behind-the-scenes"
+      ],
+      "themeName": "What's New",
+      "excerpt": "Latest development focus: blog: automated daily post [skip ci]"
     }
   ],
   "stats": {
-    "totalPosts": 81,
+    "totalPosts": 82,
     "byTheme": {
       "Behind the Scenes": 1,
       "Design Philosophy": 5,
       "Development": 29,
       "Technical Deep Dive": 1,
       "Tutorial": 2,
-      "What's New": 41,
+      "What's New": 42,
       "Dev Diary": 2
     },
     "byTag": {
@@ -859,14 +871,14 @@
       "automation": 1,
       "battle-pass": 1,
       "adaptive-personalization": 1,
-      "behind-the-scenes": 8,
+      "behind-the-scenes": 9,
       "bootstrap": 1,
       "budget": 1,
       "career-change": 1,
       "changelog": 2,
       "colorblind": 1,
       "community": 1,
-      "development": 11,
+      "development": 12,
       "disability": 1,
       "ethics": 5,
       "first-game": 1,
@@ -896,7 +908,7 @@
       "transparency": 1,
       "tutorial": 5,
       "unity": 12,
-      "updates": 2,
+      "updates": 3,
       "webdev": 1
     }
   },

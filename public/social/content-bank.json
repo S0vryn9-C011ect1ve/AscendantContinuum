@@ -290,9 +290,10 @@
       ],
       "media": null,
       "priority": "medium",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:08.885Z"
+      "rewrittenAt": "2026-05-05T01:07:08.885Z",
+      "lastUsed": "2026-05-13T18:29:02.774Z"
     },
     {
       "id": 18,
@@ -829,9 +830,10 @@
       ],
       "media": null,
       "priority": "medium",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:08.937Z"
+      "rewrittenAt": "2026-05-05T01:07:08.937Z",
+      "lastUsed": "2026-05-12T18:01:23.117Z"
     },
     {
       "id": 51,
@@ -926,9 +928,10 @@
       ],
       "media": null,
       "priority": "medium",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:08.947Z"
+      "rewrittenAt": "2026-05-05T01:07:08.947Z",
+      "lastUsed": "2026-05-14T18:09:37.666Z"
     },
     {
       "id": 57,
@@ -1770,9 +1773,10 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:09.023Z"
+      "rewrittenAt": "2026-05-05T01:07:09.023Z",
+      "lastUsed": "2026-05-17T18:00:57.281Z"
     },
     {
       "id": 109,
@@ -3249,9 +3253,10 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:09.149Z"
+      "rewrittenAt": "2026-05-05T01:07:09.149Z",
+      "lastUsed": "2026-05-15T18:10:39.734Z"
     },
     {
       "id": 200,
@@ -3369,7 +3374,7 @@
     {
       "id": 207,
       "type": "devUpdate",
-      "hook": "Solo dev. Zero budget. No testers. WebGL game launching soon.",
+      "hook": "Solo dev. Zero budget. No testers. Building in public, one system at a time.",
       "body": "The Ascendant Continuum:\n\n• Built entirely alone (no team, no testers)\n• ZERO DOLLARS budget (free tools + determination)\n• 5 mystical realms, each unique\n• 1-5 minute rel...\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
@@ -3561,8 +3566,8 @@
     {
       "id": 219,
       "type": "devUpdate",
-      "hook": "WebGL version is FREE and playable RIGHT NOW in your browser",
-      "body": "Play today:\n\nascendant-continuum.web.app/play\n\n• No download required\n• Works on any device\n• Chrome/Firefox/Safari/Edge\n• Mobile & desktop\n• Free forever\n\nAndroid/iOS comi...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "hook": "WebGL build updates are being tested in browser-first development.",
+      "body": "Current focus:\n\n• Browser-first iteration\n• Performance and accessibility tuning\n• Cross-device input refinement\n• Stability passes before wider release\n\nDevelopment notes:\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -3883,8 +3888,8 @@
     {
       "id": 239,
       "type": "devUpdate",
-      "hook": "Mobile release: Android first (May 2026), iOS shortly after",
-      "body": "Mobile roadmap:\n\n• WebGL: LIVE NOW (all browsers)\n• Android: May 2026 (Google Play)\n• iOS: June 2026 (App Store)\n• All versions free\n• Optional cosmetic purchases\n• Cross-pl...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "hook": "Mobile support is planned after core browser stability is locked.",
+      "body": "Platform planning:\n\n• Browser build is current development focus\n• Android and iOS planning follows stability milestones\n• Accessibility and performance validation come first\n\nProgress notes:\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -3932,7 +3937,7 @@
     {
       "id": 242,
       "type": "behindScenes",
-      "hook": "Built 206+ social media posts BEFORE launch because I'm terrified of marketing",
+      "hook": "Built 206+ social media posts in advance to stay consistent with updates",
       "body": "Marketing preparation:\n\n• 206 pre-written posts\n• Content types: dev updates, lore, philosophy\n• Scheduled via automation\n• Platforms: Bluesky, Mastodon,...\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
@@ -4029,8 +4034,8 @@
     {
       "id": 248,
       "type": "devUpdate",
-      "hook": "Localization: English first, Spanish/French/German coming summer 2026",
-      "body": "Language roadmap:\n\n• Launch: English\n• Summer 2026: Spanish, French, German\n• Fall 2026: Japanese, Portuguese, Italian\n• All translations done carefully (no Google...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "hook": "Localization planning: staged language support after core content stabilizes",
+      "body": "Language planning:\n\n• English is the current build language\n• Additional language support is phased after core stability\n• Translation quality and accessibility remain non-negotiable\n\nDev notes:\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -4061,8 +4066,8 @@
     {
       "id": 250,
       "type": "devUpdate",
-      "hook": "Launch date: May 15, 2026. WebGL playable NOW. Mobile planned after launch.",
-      "body": "Timeline:\n\n• April 2026: WebGL LIVE for early access (NOW!)\n• May 15, 2026: Official launch\n• May 30, 2026: Android release\n• June 15, 2026: iOS release\n• Summer 2026...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "hook": "Status update: polishing core systems before public release timing is announced.",
+      "body": "Current priorities:\n\n• Core gameplay polish\n• Accessibility and UI refinement\n• Performance optimization\n• Stability across devices\n\nStatus updates are published in the dev blog:\n\nhttps://ascendant-continuum.web.app/blog/",
       "platforms": [
         "bluesky",
         "mastodon",
@@ -4070,9 +4075,10 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:09.227Z"
+      "rewrittenAt": "2026-05-05T01:07:09.227Z",
+      "lastUsed": "2026-05-19T18:00:53.620Z"
     }
   ]
 }

@@ -39,7 +39,7 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       
       - name: Generate What's New update
         run: node scripts/automation/generate-whatsnew.js ${{ github.event.inputs.force == 'true' && '--force' || '' }}

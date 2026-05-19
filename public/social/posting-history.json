@@ -1965,19 +1965,228 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 68,
+      "contentId": 50,
+      "contentType": "devEducation",
+      "hook": "Here's the exact system I use for game state management.",
+      "topics": [],
+      "timestamp": "2026-05-12T18:01:23.152Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mloelpqvee2g"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116562908745460277"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "contentId": 17,
+      "contentType": "devUpdate",
+      "hook": "This one line of code changed everything.",
+      "topics": [],
+      "timestamp": "2026-05-13T18:29:03.042Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mlqwmjtqs42v"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116568680303187836"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "contentId": 56,
+      "contentType": "devEducation",
+      "hook": "How to actually test your Unity (game engine) game on low-end devices.",
+      "topics": [],
+      "timestamp": "2026-05-14T18:09:37.795Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mltfymbk4j2y"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116574265990006067"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "contentId": 199,
+      "contentType": "devUpdate",
+      "hook": "The game knows when YOUR sun rises (in real life)",
+      "topics": [
+        "realms-lore"
+      ],
+      "timestamp": "2026-05-15T18:10:39.742Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mlvwjiwvcl2b"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116579932659528885"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "contentId": 108,
+      "contentType": "designPhilosophy",
+      "hook": "Why we don't have daily login rewards.",
+      "topics": [
+        "anti-fomo"
+      ],
+      "timestamp": "2026-05-17T18:00:57.304Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mm2wvyjap72u"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116591219144071225"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-05-19T00:19:04.432Z",
+      "type": "designPhilosophy",
+      "content": "The game industry's biggest lie: {controversial take}\n\nAnti-FOMO design principles:\n\n- Sessions end naturally, not artificially\n- No daily login rewards\n- No time-limited content\n- Progress respects breaks\n\nGames should enhance life, not consume it.\n\nThis is our design philosophy.\n\n#IndieGameDev #GameDev #EthicalGaming",
+      "hook": "The game industry's biggest lie: {controversial take}",
+      "theme": "Ethical Design",
+      "platforms": {
+        "bluesky": {
+          "success": true,
+          "platform": "bluesky",
+          "uri": "at://did:plc:dryrun/app.bsky.feed.post/123",
+          "cid": "dryrun-cid",
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/dryrun123",
+          "timestamp": "2026-05-19T00:19:04.480Z"
+        },
+        "mastodon": {
+          "success": true,
+          "platform": "mastodon",
+          "id": "dry-run-1779149944482",
+          "url": "https://example.social/@dryrun/123",
+          "timestamp": "2026-05-19T00:19:04.482Z"
+        },
+        "discord": {
+          "success": true,
+          "platform": "discord",
+          "messageId": "dry-run-1779149944485"
+        }
+      }
+    },
+    {
+      "id": 74,
+      "contentId": 250,
+      "contentType": "devUpdate",
+      "hook": "Launch date: May 15, 2026. WebGL playable NOW. Mobile planned after launch.",
+      "topics": [
+        "unity-tech"
+      ],
+      "timestamp": "2026-05-19T18:00:53.627Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mm7xug7ztr2z"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116602545030705816"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 62,
+    "totalPosts": 68,
     "byPlatform": {
-      "bluesky": 62,
-      "mastodon": 62,
-      "discord": 60
+      "bluesky": 68,
+      "mastodon": 68,
+      "discord": 66
     },
     "byType": {
-      "devUpdate": 29,
-      "devEducation": 14,
-      "designPhilosophy": 13,
+      "devUpdate": 32,
+      "devEducation": 16,
+      "designPhilosophy": 14,
       "behindScenes": 0,
       "loreSnippet": 6
     }

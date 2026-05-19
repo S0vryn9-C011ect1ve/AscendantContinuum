@@ -9,7 +9,7 @@ import { BskyAgent } from '@atproto/api';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
-import { normalizeForPublishing, truncatePreservingLastUrl } from '../utils/publish-text-utils.js';
+import { fitForPlatform, normalizeForPublishing } from '../utils/publish-text-utils.js';
 
 dotenv.config();
 
@@ -99,8 +99,7 @@ export async function postToBluesky(text, options = {}) {
     try {
         await initializeAgent();
 
-        // Keep URLs intact if truncation is needed.
-        const truncatedText = truncatePreservingLastUrl(text, config.maxLength);
+        const truncatedText = fitForPlatform(text, 'bluesky');
 
         const postData = {
             text: truncatedText,

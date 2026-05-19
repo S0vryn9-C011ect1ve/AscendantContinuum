@@ -1,5 +1,11 @@
 const URL_REGEX = /https?:\/\/[^\s)]+/gi;
 
+export const PLATFORM_LIMITS = Object.freeze({
+    bluesky: 300,
+    mastodon: 500,
+    discord: 2000,
+});
+
 const REPLACEMENTS = [
     [/\u2018|\u2019/g, "'"],
     [/\u201C|\u201D/g, '"'],
@@ -71,4 +77,17 @@ export function truncatePreservingLastUrl(text, maxLength) {
         : body;
 
     return `${trimmedBody}\n\n${lastUrl}`;
+}
+
+export function fitForPlatform(text, platform, fallbackUrl = null) {
+    const limit = PLATFORM_LIMITS[platform];
+    if (!limit) {
+        return normalizeForPublishing(text);
+    }
+
+    const withUrl = fallbackUrl
+        ? ensureUrlAtEnd(text, fallbackUrl)
+        : normalizeForPublishing(text);
+
+    return truncatePreservingLastUrl(withUrl, limit);
 }

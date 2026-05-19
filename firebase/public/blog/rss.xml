@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 May 2026 14:02:42 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 19 May 2026 15:39:54 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-19]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-19.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-19.html</guid>
+      <pubDate>Tue, 19 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[What's New]]></category>
+      <category><![CDATA[updates]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Latest development focus: blog: automated daily post [skip ci]]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Cross-Player Puzzle Chains: Asynchronous Multiplayer Design]]></title>
@@ -232,16 +244,6 @@
       <category><![CDATA[development]]></category>
       <category><![CDATA[webdev]]></category>
       <description><![CDATA[How we protected our projects from recent npm supply chain attacks (axios, LiteLLM, LofyGang). Complete guide with 6 protection layers, code examples, and emergency procedures.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Lantern Ascension: Fluid Dynamics as Gameplay]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/lantern-ascension-fluid-dynamics-gameplay.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/lantern-ascension-fluid-dynamics-gameplay.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[Your ritual lantern obeys Navier-Stokes equations. Buoyancy, drag, wind, rain—all simulated at 60 FPS. Real fluid dynamics as gameplay.]]></description>
     </item>
   </channel>
 </rss>

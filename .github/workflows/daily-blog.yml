@@ -33,7 +33,7 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Generate and publish blog post
         env:

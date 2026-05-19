@@ -12,6 +12,10 @@ const PROHIBITED_PATTERNS = [
         label: 'placeholder phrasing',
         regex: /\b(coming soon|placeholder|this html file serves as a placeholder|\btbd\b|\btodo\b)\b/i,
     },
+    {
+        label: 'premature launch/readiness claim',
+        regex: /\b(launch date|official launch|launching soon|ready to play|playable now|live now|out now|available now|android release|ios release|release date|roadmap)\b/i,
+    },
 ];
 
 export function getProhibitedPatterns() {
