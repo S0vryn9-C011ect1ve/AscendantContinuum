@@ -24,9 +24,9 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
 
       - name: Run actionlint
-        uses: raven-actions/actionlint@3a67c00a4d877fdd2ac56ac9f5cf3ce6d8a0bc89  # v2.0.0
-        with:
-          flags: "-ignore SC2016"  # Ignore single-quote shellcheck warnings (common in GitHub Actions scripts)
+        run: |
+          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          ./actionlint -ignore SC2016
 
   # ── JSON validation ───────────────────────────────────────────────────────
   validate-json:
@@ -84,24 +84,20 @@ jobs:
 
       - name: Run markdownlint-cli2
         run: |
-          npx --yes markdownlint-cli2@0.17.2 \
-            "**/*.md" \
-            "!node_modules/**" \
-            "!Library/**" \
-            "!Temp/**" \
-            "!obj/**" \
-            "!Builds/**" \
-            "!firebase/functions/node_modules/**" \
-            --config .markdownlint.json || \
-          npx --yes markdownlint-cli2@0.17.2 \
-            "**/*.md" \
-            "!node_modules/**" \
-            "!Library/**" \
-            "!Temp/**" \
-            "!obj/**" \
-            "!Builds/**" \
-            "!firebase/functions/node_modules/**"
-        # Falls back without config file if .markdownlint.json doesn't exist yet
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch origin "${{ github.base_ref }}" --depth=1
+            mapfile -t md_files < <(git diff --name-only "origin/${{ github.base_ref }}...HEAD" | grep -E '\\.md$' || true)
+          else
+            mapfile -t md_files < <(git diff --name-only HEAD~1 HEAD | grep -E '\\.md$' || true)
+          fi
+
+          if [ ${#md_files[@]} -eq 0 ]; then
+            echo "No Markdown files changed. Skipping markdownlint."
+            exit 0
+          fi
+
+          printf 'Linting changed markdown files:\n%s\n' "${md_files[@]}"
+          npx --yes markdownlint-cli2@0.17.2 "${md_files[@]}"
 
   # ── npm audit: check for known vulnerabilities ───────────────────────────
   npm-audit:
