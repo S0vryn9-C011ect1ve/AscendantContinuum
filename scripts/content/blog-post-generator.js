@@ -530,10 +530,15 @@ function selectRandomTopic() {
     };
 }
 
-// Generate blog post (either What's New or regular topic)
-function generateBlogPost(forceWhatsNew = false) {
+// Generate blog post with optional What's New controls
+function generateBlogPost(options = {}) {
+    const {
+        forceWhatsNew = false,
+        allowWhatsNew = true
+    } = options;
+
     // Try What's New first (30% chance, or forced)
-    if (forceWhatsNew || Math.random() < 0.3) {
+    if (allowWhatsNew && (forceWhatsNew || Math.random() < 0.3)) {
         const whatsNewPost = generateWhatsNewPost();
         if (whatsNewPost) {
             return whatsNewPost;

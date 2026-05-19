@@ -1,9 +1,6 @@
 name: Daily Blog Post
 
 on:
-  push:
-    branches:
-      - main
   schedule:
     - cron: '0 10 * * *'  # Daily at 10 AM UTC (5 AM EST) - 4 hours before social posts
   workflow_dispatch:  # Manual trigger
@@ -42,6 +39,8 @@ jobs:
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           MASTODON_API_URL: ${{ secrets.MASTODON_API_URL }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          ALLOW_WHATS_NEW: false
+          POST_TO_SOCIAL: false
           DRY_RUN: false
         run: node scripts/automation/post-blog.js
 

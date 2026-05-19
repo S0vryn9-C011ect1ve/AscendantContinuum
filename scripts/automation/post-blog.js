@@ -17,6 +17,9 @@ const POSTS_DIR = path.join(BLOG_DIR, 'posts');
 const DATA_FILE = path.join(BLOG_DIR, 'data.json');
 const RSS_FILE = path.join(BLOG_DIR, 'rss.xml');
 const DRY_RUN = process.env.DRY_RUN === 'true';
+const ALLOW_WHATS_NEW = process.env.ALLOW_WHATS_NEW !== 'false';
+const FORCE_WHATS_NEW = process.env.FORCE_WHATS_NEW === 'true';
+const POST_TO_SOCIAL = process.env.POST_TO_SOCIAL !== 'false';
 
 // Ensure directories exist
 function ensureDirectories() {
@@ -429,7 +432,10 @@ async function publishBlogPost() {
     const maxAttempts = 25;
 
     for (let i = 0; i < maxAttempts; i++) {
-        const candidate = generateBlogPost();
+        const candidate = generateBlogPost({
+            allowWhatsNew: ALLOW_WHATS_NEW,
+            forceWhatsNew: FORCE_WHATS_NEW
+        });
         if (!existingSlugs.has(candidate.slug) && !existingTitles.has(candidate.title)) {
             post = candidate;
             break;
@@ -490,8 +496,11 @@ async function publishBlogPost() {
     // Generate RSS feed
     generateRSSFeed(blogData.posts);
 
-    // Post to social media
-    await postToSocialMedia(post);
+    if (POST_TO_SOCIAL) {
+        await postToSocialMedia(post);
+    } else {
+        console.log('ℹ️ POST_TO_SOCIAL=false, skipping social media posting');
+    }
 
     console.log(`\n🎉 Blog post published successfully!`);
     console.log(`📍 View at: /blog/posts/${post.slug}.html`);

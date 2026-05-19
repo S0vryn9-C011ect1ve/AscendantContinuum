@@ -1,11 +1,6 @@
 name: Daily What's New Update
 
 on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: '0 23 * * *'  # Daily at 11 PM UTC (6 PM EST) - end of day
   workflow_dispatch:  # Manual trigger
     inputs:
       force:
