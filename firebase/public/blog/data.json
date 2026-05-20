@@ -851,17 +851,29 @@
       ],
       "themeName": "What's New",
       "excerpt": "Latest development focus: blog: automated daily post [skip ci]"
+    },
+    {
+      "title": "What's New: 10 Updates This Week",
+      "slug": "whats-new-2026-05-19",
+      "date": "2026-05-19",
+      "tags": [
+        "updates",
+        "changelog",
+        "development"
+      ],
+      "themeName": "What's New",
+      "excerpt": "Development update for 2026-05-19 to 2026-05-19: 0 features, 0 fixes, 0 improvements."
     }
   ],
   "stats": {
-    "totalPosts": 82,
+    "totalPosts": 83,
     "byTheme": {
       "Behind the Scenes": 1,
       "Design Philosophy": 5,
       "Development": 29,
       "Technical Deep Dive": 1,
       "Tutorial": 2,
-      "What's New": 42,
+      "What's New": 43,
       "Dev Diary": 2
     },
     "byTag": {
@@ -875,10 +887,10 @@
       "bootstrap": 1,
       "budget": 1,
       "career-change": 1,
-      "changelog": 2,
+      "changelog": 3,
       "colorblind": 1,
       "community": 1,
-      "development": 12,
+      "development": 13,
       "disability": 1,
       "ethics": 5,
       "first-game": 1,
@@ -908,7 +920,7 @@
       "transparency": 1,
       "tutorial": 5,
       "unity": 12,
-      "updates": 3,
+      "updates": 4,
       "webdev": 1
     }
   },

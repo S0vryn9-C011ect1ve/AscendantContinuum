@@ -5,7 +5,7 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 May 2026 15:39:54 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 20 May 2026 14:00:53 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
@@ -23,6 +23,18 @@
       <category><![CDATA[development]]></category>
       <category><![CDATA[behind-the-scenes]]></category>
       <description><![CDATA[Latest development focus: blog: automated daily post [skip ci]]]></description>
+    </item>
+
+    <item>
+      <title><![CDATA[What's New: 10 Updates This Week]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/whats-new-2026-05-19.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/whats-new-2026-05-19.html</guid>
+      <pubDate>Tue, 19 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[What's New]]></category>
+      <category><![CDATA[updates]]></category>
+      <category><![CDATA[changelog]]></category>
+      <category><![CDATA[development]]></category>
+      <description><![CDATA[Development update for 2026-05-19 to 2026-05-19: 0 features, 0 fixes, 0 improvements.]]></description>
     </item>
 
     <item>
@@ -231,19 +243,6 @@
       <category><![CDATA[automation]]></category>
       <category><![CDATA[behind-the-scenes]]></category>
       <description><![CDATA[We built 6 layers of automated security protection into Ascendant Continuum to block malicious code attacks. Here]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[How We Protected Our Projects from the Latest npm Supply Chain Attacks (And How You Can Too)]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/npm-supply-chain-attacks-protection-guide.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      <category><![CDATA[security]]></category>
-      <category><![CDATA[npm]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[webdev]]></category>
-      <description><![CDATA[How we protected our projects from recent npm supply chain attacks (axios, LiteLLM, LofyGang). Complete guide with 6 protection layers, code examples, and emergency procedures.]]></description>
     </item>
   </channel>
 </rss>
