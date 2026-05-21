@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 May 2026 14:00:53 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 14:00:36 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-21]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-21.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-21.html</guid>
+      <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[What's New]]></category>
+      <category><![CDATA[updates]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Latest development focus: blog: automated daily post [skip ci]]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-19]]></title>
@@ -229,20 +241,6 @@
       <category><![CDATA[career-change]]></category>
       <category><![CDATA[learning-unity]]></category>
       <description><![CDATA[After a workplace injury ended my healthcare career, I]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[How We Built Enterprise-Grade Security Into Our Indie Game (For Free)]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/how-we-built-enterprise-security-into-our-indie-game.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/how-we-built-enterprise-security-into-our-indie-game.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      <category><![CDATA[security]]></category>
-      <category><![CDATA[development]]></category>
-      <category><![CDATA[indie-dev]]></category>
-      <category><![CDATA[automation]]></category>
-      <category><![CDATA[behind-the-scenes]]></category>
-      <description><![CDATA[We built 6 layers of automated security protection into Ascendant Continuum to block malicious code attacks. Here]]></description>
     </item>
   </channel>
 </rss>

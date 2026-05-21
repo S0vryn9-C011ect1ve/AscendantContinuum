@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Latest development focus: blog: automated daily post [skip ci]">
+    <meta property="og:title" content="Ascendant Continuum Dev Log - 2026-05-21 - The Ascendant Continuum">
+    <meta property="og:description" content="Latest development focus: blog: automated daily post [skip ci]">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-21.html">
+    <meta property="article:published_time" content="2026-05-21">
+    <meta property="article:author" content="Ascendant Continuum (Solo Developer)">
+    <meta property="article:tag" content="updates">
+    <meta property="article:tag" content="development">
+    <meta property="article:tag" content="behind-the-scenes">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ascendant Continuum Dev Log - 2026-05-21">
+    <meta name="twitter:description" content="Latest development focus: blog: automated daily post [skip ci]">
+    <title>Ascendant Continuum Dev Log - 2026-05-21 - The Ascendant Continuum Dev Blog</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/images.css">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link rel="canonical" href="https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-21.html">
+    <style>
+        .blog-post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5rem var(--spacing-md) var(--spacing-xl);
+        }
+        .blog-nav-breadcrumb {
+            padding-bottom: var(--spacing-md);
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+        }
+        .blog-nav-breadcrumb a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+        .blog-nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .blog-post-header {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .blog-post-meta {
+            display: flex;
+            gap: var(--spacing-sm);
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        .blog-post-tag {
+            background: rgba(78, 205, 196, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .blog-post-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .blog-post-hook {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 4px solid var(--color-secondary);
+            border-radius: 4px;
+            line-height: 1.6;
+        }
+        .blog-post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-light);
+        }
+        .blog-post-content h2 {
+            font-size: 1.75rem;
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
+        }
+        .blog-post-content p {
+            margin-bottom: var(--spacing-md);
+            white-space: pre-wrap;
+        }
+        .blog-post-footer {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .blog-back-link {
+            display: inline-block;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            margin-bottom: var(--spacing-md);
+        }
+        .blog-back-link:hover {
+            transform: translateX(-4px);
+        }
+        .blog-share-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            margin-top: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        .blog-share-btn {
+            padding: 0.5rem 1rem;
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--color-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+        .blog-share-btn:hover {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .blog-post-title {
+                font-size: 2rem;
+            }
+            .blog-post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav" aria-label="Primary">
+        <div class="container top-nav-inner">
+            <a href="/" class="top-nav-brand">Ascendant Continuum</a>
+            <div class="top-nav-links">
+                <a href="/#latest" class="top-nav-link">Updates</a>
+                <a href="/blog/" class="top-nav-link">Blog</a>
+                <a href="/#faq" class="top-nav-link">FAQ</a>
+                <a href="/#signup" class="top-nav-link">Waitlist</a>
+                <a href="/play/" class="top-nav-link top-nav-link-play">Play</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="blog-post-container">
+        <div class="blog-nav-breadcrumb">
+            <a href="/">Home</a> / <a href="/blog/">Blog</a> / Ascendant Continuum Dev Log - 2026-05-21
+        </div>
+
+        <header class="blog-post-header">
+            <div class="blog-post-meta">
+                <time datetime="2026-05-21">May 20, 2026</time>
+                <span class="blog-post-tag">updates</span><span class="blog-post-tag">development</span><span class="blog-post-tag">behind-the-scenes</span>
+            </div>
+            <h1 class="blog-post-title">Ascendant Continuum Dev Log - 2026-05-21</h1>
+        </header>
+
+        <div class="blog-post-content">
+            <h2>What I worked on</h2>
+            <p>This dev log captures the latest progress from the current build cycle.</p>
+            <ul>
+                <li>blog: automated daily post [skip ci]</li>
+                <li>security: remove megalodon ws risk and stabilize CI</li>
+                <li>make whats-new weekly and fix live 404 url</li>
+                <li>fix codeql setup-dotnet pin</li>
+                <li>stabilize workflows for branch rules and free tier</li>
+            </ul>
+            <h2>Why this matters</h2>
+            <p>Every update is aimed at making Ascendant Continuum clearer, more accessible, and more meaningful to play.</p>
+        </div>
+
+        <footer class="blog-post-footer">
+            <a href="/blog/" class="blog-back-link">Back to all posts</a>
+            
+            <div class="blog-share-buttons">
+                <a href="https://bsky.app/intent/compose?text=Ascendant%20Continuum%20Dev%20Log%20-%202026-05-21%0A%0AA%20focused%20build%20update%20covering%20the%20latest%20gameplay%2C%20content%2C%20and%20accessibility%20iteration%20work.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Fdev-log-2026-05-21.html" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="blog-share-btn">Share on Bluesky</a>
+                <a href="https://mastodon.social/share?text=Ascendant%20Continuum%20Dev%20Log%20-%202026-05-21%0A%0AA%20focused%20build%20update%20covering%20the%20latest%20gameplay%2C%20content%2C%20and%20accessibility%20iteration%20work.%0A%0ARead%20more%3A%20https%3A%2F%2Fascendant-continuum.web.app%2Fblog%2Fposts%2Fdev-log-2026-05-21.html" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="blog-share-btn">Share on Mastodon</a>
+            </div>
+        </footer>
+    </article>
+</body>
+</html>
