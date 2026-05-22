@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2026 14:00:36 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 14:00:23 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-22]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-22.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-22.html</guid>
+      <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[What's New]]></category>
+      <category><![CDATA[updates]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Latest development focus: blog: automated daily post [skip ci]]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-21]]></title>
@@ -227,20 +239,6 @@
       <category><![CDATA[Development]]></category>
       
       <description><![CDATA[Not fake game logic. Real optics. Dawn Citadel puzzles use actual Snell]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[From Healthcare to Game Dev: Building My First Game]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/from-healthcare-to-game-dev-building-my-first-game.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      <category><![CDATA[behind-the-scenes]]></category>
-      <category><![CDATA[first-game]]></category>
-      <category><![CDATA[disability]]></category>
-      <category><![CDATA[career-change]]></category>
-      <category><![CDATA[learning-unity]]></category>
-      <description><![CDATA[After a workplace injury ended my healthcare career, I]]></description>
     </item>
   </channel>
 </rss>
