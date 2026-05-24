@@ -10,7 +10,12 @@ import { fileURLToPath } from 'url';
 import { postToBluesky } from '../posting/post-to-bluesky.js';
 import { postToMastodon } from '../posting/post-to-mastodon.js';
 import { postToDiscord } from '../posting/post-to-discord.js';
-import { ensureUrlAtEnd, normalizeForPublishing } from '../utils/publish-text-utils.js';
+import {
+    ensureUrlAtEnd,
+    normalizeDevelopmentClaims,
+    normalizeForPublishing,
+} from '../utils/publish-text-utils.js';
+import { assertNoProhibitedContent } from '../utils/truth-and-dedupe-guard.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -75,7 +80,7 @@ async function main() {
         : '- Various improvements';
     const postUrl = `https://ascendant-continuum.web.app${weeklyDigest.blogPostUrl}`;
 
-    const postText = ensureUrlAtEnd(`Weekly Development Digest
+    const postText = ensureUrlAtEnd(normalizeDevelopmentClaims(`Weekly Development Digest
 
 ${formattedStart} - ${formattedEnd}
 
@@ -91,7 +96,8 @@ ${highlightText}
 Read the full digest:
 ${postUrl}
 
-#GameDev #IndieGame #WeeklyUpdate #AscendantContinuum`, postUrl);
+#GameDev #IndieGame #WeeklyUpdate #AscendantContinuum`), postUrl);
+    assertNoProhibitedContent(postText, 'weekly digest social post');
 
     console.log('Post text:\n');
     console.log(postText);

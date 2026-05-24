@@ -10,7 +10,15 @@ import { postToDiscord } from '../posting/post-to-discord.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { normalizeForPublishing, ensureUrlAtEnd } from '../utils/publish-text-utils.js';
+import {
+    normalizeDevelopmentClaims,
+    normalizeForPublishing,
+    ensureUrlAtEnd,
+} from '../utils/publish-text-utils.js';
+import {
+    assertNoProhibitedContent,
+    socialFingerprint,
+} from '../utils/truth-and-dedupe-guard.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -127,9 +135,12 @@ function generateDevUpdate(commits) {
         content += '\n';
     });
 
-    content += '#IndieGameDev #GameDev #Unity\n\nhttps://ascendant-continuum.web.app/whats-new/';
+    content += '#IndieGameDev #GameDev #Unity\n\nhttps://ascendant-continuum.web.app/';
 
-    return ensureUrlAtEnd(normalizeForPublishing(content), 'https://ascendant-continuum.web.app/whats-new/');
+    return ensureUrlAtEnd(
+        normalizeDevelopmentClaims(normalizeForPublishing(content)),
+        'https://ascendant-continuum.web.app/'
+    );
 }
 
 /**
@@ -162,6 +173,8 @@ async function main() {
     console.log('─'.repeat(50));
     console.log();
 
+    assertNoProhibitedContent(content, 'dev update social post');
+
     // Post to all platforms
     const results = {
         timestamp: new Date().toISOString(),
@@ -169,6 +182,27 @@ async function main() {
         content: content,
         platforms: {}
     };
+
+    let history = { posts: [] };
+    if (fs.existsSync(POSTING_HISTORY_PATH)) {
+        history = JSON.parse(fs.readFileSync(POSTING_HISTORY_PATH, 'utf8'));
+    }
+
+    const fingerprint = socialFingerprint({ hook: '', body: content });
+    const alreadyPosted = history.posts.some(entry => {
+        const entryFingerprint = entry.fingerprint || socialFingerprint({
+            hook: entry.hook || '',
+            body: entry.content || entry.body || ''
+        });
+        return entryFingerprint === fingerprint;
+    });
+
+    if (alreadyPosted) {
+        console.log('ℹ️ Skipping duplicate dev update post (fingerprint match).');
+        return;
+    }
+
+    results.fingerprint = fingerprint;
 
     try {
         // Bluesky
@@ -203,15 +237,13 @@ async function main() {
         results.platforms.discord = { success: false, error: error.message };
     }
 
-    // Update posting history
-    let history = { posts: [] };
-    if (fs.existsSync(POSTING_HISTORY_PATH)) {
-        history = JSON.parse(fs.readFileSync(POSTING_HISTORY_PATH, 'utf8'));
+    if (DRY_RUN) {
+        console.log('DRY RUN: skipping posting history update');
+    } else {
+        history.posts.push(results);
+        fs.writeFileSync(POSTING_HISTORY_PATH, JSON.stringify(history, null, 2));
+        console.log('✅ Posting history updated');
     }
-
-    history.posts.push(results);
-    fs.writeFileSync(POSTING_HISTORY_PATH, JSON.stringify(history, null, 2));
-    console.log('✅ Posting history updated');
 
     console.log('\n🎉 Dev update posted successfully!');
 }

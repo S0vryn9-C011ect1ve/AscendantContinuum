@@ -2174,19 +2174,108 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 75,
+      "contentId": 45,
+      "contentType": "devEducation",
+      "hook": "Procedural generation 101: constraints are everything.",
+      "topics": [
+        "procedural-generation"
+      ],
+      "timestamp": "2026-05-20T18:01:40.793Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mmcif3h7nv27"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116608211163807098"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "contentId": 23,
+      "contentType": "devUpdate",
+      "hook": "What happens when you let players create permanent universe marks?",
+      "topics": [],
+      "timestamp": "2026-05-21T18:01:00.584Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mmeysshhhp2m"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116613870834655024"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "contentId": 118,
+      "contentType": "designPhilosophy",
+      "hook": "Player choice is sacred.",
+      "topics": [],
+      "timestamp": "2026-05-23T18:00:28.693Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mmjzobq7ei2b"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116625190248902740"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 68,
+    "totalPosts": 71,
     "byPlatform": {
-      "bluesky": 68,
-      "mastodon": 68,
-      "discord": 66
+      "bluesky": 71,
+      "mastodon": 71,
+      "discord": 69
     },
     "byType": {
-      "devUpdate": 32,
-      "devEducation": 16,
-      "designPhilosophy": 14,
+      "devUpdate": 33,
+      "devEducation": 17,
+      "designPhilosophy": 15,
       "behindScenes": 0,
       "loreSnippet": 6
     }

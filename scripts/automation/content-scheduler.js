@@ -35,9 +35,14 @@ import {
     ensureUrlAtEnd,
     extractLastUrl,
     fitForPlatform,
+    normalizeDevelopmentClaims,
     normalizeForPublishing,
 } from '../utils/publish-text-utils.js';
-import { assertNoProhibitedContent } from '../utils/truth-and-dedupe-guard.js';
+import {
+    assertNoProhibitedContent,
+    findProhibitedMatches,
+    socialFingerprint,
+} from '../utils/truth-and-dedupe-guard.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -233,6 +238,22 @@ function getAllPostedIds(postingHistory) {
     return ids;
 }
 
+function getPostedFingerprints(postingHistory) {
+    const fingerprints = new Set();
+    postingHistory.posts.forEach(post => {
+        const stored = (post.fingerprint || '').trim();
+        if (stored) {
+            fingerprints.add(stored);
+            return;
+        }
+
+        if (post.hook || post.body) {
+            fingerprints.add(socialFingerprint({ hook: post.hook || '', body: post.body || '' }));
+        }
+    });
+    return fingerprints;
+}
+
 /**
  * Select content from bank based on smart rotation rules
  */
@@ -245,14 +266,34 @@ function selectContent(contentBank, postingHistory) {
 
     // Get all content IDs ever posted (source of truth: posting history)
     const postedIds = getAllPostedIds(postingHistory);
+    const postedFingerprints = getPostedFingerprints(postingHistory);
 
     console.log(`🚫 Already posted historically: ${postedIds.size} posts excluded`);
 
     // Filter: content that has never been posted before
-    const availableContent = contentBank.content.filter(item => !postedIds.has(item.id));
+    const availableContent = contentBank.content.filter(item => {
+        if (postedIds.has(item.id)) {
+            return false;
+        }
+
+        const mergedText = ensureUrlAtEnd(
+            normalizeDevelopmentClaims(`${item.hook}\n\n${item.body}`),
+            item.url || extractLastUrl(item.body)
+        );
+        if (findProhibitedMatches(mergedText).length > 0) {
+            return false;
+        }
+
+        const fp = socialFingerprint(item);
+        if (postedFingerprints.has(fp)) {
+            return false;
+        }
+
+        return true;
+    });
 
     if (availableContent.length === 0) {
-        console.log('⚠️  No unused social posts left. Skipping to guarantee zero duplicates.');
+        console.log('⚠️  No unused compliant social posts left. Skipping to guarantee zero duplicates.');
         return null;
     }
 
@@ -363,8 +404,8 @@ function selectContent(contentBank, postingHistory) {
  * Post content to specific platform
  */
 async function postToPlatform(platform, content) {
-    const fallbackUrl = content.url || extractLastUrl(content.body) || 'https://ascendant-continuum.web.app/blog/';
-    const fullText = ensureUrlAtEnd(`${content.hook}\n\n${content.body}`, fallbackUrl);
+    const fallbackUrl = content.url || extractLastUrl(content.body) || 'https://ascendant-continuum.web.app/';
+    const fullText = ensureUrlAtEnd(normalizeDevelopmentClaims(`${content.hook}\n\n${content.body}`), fallbackUrl);
     assertNoProhibitedContent(fullText, `social content #${content.id} (${platform})`);
 
     if (config.dryRun) {
@@ -494,6 +535,8 @@ function logPostingHistory(history, content, results) {
         contentId: content.id,
         contentType: content.type,
         hook: content.hook,
+        body: content.body,
+        fingerprint: socialFingerprint(content),
         topics: topics, // Track topics for diversity
         timestamp: new Date().toISOString(),
         platforms: results.map(r => r.platform),

@@ -6,8 +6,12 @@ import { generateBlogPost } from '../content/blog-post-generator.js';
 import { postToBluesky } from '../posting/post-to-bluesky.js';
 import { postToMastodon } from '../posting/post-to-mastodon.js';
 import { postToDiscord } from '../posting/post-to-discord.js';
-import { ensureUrlAtEnd, normalizeForPublishing } from '../utils/publish-text-utils.js';
-import { assertNoProhibitedContent } from '../utils/truth-and-dedupe-guard.js';
+import {
+    ensureUrlAtEnd,
+    normalizeDevelopmentClaims,
+    normalizeForPublishing,
+} from '../utils/publish-text-utils.js';
+import { assertNoProhibitedContent, findProhibitedMatches } from '../utils/truth-and-dedupe-guard.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -368,10 +372,11 @@ function generatePostHTML(post) {
 async function postToSocialMedia(post) {
     const postUrl = `https://ascendant-continuum.web.app/blog/posts/${post.slug}.html`;
     const socialText = ensureUrlAtEnd(
-        `New blog post: ${normalizeForPublishing(post.title)}\n\n` +
-        `${normalizeForPublishing(post.hook)}\n\n` +
-        `Read more: ${postUrl}\n\n` +
-        '#GameDev #Unity #AccessibilityFirst #IndieGame',
+        normalizeDevelopmentClaims(
+            `New blog post: ${normalizeForPublishing(post.title)}\n\n` +
+            `${normalizeForPublishing(post.hook)}\n\n` +
+            `Read more: ${postUrl}\n\n` +
+            '#GameDev #Unity #AccessibilityFirst #IndieGame'),
         postUrl
     );
 
@@ -424,6 +429,13 @@ async function publishBlogPost() {
 
     // Load existing data
     const blogData = loadBlogData();
+    const today = new Date().toISOString().split('T')[0];
+
+    const hasTodayPost = blogData.posts.some(p => p.date === today);
+    if (hasTodayPost) {
+        console.log(`ℹ️ Blog post already exists for ${today}. Skipping to avoid duplicates.`);
+        return false;
+    }
 
     // Generate a unique post (no repeated slug/title).
     const existingSlugs = new Set(blogData.posts.map(p => p.slug));
@@ -436,6 +448,12 @@ async function publishBlogPost() {
             allowWhatsNew: ALLOW_WHATS_NEW,
             forceWhatsNew: FORCE_WHATS_NEW
         });
+        const prohibited = findProhibitedMatches(
+            `${candidate.title}\n${candidate.hook || ''}\n${candidate.excerpt || ''}\n${candidate.content || ''}`
+        );
+        if (prohibited.length > 0) {
+            continue;
+        }
         if (!existingSlugs.has(candidate.slug) && !existingTitles.has(candidate.title)) {
             post = candidate;
             break;

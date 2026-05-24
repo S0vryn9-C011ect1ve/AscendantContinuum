@@ -1,10 +1,19 @@
 const URL_REGEX = /https?:\/\/[^\s)]+/gi;
 
 export const PLATFORM_LIMITS = Object.freeze({
-    bluesky: 300,
-    mastodon: 500,
-    discord: 2000,
+    bluesky: 280,
+    mastodon: 450,
+    discord: 1800,
 });
+
+function normalizeUrl(url) {
+    if (!url) return null;
+    const candidate = String(url).trim();
+    if (!candidate) return null;
+    if (/^https?:\/\//i.test(candidate)) return candidate;
+    if (/^[\w.-]+\.[a-z]{2,}(\/.*)?$/i.test(candidate)) return `https://${candidate}`;
+    return null;
+}
 
 const REPLACEMENTS = [
     [/\u2018|\u2019/g, "'"],
@@ -36,6 +45,16 @@ export function normalizeForPublishing(text) {
     return normalized;
 }
 
+export function normalizeDevelopmentClaims(text) {
+    let value = normalizeForPublishing(text);
+    value = value.replace(/\blaunch-day\b/gi, 'early-development');
+    value = value.replace(/\bfounder'?s echo\b/gi, 'legacy sigils');
+    value = value.replace(/\bearly adopters\b/gi, 'early community members');
+    value = value.replace(/\bplayers\b/gi, 'community members');
+    value = value.replace(/\bplayer\b/gi, 'community member');
+    return value;
+}
+
 export function extractUrls(text) {
     if (!text) return [];
     const matches = String(text).match(URL_REGEX);
@@ -49,7 +68,7 @@ export function extractLastUrl(text) {
 
 export function ensureUrlAtEnd(text, fallbackUrl = null) {
     const clean = normalizeForPublishing(text);
-    const url = extractLastUrl(clean) || fallbackUrl;
+    const url = extractLastUrl(clean) || normalizeUrl(fallbackUrl);
 
     if (!url) return clean;
 

@@ -7,6 +7,15 @@ import { postToBluesky } from '../posting/post-to-bluesky.js';
 import { postToMastodon } from '../posting/post-to-mastodon.js';
 import { postAnnouncementToDiscord } from '../posting/post-to-discord.js';
 import { getHook, customizeHook } from './viral-hooks-gaming.js';
+import {
+    ensureUrlAtEnd,
+    normalizeDevelopmentClaims,
+    normalizeForPublishing,
+} from '../utils/publish-text-utils.js';
+import {
+    assertNoProhibitedContent,
+    socialFingerprint,
+} from '../utils/truth-and-dedupe-guard.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -15,6 +24,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const POSTING_HISTORY_PATH = path.join(__dirname, '../../public/social/posting-history.json');
+const MAIN_SITE_URL = 'https://ascendant-continuum.web.app/';
 
 // Philosophy themes
 const philosophyThemes = [
@@ -50,10 +60,10 @@ Innovation through inclusion.`
         hook: 'Your actions become permanent universe lore.',
         body: `Every ritual you complete:
 - Persists forever
-- Teaches future players
+- Teaches future explorers
 - Becomes discoverable archaeology
 
-Launch-day players create the universe's foundation.
+Early development rituals shape the universe's foundation.
 
 Your gameplay is worldbuilding.
 
@@ -65,7 +75,7 @@ This is collective storytelling.`
         body: `Our monetization promise:
 
 ✅ Buy once, play forever
-✅ All content available to all players
+    ✅ All content available without paywalls
 ✅ No psychological manipulation
 ✅ No pay-to-win mechanics
 
@@ -103,7 +113,8 @@ function generatePhilosophyPost() {
     // Use the theme's hook if viral hook fails
     const finalHook = hook || theme.hook;
 
-    const content = `${finalHook}\n\n${theme.body}\n\n#IndieGameDev #GameDev #EthicalGaming`;
+    const baseContent = normalizeDevelopmentClaims(`${finalHook}\n\n${theme.body}\n\n#IndieGameDev #GameDev #EthicalGaming`);
+    const content = ensureUrlAtEnd(baseContent, MAIN_SITE_URL);
 
     return {
         hook: finalHook,
@@ -128,20 +139,44 @@ async function main() {
     console.log('─'.repeat(50));
     console.log();
 
+    const normalizedContent = normalizeForPublishing(post.content);
+    assertNoProhibitedContent(normalizedContent, 'philosophy social post');
+
     // Post to all platforms
     const results = {
         timestamp: new Date().toISOString(),
         type: 'designPhilosophy',
-        content: post.content,
+        content: normalizedContent,
         hook: post.hook,
         theme: post.theme,
         platforms: {}
     };
 
+    let history = { posts: [] };
+    if (fs.existsSync(POSTING_HISTORY_PATH)) {
+        history = JSON.parse(fs.readFileSync(POSTING_HISTORY_PATH, 'utf8'));
+    }
+
+    const fingerprint = socialFingerprint({ hook: post.hook, body: normalizedContent });
+    const alreadyPosted = history.posts.some(entry => {
+        const entryFingerprint = entry.fingerprint || socialFingerprint({
+            hook: entry.hook || '',
+            body: entry.content || entry.body || ''
+        });
+        return entryFingerprint === fingerprint;
+    });
+
+    if (alreadyPosted) {
+        console.log('ℹ️ Skipping duplicate philosophy post (fingerprint match).');
+        return;
+    }
+
+    results.fingerprint = fingerprint;
+
     try {
         // Bluesky
         console.log('📡 Posting to Bluesky...');
-        const blueskyResult = await postToBluesky(post.content);
+        const blueskyResult = await postToBluesky(normalizedContent);
         results.platforms.bluesky = blueskyResult;
         console.log(`✅ Bluesky: ${blueskyResult.url || 'Posted'}\n`);
     } catch (error) {
@@ -152,7 +187,7 @@ async function main() {
     try {
         // Mastodon
         console.log('📡 Posting to Mastodon...');
-        const mastodonResult = await postToMastodon(post.content);
+        const mastodonResult = await postToMastodon(normalizedContent);
         results.platforms.mastodon = mastodonResult;
         console.log(`✅ Mastodon: ${mastodonResult.url || 'Posted'}\n`);
     } catch (error) {
@@ -165,7 +200,7 @@ async function main() {
         console.log('📡 Posting to Discord...');
         const discordAnnouncement = {
             title: `🧠 ${post.theme}`,
-            description: post.content,
+            description: normalizedContent,
             type: 'designPhilosophy',
             url: results.platforms.bluesky?.url || null
         };
@@ -177,15 +212,13 @@ async function main() {
         results.platforms.discord = { success: false, error: error.message };
     }
 
-    // Update posting history
-    let history = { posts: [] };
-    if (fs.existsSync(POSTING_HISTORY_PATH)) {
-        history = JSON.parse(fs.readFileSync(POSTING_HISTORY_PATH, 'utf8'));
+    if (DRY_RUN) {
+        console.log('DRY RUN: skipping posting history update');
+    } else {
+        history.posts.push(results);
+        fs.writeFileSync(POSTING_HISTORY_PATH, JSON.stringify(history, null, 2));
+        console.log('✅ Posting history updated');
     }
-
-    history.posts.push(results);
-    fs.writeFileSync(POSTING_HISTORY_PATH, JSON.stringify(history, null, 2));
-    console.log('✅ Posting history updated');
 
     console.log('\n🎉 Philosophy post published successfully!');
 }

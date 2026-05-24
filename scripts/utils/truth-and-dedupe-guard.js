@@ -16,6 +16,10 @@ const PROHIBITED_PATTERNS = [
         label: 'premature launch/readiness claim',
         regex: /\b(launch date|official launch|launching soon|ready to play|playable now|live now|out now|available now|android release|ios release|release date|roadmap)\b/i,
     },
+    {
+        label: 'current player metrics claim',
+        regex: /\b(active users|active players|live players|players?\s+(online|right now|currently|today)|current player base)\b/i,
+    },
 ];
 
 export function getProhibitedPatterns() {

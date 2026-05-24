@@ -10,7 +10,12 @@ import { fileURLToPath } from 'url';
 import { postToBluesky } from '../posting/post-to-bluesky.js';
 import { postToMastodon } from '../posting/post-to-mastodon.js';
 import { postToDiscord } from '../posting/post-to-discord.js';
-import { ensureUrlAtEnd, normalizeForPublishing } from '../utils/publish-text-utils.js';
+import {
+    ensureUrlAtEnd,
+    normalizeDevelopmentClaims,
+    normalizeForPublishing,
+} from '../utils/publish-text-utils.js';
+import { assertNoProhibitedContent } from '../utils/truth-and-dedupe-guard.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -58,7 +63,7 @@ async function main() {
     const highlightText = highlights.length > 0 ? highlights.map(h => `- ${h}`).join('\n') : '- Internal maintenance updates';
     const postUrl = `https://ascendant-continuum.web.app${todayUpdate.blogPostUrl}`;
 
-    const postText = ensureUrlAtEnd(`What's New - ${formattedDate}
+    const postText = ensureUrlAtEnd(normalizeDevelopmentClaims(`What's New - ${formattedDate}
 
 ${todayUpdate.totalCommits} commits today:
 
@@ -67,7 +72,8 @@ ${highlightText}
 Read the full update:
 ${postUrl}
 
-#GameDev #IndieGame #Unity #AscendantContinuum`, postUrl);
+#GameDev #IndieGame #Unity #AscendantContinuum`), postUrl);
+    assertNoProhibitedContent(postText, "what's new social post");
 
     console.log('Post text:\n');
     console.log(postText);
