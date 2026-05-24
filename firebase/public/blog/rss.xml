@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 May 2026 14:00:27 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 24 May 2026 14:00:27 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-24]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-24.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-24.html</guid>
+      <pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[What's New]]></category>
+      <category><![CDATA[updates]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Latest development focus: Harden automated social & blog posting]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-23]]></title>
@@ -231,16 +243,6 @@
       <category><![CDATA[Development]]></category>
       
       <description><![CDATA[No character creation screen. Your identity emerges from how you play. Are you a Midnight Sage, Nature Mystic, or Dawn Seeker?]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Cross-Platform Design: Building for Mobile, Tablet & Desktop]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/cross-platform-design-mobile-tablet-desktop.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/cross-platform-design-mobile-tablet-desktop.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[Building Ascendant Continuum for mobile, tablet, and desktop. Learning cross-platform design as a solo developer.]]></description>
     </item>
   </channel>
 </rss>
