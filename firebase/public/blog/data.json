@@ -911,17 +911,29 @@
       ],
       "themeName": "What's New",
       "excerpt": "Latest development focus: Harden automated social & blog posting"
+    },
+    {
+      "title": "Ascendant Continuum Dev Log - 2026-05-25",
+      "slug": "dev-log-2026-05-25",
+      "date": "2026-05-25",
+      "tags": [
+        "updates",
+        "development",
+        "behind-the-scenes"
+      ],
+      "themeName": "What's New",
+      "excerpt": "Latest development focus: blog: automated daily post [skip ci]"
     }
   ],
   "stats": {
-    "totalPosts": 87,
+    "totalPosts": 88,
     "byTheme": {
       "Behind the Scenes": 1,
       "Design Philosophy": 5,
       "Development": 29,
       "Technical Deep Dive": 1,
       "Tutorial": 2,
-      "What's New": 47,
+      "What's New": 48,
       "Dev Diary": 2
     },
     "byTag": {
@@ -931,14 +943,14 @@
       "automation": 1,
       "battle-pass": 1,
       "adaptive-personalization": 1,
-      "behind-the-scenes": 13,
+      "behind-the-scenes": 14,
       "bootstrap": 1,
       "budget": 1,
       "career-change": 1,
       "changelog": 3,
       "colorblind": 1,
       "community": 1,
-      "development": 17,
+      "development": 18,
       "disability": 1,
       "ethics": 5,
       "first-game": 1,
@@ -968,7 +980,7 @@
       "transparency": 1,
       "tutorial": 5,
       "unity": 12,
-      "updates": 8,
+      "updates": 9,
       "webdev": 1
     }
   },
