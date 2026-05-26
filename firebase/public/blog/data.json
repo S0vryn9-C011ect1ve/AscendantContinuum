@@ -923,17 +923,29 @@
       ],
       "themeName": "What's New",
       "excerpt": "Latest development focus: blog: automated daily post [skip ci]"
+    },
+    {
+      "title": "Ascendant Continuum Dev Log - 2026-05-26",
+      "slug": "dev-log-2026-05-26",
+      "date": "2026-05-26",
+      "tags": [
+        "updates",
+        "development",
+        "behind-the-scenes"
+      ],
+      "themeName": "What's New",
+      "excerpt": "Latest development focus: blog: automated daily post [skip ci]"
     }
   ],
   "stats": {
-    "totalPosts": 88,
+    "totalPosts": 89,
     "byTheme": {
       "Behind the Scenes": 1,
       "Design Philosophy": 5,
       "Development": 29,
       "Technical Deep Dive": 1,
       "Tutorial": 2,
-      "What's New": 48,
+      "What's New": 49,
       "Dev Diary": 2
     },
     "byTag": {
@@ -943,14 +955,14 @@
       "automation": 1,
       "battle-pass": 1,
       "adaptive-personalization": 1,
-      "behind-the-scenes": 14,
+      "behind-the-scenes": 15,
       "bootstrap": 1,
       "budget": 1,
       "career-change": 1,
       "changelog": 3,
       "colorblind": 1,
       "community": 1,
-      "development": 18,
+      "development": 19,
       "disability": 1,
       "ethics": 5,
       "first-game": 1,
@@ -980,7 +992,7 @@
       "transparency": 1,
       "tutorial": 5,
       "unity": 12,
-      "updates": 9,
+      "updates": 10,
       "webdev": 1
     }
   },

@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 May 2026 14:00:34 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 26 May 2026 14:00:27 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-26]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-26.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-26.html</guid>
+      <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[What's New]]></category>
+      <category><![CDATA[updates]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Latest development focus: blog: automated daily post [skip ci]]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-25]]></title>
@@ -235,16 +247,6 @@
       <category><![CDATA[Development]]></category>
       
       <description><![CDATA[Your ritual becomes someone else]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Community Mysteries That Take Months to Solve]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/community-mysteries-months-to-solve.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/community-mysteries-months-to-solve.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[Puzzles requiring 100+ players to coordinate. Fragmented clues across time zones. Real cryptography. Expected solve time: 1-6 months.]]></description>
     </item>
   </channel>
 </rss>
