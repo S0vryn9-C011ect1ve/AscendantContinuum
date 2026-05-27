@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 May 2026 14:00:27 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 27 May 2026 14:00:22 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-27]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-27.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-27.html</guid>
+      <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[What's New]]></category>
+      <category><![CDATA[updates]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Latest development focus: blog: automated daily post [skip ci]]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-26]]></title>
@@ -237,16 +249,6 @@
       <category><![CDATA[What's New]]></category>
       
       <description><![CDATA[We improved Updated content - 42fe32fe3ea31e32a221e6a921f0d3e8831cb763.]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[Archaeological Fossils: Your Actions Become History]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/archaeological-fossils-player-actions-become-history.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/archaeological-fossils-player-actions-become-history.html</guid>
-      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[Development]]></category>
-      
-      <description><![CDATA[Your ritual becomes someone else]]></description>
     </item>
   </channel>
 </rss>
