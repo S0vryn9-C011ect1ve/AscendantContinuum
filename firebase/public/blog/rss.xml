@@ -5,13 +5,25 @@
     <link>https://ascendant-continuum.web.app/blog/</link>
     <description>Daily insights into building an accessibility-first magical adventure - Unity development, ethical game design, and community stories</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 May 2026 14:00:21 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 29 May 2026 14:00:23 GMT</lastBuildDate>
     <atom:link href="https://ascendant-continuum.web.app/blog/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://ascendant-continuum.web.app/favicon.png</url>
       <title>The Ascendant Continuum</title>
       <link>https://ascendant-continuum.web.app/blog/</link>
     </image>
+
+    <item>
+      <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-29]]></title>
+      <link>https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-29.html</link>
+      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/dev-log-2026-05-29.html</guid>
+      <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
+      <category><![CDATA[What's New]]></category>
+      <category><![CDATA[updates]]></category>
+      <category><![CDATA[development]]></category>
+      <category><![CDATA[behind-the-scenes]]></category>
+      <description><![CDATA[Latest development focus: blog: automated daily post [skip ci]]]></description>
+    </item>
 
     <item>
       <title><![CDATA[Ascendant Continuum Dev Log - 2026-05-28]]></title>
@@ -239,18 +251,6 @@
       <category><![CDATA[unity]]></category>
       <category><![CDATA[game-dev]]></category>
       <description><![CDATA[The Ascendant Continuum is being developed for WebGL first—targeting 60fps on desktop and smooth 30fps on modern phones via browser. When we compiled our early prototype to native Android expecting better performance, we...]]></description>
-    </item>
-
-    <item>
-      <title><![CDATA[What's New: 14 Updates This Week]]></title>
-      <link>https://ascendant-continuum.web.app/blog/posts/whats-new-2026-05-07.html</link>
-      <guid isPermaLink="true">https://ascendant-continuum.web.app/blog/posts/whats-new-2026-05-07.html</guid>
-      <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
-      <category><![CDATA[What's New]]></category>
-      <category><![CDATA[updates]]></category>
-      <category><![CDATA[changelog]]></category>
-      <category><![CDATA[development]]></category>
-      <description><![CDATA[This week we shipped 1 new feature: - What's New pipeline — user-impact filtering + plain English + activity gate...]]></description>
     </item>
   </channel>
 </rss>
