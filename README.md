@@ -16,7 +16,7 @@ This repository is under active documentation consolidation.
 - Documentation standards: `docs/standards/repository-structure.md`, `docs/standards/naming-conventions.md`, `docs/standards/asset-management.md`
 - Legacy docs migration tracker: `docs/operations/legacy-doc-consolidation-wave-tracker.md`
 
-> 🚀 **Release Candidate 1 (Updated March 3, 2026).** WebGL is live at [ascendant-continuum.web.app](https://ascendant-continuum.web.app); Android verification is pending local Unity Android module installation.
+> � **In Development (Updated May 29, 2026).** Internal testing in progress. Public demo coming soon — [Join the waitlist](https://ascendant-continuum.web.app/#signup) for early access.
 
 ![Version](https://img.shields.io/badge/version-1.0.0--rc-goldenrod)
 ![Accessibility](https://img.shields.io/badge/accessibility-first-green)
@@ -73,8 +73,9 @@ We have just completed our final polish pass to ensure a flawless player experie
 **Infrastructure — Complete:**
 - ✅ Unity 6000.3.9f1, IL2CPP, URP 17.3.0
 - ✅ All 5 realm scenes (Emberforge, Verdant, Echo Fields, Dawn Citadel, Lantern Ascension)
-- ✅ WebGL deployed live → https://ascendant-continuum.web.app/play/
-- ⚠️ Android build — blocked locally until Unity Android Build Support is installed
+- 🚧 WebGL demo build in internal testing
+- 🔧 Android build configuration in progress
+- 🔧 iOS build configuration in progress
 - ✅ Firebase Hosting, Firestore, Storage — live with robust offline support
 - ✅ GitHub Actions CI/CD — auto-deploys on every push to `main`
 - ✅ EditMode test compilation blockers resolved (Object ambiguity + dominant direction angle conversion)
@@ -84,10 +85,12 @@ We have just completed our final polish pass to ensure a flawless player experie
 - ✅ Contextual FTUE (First-Time User Experience)
 - ✅ Object Pooling & Dynamic Performance Scaling
 
-**Coming Up:**
-- 📣 Public Launch Announcement
-- 📱 App Store & Google Play submissions
-- 🌐 Website launch page with email capture
+**Current Focus:**
+- 🔧 Build system stabilization (Android/iOS modules)
+- 🎮 Unity IAP integration and testing
+- 🧪 Internal playtesting and polish
+- 📧 Waitlist signup active at [website](https://ascendant-continuum.web.app/#signup)
+- 🚀 Public beta launch TBD (Q3 2026 target)
 
 ---
 
@@ -113,10 +116,27 @@ See `docs/operations/legacy-doc-consolidation-wave-tracker.md` for migration sta
 | | URL |
 |---|---|
 | **Website** | https://ascendant-continuum.web.app |
-| **Play (WebGL)** | https://ascendant-continuum.web.app/play/ |
+| **Waitlist Signup** | https://ascendant-continuum.web.app/#signup |
 | **Firebase Console** | https://console.firebase.google.com/project/ascendant-continuum |
 
-## 🚀 Dev Quick Start
+## � Marketing & Business Strategy
+
+**New (May 29, 2026):** Complete growth framework for content, market research, income generation, and implementation.
+
+**📂 Strategy Hub:** [docs/marketing/MASTER_INDEX.md](docs/marketing/MASTER_INDEX.md)
+
+**Key Documents:**
+- **[Content Growth Strategy](docs/marketing/CONTENT_GROWTH_STRATEGY.md)** - Multi-platform content engine (Reddit, X, YouTube, TikTok)
+- **[Market Research Analysis](docs/marketing/MARKET_RESEARCH_ANALYSIS.md)** - $7.2B puzzle game market intelligence and competitive positioning
+- **[Income Strategy ($0→$10K/month)](docs/marketing/INCOME_STRATEGY_10K_MONTH.md)** - 5 parallel income streams with realistic timelines
+- **[Direct-Response Offers](docs/marketing/DIRECT_RESPONSE_OFFERS.md)** - High-converting offer frameworks for game, services, and courses
+- **[Implementation Priority Guide](docs/marketing/IMPLEMENTATION_PRIORITY_GUIDE.md)** - Week-by-week action plan (start today)
+
+**Quick Start:** Want first 50 beta testers? See [Implementation Guide Week 1](docs/marketing/IMPLEMENTATION_PRIORITY_GUIDE.md#week-1-foundation-may-30---june-5)
+
+---
+
+## �🚀 Dev Quick Start
 
 ```powershell
 git clone https://github.com/ascendantcontinuum/AscendantContinuum.git
@@ -124,6 +144,8 @@ cd AscendantContinuum
 # Open in Unity Hub — Unity 6000.3.9f1 required
 # WebGL + Android + iOS build modules required
 ```
+
+**New:** This project uses [Claude Code structure](.claude/README.md) for AI-assisted development. See [CLAUDE.md](CLAUDE.md) for workflow principles and project context.
 
 CI/CD is fully automated. Push to `main` → builds all platforms → deploys to Firebase.
 

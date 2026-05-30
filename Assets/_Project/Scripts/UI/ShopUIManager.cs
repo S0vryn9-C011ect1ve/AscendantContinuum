@@ -73,12 +73,12 @@ namespace AscendantContinuum.UI
         [SerializeField] private float feedbackDisplayDuration = 3f;
         private Coroutine _feedbackCoroutine;
 
-        // ── Price strings (matches store listings) ───────────────────────
-        private const string PRICE_PATRON      = "$2.99/mo";
-        private const string PRICE_SEASON_PASS  = "$2.99/mo";  // premium track via Cosmic Patron subscription
-        private const string PRICE_SIGIL_SKIN  = "$1.99";
-        private const string PRICE_CONSTEL     = "$4.99";
-        private const string PRICE_ARCHIVE     = "$4.99";
+        // ── Price strings (matches store listings - ETHICAL PRICING) ────────
+        private const string PRICE_PATRON      = "$1.99/mo";
+        private const string PRICE_SEASON_PASS  = "$1.99/mo";  // premium track via Cosmic Patron subscription
+        private const string PRICE_SIGIL_SKIN  = "$0.99";
+        private const string PRICE_CONSTEL     = "$2.99";
+        private const string PRICE_ARCHIVE     = "$2.99";
         private const string PRICE_NAME_BUNDLE = "$0.99";
         private const string LABEL_OWNED       = "✦ Owned";
 

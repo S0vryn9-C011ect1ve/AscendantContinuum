@@ -19,12 +19,14 @@ service cloud.firestore {
     // User profiles - only owner can write
     match /users/{userId} {
       allow read: if isAuthenticated();
-      allow write: if isOwner(userId) && rateLimit(6); // Max 10 updates/min
+      allow write: if isOwner(userId) 
+        && rateLimit(10) // Max 6 updates/min to prevent cost spikes
+        && request.resource.size() < 100000; // Max 100KB per document
       
       // Prevent cheating - validate progression
       allow update: if isOwner(userId) 
         && request.resource.data.totalRituals >= resource.data.totalRituals // Can't decrease
-        && request.resource.data.totalRituals <= resource.data.totalRituals + 50; // Max +50 per update (anti-cheat)
+        && request.resource.data.totalRituals <= resource.data.totalRituals + 20; // Max +20 per update (tighter anti-cheat)
     }
     
     // Daily challenges - read-only for clients
@@ -37,7 +39,8 @@ service cloud.firestore {
     match /challengeSubmissions/{submissionId} {
       allow read: if isAuthenticated();
       allow create: if isOwner(request.resource.data.userId) 
-        && rateLimit(12); // Max 5 submissions per minute
+        && rateLimit(30) // Max 2 submissions per minute (prevent spam)
+        && request.resource.size() < 50000; // Max 50KB per submission
       allow update, delete: if false; // Immutable after creation
     }
     
@@ -53,17 +56,30 @@ service cloud.firestore {
       allow write: if false; // Only Cloud Functions
     }
     
-    // Time capsules
+    // Time capsules - rate limited to prevent abuse
     match /timeCapsules/{capsuleId} {
       allow read: if isAuthenticated();
-      allow create: if isOwner(request.resource.data.creatorId);
-      allow update: if isAuthenticated() && !resource.data.discovered; // Mark as discovered
+      allow create: if isOwner(request.resource.data.creatorId) 
+        && rateLimit(60) // Max 1 capsule per minute
+        && request.resource.size() < 25000; // Max 25KB per capsule
+      allow update: if isAuthenticated() 
+        && !resource.data.discovered 
+        && rateLimit(5); // Prevent discovery spam
     }
     
     // Archaeological echoes (fossils)
     match /ritualEchoes/{echoId} {
       allow read: if isAuthenticated();
       allow write: if false; // Only Cloud Functions
+    }
+    
+    // Waitlist signups - public write with rate limit
+    match /waitlist/{signupId} {
+      allow read: if false; // Private (admin only via console)
+      allow create: if request.resource.data.email is string
+        && request.resource.data.email.matches('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')
+        && request.resource.size() < 5000; // Max 5KB
+      // No rate limit on waitlist to maximize signups, but validate email format
     }
   }
 }

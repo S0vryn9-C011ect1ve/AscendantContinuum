@@ -1,0 +1,54 @@
+{
+    "project": {
+        "name": "Ascendant Continuum",
+        "type": "unity-game",
+        "language": "csharp",
+        "framework": "unity6",
+        "backend": "firebase"
+    },
+    "permissions": {
+        "allow": [
+            "read",
+            "write",
+            "execute",
+            "delete"
+        ],
+        "deny": [
+            "Library/**",
+            "Temp/**",
+            "obj/**",
+            "node_modules/**"
+        ]
+    },
+    "hooks": {
+        "PreToolUse": [
+            {
+                "matcher": "write",
+                "hooks": [
+                    "validate-csharp",
+                    "check-unity-errors"
+                ]
+            },
+            {
+                "matcher": "firebase",
+                "hooks": [
+                    "validate-rules",
+                    "estimate-cost"
+                ]
+            }
+        ],
+        "PostToolUse": [
+            {
+                "matcher": "write",
+                "hooks": [
+                    "auto-format",
+                    "run-build"
+                ]
+            }
+        ]
+    },
+    "new": {
+        "MAX_THINKING_TOKENS": "10000",
+        "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50"
+    }
+}

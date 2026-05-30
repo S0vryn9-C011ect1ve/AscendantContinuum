@@ -9,19 +9,25 @@ namespace AscendantContinuum.Platform
     /// <summary>
     /// Cosmic Patron — Ethical Monetisation Framework.
     ///
-    /// Products:
-    ///   • cosmic_patron_monthly  ($2.99/mo)  — subscription
-    ///   • sigil_skin_flame       ($1.99)     — one-time cosmetic
-    ///   • sigil_skin_verdant     ($1.99)     — one-time cosmetic
-    ///   • constellation_pack     ($4.99)     — 88 real constellation sets
-    ///   • seekers_archive        ($4.99)     — full Echo Archive depth early access
+    /// Products (Revised for Accessibility):
+    ///   • cosmic_patron_monthly  ($1.99/mo)  — optional support subscription
+    ///   • sigil_skin_flame       ($0.99)     — one-time cosmetic
+    ///   • sigil_skin_verdant     ($0.99)     — one-time cosmetic
+    ///   • constellation_pack     ($2.99)     — 88 real constellation sets
+    ///   • seekers_archive        ($2.99)     — full Echo Archive depth early access
     ///   • cosmic_name_bundle     ($0.99)     — extra Cosmic Name title slots
+    ///   • tip_jar_small          ($0.99)     — support the developer
+    ///   • tip_jar_medium         ($2.99)     — support the developer
     ///
-    /// DESIGN PRINCIPLES (from CONSTITUTION.md):
+    /// ETHICAL PRINCIPLES:
     ///   – Never sells gameplay advantage (no spark multipliers, no skip-tickets)
-    ///   – Patron badge is purely cosmetic
-    ///   – All game content is reachable without payment
+    ///   – All content accessible free (purchases support development only)
+    ///   – Patron badge is purely cosmetic recognition
+    ///   – Transparent pricing (no virtual currency obfuscation)
+    ///   – No loot boxes, no gacha, no randomness
+    ///   – Monthly spending cap reminder at $10 total
     ///   – Cosmetics are permanent once purchased
+    ///   – "Archive unlock" items become free after 90 days
     ///
     /// The IAP SDK (Unity IAP) is not bundled here. This class stubs every call
     /// so compile succeeds without the package. Wrap SDK calls in
@@ -46,8 +52,8 @@ namespace AscendantContinuum.Platform
         public const string PRODUCT_SIGIL_VERDANT      = "com.ascendantcontinuum.sigil_verdant";
         public const string PRODUCT_CONSTELLATION_PACK = "com.ascendantcontinuum.constellation_pack";
         public const string PRODUCT_SEEKERS_ARCHIVE    = "com.ascendantcontinuum.seekers_archive";
-        public const string PRODUCT_COSMIC_NAME_BUNDLE = "com.ascendantcontinuum.cosmic_name_bundle";
-
+        public const string PRODUCT_COSMIC_NAME_BUNDLE = "com.ascendantcontinuum.cosmic_name_bundle";        public const string PRODUCT_TIP_JAR_SMALL      = "com.ascendantcontinuum.tip_small";
+        public const string PRODUCT_TIP_JAR_MEDIUM     = "com.ascendantcontinuum.tip_medium";
         // ── Epoch helper ─────────────────────────────────────────────────
         private static readonly DateTime EPOCH = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         private long TodayEpochDay => (long)(DateTime.UtcNow - EPOCH).TotalDays;

@@ -2263,21 +2263,216 @@
           "success": true
         }
       ]
+    },
+    {
+      "id": 78,
+      "contentId": 141,
+      "contentType": "loreSnippet",
+      "hook": "Echo Fields remembers every player who ever visited",
+      "body": "Past rituals become 'memory fossils' after 30 days. Discover echoes from launch day, see patterns from players before you.\n\nArchaeological gameplay. The game forgets nothing...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "fingerprint": "echo fields remembers every player who ever visited||past rituals become 'memory fossils' after 30 days. discover echoes from launch day, see patterns from players before you. archaeological gameplay. the game forgets nothing...",
+      "topics": [
+        "realms-lore"
+      ],
+      "timestamp": "2026-05-24T18:00:27.608Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mmmk4vhnm52y"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116630851911535256"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "contentId": 129,
+      "contentType": "devUpdate",
+      "hook": "Seasonal events without FOMO.",
+      "body": "Equinox Event (March 20):\n\n- Special rituals available\n- Unique cosmetics unlockable\n- Community challenge active\n\nMissed it? No problem.\n- Event returns every equinox\n- Progress persists\n- Cosmetics sta...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "fingerprint": "seasonal events without fomo.||equinox event (march 20): - special rituals available - unique cosmetics unlockable - community challenge active missed it? no problem. - event returns every equinox - progress persists - cosmetics sta...",
+      "topics": [
+        "monetization",
+        "anti-fomo"
+      ],
+      "timestamp": "2026-05-25T18:01:12.562Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mmp2n6m4ac2m"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116636517207535498"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "contentId": 59,
+      "contentType": "devEducation",
+      "hook": "Unity (game engine) Input System vs old Input Manager: definitive comparison.",
+      "body": "Old Input:\n✗ Hardcoded bindings\n✗ No runtime rebind\n✗ Polling\n\nNew Input System:\n✓ Event-driven\n✓ Runtime rebind\n✓ Unified devices\n✓ Action-based\n\nMigratio...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "fingerprint": "unity (game engine) input system vs old input manager: definitive comparison.||old input: ✗ hardcoded bindings ✗ no runtime rebind ✗ polling new input system: ✓ event-driven ✓ runtime rebind ✓ unified devices ✓ action-based migratio...",
+      "topics": [],
+      "timestamp": "2026-05-26T18:00:40.356Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mmrl4txow62y"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116642181201410941"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "contentId": 22,
+      "contentType": "devUpdate",
+      "hook": "I thought this would take 2 hours. It took 2 weeks. Here's why.",
+      "body": "Screen reader support for Unity WebGL.\n\nExpected: add ARIA labels.\nReality: WebGL canvas accessibility is complex.\n\nSolved:\n1. DOM overlay\n2. Focus management\n3. Audio d...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "fingerprint": "i thought this would take 2 hours. it took 2 weeks. here's why.||screen reader support for unity webgl. expected: add aria labels. reality: webgl canvas accessibility is complex. solved: 1. dom overlay 2. focus management 3. audio d...",
+      "topics": [
+        "unity-tech"
+      ],
+      "timestamp": "2026-05-27T18:00:26.682Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mmu3ka7wf72m"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116647840078427843"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "contentId": 61,
+      "contentType": "devEducation",
+      "hook": "How I implement save systems that never corrupt.",
+      "body": "Robust saves:\n\n1. Write to temp\n2. Validate JSON\n3. Atomic rename\n4. Keep backup\n5. Version format\n\n```csharp\nFile.WriteAllText(temp, json);\nif (Valid(temp))\n  File.Replace(temp, save,...\n\nhttps://ascendant-continuum.web.app/blog/",
+      "fingerprint": "how i implement save systems that never corrupt.||robust saves: 1. write to temp 2. validate json 3. atomic rename 4. keep backup 5. version format ```csharp file.writealltext(temp, json); if (valid(temp)) file.replace(temp, save,...",
+      "topics": [],
+      "timestamp": "2026-05-29T18:00:30.795Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mmz4hniiqt2x"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116659163820564539"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "contentId": 140,
+      "contentType": "designPhilosophy",
+      "hook": "Astronomy should influence rhythm, not dominate it.",
+      "body": "Real lunar data nudges ritual generation windows in Ascendant Continuum while keeping the baseline experience stable daily. https://ascendant-continuum.web.app/",
+      "fingerprint": "astronomy should influence rhythm, not dominate it.||real lunar data nudges ritual generation windows in ascendant continuum while keeping the baseline experience stable daily.",
+      "topics": [
+        "moon-phases"
+      ],
+      "timestamp": "2026-05-30T18:01:07.302Z",
+      "platforms": [
+        "bluesky",
+        "mastodon",
+        "discord"
+      ],
+      "results": [
+        {
+          "platform": "bluesky",
+          "success": true,
+          "url": "https://bsky.app/profile/ascendantcontinuum.bsky.social/post/3mn3mxzk7ph2c"
+        },
+        {
+          "platform": "mastodon",
+          "success": true,
+          "url": "https://mastodon.social/@AscendantContinuum/116664829280638118"
+        },
+        {
+          "platform": "discord",
+          "success": true
+        }
+      ]
     }
   ],
   "stats": {
-    "totalPosts": 71,
+    "totalPosts": 77,
     "byPlatform": {
-      "bluesky": 71,
-      "mastodon": 71,
-      "discord": 69
+      "bluesky": 77,
+      "mastodon": 77,
+      "discord": 75
     },
     "byType": {
-      "devUpdate": 33,
-      "devEducation": 17,
-      "designPhilosophy": 15,
+      "devUpdate": 35,
+      "devEducation": 19,
+      "designPhilosophy": 16,
       "behindScenes": 0,
-      "loreSnippet": 6
+      "loreSnippet": 7
     }
   },
   "meta": {

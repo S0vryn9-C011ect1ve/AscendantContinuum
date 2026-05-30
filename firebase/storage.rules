@@ -2,17 +2,21 @@ rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
     
-    // Ritual replay videos
+    // Ritual replay videos - rate limited and size restricted
     match /replays/{userId}/{replayId} {
       allow read: if true; // Public (shareable)
-      allow write: if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null 
+        && request.auth.uid == userId
+        && request.resource.size < 10 * 1024 * 1024; // Max 10MB per video to prevent cost explosion
       allow delete: if request.auth != null && request.auth.uid == userId;
     }
     
-    // Personal sigil images
+    // Personal sigil images - size restricted
     match /sigils/{userId}/{sigilId} {
       allow read: if true; // Public (shareable)
-      allow write: if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null 
+        && request.auth.uid == userId
+        && request.resource.size < 2 * 1024 * 1024; // Max 2MB per image
     }
     
     // Asset bundles (realm downloads)

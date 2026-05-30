@@ -373,9 +373,10 @@
       ],
       "media": null,
       "priority": "medium",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:08.892Z"
+      "rewrittenAt": "2026-05-05T01:07:08.892Z",
+      "lastUsed": "2026-05-27T18:00:26.675Z"
     },
     {
       "id": 23,
@@ -980,9 +981,10 @@
       ],
       "media": null,
       "priority": "medium",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:08.952Z"
+      "rewrittenAt": "2026-05-05T01:07:08.952Z",
+      "lastUsed": "2026-05-26T18:00:40.351Z"
     },
     {
       "id": 60,
@@ -1012,9 +1014,10 @@
       ],
       "media": null,
       "priority": "medium",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:08.955Z"
+      "rewrittenAt": "2026-05-05T01:07:08.955Z",
+      "lastUsed": "2026-05-29T18:00:30.789Z"
     },
     {
       "id": 62,
@@ -2120,9 +2123,10 @@
       ],
       "media": null,
       "priority": "high",
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:09.051Z"
+      "rewrittenAt": "2026-05-05T01:07:09.051Z",
+      "lastUsed": "2026-05-25T18:01:12.557Z"
     },
     {
       "id": 130,
@@ -2298,9 +2302,10 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:13:01.081Z"
+      "rewrittenAt": "2026-05-05T01:13:01.081Z",
+      "lastUsed": "2026-05-30T18:01:07.295Z"
     },
     {
       "id": 141,
@@ -2314,9 +2319,10 @@
       ],
       "priority": "high",
       "media": null,
-      "used": false,
+      "used": true,
       "rewritten": true,
-      "rewrittenAt": "2026-05-05T01:07:09.064Z"
+      "rewrittenAt": "2026-05-05T01:07:09.064Z",
+      "lastUsed": "2026-05-24T18:00:27.601Z"
     },
     {
       "id": 142,
