@@ -15,6 +15,7 @@ export const allowedRootMarkdown = new Set([
     'CONTENT_FIXES_COMPLETE.md',
     'CONTENT_OPTIMIZATION_REPORT.md',
     'CONTRIBUTING.md',
+    'CLAUDE.md', // ponytail: tooling file required at root by claude-code-validation CI — spare from inbox sweep
     'DEVELOPMENT_STATUS.md',
     'EMBERFORGE_EXACT_WIRING.md',
     'EMBERFORGE_POLISH_SIMPLE.md',
