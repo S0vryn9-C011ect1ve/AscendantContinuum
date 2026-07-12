@@ -43,6 +43,18 @@
       {
         "source": "/terms",
         "destination": "/terms.html"
+      },
+      {
+        "source": "/accessibility",
+        "destination": "/accessibility.html"
+      },
+      {
+        "source": "/community-guidelines",
+        "destination": "/community-guidelines.html"
+      },
+      {
+        "source": "/onboarding",
+        "destination": "/onboarding.html"
       }
     ]
   }
