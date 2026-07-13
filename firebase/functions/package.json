@@ -37,7 +37,7 @@
     "uuid": ">=11.1.1"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/eslint-plugin": "^8.62.1",
     "@typescript-eslint/parser": "^5.12.0",
     "eslint": "^10.6.0",
     "eslint-config-google": "^0.14.0",
