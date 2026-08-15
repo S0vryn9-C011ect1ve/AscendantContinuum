@@ -191,6 +191,7 @@ jobs:
           buildsPath:      Builds
           buildMethod:     ${{ matrix.buildMethod }}
           versioning:      Semantic
+          customParameters: -nographics -batchmode
       
       # Upload build artifacts
       - name: Upload Build Artifact
