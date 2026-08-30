@@ -84,6 +84,7 @@ canvas{display:block;width:100%;height:100%}
       <button id="capsuleBtn" style="margin-top:6px;width:100%;background:#111827;color:var(--muted);border:1px solid #374151;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌱 Plant a time capsule</button>
       <button id="gardenBtn" style="margin-top:6px;width:100%;background:#111827;color:#4ade80;border:1px solid #166534;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌿 Verdant Garden</button>
       <button id="echoBtn" style="margin-top:6px;width:100%;background:#111827;color:#93c5fd;border:1px solid #1e3a8a;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌀 Echo Fields</button>
+      <button id="dawnBtn" style="margin-top:6px;width:100%;background:#111827;color:#fcd34d;border:1px solid #78350f;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🏰 Dawn Citadel</button>
     </div>
     <div id="hint">Drag to pan • Scroll to zoom • Tap stars for facts</div>
     <div id="fact"></div>
@@ -100,6 +101,7 @@ canvas{display:block;width:100%;height:100%}
 <script src="./src/garden.js"></script>
 <script src="./src/serendipity.js"></script>
 <script src="./src/echo.js"></script>
+<script src="./src/dawn.js"></script>
 <script>
 (() => {
   'use strict';
@@ -220,6 +222,23 @@ canvas{display:block;width:100%;height:100%}
           if (window.ACA11y) { window.ACA11y.tapBuzz(); window.ACA11y.tone(440 + state.ritualIndex * 60, 80); }
           updateRitualUI();
           if (state.ritualIndex >= state.ritual.total) completeRitual();
+        }
+        drag.type = 'none';
+      }
+    }
+    // dawn citadel: tap prism to rotate 15°
+    if (state.realm === 'dawn' && window.ACDawn) {
+      const L = window.ACDawn.dailyLayout();
+      const px = (L.prism.x - 0.5) * W + W/2, py = (L.prism.y - 0.5) * H + H/2;
+      if (Math.hypot(p.x - px, p.y - py) < 26) {
+        const a = (window.__dawnAngle = ((window.__dawnAngle || 0) + 15) % 360);
+        const { hit } = window.ACDawn.beamGeometry(L, a);
+        window.__dawnHit = hit;
+        if (window.ACA11y) { window.ACA11y.tapBuzz(); window.ACA11y.tone(hit ? 880 : 440, hit ? 200 : 80); }
+        if (hit && !window.__dawnCompleted) {
+          window.__dawnCompleted = true;
+          window.ACDawn.markCompleted(a);
+          showToast('🏰 Prism aligned! The citadel accepts your light.');
         }
         drag.type = 'none';
       }
@@ -521,6 +540,55 @@ canvas{display:block;width:100%;height:100%}
       ctx.globalAlpha = 1;
     }
 
+    // dawn citadel: source, beam, prism, target
+    if (state.realm === 'dawn' && window.ACDawn) {
+      const L = window.ACDawn.dailyLayout();
+      const a = window.__dawnAngle || 0;
+      const { hit, rx, ry } = window.ACDawn.beamGeometry(L, a);
+      const sx = (L.source.x - 0.5) * W, sy = (L.source.y - 0.5) * H;
+      const px = (L.prism.x - 0.5) * W, py = (L.prism.y - 0.5) * H;
+      const tx = (L.target.x - 0.5) * W, ty = (L.target.y - 0.5) * H;
+
+      // source
+      ctx.fillStyle = '#fcd34d';
+      ctx.beginPath(); ctx.arc(sx, sy, 8, 0, Math.PI*2); ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1.5 / cam.zoom;
+      ctx.beginPath(); ctx.arc(sx, sy, 12, 0, Math.PI*2); ctx.stroke();
+
+      // beam source → prism (faint until aligned)
+      ctx.strokeStyle = hit ? '#fcd34d' : 'rgba(252,211,77,0.4)';
+      ctx.lineWidth = 2 / cam.zoom;
+      ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(px, py); ctx.stroke();
+
+      // reflected beam (only if hit)
+      if (hit) {
+        ctx.strokeStyle = 'rgba(252,211,77,0.85)';
+        ctx.beginPath();
+        ctx.moveTo(px, py);
+        ctx.lineTo(px + rx * W, py + ry * H);
+        ctx.stroke();
+      }
+
+      // prism (rotatable mirror line)
+      ctx.save(); ctx.translate(px, py); ctx.rotate(a * Math.PI / 180);
+      ctx.strokeStyle = hit ? '#fef3c7' : '#93c5fd'; ctx.lineWidth = 2.5 / cam.zoom;
+      ctx.beginPath(); ctx.moveTo(-14, 0); ctx.lineTo(14, 0); ctx.stroke();
+      ctx.restore();
+
+      // target
+      ctx.strokeStyle = hit ? '#22c55e' : 'rgba(255,255,255,0.35)';
+      ctx.lineWidth = 1.5 / cam.zoom;
+      ctx.beginPath(); ctx.arc(tx, ty, 9, 0, Math.PI*2); ctx.stroke();
+      if (hit) {
+        ctx.fillStyle = '#22c55e';
+        ctx.beginPath(); ctx.arc(tx, ty, 5, 0, Math.PI*2); ctx.fill();
+      }
+
+      // citadel text
+      ctx.fillStyle = 'rgba(252,211,77,0.7)'; ctx.font = '10px sans-serif';
+      ctx.fillText(hit ? 'citadel accepts your light' : 'rotate the prism', px - 30, py + 30);
+    }
+
     // echo fields constellation tracing
     if (state.realm === 'echo' && window.ACEcho) {
       const c = window.ACEcho.dailyConstellation();
@@ -685,6 +753,7 @@ canvas{display:block;width:100%;height:100%}
       }
     }
     document.getElementById('echoBtn').addEventListener('click', () => setRealm(state.realm === 'echo' ? 'emberforge' : 'echo'));
+    document.getElementById('dawnBtn').addEventListener('click', () => setRealm(state.realm === 'dawn' ? 'emberforge' : 'dawn'));
     if (window.ACVerdant) {
       document.getElementById('gardenBtn').addEventListener('click', () => setRealm(state.realm === 'verdant' ? 'emberforge' : 'verdant'));
     }
