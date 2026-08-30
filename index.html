@@ -82,6 +82,7 @@ canvas{display:block;width:100%;height:100%}
       <div class="muted" id="ritualStatus" style="font-size:11px">0 / 5</div>
       <button id="lanternBtn" style="margin-top:8px;width:100%;background:#111827;color:var(--accent);border:1px solid var(--accent);padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🏮 Release a lantern</button>
       <button id="capsuleBtn" style="margin-top:6px;width:100%;background:#111827;color:var(--muted);border:1px solid #374151;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌱 Plant a time capsule</button>
+      <button id="gardenBtn" style="margin-top:6px;width:100%;background:#111827;color:#4ade80;border:1px solid #166534;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌿 Verdant Garden</button>
     </div>
     <div id="hint">Drag to pan • Scroll to zoom • Tap stars for facts</div>
     <div id="fact"></div>
@@ -95,6 +96,7 @@ canvas{display:block;width:100%;height:100%}
 <script src="./src/wish.js"></script>
 <script src="./src/a11y.js"></script>
 <script src="./src/capsule.js"></script>
+<script src="./src/garden.js"></script>
 <script>
 (() => {
   'use strict';
@@ -217,6 +219,23 @@ canvas{display:block;width:100%;height:100%}
           if (state.ritualIndex >= state.ritual.total) completeRitual();
         }
         drag.type = 'none';
+      }
+    }
+    // verdant garden: tap plant to water, tap empty soil to plant
+    if (state.realm === 'verdant' && window.ACVerdant) {
+      let hit = false;
+      for (const pl of window.ACVerdant.load()) {
+        const px = (pl.x - 0.5) * W + W/2, py = (pl.y - 0.5) * H + H/2;
+        if (Math.hypot(p.x - px, p.y - py) < 16) {
+          window.ACVerdant.water(pl.id);
+          if (window.ACA11y) window.ACA11y.tapBuzz();
+          showToast('💧 Watered — it grows');
+          hit = true; drag.type = 'none';
+        }
+      }
+      if (!hit && drag.type === 'pan') {
+        const nx = (p.x - W/2) / W + 0.5, ny = (p.y - H/2) / H + 0.5;
+        if (ny > 0.5) { window.ACVerdant.plant(nx, ny); showToast('🌱 Seed planted'); drag.type = 'none'; }
       }
     }
     // check star tap for education
@@ -481,6 +500,29 @@ canvas{display:block;width:100%;height:100%}
       ctx.globalAlpha = 1;
     }
 
+    // verdant garden plants
+    if (state.realm === 'verdant' && window.ACVerdant) {
+      for (const p of window.ACVerdant.load()) {
+        const px = (p.x - 0.5) * W, py = (p.y - 0.5) * H;
+        const g = window.ACVerdant.growth(p);
+        const h = 6 + g * 30;
+        ctx.strokeStyle = `hsl(${140 + g * 20},60%,${30 + g * 20}%)`;
+        ctx.lineWidth = 2 / cam.zoom;
+        ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px, py - h); ctx.stroke();
+        // blossom when mature
+        if (g >= 1) {
+          ctx.fillStyle = '#f0abfc';
+          for (let i = 0; i < 5; i++) {
+            const a = (i / 5) * Math.PI * 2;
+            ctx.beginPath(); ctx.arc(px + Math.cos(a) * 5, py - h + Math.sin(a) * 5, 3, 0, Math.PI*2); ctx.fill();
+          }
+        } else {
+          ctx.fillStyle = '#86efac';
+          ctx.beginPath(); ctx.arc(px, py - h, 3 + g * 3, 0, Math.PI*2); ctx.fill();
+        }
+      }
+    }
+
     // embers / flames
     for (const f of flames) {
       const fx = (f.x - 0.5) * W, fy = (f.y - 0.5) * H;
@@ -573,6 +615,16 @@ canvas{display:block;width:100%;height:100%}
         const c = window.ACCapsule.open(due[0].id);
         showToast(`🌱 A capsule from ${new Date(c.plantedAt).toLocaleDateString()} (${c.sky}): “${c.text}”`);
       }
+    }
+
+    // verdant garden — tap empty ground to plant, tap plant to water
+    state.realm = 'emberforge';
+    if (window.ACVerdant) {
+      document.getElementById('gardenBtn').addEventListener('click', () => {
+        state.realm = state.realm === 'emberforge' ? 'verdant' : 'emberforge';
+        document.getElementById('gardenBtn').textContent = state.realm === 'verdant' ? '🔥 Emberforge' : '🌿 Verdant Garden';
+        showToast(state.realm === 'verdant' ? '🌿 Verdant Garden — tap soil to plant, tap plant to water' : '🔥 Back to Emberforge');
+      });
     }
 
     // real world
