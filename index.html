@@ -85,6 +85,7 @@ canvas{display:block;width:100%;height:100%}
       <button id="gardenBtn" style="margin-top:6px;width:100%;background:#111827;color:#4ade80;border:1px solid #166534;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌿 Verdant Garden</button>
       <button id="echoBtn" style="margin-top:6px;width:100%;background:#111827;color:#93c5fd;border:1px solid #1e3a8a;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌀 Echo Fields</button>
       <button id="dawnBtn" style="margin-top:6px;width:100%;background:#111827;color:#fcd34d;border:1px solid #78350f;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🏰 Dawn Citadel</button>
+      <button id="lanternRealmBtn" style="margin-top:6px;width:100%;background:#111827;color:#fde68a;border:1px solid #b45309;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🏮 Lantern Ascension</button>
     </div>
     <div id="hint">Drag to pan • Scroll to zoom • Tap stars for facts</div>
     <div id="fact"></div>
@@ -102,6 +103,7 @@ canvas{display:block;width:100%;height:100%}
 <script src="./src/serendipity.js"></script>
 <script src="./src/echo.js"></script>
 <script src="./src/dawn.js"></script>
+<script src="./src/lantern.js"></script>
 <script>
 (() => {
   'use strict';
@@ -714,7 +716,15 @@ canvas{display:block;width:100%;height:100%}
       else el.textContent = `${next.emoji} ${next.name} in ${next.daysUntil}d`;
     }
 
-    // lantern button
+    // lantern / ascension: tap to release a lantern
+    canvas.addEventListener('pointerdown', (e) => {
+      if (state.realm !== 'lantern') return;
+      const l = window.ACLantern.release();
+      if (window.ACA11y) { window.ACA11y.tapBuzz(); window.ACA11y.tone(660, 120); }
+      showToast(`🏮 “${l.text}”`);
+    });
+
+    // lantern button (unchanged)
     if (window.ACWish) {
       document.getElementById('lanternBtn').addEventListener('click', () => {
         const l = window.ACWish.release();
@@ -754,6 +764,7 @@ canvas{display:block;width:100%;height:100%}
     }
     document.getElementById('echoBtn').addEventListener('click', () => setRealm(state.realm === 'echo' ? 'emberforge' : 'echo'));
     document.getElementById('dawnBtn').addEventListener('click', () => setRealm(state.realm === 'dawn' ? 'emberforge' : 'dawn'));
+    document.getElementById('lanternRealmBtn').addEventListener('click', () => setRealm(state.realm === 'lantern' ? 'emberforge' : 'lantern'));
     if (window.ACVerdant) {
       document.getElementById('gardenBtn').addEventListener('click', () => setRealm(state.realm === 'verdant' ? 'emberforge' : 'verdant'));
     }
