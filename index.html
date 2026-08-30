@@ -81,6 +81,7 @@ canvas{display:block;width:100%;height:100%}
       <div class="progress"><div id="ritualProgress"></div></div>
       <div class="muted" id="ritualStatus" style="font-size:11px">0 / 5</div>
       <button id="lanternBtn" style="margin-top:8px;width:100%;background:#111827;color:var(--accent);border:1px solid var(--accent);padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🏮 Release a lantern</button>
+      <button id="capsuleBtn" style="margin-top:6px;width:100%;background:#111827;color:var(--muted);border:1px solid #374151;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌱 Plant a time capsule</button>
     </div>
     <div id="hint">Drag to pan • Scroll to zoom • Tap stars for facts</div>
     <div id="fact"></div>
@@ -93,6 +94,7 @@ canvas{display:block;width:100%;height:100%}
 <script src="./src/identity.js"></script>
 <script src="./src/wish.js"></script>
 <script src="./src/a11y.js"></script>
+<script src="./src/capsule.js"></script>
 <script>
 (() => {
   'use strict';
@@ -464,6 +466,21 @@ canvas{display:block;width:100%;height:100%}
       ctx.globalAlpha = 1;
     }
 
+    // buried capsules — glowing seeds in the soil
+    if (window.ACCapsule) {
+      for (const c of window.ACCapsule.load()) {
+        if (c.opened) continue;
+        const cx = (c.x - 0.5) * W, cy = (c.y - 0.5) * H;
+        const pulse = 0.5 + 0.3 * Math.sin(t * 2 + c.x * 10);
+        ctx.globalAlpha = pulse;
+        ctx.fillStyle = '#a3e635';
+        ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI*2); ctx.fill();
+        ctx.globalAlpha = pulse * 0.3;
+        ctx.beginPath(); ctx.arc(cx, cy, 9, 0, Math.PI*2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
     // embers / flames
     for (const f of flames) {
       const fx = (f.x - 0.5) * W, fy = (f.y - 0.5) * H;
@@ -539,6 +556,23 @@ canvas{display:block;width:100%;height:100%}
         const l = window.ACWish.release();
         showToast(`🏮 Lantern released: “${l.text}”`);
       });
+    }
+
+    // time capsules
+    if (window.ACCapsule) {
+      document.getElementById('capsuleBtn').addEventListener('click', () => {
+        const text = prompt('Bury a message for your future self (opens in 7 days):', 'Dear future me…');
+        if (!text) return;
+        const sky = state.moon ? state.moon.name : 'unknown sky';
+        window.ACCapsule.plant(text, 7, sky);
+        if (window.ACA11y) window.ACA11y.describe('Time capsule planted under a ' + sky + '.');
+        showToast('🌱 Capsule planted — opens in 7 days');
+      });
+      const due = window.ACCapsule.due();
+      if (due.length) {
+        const c = window.ACCapsule.open(due[0].id);
+        showToast(`🌱 A capsule from ${new Date(c.plantedAt).toLocaleDateString()} (${c.sky}): “${c.text}”`);
+      }
     }
 
     // real world

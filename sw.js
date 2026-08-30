@@ -1,5 +1,5 @@
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open('ac-v2').then(c => c.addAll(['/', '/index.html', '/manifest.json', '/src/astro.js', '/src/world.js', '/src/identity.js', '/src/wish.js', '/src/a11y.js', '/src/bridge.js', '/src/register-sw.js', '/src/sky.js'])));
+  e.waitUntil(caches.open('ac-v2').then(c => c.addAll(['/', '/index.html', '/manifest.json', '/src/astro.js', '/src/world.js', '/src/identity.js', '/src/wish.js', '/src/a11y.js', '/src/capsule.js', '/src/bridge.js', '/src/register-sw.js', '/src/sky.js'])));
   self.skipWaiting();
 });
 self.addEventListener('activate', e => {
