@@ -97,6 +97,7 @@ canvas{display:block;width:100%;height:100%}
 <script src="./src/a11y.js"></script>
 <script src="./src/capsule.js"></script>
 <script src="./src/garden.js"></script>
+<script src="./src/serendipity.js"></script>
 <script>
 (() => {
   'use strict';
@@ -291,10 +292,10 @@ canvas{display:block;width:100%;height:100%}
   }
 
   function checkSerendipity() {
-    const roll = Math.random();
-    if (roll < 0.02) state.serendipity = 'Deity Appearance';
-    else if (roll < 0.06) state.serendipity = 'Sigil Aurora';
-    else if (roll < 0.15) state.serendipity = 'Divine Blessing';
+    const visual = window.ACSerendipity ? window.ACSerendipity.roll() : null;
+    if (visual === 'deity') state.serendipity = 'Deity Appearance';
+    else if (visual === 'aurora') state.serendipity = 'Sigil Aurora';
+    else if (visual === 'blessing') state.serendipity = 'Divine Blessing';
     else state.serendipity = null;
     const el = document.getElementById('serendipityLabel');
     if (state.serendipity) {
@@ -533,6 +534,9 @@ canvas{display:block;width:100%;height:100%}
       ctx.beginPath(); ctx.ellipse(fx, fy - f.h/2, f.w/2, f.h/2, 0, 0, Math.PI*2); ctx.fill();
     }
     ctx.globalAlpha = 1;
+
+    // serendipity overlays (aurora / deity / blessing)
+    if (window.ACSerendipity) window.ACSerendipity.render(ctx, W, H, t, cam);
 
     // ritual embers
     for (const ember of state.ritual.embers) {

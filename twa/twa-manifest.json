@@ -1,0 +1,50 @@
+{
+  "packageId": "com.s0vryn9.ascendant",
+  "host": "ascendant-continuum.pages.dev",
+  "name": "Ascendant Continuum",
+  "launcherName": "Ascendant",
+  "display": "standalone",
+  "themeColor": "#F59E0B",
+  "themeColorDark": "#000000",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#0B0D14",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://ascendant-continuum.pages.dev/assets/icon-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "C:\\Users\\HP\\ascendant-prototype\\twa\\android.keystore",
+    "alias": "ascendant"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://ascendant-continuum.pages.dev/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": {
+      "enabled": true
+    }
+  },
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://ascendant-continuum.pages.dev/",
+  "minSdkVersion": 21,
+  "orientation": "any",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": [],
+  "launchHandlerClientMode": "",
+  "displayOverride": [],
+  "appVersion": "1"
+}
