@@ -82,6 +82,7 @@ canvas{display:block;width:100%;height:100%}
       <p id="ritualDesc">Tap the glowing embers to light the ritual circle.</p>
       <div class="progress"><div id="ritualProgress"></div></div>
       <div class="muted" id="ritualStatus" style="font-size:11px">0 / 5</div>
+      <button id="lanternBtn" style="margin-top:8px;width:100%;background:#111827;color:var(--accent);border:1px solid var(--accent);padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🏮 Release a lantern</button>
     </div>
     <div id="hint">Drag to pan • Scroll to zoom • Tap stars for facts</div>
     <div id="fact"></div>
@@ -91,6 +92,7 @@ canvas{display:block;width:100%;height:100%}
 <script src="./src/astro.js"></script>
 <script src="./src/world.js"></script>
 <script src="./src/identity.js"></script>
+<script src="./src/wish.js"></script>
 <script>
 (() => {
   'use strict';
@@ -416,6 +418,25 @@ canvas{display:block;width:100%;height:100%}
       window.ACIdentity.drawSigil(ctx, -W*0.4, H*0.35, 20, id);
     }
 
+    // lanterns drifting up
+    if (window.ACWish) {
+      const nowMs = Date.now();
+      for (const l of window.ACWish.load()) {
+        l.x += l.drift;
+        if (l.x < 0.05 || l.x > 0.95) l.drift *= -1;
+        const ageS = (nowMs - l.t) / 1000;
+        const ly = (0.9 - Math.min(ageS / 600, 0.75)) * H - H/2; // rise over 10 min
+        const lx = (l.x - 0.5) * W;
+        const glow = 0.5 + 0.3 * Math.sin(nowMs * 0.002 + l.id.charCodeAt(2));
+        ctx.globalAlpha = glow;
+        ctx.fillStyle = '#fbbf24';
+        ctx.beginPath(); ctx.ellipse(lx, ly, 5, 7, 0, 0, Math.PI*2); ctx.fill();
+        ctx.globalAlpha = glow * 0.35;
+        ctx.beginPath(); ctx.ellipse(lx, ly, 12, 16, 0, 0, Math.PI*2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
     // embers / flames
     for (const f of flames) {
       const fx = (f.x - 0.5) * W, fy = (f.y - 0.5) * H;
@@ -482,6 +503,14 @@ canvas{display:block;width:100%;height:100%}
       const el = document.getElementById('eventLabel');
       if (active.length) { el.textContent = `${active[0].emoji} ${active[0].name} — LIVE`; el.classList.add('active'); }
       else el.textContent = `${next.emoji} ${next.name} in ${next.daysUntil}d`;
+    }
+
+    // lantern button
+    if (window.ACWish) {
+      document.getElementById('lanternBtn').addEventListener('click', () => {
+        const l = window.ACWish.release();
+        showToast(`🏮 Lantern released: “${l.text}”`);
+      });
     }
 
     // real world
