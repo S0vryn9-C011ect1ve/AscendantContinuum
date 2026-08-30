@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.s0vryn9.ascendant",
+    "sha256_cert_fingerprints": ["1F:28:54:04:FD:B7:DE:33:92:9C:A4:ED:DE:11:10:2E:F6:E4:A1:46:FA:E8:90:2C:2A:82:FC:73:1A:20:61:60"]
+  }
+}]
