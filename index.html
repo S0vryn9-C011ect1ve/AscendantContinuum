@@ -29,8 +29,8 @@ canvas{display:block;width:100%;height:100%}
 #shareBtn{background:var(--accent);color:#0b0d14;border:none;padding:6px 12px;border-radius:6px;font-weight:600;font-size:12px;cursor:pointer;margin-top:6px}
 #toast{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.9);color:var(--text);padding:12px 18px;border-radius:10px;font-size:13px;display:none;text-align:center;z-index:10;border:1px solid var(--accent);max-width:80%}
 #fact{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);color:var(--muted);font-size:11px;text-align:center;background:rgba(11,13,20,0.7);padding:6px 10px;border-radius:8px;backdrop-filter:blur(4px);max-width:90%;display:none}
-.colorblind #app{--accent:#00ffcc;--text:#ffffff}
-.colorblind .pill{border-color:#00ffcc}
+.deuteranopia #app,.protanopia #app,.tritanopia #app,.monochrome #app{--text:#ffffff}
+.deuteranopia .pill{border-color:#00b7eb}.protanopia .pill{border-color:#0ea5e9}.tritanopia .pill{border-color:#fb7185}.monochrome .pill{border-color:#e5e7eb}
 .simplified .pill{padding:8px 14px;font-size:14px}
 .simplified #ritualPanel{padding:16px;max-width:300px}
 #sunsetOverlay{position:absolute;inset:0;background:rgba(11,13,20,0.88);display:none;align-items:center;justify-content:center;z-index:20;backdrop-filter:blur(8px)}
@@ -70,9 +70,7 @@ canvas{display:block;width:100%;height:100%}
     </div>
     <div id="accessibilityPanel">
       <h3>Accessibility</h3>
-      <button class="modeBtn active" data-mode="normal">Normal</button>
-      <button class="modeBtn" data-mode="colorblind">Colorblind</button>
-      <button class="modeBtn" data-mode="simplified">Simplified</button>
+      <div id="modeButtons"></div>
       <h3 style="margin-top:10px">Real World</h3>
       <button class="modeBtn" id="gpsBtn">📍 Enable Sky Sync</button>
       <button class="modeBtn" id="grassBtn">🌿 I'm outside (2× sparks)</button>
@@ -86,6 +84,7 @@ canvas{display:block;width:100%;height:100%}
     </div>
     <div id="hint">Drag to pan • Scroll to zoom • Tap stars for facts</div>
     <div id="fact"></div>
+    <div id="a11yLive" role="status" aria-live="polite" style="position:absolute;left:-9999px"></div>
     <div id="toast"></div>
   </div>
 </div>
@@ -93,6 +92,7 @@ canvas{display:block;width:100%;height:100%}
 <script src="./src/world.js"></script>
 <script src="./src/identity.js"></script>
 <script src="./src/wish.js"></script>
+<script src="./src/a11y.js"></script>
 <script>
 (() => {
   'use strict';
@@ -210,6 +210,7 @@ canvas{display:block;width:100%;height:100%}
         if (!ember.lit) {
           ember.lit = true;
           state.ritualIndex++;
+          if (window.ACA11y) { window.ACA11y.tapBuzz(); window.ACA11y.tone(440 + state.ritualIndex * 60, 80); }
           updateRitualUI();
           if (state.ritualIndex >= state.ritual.total) completeRitual();
         }
@@ -260,6 +261,7 @@ canvas{display:block;width:100%;height:100%}
     const events = window.ACAstro ? window.ACAstro.activeEvents(new Date()) : [];
     if (events.length) bonus += ` ${events[0].emoji} ${events[0].name} active!`;
     showToast(`Ritual complete!${bonus}`);
+    if (window.ACA11y) { window.ACA11y.completeBuzz(); window.ACA11y.describe(`Ritual complete. ${state.ritualIndex} embers lit. ${bonus}`); }
     state.progress.daily = (state.progress.daily || 0) + mult;
     state.progress.streak = (state.progress.streak || 0) + 1;
     state.progress.lastDate = dailySeed();
@@ -307,16 +309,40 @@ canvas{display:block;width:100%;height:100%}
   // ===== ACCESSIBILITY =====
   function setMode(m) {
     state.mode = m;
-    document.body.classList.remove('colorblind','simplified');
+    document.body.classList.remove('colorblind','simplified','deuteranopia','protanopia','tritanopia','monochrome');
     if (m !== 'normal') document.body.classList.add(m);
-    document.querySelectorAll('.modeBtn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+    document.querySelectorAll('.modeBtn[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
     localStorage.setItem('ac_mode', m);
+    if (window.ACA11y) {
+      window.ACA11y.mode = m;
+      const secret = window.ACA11y.secretFor();
+      if (secret && !state.progress.sigils.includes(m)) {
+        state.progress.sigils.push(m);
+        saveProgress();
+        window.ACA11y.describe(secret);
+        showToast(`✶ ${secret}`);
+      } else {
+        window.ACA11y.describe(window.ACA11y.MODE_LABELS[m] + ' active');
+      }
+    }
   }
+  function buildModeButtons() {
+    const host = document.getElementById('modeButtons');
+    if (!host || !window.ACA11y) return;
+    host.innerHTML = '';
+    for (const m of window.ACA11y.MODES) {
+      const b = document.createElement('button');
+      b.className = 'modeBtn'; b.dataset.mode = m;
+      b.textContent = window.ACA11y.MODE_LABELS[m];
+      b.addEventListener('click', () => setMode(m));
+      host.appendChild(b);
+    }
+  }
+  buildModeButtons();
   document.getElementById('a11yBtn').addEventListener('click', () => {
     const p = document.getElementById('accessibilityPanel');
     p.style.display = p.style.display === 'block' ? 'none' : 'block';
   });
-  document.querySelectorAll('.modeBtn').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
   setMode(state.mode);
 
   // ===== SHARE CARD =====
@@ -376,7 +402,8 @@ canvas{display:block;width:100%;height:100%}
 
     // constellation lines
     ctx.lineWidth = 1 / cam.zoom;
-    ctx.strokeStyle = state.mode === 'colorblind' ? 'rgba(0,255,204,0.25)' : 'rgba(255,255,255,0.12)';
+    const accentColor = window.ACA11y ? window.ACA11y.palette().accent : '#f59e0b';
+    ctx.strokeStyle = state.mode !== 'normal' ? accentColor + '44' : 'rgba(255,255,255,0.12)';
     for (const [a, b] of LINES) {
       const sa = starByName(a), sb = starByName(b);
       if (!sa || !sb) continue;
@@ -403,7 +430,7 @@ canvas{display:block;width:100%;height:100%}
       ctx.fillStyle = s.color;
       ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fill();
       if (cam.zoom > 1.6) {
-        ctx.fillStyle = state.mode === 'colorblind' ? '#00ffcc' : '#e5e7eb';
+        ctx.fillStyle = state.mode !== 'normal' ? accentColor : '#e5e7eb';
         ctx.font = '10px sans-serif';
         ctx.fillText(s.name, x + 6, y + 3);
       }
@@ -457,9 +484,10 @@ canvas{display:block;width:100%;height:100%}
       ctx.strokeStyle = 'rgba(255,255,255,0.25)'; ctx.lineWidth = 1/cam.zoom; ctx.stroke();
     }
 
-    // colorblind hidden sigils around embers
-    if (state.mode === 'colorblind') {
-      ctx.strokeStyle = '#00ffcc'; ctx.lineWidth = 1.2 / cam.zoom;
+    // per-mode hidden sigils around embers (accessibility = content unlock)
+    const hiddenColor = window.ACA11y ? window.ACA11y.palette().hidden : null;
+    if (hiddenColor) {
+      ctx.strokeStyle = hiddenColor; ctx.lineWidth = 1.2 / cam.zoom;
       for (const ember of state.ritual.embers) {
         const ex = (ember.x - 0.5) * W, ey = (ember.y - 0.5) * H;
         ctx.beginPath(); ctx.arc(ex, ey, ember.size + 6, 0, Math.PI*2); ctx.stroke();
