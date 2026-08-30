@@ -1,0 +1,9 @@
+<!DOCTYPE html><html><body style="margin:0;background:#0b0d14;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;color:#e5e7eb;font-family:sans-serif">
+<h1 style="font-size:16px">Ascendant Icon Generator</h1>
+<canvas id="c192" width="192" height="192" style="border:1px solid #374151;margin:6px"></canvas>
+<canvas id="c512" width="512" height="512" style="border:1px solid #374151;margin:6px"></canvas>
+<script>
+function draw(id,bg,accent){const c=document.getElementById(id),x=c.getContext('2d');x.fillStyle=bg;x.fillRect(0,0,c.width,c.height);x.fillStyle=accent;x.beginPath();x.arc(c.width/2,c.height/2,c.width*0.28,0,Math.PI*2);x.fill();x.fillStyle=bg;x.font=`bold ${c.width*0.18}px sans-serif`;x.textAlign='center';x.textBaseline='middle';x.fillText('AC',c.width/2,c.height/2);}
+draw('c192','#0b0d14','#f59e0b');draw('c512','#0b0d14','#f59e0b');
+document.querySelectorAll('canvas').forEach(c=>{const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='icon-'+c.width+'.png';a.textContent='Download '+c.width;document.body.appendChild(a);document.body.appendChild(document.createElement('br'));});
+</script></body></html>

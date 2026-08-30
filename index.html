@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>Ascendant Continuum — Emberforge Ritual</title>
+<style>
+:root{--bg:#0b0d14;--panel:#131620;--accent:#f59e0b;--muted:#9ca3af;--text:#e5e7eb;--danger:#ef4444;--success:#22c55e;--a11y:#00ffcc}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto;overflow:hidden;touch-action:none}
+#app{display:flex;flex-direction:column;height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--panel);border-bottom:1px solid #1f2937;z-index:2}
+header h1{font-size:14px;margin:0;color:var(--accent)}
+header button{background:#111827;color:#e5e7eb;border:1px solid #374151;padding:5px 10px;border-radius:6px;font-size:12px;cursor:pointer}
+#stage{position:relative;flex:1;overflow:hidden}
+canvas{display:block;width:100%;height:100%}
+#ui{position:absolute;left:10px;top:10px;display:flex;flex-direction:column;gap:6px}
+.pill{background:rgba(11,13,20,0.85);border:1px solid #374151;padding:4px 10px;border-radius:999px;font-size:11px;backdrop-filter:blur(4px)}
+.pill.active{border-color:var(--accent);color:var(--accent)}
+#accessibilityPanel{position:absolute;right:10px;top:10px;background:rgba(19,22,32,0.95);border:1px solid #374151;border-radius:10px;padding:10px;backdrop-filter:blur(6px);display:none;min-width:180px}
+#accessibilityPanel h3{margin:0 0 6px 0;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.modeBtn{display:block;width:100%;background:#111827;color:#e5e7eb;border:1px solid #374151;padding:6px;border-radius:6px;margin:4px 0;font-size:12px;cursor:pointer}
+.modeBtn.active{border-color:var(--accent);color:var(--accent)}
+#hint{position:absolute;right:10px;bottom:10px;color:var(--muted);font-size:11px;text-align:right;background:rgba(11,13,20,0.7);padding:6px 10px;border-radius:8px;backdrop-filter:blur(4px);max-width:220px}
+#ritualPanel{position:absolute;left:10px;bottom:10px;background:rgba(19,22,32,0.95);border:1px solid #374151;border-radius:12px;padding:12px;backdrop-filter:blur(6px);max-width:260px}
+#ritualPanel h2{margin:0 0 6px 0;font-size:13px;color:var(--accent)}
+#ritualPanel p{margin:0 0 8px 0;font-size:11px;color:var(--muted);line-height:1.4}
+.progress{height:6px;background:#111827;border-radius:3px;overflow:hidden;margin:4px 0}
+.progress>div{height:100%;background:linear-gradient(90deg,#f59e0b,#ef4444);width:0%;transition:width .3s}
+#shareBtn{background:var(--accent);color:#0b0d14;border:none;padding:6px 12px;border-radius:6px;font-weight:600;font-size:12px;cursor:pointer;margin-top:6px}
+#toast{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.9);color:var(--text);padding:12px 18px;border-radius:10px;font-size:13px;display:none;text-align:center;z-index:10;border:1px solid var(--accent);max-width:80%}
+#fact{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);color:var(--muted);font-size:11px;text-align:center;background:rgba(11,13,20,0.7);padding:6px 10px;border-radius:8px;backdrop-filter:blur(4px);max-width:90%;display:none}
+.colorblind #app{--accent:#00ffcc;--text:#ffffff}
+.colorblind .pill{border-color:#00ffcc}
+.simplified .pill{padding:8px 14px;font-size:14px}
+.simplified #ritualPanel{padding:16px;max-width:300px}
+#sunsetOverlay{position:absolute;inset:0;background:rgba(11,13,20,0.88);display:none;align-items:center;justify-content:center;z-index:20;backdrop-filter:blur(8px)}
+.sunsetCard{background:var(--panel);border:1px solid var(--accent);border-radius:14px;padding:24px;max-width:320px;text-align:center}
+.sunsetCard h2{margin:0 0 10px 0;color:var(--accent);font-size:18px}
+.sunsetCard p{color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 14px 0}
+.sunsetCard button{display:block;width:100%;padding:10px;border-radius:8px;border:1px solid #374151;background:#111827;color:var(--text);margin-top:8px;cursor:pointer}
+.sunsetCard button.ghost{background:transparent;border-color:var(--accent);color:var(--accent)}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>🔥 Emberforge — Daily Ritual</h1>
+    <div>
+      <button id="a11yBtn" aria-label="Accessibility modes">♿ Modes</button>
+      <button id="shareBtn" aria-label="Share card">Share</button>
+    </div>
+  </header>
+  <div id="stage">
+    <canvas id="sky"></canvas>
+    <div id="ui">
+      <div class="pill" id="dailyLabel">Daily Ritual — loading…</div>
+      <div class="pill" id="moonLabel">Moon: —</div>
+      <div class="pill" id="eventLabel"></div>
+      <div class="pill" id="grassLabel"></div>
+      <div class="pill" id="serendipityLabel"></div>
+    </div>
+    <div id="sunsetOverlay">
+      <div class="sunsetCard">
+        <h2>🌇 Digital Sunset</h2>
+        <p>The real sun has set where you are. The Continuum rests until tomorrow — but you can continue if you need to.</p>
+        <button id="sunsetContinue">Continue anyway</button>
+        <button id="sunsetClose" class="ghost">Goodnight</button>
+      </div>
+    </div>
+    <div id="accessibilityPanel">
+      <h3>Accessibility</h3>
+      <button class="modeBtn active" data-mode="normal">Normal</button>
+      <button class="modeBtn" data-mode="colorblind">Colorblind</button>
+      <button class="modeBtn" data-mode="simplified">Simplified</button>
+      <h3 style="margin-top:10px">Real World</h3>
+      <button class="modeBtn" id="gpsBtn">📍 Enable Sky Sync</button>
+      <button class="modeBtn" id="grassBtn">🌿 I'm outside (2× sparks)</button>
+    </div>
+    <div id="ritualPanel">
+      <h2 id="ritualTitle">Ignite the Spark</h2>
+      <p id="ritualDesc">Tap the glowing embers to light the ritual circle.</p>
+      <div class="progress"><div id="ritualProgress"></div></div>
+      <div class="muted" id="ritualStatus" style="font-size:11px">0 / 5</div>
+    </div>
+    <div id="hint">Drag to pan • Scroll to zoom • Tap stars for facts</div>
+    <div id="fact"></div>
+    <div id="toast"></div>
+  </div>
+</div>
+<script src="./src/astro.js"></script>
+<script src="./src/world.js"></script>
+<script>
+(() => {
+  'use strict';
+
+  // ===== ASTRONOMY DATA — bright stars + constellations =====
+  // Names, colors, and constellation lines are educational approximations.
+  const CATALOG = [
+    { name: 'Sirius', x: 0.28, y: 0.18, mag: -1.46, color: '#aaddff', constellation: 'Canis Major', fact: 'Sirius is the brightest star in the night sky, 8.6 light-years away.' },
+    { name: 'Canopus', x: 0.35, y: 0.28, mag: -0.74, color: '#ffd2a1', constellation: 'Carina', fact: 'Canopus is the second-brightest star; invisible north of ~37° N latitude.' },
+    { name: 'Arcturus', x: 0.55, y: 0.24, mag: -0.05, color: '#ffcc66', constellation: 'Boötes', fact: 'Arcturus is a red giant about 37 light-years away.' },
+    { name: 'Vega', x: 0.48, y: 0.16, mag: 0.03, color: '#b3d9ff', constellation: 'Lyra', fact: 'Vega was the north star ~12,000 years ago and will be again in ~13,000 years.' },
+    { name: 'Capella', x: 0.42, y: 0.22, mag: 0.08, color: '#ffdd99', constellation: 'Auriga', fact: 'Capella looks like one star, but it is actually four stars in two binary pairs.' },
+    { name: 'Rigel', x: 0.62, y: 0.30, mag: 0.13, color: '#b3d9ff', constellation: 'Orion', fact: 'Rigel is a blue supergiant about 860 light-years away.' },
+    { name: 'Procyon', x: 0.50, y: 0.22, mag: 0.34, color: '#fff5e6', constellation: 'Canis Minor', fact: 'Procyon means “before the dog” because it rises before Sirius.' },
+    { name: 'Betelgeuse', x: 0.58, y: 0.28, mag: 0.50, color: '#ff8866', constellation: 'Orion', fact: 'Betelgeuse is a red supergiant that may explode as a supernova within 100,000 years.' },
+    { name: 'Altair', x: 0.68, y: 0.24, mag: 0.77, color: '#f9f9ff', constellation: 'Aquila', fact: 'Altair rotates extremely fast: about once every 8.9 hours.' },
+    { name: 'Aldebaran', x: 0.45, y: 0.30, mag: 0.86, color: '#ffaa77', constellation: 'Taurus', fact: 'Aldebaran is a red giant about 65 light-years away.' },
+    { name: 'Spica', x: 0.72, y: 0.32, mag: 0.97, color: '#ddeeff', constellation: 'Virgo', fact: 'Spica is actually two stars orbiting each other every 4 days.' },
+    { name: 'Pollux', x: 0.52, y: 0.26, mag: 1.14, color: '#ffcc88', constellation: 'Gemini', fact: 'Pollux is the brighter of the twins; it has a confirmed exoplanet.' },
+    { name: 'Deneb', x: 0.76, y: 0.20, mag: 1.25, color: '#cce8ff', constellation: 'Cygnus', fact: 'Deneb is one of the most luminous stars known: ~200,000× the Sun.' },
+    { name: 'Regulus', x: 0.60, y: 0.34, mag: 1.35, color: '#ddeeff', constellation: 'Leo', fact: 'Regulus spins so fast it would fly apart if it rotated much faster.' },
+    { name: 'Castor', x: 0.54, y: 0.26, mag: 1.58, color: '#ffffff', constellation: 'Gemini', fact: 'Castor is a sextuple star system: six stars bound by gravity.' },
+  ];
+
+  // Constellation lines: pairs of names from CATALOG for simplicity
+  const LINES = [
+    ['Sirius','Procyon'],['Procyon','Pollux'],['Pollux','Castor'],['Castor','Regulus'],
+    ['Regulus','Spica'],['Spica','Arcturus'],['Arcturus','Vega'],['Vega','Deneb'],
+    ['Deneb','Altair'],['Altair','Rigel'],['Rigel','Betelgeuse'],['Betelgeuse','Aldebaran'],
+    ['Aldebaran','Capella'],['Capella','Arcturus'],['Canopus','Rigel']
+  ];
+
+  function starByName(n){ return CATALOG.find(s => s.name === n); }
+
+  // ===== STATE =====
+  const state = {
+    mode: localStorage.getItem('ac_mode') || 'normal',
+    progress: JSON.parse(localStorage.getItem('ac_progress') || '{"daily":0,"sigils":[],"streak":0,"lastDate":""}'),
+    serendipity: null,
+    moon: null,
+    ritual: [],
+    ritualIndex: 0,
+    hemisphere: localStorage.getItem('ac_hemi') || 'north',
+  };
+
+  // ===== MOON =====
+  const KNOWN_NEW_MOON = new Date(Date.UTC(2025, 0, 29));
+  const SYNODIC = 29.53058867;
+  function getMoon(now) {
+    const days = (now - KNOWN_NEW_MOON) / 864e5;
+    const age = ((days % SYNODIC) + SYNODIC) % SYNODIC;
+    const phase = age / SYNODIC;
+    let name = 'Waning Crescent';
+    if (phase < 0.03 || phase > 0.97) name = 'New Moon';
+    else if (phase < 0.22) name = 'Waxing Crescent';
+    else if (phase < 0.28) name = 'First Quarter';
+    else if (phase < 0.47) name = 'Waxing Gibbous';
+    else if (phase < 0.53) name = 'Full Moon';
+    else if (phase < 0.72) name = 'Waning Gibbous';
+    else if (phase < 0.78) name = 'Last Quarter';
+    return { age, phase, name };
+  }
+
+  // ===== DAILY RITUAL SEED =====
+  function dailySeed() {
+    const d = new Date();
+    return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+  }
+  function seededRandom(seed) {
+    let h = 0;
+    for (let i = 0; i < seed.length; i++) h = ((h << 5) - h + seed.charCodeAt(i)) | 0;
+    const x = Math.sin(h) * 10000;
+    return x - Math.floor(x);
+  }
+  function generateDailyRitual() {
+    const seed = dailySeed();
+    const r = (i) => seededRandom(seed + i);
+    const count = 5 + Math.floor(r(1) * 3);
+    const embers = [];
+    for (let i = 0; i < count; i++) {
+      embers.push({
+        x: 0.15 + r(10 + i) * 0.7,
+        y: 0.15 + r(20 + i) * 0.7,
+        lit: false,
+        size: 6 + r(30 + i) * 10,
+      });
+    }
+    return { name: 'Ignite the Spark', desc: 'Tap the glowing embers to light the ritual circle.', embers, total: count };
+  }
+
+  // ===== CANVAS SETUP =====
+  const canvas = document.getElementById('sky');
+  const ctx = canvas.getContext('2d');
+  let W, H, dpr = Math.max(1, window.devicePixelRatio || 1);
+  let cam = { x: 0, y: 0, zoom: 1 };
+  let drag = null;
+
+  function resize() {
+    const r = canvas.parentElement.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // ===== INPUT =====
+  canvas.addEventListener('pointerdown', (e) => {
+    const p = toWorld(e.clientX, e.clientY);
+    drag = { x: e.clientX, y: e.clientY, camX: cam.x, camY: cam.y, type: 'pan' };
+    // check ember tap
+    for (const ember of state.ritual.embers) {
+      const ex = ember.x * W, ey = ember.y * H;
+      if (Math.hypot(p.x - ex, p.y - ey) < (ember.size + 10)) {
+        if (!ember.lit) {
+          ember.lit = true;
+          state.ritualIndex++;
+          updateRitualUI();
+          if (state.ritualIndex >= state.ritual.total) completeRitual();
+        }
+        drag.type = 'none';
+      }
+    }
+    // check star tap for education
+    for (const s of CATALOG) {
+      const sx = (s.x - 0.5) * W + W/2, sy = (s.y - 0.5) * H + H/2;
+      if (Math.hypot(p.x - sx, p.y - sy) < 14) {
+        showFact(`${s.name} (${s.constellation}): ${s.fact}`);
+        drag.type = 'none';
+      }
+    }
+  });
+  window.addEventListener('pointerup', () => drag = null);
+  window.addEventListener('pointermove', (e) => {
+    if (!drag || drag.type !== 'pan') return;
+    cam.x = drag.camX + (e.clientX - drag.x) / cam.zoom;
+    cam.y = drag.camY + (e.clientY - drag.y) / cam.zoom;
+  });
+  canvas.addEventListener('wheel', (e) => {
+    const f = Math.exp(-e.deltaY * 0.0015);
+    cam.zoom = Math.max(0.4, Math.min(6, cam.zoom * f));
+  }, { passive: true });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+  });
+
+  function toWorld(cx, cy) {
+    const rect = canvas.getBoundingClientRect();
+    return { x: (cx - rect.left - W/2)/cam.zoom + cam.x + W/2, y: (cy - rect.top - H/2)/cam.zoom + cam.y + H/2 };
+  }
+
+  // ===== RITUAL LOGIC =====
+  function updateRitualUI() {
+    document.getElementById('ritualStatus').textContent = `${state.ritualIndex} / ${state.ritual.total}`;
+    document.getElementById('ritualProgress').style.width = `${(state.ritualIndex / state.ritual.total) * 100}%`;
+  }
+
+  function completeRitual() {
+    const moon = getMoon(new Date());
+    const mult = window.ACWorld ? window.ACWorld.multiplier() : 1;
+    let bonus = '';
+    if (moon.name === 'Full Moon') bonus = ' Full Moon bonus!';
+    else if (moon.name === 'New Moon') bonus = ' New Moon whisper.';
+    if (mult > 1) bonus += ` 🌿 Touch Grass ×${mult}!`;
+    const events = window.ACAstro ? window.ACAstro.activeEvents(new Date()) : [];
+    if (events.length) bonus += ` ${events[0].emoji} ${events[0].name} active!`;
+    showToast(`Ritual complete!${bonus}`);
+    state.progress.daily = (state.progress.daily || 0) + mult;
+    state.progress.streak = (state.progress.streak || 0) + 1;
+    state.progress.lastDate = dailySeed();
+    saveProgress();
+    checkSerendipity();
+  }
+
+  function checkSerendipity() {
+    const roll = Math.random();
+    if (roll < 0.02) state.serendipity = 'Deity Appearance';
+    else if (roll < 0.06) state.serendipity = 'Sigil Aurora';
+    else if (roll < 0.15) state.serendipity = 'Divine Blessing';
+    else state.serendipity = null;
+    const el = document.getElementById('serendipityLabel');
+    if (state.serendipity) {
+      el.textContent = `✨ ${state.serendipity}`;
+      el.classList.add('active');
+    } else {
+      el.textContent = '';
+      el.classList.remove('active');
+    }
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.display = 'block';
+    setTimeout(() => t.style.display = 'none', 2200);
+  }
+  function showFact(msg) {
+    const f = document.getElementById('fact');
+    f.textContent = msg;
+    f.style.display = 'block';
+    clearTimeout(f._t);
+    f._t = setTimeout(() => f.style.display = 'none', 4000);
+  }
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(()=>{});
+    else document.exitFullscreen?.();
+  }
+
+  // ===== STORAGE =====
+  function saveProgress() { localStorage.setItem('ac_progress', JSON.stringify(state.progress)); }
+
+  // ===== ACCESSIBILITY =====
+  function setMode(m) {
+    state.mode = m;
+    document.body.classList.remove('colorblind','simplified');
+    if (m !== 'normal') document.body.classList.add(m);
+    document.querySelectorAll('.modeBtn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+    localStorage.setItem('ac_mode', m);
+  }
+  document.getElementById('a11yBtn').addEventListener('click', () => {
+    const p = document.getElementById('accessibilityPanel');
+    p.style.display = p.style.display === 'block' ? 'none' : 'block';
+  });
+  document.querySelectorAll('.modeBtn').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  setMode(state.mode);
+
+  // ===== SHARE CARD =====
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    const c = document.createElement('canvas');
+    c.width = 1200; c.height = 630;
+    const x = c.getContext('2d');
+    x.fillStyle = '#0b0d14'; x.fillRect(0,0,1200,630);
+    x.fillStyle = '#f59e0b'; x.font = 'bold 48px sans-serif'; x.fillText('Ascendant Continuum', 40, 70);
+    x.fillStyle = '#e5e7eb'; x.font = '32px sans-serif'; x.fillText(`Daily Ritual: ${state.ritual.name}`, 40, 130);
+    x.fillStyle = '#9ca3af'; x.font = '28px sans-serif'; x.fillText(`Completed: ${state.ritualIndex}/${state.ritual.total}`, 40, 180);
+    x.fillStyle = '#f59e0b'; x.font = '24px sans-serif'; x.fillText(`Moon: ${state.moon?.name || '—'}`, 40, 230);
+    if (state.serendipity) { x.fillStyle = '#00ffcc'; x.fillText(`✨ ${state.serendipity}`, 40, 280); }
+    x.fillStyle = '#374151'; x.fillRect(40, 320, 1120, 4);
+    x.fillStyle = '#6b7280'; x.font = '22px sans-serif'; x.fillText('ascendantcontinuum.game', 40, 370);
+    const link = c.toDataURL('image/png');
+    const a = document.createElement('a'); a.href = link; a.download = 'ascendant-daily.png'; a.click();
+    showToast('Share card saved');
+  });
+
+  // ===== RENDER =====
+  const stars = Array.from({ length: 260 }, () => ({
+    x: Math.random(), y: Math.random(), r: Math.random() * 1.2 + 0.3, a: Math.random(), speed: Math.random() * 0.01 + 0.002, phase: Math.random() * 6.28
+  }));
+  const flames = [];
+  for (let i = 0; i < 18; i++) flames.push({ x: Math.random(), y: 0.55 + Math.random()*0.35, h: 20 + Math.random()*40, w: 8 + Math.random()*14, speed: 0.02 + Math.random()*0.04, phase: Math.random()*6.28 });
+
+  function drawMoon(cx, cy, r, phase) {
+    ctx.save(); ctx.translate(cx, cy);
+    ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2); ctx.fillStyle='#fef3c7'; ctx.fill(); ctx.clip();
+    ctx.fillStyle='#0b0d14';
+    const t = Math.cos(phase * Math.PI * 2) * r;
+    ctx.beginPath(); ctx.ellipse(t/2, 0, Math.abs(t)+1, r, 0, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+
+  function frame() {
+    const now = new Date();
+    state.moon = getMoon(now);
+    ctx.clearRect(0,0,W,H);
+
+    ctx.save();
+    ctx.translate(W/2 + cam.x, H/2 + cam.y);
+    ctx.scale(cam.zoom, cam.zoom);
+
+    // background gradient with subtle moon-phase tint
+    const bg = ctx.createLinearGradient(0, -H/2, 0, H/2);
+    const moonPhaseTint = state.moon.name === 'Full Moon' ? '17,24,32' : '11,13,20';
+    bg.addColorStop(0, `rgb(${moonPhaseTint})`); bg.addColorStop(0.55, '#0f172a'); bg.addColorStop(1, `rgb(${moonPhaseTint})`);
+    ctx.fillStyle = bg; ctx.fillRect(-W/2, -H/2, W, H);
+
+    // constellation lines
+    ctx.lineWidth = 1 / cam.zoom;
+    ctx.strokeStyle = state.mode === 'colorblind' ? 'rgba(0,255,204,0.25)' : 'rgba(255,255,255,0.12)';
+    for (const [a, b] of LINES) {
+      const sa = starByName(a), sb = starByName(b);
+      if (!sa || !sb) continue;
+      const ax = (sa.x - 0.5) * W, ay = (sa.y - 0.5) * H;
+      const bx = (sb.x - 0.5) * W, by = (sb.y - 0.5) * H;
+      ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
+    }
+
+    // stars
+    const t = now.getTime() * 0.001;
+    for (const s of stars) {
+      const x = (s.x - 0.5) * W, y = (s.y - 0.5) * H;
+      const flicker = 0.55 + 0.45 * Math.sin(t * s.speed * 10 + s.phase);
+      ctx.globalAlpha = s.a * flicker;
+      ctx.fillStyle = '#fff';
+      ctx.beginPath(); ctx.arc(x, y, s.r, 0, Math.PI*2); ctx.fill();
+    }
+
+    // catalog stars with color + labels on hover-zoom
+    ctx.globalAlpha = 1;
+    for (const s of CATALOG) {
+      const x = (s.x - 0.5) * W, y = (s.y - 0.5) * H;
+      const r = s.mag < 1 ? 3.2 : 2.2;
+      ctx.fillStyle = s.color;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fill();
+      if (cam.zoom > 1.6) {
+        ctx.fillStyle = state.mode === 'colorblind' ? '#00ffcc' : '#e5e7eb';
+        ctx.font = '10px sans-serif';
+        ctx.fillText(s.name, x + 6, y + 3);
+      }
+    }
+
+    // moon
+    drawMoon(-W*0.35, -H*0.32, 26, state.moon.phase);
+
+    // embers / flames
+    for (const f of flames) {
+      const fx = (f.x - 0.5) * W, fy = (f.y - 0.5) * H;
+      const flick = 0.7 + 0.3 * Math.sin(t * f.speed * 8 + f.phase);
+      const g = ctx.createLinearGradient(fx, fy, fx, fy - f.h);
+      g.addColorStop(0, 'rgba(245,158,11,0.9)'); g.addColorStop(0.4, 'rgba(239,68,68,0.6)'); g.addColorStop(1, 'rgba(245,158,11,0)');
+      ctx.globalAlpha = flick; ctx.fillStyle = g;
+      ctx.beginPath(); ctx.ellipse(fx, fy - f.h/2, f.w/2, f.h/2, 0, 0, Math.PI*2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    // ritual embers
+    for (const ember of state.ritual.embers) {
+      const ex = (ember.x - 0.5) * W, ey = (ember.y - 0.5) * H;
+      ctx.beginPath(); ctx.arc(ex, ey, ember.size, 0, Math.PI*2);
+      ctx.fillStyle = ember.lit ? '#22c55e' : 'rgba(245,158,11,0.9)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.25)'; ctx.lineWidth = 1/cam.zoom; ctx.stroke();
+    }
+
+    // colorblind hidden sigils around embers
+    if (state.mode === 'colorblind') {
+      ctx.strokeStyle = '#00ffcc'; ctx.lineWidth = 1.2 / cam.zoom;
+      for (const ember of state.ritual.embers) {
+        const ex = (ember.x - 0.5) * W, ey = (ember.y - 0.5) * H;
+        ctx.beginPath(); ctx.arc(ex, ey, ember.size + 6, 0, Math.PI*2); ctx.stroke();
+      }
+    }
+
+    ctx.restore();
+
+    // UI
+    document.getElementById('moonLabel').textContent = `Moon: ${state.moon.name}`;
+    document.getElementById('hint').textContent = `Drag to pan • Scroll to zoom • Tap stars for facts\nPress F for fullscreen • ${state.hemisphere === 'north' ? 'Northern' : 'Southern'} sky`;
+    requestAnimationFrame(frame);
+  }
+
+  // ===== INIT =====
+  function init() {
+    const seed = dailySeed();
+    if (state.progress.lastDate !== seed) {
+      state.progress.daily = 0;
+      state.progress.lastDate = seed;
+      state.ritualIndex = 0;
+      saveProgress();
+    }
+    state.ritual = generateDailyRitual();
+    document.getElementById('dailyLabel').textContent = `Daily Ritual — ${seed}`;
+    document.getElementById('ritualTitle').textContent = state.ritual.name;
+    document.getElementById('ritualDesc').textContent = state.ritual.desc;
+    updateRitualUI();
+    checkSerendipity();
+
+    // astronomy events
+    if (window.ACAstro) {
+      const active = window.ACAstro.activeEvents(new Date());
+      const next = window.ACAstro.nextEvent(new Date());
+      const el = document.getElementById('eventLabel');
+      if (active.length) { el.textContent = `${active[0].emoji} ${active[0].name} — LIVE`; el.classList.add('active'); }
+      else el.textContent = `${next.emoji} ${next.name} in ${next.daysUntil}d`;
+    }
+
+    // real world
+    if (window.ACWorld) {
+      const grass = document.getElementById('grassLabel');
+      const updateGrass = () => {
+        const on = window.ACWorld.isParkish();
+        grass.textContent = on ? '🌿 Outside — 2× sparks' : '';
+        grass.classList.toggle('active', on);
+        document.getElementById('grassBtn').classList.toggle('active', on);
+      };
+      updateGrass();
+      window.ACWorld.on(evt => {
+        if (evt.type === 'sunset') showToast(`🌇 Sun sets at ${evt.at.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}`);
+        if (evt.type === 'digital-sunset') document.getElementById('sunsetOverlay').style.display = 'flex';
+        if (evt.type === 'outdoors') updateGrass();
+      });
+      document.getElementById('gpsBtn').addEventListener('click', async () => {
+        showToast('Locating…');
+        const c = await window.ACWorld.locate();
+        if (c) { window.ACWorld.startSunsetWatch(); showToast('Sky synced to your location'); }
+        else showToast('Location unavailable — sky stays generic');
+      });
+      document.getElementById('grassBtn').addEventListener('click', () => {
+        window.ACWorld.setOutdoors(!window.ACWorld.isParkish());
+      });
+      document.getElementById('sunsetContinue').addEventListener('click', () => {
+        window.ACWorld.dismissSunset();
+        document.getElementById('sunsetOverlay').style.display = 'none';
+      });
+      document.getElementById('sunsetClose').addEventListener('click', () => {
+        document.getElementById('sunsetOverlay').innerHTML = '<div class="sunsetCard"><h2>🌙 Goodnight, seeker.</h2><p>The Continuum will be here tomorrow.</p></div>';
+      });
+    }
+    requestAnimationFrame(frame);
+  }
+  init();
+})();
+</script>
+<script src="./src/register-sw.js"></script>
+<script src="./src/bridge.js"></script>
+</body>
+</html>
