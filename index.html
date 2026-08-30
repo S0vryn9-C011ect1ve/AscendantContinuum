@@ -57,6 +57,7 @@ canvas{display:block;width:100%;height:100%}
       <div class="pill" id="moonLabel">Moon: —</div>
       <div class="pill" id="eventLabel"></div>
       <div class="pill" id="grassLabel"></div>
+      <div class="pill" id="identityLabel"></div>
       <div class="pill" id="serendipityLabel"></div>
     </div>
     <div id="sunsetOverlay">
@@ -89,6 +90,7 @@ canvas{display:block;width:100%;height:100%}
 </div>
 <script src="./src/astro.js"></script>
 <script src="./src/world.js"></script>
+<script src="./src/identity.js"></script>
 <script>
 (() => {
   'use strict';
@@ -327,7 +329,13 @@ canvas{display:block;width:100%;height:100%}
     x.fillStyle = '#f59e0b'; x.font = '24px sans-serif'; x.fillText(`Moon: ${state.moon?.name || '—'}`, 40, 230);
     if (state.serendipity) { x.fillStyle = '#00ffcc'; x.fillText(`✨ ${state.serendipity}`, 40, 280); }
     x.fillStyle = '#374151'; x.fillRect(40, 320, 1120, 4);
-    x.fillStyle = '#6b7280'; x.font = '22px sans-serif'; x.fillText('ascendantcontinuum.game', 40, 370);
+    if (window.ACIdentity) {
+      const id = window.ACIdentity.identity(state.progress);
+      window.ACIdentity.drawSigil(x, 1010, 150, 90, id);
+      x.fillStyle = `hsl(${id.hue},70%,70%)`; x.font = 'italic 26px serif';
+      x.fillText(id.name, 40, 270);
+    }
+    x.fillStyle = '#6b7280'; x.font = '22px sans-serif'; x.fillText('ascendant-continuum.pages.dev', 40, 370);
     const link = c.toDataURL('image/png');
     const a = document.createElement('a'); a.href = link; a.download = 'ascendant-daily.png'; a.click();
     showToast('Share card saved');
@@ -402,6 +410,12 @@ canvas{display:block;width:100%;height:100%}
     // moon
     drawMoon(-W*0.35, -H*0.32, 26, state.moon.phase);
 
+    // personal sigil bottom-left of world space
+    if (window.ACIdentity) {
+      const id = window.ACIdentity.identity(state.progress);
+      window.ACIdentity.drawSigil(ctx, -W*0.4, H*0.35, 20, id);
+    }
+
     // embers / flames
     for (const f of flames) {
       const fx = (f.x - 0.5) * W, fy = (f.y - 0.5) * H;
@@ -454,6 +468,12 @@ canvas{display:block;width:100%;height:100%}
     document.getElementById('ritualDesc').textContent = state.ritual.desc;
     updateRitualUI();
     checkSerendipity();
+
+    // cosmic identity
+    if (window.ACIdentity) {
+      const id = window.ACIdentity.identity(state.progress);
+      document.getElementById('identityLabel').textContent = `✶ ${id.name}`;
+    }
 
     // astronomy events
     if (window.ACAstro) {

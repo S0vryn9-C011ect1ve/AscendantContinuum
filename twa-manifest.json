@@ -1,0 +1,24 @@
+{
+  "packageId": "com.s0vryn9.ascendantcontinuum",
+  "host": "ascendant-continuum.pages.dev",
+  "name": "Ascendant Continuum",
+  "launcherName": "Ascendant",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#f59e0b",
+  "backgroundColor": "#0b0d14",
+  "startUrl": "/",
+  "iconUrl": "https://ascendant-continuum.pages.dev/assets/icon-512.png",
+  "maskableIconUrl": "https://ascendant-continuum.pages.dev/assets/icon-512.png",
+  "appVersionCode": 1,
+  "appVersionName": "0.1.0",
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "ascendant"
+  },
+  "enableNotifications": false,
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": { "enabled": true }
+  }
+}
