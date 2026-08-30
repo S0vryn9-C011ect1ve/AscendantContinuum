@@ -83,6 +83,7 @@ canvas{display:block;width:100%;height:100%}
       <button id="lanternBtn" style="margin-top:8px;width:100%;background:#111827;color:var(--accent);border:1px solid var(--accent);padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🏮 Release a lantern</button>
       <button id="capsuleBtn" style="margin-top:6px;width:100%;background:#111827;color:var(--muted);border:1px solid #374151;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌱 Plant a time capsule</button>
       <button id="gardenBtn" style="margin-top:6px;width:100%;background:#111827;color:#4ade80;border:1px solid #166534;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌿 Verdant Garden</button>
+      <button id="echoBtn" style="margin-top:6px;width:100%;background:#111827;color:#93c5fd;border:1px solid #1e3a8a;padding:6px;border-radius:6px;font-size:12px;cursor:pointer">🌀 Echo Fields</button>
     </div>
     <div id="hint">Drag to pan • Scroll to zoom • Tap stars for facts</div>
     <div id="fact"></div>
@@ -98,6 +99,7 @@ canvas{display:block;width:100%;height:100%}
 <script src="./src/capsule.js"></script>
 <script src="./src/garden.js"></script>
 <script src="./src/serendipity.js"></script>
+<script src="./src/echo.js"></script>
 <script>
 (() => {
   'use strict';
@@ -220,6 +222,24 @@ canvas{display:block;width:100%;height:100%}
           if (state.ritualIndex >= state.ritual.total) completeRitual();
         }
         drag.type = 'none';
+      }
+    }
+    // echo fields: tap stars in order
+    if (state.realm === 'echo' && window.ACEcho) {
+      const c = window.ACEcho.dailyConstellation();
+      const next = c.stars[state.echoNext];
+      const sx = (next.x - 0.5) * W + W/2, sy = (next.y - 0.5) * H + H/2;
+      if (Math.hypot(p.x - sx, p.y - sy) < 22) {
+        state.echoNext++;
+        if (window.ACA11y) { window.ACA11y.tapBuzz(); window.ACA11y.tone(520 + state.echoNext * 50, 80); }
+        showToast(`${next.label} — ${state.echoNext}/${c.stars.length}`);
+        drag.type = 'none';
+        if (state.echoNext >= c.stars.length) {
+          window.ACEcho.markCompleted(1);
+          showToast(`🌀 ${c.name} traced! Memory orb unlocked.`);
+          if (window.ACA11y) window.ACA11y.completeBuzz();
+          state.echoNext = 0;
+        }
       }
     }
     // verdant garden: tap plant to water, tap empty soil to plant
@@ -501,6 +521,36 @@ canvas{display:block;width:100%;height:100%}
       ctx.globalAlpha = 1;
     }
 
+    // echo fields constellation tracing
+    if (state.realm === 'echo' && window.ACEcho) {
+      const c = window.ACEcho.dailyConstellation();
+      // lines between traced stars
+      ctx.strokeStyle = state.mode !== 'normal' ? accentColor : '#93c5fd';
+      ctx.lineWidth = 1.5 / cam.zoom;
+      ctx.beginPath();
+      for (let i = 0; i <= state.echoNext && i < c.stars.length; i++) {
+        const s = c.stars[i];
+        const x = (s.x - 0.5) * W, y = (s.y - 0.5) * H;
+        i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      }
+      ctx.stroke();
+      // stars: traced = solid, next = pulsing ring, future = dim
+      for (let i = 0; i < c.stars.length; i++) {
+        const s = c.stars[i];
+        const x = (s.x - 0.5) * W, y = (s.y - 0.5) * H;
+        const traced = i < state.echoNext, isNext = i === state.echoNext;
+        ctx.fillStyle = traced ? '#22c55e' : isNext ? '#93c5fd' : 'rgba(147,197,253,0.3)';
+        ctx.beginPath(); ctx.arc(x, y, traced ? 5 : isNext ? 6 : 3.5, 0, Math.PI*2); ctx.fill();
+        if (isNext) {
+          const pulse = 3 + Math.sin(t * 3) * 2;
+          ctx.strokeStyle = accentColor; ctx.lineWidth = 1 / cam.zoom;
+          ctx.beginPath(); ctx.arc(x, y, 10 + pulse, 0, Math.PI*2); ctx.stroke();
+          ctx.fillStyle = accentColor; ctx.font = '11px sans-serif';
+          ctx.fillText(s.label, x + 12, y - 8);
+        }
+      }
+    }
+
     // verdant garden plants
     if (state.realm === 'verdant' && window.ACVerdant) {
       for (const p of window.ACVerdant.load()) {
@@ -621,14 +671,22 @@ canvas{display:block;width:100%;height:100%}
       }
     }
 
-    // verdant garden — tap empty ground to plant, tap plant to water
-    state.realm = 'emberforge';
+    // realm switcher — emberforge / verdant / echo
+    state.realm = localStorage.getItem('ac_realm') || 'emberforge';
+    state.echoNext = 0;  // next star index to trace
+    function setRealm(r) {
+      state.realm = r;
+      localStorage.setItem('ac_realm', r);
+      document.getElementById('gardenBtn').textContent = r === 'verdant' ? '🔥 Emberforge' : '🌿 Verdant Garden';
+      document.getElementById('echoBtn').textContent = r === 'echo' ? '🔥 Emberforge' : '🌀 Echo Fields';
+      if (r === 'echo') {
+        const c = window.ACEcho.dailyConstellation();
+        showToast(`🌀 Echo Fields — trace ${c.name}: tap ${c.stars[0].label} first`);
+      }
+    }
+    document.getElementById('echoBtn').addEventListener('click', () => setRealm(state.realm === 'echo' ? 'emberforge' : 'echo'));
     if (window.ACVerdant) {
-      document.getElementById('gardenBtn').addEventListener('click', () => {
-        state.realm = state.realm === 'emberforge' ? 'verdant' : 'emberforge';
-        document.getElementById('gardenBtn').textContent = state.realm === 'verdant' ? '🔥 Emberforge' : '🌿 Verdant Garden';
-        showToast(state.realm === 'verdant' ? '🌿 Verdant Garden — tap soil to plant, tap plant to water' : '🔥 Back to Emberforge');
-      });
+      document.getElementById('gardenBtn').addEventListener('click', () => setRealm(state.realm === 'verdant' ? 'emberforge' : 'verdant'));
     }
 
     // real world
