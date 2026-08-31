@@ -99,6 +99,7 @@ canvas{display:block;width:100%;height:100%}
 <script src="./src/wish.js"></script>
 <script src="./src/a11y.js"></script>
 <script src="./src/capsule.js"></script>
+<script src="./src/emberforge.js"></script>
 <script src="./src/garden.js"></script>
 <script src="./src/serendipity.js"></script>
 <script src="./src/echo.js"></script>
@@ -217,7 +218,7 @@ canvas{display:block;width:100%;height:100%}
     // check ember tap
     for (const ember of state.ritual.embers) {
       const ex = ember.x * W, ey = ember.y * H;
-      if (Math.hypot(p.x - ex, p.y - ey) < (ember.size + 10)) {
+      if (Math.hypot(p.x - ex, p.y - ey) < ((ember.size || 8) + 10)) {
         if (!ember.lit) {
           ember.lit = true;
           state.ritualIndex++;
@@ -245,7 +246,7 @@ canvas{display:block;width:100%;height:100%}
         drag.type = 'none';
       }
     }
-    // echo fields: tap stars in order
+    // echo fields: tap stars in order with accuracy scoring
     if (state.realm === 'echo' && window.ACEcho) {
       const c = window.ACEcho.dailyConstellation();
       const next = c.stars[state.echoNext];
@@ -256,8 +257,9 @@ canvas{display:block;width:100%;height:100%}
         showToast(`${next.label} — ${state.echoNext}/${c.stars.length}`);
         drag.type = 'none';
         if (state.echoNext >= c.stars.length) {
-          window.ACEcho.markCompleted(1);
-          showToast(`🌀 ${c.name} traced! Memory orb unlocked.`);
+          const pts = c.stars.map(s => ({ x: (s.x - 0.5) * W + W/2, y: (s.y - 0.5) * H + H/2 }));
+          const result = window.ACEcho.markCompleted(window.ACEcho.accuracy(pts, c));
+          showToast(`🌀 ${c.name} traced! ${result.tier} tier — ${result.reward} orbs`);
           if (window.ACA11y) window.ACA11y.completeBuzz();
           state.echoNext = 0;
         }
@@ -623,23 +625,20 @@ canvas{display:block;width:100%;height:100%}
 
     // verdant garden plants
     if (state.realm === 'verdant' && window.ACVerdant) {
-      for (const p of window.ACVerdant.load()) {
+      const plants = window.ACVerdant.snapshot();
+      const size = Math.max(1.5, 3 / cam.zoom);
+      for (const p of plants) {
         const px = (p.x - 0.5) * W, py = (p.y - 0.5) * H;
-        const g = window.ACVerdant.growth(p);
+        const g = p.g;
         const h = 6 + g * 30;
-        ctx.strokeStyle = `hsl(${140 + g * 20},60%,${30 + g * 20}%)`;
+        ctx.strokeStyle = p.color || `hsl(${140 + g * 20},60%,${30 + g * 20}%)`;
         ctx.lineWidth = 2 / cam.zoom;
         ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px, py - h); ctx.stroke();
-        // blossom when mature
+        ctx.font = `${size + g * 2}px sans-serif`;
+        ctx.fillText(p.emoji || '🌱', px - size, py - h - 2);
         if (g >= 1) {
-          ctx.fillStyle = '#f0abfc';
-          for (let i = 0; i < 5; i++) {
-            const a = (i / 5) * Math.PI * 2;
-            ctx.beginPath(); ctx.arc(px + Math.cos(a) * 5, py - h + Math.sin(a) * 5, 3, 0, Math.PI*2); ctx.fill();
-          }
-        } else {
-          ctx.fillStyle = '#86efac';
-          ctx.beginPath(); ctx.arc(px, py - h, 3 + g * 3, 0, Math.PI*2); ctx.fill();
+          ctx.fillStyle = 'rgba(240,171,252,0.6)';
+          ctx.beginPath(); ctx.arc(px, py - h - 6, 4 + Math.sin(t * 4) * 2, 0, Math.PI*2); ctx.fill();
         }
       }
     }
@@ -661,7 +660,8 @@ canvas{display:block;width:100%;height:100%}
     // ritual embers
     for (const ember of state.ritual.embers) {
       const ex = (ember.x - 0.5) * W, ey = (ember.y - 0.5) * H;
-      ctx.beginPath(); ctx.arc(ex, ey, ember.size, 0, Math.PI*2);
+      const sz = ember.size || 8;
+      ctx.beginPath(); ctx.arc(ex, ey, sz, 0, Math.PI*2);
       ctx.fillStyle = ember.lit ? '#22c55e' : 'rgba(245,158,11,0.9)';
       ctx.fill();
       ctx.strokeStyle = 'rgba(255,255,255,0.25)'; ctx.lineWidth = 1/cam.zoom; ctx.stroke();
@@ -694,7 +694,12 @@ canvas{display:block;width:100%;height:100%}
       state.ritualIndex = 0;
       saveProgress();
     }
-    state.ritual = generateDailyRitual();
+    state.ritual = window.ACEmber.getToday();
+    const patternNames = { spiral: 'Spiral ignition', cross: 'Cross lighting', bloom: 'Bloom ignition' };
+    state.ritual.name = patternNames[state.ritual.kind] || 'Daily Ritual';
+    state.ritual.desc = `Tap the ${state.ritual.kind} nodes to light the circle.`;
+    state.ritual.total = state.ritual.points.length;
+    state.ritual.embers = state.ritual.points;
     document.getElementById('dailyLabel').textContent = `Daily Ritual — ${seed}`;
     document.getElementById('ritualTitle').textContent = state.ritual.name;
     document.getElementById('ritualDesc').textContent = state.ritual.desc;

@@ -1,7 +1,6 @@
 // ponytail: Echo Fields — trace constellations by connecting stars in order
-// Real constellation shapes, tap each star in sequence; complete = sigil + memory orb
+// Expanded: difficulty tiers, accuracy scoring, memory orb rewards, sky parallax
 window.ACEcho = (() => {
-  // simplified real constellation shapes, normalized 0..1 space
   const CONSTELLATIONS = [
     { name: 'Orion', stars: [
       { x: .30, y: .20, label: 'Betelgeuse' }, { x: .42, y: .32, label: 'Bellatrix' },
@@ -22,23 +21,52 @@ window.ACEcho = (() => {
       { x: .34, y: .40, label: 'Zeta Lyr' }] },
   ];
   const KEY = 'ace_echo';
+  const TIERS = [
+    { name: 'Scout', tolerance: 0.06, reward: 1 },
+    { name: 'Navigator', tolerance: 0.04, reward: 2 },
+    { name: 'Astronomer', tolerance: 0.025, reward: 3 },
+  ];
   function load() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } }
   function save(s) { localStorage.setItem(KEY, JSON.stringify(s)); }
 
-  // daily pick — same constellation worldwide per date
   function dailyConstellation() {
     const d = new Date();
     const seed = d.getFullYear() * 366 + d.getMonth() * 31 + d.getDate();
-    return CONSTELLATIONS[seed % CONSTELLATIONS.length];
+    return { ...CONSTELLATIONS[seed % CONSTELLATIONS.length], seed };
+  }
+
+  function accuracy(pts, C) {
+    // avg distance from touch to nearest star target, normalized
+    if (!pts || pts.length < C.stars.length) return 1;
+    let total = 0;
+    for (let i = 0; i < C.stars.length; i++) {
+      const dx = pts[i].x - C.stars[i].x, dy = pts[i].y - C.stars[i].y;
+      total += Math.hypot(dx, dy);
+    }
+    return total / C.stars.length;
+  }
+
+  function tierFor(acc) {
+    for (const t of TIERS) if (acc <= t.tolerance) return t;
+    return null;
   }
 
   function completedToday() { return load()[new Date().toDateString()]; }
-  function markCompleted(accuracy) {
+  function markCompleted(acc) {
+    const tier = tierFor(acc);
     const s = load();
-    s[new Date().toDateString()] = { accuracy, t: Date.now() };
+    s[new Date().toDateString()] = { acc, tier: tier ? tier.name : 'Scout', reward: tier ? tier.reward : 1, t: Date.now() };
     save(s);
+    return s[new Date().toDateString()];
   }
   function totalCompleted() { return Object.keys(load()).length; }
+  function stats() {
+    const s = load();
+    const entries = Object.values(s);
+    const tiers = {};
+    entries.forEach(e => { tiers[e.tier] = (tiers[e.tier] || 0) + 1; });
+    return { total: entries.length, tiers };
+  }
 
-  return { CONSTELLATIONS, dailyConstellation, completedToday, markCompleted, totalCompleted };
+  return { CONSTELLATIONS, TIERS, dailyConstellation, accuracy, tierFor, completedToday, markCompleted, totalCompleted, stats };
 })();
