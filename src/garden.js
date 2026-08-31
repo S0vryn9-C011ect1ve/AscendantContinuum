@@ -1,59 +1,84 @@
-// ponytail: Verdant Garden — tap-and-hold seeds, they grow in real time
-// Expanded: 5 plant types, growth stages, weather boost, garden grid, share card
+// ponytail: Verdant Garden — plant, grow, harvest; outdoor GPS bonus
 window.ACVerdant = (() => {
   const KEY = 'ac_garden';
   const PLANTS = [
-    { kind: 'moonvine', emoji: '🌙', color: '#a5b4fc', stages: ['sprout','vine','bloom','glow'], growH: 36 },
-    { kind: 'emberfern', emoji: '🔥', color: '#fca5a5', stages: ['frond','curl','smolder','cinder'], growH: 48 },
-    { kind: 'starbloom', emoji: '⭐', color: '#fde68a', stages: ['bud','star','flare','nova'], growH: 24 },
-    { kind: 'dewpetal', emoji: '💧', color: '#67e8f9', stages: ['drop','cup','basin','well'], growH: 30 },
-    { kind: 'rootwhisper', emoji: '🌿', color: '#86efac', stages: ['thread','root','whisper','song'], growH: 60 },
+    { id:'sage',       name:'Sage',            icon:'🌿', stages:['seed','sprout','leaf','bloom','harvest'], days:4 },
+    { id:'mint',       name:'Mint',            icon:'🍃', stages:['seed','sprout','leaf','bloom','harvest'], days:3 },
+    { id:'lavender',   name:'Lavender',        icon:'💜', stages:['seed','sprout','bud','bloom','harvest'], days:5 },
+    { id:'thyme',      name:'Thyme',           icon:'🌱', stages:['seed','sprout','leaf','bloom','harvest'], days:3 },
+    { id:'elder',      name:'Elderberry',      icon:'🫐', stages:['seed','sprout','branch','fruit','harvest'], days:6 },
   ];
-  const MAX = 24;
-  function load() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } }
-  function save(list) { localStorage.setItem(KEY, JSON.stringify(list.slice(-MAX))); }
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } }
+  function save(s) { localStorage.setItem(KEY, JSON.stringify(s)); }
+  function today() { return new Date().toDateString(); }
 
-  // touch-grass multiplier: outdoor GPS bonus handled in world.js
-  let outdoorBonus = 0;
-  if (window.ACWorld && window.ACWorld.isOutdoor()) outdoorBonus = 0.15;
-
-  function plant(x, y) {
-    const list = load();
-    if (list.length >= MAX) return null;
-    const kind = PLANTS[Math.floor(Math.random() * PLANTS.length)];
-    const p = { id: Date.now().toString(36), kind: kind.kind, emoji: kind.emoji, color: kind.color, stages: kind.stages, growH: kind.growH, x, y, plantedAt: Date.now(), water: 0 };
-    list.push(p); save(list); return p;
+  function outdoorBonus() {
+    if (!navigator.geolocation) return 0;
+    return new Promise(resolve => {
+      navigator.geolocation.getCurrentPosition(
+        () => resolve(0.15),
+        () => resolve(0),
+        { timeout: 4000, maximumAge: 60000 }
+      );
+    });
   }
 
-  function growth(p) {
-    const ageH = (Date.now() - p.plantedAt) / 3600e3;
-    const base = Math.min(1, ageH / p.growH + p.water * 0.08);
-    return Math.min(1, base + outdoorBonus);
+  function plant(typeId) {
+    const type = PLANTS.find(p => p.id === typeId);
+    if (!type) return null;
+    const s = load();
+    const plot = (s.plots || []);
+    const empty = plot.findIndex(p => !p.typeId);
+    if (empty === -1) return null;
+    plot[empty] = { typeId, planted: Date.now(), stage: 0, watered: false };
+    s.plots = plot;
+    save(s);
+    return { plotIndex: empty, type };
   }
 
-  function stageName(p) {
-    const g = growth(p);
-    const i = Math.min(p.stages.length - 1, Math.floor(g * p.stages.length));
-    return p.stages[i];
+  function water(index) {
+    const s = load();
+    const p = (s.plots || [])[index];
+    if (!p) return false;
+    p.watered = true;
+    save(s);
+    return true;
   }
 
-  function water(id) {
-    const list = load();
-    const p = list.find(p => p.id === id);
-    if (p) { p.water++; save(list); }
-    return p;
+  function tick() {
+    const s = load();
+    const now = Date.now();
+    (s.plots || []).forEach(p => {
+      const type = PLANTS.find(t => t.id === p.typeId);
+      if (!type || p.stage >= type.stages.length - 1) return;
+      const dayMs = 86400000;
+      const grow = (p.watered ? 0.6 : 0.35);
+      const age = (now - p.planted) / dayMs;
+      p.stage = Math.min(type.stages.length - 1, Math.floor(age / (type.days / (type.stages.length - 1)) * grow) + (p.watered ? 1 : 0));
+    });
+    save(s);
+    return s.plots;
   }
 
-  function harvestReady() { return load().filter(p => growth(p) >= 1).length; }
-  function harvestAll() {
-    const list = load();
-    const ready = list.filter(p => growth(p) >= 1);
-    list.forEach(p => { if (growth(p) >= 1) p.plantedAt = 0; });
-    save(list);
-    return ready.length;
+  function harvest(index) {
+    const s = load();
+    const p = (s.plots || [])[index];
+    if (!p) return null;
+    const type = PLANTS.find(t => t.id === p.typeId);
+    const ready = type && p.stage >= type.stages.length - 1;
+    if (!ready) return null;
+    const harvested = { ...p };
+    s.plots[index] = null;
+    save(s);
+    return harvested;
   }
 
-  function snapshot() { return load().map(p => ({ ...p, g: growth(p), stage: stageName(p) })); }
+  function stats() {
+    const s = load();
+    const plots = (s.plots || []);
+    const grown = plots.filter(p => p && p.stage >= (PLANTS.find(t=>t.id===p.typeId)?.stages.length||5) - 1).length;
+    return { plots: plots.length, grown };
+  }
 
-  return { load, plant, growth, stageName, water, harvestReady, harvestAll, snapshot, PLANTS };
+  return { PLANTS, load, save, plant, water, tick, harvest, stats, outdoorBonus };
 })();

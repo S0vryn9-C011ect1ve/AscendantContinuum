@@ -216,7 +216,7 @@ canvas{display:block;width:100%;height:100%}
     const p = toWorld(e.clientX, e.clientY);
     drag = { x: e.clientX, y: e.clientY, camX: cam.x, camY: cam.y, type: 'pan' };
     // check ember tap
-    for (const ember of state.ritual.embers) {
+    for (const ember of state.ritual.points) {
       const ex = ember.x * W, ey = ember.y * H;
       if (Math.hypot(p.x - ex, p.y - ey) < ((ember.size || 8) + 10)) {
         if (!ember.lit) {
@@ -511,9 +511,9 @@ canvas{display:block;width:100%;height:100%}
     }
 
     // lanterns drifting up
-    if (window.ACWish) {
+    if (window.ACLantern) {
       const nowMs = Date.now();
-      for (const l of window.ACWish.load()) {
+      for (const l of window.ACLantern.load()) {
         l.x += l.drift;
         if (l.x < 0.05 || l.x > 0.95) l.drift *= -1;
         const ageS = (nowMs - l.t) / 1000;
@@ -625,7 +625,7 @@ canvas{display:block;width:100%;height:100%}
 
     // verdant garden plants
     if (state.realm === 'verdant' && window.ACVerdant) {
-      const plants = window.ACVerdant.snapshot();
+      const plants = window.ACVerdant.load();
       const size = Math.max(1.5, 3 / cam.zoom);
       for (const p of plants) {
         const px = (p.x - 0.5) * W, py = (p.y - 0.5) * H;
@@ -658,7 +658,7 @@ canvas{display:block;width:100%;height:100%}
     if (window.ACSerendipity) window.ACSerendipity.render(ctx, W, H, t, cam);
 
     // ritual embers
-    for (const ember of state.ritual.embers) {
+    for (const ember of state.ritual.points) {
       const ex = (ember.x - 0.5) * W, ey = (ember.y - 0.5) * H;
       const sz = ember.size || 8;
       ctx.beginPath(); ctx.arc(ex, ey, sz, 0, Math.PI*2);
@@ -671,7 +671,7 @@ canvas{display:block;width:100%;height:100%}
     const hiddenColor = window.ACA11y ? window.ACA11y.palette().hidden : null;
     if (hiddenColor) {
       ctx.strokeStyle = hiddenColor; ctx.lineWidth = 1.2 / cam.zoom;
-      for (const ember of state.ritual.embers) {
+      for (const ember of state.ritual.points) {
         const ex = (ember.x - 0.5) * W, ey = (ember.y - 0.5) * H;
         ctx.beginPath(); ctx.arc(ex, ey, ember.size + 6, 0, Math.PI*2); ctx.stroke();
       }
@@ -695,12 +695,11 @@ canvas{display:block;width:100%;height:100%}
       saveProgress();
     }
     state.ritual = window.ACEmber.getToday();
-    const patternNames = { spiral: 'Spiral ignition', cross: 'Cross lighting', bloom: 'Bloom ignition' };
-    state.ritual.name = patternNames[state.ritual.kind] || 'Daily Ritual';
-    state.ritual.desc = `Tap the ${state.ritual.kind} nodes to light the circle.`;
+    const pNames = { spiral: 'Spiral Ignition', cross: 'Cross Lighting', bloom: 'Bloom Ignition' };
+    state.ritual.name = pNames[state.ritual.kind] || 'Ritual';
+    state.ritual.desc = `Tap the ${state.ritual.points.length} embers in the ${state.ritual.kind} pattern.`;
     state.ritual.total = state.ritual.points.length;
-    state.ritual.embers = state.ritual.points;
-    document.getElementById('dailyLabel').textContent = `Daily Ritual — ${seed}`;
+    document.getElementById('dailyLabel').textContent = `Daily Ritual — ${new Date().toLocaleDateString()}`;
     document.getElementById('ritualTitle').textContent = state.ritual.name;
     document.getElementById('ritualDesc').textContent = state.ritual.desc;
     updateRitualUI();
@@ -730,9 +729,9 @@ canvas{display:block;width:100%;height:100%}
     });
 
     // lantern button (unchanged)
-    if (window.ACWish) {
+    if (window.ACLantern) {
       document.getElementById('lanternBtn').addEventListener('click', () => {
-        const l = window.ACWish.release();
+        const l = window.ACLantern.release();
         showToast(`🏮 Lantern released: “${l.text}”`);
       });
     }
